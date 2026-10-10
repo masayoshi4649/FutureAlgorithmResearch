@@ -1,0 +1,104 @@
+{
+  "requests": [
+    {
+      "bytes": 5670,
+      "file": "status.json",
+      "headers": {
+        "Cache-Control": [
+          "no-store"
+        ],
+        "Content-Type": [
+          "application/json; charset=utf-8"
+        ],
+        "Date": [
+          "Thu, 08 Oct 2026 13:38:41 GMT"
+        ]
+      },
+      "status": 200,
+      "trailers": null,
+      "url": "http://10.10.100.1:8080/api/v1/history/status",
+      "成功": true
+    },
+    {
+      "bytes": 122193780,
+      "file": "NK225.jsonl",
+      "headers": {
+        "Cache-Control": [
+          "no-store"
+        ],
+        "Content-Type": [
+          "application/x-ndjson; charset=utf-8"
+        ],
+        "Date": [
+          "Thu, 08 Oct 2026 13:38:41 GMT"
+        ],
+        "X-History-As-Of": [
+          "2026-10-08T22:38:41.35419+09:00"
+        ],
+        "X-History-Code": [
+          "NK225"
+        ],
+        "X-History-Generation": [
+          "53bf1e0a4a00af743aecea614aaa42b5"
+        ],
+        "X-History-Sequence": [
+          "75961"
+        ],
+        "X-History-Session-Id": [
+          "2026-10-08_Night"
+        ]
+      },
+      "status": 200,
+      "trailers": {
+        "X-History-Complete": [
+          "true"
+        ]
+      },
+      "url": "http://10.10.100.1:8080/api/v1/history/NK225/book?to=2026-10-08T13%3A38%3A37.7748374Z",
+      "成功": true
+    },
+    {
+      "bytes": 123412291,
+      "file": "TOPIX.jsonl",
+      "headers": {
+        "Cache-Control": [
+          "no-store"
+        ],
+        "Content-Type": [
+          "application/x-ndjson; charset=utf-8"
+        ],
+        "Date": [
+          "Thu, 08 Oct 2026 13:39:04 GMT"
+        ],
+        "X-History-As-Of": [
+          "2026-10-08T22:39:04.8862033+09:00"
+        ],
+        "X-History-Code": [
+          "TOPIX"
+        ],
+        "X-History-Generation": [
+          "53bf1e0a4a00af743aecea614aaa42b5"
+        ],
+        "X-History-Sequence": [
+          "78682"
+        ],
+        "X-History-Session-Id": [
+          "2026-10-08_Night"
+        ]
+      },
+      "status": 200,
+      "trailers": {
+        "X-History-Complete": [
+          "true"
+        ]
+      },
+      "url": "http://10.10.100.1:8080/api/v1/history/TOPIX/book?to=2026-10-08T13%3A38%3A37.7748374Z",
+      "成功": true
+    }
+  ],
+  "全応答成功": true,
+  "共通to": "2026-10-08T13:38:37.7748374Z",
+  "再試行": false,
+  "実注文": 0,
+  "終了時計": "2026-10-08T13:39:22.3095128Z"
+}

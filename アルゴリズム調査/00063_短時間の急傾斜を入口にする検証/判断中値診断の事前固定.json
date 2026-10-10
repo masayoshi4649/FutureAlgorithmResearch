@@ -1,0 +1,13 @@
+{
+  "時刻": "2026-10-08T13:39:12.092020+00:00",
+  "理由": "元の採点は次行実建値と返済気配を使うため、価格方向だけと経済的な約定採点を分ける。",
+  "基準": "検知した原板行の中値。翌原板行以後〜同じ保存通常区間末。0.03/0.05/0.1/0.2%の対称先着と最大順行。",
+  "幅": "割合の連続値。売買と同じ百分率で、ラージ呼値切上げなし。",
+  "用途": "補助診断のみ。入口条件・方向・出入り・主案選定を変更しない。",
+  "SHA": {
+    "S:\\TempDev\\OSE_Future\\work\\wave_v66\\mid_diagnostic.py": "d06191d2fbec4503afebde6f134b7bee2457cdb6a960cb76ac458418a6a02de5",
+    "S:\\TempDev\\OSE_Future\\work\\wave_v66\\入口採点.json": "d78b7a4e78294190f7d8f344be9bfee3508f077f4ff842fe3790c79a067ca3d4",
+    "S:\\TempDev\\OSE_Future\\work\\wave_v66\\round2\\入口採点.json": "eb1da1d69a6d3154cc13611ce96f2422d6dbe1a091cbd082800023d5bf2bea82",
+    "S:\\TempDev\\OSE_Future\\work\\wave_v60\\quotes.pkl": "d7894f477020db08214bb8a5845db0f56ac151e25495c2d0ba96a244d3391206"
+  }
+}

@@ -1,0 +1,172 @@
+{
+  "時刻": "2026-10-08T13:36:04.176481+00:00",
+  "selected": [
+    {
+      "id": "ACCEL_H03_V020_狭幅",
+      "entry": "ACCEL_H03_V020",
+      "source": "minute",
+      "mirror": false,
+      "exit_config": {
+        "id": "狭幅",
+        "stop": 0.001,
+        "arm": 0.0011,
+        "trail": 0.0001,
+        "floor": 0.001
+      }
+    },
+    {
+      "id": "ACCEL_H03_V020_広幅",
+      "entry": "ACCEL_H03_V020",
+      "source": "minute",
+      "mirror": false,
+      "exit_config": {
+        "id": "広幅",
+        "stop": 0.001,
+        "arm": 0.0015,
+        "trail": 0.0005,
+        "floor": 0.001
+      }
+    },
+    {
+      "id": "STRAIGHT_H05_V020_狭幅",
+      "entry": "STRAIGHT_H05_V020",
+      "source": "minute",
+      "mirror": false,
+      "exit_config": {
+        "id": "狭幅",
+        "stop": 0.001,
+        "arm": 0.0011,
+        "trail": 0.0001,
+        "floor": 0.001
+      }
+    },
+    {
+      "id": "STRAIGHT_H05_V020_広幅",
+      "entry": "STRAIGHT_H05_V020",
+      "source": "minute",
+      "mirror": false,
+      "exit_config": {
+        "id": "広幅",
+        "stop": 0.001,
+        "arm": 0.0015,
+        "trail": 0.0005,
+        "floor": 0.001
+      }
+    },
+    {
+      "id": "BREAK_H03_V020_狭幅",
+      "entry": "BREAK_H03_V020",
+      "source": "minute",
+      "mirror": false,
+      "exit_config": {
+        "id": "狭幅",
+        "stop": 0.001,
+        "arm": 0.0011,
+        "trail": 0.0001,
+        "floor": 0.001
+      }
+    },
+    {
+      "id": "BREAK_H03_V020_広幅",
+      "entry": "BREAK_H03_V020",
+      "source": "minute",
+      "mirror": false,
+      "exit_config": {
+        "id": "広幅",
+        "stop": 0.001,
+        "arm": 0.0015,
+        "trail": 0.0005,
+        "floor": 0.001
+      }
+    },
+    {
+      "id": "RAW_ACCEL_S060_V050_狭幅",
+      "entry": "RAW_ACCEL_S060_V050",
+      "source": "raw",
+      "mirror": false,
+      "exit_config": {
+        "id": "狭幅",
+        "stop": 0.001,
+        "arm": 0.0011,
+        "trail": 0.0001,
+        "floor": 0.001
+      }
+    },
+    {
+      "id": "RAW_ACCEL_S060_V050_広幅",
+      "entry": "RAW_ACCEL_S060_V050",
+      "source": "raw",
+      "mirror": false,
+      "exit_config": {
+        "id": "広幅",
+        "stop": 0.001,
+        "arm": 0.0015,
+        "trail": 0.0005,
+        "floor": 0.001
+      }
+    },
+    {
+      "id": "RAW_ACCEL_S060_V050_短期幅",
+      "entry": "RAW_ACCEL_S060_V050",
+      "source": "raw",
+      "mirror": false,
+      "exit_config": {
+        "id": "短期幅",
+        "stop": 0.0003,
+        "arm": 0.0005,
+        "trail": 0.0002,
+        "floor": 0.0003
+      }
+    },
+    {
+      "id": "RAW_STRAIGHT_S060_V050_狭幅",
+      "entry": "RAW_STRAIGHT_S060_V050",
+      "source": "raw",
+      "mirror": false,
+      "exit_config": {
+        "id": "狭幅",
+        "stop": 0.001,
+        "arm": 0.0011,
+        "trail": 0.0001,
+        "floor": 0.001
+      }
+    },
+    {
+      "id": "RAW_STRAIGHT_S060_V050_広幅",
+      "entry": "RAW_STRAIGHT_S060_V050",
+      "source": "raw",
+      "mirror": false,
+      "exit_config": {
+        "id": "広幅",
+        "stop": 0.001,
+        "arm": 0.0015,
+        "trail": 0.0005,
+        "floor": 0.001
+      }
+    },
+    {
+      "id": "RAW_STRAIGHT_S060_V050_短期幅",
+      "entry": "RAW_STRAIGHT_S060_V050",
+      "source": "raw",
+      "mirror": false,
+      "exit_config": {
+        "id": "短期幅",
+        "stop": 0.0003,
+        "arm": 0.0005,
+        "trail": 0.0002,
+        "floor": 0.0003
+      }
+    }
+  ],
+  "条件数": 12,
+  "枚数": {
+    "TOPIXmini": 10,
+    "NK225micro": 20
+  },
+  "方向": "検知方向のみ",
+  "禁止": "今回取得した原本を使って入口・出口・数量・休止を再調整しない",
+  "未決済": "原本末尾で仮想清算しない。実現損益・発生手数料・全残玉の返済気配評価を分ける。",
+  "休止秒": 600,
+  "実注文": 0,
+  "現在API取得": 0
+}
