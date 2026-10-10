@@ -1,0 +1,60 @@
+{
+  "候補ID": "V0800",
+  "原手法": "M3_逆_A00",
+  "信号条件": {
+    "id": "S00",
+    "name": "基準のM3逆",
+    "description": "EMA8/30、間隔0.15ATR、傾き0.03ATR、各２回確認、相手を追加60秒遅延する元のM3逆。",
+    "change_count": 0,
+    "changes": {}
+  },
+  "元からの変更": {
+    "timeout_min": 360.0
+  },
+  "一枚でのエンジン設定": {
+    "initial_qty": 1,
+    "entry_atr": 0.25,
+    "stop_atr": 1.0,
+    "main_trail": 2.0,
+    "add_mode": 0,
+    "add_step": 0.5,
+    "add_qty": 0,
+    "hedge_ratio": 0.0,
+    "hedge_trigger": 0.75,
+    "cover_add": 0,
+    "cover_step": 0.5,
+    "cover_trail": 0.5,
+    "reverse_mode": 0,
+    "lock_fraction": 0.0,
+    "split_target": 0.0,
+    "timeout_min": 360.0,
+    "neutral_min": 0.0,
+    "us_mode": 0,
+    "activation_atr": 1.0,
+    "tighten_atr": 0.0,
+    "tight_width": 1.0,
+    "breakeven_atr": 0.0,
+    "breakeven_floor": 0.0,
+    "failure_min": 0.0,
+    "failure_mfe": 0.5,
+    "failure_stop": 0.25,
+    "cooldown_min": 5.0,
+    "ttl_seconds": 120.0,
+    "entry_mode": 0,
+    "signal_exit": 0,
+    "after_open_factor": 1.0,
+    "audit_cap": 1
+  },
+  "枚数": "一度に固定した整数枚数で新規し、全枚数を返済。増玉・部分返済・両建てなし。",
+  "同時保有上限": {
+    "TOPIXミニ": 10,
+    "NK225マイクロ": 20
+  },
+  "枚数変更": "エンジン設定のinitial_qtyとaudit_capを同じ整数へ変更。全許容枚数で経路と損益比例を監査済み。",
+  "ATR": "確定５分足TRを係数1/12で平滑化。最低３本。注文設定時のATRを組の終了まで固定。",
+  "新規受付": "開始20分経過後。日中15:05・夜間翌05:20で受付終了。方向根拠の確定待ちも必要。",
+  "場末返済": "日中15:35・夜間翌05:50以降の観測で返済を予約し、次の有効な原本行で全返済。",
+  "約定": "前行までに決めた注文のみ次行以降で有効。費用０・指定価格。設置時に通過済みの出口は次行実価格。",
+  "検証範囲": "保存済み既知の2026-09-21日中〜09-25夜間。新しい期間での検証ではない。",
+  "注意": "360分は最長保有時間。損切り・追跡・場末による返済はそれ以前にも行う。実注文接続は含まない。"
+}

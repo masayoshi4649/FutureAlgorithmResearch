@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>E01の連敗原因と新手法の検証</title>
+<style>
+:root{color-scheme:dark;font-family:"Yu Gothic UI",Meiryo,sans-serif;color:#dfe9f4;background:#0b121c;font-size:15px}*{box-sizing:border-box}body{margin:0;line-height:1.8}main{max-width:1200px;margin:auto;padding:42px 24px 70px}h1{font-size:clamp(25px,3.7vw,38px);line-height:1.45;margin:12px 0}h2{font-size:23px;margin:0 0 14px}h3{font-size:17px;margin:10px 0}p{margin:10px 0 16px}a{color:#92caff;text-underline-offset:3px}section{margin:26px 0;padding:24px;background:#121e2d;border:1px solid #2b4058;border-radius:14px}.intro{border-top:4px solid #66bfff}.muted,small{color:#a8bbd1}.tag{display:inline-block;padding:3px 10px;background:#21364d;border-radius:20px;font-size:12px;margin-right:7px}.positive{color:#78dfb1}.negative{color:#ff969d}.key{color:#ffdc91}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.card{background:#172739;padding:17px;border-radius:10px}.card p{font-size:14px;margin-bottom:0}.scroll{overflow:auto;max-width:100%;margin:14px 0}table{border-collapse:collapse;width:100%;font-size:13px;white-space:nowrap;font-variant-numeric:tabular-nums}th,td{padding:10px 12px;border-bottom:1px solid #2a3c51;text-align:right}th{background:#1b2b3e;color:#bcd2e8}th:first-child,td:first-child{text-align:left}tbody tr:hover{background:#1a2d42}tr.total td{background:#22384d;font-weight:700}tr.new td:first-child{border-left:3px solid #76bafc}select{background:#0c1723;border:1px solid #526f8b;color:#f0f6ff;border-radius:6px;padding:10px;font:inherit;max-width:100%}.controls{display:flex;flex-wrap:wrap;gap:16px;align-items:end}.controls label{display:flex;flex-direction:column;gap:6px;min-width:0;font-size:13px}.controls label:first-child{flex:1}.controls label:first-child select{width:100%}details{margin:15px 0;border-top:1px solid #33465c;padding-top:12px}summary{cursor:pointer;color:#aed3ff;font-weight:700}summary:focus-visible,a:focus-visible,select:focus-visible{outline:3px solid #efc676;outline-offset:3px}img{display:block;width:100%;margin:18px 0;border-radius:8px}code{font-family:Consolas,monospace;color:#cce3ff;overflow-wrap:anywhere}.notice{border-left:3px solid #e1b772;padding:10px 16px;background:#292b29}.chart{width:100%;display:block;background:#0d1825;border-radius:8px}.links{display:flex;gap:14px;flex-wrap:wrap}ol,ul{padding-left:23px}footer{color:#a7b9cb;font-size:13px}#candidateTable{max-height:500px}#sessionTable td:nth-child(4),#intervalTable td:nth-child(5){font-weight:700}@media(max-width:650px){main{padding:24px 12px}section{padding:18px 14px}.grid{grid-template-columns:1fr}.controls{display:block}.controls label{margin:10px 0}th,td{padding:9px 10px}.chart{min-height:220px}h2{font-size:21px}}
+</style></head><body>
+<!--
+[コンポーネント概要]
+#summary は原因と採否の短い結論です。
+#method は代表手法、#symbol は商品換算の表示を切り替えます。
+#sessionTable は各場・週・全期間の利益、損失、収支と決済枚数です。
+#intervalMethod と #intervalSession は30分区間の会計を選びます。
+#intervalChart は区間時価収支と、E01を比較線にした累積時価収支です。
+#intervalTable は確定損益と含み増減を分けて表示します。
+#candidateTable は269設定の探索記録です。未再生期間は空欄を意味します。
+全表示は埋込済みデータを使い、外部通信・注文・実行時の再選択は行いません。
+-->
+<main><header><a href="../index.html">調査一覧</a><p class="muted">作業00048 · 2026/09/21〜10/06 デイ · 保存23セッション</p>
+<h1>E01の連敗原因と<br>新手法の検証</h1>
+<p><strong>性質の確認 → 反例の確認 → その性質に対応する売買規則。</strong><br>成績の良い設定を拾う探索から、価格と板がどう動くかの検証へ切り替えました。</p>
+<div class="links"><a href="#properties">市場と手法の性質</a><a href="#causes">連敗の理由</a><a href="#methods">比較済み手法と損益</a><a href="#intervals">30分ごとの損益</a><a href="#audit">検証方法</a></div></header>
+
+<section id="properties" class="intro"><h2>先に理解すべき性質</h2>
+<div class="grid"><article class="card"><h3>価格を動かすのは何か</h3><p>約定には同量の買い手と売り手がいます。問うのは、今すぐ売買する圧力に対して、指値がどれだけ受け止め、価格がどれだけ進むかです。</p></article>
+<article class="card"><h3>圧力の後も進むのか</h3><p>買い圧力と同時に上がっただけでは先読みになりません。公開済みの圧力の後、1分・5分・15分にも同じ向きへ進むかを別に測ります。</p></article>
+<article class="card"><h3>出口だけで優位は作れるか</h3><p>損切りを小さくすると負け回数が増え得ます。利益幅だけでなく、その幅に届く確率との組合せが必要です。両建ても両脚の合計で評価します。</p></article></div>
+<div id="propertyEvidence">@@PROPERTIES@@</div>
+<details><summary>今回の理解の手順</summary><ol><li>「いまの状態」を過去データだけで固定する。低効率の往復、両市場の同方向、逆方向を区別し、成績で閾値を選び直さない。</li><li>将来15・30・60分を答え合わせにだけ使い、継続／反転、順行／逆行、目標到達の順序を測る。場を跨ぐ評価は除く。</li><li>同じ性質が先頭10場・次9場・追加4場、TOPIX・NKで残るかを調べる。重複する5分観測は独立試行と数えず、60分間隔でも確認する。</li><li>残った性質だけをルール設計へ使う。説明がつかない利益を、新しい法則の発見とは扱わない。</li></ol></details>
+</section>
+
+<section id="summary"><h2>先に行った条件比較の結果</h2><p>以下は性質の検証へ切り替える前の探索記録です。<strong>安定改善する置換案は未確認</strong>で、成績だけを根拠に採用しません。</p>
+<div class="scroll"><table id="shortTable"><thead><tr><th>手法</th><th>TOPIX 全23場</th><th>NK 全23場</th><th>判断</th></tr></thead><tbody></tbody></table></div>
+<p><strong>O03：</strong>TOPIXの連敗対策として観察する価値はあります。ただしNKと、両市場の後半9場ではE01を下回りました。</p>
+<p><strong>R04：</strong>方向感が弱いときの平均回帰。最大勝ち場を各1つ除いても <span class="positive">TOPIX＋35,000円／NK＋16,000円</span>。一方、取引は24組／28組、稼働は14場／15場だけで、全期間を見た後の参考候補です。</p>
+<p class="muted">いずれも「8割の場で勝てる」とは確認できていません。試行を増やしても、現在のデータが新しい未見データになるわけではありません。</p>
+</section>
+
+<section id="causes"><h2>連続赤字になった理由</h2><div class="grid">
+<article class="card"><h3>① 伸びる前に損切り</h3><p>追加4場の負け41組はすべて、利益保護開始の1.5ATRに届く前に損切り。大きな含み益の吐き出しより、伸びない入口の繰返しが主因です。</p></article>
+<article class="card"><h3>② 往復の中で再試行</h3><p>10/05ナイトのTOPIXは21:55〜00:54の9連敗で−127,500円。小さな損切りでも、成功率が落ちたまま繰り返せば大幅赤字になります。</p></article>
+<article class="card"><h3>③ 回復時に再参加できない</h3><p>10/06デイのTOPIXは12:54に損切りした後、比較用の仮想保有が15:35まで残り、約160分間、新しい買い機会を待機扱いにしました。</p></article>
+</div>
+<p>「両市場の保持方向が逆なのに入った」取引はありません。ただし追加4場の負け41組中14組では、注文準備時にあったEMAの新規条件が約定直前には失効していました。保持した方向と、その場の短期変化がずれていました。</p>
+<details><summary>価格の経路と売買位置を見る</summary><img src="連敗の価格経路.png" alt="10月5日ナイトのTOPIX5分足と9連敗の売買位置"><img src="再参加を阻んだ待機.png" alt="10月6日デイのTOPIX5分足と約160分の再参加待機"></details>
+<details><summary>原因に対応する修正が、そのまま解にならなかった理由</summary>
+<p>再参加を早めるK20は、10/06の回復で＋24,500円を取り直しました。しかし10/01ナイトはTOPIXの7組が13組、NKの11組が19組となり、黒字から赤字へ転落しました。休止時間の変更で良い入口時刻までずれます。</p>
+<p>K20は時計変更と15分休止を同時に含みます。時計だけの影響は全23場で−52,500円／−27,100円、休止5→15分だけの影響は−446,500円／−140,500円でした。すべてを「再入回数の増加」だけで説明できません。</p>
+<p>短期の逆行を入口で一律禁止する案も、旧19場のTOPIX勝ち33組中22組を消します。悪い入口と、成功する押し目を完全には分けられませんでした。</p>
+</details></section>
+
+<section id="methods"><h2>手法と各セッションの損益</h2>
+<p class="muted">TOPIX mini：片方向上限10枚、初回5枚。NK225 micro：上限20枚、初回10枚。今回の候補は増玉なし。両建ては両側に同枚数。すべて場内返済・費用ゼロ。</p>
+<div class="controls"><label for="method">手法<select id="method"></select></label><label for="symbol">商品<select id="symbol"><option value="TOPIX">TOPIX mini</option><option value="NK225">NK225 micro</option></select></label></div>
+<p id="methodStatus"></p><div class="grid"><article class="card"><h3>入口</h3><p id="entry"></p></article><article class="card"><h3>途中</h3><p id="middle"></p></article><article class="card"><h3>出口</h3><p id="exit"></p></article></div><p id="verdict"></p>
+<div class="scroll"><table id="periodTable"><thead><tr><th>区間</th><th>利益 円</th><th>損失 円</th><th>収支 円</th><th>黒字場／全場</th><th>稼働場</th><th>総利益／総損失</th><th>1枚平均勝／負</th></tr></thead><tbody></tbody></table></div>
+<p class="muted">先頭10場で選び、次9場と追加4場で再比較。全23場は過去研究で閲覧済みです。R04だけは事前選抜の活動条件を満たさず、後付参考として残しました。約定前提はE01系が指定価格、新規独立方式が判断後の次観測価格です。</p>
+<details open><summary>23場・週・全期間の利益／損失／収支と枚数</summary>
+<div class="scroll"><table id="sessionTable"><thead><tr><th>セッション／期間</th><th>利益 円</th><th>損失 円</th><th>収支 円</th><th>利益決済 枚</th><th>損失決済 枚</th><th>同値 枚</th><th>利益枚−損失枚</th></tr></thead><tbody></tbody></table></div>
+<p class="muted">枚数は決済数量の累計で、同時保有枚数とは別です。枚数差がマイナスでも1枚の利益が大きければ黒字になります。損失欄は損失額の絶対値。週はセッション開始日を基準に月曜から集計します。</p></details>
+<p><a href="代表10手法のセッション損益.csv">代表10手法のCSV</a> · <a href="../../work/wave_v51/search/README.md">R04などの正確な全条件</a> · <a href="../../work/wave_v51/order_methods/README.md">注文だけの方式の仕様</a></p>
+</section>
+
+<section id="intervals"><h2>30分区間で追う</h2>
+<p><strong>時価収支＝確定収支＋含み損益の増減。</strong>利益玉だけの返済で成績が良く見えないよう、残った損失玉も同時に評価します。</p>
+<div class="controls"><label for="intervalMethod">手法<select id="intervalMethod"></select></label><label for="intervalSymbol">商品<select id="intervalSymbol"><option value="TOPIX">TOPIX mini</option><option value="NK225">NK225 micro</option></select></label><label for="intervalSession">セッション<select id="intervalSession"></select></label></div>
+<p id="intervalCaption" class="muted"></p><svg id="intervalChart" class="chart" viewBox="0 0 1020 340" role="img" aria-label="30分ごとの時価収支と累積損益"></svg>
+<div class="scroll"><table id="intervalTable"><thead><tr><th>時間帯 JST</th><th>確定収支 円</th><th>含み増減 円</th><th>終了含み 円</th><th>時価収支 円</th><th>新規件数</th><th>返済枚数</th><th>終了買い枚</th><th>終了売り枚</th></tr></thead><tbody></tbody></table></div>
+<details><summary>時間帯分析から分かったこと</summary><p>追加4場のO03は、E01が赤字だった区間をTOPIXで＋140,000円改善する一方、E01の黒字区間では−43,500円を失い、差引＋96,500円。NKも赤字区間で＋26,800円改善しましたが、黒字区間の−37,600円が上回り、差引−10,800円でした。</p><p>悪い時間だけを避けられたわけではありません。これは結果が出た後の原因分解であり、当日に「この区間は赤字」と知って見送るルールには使っていません。</p></details>
+<p><a href="30分区間損益.csv">全区間CSV</a> · <a href="../../work/wave_v51/interval_audit/README.md">区間の計算方法・監査</a></p>
+</section>
+
+<section id="alternatives"><h2>方向予測以外で対応できるか</h2>
+<p><strong>今回は安定改善を確認できませんでした。</strong>上下逆指値、同時両建て、固定乱数／交互方向を60条件で試しました。先頭10場で選んだ代表の全23場収支は、上下逆指値＋130,000円／−41,000円、両建て−545,000円／−110,000円、固定乱数−127,500円／＋36,000円です（TOPIX／NK）。</p>
+<p>同量同値の両建ては、両脚を保有している間の合計損益が相殺されます。負け側を閉じると、その時点から片方向を持つのと同じ損益構造になります。利益を残せるかは、その後の継続と出口に依存します。</p>
+<details><summary>まだ確かめられていない手法・データの限界</summary><ul>
+<li>人の裁量判断そのもの。後からチャートを見て「ここで入れた」と数えず、右側を隠した再生中に判断を記録・固定する別実験が必要です。</li>
+<li>注文ID単位の補充・取消主体の識別。保存板はスナップショットなので、「同じ参加者が補充した」「約定で食われた」と断定できません。</li>
+<li>今回の原本1行トレースは現在価格・公開ATRによる注文管理3方式です。板数量の変化を使う96条件の一部は既存の公開済み板特徴量から再生し、特徴量抽出器自体を今回独立に再実装してはいません。</li>
+<li>実際の受信時刻、mini／micro自身の約定、実注文の待ち行列・遅延。ラージ価格をmini1000円／micro10円の倍率へ換算しています。</li></ul></details>
+</section>
+
+<section id="audit"><h2>カンニングを防いだ検証</h2>
+<ol><li>入口には、その場で公開済みの確定足・ATR・板特徴だけを渡す。将来価格で注文を取り消さない。</li>
+<li>新しい注文管理3方式は、生JSONLを原本順に1行ずつ読み、現在の時刻・価格・ATRだけで判断する。追加4場×2銘柄を再生。</li>
+<li>途中でデータを切る／未来価格を変える検査で、その時点までの注文が変わらないことを確認。損益は返済時に初めて公開する。</li>
+<li>30分ごとに確定＋含みを独立会計し、全区間合計と場損益、枚数上限、場末ゼロを照合する。</li></ol>
+<p class="notice">これは<strong>既知データ内の因果的な再検証</strong>です。将来の価格を注文判断に使わないことと、未見データで優位性が確認できたことは別です。現在API取得・実注文・稼働アプリの変更は行っていません。</p>
+<p class="links"><a href="../../work/wave_v51/raw_trace/README.md">原本トレースの実行方法</a><a href="../../work/wave_v51/raw_trace/監査.json">原本逐次照合</a><a href="../../work/wave_v51/raw_trace">判断・約定ログ</a><a href="報告会計検算.json">レポート会計検算</a><a href="README.md">再現手順と資料の順序</a></p>
+<details><summary>269設定の探索一覧</summary><p class="muted">入口・休止32、時計48、独立方向判定96、注文管理60、時計と停止の組合せ9、再失敗防止24。基準や同一売買を含む設定数で、269個の独立仮説ではありません。時計48は前半選抜後の4条件のみ全23場を再生しています。</p><label for="family">系統 <select id="family"></select></label><div class="scroll" id="candidateTable"><table><thead><tr><th>設定ID</th><th>先頭10 TOPIX</th><th>先頭10 NK</th><th>全23 TOPIX</th><th>全23 NK</th></tr></thead><tbody></tbody></table></div><p><a href="報告データ.json">全表示データ</a> · <a href="../../work/wave_v51/overlay/無作為見送り対照.json">O03と同数を無作為に見送る対照</a></p><p class="muted">O03以上の全期間収支となった無作為対照はTOPIX26.8%／NK76.7%（5,000回）。強い優位の証拠にはなりません。これは探索後の記述比較で、有意差の証明ではありません。</p></details>
+<details><summary>市場原理の裏付けと、その適用範囲</summary><p>注文フロー不均衡と短期価格変化の関係を扱う<a href="https://arxiv.org/abs/1011.6402">Contらの研究</a>や、板数量不均衡と次のティック方向を扱う<a href="https://arxiv.org/abs/1512.03492">Gould・Bonartの研究</a>は、板の情報価値を支持します。ただし、このデータ・商品で数十分先の利益が得られることまで証明するものではありません。</p><p>多数条件から良い結果だけを選ぶ危険は<a href="https://www.davidhbailey.com/dhbpapers/backtest-prob.pdf">Baileyらの過剰最適化研究</a>とも整合します。今回の区間分割と失敗候補の保存はその対策ですが、過去データを繰り返し見た影響を消すものではありません。</p></details>
+</section><footer>全額は銘柄内で比較。異なる商品の円収支を足したランキングは作っていません。表示時にインターネット通信を行わない単一HTMLです。</footer></main>
+<script id="data" type="application/json">@@DATA@@</script><script>
+const DATA=JSON.parse(document.querySelector('#data').textContent);
+const $=id=>document.getElementById(id);
+/** 機能: 金額を符号付きで整形する。
+ * @param {number} n 対象値。
+ * @returns {string} 返り値は日本語表示用数値。
+ */
+function fmt(n){return(n>0?'+':'')+Math.round(n).toLocaleString('ja-JP');}
+/** 機能: 数値セルを作る。
+ * @param {number} n 対象値。
+ * @param {boolean} sign 符号と色を付けるか。
+ * @returns {string} 返り値はHTML。
+ */
+function cell(n,sign=false){return `<td data-value="${n}" class="${sign?(n>0?'positive':n<0?'negative':''):''}">${sign?fmt(n):n.toLocaleString('ja-JP')}</td>`;}
+/** 機能: セッション名を日本語表示する。
+ * @param {string} s 保存ID。
+ * @returns {string} 返り値は表示名。
+ */
+function sessionName(s){return s.replace('_Day',' デイ').replace('_Night',' ナイト');}
+/** 機能: 選択肢を設定する。
+ * @param {string} id 要素ID。
+ * @param {Array} values 値・表示の組。
+ * @returns {undefined} 返り値なし。
+ */
+function options(id,values){$(id).replaceChildren(...values.map(([v,t])=>new Option(t,v)));}
+/** 機能: 利益・枚数の共通表行を作る。
+ * @param {string} label 行名。
+ * @param {object} r 会計。
+ * @param {string} cls 行の種類。
+ * @returns {string} 返り値はHTML。
+ */
+function moneyRow(label,r,cls=''){return `<tr class="${cls}"><td>${label}</td>${cell(r.profit)}${cell(r.loss)}${cell(r.net,true)}${cell(r.win_qty)}${cell(r.loss_qty)}${cell(r.flat_qty)}${cell(r.win_qty-r.loss_qty,true)}</tr>`;}
+/** 機能: 選んだ手法の説明と会計を表示する。
+ * @returns {undefined} 返り値なし。
+ */
+function renderMethod(){const m=DATA.methods.find(x=>x.id===$('method').value),s=$('symbol').value;
+ $('methodStatus').textContent=`${m.id} ／ ${m.status} ／ 約定：${m.fill}`;
+ for(const k of ['entry','middle','exit'])$(k).textContent=m[k];$('verdict').textContent=m.conclusion;
+ $('periodTable').tBodies[0].innerHTML=Object.entries(m.periods).map(([p,v])=>{const r=v[s];return `<tr><td>${p}</td>${cell(r.profit)}${cell(r.loss)}${cell(r.net,true)}<td>${r.wins}/${r.sessions}</td><td>${r.active}</td><td>${r.pf===null?'—':r.pf.toFixed(2)}</td><td>${r.payoff===null?'—':r.payoff.toFixed(2)}</td></tr>`;}).join('');
+ $('sessionTable').tBodies[0].innerHTML=m.sessions.filter(r=>r.symbol===s).map(r=>moneyRow(sessionName(r.session),r,r.session>='2026-10-02_Night'?'new':'')).join('')+Object.entries(m.weeks).map(([w,r])=>moneyRow(w+' の週',r[s],'total')).join('')+moneyRow('全23場',m.periods['全23'][s],'total');
+}
+/** 機能: 選んだ30分会計を表とグラフへ反映する。
+ * @returns {undefined} 返り値なし。
+ */
+function renderIntervals(){const id=$('intervalMethod').value,s=$('intervalSymbol').value,d=$('intervalSession').value;
+ const a=DATA.intervals.find(x=>x['手法']===id&&x['銘柄']===s&&x['セッション']===d);
+ const b=DATA.intervals.find(x=>x['手法']==='E01'&&x['銘柄']===s&&x['セッション']===d);
+ const rows=a['区間'];const sum=rows.reduce((v,r)=>v+r['時価収支円'],0);
+ $('intervalCaption').textContent=`${sessionName(d)} ／ ${id} ／ 場収支 ${fmt(sum)}円。棒：各区間、青線：選択方式の累積、灰破線：E01の累積。`;
+ $('intervalTable').tBodies[0].innerHTML=rows.map(r=>`<tr><td>${r['開始'].slice(5,10)} ${r['開始'].slice(11,16)}〜${r['終了_未満'].slice(11,16)}</td>${cell(r['確定収支円'],true)}${cell(r['含み増減円'],true)}${cell(r['終了含み円'],true)}${cell(r['時価収支円'],true)}${cell(r['新規件数'])}${cell(r['返済枚数'])}${cell(r['終了買い枚数'])}${cell(r['終了売り枚数'])}</tr>`).join('');
+ let run=0,base=0;const v=rows.map((r,i)=>({net:r['時価収支円'],cum:run+=r['時価収支円'],base:base+=b['区間'][i]['時価収支円'],time:r['開始'].slice(11,16)}));
+ const max=Math.max(1000,...v.flatMap(r=>[Math.abs(r.net),Math.abs(r.cum),Math.abs(r.base)]));
+ const x=i=>90+(i+.5)*900/v.length,y=n=>160-n/max*120;
+ let svg=`<text x="18" y="24" fill="#bed2e8" font-size="13">円</text>`;
+ for(const n of [-max,0,max])svg+=`<line x1="90" y1="${y(n)}" x2="1000" y2="${y(n)}" stroke="#30465d"/><text x="82" y="${y(n)+5}" text-anchor="end" fill="#b6cbe0" font-size="12">${fmt(n)}</text>`;
+ v.forEach((r,i)=>{svg+=`<rect x="${x(i)-Math.max(2,300/v.length)}" y="${Math.min(y(0),y(r.net))}" width="${Math.max(4,600/v.length)}" height="${Math.max(1,Math.abs(y(r.net)-y(0)))}" fill="${r.net>=0?'#43ac85':'#d7647d'}"><title>${r.time} ${fmt(r.net)}円</title></rect>`;if(i%Math.max(1,Math.floor(v.length/9))===0)svg+=`<text x="${x(i)}" y="315" text-anchor="middle" fill="#b6cbe0" font-size="12">${r.time}</text>`;});
+ for(const [key,color,dash]of[['base','#a9b5c6','6 5'],['cum','#80c8ff','']])svg+=`<polyline fill="none" stroke="${color}" stroke-width="2.5" stroke-dasharray="${dash}" points="${v.map((r,i)=>`${x(i)},${y(r[key])}`).join(' ')}"/>`;
+ $('intervalChart').innerHTML=svg;
+}
+/** 機能: 全条件のうち選んだ系統を表示する。
+ * @returns {undefined} 返り値なし。
+ */
+function renderCandidates(){const family=$('family').value;$('candidateTable').querySelector('tbody').innerHTML=DATA.candidates.filter(r=>r.family===family).map(r=>`<tr><td>${r.id}</td>${r.first.map(n=>cell(n,true)).join('')}${r.all?r.all.map(n=>cell(n,true)).join(''):'<td>未再生</td><td>未再生</td>'}</tr>`).join('');}
+// ----------------------------------------
+// 初期表示と操作を接続します。
+options('method',DATA.methods.map(m=>[m.id,m.id+'：'+m.name]));
+options('intervalMethod',[...new Set(DATA.intervals.map(r=>r['手法']))].map(id=>[id,(DATA.methods.find(m=>m.id===id)?.name||'時計変更の対照')+' ／ '+id]));
+options('intervalSession',[...new Set(DATA.intervals.map(r=>r['セッション']))].sort().map(s=>[s,sessionName(s)]));
+options('family',[...new Set(DATA.candidates.map(r=>r.family))].map(f=>[f,f]));
+$('intervalSession').value='2026-10-05_Night';$('intervalMethod').value='O03';
+for(const id of ['method','symbol'])$(id).addEventListener('change',renderMethod);
+for(const id of ['intervalMethod','intervalSymbol','intervalSession'])$(id).addEventListener('change',renderIntervals);
+$('family').addEventListener('change',renderCandidates);
+$('shortTable').tBodies[0].innerHTML=DATA.methods.slice(0,3).map((m,i)=>`<tr><td>${['E01（従来）','O03（連敗休止）','R04（平均回帰）'][i]}</td>${cell(m.periods['全23'].TOPIX.net,true)}${cell(m.periods['全23'].NK225.net,true)}<td>${['基準','TOPIXの限定候補','低頻度・後付参考'][i]}</td></tr>`).join('');
+renderMethod();renderIntervals();renderCandidates();
+</script></body></html>

@@ -1,0 +1,4 @@
+time,open,high,low,close,volume,volume_complete,closed
+2026-10-09T18:15:00+09:00,1885,1885,1885,1885,0,false,true
+2026-10-09T18:23:00+09:00,1885,1885,1885,1885,2,true,true
+2026-10-09T18:24:00+09:00,1890,1890,1890,1890,1,true,true

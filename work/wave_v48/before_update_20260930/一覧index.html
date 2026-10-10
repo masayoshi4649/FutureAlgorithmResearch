@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>アルゴリズム調査｜作業一覧</title>
+  <style>
+    :root { color-scheme: dark; font-family: "Yu Gothic UI", "Meiryo", sans-serif; color: #e5edf7; background: #0c121d; }
+    * { box-sizing: border-box; }
+    body { margin: 0; line-height: 1.8; }
+    main { max-width: 1000px; margin: auto; padding: 52px 24px 64px; }
+    header { margin-bottom: 32px; }
+    h1 { font-size: clamp(26px, 4vw, 38px); margin: 0 0 10px; letter-spacing: .02em; }
+    h2 { margin: 12px 0; font-size: 23px; }
+    p { margin: 8px 0 18px; }
+    .lead { color: #afbed2; }
+    .task { background: #141f30; border: 1px solid #304059; border-radius: 16px; padding: 28px; margin: 22px 0; }
+    .latest { border-top: 5px solid #73b4ff; }
+    .number { color: #bacce1; font-size: 14px; font-weight: 700; }
+    .badge { color: #b9dbff; background: #203b60; border-radius: 20px; padding: 4px 12px; margin-left: 10px; font-size: 13px; }
+    .button { display: inline-block; background: #205fac; color: white; font-weight: 700; padding: 11px 20px; border-radius: 8px; text-decoration: none; }
+    .button:hover { background: #174a87; }
+    a { color: #8fc6ff; text-underline-offset: 3px; }
+    a:focus-visible { outline: 3px solid #e39822; outline-offset: 4px; }
+    ul { padding-left: 22px; margin: 20px 0 0; }
+    li { margin: 7px 0; }
+    .folder { margin: 20px 0 0; font-size: 13px; color: #a6b8d1; overflow-wrap: anywhere; }
+    footer { color: #a6b8d1; font-size: 14px; margin-top: 28px; }
+    @media (max-width: 540px) { main { padding: 28px 16px; } .task { padding: 22px 18px; } h2 { font-size: 21px; } }
+  </style>
+</head>
+<body>
+<!--
+[コンポーネント概要]
+#work-list は調査作業の一覧です。新しい作業を上に表示します。
+.task は作業ごとの入口で、図解HTML・検証結果・資料案内へのリンクをまとめます。
+.latest は最新作業、.button は最初に見る図解を示します。
+このページは保存済みファイルを開く静的な案内で、外部への通信は行いません。
+-->
+<main id="work-list">
+  <header>
+    <h1>アルゴリズム調査</h1>
+    <p class="lead">最新00042：有望4候補の入口・途中・出口を平易に説明。TOPIXミニ上限10枚・NKマイクロ上限20枚の前提と、14場の利益・損失・収支を表示。</p>
+  </header><!--00042開始--><article class="task latest"><div class="number">作業00042 <span class="badge">最新・検算完了</span></div><h2>有望4手法の説明とセッション損益</h2><p>有望4候補の入口・途中・出口を平易に説明。TOPIXミニ上限10枚・NKマイクロ上限20枚の前提と、14場の利益・損失・収支を表示。</p><a class="button" href="00042_有望4手法の説明とセッション損益/有望4手法の説明と損益.html">手法の説明と各セッション損益 →</a><p><a href="00042_有望4手法の説明とセッション損益/README.md">読む順序・数量の前提・再現資料</a></p></article><!--00042終了--><!--00041開始--><article class="task"><div class="number">作業00041 </div><h2>入口・途中判断・出口の分解検証</h2><p>入口114比較・途中13比較・出口13診断を分解し、統合36方式と追加9月29日ナイトを検証。出口短縮の改善と、残る大勝ち依存を区別。</p><a class="button" href="00041_入口途中出口の分解検証/分解と結論.html">部品別の短い結論 →</a><a class="button" href="00041_入口途中出口の分解検証/全条件の損益.html?method=F50__E10">各週・各セッションの損益 →</a><p><a href="00041_入口途中出口の分解検証/統合版の５分足と売買.html">統合版の5分足と売買</a> ／ <a href="00041_入口途中出口の分解検証/追加ナイトの５分足と売買.html">従来方式の追加ナイト</a> ／ <a href="00041_入口途中出口の分解検証/出口単独の比較.html">出口だけの比較</a> ／ <a href="00041_入口途中出口の分解検証/README.md">資料案内</a></p><p><strong>評価基準の補足：</strong><a href="00041_入口途中出口の分解検証/8割の勝ちと損小利大.html">約8割の黒字と損小利大による再評価</a>。セッション勝率と取引勝率を分けて表示。</p></article><!--00041終了--><!--00040開始--><article class="task"><div class="number">作業00040 </div><h2>50パーセント減量版の反証</h2><p>50%減量版の利益保護を、判断幅・時間窓・遅延・無作為対照で反証。既知11条件と新142条件を分け、各場・各週の損益を表示。</p><a class="button" href="00040_50パーセント減量版の反証/50パーセント減量版の反証.html">短い比較と結論 →</a><a class="button" href="00040_50パーセント減量版の反証/全条件の損益.html">各週・各セッションの損益 →</a><p><a href="00040_50パーセント減量版の反証/５分足と売買.html">5分足と売買</a> ／ <a href="00040_50パーセント減量版の反証/README.md">資料案内</a></p></article><!--00040終了--><!--00039開始--><article class="task"><div class="number">作業00039</div><h2>減量開始時点と利益保護</h2><p>減量を利益順行後まで待つ効果を、同じ全組で比較。主35条件と乱数128条件の収支・枚数・安定性を分けて表示。</p><a class="button" href="00039_減量開始時点と利益保護/減量開始時点と利益保護.html">短い比較と結論 →</a><a class="button" href="00039_減量開始時点と利益保護/全条件の損益.html">各週・各セッションの損益 →</a><p><a href="00039_減量開始時点と利益保護/５分足と売買.html">5分足と売買</a> ／ <a href="00039_減量開始時点と利益保護/README.md">資料案内</a></p></article><!--00039終了--><!--00038開始--><article class="task"><div class="number">作業00038</div><h2>時間窓合議と入口の安定性</h2><p>H019の近接3窓を合議し、単一窓との収支・時計感度を二出口別に比較。全32条件を検算し、黒字基礎・追加改善・指定波を分けて表示。</p><a class="button" href="00038_時間窓合議と入口の安定性/時間窓合議と入口の安定性.html">短い比較と結論 →</a><a class="button" href="00038_時間窓合議と入口の安定性/全条件の損益.html">各週・各セッションの損益 →</a><p><a href="00038_時間窓合議と入口の安定性/５分足と売買.html">5分足と売買</a> ／ <a href="00038_時間窓合議と入口の安定性/README.md">資料案内</a></p></article><!--00038終了--><!--00037開始--><article class="task"><div class="number">作業00037</div><h2>原本全行の板観測と対照比較</h2><p>公開端点から原本全行へ数量観測を拡張。旧品質維持とP局所品質を別に評価し、全260条件を記録しました。主案・副案とも両市場赤字・活動基準未達。</p><a class="button" href="00037_原本全行の板観測と対照比較/原本全行の板観測と対照比較.html">短い比較と結論 →</a><a class="button" href="00037_原本全行の板観測と対照比較/全条件損益.html">各週・各セッションの損益 →</a><p><a href="00037_原本全行の板観測と対照比較/５分足と売買.html">5分足と売買</a> ／ <a href="00037_原本全行の板観測と対照比較/README.md">資料案内</a></p></article><!--00037終了--><!--00036開始--><article class="task"><div class="number">作業00036</div><h2>黒字候補の再評価と状態修正</h2><p>既知12行の状態不具合を修正。974条件の注文・損益は不変。黒字10候補の金額と決済枚数を整理しました。</p><a class="button" href="00036_黒字候補の再評価と状態修正/黒字候補の再評価と状態修正.html">候補の比較と各週・各セッション損益 →</a><p><a href="00036_黒字候補の再評価と状態修正/README.md">資料案内</a></p></article><!--00036終了--><!--00035開始--><article class="task"><div class="number">作業00035</div><h2>同じ価格帯の防御変化と突破</h2><p>板の二試行比較は観測・活動が不足し、主案は両市場赤字。待たない突破も含む281条件を記録しました。</p><a class="button" href="00035_同じ価格帯の防御変化と突破/同じ価格帯の防御変化と突破.html">短い比較と結論 →</a><a class="button" href="00035_同じ価格帯の防御変化と突破/全条件損益.html">各週・各セッションの損益 →</a><p><a href="00035_同じ価格帯の防御変化と突破/５分足と売買.html">5分足と売買</a> ／ <a href="00035_同じ価格帯の防御変化と突破/README.md">資料案内</a></p></article><!--00035終了--><!--00034開始--><article class="task"><div class="number">作業00034</div><h2>予想外の板圧力と独立価格対照</h2><p>予測可能な板圧力を除いた残差を、素の板・価格・両市場・乱数と比較。利益への追加効果は未確認。</p><a class="button" href="00034_予想外の板圧力と独立価格対照/予想外の板圧力と独立価格対照.html">短い比較と結論 →</a><a class="button" href="00034_予想外の板圧力と独立価格対照/全条件損益.html">各週・各セッションの損益 →</a><p><a href="00034_予想外の板圧力と独立価格対照/５分足と売買.html">5分足と売買</a> ／ <a href="00034_予想外の板圧力と独立価格対照/README.md">資料案内</a></p></article><!--00034終了--><!--00033開始--><article class="task"><div class="number">作業00033</div><h2>復元方式の自動選択と改善8条件の反証</h2><p>基礎候補は残りました。復元方式の使い分けが固定方式を上回る証拠は不足しました。 状態実装の不具合は未合格として記録。</p><a class="button" href="00033_復元方式の自動選択と改善8条件の反証/復元方式の自動選択と改善8条件の反証.html">比較と結論 →</a><a class="button" href="00033_復元方式の自動選択と改善8条件の反証/全条件損益.html">各週・各セッションの損益 →</a><p><a href="00033_復元方式の自動選択と改善8条件の反証/５分足と売買.html">5分足と売買</a> ／ <a href="00033_復元方式の自動選択と改善8条件の反証/README.md">資料案内</a></p></article><!--00033終了--><!--00032開始--><article class="task"><div class="number">作業00032</div><h2>悪化時の部分減量と回復後の数量復元</h2><p>主案はTOPIX +546,500円／NK +264,900円。元の管理より収支は改善しましたが、回復判断の優位は銘柄で異なります。全体の解は未確定です。</p><a class="button" href="00032_悪化時の部分減量と回復後の数量復元/悪化時の部分減量と回復後の数量復元.html">結果の比較 →</a><a class="button" href="00032_悪化時の部分減量と回復後の数量復元/全条件損益.html">週・セッション損益 →</a><a class="button" href="00032_悪化時の部分減量と回復後の数量復元/５分足と売買.html">５分足と売買 →</a><p><a href="00032_悪化時の部分減量と回復後の数量復元/README.md">資料案内・再現手順</a></p></article><!--00032終了--><!--00031開始--><article class="task"><div class="number">作業00031</div><h2>出来高通過と気配維持からの方向判定</h2><p>全364条件と補助65の比較・独立検算を確定しました。 方向判定90種類と価格だけ・全出来高・旧方式を比較。</p><a class="button" href="00031_出来高通過と気配維持からの方向判定/出来高通過と気配維持からの方向判定.html">比較と資料案内 →</a><p><a href="00031_出来高通過と気配維持からの方向判定/全条件損益.html">全条件損益</a> ／ <a href="00031_出来高通過と気配維持からの方向判定/５分足と売買.html">売買図</a></p><p>直前の比較：<a href="00030_板と両市場による条件付き追跡短縮/板と両市場による条件付き追跡短縮.html">00030・条件付き追跡短縮（確定報告）</a></p></article><!--00031終了--><!--00030開始--><article class="task"><div class="number">作業00030</div><h2>板と両市場による条件付き追跡短縮</h2><p>840条件。初期6で方式を選択し、後7へ固定。</p><a class="button" href="00030_板と両市場による条件付き追跡短縮/板と両市場による条件付き追跡短縮.html">比較の結論 →</a><p><a href="00030_板と両市場による条件付き追跡短縮/全条件損益.html">全条件の損益</a> ／ <a href="00030_板と両市場による条件付き追跡短縮/５分足と売買.html">売買図</a> ／ <a href="00030_板と両市場による条件付き追跡短縮/README.md">資料案内</a></p></article><!--00030終了--><!--00029開始--><article class="task"><div class="number">作業00029</div><h2>仮想建玉による再エントリー制御</h2><p>48主条件と144診断。元の固定幅、更新幅、更新幅＋再新規制御を比較。</p><a class="button" href="00029_仮想建玉による再エントリー制御/仮想建玉による再エントリー制御.html">比較の結論 →</a><p><a href="00029_仮想建玉による再エントリー制御/全条件損益.html">全192条件の損益</a> ／ <a href="00029_仮想建玉による再エントリー制御/README.md">資料案内</a></p></article><!--00029終了--><!--00028開始--><article class="task"><div class="number">作業00028</div><h2>保有中ATRによる追跡幅更新</h2><p>主24条件と診断72条件。利益返却と波の途中退出を両方確認。</p><a class="button" href="00028_保有中ATRによる追跡幅更新/保有中ATRによる追跡幅更新.html">比較の結論 →</a><p><a href="00028_保有中ATRによる追跡幅更新/全条件損益.html">全96条件の損益</a> ／ <a href="00028_保有中ATRによる追跡幅更新/README.md">資料案内</a></p></article><!--00028終了--><!--00027開始--><article class="task"><div class="number">作業00027</div><h2>順張りと反転の機械的選択</h2><p>固定T/R・状態選択・過去成績選択と、取消効果の対照を同じ枚数・出口で比較。</p><a class="button" href="00027_順張りと反転の機械的選択/順張りと反転の機械的選択.html">選択器148条件の検証結果 →</a><p><a href="00027_順張りと反転の機械的選択/README.md">資料案内</a></p></article><!--00027終了--><!--00026開始--><article class="task"><div class="number">作業00026</div><h2>方向情報の鮮度と保有継続</h2><p>30分・60分古い方向と、開始を待つだけの対照。全84手法×5変形を比較。</p><a class="button" href="00026_方向情報の鮮度と保有継続/方向情報の鮮度と保有継続.html">全420条件の診断結果 →</a><p><a href="00026_方向情報の鮮度と保有継続/README.md">資料案内</a></p></article><!--00026終了--><!--00025開始--><article class="task"><div class="number">作業00025</div><h2>相手不一致と保有撤回</h2><p>入口と枚数を固定し、保有撤回だけを両市場一致と自己方向に分ける84条件。</p><a class="button" href="00025_相手不一致と保有撤回の分離/相手不一致と保有撤回.html">全84条件の反証結果 →</a><p><a href="00025_相手不一致と保有撤回の分離/README.md">資料案内</a></p></article><!--00025終了--><!--00024開始--><article class="task"><div class="number">作業00024</div><h2>部分利確と最高利益の保護</h2><p>第５反復も、両銘柄同時の「利益75%維持＋最大下落20%削減」には届きませんでした。</p><a class="button" href="00024_部分利確と最高利益の保護/部分利確と利益保護.html">結果を見る →</a><p><a href="00024_部分利確と最高利益の保護/README.md">資料案内</a> · <a href="00022_中期方向と板の入口を分離/中期方向と入口の検証.html">前回の結果</a></p></article><!--00024終了--><!--00023開始--><article class="task"><div class="number">作業00023 </div><h2>保有撤回と損失予算の再設計</h2><p>第４反復の目標「利益75%維持＋最大下落20%削減」は、両銘柄同時には達成できませんでした。</p><a class="button" href="00023_保有撤回と損失上限の再設計/保有撤回と損失上限.html">結果を見る →</a><p><a href="00023_保有撤回と損失上限の再設計/README.md">資料案内</a> · <a href="00022_中期方向と板の入口を分離/中期方向と入口の検証.html">前回の結果</a></p></article><!--00023終了--><!--00022開始--><article class="task"><div class="number">作業00022 </div><h2>中期方向と板の入口を分離</h2><p>さらに19,776条件。収益・設定耐性・指定波への適合を分けて検証。</p><a class="button" href="00022_中期方向と板の入口を分離/中期方向と入口の検証.html">結果を開く →</a><p><a href="00022_中期方向と板の入口を分離/README.md">資料案内</a></p></article><!--00022終了--><!--00021開始--><article class="task"><div class="number">作業00021 </div><h2>時間窓への依存を減らす再探索</h2><p>追加19,776条件。期間黒字と要求した波の捕捉を分け、反証・一回の現在照合を報告。</p><a class="button" href="00021_時間窓への依存を減らす再探索/再探索と反証.html">結果を開く →</a><p><a href="00021_時間窓への依存を減らす再探索/README.md">資料案内</a> · <a href="00020_大量探索と反証の反復/発見と反証.html">第１反復36,668条件</a></p></article><!--00021終了--><!--00020開始--><article class="task"><div class="number">作業00020 </div><h2>大量探索と反証の反復</h2><p>36,668条件を全再生し、条件除去・時刻感度・無関係な対照・時間順選択で検証。</p><a class="button" href="00020_大量探索と反証の反復/発見と反証.html">現在段階と結果を開く →</a><p><a href="00020_大量探索と反証の反復/README.md">資料案内</a></p></article><!--00020終了--><!--00019開始--><article class="task"><div class="number">作業00019 </div><h2>X05の敵対的検証</h2><p>黒字は再現するが、切替の追加価値は支持不足。前回の評価を修正し、反証結果と週・セッション別損益を掲載。</p><a class="button" href="00019_X05の敵対的検証/敵対的検証.html">敵対的検証を開く →</a><p><a href="00019_X05の敵対的検証/検証結果.md">短い報告</a> · <a href="00019_X05の敵対的検証/README.md">資料案内</a></p></article><!--00019終了--><!--00018開始--><article class="task"><div class="number">作業00018 </div><h2>市場原理からの再探索</h2><p>固定信号1,160条件と手法選択を含む360条件。セッション損益、逐次選択、コイントス対照、一回の現在照合。</p><a class="button" href="00018_市場原理からの再探索/選択から返済まで.html">手法選択から返済までを開く →</a><p><a href="00018_市場原理からの再探索/手法別の損益.html">手法別の金額・枚数</a> · <a href="00018_市場原理からの再探索/５分足と売買.html">５分足</a> · <a href="00018_市場原理からの再探索/README.md">資料案内</a></p></article><!--00018終了--><!--00017開始--><article class="task"><div class="number">作業00017 </div><h2>9月28日夜・29日昼の固定候補検証</h2><p>追加２セッションの利益・損失・収支と全売買明細。</p><a class="button" href="00017_9月28日夜と29日昼の固定候補検証/追加２セッションの結果.html">追加分の結果を開く →</a><p><a href="../M3_逆_A00_360分版/損益.html">継続損益台帳</a> · <a href="00017_9月28日夜と29日昼の固定候補検証/README.md">資料案内</a></p></article><!--00017終了--><!--00016開始--><article class="task"><div class="number">作業00016 </div><h2>M3逆360分版の継続損益台帳</h2><p>セッション別・週別の金額と決済枚数。TOPIXミニ１〜10枚、NK225マイクロ１〜20枚で表示できます。</p><a class="button" href="../M3_逆_A00_360分版/損益.html">損益台帳を開く →</a><p><a href="../M3_逆_A00_360分版/README.md">データ追加・更新手順</a> · <a href="00016_M3逆360分版の継続損益台帳/README.md">作業記録</a></p></article><!--00016終了--><!--00015開始--><article class="task"><div class="number">作業00015 </div><h2>９月28日デイの固定候補検証</h2><p>M3逆A00・360分版の利益・損失・収支。５分足と売買点、180分版との比較。</p><a class="button" href="00015_9月28日デイの固定候補検証/9月28日デイの結果.html">本日の結果を開く →</a><p><a href="00015_9月28日デイの固定候補検証/README.md">資料案内</a></p></article><!--00015終了--><!--00014開始--><article class="task"><div class="number">作業00014 </div><h2>M3逆A00の変数と安定性</h2><p>方向判定・入口・出口などを比較。基準からの変化、思想別の結果、最大利益セッション／取引の除外を分けて掲載。</p><a class="button" href="00014_M3逆A00の変数と安定性/M3逆A00の変数と安定性.html">変数と安定性を開く →</a><p><a href="00014_M3逆A00の変数と安定性/検証結果.md">固定１枚の報告</a> · <a href="00014_M3逆A00の変数と安定性/README.md">読む順序</a></p></article><!--00014終了--><!--00013開始--><article class="task"><div class="number">作業00013</div><h2>共通上位４手法のスケールダウン</h2><p>同時保有上限内で初回・追加枚数を比較。手法別にTOPIX版・NK版の損小利大候補と週収支最大を掲載。</p><a class="button" href="00013_共通上位４手法のスケールダウン/共通上位４手法のスケールダウン.html">配分比較を開く →</a><p><a href="00013_共通上位４手法のスケールダウン/README.md">読む順序と再現方法</a></p></article><!--00013終了--><!--00012開始--><article class="task"><div class="number">作業00012</div><h2>状態切替と柔軟な建玉管理</h2><p>増玉・カバー・反転など180条件。手法の短い説明と、金額・枚数の週合計とセッション別損益。</p><a class="button" href="00012_状態切替と柔軟な建玉管理/状態切替と柔軟な建玉管理.html">手法別の損益を開く →</a><p><a href="00012_状態切替と柔軟な建玉管理/検証結果.md">検証結果</a> · <a href="00012_状態切替と柔軟な建玉管理/README.md">読む順序</a></p><!--ランキングリンク開始--><p><a href="00012_状態切替と柔軟な建玉管理/週収支ランキングと両銘柄共通手法.html">週収支ランキングと両銘柄共通手法 →</a></p><!--ランキングリンク終了--></article><!--00012終了--><!--00011開始--><article class="task"><div class="number">作業00011</div><h2>一週間データでの再検証</h2><p>前回２候補の追加分だけを、利益・損失・枚数で比較。５分足と詳しい検証も開けます。</p><a class="button" href="00011_一週間データでの再検証/一週間データでの再検証.html">結果と５分足売買図を開く →</a><p><a href="00011_一週間データでの再検証/検証結果.md">検証結果</a> · <a href="00011_一週間データでの再検証/README.md">読む順序</a></p></article><!--00011終了--><!--00010開始--><article class="task"><div class="number">作業00010</div><h2>候補２方式の現在セッション再生</h2><p>NK225は適応平均の逆方向・２枚分割返済、TOPIXは板の価格応答の逆方向・逆指値。全体再生と追加区間、現在建玉と返済条件を分けて確認します。</p><a class="button" href="00010_候補２方式の現在セッション再生/候補２方式の現在セッション再生.html">結果と５分足売買図を開く →</a><p><a href="00010_候補２方式の現在セッション再生/検証結果.md">検証結果</a> · <a href="00010_候補２方式の現在セッション再生/README.md">読む順序</a></p></article><!--00010終了--><!--00009開始--><article class="task"><div class="number">作業00009</div><h2>銘柄別の損小利大と建玉管理</h2><p>平均勝/負・PFと７区間の安定性を比較。利益玉の格子と全玉の結末、NT整数枚に残る共通方向を分けて検証します。</p><a class="button" href="00009_銘柄別の損小利大と建玉管理/銘柄別の損小利大と建玉管理.html">検証と５分足売買図を開く →</a><p><a href="00009_銘柄別の損小利大と建玉管理/検証結果.md">検証結果</a> · <a href="00009_銘柄別の損小利大と建玉管理/README.md">読む順序</a></p></article><!--00009終了-->
+  <!--00008開始--><article class="task" aria-labelledby="exact-title">
+    <div class="number">作業 00008</div>
+    <h2 id="exact-title">指定価格と費用ゼロの再探索</h2>
+    <p>費用ゼロ・指定価格での約定を前提に、旧24＋新18系統、正逆方向、トレーリング、利益保護、複数枚、両建て・有限グリッドを再探索。思想別の結果と固定後照合を分けて掲載しました。</p>
+    <a class="button" href="00008_指定価格と費用ゼロの再探索/指定価格と費用ゼロの再探索.html">検証結果と５分足売買図を開く →</a>
+    <ul><li><a href="00008_指定価格と費用ゼロの再探索/検証結果.md">入口・出口とセッション別損益</a></li><li><a href="00008_指定価格と費用ゼロの再探索/README.md">資料の読む順序</a></li></ul>
+    <p class="folder">保存先：00008_指定価格と費用ゼロの再探索</p>
+  </article><!--00008終了-->
+
+
+
+
+
+
+
+
+  <!--00007開始--><article class="task" aria-labelledby="reverse-title">
+    <div class="number">作業 00007</div>
+    <h2 id="reverse-title">最悪成績の反転検証</h2>
+    <p>最も赤字の手法を逆に売買すれば利益になるか。全1,598条件の反対売買と14条件の予測反転を、気配差・費用・数量・時系列で比較しました。</p>
+    <a class="button" href="00007_最悪成績の反転検証/最悪成績の反転検証.html">反転の結果と５分足売買図を開く →</a>
+    <ul><li><a href="00007_最悪成績の反転検証/検証結果.md">セッション別の利益・損失・収支</a></li><li><a href="00007_最悪成績の反転検証/README.md">資料の読む順序と再現方法</a></li></ul>
+    <p class="folder">保存先：00007_最悪成績の反転検証</p>
+  </article><!--00007終了-->
+
+
+  <article class="task" aria-labelledby="combination-title">
+    <div class="number">作業 00006</div>
+    <h2 id="combination-title">予測と注文手法の組合せ検証</h2>
+    <p>予測主導・予測と注文の組合せ・注文主導の３章で仮説と結果を整理。平均回帰・出来高・板・２銘柄、両建て・有限グリッド・段階利確などを比較しました。</p>
+    <a class="button" href="00006_予測と注文手法の組合せ検証/予測と注文手法の検証.html">思想別の検証結果と売買図を開く →</a>
+    <ul><li><a href="00006_予測と注文手法の組合せ検証/検証結果.md">詳しい条件とセッション別損益</a></li><li><a href="00006_予測と注文手法の組合せ検証/README.md">資料の読む順序・再現手順</a></li></ul>
+    <p class="folder">保存先：00006_予測と注文手法の組合せ検証</p>
+  </article>
+  <article class="task" aria-labelledby="risk-title">
+    <div class="number">作業 00005</div>
+    <h2 id="risk-title">損小利大と時間帯別ルールの検証</h2>
+    <p>波の途中から入り、損失を限定して利益を残す条件を比較。入口・出口・米国開始前後の22対比、時間順の成績、設定の安定性、セッション別収支と一回照合をまとめました。</p>
+    <a class="button" href="00005_損小利大と時間帯別ルールの検証/損小利大と時間帯の検証.html">ダークテーマの検証結果と売買図解を開く →</a>
+    <ul>
+      <li><a href="00005_損小利大と時間帯別ルールの検証/検証結果.md">比較結果と具体的な売買条件</a></li>
+      <li><a href="00005_損小利大と時間帯別ルールの検証/README.md">最初に見る資料と再現手順</a></li>
+    </ul>
+    <p class="folder">保存先：00005_損小利大と時間帯別ルールの検証</p>
+  </article>
+  <article class="task" aria-labelledby="book-title">
+    <div class="number">作業 00004</div>
+    <h2 id="book-title">転換の兆候から入り、トレーリングで返済する</h2>
+    <p>移動平均の収束・板の売買圧力の反転・２銘柄の連動を90条件で比較。５分足上の検知と入出場、セッション別収支、細かな揺れと出口幅の関係、条件固定後の一回照合を掲載しました。</p>
+    <a class="button" href="00004_生板を使う売買の検証/転換点からのエントリー/転換点と売買の検証.html">転換点と売買の図解を開く →</a>
+    <ul>
+      <li><a href="00004_生板を使う売買の検証/転換点からのエントリー/検証結果.md">転換点の条件とセッション別収支</a></li>
+      <li><a href="00004_生板を使う売買の検証/板を使う売買の検証.html">当初の板検証を見る</a></li>
+      <li><a href="00004_生板を使う売買の検証/README.md">資料と再現手順の案内</a></li>
+    </ul>
+    <p class="folder">保存先：00004_生板を使う売買の検証</p>
+  </article>
+  <article class="task" aria-labelledby="forecast-title">
+    <div class="number">作業 00003</div>
+    <h2 id="forecast-title">未来情報を使わない予測検証</h2>
+    <p>未来の足を隠した計算監査、過去だけで学習する時系列評価、RTX 4090でのLSTM比較。条件を固定した後に初めて読んだナイトセッションの損益も掲載しています。</p>
+    <a class="button" href="00003_未来情報を使わない予測検証/検証結果.html">予測と売買の検証結果を開く →</a>
+    <ul>
+      <li><a href="00003_未来情報を使わない予測検証/検証結果.md">検証報告とセッション別収支</a></li>
+      <li><a href="00003_未来情報を使わない予測検証/README.md">資料と再現手順の案内</a></li>
+    </ul>
+    <p class="folder">保存先：00003_未来情報を使わない予測検証</p>
+  </article>
+  <article class="task" aria-labelledby="exit-title">
+    <div class="number">作業 00002</div>
+    <h2 id="exit-title">出口の利益保護の検証</h2>
+    <p>含み益を返し過ぎる問題を192条件で検証。元の出口と利益保護候補を５分足で見比べ、再エントリーを含む収支も確認できます。</p>
+    <a class="button" href="00002_出口の利益保護の検証/出口比較.html">５分足の出口比較を開く →</a>
+    <ul>
+      <li><a href="00002_出口の利益保護の検証/出口改善の検証結果.md">検証結果とセッション別の利益・損失・収支</a></li>
+      <li><a href="00002_出口の利益保護の検証/README.md">この作業の資料案内</a></li>
+    </ul>
+    <p class="folder">保存先：00002_出口の利益保護の検証</p>
+  </article>
+  <article class="task" aria-labelledby="entry-title">
+    <div class="number">作業 00001</div>
+    <h2 id="entry-title">波検知と売買ポイントの調査</h2>
+    <p>当初のアルゴリズム探索と手法１の売買ルール。どの条件で入り、どこで返済したかを５分足で確認できます。</p>
+    <a class="button" href="00001_波検知と売買ポイントの調査/売買ポイント図解.html">５分足の売買ポイントを開く →</a>
+    <ul>
+      <li><a href="00001_波検知と売買ポイントの調査/手法1_売買ルール詳細.md">手法１のエントリー・返済条件</a></li>
+      <li><a href="00001_波検知と売買ポイントの調査/調査結果.md">調査結果とセッション別収支</a></li>
+      <li><a href="00001_波検知と売買ポイントの調査/README.md">この作業の資料案内</a></li>
+    </ul>
+    <p class="folder">保存先：00001_波検知と売買ポイントの調査</p>
+  </article>
+  <footer>最新作業は00017です。次の作業は00018以降へ追加します。</footer>
+</main>
+</body>
+</html>

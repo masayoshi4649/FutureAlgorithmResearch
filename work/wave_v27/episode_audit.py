@@ -1,0 +1,381 @@
+"""指定された4つの波を事後の要求適合診断として測り、方向と保有と損益を分ける。"""
+
+from __future__ import annotations
+
+import argparse
+from datetime import datetime
+import hashlib
+import importlib.util
+import json
+from pathlib import Path
+import pickle
+import sys
+from zoneinfo import ZoneInfo
+
+import numpy as np
+
+
+sys.dont_write_bytecode = True
+HERE = Path(__file__).resolve().parent
+V25 = HERE.parent / "wave_v25"
+OLD = HERE.parent / "wave_v23"
+JST = ZoneInfo("Asia/Tokyo")
+EPISODES = (
+    dict(id="W01", session="2026-09-21_Day", start="2026-09-21T10:45:00+09:00", end="2026-09-21T15:35:00+09:00", side=1, name="9/21デイ後半の上昇"),
+    dict(id="W02", session="2026-09-22_Day", start="2026-09-22T09:20:00+09:00", end="2026-09-22T11:45:00+09:00", side=-1, name="9/22デイ前半の下落"),
+    dict(id="W03", session="2026-09-23_Day", start="2026-09-23T09:05:00+09:00", end="2026-09-23T11:15:00+09:00", side=-1, name="9/23デイ前半の下落"),
+    dict(id="W04", session="2026-09-22_Night", start="2026-09-23T00:40:00+09:00", end="2026-09-23T03:20:00+09:00", side=1, name="9/22ナイト深夜の上昇"),
+)
+
+
+def load_module(path: Path, name: str):
+    """機能: 原本ソースを変更せず私有名で読み込む。
+
+    引数: path (Path)、name (str)。返り値: 読み込んだモジュール (module)。
+    """
+    spec = importlib.util.spec_from_file_location(name, path)
+    loaded = importlib.util.module_from_spec(spec)
+    sys.modules[name] = loaded
+    spec.loader.exec_module(loaded)
+    return loaded
+
+
+def stamp(value: float) -> str:
+    """機能: 記録時刻を日本時間の文字列へ整える。
+
+    引数: value (float) はエポック秒。返り値: ISO形式の日本時間 (str)。
+    """
+    return datetime.fromtimestamp(float(value), JST).isoformat()
+
+
+def digest(path: Path) -> str:
+    """機能: 参照した固定仕様やソースを識別する。
+
+    引数: path (Path)。返り値: SHA256 (str)。
+    """
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def freeze() -> dict:
+    """機能: 波区間・計測方法・説明上の目安を、結果生成より前に保存する。
+
+    引数: なし。返り値: 固定仕様 (dict)。既存と相違する場合は停止する。
+    """
+    rules = dict(
+        目的="ユーザーが例示した4波への要求適合を事後に測る。既知の波を方向生成・エントリー・管理へ入力しない。",
+        対象=list(EPISODES), 銘柄=["TOPIX", "NK225"],
+        固定比較=["F32__G08", "D016__D065", "P02__D065"],
+        追加候補="現在照合候補の固定.jsonの候補を --selected で追加する。同じ8区間を同じ方法で測り、未捕捉に合わせたルール変更をしない。",
+        説明用目安="波と同方向のネット建玉が正である時間の合計20分以上。両建ての完全相殺だけでは達成としない。連続20分である必要はない。統計的有意性の判定ではない。",
+        信号時間="CurrentPriceTimeで、各行の方向をその行から次行までの区間へ積分する。波区間との重なりだけを足す。同値時刻の行間は0秒。",
+        保有時間="約定反映後の当該行在庫を次行の時刻まで維持したものとして積分する。次行で増減した在庫を前の時間帯へ遡及しない。正方向/逆方向のネット保有、各脚保有、枚数×分を分ける。",
+        境界評価="開始・終了それぞれの時刻以前の最後の原本行を後方asofで選ぶ。cash＋net枚数×その行のlastを評価し、終点と始点の差を取る。前からの保有、区間内決済、未返済の損益を全て含む。",
+        波時価差の意味="エピソード内に新規した玉だけの最終損益ではない。区間開始前から持つ玉の値動きも入る。実現差と含み差を別記する。",
+        時間端点="時間積分は開始以上・終了未満。注文/返済一覧は開始以上・終了以下。境界評価は各境界時刻までの記録順の約定を反映した状態を用いる。",
+        台帳="ordersは約定済み注文台帳であり、未約定注文一覧ではない。図示用に対象4セッションの全約定と全返済、方向の変更点を保存する。約定行と注文決定元行を区別する。",
+        単位="TOPIXミニは1pt×1000円、NK225マイクロは1pt×10円。保有枚数は各管理器の設定どおり。費用0・指定価格約定の既定条件を変更しない。",
+        データ限界="CurrentPriceTimeは受信時刻ではない。同値時刻内の原本順は保つが、経過秒と実際の受信順は完全には再現できない。",
+        禁止="新規探索、数値やルールの変更、現在API取得、波区間を入力へ混入すること。")
+    destination = HERE / "episode_audit_fixed.json"
+    if destination.exists():
+        fixed = json.loads(destination.read_text(encoding="utf-8"))
+        if fixed["規則"] != rules:
+            raise ValueError("事前固定した波診断の仕様と一致しません")
+        return fixed
+    fixed = dict(固定日時=datetime.now(JST).isoformat(), 規則=rules, 結果生成前=True,
+                 元探索固定SHA256=digest(V25 / "探索条件の固定.json"))
+    destination.write_text(json.dumps(fixed, ensure_ascii=False, indent=2), encoding="utf-8")
+    return fixed
+
+
+def methods(selected: Path | None, first_stage: Path | None = None) -> list[dict]:
+    """機能: 固定比較3件と、任意の事前固定済み新候補だけを選ぶ。
+
+    引数: selected (Path|None) は現在照合用固定候補、first_stage (Path|None) は完了した一次反証JSON。
+    返り値: 方向仕様・管理仕様を持つ手法一覧 (list[dict])。
+    """
+    fixed = json.loads((V25 / "探索条件の固定.json").read_text(encoding="utf-8"))
+    result = {}
+    for signal_id, manager_id, source in (("F32", "G08", "既存板"), ("D016", "D065", "新規板"), ("P02", "D065", "価格P02")):
+        signal = next(item for item in fixed["signals"] if item["id"] == ("D016" if signal_id == "P02" else signal_id))
+        manager = next(item for item in fixed["managers"] if item["id"] == manager_id)
+        identifier = signal_id + "__" + manager_id
+        result[identifier] = dict(id=identifier, name=identifier, signal=dict(signal, 実装元=source), manager=manager)
+    if selected is not None:
+        extra = json.loads(selected.read_text(encoding="utf-8"))
+        if not extra.get("候補再選択禁止"):
+            raise ValueError("追加対象は候補再選択禁止を明記した固定済み候補ファイルに限定します")
+        for item in extra["候補"]:
+            if item["id"] not in result:
+                result[item["id"]] = item
+            else:
+                if item["manager"] != result[item["id"]]["manager"] or item["signal"]["params"] != result[item["id"]]["signal"]["params"]:
+                    raise ValueError("固定比較の仕様が以前と異なります")
+    if first_stage is not None:
+        tested = json.loads(first_stage.read_text(encoding="utf-8"))
+        passed = [item["candidate"] for item in tested if not item["first_stage_failures"]]
+        new_fixed = json.loads((HERE / "探索条件の固定.json").read_text(encoding="utf-8"))
+        identifiers = sorted(item["id"] for item in passed)
+        extension_rule = dict(元の波診断固定SHA256=digest(HERE / "episode_audit_fixed.json"),
+                              一次反証元=str(first_stage.resolve()), 一次反証SHA256=digest(first_stage),
+                              追加対象=identifiers, 選び方="一次反証のfirst_stage_failuresが空の全候補。波の結果を見て対象を選別しない。",
+                              波区間と判定基準変更=False)
+        destination = HERE / "episode_audit_first_stage_fixed.json"
+        if destination.exists():
+            if json.loads(destination.read_text(encoding="utf-8"))["規則"] != extension_rule:
+                raise ValueError("固定した一次反証追加対象と一致しません")
+        else:
+            destination.write_text(json.dumps(dict(固定日時=datetime.now(JST).isoformat(), 規則=extension_rule), ensure_ascii=False, indent=2), encoding="utf-8")
+        for candidate in passed:
+            signal = next(item for item in new_fixed["signals"] if item["id"] == candidate["signal_id"])
+            manager = next(item for item in new_fixed["managers"] if item["id"] == candidate["manager_id"])
+            result[candidate["id"]] = dict(id=candidate["id"], name=signal["name"] + "／" + manager["name"],
+                                            signal=dict(signal, 実装元="多窓"), manager=manager, 用途="一次反証通過の全候補を同じ指定波へ照合")
+    return list(result.values())
+
+
+def directions(method: dict, inputs: dict, features: dict, signals) -> dict:
+    """機能: 波区間を参照せず、固定手法のセッション全体の方向を得る。
+
+    引数: method/inputs/features (dict)、signals (module) は固定済み方向モジュール。
+    返り値: 原本行方向 (dict)。
+    """
+    identifier, source = method["signal"]["id"], method["signal"]["実装元"]
+    if source in ("多窓", "中期階層"):
+        path = HERE / "directions" / f"{identifier}.npz"
+        if path.exists():
+            with np.load(path) as archive:
+                return {key: archive["|".join(key)] for key in inputs}
+        raise FileNotFoundError("階層信号の保存方向が必要です。先に全探索を完了してください。")
+    if source != "価格P02":
+        with np.load(V25 / "directions" / f"{identifier}.npz") as archive:
+            return {key: archive["|".join(key)] for key in inputs}
+    models = {key: signals._model(ready, features[key], 60, 30) for key, ready in inputs.items()}
+    result = {}
+    for key, ready in inputs.items():
+        peer_key = (key[0], "TOPIX" if key[1] == "NK225" else "NK225")
+        own = models[key]
+        peer = signals.COMPONENTS._peer(own, models[peer_key], ("ofi", "progress", "price_short"), 60)
+        candidate, veto = signals._price_candidate(own, peer)
+        held = signals.COMPONENTS._hold(candidate, veto, own["time_s"], 120, 120)
+        value = signals.COMPONENTS._asof(own["seq"], held, ready["seq"]).astype(np.int8)
+        value[ready["time_s"] < ready["start"] + 1200] = 0
+        value[~np.isfinite(ready["atr"]) | (ready["atr"] <= 0)] = 0
+        result[key] = value
+    return result
+
+
+def integrate(times: np.ndarray, values: np.ndarray, start: float, end: float) -> float:
+    """機能: 直前の状態を次の観測まで保ち、波区間と重なる分だけ時間積分する。
+
+    引数: times/values (ndarray)、start/end (float) は区間境界。
+    返り値: 状態値×分の積分 (float)。同値時刻の寄与は0。
+    """
+    weights = np.maximum(0., np.minimum(times[1:], end) - np.maximum(times[:-1], start))
+    return float(np.sum(weights * values[:-1]) / 60)
+
+
+def boundary(ready: dict, curve: np.ndarray, time_s: float, point_value: float) -> dict:
+    """機能: 境界以前の最後のlastと在庫で全建玉の時価を評価する。
+
+    引数: ready (dict)、curve (ndarray)、time_s/point_value (float) は境界と契約倍率。
+    返り値: 参照行、価格、保有、実現/含み/合計評価 (dict)。
+    """
+    index = int(np.searchsorted(ready["time_s"], time_s, side="right") - 1)
+    if index < 0:
+        raise ValueError("境界より前の観測価格がありません")
+    row = curve[index]
+    equity = float(row[5] + row[6] * ready["last"][index])
+    np.testing.assert_allclose(equity, row[0], atol=1e-7)
+    return dict(境界時刻=stamp(time_s), 参照時刻=stamp(ready["time_s"][index]), 参照行=index,
+                seq=int(ready["seq"][index]), last=float(ready["last"][index]), 買い枚数=int(row[2]), 売り枚数=int(row[3]),
+                ネット枚数=int(row[6]), 実現損益円=float(row[1] * point_value), 含み損益円=float((equity - row[1]) * point_value),
+                時価損益円=float(equity * point_value))
+
+
+def order_records(ready: dict, state: np.ndarray, result: dict, reasons: dict) -> list[dict]:
+    """機能: 全約定注文を売買マーカー向けの記録へ変換する。
+
+    引数: ready/state/result/reasons (dict/ndarray/dict/dict) は原本・方向・再生台帳・理由名。
+    返り値: 新規・返済の約定時刻、決定元、数量、価格、理由 (list[dict])。
+    """
+    output = []
+    names = dict(reasons, **{})
+    names.update({20: "主玉新規", 21: "カバー新規", 22: "追加新規", 23: "反転後の主玉補充"})
+    for index, order in enumerate(result["orders"]):
+        fill_row, source_row = int(order[0]), int(order[1])
+        assert 0 <= source_row < fill_row
+        output.append(dict(order_index=index, session=ready["session"], symbol=ready["symbol"],
+                           time_s=float(ready["time_s"][fill_row]), 時刻=stamp(ready["time_s"][fill_row]), 原本行=fill_row, seq=int(ready["seq"][fill_row]),
+                           発注元時刻=stamp(ready["time_s"][source_row]), 発注元行=source_row, 発注元seq=int(ready["seq"][source_row]),
+                           種別="新規" if order[7] == 1 else "返済", direction=int(order[3]), 枚数=int(order[4]), 価格=float(order[5]),
+                           組番号=int(order[2]), 理由番号=int(order[6]), 理由=names.get(int(order[6]), "その他"),
+                           発注元信号=int(state[source_row]), 約定時信号=int(state[fill_row])))
+    return output
+
+
+def trade_records(ready: dict, result: dict, point_value: float) -> list[dict]:
+    """機能: 元建値と返済を結び、利益玉だけに偏らない図示用台帳を作る。
+
+    引数: ready/result (dict)、point_value (float)。返り値: 全返済の記録 (list[dict])。
+    """
+    rows = []
+    for trade in result["trades"]:
+        entry, exit_row = int(trade[6]), int(trade[7])
+        rows.append(dict(組番号=int(trade[0]), 元脚番号=int(trade[1]), direction=int(trade[2]), 枚数=int(trade[3]),
+                         新規価格=float(trade[4]), 返済価格=float(trade[5]), 新規時刻=stamp(ready["time_s"][entry]), 返済時刻=stamp(ready["time_s"][exit_row]),
+                         新規行=entry, 返済行=exit_row, 新規seq=int(ready["seq"][entry]), 返済seq=int(ready["seq"][exit_row]),
+                         役割番号=int(trade[8]), 返済理由番号=int(trade[9]), 損益円=float(trade[10] * point_value)))
+    return rows
+
+
+def episode_metrics(method: dict, episode: dict, ready: dict, state: np.ndarray, result: dict, orders: list[dict], point_value: float) -> dict:
+    """機能: 信号時間、実際の保有時間、波の始終評価差を別々に測る。
+
+    引数: method/episode/ready/result (dict)、state (ndarray)、orders (list[dict])、point_value (float)。
+    返り値: 1手法×1波×1銘柄の診断 (dict)。
+    """
+    start, end = datetime.fromisoformat(episode["start"]).timestamp(), datetime.fromisoformat(episode["end"]).timestamp()
+    times, side, curve = ready["time_s"], episode["side"], result["curve"]
+    if times[0] > start or times[-1] < end:
+        raise ValueError("指定波の境界を覆う観測がありません")
+    first, last = boundary(ready, curve, start, point_value), boundary(ready, curve, end, point_value)
+    aligned = curve[:, 2] if side > 0 else curve[:, 3]
+    opposed = curve[:, 3] if side > 0 else curve[:, 2]
+    net_aligned = curve[:, 6] * side
+    forward = integrate(times, net_aligned > 0, start, end)
+    reverse = integrate(times, net_aligned < 0, start, end)
+    signal_forward = integrate(times, state == side, start, end)
+    signal_reverse = integrate(times, state == -side, start, end)
+    signal_neutral = integrate(times, state == 0, start, end)
+    np.testing.assert_allclose(signal_forward + signal_reverse + signal_neutral, (end - start) / 60, atol=1e-8)
+    in_orders = [row for row in orders if start <= row["time_s"] <= end]
+    direction_changes = np.r_[True, state[1:] != state[:-1]]
+    signals = [dict(時刻=stamp(times[index]), time_s=float(times[index]), seq=int(ready["seq"][index]), direction=int(state[index]))
+               for index in np.flatnonzero(direction_changes & (times >= start) & (times <= end))]
+    return dict(method=method["id"], wave=episode["id"], session=episode["session"], symbol=ready["symbol"],
+                波名=episode["name"], 波方向=side, 開始=episode["start"], 終了=episode["end"], 区間分=(end - start) / 60,
+                正方向信号分=signal_forward, 逆方向信号分=signal_reverse, 中立信号分=signal_neutral,
+                正方向ネット保有分=forward, 逆方向ネット保有分=reverse, ネット中立分=integrate(times, net_aligned == 0, start, end),
+                正方向脚保有分=integrate(times, aligned > 0, start, end), 逆方向脚保有分=integrate(times, opposed > 0, start, end),
+                正方向枚数分=integrate(times, aligned, start, end), 逆方向枚数分=integrate(times, opposed, start, end),
+                両建て保有分=integrate(times, (aligned > 0) & (opposed > 0), start, end),
+                正方向ネット20分目安達成=forward >= 20 - 1e-9,
+                開始境界=first, 終了境界=last, 時価損益差円=last["時価損益円"] - first["時価損益円"],
+                実現損益差円=last["実現損益円"] - first["実現損益円"], 含み損益差円=last["含み損益円"] - first["含み損益円"],
+                区間内新規=[row for row in in_orders if row["種別"] == "新規"], 区間内返済=[row for row in in_orders if row["種別"] == "返済"],
+                区間内方向変更=signals)
+
+
+def write_markdown(report: dict) -> None:
+    """機能: 指定波への未達を隠さず、短い日本語の一覧へまとめる。
+
+    引数: report (dict) は全手法診断。返り値: なし (None)。
+    """
+    lines = ["# 指定4波への適合診断", "", "波区間は事後の確認にだけ使用し、入口・出口の計算には渡していない。○は同方向のネット保有が合計20分以上という説明用目安であり、統計的有意性ではない。", ""]
+    for wave in EPISODES:
+        lines.append(f"- {wave['id']}：{wave['name']}、{wave['start'][11:16]}〜{wave['end'][11:16]}、{'ロング' if wave['side'] > 0 else 'ショート'}。")
+    for method in report["手法"]:
+        rows = sorted([row for row in report["結果"] if row["method"] == method["id"]], key=lambda row: (row["wave"], row["symbol"]))
+        matched = sum(row["正方向ネット20分目安達成"] for row in rows)
+        absent = [f"{row['wave']} {row['symbol']}" for row in rows if row["正方向ネット保有分"] == 0]
+        lines += ["", f"## {method['id']}", "", f"20分目安を満たしたのは **{matched}/8区間**。"]
+        if absent:
+            lines.append("**同方向を全く保有できなかった区間：" + "、".join(absent) + "。**")
+        lines += ["", "|波|市場|正/逆信号 分|正/逆ネット保有 分|波の時価損益差 円|目安|", "|---|---|---:|---:|---:|---|"]
+        for row in rows:
+            lines.append(f"|{row['wave']}|{row['symbol']}|{row['正方向信号分']:.1f} / {row['逆方向信号分']:.1f}|{row['正方向ネット保有分']:.1f} / {row['逆方向ネット保有分']:.1f}|{row['時価損益差円']:+,.0f}|{'○' if row['正方向ネット20分目安達成'] else '未達'}|")
+    perfect = [item["method"] for item in report["方法別要約"] if item["目安達成区間数"] == 8]
+    lines += ["", "## 要求例への結論", "", "8区間すべてで20分目安を満たした手法：" + ("、".join(perfect) if perfect else "なし") + "。",
+              "時価損益差は開始前からの建玉と未返済の損益も含む。区間内新規だけの最終利益とは違う。正逆の脚を同時に持つ場合の脚別時間・枚数分はJSONに分離した。", "",
+              "JSONには対象セッション全体の約定・返済と方向変更点を保存した。注文決定元と約定は別行。未約定注文は含まない。CurrentPriceTimeの同値行は時間0として扱い、受信時刻のない制限も残る。"]
+    (HERE / "episode_audit.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+
+def accounting_checks(results: list[dict], ledgers: list[dict]) -> dict:
+    """機能: 資産曲線とは独立に全約定を足し上げ、波の境界損益を確認する。
+
+    引数: results/ledgers (list[dict]) は診断値と全約定台帳。
+    返り値: 境界比較数と一致判定 (dict)。
+    """
+    mapped = {(item["method"], item["session"], item["symbol"]): item for item in ledgers}
+    checked = 0
+    for row in results:
+        ledger = mapped[(row["method"], row["session"], row["symbol"])]
+        point_value = 1000 if row["symbol"] == "TOPIX" else 10
+        for name in ("開始境界", "終了境界"):
+            boundary_value = row[name]
+            executed = [order for order in ledger["全約定"] if order["原本行"] <= boundary_value["参照行"]]
+            net = sum(order["direction"] * order["枚数"] for order in executed)
+            cash = -sum(order["direction"] * order["枚数"] * order["価格"] for order in executed)
+            expected = (cash + net * boundary_value["last"]) * point_value
+            np.testing.assert_allclose(expected, boundary_value["時価損益円"], atol=1e-6)
+            assert net == boundary_value["ネット枚数"]
+            checked += 1
+    return dict(全約定からの独立会計一致=True, 比較境界数=checked)
+
+
+def main() -> None:
+    """機能: 固定済み3基準と任意の追加候補を、同じ4波で再生して診断を保存する。
+
+    引数: --prepare (bool) は仕様固定のみ、--selected (Path) は現在照合候補、--first-stage (Path) は一次反証の全通過追加。
+    返り値: なし (None)。現在APIや新しい探索は実行しない。
+    """
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--prepare", action="store_true")
+    parser.add_argument("--selected", type=Path)
+    parser.add_argument("--first-stage", nargs="?", const=HERE / "一次反証の結果.json", type=Path)
+    args = parser.parse_args()
+    fixed = freeze()
+    if args.prepare:
+        print("4波の計測仕様と20分目安を結果生成前に固定しました。", flush=True)
+        return
+    selected_methods = methods(args.selected, args.first_stage)
+    all_inputs = pickle.loads((OLD / "inputs.pkl").read_bytes())
+    all_features = pickle.loads((OLD / "features_depth.pkl").read_bytes())
+    sessions = {wave["session"] for wave in EPISODES}
+    inputs = {key: ready for key, ready in all_inputs.items() if key[0] in sessions}
+    features = {key: all_features[key] for key in inputs}
+    signals = load_module(HERE.parent / "wave_v26" / "ensemble_signals.py", "episode_fixed_signals")
+    engine_loader = load_module(V25 / "d016_signal_audit.py", "episode_fixed_engine_loader")
+    engine, managers = engine_loader.load_engine()
+    checked_paths = [HERE / "hierarchy_signals.py", HERE.parent / "wave_v26" / "ensemble_signals.py", V25 / "discovery_signals.py", OLD / "engine.py"]
+    before = {str(path): digest(path) for path in checked_paths}
+    results, ledger, summaries = [], [], []
+    for method in selected_methods:
+        state = directions(method, inputs, features, signals)
+        for key, ready in sorted(inputs.items()):
+            config = managers.make_config(method["manager"], key[1], ready)
+            replay = engine.run(ready, state[key], config, detail=True)
+            orders = order_records(ready, state[key], replay, engine.REASONS)
+            changes = np.flatnonzero(np.r_[True, state[key][1:] != state[key][:-1]])
+            ledger.append(dict(method=method["id"], session=key[0], symbol=key[1], 全約定=orders,
+                               全返済=trade_records(ready, replay, config["point_value"]),
+                               全方向変更=[dict(time_s=float(ready["time_s"][i]), 時刻=stamp(ready["time_s"][i]), 原本行=int(i), seq=int(ready["seq"][i]), direction=int(state[key][i])) for i in changes]))
+            for episode in EPISODES:
+                if episode["session"] == key[0]:
+                    results.append(episode_metrics(method, episode, ready, state[key], replay, orders, config["point_value"]))
+        rows = [row for row in results if row["method"] == method["id"]]
+        summary = dict(method=method["id"], 対象区間数=len(rows), 目安達成区間数=sum(row["正方向ネット20分目安達成"] for row in rows),
+                       正方向保有0区間=[dict(wave=row["wave"], symbol=row["symbol"]) for row in rows if row["正方向ネット保有分"] == 0])
+        summaries.append(summary)
+        print(json.dumps(summary, ensure_ascii=False), flush=True)
+    assert before == {str(path): digest(path) for path in checked_paths}
+    report = dict(固定仕様=fixed, 手法=selected_methods, 結果=results, 方法別要約=summaries, 図示用セッション全台帳=ledger,
+                  境界損益の独立検算=accounting_checks(results, ledger),
+                  候補追加元=str(args.selected) if args.selected else None, 候補固定SHA256=digest(args.selected) if args.selected else None,
+                  一次反証追加元=str(args.first_stage) if args.first_stage else None, 一次反証固定SHA256=digest(args.first_stage) if args.first_stage else None,
+                  API取得数=0, ルール変更=False, 参照コード不変=True, 参照コードSHA256=before)
+    destination = HERE / "episode_audit.json"
+    if destination.exists():
+        previous = json.loads(destination.read_text(encoding="utf-8"))
+        for old in previous["結果"]:
+            current = next((row for row in results if (row["method"], row["wave"], row["symbol"]) == (old["method"], old["wave"], old["symbol"])), None)
+            if current is not None and current != old:
+                raise AssertionError("候補追加により以前の固定波診断の値が変わりました")
+    destination.write_text(json.dumps(report, ensure_ascii=False, indent=2, allow_nan=False), encoding="utf-8")
+    write_markdown(report)
+
+
+if __name__ == "__main__":
+    main()

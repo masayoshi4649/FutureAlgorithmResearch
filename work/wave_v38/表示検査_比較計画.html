@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>復元方式の自動選択と改善8条件の反証</title>
+<style>:root{color-scheme:dark}body{background:#0b1320;color:#e5edf7;font:16px/1.8 system-ui,sans-serif;margin:40px auto;padding:0 24px;max-width:1000px}h1{font-size:26px}h2{font-size:20px}a{color:#7cc8ff}.notice{padding:16px;background:#192b40;border-left:4px solid #7cc8ff}table{border-collapse:collapse;width:100%;margin:20px 0}th,td{padding:12px;text-align:left;border-bottom:1px solid #30445e}th{background:#192b40}.muted{color:#acbdcf}</style></head>
+<body>
+<!--
+[コンポーネント概要]
+計画の段階と直近の確定成績を分けて表示する静的ページです。
+比較表は主条件・補助条件の件数を示し、まだ計算していない損益を表示しません。
+引数および型: なし。返り値および型: なし。外部通信や売買操作はありません。
+-->
+<p><a href="../index.html">作業一覧</a> ／ <a href="../00032_悪化時の部分減量と回復後の数量復元/悪化時の部分減量と回復後の数量復元.html">直近の確定結果：00032</a></p>
+<h1>復元方式の自動選択と改善8条件の反証</h1>
+<p class="notice">設計・人工検査中。今回の新しい実相場損益はまだ計算していません。</p>
+<h2>試す主案</h2>
+<p>短い逆行で一部を減らす。その時に<strong>長めの逆行も確認されたら、回復信号を待つ</strong>。それ以外は<strong>120秒後の新しい有効情報で元の生存数量へ戻す</strong>。方式の選択まで機械化します。</p>
+<p>減量後に元の利確で終了した枚数は戻しません。損失履歴・初期ATR・損失予算・期限もリセットしません。</p>
+<table><thead><tr><th>比較</th><th>件数</th><th>確かめること</th></tr></thead><tbody>
+<tr><td>主条件と機構・感度</td><td>206</td><td>改善8条件、固定時計・固定回復・逆選択、損失予算の有無、窓の±20%、注文の1/5/15秒遅延、観測価格約定</td></tr>
+<tr><td>減量方向の符号対照</td><td>512</td><td>8条件それぞれに同じ64系列</td></tr>
+<tr><td>回復方向の符号対照</td><td>192</td><td>回復を読む3条件それぞれに64系列</td></tr>
+<tr><td>方式選択だけの対照</td><td>64</td><td>回復待ちか時計かの選択だけを変える</td></tr>
+</tbody></table>
+<h2>結論を分ける</h2>
+<p>「既知期間で損小利大」「条件を変えても残るか」「長窓による方式選択に付加価値があるか」を別々に判定します。黒字でも方式選択の効果がない場合を、そのまま示します。</p>
+<p>固定時計の対照には、主案と同じ長窓の公開品質を使う条件も追加しました。復元できる機会の違いを、方式選択の効果と取り違えないためです。</p>
+<p class="muted">全13区間は既知。8条件は過去309条件からの選抜で、今回の再検証も未知検証にはなりません。TOPIXミニ初回5／上限10枚、NKマイクロ初回10／上限20枚。費用0・指定価格約定・場内返済。</p>
+<p><a href="README.md">資料の読む順序と実装</a></p>
+
+</body></html>

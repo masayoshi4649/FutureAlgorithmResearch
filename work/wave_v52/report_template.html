@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>価格形成の観測と新手法の検証</title>
+<style>
+:root{color-scheme:dark;font-family:"Yu Gothic UI",Meiryo,sans-serif;background:#0b1220;color:#e2eaf5}*{box-sizing:border-box}body{margin:0;line-height:1.7}main{max-width:1260px;margin:auto;padding:28px 22px 70px}h1{font-size:29px;line-height:1.4}h2{font-size:21px;margin-top:0}h3{font-size:17px}.muted,small{color:#a5b6cc}a{color:#82bdff}section,.box{background:#121f31;border:1px solid #304257;border-radius:12px;padding:22px;margin:22px 0}section.primary{border-top:4px solid #67bcff}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.grid>div{background:#0d1829;padding:16px;border-radius:8px}.metric{font-size:25px;font-weight:700;display:block}.up{color:#67e3b0}.down{color:#ff9b9b}table{border-collapse:collapse;width:100%;font-size:14px;white-space:nowrap}th,td{padding:9px 12px;border-bottom:1px solid #293d54;text-align:right}th:first-child,td:first-child{text-align:left}th{background:#172a40;color:#b7cbdf;position:sticky;top:0}.scroll{overflow:auto;max-height:590px}.wide{white-space:normal;min-width:170px}select{background:#0b1829;color:#ecf4ff;border:1px solid #486281;border-radius:6px;padding:9px;max-width:100%}label{display:inline-flex;align-items:center;gap:8px;margin:5px 20px 10px 0}summary{cursor:pointer;color:#96c9ff}svg{width:100%;height:auto;display:block;background:#091421;border-radius:8px}nav{display:flex;gap:18px;flex-wrap:wrap}ol,ul{padding-left:23px}.tag{color:#90cffd;font-size:13px}.read{max-width:950px}code{color:#b7d5f6}p{margin:10px 0}.legend span{margin-right:16px}details{margin:16px 0}.num{font-variant-numeric:tabular-nums}@media(max-width:800px){.grid{grid-template-columns:1fr}main{padding:18px 12px}section{padding:16px}h1{font-size:24px}}
+</style></head><body><main>
+<!--
+[コンポーネント概要]
+#findings は観測から得た結論を表示する。
+#method と #symbol は売買手法と換算商品を選び、各場・各週・売買図を同時に切り替える。
+#session はグラフと30分区間の対象を選ぶ。
+#chart は判断後の原本価格で約定した位置を表示し、#intervals は含み増減を含む会計を表示する。
+-->
+<p class="tag">作業00049 · 保存原本から測定 → 観測結果 → 売買規則 → 時間順の再生</p>
+<h1>価格形成の観測と新手法の検証</h1>
+<nav><a href="../index.html">作業一覧</a><a href="README.md">再現方法・資料</a><a href="#results">損益へ</a><a href="#audit">検証の範囲</a></nav>
+<section class="primary"><h2 id="headline"></h2><div id="findings" class="read"></div></section>
+<section><h2>1．価格が動く理由を、観測できる量に分けた</h2>
+<p class="read">買いと売りは同量で成立します。価格を決めるのは、提示を受け入れる売買と、その価格で応じる指値の消費・追加・撤退です。「焦り」は直接見えないため、動機を決めつけず、価格を譲る動きと供給の反応を測りました。</p>
+<div class="grid"><div><b>消費・撤退</b><p>反対側の提示が減る。その後も同じ方向へ進むか。</p></div><div><b>補充・価格耐性</b><p>提示が戻り、売買されても進まない。継続が弱まるか。</p></div><div><b>共通の値直し</b><p>両銘柄の提示価格が動く。その一致に追加の情報があるか。</p></div></div>
+<p class="muted">板の変化＝追加 − 取消 − 約定消費。今回のスナップショットだけでは、この3項を完全には分離できません。出来高増なしの数量減を「取消」、同価格の回復を「同じ大口の補充」と断定していません。</p>
+<details><summary>研究との対応・8つの仮説</summary><p>約定以外の注文イベントも価格形成に関わり、現在の価格変化と後続イベントへの影響を分ける考え方を採用しました。<a href="https://arxiv.org/abs/0904.0900">Eislerほか</a>。同区間のOFIと価格の関係を、未来の利益と混同しない設計です。<a href="https://arxiv.org/abs/1011.6402">Contほか</a>。</p><p>補充の観測は、潜在的な供給が表示へ現れるという考え方に対応します。<a href="https://arxiv.org/abs/1808.09677">Dall'Amicoほか</a>。同方向の注文が続いても、流動性の応答により価格継続が保証されない点も確認対象にしました。<a href="https://arxiv.org/abs/0804.3818">Gerig</a>。</p><p><a href="../../work/wave_v52/theory/価格形成から観測へ.md">8仮説と反証の詳細</a></p></details>
+</section>
+<section><h2>2．「動いた理由」と「この後の動き」を比較した</h2><div id="observationNote"></div><div class="scroll" id="observations"></div><p class="muted">表は直前の価格変化・変動性などを調整した後の、板指標と5分後の中値変化の関係。相関の大きさは的中率ではありません。6指標 × 進行／不進行の12状態を先に定義し、1分・15分先と15分間隔の観測でも反証しました。</p></section>
+<section id="results"><h2>3．観測から組んだ規則と売買結果</h2>
+<label>手法<select id="method"></select></label><label>商品<select id="symbol"><option value="TOPIX">TOPIXミニ</option><option value="NK225">NK225マイクロ</option></select></label>
+<div id="methodText"></div><div class="grid" id="metrics"></div>
+<p class="muted" id="assumptions"></p>
+<details><summary>主案P01で、確認を待つことが有利にならなかった理由</summary><p>圧力の発見から反転確認まで中央値2分。確認までの極値からは、既に平均0.386ATR（TOPIX）／0.376ATR（NK225）戻った後で入りました。保有中に1ATRまで順行した取引は11.4%／10.3%にとどまり、利益追跡で返済できたのは約5.6%でした。</p><p>NK225では、即逆張りC02から主案P01へ変えると平均負けは少し縮みましたが、勝率は48.7%から39.5%へ低下。この試験では、確認を待つことによる損失縮小を、勝ちを逃す影響が上回りました。<a href="../../work/wave_v52/theory/売買後の反証.md">同じ圧力事象との対応・反証の詳細</a></p></details>
+<div class="scroll" id="comparison"></div>
+<details><summary>期間別・週別の利益／損失／収支</summary><div class="scroll" id="periods"></div></details>
+<h3>各セッションの損益</h3><div class="scroll" id="sessions"></div>
+<p class="muted">利益・損失は決済した全建玉の金額。枚数は利益／損失／同値で返済した累計で、同時保有数ではありません。平均勝／負は1枚当たり。収支を枚数で表すことはできないため、勝ち枚数−負け枚数を別表示します。</p>
+</section>
+<section><h2>4．原本順の売買と30分ごとの損益</h2><label>セッション<select id="session"></select></label>
+<div class="legend muted"><span style="color:#67e3b0">▲ 新規買い</span><span style="color:#ff9b9b">▼ 新規売り</span><span style="color:#ffd078">● 返済</span></div><div id="chart"></div>
+<p class="muted">線は原本価格の1分末サンプル。注文と保護条件は原本の全有効行で処理しています。区間収支＝決済収支＋含み損益の増減。境界の評価価格は、その境界より前に届いた最後の価格です。</p><div class="scroll" id="intervals"></div>
+</section>
+<section id="audit"><h2>5．どこまで確かめたか</h2><div id="auditText"></div><details><summary>監査・全記録・実装を開く</summary><ul><li><a href="../../work/wave_v52/measurement/README.md">測定定義と欠測の扱い</a></li><li><a href="../../work/wave_v52/theory/観測解析固定.json">観測前に固定した分析条件</a></li><li><a href="../../work/wave_v52/売買仕様固定.json">売買結果を見る前に固定した規則</a></li><li><a href="../../work/wave_v52/台帳/">全約定CSV</a></li><li><a href="../../work/wave_v52/backtest.py">売買信号とバックテスト</a></li><li><a href="../../work/wave_v52/review/">独立監査</a></li></ul></details></section>
+<script id="data" type="application/json">__DATA__</script>
+<script>
+const data=JSON.parse(document.getElementById('data').textContent);
+const byId=id=>document.getElementById(id);
+/**
+ * 数値を日本語で表示する。
+ * @param {number|null} n 数値。
+ * @param {number} d 小数桁。
+ * @returns {string} 表示文字。
+ */
+function fmt(n,d=0){return n===null||n===undefined?'—':Number(n===0?0:n).toLocaleString('ja-JP',{minimumFractionDigits:d,maximumFractionDigits:d});}
+/**
+ * 符号色を付ける。
+ * @param {number} n 数値。
+ * @returns {string} HTML。
+ */
+function signed(n){return `<span class="${n>0?'up':n<0?'down':''}">${n>0?'+':''}${fmt(n)}</span>`;}
+/**
+ * 表を作る。
+ * @param {string[]} heads 見出し。
+ * @param {Array} rows セル配列。
+ * @returns {string} HTML。
+ */
+function table(heads,rows){return `<table><thead><tr>${heads.map(x=>`<th>${x}</th>`).join('')}</tr></thead><tbody>${rows.map(r=>`<tr>${r.map(x=>`<td>${x}</td>`).join('')}</tr>`).join('')}</tbody></table>`;}
+/**
+ * 損益を同じ列順にする。
+ * @param {Object} a 会計。
+ * @returns {Array} 表示セル。
+ */
+function cells(a){const pf=a.loss?a.profit/a.loss:null,payoff=a.win_qty&&a.loss_qty&&a.loss?(a.profit/a.win_qty)/(a.loss/a.loss_qty):null;return [fmt(a.profit),fmt(a.loss),signed(a.net),`${fmt(a.win_qty)} / ${fmt(a.loss_qty)} / ${fmt(a.flat_qty)}`,signed(a.win_qty-a.loss_qty),fmt(pf,2),fmt(payoff,2),`${a.wins}/${a.cycles}`];}
+const heads=['期間','利益 円','損失 円','収支 円','利益 / 損失 / 同値 枚','枚数差','PF','平均勝/負','勝取引/全取引'];
+/**
+ * 選択した手法と銘柄の説明・会計を更新する。
+ * @returns {void} 返り値なし。
+ */
+function render(){
+ const id=byId('method').value,symbol=byId('symbol').value,method=data.methods.find(x=>x.id===id),group=data.results[id][symbol],s=group.total;
+ byId('methodText').innerHTML=`<p><b>${method.name}</b>　${method.description}</p><div class="grid"><div><b>入口</b><p>${method.entry}</p></div><div><b>途中</b><p>${method.middle}</p></div><div><b>出口</b><p>${method.exit}</p></div></div>`;
+ byId('metrics').innerHTML=`<div>23場収支<span class="metric">${signed(s.net)}円</span><small>利益 ${fmt(s.profit)} ／ 損失 ${fmt(s.loss)}円</small></div><div>黒字セッション<span class="metric">${s.positive_sessions} / ${s.sessions}</span><small>取引あり ${s.active_sessions}場 · 勝取引 ${fmt(100*s.win_rate,1)}%</small></div><div>平均勝ち／平均負け<span class="metric">${fmt(s.payoff,2)}倍</span><small>1枚当たり ${fmt(s.win_per_lot)} ／ ${fmt(s.loss_per_lot)}円</small></div>`;
+ byId('assumptions').textContent=data.assumptions;
+ byId('comparison').innerHTML=table(['比較手法','全23場 円','先頭10場 円','次9場 円','最後4場 円','黒字場','最大利益場を除く 円'],data.methods.map(m=>{const g=data.results[m.id][symbol];return[m.id+' '+m.name,signed(g.total.net),...g.periods.map(p=>signed(p.net)),`${g.total.positive_sessions}/23`,signed(g.total.without_best)];}));
+ byId('periods').innerHTML=table(heads,[...group.periods,...group.weeks].map(x=>[x.name,...cells(x)]));
+ byId('sessions').innerHTML=table(heads,group.accounts.map(x=>[x.session,...cells(x)]));
+ renderSession();
+}
+/**
+ * 原本価格と約定位置・30分損益を表示する。
+ * @returns {void} 返り値なし。
+ */
+function renderSession(){
+ const id=byId('method').value,sym=byId('symbol').value,session=byId('session').value;
+ const account=data.results[id][sym].accounts.find(x=>x.session===session),p=data.prices[sym][session];
+ const orders=account.orders,values=[...p.map(x=>x[1]),...orders.map(x=>x[7])],low=Math.min(...values),high=Math.max(...values),pad=Math.max((high-low)*.1,1);
+ const x=t=>65+(t-p[0][0])/(p.at(-1)[0]-p[0][0])*1030,y=v=>285-(v-low+pad)/(high-low+2*pad)*250;
+ let svg=`<svg viewBox="0 0 1140 340" role="img" aria-label="${session}の価格と売買点">`;
+ for(let i=0;i<5;i++){const v=low-pad+(high-low+2*pad)*i/4;svg+=`<line x1="65" y1="${y(v)}" x2="1100" y2="${y(v)}" stroke="#263d54"/><text x="5" y="${y(v)+5}" fill="#afc3da" font-size="12">${fmt(v,1)}</text>`;}
+ svg+=`<path d="${p.map((r,i)=>`${i?'L':'M'}${x(r[0]).toFixed(2)},${y(r[1]).toFixed(2)}`).join(' ')}" fill="none" stroke="#79b8fb" stroke-width="1.5"/>`;
+ for(const o of orders){const xx=x(o[1]),yy=y(o[7]),color=o[4]===2?'#ffd078':o[5]===1?'#67e3b0':'#ff9b9b';const label=`${new Date(o[1]*1000).toLocaleString('ja-JP',{timeZone:'Asia/Tokyo'})} ${o[4]===1?'新規':'返済'} ${o[5]===1?'買い':'売り'} ${o[6]}枚 @${o[7]}`;svg+=o[4]===2?`<circle cx="${xx}" cy="${yy}" r="3.7" fill="${color}"><title>${label}</title></circle>`:`<path d="M ${xx} ${yy+(o[5]===1?-7:7)} l -5 ${o[5]*10} h 10 Z" fill="${color}"><title>${label}</title></path>`;}
+ for(let i=0;i<5;i++){const t=p[0][0]+(p.at(-1)[0]-p[0][0])*i/4;svg+=`<text x="${x(t)}" y="320" text-anchor="middle" fill="#afc3da" font-size="13">${new Date(t*1000).toLocaleTimeString('ja-JP',{timeZone:'Asia/Tokyo',hour:'2-digit',minute:'2-digit'})}</text>`;}
+ byId('chart').innerHTML=svg+'</svg>';
+ byId('intervals').innerHTML=table(['時間','決済利益 円','決済損失 円','決済収支 円','終了含み 円','時価収支 円','利益/損失/同値 枚'],account.intervals.map(r=>[r.開始.slice(11,16)+'–'+r.終了未満.slice(11,16),fmt(r.利益円),fmt(r.損失円),signed(r.確定収支円),signed(r.終了含み円),signed(r.時価収支円),`${r.利益返済枚数}/${r.損失返済枚数}/${r.同値返済枚数}`]));
+}
+// ----------------------------------------
+// 保存済み結果だけを表示し、外部通信や売買操作は行わない。
+byId('headline').textContent=data.headline;
+byId('findings').innerHTML=data.findings.map(x=>`<p>${x}</p>`).join('');
+byId('observationNote').innerHTML=data.observationNote;
+byId('observations').innerHTML=table(['銘柄・観測','先頭10場','次9場','最後4場'],data.observations);
+byId('auditText').innerHTML=data.auditText;
+byId('method').innerHTML=data.methods.map(x=>`<option value="${x.id}">${x.id} ${x.name}</option>`).join('');
+byId('method').value=data.mainMethod;
+byId('session').innerHTML=data.sessions.map(x=>`<option>${x}</option>`).join('');
+byId('session').value=data.sessions.at(-1);
+byId('method').addEventListener('change',render);byId('symbol').addEventListener('change',render);byId('session').addEventListener('change',renderSession);render();
+</script></main></body></html>

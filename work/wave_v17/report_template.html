@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>状態切替と柔軟な建玉管理｜00012</title>
+<style>
+:root{color-scheme:dark;--bg:#0b1220;--panel:#142033;--line:#33445d;--text:#e3ecf7;--muted:#a9bad0;--profit:#6ee0b8;--loss:#ffb585;--link:#9fcfff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.65 "Yu Gothic UI",sans-serif}main{max-width:1080px;margin:auto;padding:28px 20px 48px}h1{font-size:27px;margin:0 0 18px}h2{font-size:18px;margin:23px 0 10px}p{margin:8px 0}.controls{display:flex;gap:12px;flex-wrap:wrap}.controls label{display:flex;flex-direction:column;color:var(--muted);font-size:12px;min-width:150px}.controls .method{flex:1;min-width:270px}select{background:var(--panel);color:var(--text);border:1px solid var(--line);border-radius:7px;padding:10px;font:inherit;font-size:14px;width:100%}.method-info{padding:15px 18px;margin-top:15px;background:var(--panel);border:1px solid var(--line);border-radius:10px}#method-name{font-size:17px;font-weight:bold}#description{white-space:pre-line;color:#c7d7e9}.note{font-size:12px;color:var(--muted)}.table-wrap{overflow:auto;border:1px solid var(--line);border-radius:9px}table{border-collapse:collapse;width:100%;font-size:14px}th,td{padding:9px 14px;border-bottom:1px solid var(--line);text-align:right;white-space:nowrap}th{background:#1c2c43;color:#bcd1e9}th:first-child,td:first-child{text-align:left}tbody tr:last-child td{border:0}.amount{font-weight:650;font-variant-numeric:tabular-nums}.units{font-size:12px;color:var(--muted)}.profit{color:var(--profit)}.loss{color:var(--loss)}.flat{color:var(--muted)}.weekly{background:#172b38}details{border:1px solid var(--line);border-radius:9px;padding:13px 16px;margin-top:22px}summary{cursor:pointer;color:var(--link);font-weight:bold}pre{white-space:pre-wrap;word-break:break-word;font-size:12px}a{color:var(--link)}footer{margin-top:20px;font-size:12px;color:var(--muted)}@media(max-width:650px){main{padding:18px 10px}h1{font-size:22px}.controls .method{min-width:100%}th,td{padding:8px 9px}table{font-size:13px}}
+</style>
+</head>
+<body>
+<!--
+[コンポーネント概要]
+#symbol は銘柄、#method は手法、#factor は円額だけの仮定換算倍率を選びます。
+#method-name と #description は手法ID・名称・短い日本語説明を示します。
+#weekly は週合計、#sessions は10セッションの利益・損失・収支を表示します。
+各金額の下に仮想単位の枚数を示し、差引枚数は利益枚数−損失枚数です。
+#research-details は研究説明と監査を初期状態で折りたたみます。通信は行いません。
+-->
+<main>
+<h1>状態切替と柔軟な建玉管理</h1>
+<div class="controls">
+<label>銘柄<select id="symbol"><option>NK225</option><option>TOPIX</option></select></label>
+<label class="method">手法<select id="method"></select></label>
+<label>金額の換算<select id="factor"><option value="1">1倍（基準換算）</option><option value="0.1">0.1倍（仮定換算）</option><option value="0.01">0.01倍（仮定換算）</option></select></label>
+</div>
+<div class="method-info"><div id="method-name"></div><p id="description"></p></div>
+<h2>週合計</h2>
+<div id="weekly" class="table-wrap"></div>
+<h2>セッション別</h2>
+<div id="sessions" class="table-wrap"></div>
+<p class="note">枚数は返済した仮想単位の累計。差引枚数＝利益枚数−損失枚数。同値返済は詳細に記載。</p>
+<p class="note">金額はラージ価格倍率の参考換算。実際のmini・micro板による約定検証ではありません。買い100・売り100まで。</p>
+<details id="research-details"><summary>条件・集計方法・監査を開く</summary><div id="details-body"></div>__DETAILS__</details>
+<footer>この週の価格を既に調査した後で180条件を設計した比較で、未読データでの検証ではありません。費用０・指定価格約定・セッション内返済。<a href="../index.html">全作業</a></footer>
+</main>
+<script type="application/json" id="data">__PAYLOAD__</script>
+<script>
+const DATA=JSON.parse(document.getElementById('data').textContent),$=id=>document.getElementById(id);
+/**
+ * HTMLへ表示する文字をエスケープする。
+ * @param {unknown} value - 表示する値。
+ * @returns {string} 安全な文字列。
+ */
+function esc(value){return String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+/**
+ * 参考円額へ選択倍率を掛け、万円表示する。
+ * @param {number} value - 基準円額。
+ * @returns {string} 換算後の万円表示。
+ */
+function money(value){const n=value*Number($('factor').value);return (n>0?'＋':n<0?'−':'')+(Math.abs(n)/10000).toLocaleString('ja-JP',{maximumFractionDigits:2})+'万円';}
+/**
+ * 金額と仮想枚数のセルを作る。
+ * @param {number} value - 基準円額。
+ * @param {number} units - 返済した仮想枚数、または差引枚数。
+ * @returns {string} 表示セルのHTML。
+ */
+function cell(value,units){return '<td><div class="amount '+(value>0?'profit':value<0?'loss':'flat')+'">'+money(value)+'</div><div class="units">'+units.toLocaleString('ja-JP',{maximumFractionDigits:4})+'枚</div></td>';}
+/**
+ * １区間の利益・損失・差引を同じ列で表示する。
+ * @param {object} row - 正規化した区間集計。
+ * @returns {string} 表の１行。
+ */
+function rowHTML(row){return '<tr><td>'+esc(row.label)+'</td>'+cell(row.profit_yen,row.profit_units)+cell(-row.loss_yen,row.loss_units)+cell(row.net_yen,row.profit_units-row.loss_units)+'</tr>';}
+/**
+ * 集計行を表へまとめる。
+ * @param {object[]} rows - 区間集計の配列。
+ * @returns {string} 表HTML。
+ */
+function table(rows){return '<table><thead><tr><th>区間</th><th>利益（金額／枚数）</th><th>損失（金額／枚数）</th><th>差引（金額／枚数差）</th></tr></thead><tbody>'+rows.map(rowHTML).join('')+'</tbody></table>';}
+/**
+ * 銘柄に存在する手法だけを選択肢にする。
+ * @param {string|undefined} preferred - 引き継ぐ手法ID。
+ * @returns {void} 返り値なし。
+ */
+function updateMethods(preferred){const methods=DATA.methods.filter(m=>m.symbols.includes($('symbol').value));$('method').innerHTML=methods.map(m=>'<option value="'+esc(m.id)+'">'+esc(m.id+' ／ '+m.name)+'</option>').join('');$('method').value=methods.some(m=>m.id===preferred)?preferred:methods[0].id;render();}
+/**
+ * 選択中の手法について短い説明と全区間の金額・枚数を描画する。
+ * @returns {void} 返り値なし。
+ */
+function render(){const method=DATA.methods.find(m=>m.id===$('method').value),result=DATA.results[method.id+'|'+$('symbol').value];$('method-name').textContent=method.id+' ／ '+method.name;$('description').textContent=method.description.join('\n');$('weekly').innerHTML=table([result.weekly]);$('sessions').innerHTML=table(result.sessions);$('details-body').innerHTML='<p>同値返済：'+result.weekly.flat_units.toLocaleString('ja-JP')+'枚。最大同時保有：買い'+result.max_long+'枚・売り'+result.max_short+'枚・合計'+result.max_gross+'枚。含み損益を含む週の最大下落：'+money(-result.drawdown_yen)+'。</p><p>金額の換算倍率を変えても仮想枚数は変わりません。負け枚数が多くても、損失を小さくし利益を伸ばせば収支が正になる場合があります。</p><p>１枚平均利益／損失：'+money(result.avg_profit_per_unit)+' ／ '+money(-result.avg_loss_per_unit)+'（比'+result.unit_payoff_text+'）。全玉を閉じるまでの１組では平均利益／平均損失が'+result.cycle_payoff_text+'倍。初期２候補は組単位で選んでおり、１枚平均利益が損失を上回るという意味ではありません。</p><pre>'+esc(method.details||'')+'</pre>';}
+// ----------------------------------------
+// 選択変更を表示更新へ接続する。価格取得・売買再計算は行わない。
+$('symbol').addEventListener('change',()=>updateMethods(DATA.defaults[$('symbol').value]));
+$('method').addEventListener('change',render);$('factor').addEventListener('change',render);
+updateMethods(DATA.defaults[$('symbol').value]);
+</script>
+</body>
+</html>

@@ -1,0 +1,114 @@
+"""第六反復の全84条件を、確定５分足・入口と二つの保有方向・全返済で図示する。"""
+
+from __future__ import annotations
+
+import json
+import pickle
+from html import escape
+from pathlib import Path
+
+import numpy as np
+import pandas as pd
+
+import context_split_runner as runner
+
+HERE = Path(__file__).resolve().parent
+ROOT = HERE.parents[1]
+OUT = ROOT / 'アルゴリズム調査' / '00025_相手不一致と保有撤回の分離'
+
+
+def main() -> None:
+    """機能: 固定済みの候補と台帳を再現し、通信不要の図解を作る。
+
+    引数: なし。返り値: なし (None)。売買条件を再選択せず、全セッションの収支を保存値と照合する。
+    """
+    fixed = runner.read(HERE / '探索条件の固定.json')
+    for relative, expected in fixed['SHA256'].items():
+        assert runner.digest(HERE.parent / relative) == expected
+    picked = [s['id'] + '__' + m['id'] for s in fixed['signals'] for m in fixed['managers']]
+    assert len(picked) == 84
+    accepted = False
+    specifications = {s['id']: s for s in fixed['signals']}
+    managements = {m['id']: m for m in fixed['managers']}
+    inputs = pickle.loads((HERE.parent / 'wave_v23' / 'inputs.pkl').read_bytes())
+    candles, trades, names, checks, states, contexts_used = {}, {}, {}, [], {}, {}
+    for (session, symbol), ready in inputs.items():
+        frame = pd.read_csv(ROOT / 'candle_5min' / symbol / f'{session}.csv')
+        stamps = pd.to_datetime(frame.time).map(lambda t: t.timestamp()).to_numpy()
+        valid = (stamps >= ready['start']) & (stamps <= ready['limit']) & frame['closed'].astype(bool).to_numpy()
+        candles[session + '|' + symbol] = [[float(t), *map(float, row)] for t, row in zip(stamps[valid], frame.loc[valid, ['open', 'high', 'low', 'close']].to_numpy())]
+        assert candles[session + '|' + symbol]
+    for identifier in picked:
+        signal_id, manager_id = identifier.split('__')
+        spec, management = specifications[signal_id], managements[manager_id]
+        names[identifier] = spec['name'] + ' / ' + management['name']
+        contexts_used[identifier] = management['context_source']
+        directions = np.load(HERE / 'directions' / f'{signal_id}.npz')
+        contexts = np.load(HERE / 'contexts' / f'{signal_id}.npz')
+        own_contexts = np.load(HERE / 'contexts_own' / f'{signal_id}.npz')
+        stored = next(x['rows'] for x in runner.read(HERE / 'sessions' / f'{signal_id}.json.gz') if x['id'] == identifier)
+        for (session, symbol), ready in inputs.items():
+            config = runner.managers.make_config(management, symbol, ready)
+            state, main, own = directions[f'{session}|{symbol}'], contexts[f'{session}|{symbol}'], own_contexts[f'{session}|{symbol}']
+            context = {'entry': None, 'main': main, 'own': own}[management['context_source']]
+            replay = runner.engine.run(ready, state, config, detail=False,
+                                       context=context)
+            expected = next(x for x in stored if x['session'] == session and x['symbol'] == symbol)
+            rows = []
+            for trade in replay['trades']:
+                entry, exit_row = int(trade[6]), int(trade[7])
+                rows.append([float(ready['time_s'][entry]), float(ready['time_s'][exit_row]), int(trade[2]), int(trade[3]), float(trade[4]), float(trade[5]), float(trade[10] * config['point_value']), runner.engine.REASONS[int(trade[9])], '主玉' if int(trade[8]) == 0 else 'カバー'])
+            net = sum(t[6] for t in rows)
+            profit = sum(max(0., t[6]) for t in rows)
+            loss = -sum(min(0., t[6]) for t in rows)
+            np.testing.assert_allclose([net, profit, loss], [expected['net_yen'], expected['gross_profit_yen'], expected['gross_loss_yen']], atol=1e-7)
+            trades[identifier + '|' + session + '|' + symbol] = rows
+            change = np.flatnonzero(np.r_[True, (state[1:] != state[:-1]) | (main[1:] != main[:-1]) | (own[1:] != own[:-1])])
+            key = identifier + '|' + session + '|' + symbol
+            states[key] = [[float(ready['time_s'][i]), int(state[i]), int(main[i]), int(own[i])] for i in change]
+            checks.append({'手法': identifier, 'session': session, 'symbol': symbol, '返済件数': len(rows), '収支円': net, '保存値一致': True})
+    payload = dict(methods=names, sessions=sorted({k[0] for k in inputs}), candles=candles, trades=trades, states=states, contexts_used=contexts_used)
+    data = json.dumps(payload, ensure_ascii=False, separators=(',', ':'), allow_nan=False).replace('</', '<\\/')
+    javascript = (HERE.parent / 'wave_v23' / 'chart.js').read_text(encoding='utf-8').replace('<th>監視手法</th>', '<th>建玉</th>').replace('チャートは実際の約定値を', 'チャートは再生上の約定値を')
+    javascript = javascript.replace("hour12:false", "hour12:false,hour:'2-digit',minute:'2-digit',second:'2-digit'")
+    javascript = javascript.replace('bottom = h - 40', 'bottom = h - 98')
+    anchor = "    const net = trades.reduce((sum,t)=>sum+t[6],0);"
+    assert javascript.count(anchor) == 1
+    bands = '''    // ----------------------------------------
+    // 入口の許可と二つの中期方向を別の帯で表示する。帯は保有枚数ではない。
+    const states=data.states[`${method.value}|${session.value}|${symbol.value}`];
+    const palettes=[{'-1':'#914355','0':'#172637','1':'#318464'},{'-1':'#8964ab','0':'#172637','1':'#427bbe'},{'-1':'#be774c','0':'#172637','1':'#53a9ad'}];
+    for(let row=0;row<3;row++){
+      const yy=bottom+15+row*15;
+      for(let i=0;i<states.length;i++){
+        const start=Math.max(first,states[i][0]),end=Math.min(last,i+1<states.length?states[i+1][0]:last);
+        if(end>start){g.fillStyle=palettes[row][states[i][row+1]];g.fillRect(x(start),yy,Math.max(1,x(end)-x(start)),10);}
+      }
+      g.fillStyle='#bbcbdc';g.fillText(['入口','両市場C','自己S'][row],5,yy+9);
+    }
+'''
+    javascript = javascript.replace(anchor, bands + anchor)
+    after_summary = "    document.getElementById('trade-table').innerHTML = "
+    assert javascript.count(after_summary) == 1
+    javascript = javascript.replace(after_summary, "    document.getElementById('chart-summary').textContent += ({'entry':' 退出は価格注文のみ。C/S帯は参考表示。','main':' 保有撤回には両市場Cを使用。','own':' 保有撤回には自己Sを使用。'}[data.contexts_used[method.value]]);\n" + after_summary)
+    note = '成績順で絞らず、全84条件を表示しています。採用・推奨を意味しません。入口は共通でも、早期返済で次のエントリーは変わります。'
+    html = '''<!doctype html><html lang="ja"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>相手不一致と保有撤回：５分足と売買</title><style>
+    :root{color-scheme:dark;font-family:"Yu Gothic UI",Meiryo,sans-serif;background:#0a111b;color:#e6edf6}body{max-width:1250px;margin:auto;padding:28px 18px;line-height:1.7}a{color:#88c6ff}h1{font-size:26px}p{margin:12px 0}.muted{color:#a7b8ca}.good{color:#66d9b1}.bad{color:#ff929e}select{max-width:100%;background:#142438;color:#e6edf6;font:inherit;padding:6px;border:1px solid #577390}.controls{display:flex;flex-wrap:wrap;gap:15px;align-items:center}canvas{width:100%;height:490px;background:#0c1522;border:1px solid #2a4057;border-radius:8px}.scroll{overflow:auto}table{width:100%;border-collapse:collapse;font-size:14px;white-space:nowrap}th,td{padding:8px 10px;border-bottom:1px solid #2a394b;text-align:right}th{background:#172637;color:#bcd0e6}details{margin:20px 0}summary{cursor:pointer}
+    .controls label{min-width:0;max-width:100%}.controls label:first-child{width:100%}#method{display:block;width:100%;box-sizing:border-box}
+    </style><body><p><a href="相手不一致と保有撤回.html">検証結果へ戻る</a></p><h1>５分足と、新規・返済の位置</h1><p>NOTE</p>
+    <p>緑の▲は買い新規、赤の▼は売り新規、黄色の×は返済。線の色は、その決済の利益／損失です。部分返済は同じ新規点から分かれます。</p><p>下の三帯は、入口・両市場C・自己S。緑・青・水色は買い向き、赤・紫・茶色は売り向き、暗色は中立です。保有枚数を表す帯ではありません。</p><p class="muted">費用０・指定価格約定。TOPIXミニ／NK225マイクロ。５分足は図示用で、判断は確定１分足と解放済み板、執行は生データの行順です。赤字の玉を含む全返済を表示します。現在一回照合のデータは含みません。</p>
+    <!--
+    [コンポーネント概要]
+    #method・#symbol・#session は保存済みの手法・銘柄・セッションを選択します。
+    #chart は暗色の確定５分足と売買位置、#chart-summary は選択範囲の収支です。
+    #trade-table は全返済の数量・時刻・価格・理由です。外部通信や注文処理はありません。
+    -->
+    <div class="controls"><label>手法 <select id="method"></select></label><label>銘柄 <select id="symbol"><option value="TOPIX">TOPIXミニ</option><option value="NK225">NK225マイクロ</option></select></label><label>セッション <select id="session"></select></label></div><p id="chart-summary"></p><canvas id="chart" aria-label="確定５分足と全返済"></canvas><details open><summary>全返済の明細</summary><div id="trade-table"></div></details><script id="chart-data" type="application/json">DATA</script><script>JAVASCRIPT</script></body></html>'''.replace('NOTE', escape(note)).replace('DATA', data).replace('JAVASCRIPT', javascript)
+    OUT.mkdir(exist_ok=True)
+    (OUT / '５分足と売買.html').write_text(html, encoding='utf-8')
+    runner.save(HERE / 'chart_audit.json', {'採用候補の図示': accepted, '手法': picked, '保存済み収支との比較': checks, '外部通信': 0})
+    print(f'５分足図解: {len(picked)}手法 × {len(inputs)}入力、全収支一致', flush=True)
+
+
+if __name__ == '__main__':
+    main()

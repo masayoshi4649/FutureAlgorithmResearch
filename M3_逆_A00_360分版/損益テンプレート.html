@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>M3_逆_A00_360分版｜セッション別損益</title>
+<style>
+:root{color-scheme:dark;font-family:"Yu Gothic UI",Meiryo,sans-serif;background:#090f19;color:#e5edf8;font-size:15px}*{box-sizing:border-box}body{margin:0;line-height:1.65}main{max-width:1320px;margin:auto;padding:36px 24px 60px}h1{font-size:clamp(24px,3.5vw,38px);line-height:1.3;margin:10px 0}h2{font-size:24px;margin:0}h3{font-size:16px;margin:26px 0 10px}p{margin:8px 0}.eyebrow{color:#86beff;font-size:12px;letter-spacing:.12em}nav{display:flex;gap:20px;margin:18px 0}.muted,small{color:#99abc2}small{font-size:12px}a{color:#9bcaff;text-underline-offset:3px}.toolbar,.section-head{display:flex;flex-wrap:wrap;gap:18px;align-items:center;justify-content:space-between}.toolbar{justify-content:flex-start;border-block:1px solid #26364e;padding:14px 0;margin:24px 0}.control{display:flex;align-items:center;gap:10px;font-size:14px}select{font:inherit;border:1px solid #3a5371;border-radius:7px;color:#f1f6ff;background:#142136;padding:7px 12px;min-height:38px}a:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid #e9c77d;outline-offset:4px}.panel{background:#0f1929;border:1px solid #293b52;border-radius:14px;padding:25px;margin:24px 0}.section-head p{font-size:13px}.summary{display:grid;grid-template-columns:1.25fr 1fr 1fr .75fr;gap:16px;margin:22px 0 25px}.summary>div{border-left:2px solid #344d6b;padding:0 14px}.summary span{display:block;font-size:13px;color:#a7b7ca}.summary strong{display:block;font-size:clamp(20px,2.2vw,29px);letter-spacing:-.03em;font-variant-numeric:tabular-nums}.summary small{margin-left:6px;font-weight:400}.positive{color:#81eac2}.negative{color:#ff9b9b}.scroll{overflow:auto}table{width:100%;border-collapse:collapse;white-space:nowrap;font-variant-numeric:tabular-nums;text-align:right;font-size:14px}th,td{padding:11px 12px;border-bottom:1px solid #26364b}thead{background:#152237;color:#b9cbe0;font-size:12px}th:first-child{text-align:left}tbody th{font-weight:500}tbody tr:hover{background:#142238}tfoot{background:#18273d;font-weight:700}th small{display:block;font-weight:400}.tag{display:inline-block;margin-left:10px;padding:1px 7px;border-radius:4px;background:#202e42;color:#b3c0d1;font-size:10px}.tag.new{background:#193e38;color:#9cedcb}.note{font-size:13px;color:#aab9cd;max-width:1100px}.pending{padding:16px;border:1px solid #847345;border-radius:8px;color:#e8cf99}details{margin:18px 0;background:#101a2a;border:1px solid #293b52;border-radius:10px;padding:15px 20px}summary{cursor:pointer;font-weight:600}details p,details ol{font-size:14px;color:#bbcada}code{font-size:13px;color:#cae0ff;overflow-wrap:anywhere}pre{white-space:pre-wrap;background:#0a1220;padding:12px;border-radius:6px}footer{font-size:12px;color:#91a3bb;margin-top:25px}.empty{text-align:center;padding:24px;color:#a4b5cb}@media(max-width:700px){main{padding:24px 12px}.panel{padding:18px 12px}.summary{grid-template-columns:1fr 1fr;gap:18px}.summary strong{font-size:23px}th,td{padding:10px}h2{font-size:21px}.section-head{gap:12px}}@media print{select,.toolbar,details,nav{display:none}.panel{break-inside:avoid}body{color:#111;background:#fff}.positive,.negative,.muted{color:#111}}
+</style>
+</head>
+<body>
+<!--
+[コンポーネント概要]
+#ledger は固定した手法の継続的な損益一覧です。集計データをHTML内へ保持します。
+#phase と #part は表示する検証区分・時間帯を選び、２銘柄の合計と表を同時更新します。
+#qty-TOPIX と #qty-NK225 は１回の固定保有枚数です。上限内で金額と決済枚数だけを比例表示します。
+.summary は表示分の合計、各セッション表は新しい順、週別表は収録済みセッションだけの合計です。
+.positive と .negative は暗色背景で正負を示します。符号でも判断できます。
+#data は固定１枚の台帳です。外部読み込み・API通信・注文操作はありません。
+-->
+<main id="ledger">
+<header><div class="eyebrow">固定条件の損益記録</div><h1>M3_逆_A00_360分版</h1>
+<p>セッション別の利益・損失・収支</p><p class="muted">%%PERIOD%%</p>
+<nav aria-label="ページ内案内"><a href="#TOPIX">TOPIXミニ</a><a href="#NK225">NK225マイクロ</a><a href="#update">更新方法</a></nav></header>
+<p class="note">費用０・指定価格約定。各セッション内で全返済。9/21〜25は条件調整に使った期間、以降は同じ条件を固定して検証しています。</p>
+<div class="toolbar"><label class="control" for="phase">検証区分 <select id="phase"><option value="all">すべて</option><option value="条件固定後">条件固定後のみ</option><option value="調整に使用">調整に使用した期間</option></select></label>
+<label class="control" for="part">時間帯 <select id="part"><option value="all">デイ・ナイト</option><option value="Day">デイのみ</option><option value="Night">ナイトのみ</option></select></label></div>
+<p class="note">枚数は決済した玉の累計です。枚数差＝利益枚数−損失枚数。利益・損失０の玉は「±0」に別掲します。ナイトの日付は開始日です。</p>
+%%PENDING%%
+%%PANELS%%
+<noscript><p class="note">JavaScriptが無効のため、固定１枚・全期間の集計を表示しています。</p></noscript>
+<details id="update"><summary>データの追加・更新方法</summary><ol><li>両銘柄の同じセッションのデータを、既存の <code>book</code>・<code>candle_1min</code>・<code>candle_5min</code> に追加します。</li><li>プロジェクトルートで次のコマンドを実行します。</li></ol><pre><code>python "M3_逆_A00_360分版/更新.py"</code></pre><p>このHTMLを開き直すと反映されます。追加・変更されたセッションを固定条件で再計算し、同じセッションの二重計上を防ぎます。データ不足・未完了は「集計待ち」に分けます。</p><p><a href="README.md">詳しい更新手順</a> · <a href="セッション損益.json">固定１枚の集計データ</a></p></details>
+<details><summary>この表の前提と固定した条件</summary><p>両銘柄のEMAによる方向状態の逆側へ0.25ATRの逆指値で入ります。損切り１ATR、１ATR進んだ後は幅２ATRのトレーリング。最長360分または場末で全返済します。増玉・部分返済・両建てはありません。</p><p>固定枚数を変えた表示は、全枚数を同時に新規・返済する前提の比例換算です。確定損益の表であり、途中の含み損・最大ドローダウンは損失欄に含みません。値動きは従来どおりラージの保存データ、損益倍率はTOPIXミニ・NK225マイクロを使います。</p><p><a href="固定条件.json">固定条件</a> · <a href="../アルゴリズム調査/00014_M3逆A00の変数と安定性/M3逆A00の変数と安定性.html">条件選定の記録</a> · <a href="../アルゴリズム調査/00015_9月28日デイの固定候補検証/9月28日デイの結果.html">9月28日の売買図</a></p></details>
+<footer>更新：%%UPDATED%%<br><a href="../アルゴリズム調査/index.html">調査一覧</a></footer>
+</main>
+<script id="data" type="application/json">%%DATA%%</script>
+<script>
+'use strict';
+const records = JSON.parse(document.getElementById('data').textContent);
+const caps = {TOPIX:10, NK225:20};
+const fields = ['gross_profit_yen','gross_loss_yen','net_yen','profit_units','loss_units','zero_units','unit_balance','cycles'];
+
+/**
+ * 円額を桁区切りと符号付きで整えます。
+ * @param {number} value - 円額。
+ * @param {boolean} signed - 正数にも符号を付けるか。
+ * @returns {string} 表示する円額。
+ */
+function money(value, signed=false) {
+  const n = Math.round(value);
+  return (n > 0 && signed ? '＋' : n < 0 ? '−' : '') + Math.abs(n).toLocaleString('ja-JP') + '円';
+}
+
+/**
+ * 固定枚数での集計を作成します。
+ * @param {Object[]} rows - １枚基準の記録。
+ * @param {number} quantity - 同時保有枚数。
+ * @returns {Object} 金額・枚数・取引回数の合計。
+ */
+function sum(rows, quantity) {
+  const total = Object.fromEntries(fields.map(k => [k,0]));
+  for (const row of rows) for (const key of fields) total[key] += row[key] * (key === 'cycles' ? 1 : quantity);
+  return total;
+}
+
+/**
+ * 正負に対応した表示クラスを返します。
+ * @param {number} value - 収支。
+ * @returns {string} 表示クラス。
+ */
+function signClass(value) {
+  return value > 0 ? 'positive' : value < 0 ? 'negative' : 'muted';
+}
+
+/**
+ * 集計値から表の数値セルを生成します。
+ * @param {Object} row - 表示枚数へ換算した集計。
+ * @returns {string} 表セルのHTML。
+ */
+function cells(row) {
+  const delta = (row.unit_balance > 0 ? '+' : '') + row.unit_balance;
+  return `<td>${money(row.gross_profit_yen)}</td><td>${money(row.gross_loss_yen)}</td><td class="${signClass(row.net_yen)}"><strong>${money(row.net_yen,true)}</strong></td><td>${row.profit_units} / ${row.loss_units} / ${row.zero_units}枚</td><td>${delta}枚</td><td>${row.cycles}回</td>`;
+}
+
+/**
+ * セッション開始日の週の月曜日を求めます。
+ * @param {string} session - YYYY-MM-DD_DayまたはNight。
+ * @returns {string} 月曜日の日付。
+ */
+function weekStart(session) {
+  const day = new Date(session.slice(0,10) + 'T00:00:00Z');
+  day.setUTCDate(day.getUTCDate() - (day.getUTCDay()+6)%7);
+  return day.toISOString().slice(0,10);
+}
+
+/**
+ * 選択中の区分と枚数に応じて１銘柄の表を描き直します。
+ * @param {string} symbol - TOPIXまたはNK225。
+ * @returns {void} 返り値なし。
+ */
+function render(symbol) {
+  const phase = document.getElementById('phase').value;
+  const part = document.getElementById('part').value;
+  const raw = Number(document.getElementById('qty-'+symbol).value);
+  const quantity = Math.max(1,Math.min(caps[symbol],Number.isFinite(raw) ? Math.floor(raw) : 1));
+  const rows = records.filter(r => r.symbol === symbol && (phase === 'all' || r.phase === phase) && (part === 'all' || r.session.endsWith('_'+part)));
+  rows.sort((a,b) => a.session.localeCompare(b.session));
+  const total = sum(rows,quantity);
+  document.getElementById('summary-'+symbol).innerHTML = `<div><span>表示分の収支</span><strong class="${signClass(total.net_yen)}">${money(total.net_yen,true)}</strong></div><div><span>利益合計</span><strong>${money(total.gross_profit_yen)}</strong></div><div><span>損失合計</span><strong>${money(total.gross_loss_yen)}</strong></div><div><span>収録セッション</span><strong>${rows.length}<small>区間</small></strong></div>`;
+  document.getElementById('sessions-'+symbol).innerHTML = rows.slice().reverse().map(row => {
+    const [day,part] = row.session.split('_');
+    const isNew = row.phase === '条件固定後';
+    return `<tr><th scope="row">${day} ${part === 'Day' ? 'デイ' : 'ナイト'}<small class="tag ${isNew ? 'new' : ''}">${isNew ? '固定後' : '調整使用'}</small></th>${cells(sum([row],quantity))}</tr>`;
+  }).join('') || '<tr><td class="empty" colspan="7">該当するセッションはありません</td></tr>';
+  document.getElementById('total-'+symbol).innerHTML = `<tr><th scope="row">表示分の合計</th>${cells(total)}</tr>`;
+  // ----------------------------------------
+  const weeks = new Map();
+  for (const row of rows) {
+    const start = weekStart(row.session);
+    if (!weeks.has(start)) weeks.set(start,[]);
+    weeks.get(start).push(row);
+  }
+  document.getElementById('weeks-'+symbol).innerHTML = [...weeks.entries()].sort(([a],[b]) => b.localeCompare(a)).map(([week,group]) => `<tr><th scope="row">${week}の週<small>${group.length}セッション収録</small></th>${cells(sum(group,quantity))}</tr>`).join('') || '<tr><td class="empty" colspan="7">該当するセッションはありません</td></tr>';
+}
+
+// ----------------------------------------
+for (const symbol of Object.keys(caps)) {
+  document.getElementById('qty-'+symbol).addEventListener('change',() => render(symbol));
+  render(symbol);
+}
+for (const id of ['phase','part']) document.getElementById(id).addEventListener('change',() => Object.keys(caps).forEach(render));
+</script>
+</body>
+</html>

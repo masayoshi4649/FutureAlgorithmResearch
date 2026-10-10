@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ATRなし20条件の説明と損益</title><style>
+:root{color-scheme:dark;font-family:"Yu Gothic UI",Meiryo,sans-serif;background:#0a1120;color:#e2eaf6}*{box-sizing:border-box}body{margin:0;line-height:1.7}main{max-width:1340px;margin:auto;padding:28px 22px 70px}h1{font-size:29px;line-height:1.4}h2{font-size:21px;margin:0 0 12px}h3{font-size:17px}p{margin:10px 0}a{color:#8bc7ff}section{background:#111e31;border:1px solid #2d425e;border-radius:12px;margin:24px 0;padding:22px}.primary{border-top:4px solid #72bdff}.muted,small{color:#a4b8d1}.tag{color:#93caff;font-size:13px}.up{color:#6de5b4}.down{color:#ff9fa9}nav{display:flex;gap:20px;flex-wrap:wrap}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:16px 0}.grid>div{background:#0a1729;border-radius:8px;padding:16px}.metric{font-size:25px;font-weight:700;display:block}.scroll{overflow:auto;max-height:580px}table{border-collapse:collapse;width:100%;font-size:14px;white-space:nowrap}th,td{padding:9px 12px;text-align:right;border-bottom:1px solid #293d56;font-variant-numeric:tabular-nums}th{background:#172b44;color:#c0d3ea;position:sticky;top:0}th:first-child,td:first-child{text-align:left}.current td{background:#1c3550}label{display:inline-flex;align-items:center;gap:9px;margin:4px 18px 12px 0}select,button{font:inherit;border-radius:6px;border:1px solid #486688;background:#10213a;color:#ebf4ff;padding:8px 10px;max-width:100%}button{cursor:pointer}button:hover{background:#28415f}.choice{border:0;background:none;color:#97ceff;padding:0;text-align:left;font-size:14px}summary{cursor:pointer;color:#9acaff}details{margin:14px 0}ul{padding-left:23px}.legend span{margin-right:18px}svg{display:block;width:100%;height:auto;background:#081421;border:1px solid #263e58;border-radius:8px}.note{max-width:1050px}code{color:#b4d6fc}.empty{padding:28px;color:#b6c8db}.pill{font-size:12px;border:1px solid #345675;border-radius:4px;padding:2px 7px;color:#a6d7ff}.description{max-width:1000px}#sessions button{white-space:nowrap}@media(max-width:800px){main{padding:18px 12px}section{padding:16px}.grid{grid-template-columns:1fr}h1{font-size:23px}label{display:flex;flex-wrap:wrap}select{width:100%}.metric{font-size:23px}}
+</style></head><body><main>
+<!--
+[コンポーネント概要]
+#family は五つの入口を選び、#width-comparison で四つの幅を両市場について比較します。
+#method と #symbol は条件と商品を選び、説明・各場・各週・注文の表示を切り替えます。
+#session は5分足売買図、30分会計、全注文、初期幅ごとの台帳の対象を選びます。
+元の全注文と集計はHTML内に保存され、表示操作で外部通信や売買は行いません。
+-->
+<p class="tag">作業00052 · 5入口 × 4幅 · 当該セッションの価格だけで判定</p><h1>ATRなし20条件の説明と損益</h1><nav><a href="../index.html">作業一覧</a><a href="README.md">資料・再現方法</a><a href="#compare">入口ごとの4幅比較</a><a href="#detail">各場の損益</a><a href="#execution">売買位置</a></nav>
+<section class="primary"><h2 id="headline"></h2><p>入口を単純な価格条件に絞り、約定直後から一定幅で追跡します。途中の相場モード判定、板確認、追加玉、分割返済はありません。</p><div class="grid"><div><b>入口は5種類</b><p>始値割合・帯外突破・帯内復帰・高安突破・EMA交差。</p></div><div><b>幅は4種類</b><p>当場基準価格の0.05／0.10／0.20%、又は20分標準偏差の1倍。</p></div><div><b>幅は入口時に固定</b><p>買いは最高値から、売りは最安値から同じ幅だけ戻ったら返済。</p></div></div><p id="common-summary"></p><p class="note">確認候補P03_W05の保有中央値はTOPIX約3.8分／日経約2.0分。元の目標だった長い波を数回取る方法とは別の、短い反発候補です。</p><details><summary>結果の評価と注意点</summary><div id="findings"></div></details><p class="muted">ATRは計算・準備判定・売買に使いません。BBと標準偏差幅は変動を測る指標です。ATRを除いたことだけの因果効果を検証した比較ではありません。</p><p class="muted">連続20分の準備条件により、新規対象時間のうち判定可能だったのはTOPIX70.6%／日経51.6%。9月21日デイは35分／34分のみ。全23場の全時間を判定した結果ではありません。</p></section>
+<section id="compare"><h2>入口を選んで、4幅を両市場で比べる</h2><label>入口<select id="family"></select></label><p id="family-text"></p><div class="scroll" id="width-comparison"></div><p class="muted">平均勝／負は1枚当たりの金額比。黒字場数は取引勝率とは別です。幅が変わると返済時刻と次の入口も変わるため、差額を同じ取引だけの改善とは解釈できません。</p><p class="muted">0.05%から0.20%へ広げた10比較では、取引数が減り保有が長くなった一方、平均損失も拡大。収支は3比較で改善、7比較で悪化しました。</p><details><summary>全20条件を固定順で表示</summary><div class="scroll" id="all-methods"></div></details></section>
+<section id="detail"><h2>選択条件の説明と損益</h2><label>条件<select id="method"></select></label><label>商品<select id="symbol"><option value="TOPIX">TOPIXミニ</option><option value="NK225">NK225マイクロ</option></select></label><p class="muted" id="default-note"></p><div id="method-text"></div><div id="steps" class="grid"></div><div id="metrics" class="grid"></div><p class="muted">TOPIXミニ5枚／NK225マイクロ10枚。追加なし、片方向上限10枚／20枚以内。ラージの板・価格を使用。費用0、判断後の次の有効原本行で約定、全玉を場内返済。</p><details><summary>前10場・次9場・後4場と週別の損益</summary><div class="scroll" id="periods"></div></details><h3>各セッション</h3><div class="scroll" id="sessions"></div><p class="muted">枚数は利益／損失／同値で返済した累計。枚数差は利益枚数−損失枚数で、金銭収支ではありません。1組は新規から全返済までです。</p></section>
+<section id="execution"><h2>5分足の入口・出口と全注文</h2><label>セッション<select id="session"></select></label><p id="session-result"></p><div class="legend muted"><span style="color:#6de5b4">▲ 新規買い</span><span style="color:#ff9fa9">▼ 新規売り</span><span style="color:#ffd280">● 返済</span></div><div id="chart"></div><p class="muted">足は確定中値1分足の5分集約。点は全注文の仮想約定価格。中値と最後値の違いで足の外に見える約定もあります。トレール判定は原本の全有効行で処理しています。</p><details><summary>30分ごとの利益・損失・含み増減</summary><div class="scroll" id="intervals"></div><p class="muted">時価収支＝決済収支＋含み損益の増減。区間末より前の最後の価格で評価します。</p></details><details><summary>全注文と固定幅Wの台帳</summary><div class="scroll" id="orders"></div><h3>1組ごとの幅と順行・逆行</h3><div class="scroll" id="width-groups"></div><p class="muted">W単位の損益は全返済損益÷枚数÷商品倍率÷入口時の幅W。資本収益率ではなく、ATR換算でもありません。</p></details></section>
+<section><h2>固定した条件と検証の限界</h2><div id="audit"></div><p>原本の時計は最終約定時刻CurrentPriceTimeです。時刻の空白が取引不発か受信欠損かを区別できないため、準備できなかった時間を一律に欠測とは呼びません。<a href="../../work/wave_v55/review/準備可能時間の記録.json">各場の準備可能時間</a></p><details><summary>入口・再エントリー・決済の細則</summary><p>判断は当場で20分経過し、現在を含む連続20分の確定足と鮮度が揃ってから。高安突破は現在足を除く20分も必要です。P01・P02・P05は初回準備時の状態参入を一度許し、その後は新しい交差だけ。保有中や返済後60秒休止で使わなかった信号は再利用しません。</p><p>当場基準価格は最初に観測した有効最終価格で、公式の始値と同じとは限りません。帯は前足と現足それぞれのSMA20±2母標準偏差。帯内復帰は現在終値が上下両帯の内側にある場合だけ。高安線から現在足を除き、EMAは8分・21分で固定します。</p><p>Wが2呼値未満なら2呼値まで引き上げ、それ以外も呼値単位へ切り上げ、判断時に固定。参照するラージの呼値はTOPIX0.5／NK225 10で、ミニ・マイクロの注文呼値とは区別します。初期逆指値とトレールは同幅で、約定直後から追跡します。利確目標・反対信号返済・保有時間上限はなく、Day15:35／Night翌05:50に場内返済を判断。最後5分は新規判断しません。</p></details><details><summary>候補基準・資料・実装</summary><p>候補基準は各市場で収支と最大利益場除外収支が正、1枚平均勝／負が1倍超、前10・次9・後4場とも黒字、30組以上・8場以上で取引。これを両市場が満たすことを確認します。件数は統計的有意性の証明ではありません。</p><p>既読23場で条件を先に固定した照合です。未知期間の試験ではありません。旧研究から入口・出口も変わるため、旧ATR手法との差をATRの効果だけに帰属しません。固定率幅と標準偏差幅の比較も、保有と次の機会を含めた方式全体の比較です。</p><ul><li><a href="../../work/wave_v55/theory/単純化の狙いと20条件.md">単純化の狙いと残る弱点</a></li><li><a href="../../work/wave_v55/theory/機械化の注意と一次資料.md">機械化の注意・一次資料</a></li><li><a href="../../work/wave_v55/売買仕様固定.json">固定仕様</a> · <a href="../../work/wave_v55/測定仕様.json">測定定義</a></li><li><a href="../../work/wave_v55/signals.py">入口実装</a> · <a href="../../work/wave_v55/engine.py">返済実装</a> · <a href="../../work/wave_v55/売買結果.json">全損益・台帳</a></li><li><a href="../../work/wave_v55/review/README.md">独立監査</a></li></ul></details></section>
+<script id="data" type="application/json">__DATA__</script><script>
+const DATA=JSON.parse(document.getElementById('data').textContent),RESULT=DATA.results;
+const REASONS={0:'新規',1:'一定幅トレーリング',2:'場内返済'};
+/**
+ * 要素を取得する。
+ * @param {string} id 要素ID。
+ * @returns {HTMLElement} 対象。
+ */
+function el(id){return document.getElementById(id);}
+/**
+ * 文字をHTML表示用に変換する。
+ * @param {unknown} value 表示値。
+ * @returns {string} 安全な文字列。
+ */
+function esc(value){return String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+/**
+ * 数値を桁区切りで表示する。
+ * @param {number|null} value 値。
+ * @param {number} digits 小数桁。
+ * @returns {string} 表示。
+ */
+function fmt(value,digits=0){return value===null||value===undefined||!Number.isFinite(Number(value))?'—':Number(value===0?0:value).toLocaleString('ja-JP',{minimumFractionDigits:digits,maximumFractionDigits:digits});}
+/**
+ * 数値へ符号色を付ける。
+ * @param {number} value 値。
+ * @param {number} digits 小数桁。
+ * @returns {string} HTML。
+ */
+function signed(value,digits=0){return `<span class="${value>0?'up':value<0?'down':''}">${value>0?'+':''}${fmt(value,digits)}</span>`;}
+/**
+ * 日本時間を表示する。
+ * @param {number} seconds UNIX秒。
+ * @param {boolean} detail 秒の表示。
+ * @returns {string} 時計。
+ */
+function clock(seconds,detail=false){return new Date(seconds*1000).toLocaleTimeString('ja-JP',{timeZone:'Asia/Tokyo',hour:'2-digit',minute:'2-digit',...(detail?{second:'2-digit'}:{})});}
+/**
+ * 比較表を作る。
+ * @param {string[]} headers 見出し。
+ * @param {Array[]} rows セル。
+ * @param {number} selected 強調行。
+ * @returns {string} 表HTML。
+ */
+function table(headers,rows,selected=-1){return `<table><thead><tr>${headers.map(v=>`<th>${v}</th>`).join('')}</tr></thead><tbody>${rows.map((row,i)=>`<tr${i===selected?' class="current"':''}>${row.map(v=>`<td>${v}</td>`).join('')}</tr>`).join('')}</tbody></table>`;}
+/**
+ * 条件切替ボタンを作る。
+ * @param {Object} method 条件。
+ * @param {boolean} brief 幅名だけを表示するか。
+ * @returns {string} ボタンHTML。
+ */
+function button(method,brief=false){return `<button class="choice" data-method="${esc(method.id)}">${esc(method.id)} ${esc(brief?method.width_name:method.name)}</button>`;}
+/**
+ * 金額と枚数の会計列を作る。
+ * @param {Object} a 会計。
+ * @returns {Array} セル。
+ */
+function cells(a){const payoff=a.win_qty&&a.loss_qty&&a.loss?(a.profit/a.win_qty)/(a.loss/a.loss_qty):null;return [fmt(a.profit),fmt(a.loss),signed(a.net),`${fmt(a.win_qty)} / ${fmt(a.loss_qty)} / ${fmt(a.flat_qty)}`,signed(a.win_qty-a.loss_qty),fmt(a.loss?a.profit/a.loss:null,2),fmt(payoff,2),`${fmt(a.wins)} / ${fmt(a.cycles)}`,signed(a.w_net,2)];}
+const HEADERS=['期間','利益 円','損失 円','収支 円','利益 / 損失 / 同値 枚','枚数差','PF','1枚平均勝/負','勝ち組/全組','収支W'];
+/**
+ * 両市場を同じ列へ並べる。
+ * @param {Object} m 条件。
+ * @param {boolean} brief 幅名表示。
+ * @returns {Array} 比較行。
+ */
+function comparisonRow(m,brief=false){return [button(m,brief),...['TOPIX','NK225'].flatMap(symbol=>{const s=m.summary[symbol];return [signed(s.net),fmt(s.payoff,2),`${s.positive_sessions}/${s.sessions}`,signed(s.without_best)];})];}
+/**
+ * 入口別4幅と全20条件を固定順で表示する。
+ * @returns {void} 返り値なし。
+ */
+function renderComparison(){const family=el('family').value,selected=el('method').value,methods=RESULT.methods.filter(m=>m.family===family),headers=['条件・幅','TOPIX収支 円','TOPIX勝/負','TOPIX黒字場','TOPIX大勝場除外 円','NK収支 円','NK勝/負','NK黒字場','NK大勝場除外 円'];el('family-text').textContent=DATA.entries[family];el('width-comparison').innerHTML=table(headers,methods.map(m=>comparisonRow(m,true)),methods.findIndex(m=>m.id===selected));el('all-methods').innerHTML=table(headers,RESULT.methods.map(m=>comparisonRow(m)),RESULT.methods.findIndex(m=>m.id===selected));}
+/**
+ * 選択条件の短い説明と全場損益を更新する。
+ * @returns {void} 返り値なし。
+ */
+function render(){const m=RESULT.methods.find(x=>x.id===el('method').value),symbol=el('symbol').value,s=m.summary[symbol];el('family').value=m.family;el('method-text').innerHTML=`<p><b>${esc(m.id)} ${esc(m.name)}</b></p>`;const steps=[DATA.entries[m.family],`${m.width_name}を入口判断時に幅Wとして固定。最良価格だけ更新し、幅を広げない。`,'約定直後からW幅で追跡し、逆行で全返済。時間切れは設けず、場内期限では返済。'];el('steps').innerHTML=['入口','途中','出口'].map((name,i)=>`<div><b>${name}</b><p>${esc(steps[i])}</p></div>`).join('');el('metrics').innerHTML=`<div>全${s.sessions}場収支<span class="metric">${signed(s.net)}円</span><small>利益 ${fmt(s.profit)} ／ 損失 ${fmt(s.loss)}円<br>最大利益場を除く ${signed(s.without_best)}円<br>最大資産減少幅 ${fmt(s.drawdown)}円</small></div><div>1枚平均勝ち／負け<span class="metric">${fmt(s.payoff,2)}倍</span><small>${fmt(s.win_per_lot)} ／ ${fmt(s.loss_per_lot)}円<br>PF ${fmt(s.pf,2)}</small></div><div>黒字セッション<span class="metric">${s.positive_sessions} / ${s.sessions}</span><small>${fmt(s.cycles)}組 · 組勝率 ${fmt(s.cycles?100*s.wins/s.cycles:null,1)}%<br>保有中央値 ${fmt(s.median_hold_minutes,1)}分</small></div>`;
+ el('periods').innerHTML=table(HEADERS,[...Object.entries(m.periods[symbol]).map(([name,a])=>[esc(name),...cells(a)]),...Object.entries(m.weeks[symbol]).map(([name,a])=>[`${esc(name)} 週`,...cells(a)])]);el('sessions').innerHTML=table(HEADERS,m.accounts.filter(a=>a.symbol===symbol).sort((a,b)=>a.session.localeCompare(b.session)).map(a=>[`<button class="choice" data-session="${esc(a.session)}">${esc(a.session)}</button>`,...cells(a)]));renderComparison();renderSession();}
+/**
+ * 中値5分足と全約定位置を描画する。
+ * @param {Array[]} candles 表示足。
+ * @param {Array[]} orders 全注文。
+ * @param {string} session 対象場。
+ * @returns {string} SVG。
+ */
+function chart(candles,orders,session){if(!candles?.length)return '<p class="empty">表示足がありません。</p>';const values=candles.flatMap(c=>[c[2],c[3]]).concat(orders.map(o=>o[7])),lo=Math.min(...values),hi=Math.max(...values),padding=Math.max((hi-lo)*.09,.5),start=Math.min(candles[0][0],...orders.map(o=>o[1])),end=Math.max(candles.at(-1)[0]+300,...orders.map(o=>o[1])),span=Math.max(end-start,300),width=1040;const x=t=>75+(t-start)/span*width,y=p=>300-(p-lo+padding)/(hi-lo+2*padding)*260,cw=Math.max(1.5,Math.min(13,300/span*width*.65));let text=`<svg viewBox="0 0 1160 350" role="img" aria-label="${esc(session)}の5分足と売買位置">`;
+ for(let i=0;i<5;i++){const p=lo-padding+(hi-lo+2*padding)*i/4;text+=`<line x1="75" y1="${y(p)}" x2="1120" y2="${y(p)}" stroke="#263d55"/><text x="6" y="${y(p)+4}" fill="#adc4df" font-size="12">${fmt(p,1)}</text>`;}
+ for(const c of candles){const xx=x(c[0]+150),color=c[4]>=c[1]?'#52b895':'#d77685',top=y(Math.max(c[1],c[4])),height=Math.max(1,Math.abs(y(c[1])-y(c[4])));text+=`<g><title>${clock(c[0])} 始${c[1]} 高${c[2]} 安${c[3]} 終${c[4]}${c[5]===5?'':`（${c[5]}分の部分足）`}</title><line x1="${xx}" y1="${y(c[2])}" x2="${xx}" y2="${y(c[3])}" stroke="${color}"/><rect x="${xx-cw/2}" y="${top}" width="${cw}" height="${height}" fill="${color}" opacity=".8"/></g>`;}
+ for(const o of orders){const xx=x(o[1]),yy=y(o[7]),color=o[4]===2?'#ffd280':o[5]===1?'#76ffd0':'#ff9ca6',title=`${clock(o[1],true)} ${o[4]===1?'新規':'返済'}${o[5]===1?'買い':'売り'} ${o[6]}枚 @${o[7]} / ${REASONS[o[9]]||o[9]} / 残${o[11]}枚`;text+=o[4]===2?`<circle cx="${xx}" cy="${yy}" r="3.7" fill="${color}" stroke="#111f30" stroke-width="1"><title>${esc(title)}</title></circle>`:`<path d="M ${xx} ${yy+(o[5]===1?-7:7)} l -5 ${o[5]*10} h 10 Z" fill="${color}" stroke="#111f30" stroke-width="1"><title>${esc(title)}</title></path>`;}
+ for(let i=0;i<=6;i++){const t=start+span*i/6;text+=`<text x="${x(t)}" y="332" text-anchor="middle" fill="#b0c6df" font-size="12">${clock(t)}</text>`;}return text+'</svg>';}
+/**
+ * 対象場の図・会計・全注文を更新する。
+ * @returns {void} 返り値なし。
+ */
+function renderSession(){const m=RESULT.methods.find(x=>x.id===el('method').value),symbol=el('symbol').value,session=el('session').value,a=m.accounts.find(x=>x.symbol===symbol&&x.session===session);if(!a){el('chart').innerHTML='<p class="empty">対象口座なし</p>';return;}el('session-result').innerHTML=`<b>${esc(m.id)} · ${esc(session)}</b>　利益 ${fmt(a.profit)}円 − 損失 ${fmt(a.loss)}円 ＝ ${signed(a.net)}円 ／ ${fmt(a.cycles)}組`;el('chart').innerHTML=chart(DATA.charts[symbol][session],a.orders,session);el('intervals').innerHTML=table(['時間','決済利益 円','決済損失 円','決済収支 円','開始含み 円','終了含み 円','時価収支 円','利益 / 損失 / 同値 枚'],a.intervals.map(r=>[esc(r.開始.slice(11,16)+'–'+r.終了未満.slice(11,16)),fmt(r.利益円),fmt(r.損失円),signed(r.確定収支円),signed(r.開始含み円),signed(r.終了含み円),signed(r.時価収支円),`${r.利益返済枚数} / ${r.損失返済枚数} / ${r.同値返済枚数}`]));el('orders').innerHTML=table(['判断 → 約定','区分・方向','枚数','価格','収支 円','理由','幅W','組','原本行'],a.orders.map(o=>[`${clock(o[0],true)} → ${clock(o[1],true)}`,`${o[4]===1?'新規':'返済'} ${o[5]===1?'買い':'売り'}`,fmt(o[6]),fmt(o[7],1),o[4]===1?'—':signed(o[8]),esc(REASONS[o[9]]||o[9]),fmt(o[12],2),fmt(o[10]+1),fmt(o[3])]));el('width-groups').innerHTML=table(['組','方向','約定価格','初期幅W','損益W','最大順行W','最大逆行W'],(a.width_groups||[]).map(g=>[fmt(g[0]+1),g[5]===1?'買い':'売り',fmt(g[6],1),fmt(g[1],2),signed(g[2],3),fmt(g[7],3),fmt(g[8],3)]));}
+// ----------------------------------------
+// 保存した条件だけを表示し、利益順位による自動選択は行わない。
+el('headline').textContent=DATA.evaluation.headline;el('findings').innerHTML=(DATA.evaluation.findings||[]).map(s=>`<p>${esc(s)}</p>`).join('');el('audit').innerHTML=(DATA.evaluation.audit||[]).map(s=>`<p>${esc(s)}</p>`).join('');const common=RESULT.meta.common_candidates||[];el('common-summary').textContent=common.length?`両市場で事前の候補基準を満たした条件：${common.join('、')}。将来の利益を保証するものではありません。`:'両市場で事前の候補基準を満たした条件はありません。';
+const families=[...new Map(RESULT.methods.map(m=>[m.family,m.entry_name])).entries()];el('family').innerHTML=families.map(([id,name])=>`<option value="${esc(id)}">${esc(id)} ${esc(name)}</option>`).join('');el('method').innerHTML=RESULT.methods.map(m=>`<option value="${esc(m.id)}">${esc(m.id)} ${esc(m.name)}</option>`).join('');el('method').value=DATA.defaultMethod;el('session').innerHTML=RESULT.sessions.map(s=>`<option value="${esc(s)}">${esc(s)}</option>`).join('');el('session').value=RESULT.sessions.at(-1);el('default-note').textContent=DATA.selectionNote;
+el('family').addEventListener('change',()=>{const current=RESULT.methods.find(m=>m.id===el('method').value);el('method').value=`${el('family').value}_${current.width}`;render();});el('method').addEventListener('change',render);el('symbol').addEventListener('change',render);el('session').addEventListener('change',renderSession);document.addEventListener('click',event=>{const method=event.target.closest('[data-method]'),session=event.target.closest('[data-session]');if(method){el('method').value=method.dataset.method;render();el('detail').scrollIntoView({behavior:'smooth'});}if(session){el('session').value=session.dataset.session;renderSession();el('execution').scrollIntoView({behavior:'smooth'});}});render();
+</script></main></body></html>

@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>M3逆A00の変数と安定性</title>
+  <style>
+    :root { color-scheme: dark; font-family: "Yu Gothic UI", "Meiryo", sans-serif; color: #e6eef8; background: #0b121c; }
+    * { box-sizing: border-box; }
+    body { margin: 0; line-height: 1.75; }
+    main { max-width: 1240px; margin: auto; padding: 42px 25px 65px; }
+    h1 { margin: 10px 0 14px; font-size: clamp(25px, 4vw, 39px); line-height: 1.4; }
+    h2 { margin: 5px 0 13px; font-size: 25px; line-height: 1.5; }
+    h3 { margin: 0 0 10px; font-size: 20px; }
+    p { margin: 10px 0; }
+    a { color: #9dccff; text-underline-offset: 4px; }
+    a:focus-visible, summary:focus-visible, select:focus-visible { outline: 3px solid #f0c679; outline-offset: 5px; }
+    .eyebrow, .note { color: #acbdd4; font-size: 13px; }
+    .lead { color: #d1deef; font-size: 17px; }
+    .panel, .chapter { margin: 25px 0; border: 1px solid #2b425f; border-radius: 14px; padding: 24px; background: #131f30; }
+    .chapter { scroll-margin-top: 20px; }
+    .chapter-heading { border-bottom: 1px solid #2d415d; padding-bottom: 16px; margin-bottom: 20px; }
+    .role { color: #96bfff; font-size: 14px; font-weight: 700; }
+    .method-id { color: #b5c9e4; font-family: Consolas, monospace; font-size: 14px; }
+    .variant { background: #0d1826; border: 1px solid #29415e; border-radius: 10px; padding: 20px; margin: 18px 0; }
+    .variant.topix { border-left: 4px solid #8dded8; }
+    .variant.nk { border-left: 4px solid #afa9ff; }
+    .controls { display: flex; flex-wrap: wrap; gap: 14px 28px; align-items: center; }
+    .controls label { font-weight: 700; }
+    select { color: #e8f1fe; background: #0d1828; border: 1px solid #52729c; padding: 7px 11px; border-radius: 6px; font: inherit; margin-left: 10px; }
+    .callout { border-left: 3px solid #e8b975; background: #243249; padding: 11px 16px; margin: 17px 0; }
+    .callout p { margin: 0; }
+    .rules { display: grid; grid-template-columns: 65px 1fr; gap: 7px 14px; margin: 16px 0 0; }
+    .rules dt { font-weight: 700; color: #c6d8ed; }
+    .rules dd { margin: 0; }
+    .table-wrap { overflow-x: auto; border: 1px solid #2a405d; border-radius: 8px; margin: 16px 0; }
+    table { width: 100%; border-collapse: collapse; white-space: nowrap; font-variant-numeric: tabular-nums; }
+    th, td { padding: 11px 14px; border-bottom: 1px solid #263a53; text-align: right; }
+    th { background: #1a2a40; font-size: 13px; color: #bed1ed; }
+    th:first-child, td:first-child { text-align: left; }
+    tr:last-child td { border-bottom: 0; }
+    td small { display: block; color: #acbfd9; font-size: 12px; }
+    .positive { color: #87dfb1; }
+    .negative { color: #ffa4a9; }
+    .number { font-variant-numeric: tabular-nums; }
+    .big-number { font-size: 27px; font-weight: 700; }
+    .result-line { display: flex; flex-wrap: wrap; align-items: baseline; gap: 10px 22px; margin: 12px 0; }
+    .stats { display: flex; flex-wrap: wrap; gap: 8px 24px; color: #c7d6e9; margin: 16px 0; }
+    .stats b { color: #e6eef8; }
+    details { border-top: 1px solid #2c425d; margin-top: 17px; padding-top: 13px; }
+    summary { cursor: pointer; color: #afcfff; font-weight: 700; }
+    .nav { display: flex; flex-wrap: wrap; gap: 9px; margin: 20px 0; }
+    .nav a { padding: 6px 12px; background: #192b42; border: 1px solid #375577; border-radius: 6px; text-decoration: none; font-size: 14px; }
+    footer { font-size: 13px; color: #a8bbd3; margin-top: 32px; }
+    @media (max-width: 660px) {
+      main { padding: 25px 12px 40px; }
+      .panel, .chapter { padding: 17px 13px; }
+      .variant { padding: 16px 11px; }
+      th, td { padding: 10px; }
+      .rules { grid-template-columns: 50px 1fr; gap: 7px; }
+      .big-number { font-size: 24px; }
+    }
+  </style>
+</head>
+<body>
+<!--
+[コンポーネント概要]
+#m3-report はM3逆A00の変数比較をまとめるレポートです。
+#quantity-controls は表示枚数だけを変更します。候補設定の選択は固定１枚で行います。
+[data-scale-for] は銘柄ごとの表示枚数、[data-base] は１枚時の金額・累計枚数です。
+.chapter は基準・主候補・比較候補の説明、.variant は銘柄別の結果です。
+.sessions はセッション別の利益・損失・収支を必要なときに開く明細です。
+最大利益セッション除外と最大利益取引除外は別の指標として表示します。
+表示倍率は取引全体の金額・返済枚数・保有枚数だけを変え、信号・条件・取引回数・比率・１枚平均は変えません。
+-->
+<main id="m3-report">
+  <header>
+    <div class="eyebrow">作業 00014 · 2026/9/21 日中〜9/25 夜間（9/26 朝）</div>
+    <h1>M3逆A00の変数と安定性</h1>
+    <p class="lead">両銘柄の方向が揃った後の逆方向を狙う固定枚数型。入口・損切り・利益の追跡などを変えて比較しました。</p>
+    <p class="note">既読の同じ１週間で探索した結果です。費用０・指定価格約定・セッション内全返済。ラージの信号・価格を使う試算で、mini・micro自体の板や未知期間での検証ではありません。</p>
+  </header>
+  <section class="panel" id="quantity-controls">
+    <h2>表示枚数</h2>
+    <div class="controls">__CONTROLS__</div>
+    <p class="note">初期表示は固定１枚。ここでは同じ取引を何枚で行うかだけを変えます。設定の選択と表示枚数は別です。各方式・銘柄を別々に運用した場合で、同時運用の合計上限ではありません。</p>
+  </section>
+  __OVERVIEW__
+  __NAV__
+  __CHAPTERS__
+  __SUPPLEMENT__
+  <footer>
+    <p><a href="README.md">読む順序と再現方法</a> · <a href="検証結果.md">固定１枚の報告書</a> · <a href="資料/表示集計.json">数値の元データ</a> · <a href="../index.html">調査一覧</a></p>
+    <p>表示内容と倍率変更はローカルで検査しています。ブラウザーの既存URLポリシー拒否を再試行せず、実画面は未確認です。</p>
+  </footer>
+</main>
+<script>
+/**
+ * １枚の基準値と表示枚数から、金額・枚数の表記を作る。
+ *
+ * @param {number} base - １枚時の値。
+ * @param {number} quantity - 表示枚数。
+ * @param {string} kind - money、signed-money、approx-money、units、signed-units。
+ * @returns {string} 倍率を適用した日本語表記。
+ */
+function formatScaled(base, quantity, kind) {
+  const value = Math.round(base * quantity);
+  const signed = kind.startsWith('signed-');
+  const unit = kind.endsWith('units') ? '枚' : '円';
+  const prefix = kind === 'approx-money' ? '約' : '';
+  const sign = signed && value > 0 ? '+' : '';
+  return prefix + sign + value.toLocaleString('ja-JP') + unit;
+}
+
+// ----------------------------------------
+/**
+ * 選択された枚数に合わせ、該当銘柄の金額と枚数だけを更新する。
+ *
+ * @param {string} symbol - TOPIXまたはNK225。
+ * @returns {number} 上限内に補正した表示枚数。
+ */
+function updateQuantity(symbol) {
+  const select = document.querySelector(`[data-scale-for="${symbol}"]`);
+  const cap = symbol === 'TOPIX' ? 10 : 20;
+  const quantity = Math.min(cap, Math.max(1, Math.trunc(Number(select.value) || 1)));
+  select.value = String(quantity);
+  document.querySelectorAll(`[data-symbol="${symbol}"][data-base]`).forEach(element => {
+    const base = Number(element.dataset.base);
+    element.textContent = formatScaled(base, quantity, element.dataset.kind);
+    if (element.dataset.kind.endsWith('money') && element.dataset.tone === 'sign') {
+      element.classList.toggle('positive', base >= 0);
+      element.classList.toggle('negative', base < 0);
+    }
+  });
+  return quantity;
+}
+
+// ----------------------------------------
+document.querySelectorAll('[data-scale-for]').forEach(select => {
+  select.addEventListener('change', () => updateQuantity(select.dataset.scaleFor));
+  updateQuantity(select.dataset.scaleFor);
+});
+</script>
+</body>
+</html>
