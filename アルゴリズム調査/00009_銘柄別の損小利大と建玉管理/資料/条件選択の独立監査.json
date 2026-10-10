@@ -1,0 +1,23 @@
+{
+  "成功": true,
+  "全指標行数": 112350,
+  "独立指標比較数": 2022408,
+  "主思想別選択比較数": 20,
+  "時間順選択比較数": 12,
+  "次区間実評価比較数": 12,
+  "銘柄横断円額順位": false,
+  "既知ナイト前半の選択利用": false,
+  "損失未観測PF無限大化": false,
+  "API取得数": 0,
+  "主候補": {
+    "NK225": "N10_R1_E3_X2_U1",
+    "NT": "NT_ratio_mom_Z1_S1",
+    "TOPIX": "N02_R-1_E1_X2_U0"
+  },
+  "SHA256": {
+    "research.py": "e1d12b0d09993d4c13db8fcbbca683315742847e5f37af03aad68c5eee2c553d",
+    "metrics.py": "42ddaabeb35f5e9a6a30315fe50b26f0b4526d5440ac9d35af8a2996d2aa8318",
+    "最終選択.json": "d3fbaeadeb1ae2dd49675fae4604bd4ad946ad77ccc9c73f5c960ff82d730486",
+    "時間順選択.json": "c042003eecc2575d035544cf16bae83fad61592c5ceeab6d3eed2e5a867fb7bc"
+  }
+}

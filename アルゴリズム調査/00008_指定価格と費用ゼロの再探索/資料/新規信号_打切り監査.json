@@ -1,0 +1,228 @@
+{
+  "合格": true,
+  "新規系統数": 18,
+  "打切り数": 36,
+  "比較通知合計": 5631,
+  "詳細": [
+    {
+      "session": "2026-09-21_Day",
+      "symbol": "NK225",
+      "cutoff": 1789951092.0,
+      "compared": 10
+    },
+    {
+      "session": "2026-09-21_Day",
+      "symbol": "NK225",
+      "cutoff": 1789958966.0,
+      "compared": 30
+    },
+    {
+      "session": "2026-09-21_Day",
+      "symbol": "NK225",
+      "cutoff": 1789970764.0,
+      "compared": 95
+    },
+    {
+      "session": "2026-09-21_Day",
+      "symbol": "TOPIX",
+      "cutoff": 1789952988.0,
+      "compared": 16
+    },
+    {
+      "session": "2026-09-21_Day",
+      "symbol": "TOPIX",
+      "cutoff": 1789963761.0,
+      "compared": 72
+    },
+    {
+      "session": "2026-09-21_Day",
+      "symbol": "TOPIX",
+      "cutoff": 1789971863.0,
+      "compared": 151
+    },
+    {
+      "session": "2026-09-21_Night",
+      "symbol": "NK225",
+      "cutoff": 1789993954.0,
+      "compared": 81
+    },
+    {
+      "session": "2026-09-21_Night",
+      "symbol": "NK225",
+      "cutoff": 1790001857.0,
+      "compared": 195
+    },
+    {
+      "session": "2026-09-21_Night",
+      "symbol": "NK225",
+      "cutoff": 1790015502.0,
+      "compared": 312
+    },
+    {
+      "session": "2026-09-21_Night",
+      "symbol": "TOPIX",
+      "cutoff": 1789994678.0,
+      "compared": 79
+    },
+    {
+      "session": "2026-09-21_Night",
+      "symbol": "TOPIX",
+      "cutoff": 1790003876.0,
+      "compared": 195
+    },
+    {
+      "session": "2026-09-21_Night",
+      "symbol": "TOPIX",
+      "cutoff": 1790018845.0,
+      "compared": 320
+    },
+    {
+      "session": "2026-09-22_Day",
+      "symbol": "NK225",
+      "cutoff": 1790039990.0,
+      "compared": 31
+    },
+    {
+      "session": "2026-09-22_Day",
+      "symbol": "NK225",
+      "cutoff": 1790050827.0,
+      "compared": 118
+    },
+    {
+      "session": "2026-09-22_Day",
+      "symbol": "NK225",
+      "cutoff": 1790056117.0,
+      "compared": 203
+    },
+    {
+      "session": "2026-09-22_Day",
+      "symbol": "TOPIX",
+      "cutoff": 1790041146.0,
+      "compared": 43
+    },
+    {
+      "session": "2026-09-22_Day",
+      "symbol": "TOPIX",
+      "cutoff": 1790050884.0,
+      "compared": 146
+    },
+    {
+      "session": "2026-09-22_Day",
+      "symbol": "TOPIX",
+      "cutoff": 1790058146.0,
+      "compared": 234
+    },
+    {
+      "session": "2026-09-22_Night",
+      "symbol": "NK225",
+      "cutoff": 1790071428.0,
+      "compared": 58
+    },
+    {
+      "session": "2026-09-22_Night",
+      "symbol": "NK225",
+      "cutoff": 1790086552.0,
+      "compared": 197
+    },
+    {
+      "session": "2026-09-22_Night",
+      "symbol": "NK225",
+      "cutoff": 1790100734.0,
+      "compared": 316
+    },
+    {
+      "session": "2026-09-22_Night",
+      "symbol": "TOPIX",
+      "cutoff": 1790077676.0,
+      "compared": 96
+    },
+    {
+      "session": "2026-09-22_Night",
+      "symbol": "TOPIX",
+      "cutoff": 1790088006.0,
+      "compared": 223
+    },
+    {
+      "session": "2026-09-22_Night",
+      "symbol": "TOPIX",
+      "cutoff": 1790105025.0,
+      "compared": 365
+    },
+    {
+      "session": "2026-09-23_Day",
+      "symbol": "NK225",
+      "cutoff": 1790123852.0,
+      "compared": 10
+    },
+    {
+      "session": "2026-09-23_Day",
+      "symbol": "NK225",
+      "cutoff": 1790130095.0,
+      "compared": 70
+    },
+    {
+      "session": "2026-09-23_Day",
+      "symbol": "NK225",
+      "cutoff": 1790143361.0,
+      "compared": 126
+    },
+    {
+      "session": "2026-09-23_Day",
+      "symbol": "TOPIX",
+      "cutoff": 1790125370.0,
+      "compared": 26
+    },
+    {
+      "session": "2026-09-23_Day",
+      "symbol": "TOPIX",
+      "cutoff": 1790135021.0,
+      "compared": 107
+    },
+    {
+      "session": "2026-09-23_Day",
+      "symbol": "TOPIX",
+      "cutoff": 1790144318.0,
+      "compared": 178
+    },
+    {
+      "session": "2026-09-23_Night",
+      "symbol": "NK225",
+      "cutoff": 1790169872.0,
+      "compared": 128
+    },
+    {
+      "session": "2026-09-23_Night",
+      "symbol": "NK225",
+      "cutoff": 1790175350.0,
+      "compared": 226
+    },
+    {
+      "session": "2026-09-23_Night",
+      "symbol": "NK225",
+      "cutoff": 1790186834.0,
+      "compared": 353
+    },
+    {
+      "session": "2026-09-23_Night",
+      "symbol": "TOPIX",
+      "cutoff": 1790168920.0,
+      "compared": 157
+    },
+    {
+      "session": "2026-09-23_Night",
+      "symbol": "TOPIX",
+      "cutoff": 1790177289.0,
+      "compared": 269
+    },
+    {
+      "session": "2026-09-23_Night",
+      "symbol": "TOPIX",
+      "cutoff": 1790189837.0,
+      "compared": 395
+    }
+  ],
+  "秒": 15.534495900000366,
+  "最終保留参照": false,
+  "API取得回数": 0,
+  "ソースSHA256": "5352965142e3260945f18e65cb2e1524676b4a2d73e1396c4a1453d395c76855"
+}

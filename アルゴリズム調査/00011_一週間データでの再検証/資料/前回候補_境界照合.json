@@ -1,0 +1,28 @@
+[
+  {
+    "方式": "N03_R-1_L3_U1",
+    "銘柄": "NK225",
+    "セッション": "2026-09-24_Night",
+    "思想": "予測と複数建玉管理",
+    "設定最大枚数": 2,
+    "engine": "single",
+    "boundary": 1790272860.0,
+    "baseline_equity_yen": 1160000.0,
+    "boundary_price": 65570.0,
+    "new_period_net_yen": 210000.0,
+    "carried_cycles": 1
+  },
+  {
+    "方式": "N15_R-1_A4_U0",
+    "銘柄": "TOPIX",
+    "セッション": "2026-09-24_Night",
+    "思想": "新しい入口と利益保護",
+    "設定最大枚数": 1,
+    "engine": "single",
+    "boundary": 1790272860.0,
+    "baseline_equity_yen": 60000.0,
+    "boundary_price": 4072.0,
+    "new_period_net_yen": 0.0,
+    "carried_cycles": 0
+  }
+]

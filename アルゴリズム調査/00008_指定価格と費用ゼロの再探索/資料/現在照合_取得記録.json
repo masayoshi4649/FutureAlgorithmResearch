@@ -1,0 +1,268 @@
+{
+  "started_at": "2026-09-24T23:19:00.909434+09:00",
+  "cutoff": "2026-09-24T23:19:00+09:00",
+  "session": "2026-09-24_Night",
+  "starts_at": "2026-09-24T17:00:00+09:00",
+  "ends_at": "2026-09-25T06:00:00+09:00",
+  "fixed_at": "2026-09-24T23:18:14.894700+09:00",
+  "selected_ids": [
+    "N03_R-1_A3_U0",
+    "N10_R1_E3_X2_U0",
+    "N10_R1_T60",
+    "P12_R-1_E0_X2_U0",
+    "P12_R-1_L3_U0",
+    "P13_R-1_A3_U0",
+    "P16_R-1_T05",
+    "P16_R-1_T15",
+    "P16_R1_E1_X5_U0",
+    "P16_R1_T05",
+    "P22_R-1_L0_U0",
+    "Q04_grid_W1.5",
+    "Q04_pyramid_W1.5",
+    "旧S17",
+    "旧T12",
+    "旧主候補_P01"
+  ],
+  "manifest_sha256": "122cc6c84fa0a56a1119382825ed3d4a1293b6f18762db6bb3516c6cecf3302c",
+  "files_sha256_before_fetch": {
+    "work/wave_v13/research.py": "969692d0164f243a35b8223e6bd91946dc5e96b48a136ca5da04a0c483f51473",
+    "work/wave_v13/catalog.py": "805c183c4968faa0df2c9ac2b8c045323a631afca07bce819d39f281cb5cd525",
+    "work/wave_v13/data.py": "1f7665803d3c84e3e40d5ccbe5f055389b89866bca953a53651d67e303f4265f",
+    "work/wave_v13/exact_engine.py": "5cb2a33c4ddefed36303de125e01646ebda098da911df039784bff244dc3d338",
+    "work/wave_v13/new_signals.py": "5352965142e3260945f18e65cb2e1524676b4a2d73e1396c4a1453d395c76855",
+    "work/wave_v13/current_check.py": "99f2379e3e2340d7d08a62ba2e01b3ec68a43e335f77ecc95ecb54b39ae66012",
+    "work/wave_v13/検証計画.md": "f184e3666d6527fe49f823e073b15330555ac1420211d7e9e871639b5009b748",
+    "work/wave_v13/現在照合計画.md": "47569d550e754e6aee70536ca2d5f1bd9d580676b5420b8f8ab556e88990a994",
+    "work/wave_v13/条件一覧.json": "f0d4a8e3415aa732c8504d07cb4e2d30d21a7dff611c955cc44f640cc069935b",
+    "work/wave_v13/最終選択.json": "1326cd863db9a4fae31b5896cd79cfcad776b10178832f8d408efa58348ba0c1",
+    "work/wave_v13/信号条件一覧.json": "2aece291aab875050f2823183a104ec459103a08536dae2bbdcce7ef91eb7e08",
+    "work/wave_v13/原本メタ監査.json": "813a5d8a6cc7b3ce7c1656a3240ca525df80f0361874da7541314c34dafe0134",
+    "work/wave_v11/signals.py": "cf0ce5c4318693335d8feaaf4f4eb1860ab7dd394cf127f74c665e46098811fc",
+    "work/wave_v10/signals.py": "b2bfeb2db3b9647a3a43a251b254f4503375497e331c973290d719eb0a040e79",
+    "work/wave_v9/turning_signals.py": "c522d1ecdfd381010aca9a13c8e4c682baffabdd0ad4b2876d4a5c868472cae9",
+    "work/wave_v9/execution.py": "2f14f082bd0137479aa730e6a6b7d88ba40364098fb407577ac537f26f92f100",
+    "work/wave_v8/raw_features.py": "0062e70dd8011ad456c5307ed228cb2dca0d0729ab3b2dbd5040a1bf9cf96436",
+    "work/wave_v7/fetch_once.py": "90cb30e1fca0a4febea3113258c513d0e7204f9aeb8ac6e498652da62ed8d58c"
+  },
+  "requests": [
+    {
+      "name": "NK225_book",
+      "url": "http://10.10.100.1:8080/api/v1/history/NK225/book?from=2026-09-24T17%3A00%3A00%2B09%3A00&to=2026-09-24T23%3A19%3A00%2B09%3A00",
+      "started_at": "2026-09-24T23:19:00.923398+09:00",
+      "attempts": 1,
+      "timeout_seconds": 45,
+      "http_status": 200,
+      "ok": true,
+      "bytes": 144384957,
+      "sha256": "83aa4ae459790f4c5275c110b7eed26c172ba0a2904bfb658fd487e1494d5163",
+      "finished_at": "2026-09-24T23:19:25.489218+09:00",
+      "path": "work/wave_v13/live/book/NK225/2026-09-24_Night.jsonl"
+    },
+    {
+      "name": "NK225_1min",
+      "url": "http://10.10.100.1:8080/api/v1/history/NK225/candles/1min?from=2026-09-24T17%3A00%3A00%2B09%3A00&to=2026-09-24T23%3A19%3A00%2B09%3A00",
+      "started_at": "2026-09-24T23:19:00.923781+09:00",
+      "attempts": 1,
+      "timeout_seconds": 45,
+      "http_status": 200,
+      "ok": true,
+      "bytes": 50164,
+      "sha256": "0c1ddcc1e6c902b077fddd04df46fd9474931551a09c0aade79470e12ce028f3",
+      "finished_at": "2026-09-24T23:19:01.118375+09:00",
+      "path": "work/wave_v13/live/応答/NK225_1min.json"
+    },
+    {
+      "name": "NK225_5min",
+      "url": "http://10.10.100.1:8080/api/v1/history/NK225/candles/5min?from=2026-09-24T17%3A00%3A00%2B09%3A00&to=2026-09-24T23%3A19%3A00%2B09%3A00",
+      "started_at": "2026-09-24T23:19:00.924010+09:00",
+      "attempts": 1,
+      "timeout_seconds": 45,
+      "http_status": 200,
+      "ok": true,
+      "bytes": 10803,
+      "sha256": "b529899c8a3ee9839b496eb6c071b54c5b60923015d503ccb5f66999d8fb3cd4",
+      "finished_at": "2026-09-24T23:19:01.083941+09:00",
+      "path": "work/wave_v13/live/応答/NK225_5min.json"
+    },
+    {
+      "name": "TOPIX_book",
+      "url": "http://10.10.100.1:8080/api/v1/history/TOPIX/book?from=2026-09-24T17%3A00%3A00%2B09%3A00&to=2026-09-24T23%3A19%3A00%2B09%3A00",
+      "started_at": "2026-09-24T23:19:00.924279+09:00",
+      "attempts": 1,
+      "timeout_seconds": 45,
+      "http_status": 200,
+      "ok": true,
+      "bytes": 133022085,
+      "sha256": "24fe53fa34c9db9cd29739376bb71738cd16a29d7dc2034f7cbc768d182a9a07",
+      "finished_at": "2026-09-24T23:19:26.312322+09:00",
+      "path": "work/wave_v13/live/book/TOPIX/2026-09-24_Night.jsonl"
+    },
+    {
+      "name": "TOPIX_1min",
+      "url": "http://10.10.100.1:8080/api/v1/history/TOPIX/candles/1min?from=2026-09-24T17%3A00%3A00%2B09%3A00&to=2026-09-24T23%3A19%3A00%2B09%3A00",
+      "started_at": "2026-09-24T23:19:00.926948+09:00",
+      "attempts": 1,
+      "timeout_seconds": 45,
+      "http_status": 200,
+      "ok": true,
+      "bytes": 51104,
+      "sha256": "ef1926f078900f6f00823212ffae8e77a5f61cc263815b2f72a79a056f43e83a",
+      "finished_at": "2026-09-24T23:19:01.121495+09:00",
+      "path": "work/wave_v13/live/応答/TOPIX_1min.json"
+    },
+    {
+      "name": "TOPIX_5min",
+      "url": "http://10.10.100.1:8080/api/v1/history/TOPIX/candles/5min?from=2026-09-24T17%3A00%3A00%2B09%3A00&to=2026-09-24T23%3A19%3A00%2B09%3A00",
+      "started_at": "2026-09-24T23:19:00.927581+09:00",
+      "attempts": 1,
+      "timeout_seconds": 45,
+      "http_status": 200,
+      "ok": true,
+      "bytes": 10827,
+      "sha256": "105a09f201754b5fca914810f677e54774b83fc09c5fc0fef61a21a707184afd",
+      "finished_at": "2026-09-24T23:19:01.087622+09:00",
+      "path": "work/wave_v13/live/応答/TOPIX_5min.json"
+    }
+  ],
+  "status": "取得と検査完了",
+  "各要求回数": 1,
+  "再試行": false,
+  "リダイレクト": false,
+  "candles": [
+    {
+      "symbol": "NK225",
+      "minutes": 1,
+      "received_rows": 365,
+      "rows": 365,
+      "excluded_unclosed_or_after_cutoff": 0,
+      "first": "2026-09-24T17:00:00+09:00",
+      "last": "2026-09-24T23:18:00+09:00",
+      "path": "work/wave_v13/live/candle_1min/NK225/2026-09-24_Night.csv",
+      "sha256": "797a15d3feb6843e897c9da2b8b1ff35addbedb278bcffb90f90b84cab2b6e39",
+      "snapshot": {
+        "sessionId": "2026-09-24_Night",
+        "generation": "be5f360cac37e1231a0069c3e933b872",
+        "code": "NK225",
+        "session": {
+          "name": "night",
+          "exchange": 34,
+          "startsAt": "2026-09-24T17:00:00+09:00",
+          "sendFrom": "2026-09-24T16:30:00+09:00",
+          "sendUntil": "2026-09-25T06:00:00+09:00",
+          "endsAt": "2026-09-25T06:00:00+09:00"
+        },
+        "asOf": "2026-09-24T23:19:00.5165914+09:00",
+        "sequence": 90197
+      }
+    },
+    {
+      "symbol": "NK225",
+      "minutes": 5,
+      "received_rows": 76,
+      "rows": 75,
+      "excluded_unclosed_or_after_cutoff": 1,
+      "first": "2026-09-24T17:00:00+09:00",
+      "last": "2026-09-24T23:10:00+09:00",
+      "path": "work/wave_v13/live/candle_5min/NK225/2026-09-24_Night.csv",
+      "sha256": "f492e8117aa27c790c1d2a4faa44a5329e688d245e037cb8208bba03d368d5b1",
+      "snapshot": {
+        "sessionId": "2026-09-24_Night",
+        "generation": "be5f360cac37e1231a0069c3e933b872",
+        "code": "NK225",
+        "session": {
+          "name": "night",
+          "exchange": 34,
+          "startsAt": "2026-09-24T17:00:00+09:00",
+          "sendFrom": "2026-09-24T16:30:00+09:00",
+          "sendUntil": "2026-09-25T06:00:00+09:00",
+          "endsAt": "2026-09-25T06:00:00+09:00"
+        },
+        "asOf": "2026-09-24T23:19:00.5165914+09:00",
+        "sequence": 90197
+      }
+    },
+    {
+      "symbol": "TOPIX",
+      "minutes": 1,
+      "received_rows": 371,
+      "rows": 371,
+      "excluded_unclosed_or_after_cutoff": 0,
+      "first": "2026-09-24T17:00:00+09:00",
+      "last": "2026-09-24T23:18:00+09:00",
+      "path": "work/wave_v13/live/candle_1min/TOPIX/2026-09-24_Night.csv",
+      "sha256": "52991e9c064c73274d93d00ca7484583350fddf6391f8b3d4395086ed53fd734",
+      "snapshot": {
+        "sessionId": "2026-09-24_Night",
+        "generation": "be5f360cac37e1231a0069c3e933b872",
+        "code": "TOPIX",
+        "session": {
+          "name": "night",
+          "exchange": 34,
+          "startsAt": "2026-09-24T17:00:00+09:00",
+          "sendFrom": "2026-09-24T16:30:00+09:00",
+          "sendUntil": "2026-09-25T06:00:00+09:00",
+          "endsAt": "2026-09-25T06:00:00+09:00"
+        },
+        "asOf": "2026-09-24T23:19:00.5171044+09:00",
+        "sequence": 85487
+      }
+    },
+    {
+      "symbol": "TOPIX",
+      "minutes": 5,
+      "received_rows": 76,
+      "rows": 75,
+      "excluded_unclosed_or_after_cutoff": 1,
+      "first": "2026-09-24T17:00:00+09:00",
+      "last": "2026-09-24T23:10:00+09:00",
+      "path": "work/wave_v13/live/candle_5min/TOPIX/2026-09-24_Night.csv",
+      "sha256": "de5dd47b06569dc05c21a86bb3f3a5454b0f948839051fac23a773c0cc06081b",
+      "snapshot": {
+        "sessionId": "2026-09-24_Night",
+        "generation": "be5f360cac37e1231a0069c3e933b872",
+        "code": "TOPIX",
+        "session": {
+          "name": "night",
+          "exchange": 34,
+          "startsAt": "2026-09-24T17:00:00+09:00",
+          "sendFrom": "2026-09-24T16:30:00+09:00",
+          "sendUntil": "2026-09-25T06:00:00+09:00",
+          "endsAt": "2026-09-25T06:00:00+09:00"
+        },
+        "asOf": "2026-09-24T23:19:00.5171044+09:00",
+        "sequence": 85487
+      }
+    }
+  ],
+  "books": [
+    {
+      "銘柄": "NK225",
+      "行数": 89645,
+      "時刻欠損": 2,
+      "銘柄名": [
+        "日経平均先物 26/12"
+      ],
+      "限月": [
+        "161120018"
+      ],
+      "最初": "2026-09-24T17:00:01+09:00",
+      "最後": "2026-09-24T23:18:59+09:00",
+      "SHA256": "83aa4ae459790f4c5275c110b7eed26c172ba0a2904bfb658fd487e1494d5163"
+    },
+    {
+      "銘柄": "TOPIX",
+      "行数": 84860,
+      "時刻欠損": 3,
+      "銘柄名": [
+        "TOPIX先物 26/12"
+      ],
+      "限月": [
+        "161120005"
+      ],
+      "最初": "2026-09-24T17:00:01+09:00",
+      "最後": "2026-09-24T23:18:56+09:00",
+      "SHA256": "24fe53fa34c9db9cd29739376bb71738cd16a29d7dc2034f7cbc768d182a9a07"
+    }
+  ],
+  "finished_at": "2026-09-24T23:19:30.526763+09:00"
+}

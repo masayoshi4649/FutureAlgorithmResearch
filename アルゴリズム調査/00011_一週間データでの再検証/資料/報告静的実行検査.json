@@ -1,0 +1,14 @@
+{
+  "HTML": "S:\\TempDev\\OSE_Future\\アルゴリズム調査\\00011_一週間データでの再検証\\一週間データでの再検証.html",
+  "表示セル数": 370,
+  "表示脚総数": 2805,
+  "全脚収支との一致セル数": 370,
+  "拡大操作検査数": 360,
+  "有限描画操作数": 957616,
+  "ローカルリンク数": 31,
+  "検査方法": "自作HTMLの埋込データとJavaScriptをローカルVMで実行。DOM/Canvasは模擬であり、ブラウザー通信・画面描画は行わない。",
+  "ブラウザー表示確認": "未完了：ローカルHTMLを開く操作がBrowser Use URL policyにより拒否されたため、迂回や別ブラウザーを使用していない。",
+  "拒否原文": "Browser Use rejected this action due to browser security policy. Reason: The browser URL policy blocks this action.",
+  "承認審査との区別": "automatic approval review の拒否ではなく、Browser UseのURLポリシーによる拒否。",
+  "SHA256": "e9e58ea7c7047e3a4e8966cb44de998565e588188ef2ee983275e321b6540dc3"
+}

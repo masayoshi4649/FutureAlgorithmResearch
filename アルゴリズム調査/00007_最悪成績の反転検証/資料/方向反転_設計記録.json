@@ -1,0 +1,37 @@
+{
+  "条件数": 14,
+  "条件ID": [
+    "H_P09_E0_X1_Z0",
+    "H_P12_E0_X1_Z0",
+    "H_P16_E0_X1_Z0",
+    "H_P16_E0_X1_Z1",
+    "H_P16_E0_X4_Z1",
+    "H_P16_E1_X1_Z1",
+    "H_P16_E3_X4_Z1",
+    "M_P12_O08_G2_X1",
+    "M_P16_O08_G0_X1",
+    "M_P16_O08_G2_X0",
+    "M_P16_O08_G2_X1",
+    "P_P12_05",
+    "P_P12_30",
+    "P_P16_05"
+  ],
+  "選択数": 72,
+  "実装SHA256": "2d660ace06fe0cd788e01658dff8f48d7d9278042b243cad89a277a4c1e5352e",
+  "使用データSHA256": {
+    "S:\\TempDev\\OSE_Future\\work\\wave_v11\\signals.py": "cf0ce5c4318693335d8feaaf4f4eb1860ab7dd394cf127f74c665e46098811fc",
+    "S:\\TempDev\\OSE_Future\\work\\wave_v11\\single.py": "02d69e0c43392a1a22f8cd097a4f9bb7de8031070bd9375499dcbb3acbc55b76",
+    "S:\\TempDev\\OSE_Future\\work\\wave_v11\\orders.py": "0b3cbd247d1d62a928d3dce525e2aa03ec21d025460f5573b0f1bb106e6e9bb3",
+    "S:\\TempDev\\OSE_Future\\work\\wave_v11\\accounting.py": "0c42e4e1a13cc1824c10c0359dbda7c1fb8f24465c54b6c0561feec2d77752df",
+    "S:\\TempDev\\OSE_Future\\work\\wave_v11\\catalog.py": "fdd7b88ba297d06760023d96da4a04fb8f78e1da20372f1f59c708a402213714",
+    "S:\\TempDev\\OSE_Future\\work\\wave_v11\\research.py": "d8edab40ad7b06cd40d1d747fdb2cc920a945efb1993ff1887bd8f6a9e862643",
+    "S:\\TempDev\\OSE_Future\\work\\wave_v11\\全条件_セッション集計.csv": "e86cb067cae628482a1e15db84a683fb0419f08163aecb86a01434491e99f08f",
+    "S:\\TempDev\\OSE_Future\\work\\wave_v11\\再生入力.pkl": "08f9a803aaa2136de7f385d3483cd285963bd14b87767b57dded3395aa6e0d5a",
+    "S:\\TempDev\\OSE_Future\\work\\wave_v11\\現在照合_凍結記録.json": "6fefdd4ca91c51f22fcbd9c3d0f4915740f058fca73ae295ec366a5ef571d3e3",
+    "S:\\TempDev\\OSE_Future\\work\\wave_v11\\現在照合_取得記録.json": "143d1de8f15ab3b5fe20ca0d3eddda3de57161fa3d087358d57dec978dff103b"
+  },
+  "API取得数": 0,
+  "選択": "各思想×対象銘柄×先頭2/3/4/5完全セッション×実額/設定枚数上限換算で元方式最悪を選ぶ。同点ID昇順。",
+  "反転": "確定信号のsideだけ反転し、反転側で通常の入口・損切り・追跡・利確・リスク上限を再計算。",
+  "注意": "全期間とも既に閲覧済み。過去選択→直後評価は計算上の時間順比較であり新規の未見検証ではない。"
+}

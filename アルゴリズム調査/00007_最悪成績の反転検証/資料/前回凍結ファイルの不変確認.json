@@ -1,0 +1,28 @@
+{
+  "前回凍結18ファイル不変": true,
+  "一致数": 18,
+  "各ファイル": {
+    "work/wave_v11/single.py": true,
+    "work/wave_v11/orders.py": true,
+    "work/wave_v11/accounting.py": true,
+    "work/wave_v11/signals.py": true,
+    "work/wave_v11/catalog.py": true,
+    "work/wave_v11/research.py": true,
+    "work/wave_v11/live_check.py": true,
+    "work/wave_v11/現在照合計画.md": true,
+    "work/wave_v11/最終選択.json": true,
+    "work/wave_v11/検証計画.md": true,
+    "work/wave_v11/文献_予測.md": true,
+    "work/wave_v8/raw_features.py": true,
+    "work/wave_v7/fetch_once.py": true,
+    "work/wave_v10/live/取得記録.json": true,
+    "work/wave_v9/turning_signals.py": true,
+    "work/wave_v9/execution.py": true,
+    "work/wave_v10/engine.py": true,
+    "work/wave_v10/signals.py": true
+  },
+  "今回現在API取得数": 0,
+  "入力追加取得": false,
+  "新規成果フォルダ": "アルゴリズム調査/00007_最悪成績の反転検証",
+  "過去データ評価の扱い": "反転仮説は前回結果を見た後の探索。時間順分割を研究全体の未見検証とは呼ばない。"
+}

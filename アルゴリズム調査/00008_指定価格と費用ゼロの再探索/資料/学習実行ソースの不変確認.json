@@ -1,0 +1,12 @@
+{
+  "全一致": true,
+  "ファイル": {
+    "research.py": true,
+    "catalog.py": true,
+    "data.py": true,
+    "exact_engine.py": true,
+    "new_signals.py": true,
+    "検証計画.md": true
+  },
+  "保留日中未開封": true
+}

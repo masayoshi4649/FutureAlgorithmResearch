@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>週収支ランキングと両銘柄共通手法｜00012</title>
+<style>
+:root{color-scheme:dark;--bg:#0b1220;--panel:#152135;--text:#e7eef8;--muted:#afbed2;--line:#34465f;--profit:#77e1be;--loss:#ffb68a;--link:#a4d1ff}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:14px/1.6 "Yu Gothic UI",sans-serif}main{max-width:1280px;margin:auto;padding:25px 20px 50px}h1{font-size:25px;margin:0 0 12px}h2{font-size:20px;margin:25px 0 8px}p{margin:7px 0}.note,.units,.sub{font-size:12px;color:var(--muted)}a{color:var(--link)}select{color:var(--text);background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:7px;font:inherit}.table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:9px}table{border-collapse:collapse;width:100%;font-size:13px}th,td{padding:10px 11px;border-bottom:1px solid var(--line);text-align:right;vertical-align:top;white-space:nowrap}th{background:#1c2b42;color:#bdd3ec}th:first-child,td:first-child{text-align:left}tbody tr:last-child td{border-bottom:0}.method{min-width:260px;max-width:360px;white-space:normal}.method b{display:block;font-size:14px}.desc{color:#c7d5e6;font-size:12px;line-height:1.5}.amount{font-weight:650;font-variant-numeric:tabular-nums}.profit{color:var(--profit)}.loss{color:var(--loss)}.flat{color:var(--muted)}.unitline{font-size:11px;color:var(--muted)}.metric{margin:0 0 10px}.metric:last-child{margin:0}.label{color:#b5cce5;font-size:11px}.caution{color:#ffd091}.good{color:var(--profit)}details{background:var(--panel);border:1px solid var(--line);padding:12px 15px;border-radius:9px;margin:10px 0}summary{cursor:pointer;color:var(--link)}.reason{max-width:1100px}footer{margin-top:25px;color:var(--muted);font-size:12px}@media(max-width:680px){main{padding:18px 10px}h1{font-size:22px}.method{min-width:225px}th,td{padding:8px}}
+</style></head><body>
+<!--
+[コンポーネント概要]
+#factor は参考円額だけの仮定倍率を変更します。仮想枚数と順位は変わりません。
+#nk-ranking と #top-ranking は銘柄内の週収支順、#common-ranking は共通資格の無次元評価順です。
+#comparisons は同一手法の両銘柄成績と違いの説明を折りたたみます。
+データはHTML内へ埋め込み、取得通信や売買再計算は行いません。
+-->
+<main><h1>週収支ランキングと両銘柄共通手法</h1>
+<p><a href="状態切替と柔軟な建玉管理.html">全180条件のセッション別成績</a>　表の金額換算：<select id="factor"><option value="1">1倍（基準）</option><option value="0.1">0.1倍（仮定）</option><option value="0.01">0.01倍（仮定）</option></select></p>
+<p class="note">2026年9/21日中〜9/25夜間（26日朝）の既知10セッションを事後に順位付け。金額はラージ価格倍率の参考円、枚数は仮想単位です。実mini・microの約定検証ではありません。</p>
+<h2>1. NK225：週収支 上位５手法</h2><p class="note">NK225内の利益−損失の大きい順。相手銘柄も同じID・同じ設定で比較します。</p><div id="nk-ranking"></div>
+<h2>2. TOPIX：週収支 上位５手法</h2><p class="note">TOPIX内の利益−損失の大きい順。NK225との円額の大小で優劣を付けません。</p><div id="top-ranking"></div>
+<h2>3. 両銘柄共通：損小利大 上位５手法</h2>
+<p class="note">両方で収支＞０、PF＞１、１枚平均利益／平均損失＞１の12手法が対象。両銘柄のPF・１枚損益比の最小値が大きい順です。円額の合算順位ではありません。</p>
+<p class="note">各銘柄のATRで注文幅を調整し、設定と枚数規則は同一です。</p>
+<div id="common-ranking"></div>
+<p class="note">追加の安定確認＝両方で黒字６区間以上、かつ最大利益の１区間を除いても黒字。第５位はこの確認を満たしません。１週の結果から将来の安定性は断定しません。</p>
+<h2>4. 両銘柄で差が出た理由</h2><p class="note">同じ手法の値動きとの相性を、勝ち負けの平均額・回数・区間別成績から比較します。因果関係の断定ではありません。説明文章内の金額は１倍の基準円額のままです。</p><div id="comparisons"></div>
+<details id="examples-details"><summary>同じ初回入口から結果が分かれた３つの例</summary><p class="note">理由文・事例文の金額は１倍の基準円額です。換算選択は表だけへ適用します。</p><div id="examples"></div></details>
+<footer>利益・損失の枚数は返済累計。差引枚数＝利益枚数−損失枚数、最終建玉０。PF＝利益合計／損失合計、１枚損益比＝１枚平均利益／１枚平均損失。費用０・指定価格約定・場内返済。<br><a href="README.md">資料案内</a> · <a href="../index.html">全作業</a></footer>
+</main><script type="application/json" id="data">__PAYLOAD__</script><script>
+const DATA=JSON.parse(document.getElementById('data').textContent),$=id=>document.getElementById(id);
+/**
+ * 文字列をHTML用に変換する。
+ * @param {unknown} value - 表示値。
+ * @returns {string} 安全な文字列。
+ */
+function esc(value){return String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+/**
+ * 選択した仮定倍率で金額を表示する。
+ * @param {number} value - 基準円額。
+ * @returns {string} 万円表記。
+ */
+function money(value){const n=value*Number($('factor').value);return(n>0?'＋':n<0?'−':'')+(Math.abs(n)/10000).toLocaleString('ja-JP',{maximumFractionDigits:2})+'万円';}
+/**
+ * 金額と返済枚数をまとめる。
+ * @param {number} value - 円額。
+ * @param {number} units - 仮想枚数。
+ * @param {string} label - 銘柄表示。
+ * @returns {string} 金額と枚数のHTML。
+ */
+function amount(value,units,label=''){return '<div class="metric">'+(label?'<div class="label">'+label+'</div>':'')+'<div class="amount '+(value>0?'profit':value<0?'loss':'flat')+'">'+money(value)+'</div><div class="unitline">'+units.toLocaleString('ja-JP')+'枚</div></div>';}
+/**
+ * 手法のIDと短い説明を表示する。
+ * @param {object} item - 手法と成績。
+ * @param {number} index - ゼロ始まりの順位。
+ * @returns {string} 表示セル。
+ */
+function method(item,index){return '<td class="method"><b>'+(index+1)+'. '+esc(item.id)+' ／ '+esc(item.name)+'</b><div class="desc">'+esc(item.description)+'</div><a class="sub" href="#reason-'+esc(item.id)+'">比較の理由</a></td>';}
+/**
+ * 銘柄内の週収支上位を作る。
+ * @param {string} symbol - 銘柄。
+ * @returns {string} 上位５行の表。
+ */
+function singleTable(symbol){const other=symbol==='NK225'?'TOPIX':'NK225';return '<div class="table-wrap"><table><thead><tr><th>順位・手法</th><th>利益／枚数</th><th>損失／枚数</th><th>収支／枚数差</th><th>'+other+'の収支</th></tr></thead><tbody>'+DATA.single[symbol].map((item,i)=>{const r=item.rows[symbol],o=item.rows[other];return '<tr data-method="'+esc(item.id)+'">'+method(item,i)+'<td>'+amount(r.gross_profit_yen,r.profit_units)+'</td><td>'+amount(-r.gross_loss_yen,r.loss_units)+'</td><td>'+amount(r.net_yen,r.unit_balance)+'<div class="sub">PF '+ratio(r.money_ratio)+'／１枚比 '+ratio(r.unit_payoff)+'</div></td><td>'+amount(o.net_yen,o.unit_balance)+'</td></tr>';}).join('')+'</tbody></table></div>';}
+/**
+ * 共通資格を満たす手法を両銘柄並列で示す。
+ * @returns {string} 共通５行の表。
+ */
+function commonTable(){return '<div class="table-wrap"><table><thead><tr><th>順位・共通手法</th><th>利益／枚数</th><th>損失／枚数</th><th>収支／枚数差</th><th>評価</th></tr></thead><tbody>'+DATA.common.map((item,i)=>'<tr data-method="'+esc(item.id)+'">'+method(item,i)+['profit','loss','net'].map(kind=>'<td>'+['NK225','TOPIX'].map(s=>{const r=item.rows[s];return amount(kind==='profit'?r.gross_profit_yen:kind==='loss'?-r.gross_loss_yen:r.net_yen,kind==='profit'?r.profit_units:kind==='loss'?r.loss_units:r.unit_balance,s);}).join('')+'</td>').join('')+'<td><div>最小値 '+item.score.toFixed(3)+'</div><div class="'+(item.stable?'good':'caution')+'">'+(item.stable?'追加の安定確認○':'追加の安定確認×')+'</div><div class="sub">NK黒字 '+item.rows.NK225.positive_sessions+'/10<br>TOP黒字 '+item.rows.TOPIX.positive_sessions+'/10</div></td></tr>').join('')+'</tbody></table></div>';}
+/**
+ * 比率を小数２桁で表す。
+ * @param {number|null} value - 比率。
+ * @returns {string} 比率表示。
+ */
+function ratio(value){return value===null?'算定なし':value.toFixed(2);}
+/**
+ * 両銘柄の損益構造と説明を折りたたむ。
+ * @param {object} item - 診断対象。
+ * @returns {string} 詳細HTML。
+ */
+function comparison(item){return '<details id="reason-'+esc(item.id)+'"><summary>'+esc(item.id+' ／ '+item.reason_title)+'</summary><p class="reason">'+esc(item.reason)+'</p><div class="table-wrap"><table><thead><tr><th>銘柄</th><th>PF／１枚損益比</th><th>１枚平均利益／損失</th><th>黒字区間／10</th><th>最大下落</th><th>最大保有 買／売／合計</th><th>最良１区間除外後</th><th>ATR正規化PF</th></tr></thead><tbody>'+['NK225','TOPIX'].map(s=>{const r=item.rows[s],d=item.diagnostics[s];return '<tr><td>'+s+'</td><td>'+ratio(r.money_ratio)+' ／ '+ratio(r.unit_payoff)+'</td><td>'+money(r.avg_profit_per_unit||0)+' ／ '+money(-(r.avg_loss_per_unit||0))+'</td><td>'+r.positive_sessions+' / 10</td><td>'+money(-r.drawdown_yen)+'</td><td>'+r.max_long+' ／ '+r.max_short+' ／ '+r.max_gross+'枚</td><td>'+money(d.without_best)+'</td><td>'+ratio(d.atr_pf)+'</td></tr>';}).join('')+'</tbody></table></div></details>';}
+/**
+ * 金額倍率に応じて全表を更新する。
+ * @returns {void} 返り値なし。
+ */
+function render(){$('nk-ranking').innerHTML=singleTable('NK225');$('top-ranking').innerHTML=singleTable('TOPIX');$('common-ranking').innerHTML=commonTable();$('comparisons').innerHTML=DATA.comparisons.map(comparison).join('');$('examples').innerHTML=DATA.examples.map(e=>'<h3>'+esc(e.title)+'</h3><p>'+esc(e.text).replaceAll('\n\n','</p><p>')+'</p>').join('')+'<p class="note">'+DATA.notes.map(esc).join('<br>')+'</p>';openHash();}
+/**
+ * 理由へのリンク先を展開する。
+ * @returns {void} 返り値なし。
+ */
+function openHash(){const id=decodeURIComponent(location.hash.slice(1));if(id.startsWith('reason-')){const target=$(id);if(target)target.open=true;}}
+// ----------------------------------------
+// 倍率と説明へのリンクだけで画面を切り替える。
+$('factor').addEventListener('change',render);window.addEventListener('hashchange',openHash);render();
+</script></body></html>

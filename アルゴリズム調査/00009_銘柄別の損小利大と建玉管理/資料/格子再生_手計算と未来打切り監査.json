@@ -1,0 +1,234 @@
+{
+  "合格": true,
+  "手計算": [
+    {
+      "名称": "利益だけを確定しても残った含み損を含む",
+      "期待値": {
+        "net_yen": -20000,
+        "closed_net_yen": 10000,
+        "open_yen": -30000,
+        "max_drawdown_yen": 30000,
+        "incomplete_cycle_ids": [
+          0
+        ]
+      },
+      "合格": true
+    },
+    {
+      "名称": "買い10枠の上限とギャップ約定",
+      "期待値": {
+        "net_yen": -550000,
+        "entry_count": 10,
+        "gross_peak": 10,
+        "ideal_entry_gap_count": 10
+      },
+      "合格": true
+    },
+    {
+      "名称": "同じ指値水準で次の押しを待って再配置",
+      "期待値": {
+        "net_yen": 20000,
+        "closed_count": 2,
+        "open_count": 0,
+        "incomplete_cycle_ids": [
+          0
+        ]
+      },
+      "合格": true
+    },
+    {
+      "名称": "逆指値は既に突破した水準へ即再注文しない",
+      "期待値": {
+        "net_yen": 20000,
+        "entry_count": 1,
+        "closed_count": 1
+      },
+      "合格": true
+    },
+    {
+      "名称": "指値損切り後の不利価格で同じ損失を即反復しない",
+      "期待値": {
+        "net_yen": -10000,
+        "entry_count": 1,
+        "closed_count": 1
+      },
+      "合格": true
+    },
+    {
+      "名称": "逆指値の手前へ戻った後の再突破",
+      "期待値": {
+        "net_yen": 40000,
+        "entry_count": 2,
+        "closed_count": 2
+      },
+      "合格": true
+    },
+    {
+      "名称": "指値損切り後も手前へ戻るまで待機",
+      "期待値": {
+        "net_yen": 10000,
+        "win_count": 1,
+        "loss_count": 1,
+        "entry_count": 2
+      },
+      "合格": true
+    },
+    {
+      "名称": "返済期限の次行で全脚を返済",
+      "期待値": {
+        "net_yen": -20000,
+        "closed_count": 1,
+        "open_count": 0,
+        "incomplete_cycle_ids": []
+      },
+      "合格": true
+    },
+    {
+      "名称": "期限成立行で打ち切れば未返済評価",
+      "期待値": {
+        "net_yen": -10000,
+        "closed_count": 0,
+        "open_count": 1,
+        "incomplete_cycle_ids": [
+          0
+        ]
+      },
+      "合格": true
+    },
+    {
+      "名称": "保有時間上限は成立後の次行返済",
+      "期待値": {
+        "net_yen": -20000,
+        "closed_count": 1,
+        "incomplete_cycle_ids": [
+          0
+        ]
+      },
+      "合格": true
+    },
+    {
+      "名称": "かご損失は全玉評価して次行全返済",
+      "期待値": {
+        "net_yen": -50000,
+        "closed_count": 2,
+        "open_count": 0,
+        "incomplete_cycle_ids": []
+      },
+      "合格": true
+    },
+    {
+      "名称": "かご利確は個別の含み損も合算",
+      "期待値": {
+        "net_yen": 50000,
+        "closed_count": 2,
+        "incomplete_cycle_ids": []
+      },
+      "合格": true
+    },
+    {
+      "名称": "かご追跡は前行の最大評価を使う",
+      "期待値": {
+        "net_yen": 10000,
+        "closed_count": 1,
+        "incomplete_cycle_ids": []
+      },
+      "合格": true
+    },
+    {
+      "名称": "個別追跡の変更は次行から有効",
+      "期待値": {
+        "net_yen": 20000,
+        "closed_count": 1
+      },
+      "合格": true
+    },
+    {
+      "名称": "順行利益75%を呼値へ切り下げて保護",
+      "期待値": {
+        "net_yen": 20000,
+        "closed_count": 1
+      },
+      "合格": true
+    },
+    {
+      "名称": "８枠併設は両方向建玉も総枚数で制限",
+      "期待値": {
+        "net_yen": 0,
+        "entry_count": 4,
+        "gross_peak": 4,
+        "ideal_fill_benefit_yen": 0
+      },
+      "合格": true
+    },
+    {
+      "名称": "損失発生後はセッション中の新規を全面停止",
+      "期待値": {
+        "net_yen": -10000,
+        "entry_count": 1,
+        "entry_halted": 1,
+        "incomplete_cycle_ids": []
+      },
+      "合格": true
+    },
+    {
+      "名称": "セッション損失上限で次行全返済",
+      "期待値": {
+        "net_yen": -30000,
+        "closed_count": 1,
+        "entry_halted": 1,
+        "incomplete_cycle_ids": []
+      },
+      "合格": true
+    },
+    {
+      "名称": "未来足高安ではなく同時刻の原本順を守る",
+      "期待値": {
+        "net_yen": 10000,
+        "closed_count": 1
+      },
+      "合格": true
+    },
+    {
+      "名称": "無効現在価格は補完せず判定を飛ばす",
+      "期待値": {
+        "net_yen": 10000,
+        "closed_count": 1
+      },
+      "合格": true
+    },
+    {
+      "名称": "売り片側も反対称の利確",
+      "期待値": {
+        "net_yen": 10000,
+        "closed_count": 1
+      },
+      "合格": true
+    },
+    {
+      "名称": "前進再配置は利確価格の１段先",
+      "期待値": {
+        "net_yen": 40000,
+        "entry_count": 2,
+        "closed_count": 2
+      },
+      "合格": true
+    },
+    {
+      "名称": "350回の再配置と配列拡張",
+      "期待値": {
+        "net_yen": 3500000,
+        "closed_count": 350,
+        "gross_peak": 1
+      },
+      "合格": true
+    }
+  ],
+  "条件数": 54,
+  "未来打切り数": 6426,
+  "会計確認数": 91675,
+  "実データ参照": false,
+  "API取得回数": 0,
+  "実装SHA256": "30e8a841e87b35551f24a5b29a91d01bff29ce401ee84d541fb37da167e02aaf",
+  "損益前条件固定_SHA256": "e2413358ca1939e332acbd3c0304d7387172900058fef8a3f4a7e0801f7621c5",
+  "サイクル未完了": "全脚返済済みでも同じ中心の再配置が続く場合はincomplete_cycle_idsへ記録。"
+}

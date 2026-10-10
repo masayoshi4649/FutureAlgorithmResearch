@@ -1,0 +1,114 @@
+{
+  "fixed_at": "2026-09-25T03:01:17.980616+09:00",
+  "session": "2026-09-24_Night",
+  "starts_at": "2026-09-24T17:00:00+09:00",
+  "ends_at": "2026-09-25T06:00:00+09:00",
+  "known_cutoff": "2026-09-25T00:53:00+09:00",
+  "known_session": true,
+  "known_books": {
+    "NK225": {
+      "path": "work/wave_v14/live/book/NK225/2026-09-24_Night.jsonl",
+      "sha256": "8596f9b3190f942e93036aa211cb5439955cb8f8f27fb8129aeed5cf9d49b80c",
+      "bytes": 184523835
+    },
+    "TOPIX": {
+      "path": "work/wave_v14/live/book/TOPIX/2026-09-24_Night.jsonl",
+      "sha256": "30006b7f2c5eb647c57c9251d2d9c3f39f321ef705a29660bc84cce27c8e948a",
+      "bytes": 169896656
+    }
+  },
+  "selected_ids": [
+    "N03_R-1_L3_U1",
+    "N15_R-1_A4_U0"
+  ],
+  "selected_configs": [
+    {
+      "family": "N03",
+      "group": "状態と持続波",
+      "origin": "新規",
+      "max_legs": 2,
+      "cooldown_min": 5.0,
+      "warmup_min": 20.0,
+      "max_age_min": 2.0,
+      "entry_deadline_min": 30.0,
+      "trail_start_atr": 0.5,
+      "signal_multiplier": -1,
+      "id": "N03_R-1_L3_U1",
+      "philosophy": "予測と複数建玉管理",
+      "label": "効率比で反応を変える適応平均・反対方向／２枚で早期利確と継続保有",
+      "entry_mode": "market",
+      "entry_atr": 0.0,
+      "us_pause": true,
+      "add_mode": "simultaneous",
+      "initial_stop_atr": 0.75,
+      "trail_atr": 1.5,
+      "leg_targets": [
+        0.5,
+        null
+      ],
+      "engine": "single"
+    },
+    {
+      "family": "N15",
+      "group": "板の応答と流動性",
+      "origin": "新規",
+      "max_legs": 1,
+      "cooldown_min": 5.0,
+      "warmup_min": 20.0,
+      "max_age_min": 2.0,
+      "entry_deadline_min": 30.0,
+      "trail_start_atr": 0.0,
+      "signal_multiplier": -1,
+      "id": "N15_R-1_A4_U0",
+      "philosophy": "新しい入口と利益保護",
+      "label": "注文フローに対する価格応答の遅れ・反対方向／強い突破だけ逆指値",
+      "entry_mode": "stop",
+      "entry_atr": 0.5,
+      "us_pause": false,
+      "initial_stop_atr": 0.75,
+      "trail_atr": 1.5,
+      "engine": "single"
+    }
+  ],
+  "selected_by_symbol": {
+    "NK225": "N03_R-1_L3_U1",
+    "TOPIX": "N15_R-1_A4_U0"
+  },
+  "files_sha256": {
+    "work/wave_v15/current_check.py": "9f4af72dd2e73fc33a2a113f98c222c083a468f463c8c7142d124cee9b7c7af2",
+    "work/wave_v15/run.py": "0d224695c5d69b427bcc941b358293532149b580091a66d6ea47b02bd9c6375f",
+    "work/wave_v15/検証計画.md": "32d1476b09b0803cba8ad660851aeb7058100a8aea73346e8c66171ac5d5a7c2",
+    "work/wave_v14/current_check.py": "de85b4ba82be40e03c7ea751534e10c243686f470983fa8362a3404f9d4d14e1",
+    "work/wave_v14/reference.py": "a0ecef6274ea0a7e3015606373e40a760bc7e0c5514e5f5c8fbd206729e13a87",
+    "work/wave_v14/details.py": "8ca19afff523ba5daf3b19ac34812e2e9416d8646a1489bb1ed6d4e355ea362f",
+    "work/wave_v14/risk_guard.py": "308a01199d81714f40d527dd3fdd5679b7dd6255dfc32596d65333d8192a351f",
+    "work/wave_v14/metrics.py": "42ddaabeb35f5e9a6a30315fe50b26f0b4526d5440ac9d35af8a2996d2aa8318",
+    "work/wave_v14/grid_engine.py": "30e8a841e87b35551f24a5b29a91d01bff29ce401ee84d541fb37da167e02aaf",
+    "work/wave_v14/pair_engine.py": "5069fb922d5178de1fb9e5c1959e748dfe5979cf0373ef622a7d2a46a0711578",
+    "work/wave_v14/全条件一覧.json": "750a5b39d52ebced148b8fe43039f374d694306a058e5a5ab1ed662cbab42a5a",
+    "work/wave_v14/live/取得記録.json": "dcc60ebd907511322fd02ec3d2556e4618da2d30bc8475b50b7244d9065dae4d",
+    "work/wave_v14/現在入力.pkl": "9b3d699ab4d14c8771572570f2c30f86a14156534b538ac6640d2418ac5d58d1",
+    "work/wave_v13/current_check.py": "99f2379e3e2340d7d08a62ba2e01b3ec68a43e335f77ecc95ecb54b39ae66012",
+    "work/wave_v13/research.py": "969692d0164f243a35b8223e6bd91946dc5e96b48a136ca5da04a0c483f51473",
+    "work/wave_v13/catalog.py": "805c183c4968faa0df2c9ac2b8c045323a631afca07bce819d39f281cb5cd525",
+    "work/wave_v13/data.py": "1f7665803d3c84e3e40d5ccbe5f055389b89866bca953a53651d67e303f4265f",
+    "work/wave_v13/exact_engine.py": "5cb2a33c4ddefed36303de125e01646ebda098da911df039784bff244dc3d338",
+    "work/wave_v13/new_signals.py": "5352965142e3260945f18e65cb2e1524676b4a2d73e1396c4a1453d395c76855",
+    "work/wave_v11/signals.py": "cf0ce5c4318693335d8feaaf4f4eb1860ab7dd394cf127f74c665e46098811fc",
+    "work/wave_v10/signals.py": "b2bfeb2db3b9647a3a43a251b254f4503375497e331c973290d719eb0a040e79",
+    "work/wave_v9/turning_signals.py": "c522d1ecdfd381010aca9a13c8e4c682baffabdd0ad4b2876d4a5c868472cae9",
+    "work/wave_v9/execution.py": "2f14f082bd0137479aa730e6a6b7d88ba40364098fb407577ac537f26f92f100",
+    "work/wave_v8/raw_features.py": "0062e70dd8011ad456c5307ed228cb2dca0d0729ab3b2dbd5040a1bf9cf96436",
+    "work/wave_v7/fetch_once.py": "90cb30e1fca0a4febea3113258c513d0e7204f9aeb8ac6e498652da62ed8d58c"
+  },
+  "要求数": 6,
+  "各要求回数": 1,
+  "再試行": false,
+  "リダイレクト": false,
+  "取得後再選択": false,
+  "手数料": 0,
+  "気配差控除": 0,
+  "実時間前向き運用": false,
+  "主評価": "前回00:53直前の全玉評価から今回共通締切直前までの資産変化。全セッション参考を別表示。",
+  "説明": "指定２条件を変更せず、全セッションから状態を再生。新しい手法探索・選択は行わない。"
+}

@@ -1,0 +1,22 @@
+{
+  "記録時刻": "2026-09-25T00:51:15.750609+09:00",
+  "条件数": 11253,
+  "既存単独": 6123,
+  "追加停止": 5040,
+  "格子": 54,
+  "NT": 36,
+  "選択済ID数": 27,
+  "現在API要求数": 0,
+  "用途": "探索終了時のソースと条件の記録。旧7完全区間と既知ナイト前半だけを読んだ段階。",
+  "ソースSHA256": {
+    "reference.py": "a0ecef6274ea0a7e3015606373e40a760bc7e0c5514e5f5c8fbd206729e13a87",
+    "risk_guard.py": "308a01199d81714f40d527dd3fdd5679b7dd6255dfc32596d65333d8192a351f",
+    "metrics.py": "42ddaabeb35f5e9a6a30315fe50b26f0b4526d5440ac9d35af8a2996d2aa8318",
+    "research.py": "e1d12b0d09993d4c13db8fcbbca683315742847e5f37af03aad68c5eee2c553d",
+    "grid_engine.py": "30e8a841e87b35551f24a5b29a91d01bff29ce401ee84d541fb37da167e02aaf",
+    "pair_engine.py": "5069fb922d5178de1fb9e5c1959e748dfe5979cf0373ef622a7d2a46a0711578",
+    "details.py": "8ca19afff523ba5daf3b19ac34812e2e9416d8646a1489bb1ed6d4e355ea362f",
+    "current_check.py": "de85b4ba82be40e03c7ea751534e10c243686f470983fa8362a3404f9d4d14e1",
+    "検証計画.md": "f714a33df2f55d6bdefdad53ee8e5b6370b2bf683b7bbe5897059800646b0ea0"
+  }
+}

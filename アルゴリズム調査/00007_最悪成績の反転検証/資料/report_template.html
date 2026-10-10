@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="ja">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>00007｜最悪成績の反転検証</title>
+<style>
+:root{color-scheme:dark;--bg:#0b111b;--card:#131e2e;--line:#2a3b52;--ink:#e5edf8;--muted:#acbed3;--blue:#84bfff;--green:#55d6b6;--red:#ff8694;--gold:#f7ce75;font:16px/1.8 "Yu Gothic UI","Meiryo",sans-serif}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink)}main{max-width:1240px;margin:auto;padding:48px 30px 80px}a{color:var(--blue);text-underline-offset:4px}h1{font-size:clamp(27px,4vw,42px);line-height:1.5;margin:14px 0}h2{font-size:26px;line-height:1.6;margin:6px 0 18px}h3{font-size:20px;margin:30px 0 10px}p{margin:12px 0 20px}section{border-top:1px solid var(--line);margin:42px 0 0;padding:34px 0 0}.eyebrow{color:var(--blue);font-size:13px;letter-spacing:.08em;font-weight:700}.lead{max-width:970px;font-size:19px;color:#c8d7e9}.note{font-size:14px;color:var(--muted)}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:28px 0}.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px}.card b{font-size:29px;display:block;margin:5px 0;color:var(--red)}.card span{color:var(--muted);font-size:13px}.tag{display:inline-block;background:#24384f;border-radius:16px;padding:3px 12px;font-size:13px;margin:3px 6px 3px 0}.table-wrap{overflow:auto;margin:22px 0;border:1px solid var(--line);border-radius:9px}table{border-collapse:collapse;width:100%;font-size:14px;white-space:nowrap}th{background:#1a2940;text-align:left;color:#c8def5}th,td{padding:10px 13px;border-bottom:1px solid var(--line)}tbody tr:last-child td{border-bottom:none}tbody tr:hover{background:#1b2b40}caption{text-align:left;padding:12px;color:var(--muted)}.formula{padding:22px;border-left:4px solid var(--blue);background:var(--card);border-radius:4px;margin:25px 0}code{color:#b5d9ff;font-size:.92em;overflow-wrap:anywhere}.links{display:flex;flex-wrap:wrap;gap:15px 25px}.nav{display:flex;gap:12px;flex-wrap:wrap;margin:28px 0}.nav a{border:1px solid var(--line);padding:6px 14px;text-decoration:none;border-radius:6px}.controls{display:flex;gap:14px;flex-wrap:wrap;align-items:flex-end;margin:20px 0}.controls label{display:grid;gap:4px;font-size:13px;color:var(--muted)}button,select{font:inherit;background:#1b2b40;color:var(--ink);border:1px solid #49617e;border-radius:5px;padding:8px 11px}button{cursor:pointer}button:hover{background:#2b4260}button:focus-visible,select:focus-visible,a:focus-visible{outline:3px solid var(--gold);outline-offset:2px}.chart-frame{background:#0e1827;border:1px solid var(--line);padding:14px;border-radius:10px;position:relative}canvas{display:block;width:100%;height:430px;touch-action:pan-y}#chart-detail{min-height:28px;color:#bed0e5;font-size:13px;margin:7px 3px}#chart-status{font-size:15px;color:#d0e3f7}.legend{display:flex;gap:18px;flex-wrap:wrap;font-size:13px;color:var(--muted)}.green{color:var(--green)}.red{color:var(--red)}.gold{color:var(--gold)}#trade-wrap{max-height:365px}#trade-wrap tr{cursor:pointer}#trade-wrap tr.selected{background:#283e5c}#trade-wrap button{font-size:12px;padding:3px 8px}.banner{border-left:4px solid var(--gold);padding:14px 18px;background:#27271d;margin:24px 0;color:#e9dfbd}footer{margin-top:40px;color:var(--muted);font-size:13px}@media(max-width:680px){main{padding:26px 16px 60px}.cards{grid-template-columns:1fr}.card b{font-size:26px}h2{font-size:22px}canvas{height:350px}.controls label{flex:1;min-width:135px}select{width:100%}}
+</style></head><body>
+<!--
+[コンポーネント概要]
+#report は最悪成績の反転仮説についての日本語報告です。
+#session、#symbol、#execution は５分足図解の表示対象を変更します。
+#price-chart は暗色背景のローソク足と新規・返済位置、保有期間を描画します。
+#trade-table の行を選ぶと、その売買の前後へ表示範囲を絞ります。
+#reset-chart はセッション全体表示へ戻します。#chart-detail は指した位置の足・取引を表示します。
+すべてのデータはページ内に保存しており、外部通信や注文発注は行いません。
+-->
+<main id="report">
+<header><a href="../index.html">← 作業一覧</a><div class="eyebrow" style="margin-top:20px">00007 ／ 最悪成績の反転検証</div>
+<h1>一番負ける手法を、逆に売買すればよいか。</h1>
+<p class="lead">反転という発想には検証の価値があります。ただし今回の最悪方式は、方向を外して負けたというより、売買気配差と費用で負けていました。逆方向にしても、それらの負担は残りました。</p>
+<span class="tag">1,598条件の反対売買</span><span class="tag">14条件の予測方向反転</span><span class="tag">現在APIの追加取得０回</span><span class="tag">全データは既読</span>
+<div class="cards"><div class="card">元方式の収支<b>−635万円</b><span>上限１枚換算で最悪の条件／280往復</span></div><div class="card">同時点の理論反転<b>−792.5万円</b><span>同じ新規・返済時刻の反対気配</span></div><div class="card">次行からの反対売買<b>−799万円</b><span>次行約定と最良気配の数量を考慮</span></div></div>
+<p class="note">主例 P_P16_05、９月21日〜23日の完全５セッション、NK225・TOPIX合計。実額の最悪条件は別です。下の比較で両方を示します。金額はラージと所定の費用仮定によるシミュレーションです。</p>
+<nav class="nav"><a href="#cost">なぜ反転も赤字か</a><a href="#sessions">セッション別損益</a><a href="#chart">５分足売買図</a><a href="#all">全条件の結果</a><a href="#walk">過去からの選択</a><a href="#recent">既読ナイト</a></nav></header>
+{{SUMMARY}}
+<section id="chart"><div class="eyebrow">03 ／ ５分足で売買を見る</div><h2>元の売買と反対売買を、同じチャートで切り替える</h2>
+<p>主例 <code>P_P16_05</code> の１枚取引です。ローソク足は５分足、売買位置は生板の約定価格と観測時刻です。表の行を選ぶと、その売買の前後に拡大します。</p>
+<div class="controls"><label>セッション<select id="session"></select></label><label>銘柄<select id="symbol"><option>NK225</option><option>TOPIX</option></select></label><label>売買の実行<select id="execution"><option>元の方向</option><option selected>次行反転</option><option>予測方向反転</option></select></label><button id="reset-chart">全体を表示</button></div>
+<p id="chart-status" role="status"></p><div class="chart-frame"><div class="legend"><span class="green">▲ 買い新規</span><span class="red">▼ 売り新規</span><span class="gold">● 返済 / ◇ 未返済評価</span><span>点線＝保有期間</span></div><canvas id="price-chart" aria-label="５分足と新規返済の図解"></canvas><div id="chart-detail">ローソク足や売買マーカーにポインターを合わせると詳細を表示します。</div></div>
+<div id="trade-wrap" class="table-wrap"><table id="trade-table"><thead><tr><th>番号</th><th>方向</th><th>新規時刻</th><th>新規価格</th><th>返済・評価時刻</th><th>返済・評価価格</th><th>収支</th><th>状態</th></tr></thead><tbody></tbody></table></div>
+<p class="note">生板の最終約定時計を代理時刻として使います。同じ時刻表示でも行順が異なります。未返済評価には往復追加費用も引き当てています。９月23日ナイトは翌01:53までの既読参考で、セッション終了時の成績ではありません。</p></section>
+{{SUPPLEMENT}}
+<footer>計算資料は <a href="README.md">資料案内</a> から参照できます。調査範囲内の結果であり、将来の優位性を確認したものではありません。</footer>
+</main>
+<script type="application/json" id="data">{{DATA}}</script>
+<script>
+const data=JSON.parse(document.getElementById('data').textContent);
+const el={session:document.getElementById('session'),symbol:document.getElementById('symbol'),execution:document.getElementById('execution'),canvas:document.getElementById('price-chart'),detail:document.getElementById('chart-detail'),status:document.getElementById('chart-status'),body:document.querySelector('#trade-table tbody')};
+let selected=-1, range=null, current=[], points=[];
+const formatter=new Intl.DateTimeFormat('ja-JP',{timeZone:'Asia/Tokyo',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false});
+
+/**
+ * 時刻を日本時間で表示する。
+ * @param {number} t - Unix秒。
+ * @returns {string} 日本時間の文字列。
+ */
+function stamp(t){return formatter.format(new Date(t*1000));}
+
+/**
+ * 円の損益を万円単位へ変換する。
+ * @param {number} n - 円の損益。
+ * @returns {string} 符号付きの万円表示。
+ */
+function money(n){return (n<0?'−':n>0?'＋':'')+(Math.abs(n)/10000).toLocaleString('ja-JP',{maximumFractionDigits:2})+'万円';}
+
+/**
+ * 選択中の銘柄・セッションの売買を表に表示する。
+ * @returns {void} 返り値なし。
+ */
+function refresh(){
+ selected=-1;range=null;
+ current=data.trades.filter(t=>t.session===el.session.value&&t.symbol===el.symbol.value&&t.execution===el.execution.value).sort((a,b)=>a.entry-b.entry);
+ const closed=current.filter(t=>t.closed), open=current.filter(t=>!t.closed), profit=closed.reduce((s,t)=>s+Math.max(0,t.net),0), loss=closed.reduce((s,t)=>s+Math.min(0,t.net),0), mark=open.reduce((s,t)=>s+t.net,0);
+ el.status.textContent=`${current.length}件の新規、${closed.length}件返済 ／ 確定利益 ${money(profit)}・確定損失 ${money(loss)} ／ 確定収支 ${money(profit+loss)}${open.length?' ／ 未返済評価 '+money(mark):''}`;
+ el.body.replaceChildren();
+ current.forEach((t,i)=>{const row=document.createElement('tr');row.tabIndex=0;const vals=[i+1,t.side>0?'買い':'売り',stamp(t.entry),t.ep.toLocaleString(),stamp(t.exit),t.xp.toLocaleString(),money(t.net),t.closed?'返済済み':'未返済評価'];vals.forEach((v,j)=>{const c=document.createElement('td');c.textContent=v;if(j===1)c.className=t.side>0?'green':'red';if(j===6)c.className=t.net>=0?'green':'red';row.append(c);});row.addEventListener('click',()=>focusTrade(i));row.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();focusTrade(i);}});el.body.append(row);});
+ draw();
+}
+
+/**
+ * 選んだ取引の前後へ表示範囲を絞る。
+ * @param {number} index - 売買配列の位置。
+ * @returns {void} 返り値なし。
+ */
+function focusTrade(index){selected=index;const t=current[index];range=[t.entry-900,t.exit+900];[...el.body.children].forEach((r,i)=>r.classList.toggle('selected',i===index));draw();el.detail.textContent=`${index+1}: ${t.side>0?'買い':'売り'} ${stamp(t.entry)} ${t.ep} → ${stamp(t.exit)} ${t.xp}、${money(t.net)}`;}
+
+/**
+ * 暗色のローソク足、売買位置、保有区間、目盛を描画する。
+ * @returns {void} 返り値なし。
+ */
+function draw(){
+ const canvas=el.canvas, box=canvas.getBoundingClientRect(), ratio=window.devicePixelRatio||1,w=Math.max(300,box.width),h=box.height;
+ canvas.width=w*ratio;canvas.height=h*ratio;const c=canvas.getContext('2d');c.scale(ratio,ratio);c.fillStyle='#0e1827';c.fillRect(0,0,w,h);c.font='12px "Yu Gothic UI", sans-serif';points=[];
+ const all=data.candles[el.session.value+'|'+el.symbol.value]||[];if(!all.length)return;
+ const start=range?Math.max(all[0][0]-150,range[0]):all[0][0]-150,end=range?Math.min(all.at(-1)[0]+300,range[1]):all.at(-1)[0]+300;
+ const bars=all.filter(b=>b[0]+300>=start&&b[0]<=end), visible=current.filter(t=>t.exit>=start&&t.entry<=end);
+ let lo=Math.min(...bars.map(b=>b[3])),hi=Math.max(...bars.map(b=>b[2]));visible.forEach(t=>{lo=Math.min(lo,t.ep,t.xp);hi=Math.max(hi,t.ep,t.xp);});const pad=Math.max((hi-lo)*.1,el.symbol.value==='NK225'?30:1);lo-=pad;hi+=pad;
+ const left=66,right=w-17,top=20,bottom=h-37;const x=t=>left+(t-start)/(end-start)*(right-left),y=p=>bottom-(p-lo)/(hi-lo)*(bottom-top);
+ c.strokeStyle='#243449';c.fillStyle='#a9bdd4';for(let i=0;i<=5;i++){const p=lo+(hi-lo)*i/5,yp=y(p);c.beginPath();c.moveTo(left,yp);c.lineTo(right,yp);c.stroke();c.textAlign='right';c.fillText(p.toLocaleString('ja-JP',{maximumFractionDigits:1}),left-8,yp+4);}const step=(end-start)/6;for(let i=0;i<=6;i++){const t=start+i*step,xp=x(t);c.beginPath();c.moveTo(xp,top);c.lineTo(xp,bottom);c.stroke();c.textAlign='center';c.fillText(stamp(t).slice(6,11),Math.max(left,Math.min(right-14,xp)),bottom+23);}
+ c.save();c.beginPath();c.rect(left,top,right-left,bottom-top);c.clip();const bw=Math.max(2,Math.min(14,(right-left)*220/(end-start)));
+ bars.forEach(b=>{const xp=x(b[0]+150),color=b[4]>=b[1]?'#55d6b6':'#ef8496';c.strokeStyle=color;c.fillStyle=color;c.beginPath();c.moveTo(xp,y(b[2]));c.lineTo(xp,y(b[3]));c.stroke();c.fillRect(xp-bw/2,Math.min(y(b[1]),y(b[4])),bw,Math.max(1,Math.abs(y(b[1])-y(b[4]))));points.push({x:xp,y:y(b[4]),text:`５分足 ${stamp(b[0])} 始${b[1]} 高${b[2]} 安${b[3]} 終${b[4]}`});});
+ current.forEach((t,i)=>{if(t.exit<start||t.entry>end)return;const xe=x(t.entry),xx=x(t.exit),ye=y(t.ep),yx=y(t.xp),active=selected===i;const color=t.side>0?'#55d6b6':'#ff8694';c.strokeStyle=active?'#ffffff':color;c.globalAlpha=selected<0||active?.85:.25;c.lineWidth=active?2.5:1.2;c.setLineDash([4,4]);c.beginPath();c.moveTo(xe,ye);c.lineTo(xx,yx);c.stroke();c.setLineDash([]);c.fillStyle=color;c.beginPath();if(t.side>0){c.moveTo(xe,ye-7);c.lineTo(xe-6,ye+5);c.lineTo(xe+6,ye+5);}else{c.moveTo(xe,ye+7);c.lineTo(xe-6,ye-5);c.lineTo(xe+6,ye-5);}c.closePath();c.fill();c.strokeStyle='#0b111b';c.lineWidth=1;c.stroke();c.fillStyle='#f7ce75';c.beginPath();if(t.closed){c.arc(xx,yx,4,0,2*Math.PI);}else{c.moveTo(xx,yx-6);c.lineTo(xx+6,yx);c.lineTo(xx,yx+6);c.lineTo(xx-6,yx);c.closePath();}c.fill();points.push({x:xe,y:ye,text:`${i+1} ${t.side>0?'買い':'売り'}新規 ${stamp(t.entry)} ${t.ep}`,index:i},{x:xx,y:yx,text:`${i+1} ${t.closed?'返済':'評価'} ${stamp(t.exit)} ${t.xp} ${money(t.net)}`,index:i});});c.restore();c.globalAlpha=1;
+}
+
+/**
+ * ポインターに近い足または売買の内容を表示する。
+ * @param {PointerEvent} event - ポインターイベント。
+ * @returns {void} 返り値なし。
+ */
+function showPoint(event){const box=el.canvas.getBoundingClientRect(),px=event.clientX-box.left,py=event.clientY-box.top;let nearest=null,d=Infinity;points.forEach(p=>{const distance=Math.hypot(p.x-px,p.y-py);if(distance<d){d=distance;nearest=p;}});if(nearest&&d<35)el.detail.textContent=nearest.text;}
+
+// ----------------------------------------
+// 初期表示と、選択変更・サイズ変更時の再描画を登録する。
+data.sessions.forEach(s=>{const o=document.createElement('option');o.value=s;o.textContent=s.replace('_',' ')+(s==='2026-09-23_Night'?'（既読・翌01:53まで）':'');el.session.append(o);});
+el.session.value='2026-09-22_Day';[el.session,el.symbol,el.execution].forEach(e=>e.addEventListener('change',refresh));
+document.getElementById('reset-chart').addEventListener('click',()=>{selected=-1;range=null;[...el.body.children].forEach(r=>r.classList.remove('selected'));draw();});
+el.canvas.addEventListener('pointermove',showPoint);window.addEventListener('resize',draw);refresh();
+</script></body></html>

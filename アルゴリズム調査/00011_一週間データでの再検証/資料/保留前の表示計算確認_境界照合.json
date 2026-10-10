@@ -1,0 +1,25 @@
+[
+  {
+    "方式": "G16_A10",
+    "銘柄": "TOPIX",
+    "セッション": "2026-09-24_Night",
+    "思想": "有限格子と全建玉管理",
+    "設定最大枚数": 10,
+    "engine": "grid",
+    "boundary": 1790272860.0,
+    "baseline_equity_yen": 280000.0,
+    "boundary_price": 4072.0,
+    "new_period_net_yen": -120000.0,
+    "carried_cycles": 1
+  },
+  {
+    "方式": "NT_ratio_mom_Z1_S1",
+    "銘柄": "NT",
+    "セッション": "2026-09-24_Night",
+    "思想": "NTペアと整数枚ヘッジ",
+    "設定最大枚数": 20,
+    "engine": "pair",
+    "baseline_equity_yen": -1530000.0,
+    "new_period_net_yen": 260000.0
+  }
+]

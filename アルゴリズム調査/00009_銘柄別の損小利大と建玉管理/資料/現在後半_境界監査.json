@@ -1,0 +1,488 @@
+[
+  {
+    "方式": "G01_T10",
+    "銘柄": "NK225",
+    "セッション": "2026-09-24_Night",
+    "boundary": 1790259540.0,
+    "baseline_equity_yen": 1050000.0,
+    "boundary_price": 65480.0,
+    "new_period_net_yen": 660000.0,
+    "carried_cycles": 1
+  },
+  {
+    "方式": "G01_T10",
+    "銘柄": "TOPIX",
+    "セッション": "2026-09-24_Night",
+    "boundary": 1790259540.0,
+    "baseline_equity_yen": -10000.0,
+    "boundary_price": 4071.5,
+    "new_period_net_yen": 430000.0,
+    "carried_cycles": 1
+  },
+  {
+    "方式": "G02_T10",
+    "銘柄": "NK225",
+    "セッション": "2026-09-24_Night",
+    "boundary": 1790259540.0,
+    "baseline_equity_yen": 200000.0,
+    "boundary_price": 65480.0,
+    "new_period_net_yen": 0.0,
+    "carried_cycles": 0
+  },
+  {
+    "方式": "G02_T10",
+    "銘柄": "TOPIX",
+    "セッション": "2026-09-24_Night",
+    "boundary": 1790259540.0,
+    "baseline_equity_yen": 50000.0,
+    "boundary_price": 4071.5,
+    "new_period_net_yen": 0.0,
+    "carried_cycles": 0
+  },
+  {
+    "方式": "G03_T10",
+    "銘柄": "NK225",
+    "セッション": "2026-09-24_Night",
+    "boundary": 1790259540.0,
+    "baseline_equity_yen": 850000.0,
+    "boundary_price": 65480.0,
+    "new_period_net_yen": 660000.0,
+    "carried_cycles": 1
+  },
+  {
+    "方式": "G03_T10",
+    "銘柄": "TOPIX",
+    "セッション": "2026-09-24_Night",
+    "boundary": 1790259540.0,
+    "baseline_equity_yen": -60000.0,
+    "boundary_price": 4071.5,
+    "new_period_net_yen": 430000.0,
+    "carried_cycles": 1
+  },
+  {
+    "方式": "G15_T10",
+    "銘柄": "NK225",
+    "セッション": "2026-09-24_Night",
+    "boundary": 1790259540.0,
+    "baseline_equity_yen": -170000.0,
+    "boundary_price": 65480.0,
+    "new_period_net_yen": -200000.0,
+    "carried_cycles": 1
+  },
+  {
+    "方式": "G15_T10",
+    "銘柄": "TOPIX",
+    "セッション": "2026-09-24_Night",
+    "boundary": 1790259540.0,
+    "baseline_equity_yen": -110000.0,
+    "boundary_price": 4071.5,
+    "new_period_net_yen": -35000.0,
+    "carried_cycles": 1
+  },
+  {
+    "方式": "G16_A10",
+    "銘柄": "NK225",
+    "セッション": "2026-09-24_Night",
+    "boundary": 1790259540.0,
+    "baseline_equity_yen": -140000.0,
+    "boundary_price": 65480.0,
+    "new_period_net_yen": -320000.0,
+    "carried_cycles": 1
+  },
+  {
+    "方式": "G16_A10",
+    "銘柄": "TOPIX",
+    "セッション": "2026-09-24_Night",
+    "boundary": 1790259540.0,
+    "baseline_equity_yen": 85000.0,
+    "boundary_price": 4071.5,
+    "new_period_net_yen": -70000.0,
+    "carried_cycles": 1
+  },
+  {
+    "方式": "N02_R-1_E1_X2_U0",
+    "銘柄": "NK225",
+    "セッション": "2026-09-24_Night",
+    "boundary": 1790259540.0,
+    "baseline_equity_yen": 30000.0,
+    "boundary_price": 65480.0,
+    "new_period_net_yen": 20000.0,
+    "carried_cycles": 0
+  },
+  {
+    "方式": "N02_R-1_E1_X2_U0",
+    "銘柄": "TOPIX",
+    "セッション": "2026-09-24_Night",
+    "boundary": 1790259540.0,
+    "baseline_equity_yen": -20000.0,
+    "boundary_price": 4071.5,
+    "new_period_net_yen": -85000.0,
+    "carried_cycles": 0
+  },
+  {
+    "方式": "N03_R-1_L3_U1",
+    "銘柄": "NK225",
+    "セッション": "2026-09-24_Night",
+    "boundary": 1790259540.0,
+    "baseline_equity_yen": 560000.0,
+    "boundary_price": 65480.0,
+    "new_period_net_yen": 260000.0,
+    "carried_cycles": 1
+  },
+  {
+    "方式": "N03_R-1_L3_U1",
+    "銘柄": "TOPIX",
+    "セッション": "2026-09-24_Night",
+    "boundary": 1790259540.0,
+    "baseline_equity_yen": -45000.0,
+    "boundary_price": 4071.5,
+    "new_period_net_yen": -40000.0,
+    "carried_cycles": 1
+  },
+  {
+    "方式": "N09_R1_T15",
+    "銘柄": "NK225",
+    "セッション": "2026-09-24_Night",
+    "boundary": 1790259540.0,
+    "baseline_equity_yen": 110000.0,
+    "boundary_price": 65480.0,
+    "new_period_net_yen": 0.0,
+    "carried_cycles": 0
+  },
+  {
+    "方式": "N09_R1_T15",
+    "銘柄": "TOPIX",
+    "セッション": "2026-09-24_Night",
+    "boundary": 1790259540.0,
+    "baseline_equity_yen": -60000.0,
+    "boundary_price": 4071.5,
+    "new_period_net_yen": 55000.0,
+    "carried_cycles": 0
+  },
+  {
+    "方式": "N10_R1_E3_X2_U0",
+    "銘柄": "NK225",
+    "セッション": "2026-09-24_Night",
+    "boundary": 1790259540.0,
+    "baseline_equity_yen": 100000.0,
+    "boundary_price": 65480.0,
+    "new_period_net_yen": -240000.0,
+    "carried_cycles": 1
+  },
+  {
+    "方式": "N10_R1_E3_X2_U0",
+    "銘柄": "TOPIX",
+    "セッション": "2026-09-24_Night",
+    "boundary": 1790259540.0,
+    "baseline_equity_yen": -25000.0,
+    "boundary_price": 4071.5,
+    "new_period_net_yen": 10000.0,
+    "carried_cycles": 0
+  },
+  {
+    "方式": "N10_R1_E3_X2_U1",
+    "銘柄": "NK225",
+    "セッション": "2026-09-24_Night",
+    "boundary": 1790259540.0,
+    "baseline_equity_yen": 100000.0,
+    "boundary_price": 65480.0,
+    "new_period_net_yen": -240000.0,
+    "carried_cycles": 1
+  },
+  {
+    "方式": "N10_R1_E3_X2_U1",
+    "銘柄": "TOPIX",
+    "セッション": "2026-09-24_Night",
+    "boundary": 1790259540.0,
+    "baseline_equity_yen": 0.0,
+    "boundary_price": 4071.5,
+    "new_period_net_yen": 10000.0,
+    "carried_cycles": 0
+  },
+  {
+    "方式": "N10_R1_E3_X2_U1_G1",
+    "銘柄": "NK225",
+    "セッション": "2026-09-24_Night",
+    "boundary": 1790259540.0,
+    "baseline_equity_yen": 100000.0,
+    "boundary_price": 65480.0,
+    "new_period_net_yen": -50000.0,
+    "carried_cycles": 1
+  },
+  {
+    "方式": "N10_R1_E3_X2_U1_G1",
+    "銘柄": "TOPIX",
+    "セッション": "2026-09-24_Night",
+    "boundary": 1790259540.0,
+    "baseline_equity_yen": -80000.0,
+    "boundary_price": 4071.5,
+    "new_period_net_yen": 0.0,
+    "carried_cycles": 0
+  },
+  {
+    "方式": "N15_R-1_A4_U0",
+    "銘柄": "NK225",
+    "セッション": "2026-09-24_Night",
+    "boundary": 1790259540.0,
+    "baseline_equity_yen": -120000.0,
+    "boundary_price": 65480.0,
+    "new_period_net_yen": -130000.0,
+    "carried_cycles": 0
+  },
+  {
+    "方式": "N15_R-1_A4_U0",
+    "銘柄": "TOPIX",
+    "セッション": "2026-09-24_Night",
+    "boundary": 1790259540.0,
+    "baseline_equity_yen": -75000.0,
+    "boundary_price": 4071.5,
+    "new_period_net_yen": 135000.0,
+    "carried_cycles": 0
+  },
+  {
+    "方式": "NT_ratio_mom_Z1_S0",
+    "銘柄": "NT",
+    "セッション": "2026-09-24_Night",
+    "境界時価": {
+      "NK225": 65480.0,
+      "TOPIX": 4071.5
+    },
+    "境界評価円": -50000.0,
+    "未知増分円": -50000.0
+  },
+  {
+    "方式": "NT_ratio_mom_Z1_S1",
+    "銘柄": "NT",
+    "セッション": "2026-09-24_Night",
+    "境界時価": {
+      "NK225": 65480.0,
+      "TOPIX": 4071.5
+    },
+    "境界評価円": -830000.0,
+    "未知増分円": -140000.0
+  },
+  {
+    "方式": "NT_ratio_mom_Z1_S2",
+    "銘柄": "NT",
+    "セッション": "2026-09-24_Night",
+    "境界時価": {
+      "NK225": 65480.0,
+      "TOPIX": 4071.5
+    },
+    "境界評価円": -255000.0,
+    "未知増分円": -10000.0
+  },
+  {
+    "方式": "NT_ratio_mom_Z1_S3",
+    "銘柄": "NT",
+    "セッション": "2026-09-24_Night",
+    "境界時価": {
+      "NK225": 65480.0,
+      "TOPIX": 4071.5
+    },
+    "境界評価円": -166000.0,
+    "未知増分円": -28000.0
+  },
+  {
+    "方式": "NT_ratio_mom_Z1_S4",
+    "銘柄": "NT",
+    "セッション": "2026-09-24_Night",
+    "境界時価": {
+      "NK225": 65480.0,
+      "TOPIX": 4071.5
+    },
+    "境界評価円": -772500.0,
+    "未知増分円": -145000.0
+  },
+  {
+    "方式": "NT_ratio_mom_Z1_S5",
+    "銘柄": "NT",
+    "セッション": "2026-09-24_Night",
+    "境界時価": {
+      "NK225": 65480.0,
+      "TOPIX": 4071.5
+    },
+    "境界評価円": -166010.73414159112,
+    "未知増分円": -28419.17639827903
+  },
+  {
+    "方式": "P03_R-1_T60",
+    "銘柄": "NK225",
+    "セッション": "2026-09-24_Night",
+    "boundary": 1790259540.0,
+    "baseline_equity_yen": -420000.0,
+    "boundary_price": 65480.0,
+    "new_period_net_yen": -300000.0,
+    "carried_cycles": 1
+  },
+  {
+    "方式": "P03_R-1_T60",
+    "銘柄": "TOPIX",
+    "セッション": "2026-09-24_Night",
+    "boundary": 1790259540.0,
+    "baseline_equity_yen": -55000.0,
+    "boundary_price": 4071.5,
+    "new_period_net_yen": -5000.0,
+    "carried_cycles": 1
+  },
+  {
+    "方式": "P08_R-1_E3_X2_U1_G1",
+    "銘柄": "NK225",
+    "セッション": "2026-09-24_Night",
+    "boundary": 1790259540.0,
+    "baseline_equity_yen": 30000.0,
+    "boundary_price": 65480.0,
+    "new_period_net_yen": -130000.0,
+    "carried_cycles": 0
+  },
+  {
+    "方式": "P08_R-1_E3_X2_U1_G1",
+    "銘柄": "TOPIX",
+    "セッション": "2026-09-24_Night",
+    "boundary": 1790259540.0,
+    "baseline_equity_yen": -40000.0,
+    "boundary_price": 4071.5,
+    "new_period_net_yen": 0.0,
+    "carried_cycles": 0
+  },
+  {
+    "方式": "P11_R-1_L1_U0",
+    "銘柄": "NK225",
+    "セッション": "2026-09-24_Night",
+    "boundary": 1790259540.0,
+    "baseline_equity_yen": 20000.0,
+    "boundary_price": 65480.0,
+    "new_period_net_yen": 0.0,
+    "carried_cycles": 1
+  },
+  {
+    "方式": "P11_R-1_L1_U0",
+    "銘柄": "TOPIX",
+    "セッション": "2026-09-24_Night",
+    "boundary": 1790259540.0,
+    "baseline_equity_yen": 710000.0,
+    "boundary_price": 4071.5,
+    "new_period_net_yen": -80000.0,
+    "carried_cycles": 1
+  },
+  {
+    "方式": "P12_R-1_E0_X2_U0",
+    "銘柄": "NK225",
+    "セッション": "2026-09-24_Night",
+    "boundary": 1790259540.0,
+    "baseline_equity_yen": -130000.0,
+    "boundary_price": 65480.0,
+    "new_period_net_yen": -190000.0,
+    "carried_cycles": 1
+  },
+  {
+    "方式": "P12_R-1_E0_X2_U0",
+    "銘柄": "TOPIX",
+    "セッション": "2026-09-24_Night",
+    "boundary": 1790259540.0,
+    "baseline_equity_yen": -325000.0,
+    "boundary_price": 4071.5,
+    "new_period_net_yen": -35000.0,
+    "carried_cycles": 1
+  },
+  {
+    "方式": "P16_R1_E1_X5_U0",
+    "銘柄": "NK225",
+    "セッション": "2026-09-24_Night",
+    "boundary": 1790259540.0,
+    "baseline_equity_yen": 160000.0,
+    "boundary_price": 65480.0,
+    "new_period_net_yen": -150000.0,
+    "carried_cycles": 1
+  },
+  {
+    "方式": "P16_R1_E1_X5_U0",
+    "銘柄": "TOPIX",
+    "セッション": "2026-09-24_Night",
+    "boundary": 1790259540.0,
+    "baseline_equity_yen": -85000.0,
+    "boundary_price": 4071.5,
+    "new_period_net_yen": 90000.0,
+    "carried_cycles": 1
+  },
+  {
+    "方式": "P21_R1_A2_U1",
+    "銘柄": "NK225",
+    "セッション": "2026-09-24_Night",
+    "boundary": 1790259540.0,
+    "baseline_equity_yen": 0.0,
+    "boundary_price": 65480.0,
+    "new_period_net_yen": 0.0,
+    "carried_cycles": 0
+  },
+  {
+    "方式": "P21_R1_A2_U1",
+    "銘柄": "TOPIX",
+    "セッション": "2026-09-24_Night",
+    "boundary": 1790259540.0,
+    "baseline_equity_yen": 0.0,
+    "boundary_price": 4071.5,
+    "new_period_net_yen": 20000.0,
+    "carried_cycles": 0
+  },
+  {
+    "方式": "Q02_pyramid_W1.5",
+    "銘柄": "NK225",
+    "セッション": "2026-09-24_Night",
+    "boundary": 1790259540.0,
+    "baseline_equity_yen": -380000.0,
+    "boundary_price": 65480.0,
+    "new_period_net_yen": -130000.0,
+    "carried_cycles": 0
+  },
+  {
+    "方式": "Q02_pyramid_W1.5",
+    "銘柄": "TOPIX",
+    "セッション": "2026-09-24_Night",
+    "boundary": 1790259540.0,
+    "baseline_equity_yen": -315000.0,
+    "boundary_price": 4071.5,
+    "new_period_net_yen": 80000.0,
+    "carried_cycles": 0
+  },
+  {
+    "方式": "Q02_single_W1.5",
+    "銘柄": "NK225",
+    "セッション": "2026-09-24_Night",
+    "boundary": 1790259540.0,
+    "baseline_equity_yen": -260000.0,
+    "boundary_price": 65480.0,
+    "new_period_net_yen": 0.0,
+    "carried_cycles": 0
+  },
+  {
+    "方式": "Q02_single_W1.5",
+    "銘柄": "TOPIX",
+    "セッション": "2026-09-24_Night",
+    "boundary": 1790259540.0,
+    "baseline_equity_yen": -165000.0,
+    "boundary_price": 4071.5,
+    "new_period_net_yen": 90000.0,
+    "carried_cycles": 0
+  },
+  {
+    "方式": "旧T12",
+    "銘柄": "NK225",
+    "セッション": "2026-09-24_Night",
+    "boundary": 1790259540.0,
+    "baseline_equity_yen": 220000.0,
+    "boundary_price": 65480.0,
+    "new_period_net_yen": -130000.0,
+    "carried_cycles": 1
+  },
+  {
+    "方式": "旧T12",
+    "銘柄": "TOPIX",
+    "セッション": "2026-09-24_Night",
+    "boundary": 1790259540.0,
+    "baseline_equity_yen": 215000.0,
+    "boundary_price": 4071.5,
+    "new_period_net_yen": -55000.0,
+    "carried_cycles": 1
+  }
+]
