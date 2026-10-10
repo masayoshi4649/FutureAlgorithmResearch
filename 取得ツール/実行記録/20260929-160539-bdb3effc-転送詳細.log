@@ -1,0 +1,36 @@
+
+	                   1	\\10.10.100.1\log\candle_5min\TOPIX\
+	    New File  		    9838 2026/09/28 21:00:01	\\10.10.100.1\log\candle_5min\TOPIX\2026-09-28_Night.csv
+
+	                   1	\\10.10.100.1\log\candle_5min\TOPIX\
+	    New File  		    5411 2026/09/29 06:45:00	\\10.10.100.1\log\candle_5min\TOPIX\2026-09-29_Day.csv
+
+	                   1	\\10.10.100.1\log\candle_5min\NK225\
+	    New File  		    9825 2026/09/28 21:00:01	\\10.10.100.1\log\candle_5min\NK225\2026-09-28_Night.csv
+
+	                   1	\\10.10.100.1\log\candle_5min\NK225\
+	    New File  		    5363 2026/09/29 06:45:00	\\10.10.100.1\log\candle_5min\NK225\2026-09-29_Day.csv
+
+	                   1	\\10.10.100.1\log\candle_1min\TOPIX\
+	    New File  		   46559 2026/09/28 21:00:01	\\10.10.100.1\log\candle_1min\TOPIX\2026-09-28_Night.csv
+
+	                   1	\\10.10.100.1\log\candle_1min\TOPIX\
+	    New File  		   26414 2026/09/29 06:45:00	\\10.10.100.1\log\candle_1min\TOPIX\2026-09-29_Day.csv
+
+	                   1	\\10.10.100.1\log\candle_1min\NK225\
+	    New File  		   43337 2026/09/28 21:00:01	\\10.10.100.1\log\candle_1min\NK225\2026-09-28_Night.csv
+
+	                   1	\\10.10.100.1\log\candle_1min\NK225\
+	    New File  		   26228 2026/09/29 06:45:00	\\10.10.100.1\log\candle_1min\NK225\2026-09-29_Day.csv
+
+	                   1	\\10.10.100.1\log\book\TOPIX\
+	    New File  		259093200 2026/09/28 21:00:01	\\10.10.100.1\log\book\TOPIX\2026-09-28_Night.jsonl
+
+	                   1	\\10.10.100.1\log\book\TOPIX\
+	    New File  		210640815 2026/09/29 06:45:00	\\10.10.100.1\log\book\TOPIX\2026-09-29_Day.jsonl
+
+	                   1	\\10.10.100.1\log\book\NK225\
+	    New File  		277282487 2026/09/28 21:00:00	\\10.10.100.1\log\book\NK225\2026-09-28_Night.jsonl
+
+	                   1	\\10.10.100.1\log\book\NK225\
+	    New File  		234031468 2026/09/29 06:45:00	\\10.10.100.1\log\book\NK225\2026-09-29_Day.jsonl

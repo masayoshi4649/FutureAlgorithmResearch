@@ -1,0 +1,18 @@
+
+	                   1	\\10.10.100.1\log\candle_5min\TOPIX\
+	    New File  		    5370 2026/10/01 06:45:00	\\10.10.100.1\log\candle_5min\TOPIX\2026-10-01_Day.csv
+
+	                   1	\\10.10.100.1\log\candle_5min\NK225\
+	    New File  		    5428 2026/10/01 06:45:00	\\10.10.100.1\log\candle_5min\NK225\2026-10-01_Day.csv
+
+	                   1	\\10.10.100.1\log\candle_1min\TOPIX\
+	    New File  		   26234 2026/10/01 06:45:00	\\10.10.100.1\log\candle_1min\TOPIX\2026-10-01_Day.csv
+
+	                   1	\\10.10.100.1\log\candle_1min\NK225\
+	    New File  		   26318 2026/10/01 06:45:00	\\10.10.100.1\log\candle_1min\NK225\2026-10-01_Day.csv
+
+	                   1	\\10.10.100.1\log\book\TOPIX\
+	    New File  		201473170 2026/10/01 06:45:00	\\10.10.100.1\log\book\TOPIX\2026-10-01_Day.jsonl
+
+	                   1	\\10.10.100.1\log\book\NK225\
+	    New File  		224781471 2026/10/01 06:45:00	\\10.10.100.1\log\book\NK225\2026-10-01_Day.jsonl
