@@ -16,6 +16,11 @@ def account(key: tuple,args: tuple,out: tuple) -> dict:
     """
     a=BASE.account(key,args,out)
     for code,name in [(20,'extensions'),(21,'protections'),(22,'pauses'),(23,'rearms'),(24,'skipped')]:a[name]=int((out[4][:,2]==code).sum())
+    losses=[bool(t[10]<0) for t in out[1]];streak=longest=leading=0
+    for i,lost in enumerate(losses):
+        streak=streak+1 if lost else 0;longest=max(longest,streak)
+        if lost and leading==i:leading+=1
+    a.update(max_consecutive_trade_losses=longest,leading_trade_losses=leading,trailing_trade_losses=streak)
     return a
 
 
@@ -36,6 +41,11 @@ def aggregate(rows: list[dict],symbol: str,sessions: list[str]) -> dict:
         if r['net']<0:streak+=1;longest=max(longest,streak)
         elif r['trades']>0:streak=0
     a['consecutive_losing_sessions']=longest
+    streak=longest=0
+    for r in rs:
+        longest=max(longest,r['max_consecutive_trade_losses'],streak+r['leading_trade_losses'])
+        streak=streak+r['trades'] if r['leading_trade_losses']==r['trades'] else r['trailing_trade_losses']
+    a['max_consecutive_trade_losses']=longest
     days={};weeks={}
     for r in rs:
         d=date.fromisoformat(r['session'][:10]);week=str(d-timedelta(days=d.weekday()));key=str(d)

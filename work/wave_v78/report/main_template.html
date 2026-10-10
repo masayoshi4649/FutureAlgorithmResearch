@@ -13,13 +13,15 @@
 <main><h1 id="title"></h1><div id="conclusion" class="intro"></div>
 <p class="small">TOPIXミニ10枚／日経225マイクロ20枚。各場内で全返済、手数料後。<strong>金額利益割合＝利益÷（利益＋損失）</strong>。80%は利益:損失4:1で、取引勝率とは別です。</p>
 <section class="panel"><h2>従来J2と統合候補</h2><div class="controls"><label>商品 <select id="comparison-symbol"><option value="TOPIX">TOPIXミニ</option><option value="NK225">日経225マイクロ</option></select></label><label>期間 <select id="comparison-period"></select></label></div><div id="comparison"></div><p class="small">全30場は既知資料。代表は前16場だけで固定し、後14場で確認しました。今回は未見場の試験ではありません。</p></section>
+<section class="panel"><h2>部品を組み合わせた結果</h2><p class="small">J2の入口・0.4%幅・枚数を保ち、各部品だけを加えた全30場の収支差。プラスは改善、マイナスは悪化。</p><div id="parts-overview" class="table-wrap"></div></section>
+<details class="panel"><summary>上昇・下落・逆方向の場でどうだったか（従来J2・事後分類）</summary><p class="small">全30場を、保存五分足の最初の始値から最後の終値への符号で分類。終了後の説明専用で、入口・途中・出口・手法選択へ使用していません。</p><div id="direction-groups" class="table-wrap"></div><p class="small">微小変動も符号通りに分類し、横ばい閾値は設定していません。場の途中が一方向だった意味ではなく、公式始値・終値と一致する保証もありません。</p></details>
 <details class="panel"><summary>過去の手法から、何を残したか</summary><div id="history" class="table-wrap"></div><p class="small">古い円収支は期間・数量・費用・約定モデルが異なるため、今回の順位へ混ぜていません。</p></details>
 <div id="methods"></div>
 <section class="panel"><h2>各セッションの損益と売買位置</h2><div class="controls"><label>手法 <select id="detail-method"></select></label><label>商品 <select id="detail-symbol"><option value="TOPIX">TOPIXミニ</option><option value="NK225">日経225マイクロ</option></select></label></div>
 <details><summary>全30セッションの利益・損失・収支</summary><div id="session-results"></div></details>
 <details><summary>週別・デイ／ナイト・最大利益日除外</summary><div id="groups"></div></details>
 <details><summary>休止・延長・損切りの動作と金額</summary><div id="management"></div></details>
-<details><summary>部品を単独で加えた対照・情報遅延の感度</summary><div id="controls"></div><div id="sensitivity"></div></details>
+<details><summary>部品を単独で加えた対照・情報遅延の感度</summary><ul id="parts-summary" class="small"></ul><div id="controls"></div><div id="sensitivity"></div><p class="small">上は全30場の同入口対照、下は選択した方式自体の情報遅延感度です。</p></details>
 <h3>五分足と新規・返済</h3><div class="controls"><label>セッション <select id="detail-session"></select></label></div><p id="chart-caption" class="small"></p><div class="legend"><span>○ 新規 ／ ◇ 返済</span><span class="buy">青：買い</span><span class="sell">桃：売り</span><span>点に重ねると時刻・価格・枚数</span></div><div id="chart" class="chart-box"></div><details><summary>選択セッションの全注文</summary><div id="orders"></div></details></section>
 <details><summary>評価条件と限界</summary><ul id="notes" class="small"></ul></details>
 <p><a id="all-link">全162条件の比較</a></p><footer><a href="README.md">資料案内</a> · <a href="公開会計.json">表示数値の照合</a></footer></main>
