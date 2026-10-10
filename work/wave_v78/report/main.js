@@ -1,0 +1,27 @@
+const METHODS=[D.benchmark,...D.methods],BYID=new Map(METHODS.map(m=>[m.id,m]));
+
+/**
+ * 機能: 基準と前半固定の代表を商品別に比較する。
+ * @returns {void} 返り値なし。
+ */
+function comparison(){const s=document.getElementById('comparison-symbol').value,p=document.getElementById('comparison-period').value;document.getElementById('comparison').innerHTML=table(METHODS.map(m=>({label:esc(m.title)+`<br><span class="id">${esc(m.id)}</span>`,a:m.periods[p][s],total:m.id===D.benchmark.id})),true);}
+
+/**
+ * 機能: 方式の入口・途中・出口を短い章へする。
+ * @param {object} method - 固定代表又は基準。
+ * @param {number} index - 章番号。
+ * @returns {string} 三段階説明のHTML。
+ */
+function methodCard(method,index){return `<section class="method" data-method-id="${esc(method.id)}"><h2>${index===0?'基準':index+'.'} ${esc(method.title)}</h2><p class="id">${esc(method.id)}</p><div class="steps">${[['入口','entry'],['途中','middle'],['出口','exit']].map(([label,key])=>`<div class="step"><strong>${label}</strong><p>${esc(method.steps[key])}</p></div>`).join('')}</div><p class="finding small">${esc(method.finding)}</p><button data-select-method="${esc(method.id)}">この手法の全場損益・売買図へ</button></section>`;}
+
+/**
+ * 機能: 選択方式の全場・期間内訳・注文図を更新する。
+ * @returns {void} 返り値なし。
+ */
+function details(){const m=BYID.get(document.getElementById('detail-method').value),s=document.getElementById('detail-symbol').value,session=document.getElementById('detail-session').value;document.getElementById('session-results').innerHTML=table([...D.sessions.map(key=>({label:`<button class="session-link" data-session="${esc(key)}">${esc(sessionName(key))}</button>`,a:m.rows.find(r=>r.symbol===s&&r.session===key)})),{label:'全30合計',a:m.periods.全30[s],total:true}]);document.querySelectorAll('[data-session]').forEach(b=>b.addEventListener('click',()=>{document.getElementById('detail-session').value=b.dataset.session;details();document.getElementById('chart').scrollIntoView({block:'center',behavior:'smooth'});}));document.getElementById('groups').innerHTML=table(m.groups[s].map(a=>({label:esc(a.label),a})),true)+`<p class="small">最大利益日は、同じ日付のデイ＋ナイトの合計で選び、その日の全売買を除いた事後診断です。取引条件の再選定ではありません。</p>`;
+const a=m.periods.全30[s],status=m.management[s];document.getElementById('management').innerHTML=`<div class="table-wrap"><table><thead><tr><th>取引した場</th><th>一度でも休止した場</th><th>休止回数</th><th>休止で見送った入口</th><th>15分延長の回数</th><th>全手数料</th><th>最大負け取引</th></tr></thead><tbody><tr><td>${a.active_sessions}/30</td><td>${status.paused_sessions}</td><td>${status.pauses}</td><td>${status.skipped_entries}</td><td>${status.extensions}</td><td>${NUMBER.format(a.fees)}円</td><td>${money(a.max_trade_loss,false,true)}</td></tr></tbody></table></div><p class="small">休止した場でも、休止前後の取引は成績へ含めています。無取引は勝ちに数えません。平均勝ち／負けは実際の費用後決済額の平均比です。</p>`;document.getElementById('controls').innerHTML=table(m.controls.map(c=>({label:esc(c.id),a:c.periods.全30[s],total:c.id===m.id})),true);document.getElementById('sensitivity').innerHTML=table(m.sensitivity.map(c=>({label:'情報遅延'+c.delay+'秒・全30場',a:c.periods.全30[s],total:c.delay===5})),true);document.getElementById('chart-caption').textContent=m.title+' · '+sessionName(session)+' · '+NAMES[s];document.getElementById('chart').innerHTML=chart(m,s,session);document.getElementById('orders').innerHTML=history(m,s,session);}
+
+// ----------------------------------------
+// 保存数値と短い説明を組み立て、商品・期間・売買図の操作を接続する。
+document.title=D.title;document.getElementById('title').textContent=D.title;document.getElementById('conclusion').innerHTML=D.conclusions.map(x=>`<p>${esc(x)}</p>`).join('');document.getElementById('comparison-period').innerHTML=D.periodNames.map(p=>`<option${p==='全30'?' selected':''}>${esc(p)}</option>`).join('');document.getElementById('history').innerHTML=`<table><thead><tr><th>系統</th><th>扱い</th><th>理由</th><th>当時の評価条件</th></tr></thead><tbody>${D.history.map(x=>`<tr><td><a href="${esc(x.url)}">${esc(x.name)}</a></td><td>${esc(x.status)}</td><td class="wrap">${esc(x.reason)}</td><td class="wrap small">${esc(x.assumption)}</td></tr>`).join('')}</tbody></table>`;document.getElementById('methods').innerHTML=METHODS.map(methodCard).join('');document.getElementById('detail-method').innerHTML=METHODS.map(m=>`<option value="${esc(m.id)}">${esc(m.title+'｜'+m.id)}</option>`).join('');document.getElementById('detail-session').innerHTML=D.sessions.map(s=>`<option value="${esc(s)}">${esc(sessionName(s))}</option>`).join('');document.getElementById('detail-session').value=D.sessions.at(-1);document.getElementById('notes').innerHTML=D.notes.map(n=>`<li>${esc(n)}</li>`).join('');document.getElementById('all-link').href=D.allUrl;for(const id of ['comparison-symbol','comparison-period'])document.getElementById(id).addEventListener('change',comparison);for(const id of ['detail-method','detail-symbol','detail-session'])document.getElementById(id).addEventListener('change',details);document.querySelectorAll('[data-select-method]').forEach(b=>b.addEventListener('click',()=>{document.getElementById('detail-method').value=b.dataset.selectMethod;details();document.getElementById('detail-method').scrollIntoView({block:'start',behavior:'smooth'});}));comparison();details();window.reportTest={D,METHODS,comparison,details,chart,history,table};
+

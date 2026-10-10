@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>全192条件の比較</title>
+  <style>
+    :root{color-scheme:dark;--bg:#0b111a;--panel:#121c29;--text:#edf3fa;--muted:#afbdd0;--line:#33485d;--green:#68e0b5;--red:#ff8b96;--blue:#74d9ff;--amber:#f2c87c}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.65 system-ui,-apple-system,"Yu Gothic UI","Meiryo",sans-serif}main{max-width:1320px;margin:auto;padding:28px 22px 50px}h1{font-size:clamp(24px,3vw,31px);margin:0 0 12px}h2{font-size:21px;margin:22px 0 10px}h3{font-size:17px;margin:18px 0 8px}p{margin:9px 0}a{color:var(--blue);text-underline-offset:3px}button,select{font:inherit;color:var(--text);border:1px solid #506880;border-radius:7px;background:#172536;padding:7px 11px}button{cursor:pointer}button:hover{background:#27425b}button[aria-pressed="true"]{background:#22516a;border-color:var(--blue)}button:focus-visible,select:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid var(--blue);outline-offset:3px}.muted,.small{color:var(--muted)}.small{font-size:13px}.positive{color:var(--green)}.negative{color:var(--red)}.money{white-space:nowrap;font-variant-numeric:tabular-nums}.panel{padding:18px 20px;background:var(--panel);border:1px solid var(--line);border-radius:10px;margin:18px 0;min-width:0}.controls{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:14px 0}.switch{display:flex;gap:7px;flex-wrap:wrap}.table-wrap{max-width:100%;overflow:auto;border:1px solid var(--line);border-radius:8px;margin:10px 0 15px}.all-conditions{max-height:590px}table{width:100%;border-collapse:collapse;font-size:14px;font-variant-numeric:tabular-nums}th,td{padding:9px 11px;text-align:right;border-bottom:1px solid #293c50;white-space:nowrap}th{color:#d5e4f3;background:#1b2d3e;font-weight:600;position:sticky;top:0;z-index:1}th:first-child,td:first-child{text-align:left}tbody tr:hover{background:#1c3042}tbody tr:last-child td{border-bottom:0}.condition-link{border:0;padding:0;background:none;color:var(--blue);font:12px/1.5 ui-monospace,Consolas,monospace;text-decoration:underline;text-underline-offset:3px}.selected-row{background:#203b4e!important}.total{font-weight:700;background:#1a3040}.total td{border-top:2px solid #57738e}.badge{display:inline-block;font-size:12px;line-height:1.5;border-radius:12px;padding:3px 8px;background:#27394e;color:#c4def3;margin-right:5px}.badge.posthoc{color:var(--amber);background:#40301d}.badge.qualified{color:#bff4df;background:#1d4538}.badge.unqualified{color:var(--amber);background:#3c2c20}.config{padding:10px 13px;background:#172737;border-radius:7px;font-size:14px;color:#ccdae9}.id{font:13px/1.5 ui-monospace,Consolas,monospace;overflow-wrap:anywhere}.status-line{margin:10px 0}.note{border-left:3px solid var(--blue);padding:9px 13px;background:#162435}.summary-pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:12px 0}.summary-card{padding:12px 14px;background:#17293a;border-radius:8px}.summary-card strong{display:block;font-size:22px}.full-width-select{max-width:100%}details{margin:14px 0}summary{cursor:pointer;font-weight:600;padding:4px 0}footer{font-size:13px;color:var(--muted);margin-top:25px}.sr-only{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+    @media(max-width:650px){main{padding:18px 12px 32px}.panel{padding:14px 11px}h2{font-size:19px}.summary-card{padding:10px}.summary-card strong{font-size:19px}th,td{padding:8px 9px}.full-width-select{width:100%}}
+  </style>
+</head>
+<body>
+<!--
+[コンポーネント概要]
+#condition-list は、全192条件の両銘柄収支を一覧表示します。
+条件IDを押すと #selected-condition の対象条件を切り替えます。
+#condition-select は全条件の選択欄、#family-filter は一覧だけの機構絞り込みです。
+#symbol-switch はTOPIXミニ5枚と日経マイクロ10枚の詳細表示を切り替えます。
+#period-table と #session-table は手数料後の利益・損失・収支と勝負枚数を表示します。
+#sensitivity-table は、同じ注文の価格だけを中値へ置換した診断を表示します。
+全期間での事後黒字と前半だけの固定選定を別の表示ラベルで区別します。
+埋め込みJSONだけを使用し、ネットワーク通信と注文は行いません。
+-->
+<main>
+  <header>
+    <h1 id="page-title">全192条件の比較</h1>
+    <p><a id="main-link" href="ティック入口とIFDトレールの損益.html">四機構の説明と五分足へ戻る</a></p>
+    <p class="muted">全条件を同じ枚数・気配約定・手数料で比較します。金額は商品間の単純な優劣には使いません。</p>
+    <p class="note small">「前半選定」は前16セッションだけで選んだ比較用上位です。「全28事後両黒字」は全期間を見て分かった例で、選定候補とは区別します。</p>
+  </header>
+  <section class="panel" aria-label="全条件一覧">
+    <h2>全192条件の一覧</h2>
+    <div class="controls"><label for="family-filter">機構</label><select id="family-filter"><option value="0">全4機構</option><option value="1">1. 中値往復の反転</option><option value="2">2. 押し戻し後の再開</option><option value="3">3. 表示補充後の反転</option><option value="4">4. 表示補充価格の突破</option></select><span id="list-count" class="small"></span></div>
+    <div class="table-wrap all-conditions"><table id="condition-list"><thead><tr><th scope="col">条件ID</th><th scope="col">区分</th><th scope="col">TOPIXミニ5枚 全28収支</th><th scope="col">取引数</th><th scope="col">日経マイクロ10枚 全28収支</th><th scope="col">取引数</th></tr></thead><tbody></tbody></table></div>
+  </section>
+  <section class="panel" id="selected-condition" aria-label="選択条件の詳細">
+    <h2>選択条件の利益・損失</h2>
+    <div class="controls"><label for="condition-select">条件ID</label><select id="condition-select" class="full-width-select"></select></div>
+    <p id="condition-name" class="id"></p>
+    <p id="condition-status" class="status-line"></p>
+    <div id="condition-config" class="config"></div>
+    <div class="summary-pair" id="condition-totals"></div>
+    <div class="controls" id="symbol-switch"><span>詳細銘柄</span><div class="switch"><button data-symbol="TOPIX" aria-pressed="true">TOPIXミニ5枚</button><button data-symbol="NK225" aria-pressed="false">日経マイクロ10枚</button></div></div>
+    <h3>前半・後半・全期間</h3>
+    <div class="table-wrap"><table id="period-table"><thead><tr><th scope="col">期間</th><th scope="col">利益</th><th scope="col">損失</th><th scope="col">収支</th><th scope="col">勝ち枚数</th><th scope="col">負け枚数</th><th scope="col">取引数</th><th scope="col">勝率</th><th scope="col">1枚平均損益比</th><th scope="col">手数料</th></tr></thead><tbody></tbody></table></div>
+    <h3>気配約定と中値診断</h3>
+    <p class="small">中値は同じ注文の価格だけを置換した非実行可能な感度です。入口・返済条件・次の取引は再計算していません。差額は買いask・売りbidの影響を示します。</p>
+    <div class="table-wrap"><table id="sensitivity-table"><thead><tr><th scope="col">期間</th><th scope="col">気配約定の収支</th><th scope="col">同じ注文の中値収支</th><th scope="col">気配差の負担</th></tr></thead><tbody></tbody></table></div>
+    <h3>全28セッション</h3>
+    <div class="table-wrap"><table id="session-table"><thead><tr><th scope="col">セッション</th><th scope="col">利益</th><th scope="col">損失</th><th scope="col">収支</th><th scope="col">勝ち枚数</th><th scope="col">負け枚数</th><th scope="col">取引数</th><th scope="col">勝率</th><th scope="col">1枚平均損益比</th><th scope="col">手数料</th></tr></thead><tbody></tbody></table></div>
+    <p id="risk-stats" class="small"></p>
+  </section>
+  <details>
+    <summary>読み方と選定規則</summary>
+    <div class="small">
+      <p>各機構で、前半に両銘柄それぞれ20取引以上・8活動場以上ある条件を対象に、弱い側の1取引平均の手数料後呼値利益が最大の設定を選びます。両銘柄黒字かつ1枚平均損益比1超なら採用条件達成です。</p>
+      <p>利益と損失は手数料後の取引を分類した合計です。損失欄は正の金額、収支は利益−損失です。表示された手数料をもう一度引かないでください。</p>
+      <p>勝率は利益取引数÷全決済取引数。無取引は勝ちに含めません。1枚平均損益比は「利益÷勝ち枚数」÷「損失÷負け枚数」で、勝ち又は負けがない場合は未定義です。</p>
+      <p>価格幅は参照ラージの呼値単位です。保存された板の中値変更を価格ティックとして数え、単なる板更新行数とは区別します。</p>
+      <p>全28セッションは既知データです。時間順の後半比較を行いますが、完全に未知の検証の証明ではありません。</p>
+    </div>
+  </details>
+  <footer>TOPIXミニ5枚／日経225マイクロ10枚。参照ラージの買いask・売りbidと両側手数料による再生です。</footer>
+</main>
+<script id="comparison-data" type="application/json">__DATA__</script>
+<script>
+"use strict";
+const D=JSON.parse(document.getElementById("comparison-data").textContent);
+const FAMILY_NAMES={1:"中値往復の反転",2:"押し戻し後の再開",3:"表示補充後の反転",4:"表示補充価格の突破"};
+const SYMBOL_NAMES={TOPIX:"TOPIXミニ5枚",NK225:"日経マイクロ10枚"};
+const PERIODS=["前16","後12","全28"];
+const NUMBER=new Intl.NumberFormat("ja-JP",{maximumFractionDigits:0});
+const STATE={id:initialSelection(D),symbol:"TOPIX",family:0};
+
+/**
+ * 機能: リンクの条件IDが実在する場合だけ初期選択へ反映する。
+ * @param {Object} data - 全比較データ。
+ * @returns {string} ハッシュ指定又は最初の固定選定条件ID。
+ */
+function initialSelection(data){
+  let requested="";
+  try{requested=decodeURIComponent(location.hash.slice(1));}catch(error){requested="";}
+  const methods=data.methods||[];
+  return methods.some(m=>m.config?.id===requested)?requested:(data.selectedIds||[]).find(id=>methods.some(m=>m.config?.id===id))||methods[0]?.config?.id||"";
+}
+
+/**
+ * 機能: データ文字列をHTMLへ安全に挿入できる形へ変換する。
+ * @param {unknown} value - 表示対象。
+ * @returns {string} 特殊文字を変換した文字列。
+ */
+function esc(value){return String(value??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]));}
+
+/**
+ * 機能: 有限数を取り出し、欠測時は表示用の代替値を使う。
+ * @param {unknown} value - 数値候補。
+ * @param {number} fallback - 欠測時の代替値。
+ * @returns {number} 有限数。
+ */
+function num(value,fallback=0){return value!==null&&value!==undefined&&Number.isFinite(Number(value))?Number(value):fallback;}
+
+/**
+ * 機能: 円金額を符号付き又は絶対額で整形する。
+ * @param {unknown} value - 円金額。
+ * @param {boolean} signed - 正の値にプラスを付けるか。
+ * @returns {string} 日本語の円表示。
+ */
+function yen(value,signed=false){const n=num(value);return `${signed&&n>0?"＋":n<0?"−":""}${NUMBER.format(Math.abs(n))}円`;}
+
+/**
+ * 機能: 金額の正負に応じた配色クラスを求める。
+ * @param {unknown} value - 判定対象。
+ * @returns {string} 配色クラス。
+ */
+function tone(value){return num(value)>0?"positive":num(value)<0?"negative":"muted";}
+
+/**
+ * 機能: 比率の欠測を区別して小数又は百分率で表示する。
+ * @param {unknown} value - 比率。
+ * @param {boolean} percent - 百分率で表示するか。
+ * @returns {string} 表示比率又は欠測記号。
+ */
+function ratio(value,percent=false){return value===null||value===undefined||!Number.isFinite(Number(value))?"—":percent?`${(Number(value)*100).toFixed(1)}%`:Number(value).toFixed(2);}
+
+/**
+ * 機能: 保存セッションキーを日本語の場名へ変換する。
+ * @param {string} session - セッションキー。
+ * @returns {string} 表示用の場名。
+ */
+function sessionName(session){return String(session).replace(/_Day$/," 日中").replace(/_Night$/," 夜間");}
+
+/**
+ * 機能: 選択条件の固定選定と事後黒字の状態を独立に判定する。
+ * @param {Object} method - 一条件の結果。
+ * @returns {Object} 選定、前半採用達成、全期間事後黒字の真偽。
+ */
+function flags(method){
+  const front=method.periods?.["前16"]||{},all=method.periods?.["全28"]||{};
+  return {selected:(D.selectedIds||[]).includes(method.config?.id),qualified:["TOPIX","NK225"].every(s=>num(front[s]?.trades)>=20&&num(front[s]?.active_sessions)>=8&&num(front[s]?.net)>0&&num(front[s]?.payoff)>1),posthoc:["TOPIX","NK225"].every(s=>num(all[s]?.net)>0)};
+}
+
+/**
+ * 機能: 選定と全期間事後結果を混同せず短いラベルへ変換する。
+ * @param {Object} method - 一条件の結果。
+ * @param {boolean} detailed - 採用条件の達成状態も表示するか。
+ * @returns {string} 状態表示のHTML。
+ */
+function badges(method,detailed=false){
+  const f=flags(method),parts=[];
+  if(f.selected)parts.push(`<span class="badge">前半選定</span>`);
+  if(detailed&&f.selected)parts.push(`<span class="badge ${f.qualified?"qualified":"unqualified"}">${f.qualified?"前半の採用条件を達成":"比較用上位・採用条件未達"}</span>`);
+  if(f.posthoc)parts.push(`<span class="badge posthoc">全28事後両黒字</span>`);
+  return parts.join("")||`<span class="muted">—</span>`;
+}
+
+/**
+ * 機能: 各場の会計から勝率と一枚平均の損益比を求める。
+ * @param {Object} row - 期間又は場の会計。
+ * @returns {Object} 勝率と損益比。
+ */
+function metrics(row){
+  const trades=num(row.trades),winLots=num(row.winning_lots),lossLots=num(row.losing_lots),loss=num(row.loss);
+  return {winRate:row.win_rate??(trades?num(row.wins)/trades:null),payoff:row.payoff??(winLots>0&&lossLots>0&&loss>0?(num(row.profit)/winLots)/(loss/lossLots):null)};
+}
+
+// ----------------------------------------
+// 全条件一覧と詳細会計を別々に描画し、一覧絞り込みで選定を変えない。
+
+/**
+ * 機能: 利益、損失、枚数、取引、勝率、料金を共通の表行へ変換する。
+ * @param {Object} row - 会計集計。
+ * @param {string} label - 最初の列の表示文字。
+ * @param {string} className - 行へ付けるクラス。
+ * @returns {string} 表の行のHTML。
+ */
+function accountRow(row,label,className=""){
+  const m=metrics(row);
+  return `<tr class="${esc(className)}"><td>${esc(label)}</td><td class="money positive">${yen(row.profit)}</td><td class="money negative">${yen(row.loss)}</td><td class="money ${tone(row.net)}">${yen(row.net,true)}</td><td>${NUMBER.format(num(row.winning_lots))}</td><td>${NUMBER.format(num(row.losing_lots))}</td><td>${NUMBER.format(num(row.trades))}</td><td>${ratio(m.winRate,true)}</td><td>${ratio(m.payoff)}</td><td class="money">${yen(row.fees)}</td></tr>`;
+}
+
+/**
+ * 機能: 全条件又は一機構の両商品収支を元の固定順で表示する。
+ * @returns {undefined} 返り値なし。
+ */
+function renderList(){
+  const methods=(D.methods||[]).filter(m=>STATE.family===0||num(m.config?.family)===STATE.family);
+  document.querySelector("#condition-list tbody").innerHTML=methods.map(m=>{
+    const a=m.periods?.["全28"]||{},t=a.TOPIX||{},n=a.NK225||{},id=m.config?.id||"";
+    return `<tr class="${id===STATE.id?"selected-row":""}"><td><button class="condition-link" data-condition="${esc(id)}">${esc(id)}</button></td><td>${badges(m)}</td><td class="money ${tone(t.net)}">${yen(t.net,true)}</td><td>${NUMBER.format(num(t.trades))}</td><td class="money ${tone(n.net)}">${yen(n.net,true)}</td><td>${NUMBER.format(num(n.trades))}</td></tr>`;
+  }).join("");
+  document.getElementById("list-count").textContent=`${methods.length}条件を表示 ／ 全${(D.methods||[]).length}条件`;
+}
+
+/**
+ * 機能: 一条件の親注文、子注文、時間上限を平易な文へ変換する。
+ * @param {Object} config - 固定条件。
+ * @returns {string} 設定説明。
+ */
+function configText(config){
+  const parent=num(config.entry_type)===1?`${num(config.entry_width)}呼値の新規トレール`:`候補時の気配価格を新規逆指値に設定`;
+  const child=num(config.initial_stop)>0?`IFD-OCO、初期逆指値${num(config.initial_stop)}呼値`:`IFD、独立した初期逆指値なし`;
+  const activation=num(config.activation)>0?`${num(config.activation)}呼値の順行で追跡開始`:`新規後から追跡開始`;
+  return `入口${num(config.strength)===1?"強め":"標準"} ／ ${parent} ／ ${child} ／ ${activation}・トレール幅${num(config.trail_width)}呼値 ／ 最長${num(config.hold_seconds)/60}分`;
+}
+
+/**
+ * 機能: 選択した条件と銘柄の期間、感度、全場表を再描画する。
+ * @returns {undefined} 返り値なし。
+ */
+function renderDetail(){
+  const method=(D.methods||[]).find(m=>m.config?.id===STATE.id);
+  if(!method)return;
+  const symbol=STATE.symbol,config=method.config||{};
+  document.getElementById("condition-select").value=STATE.id;
+  document.getElementById("condition-name").textContent=`${STATE.id} ／ ${FAMILY_NAMES[num(config.family)]||""}`;
+  document.getElementById("condition-status").innerHTML=badges(method,true);
+  document.getElementById("condition-config").textContent=configText(config);
+  document.querySelectorAll("#symbol-switch button").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.symbol===symbol)));
+  document.getElementById("condition-totals").innerHTML=["TOPIX","NK225"].map(s=>{const a=method.periods?.["全28"]?.[s]||{};return `<div class="summary-card"><span class="small">全28 ／ ${SYMBOL_NAMES[s]}</span><strong class="money ${tone(a.net)}">${yen(a.net,true)}</strong></div>`;}).join("");
+  document.querySelector("#period-table tbody").innerHTML=PERIODS.map(p=>accountRow(method.periods?.[p]?.[symbol]||{},p,p==="全28"?"total":"")).join("");
+  document.querySelector("#sensitivity-table tbody").innerHTML=PERIODS.map(p=>{
+    const a=method.periods?.[p]?.[symbol]||{},burden=num(a.ideal_net)-num(a.net);
+    return `<tr class="${p==="全28"?"total":""}"><td>${esc(p)}</td><td class="money ${tone(a.net)}">${yen(a.net,true)}</td><td class="money ${tone(a.ideal_net)}">${yen(a.ideal_net,true)}</td><td class="money">${yen(burden)}</td></tr>`;
+  }).join("");
+  const bySession=new Map((method.rows||[]).filter(r=>r.symbol===symbol).map(r=>[r.session,r]));
+  const all=method.periods?.["全28"]?.[symbol]||{};
+  document.querySelector("#session-table tbody").innerHTML=(D.sessions||[]).map(session=>accountRow(bySession.get(session)||{},sessionName(session))).join("")+accountRow(all,"全28 合計","total");
+  document.getElementById("risk-stats").textContent=`最大1取引損失 ${yen(all.max_trade_loss)} ／ 最大時価下落 ${yen(all.drawdown)} ／ 活動${num(all.active_sessions)}場 ／ 最大黒字場を除く収支 ${yen(all.without_best_session,true)}`;
+  renderList();
+}
+
+/**
+ * 機能: 全192条件の選択欄と切り替えイベントを初期化する。
+ * @param {Object} data - 全比較の埋め込みデータ。
+ * @returns {undefined} 返り値なし。
+ */
+function initialize(data){
+  document.title=data.title||"全192条件の比較";
+  document.getElementById("page-title").textContent=document.title;
+  if(data.mainUrl)document.getElementById("main-link").href=data.mainUrl;
+  document.getElementById("condition-select").innerHTML=(data.methods||[]).map(m=>`<option value="${esc(m.config?.id)}">${esc(m.config?.id)} ／ ${esc(FAMILY_NAMES[num(m.config?.family)]||"")}</option>`).join("");
+  document.getElementById("condition-select").addEventListener("change",event=>{STATE.id=event.target.value;renderDetail();});
+  document.getElementById("family-filter").addEventListener("change",event=>{STATE.family=num(event.target.value);renderList();});
+  document.getElementById("symbol-switch").addEventListener("click",event=>{const b=event.target.closest("button[data-symbol]");if(b){STATE.symbol=b.dataset.symbol;renderDetail();}});
+  document.getElementById("condition-list").addEventListener("click",event=>{const b=event.target.closest("button[data-condition]");if(b){STATE.id=b.dataset.condition;renderDetail();document.getElementById("selected-condition").scrollIntoView({behavior:"smooth",block:"start"});}});
+  renderDetail();
+}
+
+initialize(D);
+</script>
+</body>
+</html>

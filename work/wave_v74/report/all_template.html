@@ -1,0 +1,69 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>全480条件</title><style>
+:root{color-scheme:dark;--bg:#09111b;--panel:#142131;--line:#344b63;--text:#e9f1fb;--muted:#afc1d6;--cyan:#70daff;--green:#77e0b5;--red:#ff929f}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.65 system-ui,"Yu Gothic UI","Meiryo",sans-serif}main{max-width:1380px;padding:25px 20px 50px;margin:auto}h1{font-size:clamp(23px,3vw,31px);margin:0 0 8px}h2{font-size:21px;margin:0 0 5px}h3{font-size:17px;margin:16px 0 8px}p{margin:7px 0}a{color:var(--cyan)}button,select{font:inherit;color:var(--text);background:#20374d;border:1px solid #52728f;border-radius:6px;padding:5px 9px}button{cursor:pointer}.controls{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:14px 0}.panel{background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:19px;margin:20px 0}.small,.id{color:var(--muted);font-size:13px}.id{font-family:ui-monospace,Consolas,monospace}.table-wrap{overflow:auto;border:1px solid var(--line);border-radius:7px;margin:9px 0}table{border-collapse:collapse;width:100%;font-size:14px;font-variant-numeric:tabular-nums}th,td{padding:7px 10px;text-align:right;white-space:nowrap;border-bottom:1px solid #2b4259}th{background:#20364d;color:#d0e2f5;position:sticky;top:0;z-index:1}th:first-child,td:first-child{text-align:left}tr:last-child td{border-bottom:0}tbody tr:hover{background:#213b51}.selected-row,.total{background:#24465a;font-weight:600}.positive{color:var(--green)}.negative{color:var(--red)}.money{white-space:nowrap}.ranking{max-height:530px}.method-link{border:0;background:transparent;color:var(--cyan);padding:0;text-decoration:underline}.empty{color:var(--muted);padding:20px}.count{color:var(--cyan)}footer{border-top:1px solid var(--line);padding-top:15px;color:var(--muted);font-size:13px}
+</style></head><body>
+<!--
+[コンポーネント概要]
+#ranking は固定した全480条件を同じ銘柄・同じ期間で比較する一覧です。
+#condition はIDで選んだ一条件の説明と全29場の会計です。
+条件IDをURLのhashに保存します。前16で選んだ代表を表示上識別し、全29で選び直した代表と混同しません。
+外部通信・発注は行いません。利益損失と収支は全決済の手数料後金額です。
+-->
+<main><h1 id="title"></h1><p><a id="main-link">基準別3代表の説明・五分足・売買・休止図へ</a></p><p id="scope-description" class="small">主案288＋対照192。前16で代表を選択し、後13で変更していません。損失割合＝損失÷（利益＋損失）、50%未満なら黒字です。</p><section class="panel"><h2>条件一覧</h2><div class="controls"><label>銘柄 <select id="symbol"><option value="TOPIX">TOPIXミニ10枚</option><option value="NK225">日経225マイクロ20枚</option></select></label><label>期間 <select id="period"><option>前16</option><option>後13</option><option selected>全29</option></select></label><label>群 <select id="group"><option value="all">すべて</option><option>主案</option><option>逆方向対照</option><option>基準跨ぎ返済なし</option><option>60秒方向対照</option></select></label><label>基準 <select id="reference"><option value="all">すべて</option><option value="0">始値</option><option value="1">前保存場</option><option value="2">両基準一致</option><option value="3">過去60秒</option></select></label><label>表示順 <select id="sort"><option value="share">損失割合が小さい順</option><option value="net">収支が高い順</option><option value="id">ID順</option></select></label><span id="count" class="count"></span></div><div id="ranking" class="table-wrap ranking"></div></section><section id="condition" class="panel"><h2>選択条件の全セッション</h2><div class="controls"><label>条件ID <select id="method"></select></label></div><p id="description"></p><p id="selected-note" class="small"></p><h3>前16・後13・全29</h3><div id="period-table"></div><h3>全29場の利益・損失・収支</h3><div id="sessions"></div></section><details><summary>指標と読み方</summary><ul id="notes" class="small"></ul></details><footer><a href="README.md">資料案内</a> · <a href="公開会計.json">公開会計JSON</a></footer></main><script id="report-data" type="application/json">__DATA__</script><script>
+"use strict";
+const D=JSON.parse(document.getElementById('report-data').textContent),LOOKUP=new Map(D.methods.map(m=>[m.id,m])),STATE={symbol:'TOPIX',period:'全29',id:D.selectedIds.find(id=>LOOKUP.has(id))??D.methods[0].id},NUMBER=new Intl.NumberFormat('ja-JP',{maximumFractionDigits:0});
+/**
+ * 機能: 表示値のHTML特殊文字をエスケープする。
+ * @param {unknown} v - 表示値。
+ * @returns {string} 安全な文字列。
+ */
+function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+/**
+ * 機能: 金額を円と正負色で表示する。
+ * @param {number|null} v - 金額。
+ * @param {boolean} signed - 正符号を付けるか。
+ * @param {string} context - 損失又は手数料の文脈色。
+ * @returns {string} 金額HTML。
+ */
+function money(v,signed=false,context=''){ return v==null?'—':`<span class="money ${context==='loss'?'negative':context==='fee'?'muted':v>0?'positive':v<0?'negative':''}">${signed&&v>0?'+':''}${NUMBER.format(v)}円</span>`;}
+/**
+ * 機能: 比率を百分率として表示する。
+ * @param {number|null} v - 比率。
+ * @returns {string} 百分率又はダッシュ。
+ */
+function pct(v){return v==null?'—':(v*100).toFixed(1)+'%';}
+/**
+ * 機能: 金額・損失割合・取引数の共通テーブルを作る。
+ * @param {Array<object>} rows - ラベルと会計。
+ * @returns {string} 全明細金額表のHTML。
+ */
+function table(rows){return `<div class="table-wrap"><table class="primary-table"><thead><tr><th>対象</th><th>利益</th><th>損失</th><th>収支</th><th>損失割合</th><th>取引数</th><th>勝ち／負け枚数</th><th>手数料</th><th>休止回数</th></tr></thead><tbody>${rows.map(({label,a,total=false})=>`<tr${total?' class="total"':''}><td>${esc(label)}</td><td>${money(a.profit)}</td><td>${money(a.loss,false,'loss')}</td><td>${money(a.net,true)}</td><td>${pct(a.money_loss_share)}</td><td>${a.trades}</td><td>${a.winning_lots}／${a.losing_lots}</td><td>${money(a.fees,false,'fee')}</td><td>${a.pause_count}</td></tr>`).join('')}</tbody></table></div>`;}
+/**
+ * 機能: 群・基準の絞込みと同銘柄指標による表示順を適用する。
+ * @returns {Array<object>} 条件一覧。
+ */
+function filtered(){const group=document.getElementById('group').value,ref=document.getElementById('reference').value,sort=document.getElementById('sort').value;return D.methods.filter(m=>(group==='all'||m.config.group===group)&&(ref==='all'||m.config.reference===Number(ref))).sort((a,b)=>{const x=a.periods[STATE.period][STATE.symbol],y=b.periods[STATE.period][STATE.symbol];if(sort==='net')return y.net-x.net||a.id.localeCompare(b.id);if(sort==='share')return (x.money_loss_share??Infinity)-(y.money_loss_share??Infinity)||y.net-x.net||a.id.localeCompare(b.id);return a.id.localeCompare(b.id);});}
+/**
+ * 機能: 条件一覧を現在の銘柄と期間で更新する。
+ * @returns {void} 返り値なし。
+ */
+function ranking(){const rows=filtered();document.getElementById('count').textContent=`${rows.length}／${D.methods.length}条件`;document.getElementById('ranking').innerHTML=`<table class="ranking-table"><thead><tr><th>条件ID</th><th>群</th><th>利益</th><th>損失</th><th>収支</th><th>損失割合</th><th>取引数</th><th>平均利益／損失</th><th>全29 TOP収支</th><th>全29 NK収支</th></tr></thead><tbody>${rows.map(m=>{const a=m.periods[STATE.period][STATE.symbol];return `<tr${m.id===STATE.id?' class="selected-row"':''}><td><button class="method-link" data-id="${esc(m.id)}">${esc(m.id)}</button>${D.selectedIds.includes(m.id)?' ★':''}</td><td>${esc(m.config.group)}</td><td>${money(a.profit)}</td><td>${money(a.loss,false,'loss')}</td><td>${money(a.net,true)}</td><td>${pct(a.money_loss_share)}</td><td>${a.trades}</td><td>${a.payoff==null?'—':a.payoff.toFixed(2)}</td><td>${money(m.periods.全29.TOPIX.net,true)}</td><td>${money(m.periods.全29.NK225.net,true)}</td></tr>`;}).join('')}</tbody></table>`;document.querySelectorAll('.method-link').forEach(b=>b.addEventListener('click',()=>choose(b.dataset.id)));}
+/**
+ * 機能: 条件IDの選択をhashと全場表示へ反映する。
+ * @param {string} id - 条件ID。
+ * @returns {void} 返り値なし。
+ */
+function choose(id){if(!LOOKUP.has(id))return;STATE.id=id;document.getElementById('method').value=id;const hash=encodeURIComponent(id);if(location.hash.slice(1)!==hash)location.hash=hash;condition();ranking();}
+/**
+ * 機能: 選択した条件の説明・三期間・全29場を表示する。
+ * @returns {void} 返り値なし。
+ */
+function condition(){const m=LOOKUP.get(STATE.id),symbol=STATE.symbol;document.getElementById('description').textContent=m.configText;document.getElementById('selected-note').textContent=D.selectedIds.includes(m.id)?'★ 前16で固定した基準別代表。後13で選び直していません。':'全条件の閲覧用。全29で良く見える条件を未見採用候補と呼びません。';document.getElementById('period-table').innerHTML=table(['前16','後13','全29'].map(p=>({label:p,a:m.periods[p][symbol],total:p==='全29'})));document.getElementById('sessions').innerHTML=table([...D.sessions.map(s=>({label:s.replace('_Day',' デイ').replace('_Night',' ナイト'),a:m.rows.find(r=>r.session===s&&r.symbol===symbol)})),{label:'全29合計',a:m.periods.全29[symbol],total:true}]);}
+/**
+ * 機能: 銘柄と期間を読み直し、一覧と選択会計を更新する。
+ * @returns {void} 返り値なし。
+ */
+function render(){STATE.symbol=document.getElementById('symbol').value;STATE.period=document.getElementById('period').value;ranking();condition();}
+// ----------------------------------------
+// 保存結果だけで初期化し、IDの直接リンクにも対応する。
+if(D.scopeText)document.getElementById('scope-description').textContent=D.scopeText;document.title=D.title;document.getElementById('title').textContent=D.title;document.getElementById('main-link').href=D.mainUrl;document.getElementById('method').innerHTML=D.methods.map(m=>`<option value="${esc(m.id)}">${esc(m.id)}</option>`).join('');document.getElementById('notes').innerHTML=D.notes.map(n=>`<li>${esc(n)}</li>`).join('');['symbol','period','group','reference','sort'].forEach(id=>document.getElementById(id).addEventListener('change',render));document.getElementById('method').addEventListener('change',e=>choose(e.target.value));window.addEventListener('hashchange',()=>{const id=decodeURIComponent(location.hash.slice(1));if(LOOKUP.has(id)){STATE.id=id;document.getElementById('method').value=id;render();}});const initial=decodeURIComponent(location.hash.slice(1));if(LOOKUP.has(initial))STATE.id=initial;document.getElementById('method').value=STATE.id;render();window.reportTest={D,STATE,render,choose,filtered,condition,ranking};
+</script></body></html>

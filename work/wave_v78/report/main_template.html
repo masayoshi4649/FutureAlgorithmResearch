@@ -1,0 +1,26 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>過去の知見を統合した手法</title><style>__CSS__</style></head><body>
+<!--
+[コンポーネント概要]
+#conclusion は今回の判断と、毎場黒字・金額利益80%の達否を短く表示します。
+#comparison は前半固定の代表と従来J2を、商品別・期間別に比較します。
+#history は歴代十系統を当時の料金・価格・期間と一緒に再評価します。
+#methods は各代表の入口・途中・出口を、短い日本語で示します。
+#session-results は選択した方式の全三十場、#groups は週・日夜の集計です。
+#chart は選択した商品の五分足に全約定を重ね、#orders は判断時刻も示します。
+新規は丸、返済は菱形、買いは青、売りは桃で表します。
+画面は保存済み結果だけを読み、通信・再探索・注文を実行しません。
+-->
+<main><h1 id="title"></h1><div id="conclusion" class="intro"></div>
+<p class="small">TOPIXミニ10枚／日経225マイクロ20枚。各場内で全返済、手数料後。<strong>金額利益割合＝利益÷（利益＋損失）</strong>。80%は利益:損失4:1で、取引勝率とは別です。</p>
+<section class="panel"><h2>従来J2と統合候補</h2><div class="controls"><label>商品 <select id="comparison-symbol"><option value="TOPIX">TOPIXミニ</option><option value="NK225">日経225マイクロ</option></select></label><label>期間 <select id="comparison-period"></select></label></div><div id="comparison"></div><p class="small">全30場は既知資料。代表は前16場だけで固定し、後14場で確認しました。今回は未見場の試験ではありません。</p></section>
+<details class="panel"><summary>過去の手法から、何を残したか</summary><div id="history" class="table-wrap"></div><p class="small">古い円収支は期間・数量・費用・約定モデルが異なるため、今回の順位へ混ぜていません。</p></details>
+<div id="methods"></div>
+<section class="panel"><h2>各セッションの損益と売買位置</h2><div class="controls"><label>手法 <select id="detail-method"></select></label><label>商品 <select id="detail-symbol"><option value="TOPIX">TOPIXミニ</option><option value="NK225">日経225マイクロ</option></select></label></div>
+<details><summary>全30セッションの利益・損失・収支</summary><div id="session-results"></div></details>
+<details><summary>週別・デイ／ナイト・最大利益日除外</summary><div id="groups"></div></details>
+<details><summary>休止・延長・損切りの動作と金額</summary><div id="management"></div></details>
+<details><summary>部品を単独で加えた対照・情報遅延の感度</summary><div id="controls"></div><div id="sensitivity"></div></details>
+<h3>五分足と新規・返済</h3><div class="controls"><label>セッション <select id="detail-session"></select></label></div><p id="chart-caption" class="small"></p><div class="legend"><span>○ 新規 ／ ◇ 返済</span><span class="buy">青：買い</span><span class="sell">桃：売り</span><span>点に重ねると時刻・価格・枚数</span></div><div id="chart" class="chart-box"></div><details><summary>選択セッションの全注文</summary><div id="orders"></div></details></section>
+<details><summary>評価条件と限界</summary><ul id="notes" class="small"></ul></details>
+<p><a id="all-link">全162条件の比較</a></p><footer><a href="README.md">資料案内</a> · <a href="公開会計.json">表示数値の照合</a></footer></main>
+<script id="report-data" type="application/json">__DATA__</script><script>__SCRIPT__</script></body></html>

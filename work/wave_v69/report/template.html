@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>ティック入口とIFDトレールの損益</title>
+  <style>
+    :root{color-scheme:dark;--bg:#0b111a;--panel:#121c29;--panel2:#182535;--text:#edf3fa;--muted:#abbace;--line:#324458;--green:#68e0b5;--red:#ff8894;--blue:#70d8ff;--pink:#f6a0df;--amber:#f1c778}
+    *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.65 system-ui,-apple-system,"Yu Gothic UI","Meiryo",sans-serif}main{max-width:1240px;margin:auto;padding:28px 22px 54px}a{color:var(--blue);text-underline-offset:3px}button,select{font:inherit}button,select{background:#172536;border:1px solid #4a627a;border-radius:7px;color:var(--text);padding:7px 12px}button{cursor:pointer}button:hover{background:#244059}button[aria-pressed="true"]{background:#22516a;border-color:var(--blue)}button:focus-visible,select:focus-visible,summary:focus-visible,a:focus-visible{outline:3px solid var(--blue);outline-offset:3px}h1{font-size:clamp(23px,3vw,32px);line-height:1.35;margin:0 0 14px}h2{font-size:21px;line-height:1.45;margin:0}h3{font-size:17px;margin:18px 0 10px}p{margin:8px 0}.muted,.small{color:var(--muted)}.small{font-size:13px}.positive{color:var(--green)}.negative{color:var(--red)}.money{white-space:nowrap;font-variant-numeric:tabular-nums}.status{display:inline-block;padding:3px 9px;border-radius:20px;font-size:12px;background:#253b49;color:#bbf3dd;white-space:nowrap}.status.unqualified{background:#3b2c1d;color:var(--amber)}.intro{padding:16px 18px;border-left:4px solid var(--blue);background:var(--panel);margin:18px 0}.nav{display:flex;gap:8px;flex-wrap:wrap;margin:20px 0}.nav a{padding:6px 12px;background:var(--panel2);border-radius:7px;text-decoration:none}.method{margin:28px 0;padding:22px;background:var(--panel);border:1px solid var(--line);border-radius:12px;scroll-margin-top:12px}.method-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;flex-wrap:wrap}.method-id{font:12px/1.5 ui-monospace,Consolas,monospace;color:var(--muted);overflow-wrap:anywhere;margin:3px 0 0}.explanation{max-width:1000px;margin:12px 0}.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:14px 0}.step{padding:11px 13px;background:var(--panel2);border-radius:8px}.step strong{display:block;font-size:13px;color:var(--blue)}.step p{font-size:14px;margin:4px 0 0}.net-pair{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0}.net-card{padding:11px 14px;border:1px solid var(--line);border-radius:8px}.net-card .value{display:block;font-weight:700;font-size:23px;line-height:1.5}.controls{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:16px 0 12px}.symbol-switch{display:flex;gap:7px;flex-wrap:wrap}.table-wrap{overflow-x:auto;width:100%;border:1px solid var(--line);border-radius:8px;margin:10px 0 12px}table{border-collapse:collapse;width:100%;font-size:14px;font-variant-numeric:tabular-nums}th,td{padding:9px 12px;text-align:right;border-bottom:1px solid #293a4d;white-space:nowrap}th{background:#1b2b3b;color:#cdddEE;font-weight:600}th:first-child,td:first-child{text-align:left}tbody tr:last-child td{border-bottom:0}tbody tr:hover{background:#1b2c3d}.total{font-weight:700;background:#1a2e3b}.total td{border-top:2px solid #516a80}.session-link{border:0;background:none;padding:0;color:var(--blue);text-decoration:underline;text-underline-offset:3px}.selected-row{background:#1e3a4d!important}details{margin:14px 0}summary{cursor:pointer;font-weight:600;color:#d8e8f7;padding:4px 0}.details-body{padding:7px 0;color:var(--muted)}.chart-box{padding:12px 10px;background:#0d1622;border:1px solid var(--line);border-radius:9px}.chart-svg{display:block;width:100%;height:auto;min-height:210px;max-height:420px;background:#0d1622}.chart-label{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font-size:13px;margin:0 2px 8px}.legend{display:flex;gap:14px;flex-wrap:wrap}.entry-dot{color:var(--blue)}.exit-dot{color:var(--pink)}.empty{padding:34px 10px;color:var(--muted);text-align:center}.history{max-height:280px;overflow:auto}.history th{position:sticky;top:0;z-index:1}.audit{border-top:1px solid var(--line);margin-top:26px;padding-top:15px}.note-list{margin:7px 0;padding-left:21px}.note-list li{margin:5px 0}.no-data{color:var(--amber)}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}footer{color:var(--muted);font-size:13px;margin-top:28px}
+    @media(max-width:650px){main{padding:18px 12px 34px}.method{padding:15px 12px}.steps{grid-template-columns:1fr;gap:7px}.step{padding:8px 11px}.step strong{display:inline;margin-right:8px}.step p{display:inline}.net-pair{gap:7px}.net-card{padding:9px}.net-card .value{font-size:19px}th,td{padding:8px 10px}.chart-box{padding:9px 5px}.chart-svg{min-height:180px}.method-head h2{font-size:19px}.chart-label{gap:5px}}
+  </style>
+</head>
+<body>
+<!--
+[コンポーネント概要]
+#report は、ティック入口の四機構を章ごとに比較するレポートです。
+#report-data に埋め込んだ固定済みデータだけを表示し、通信や注文は行いません。
+#method-list は、各機構の前半だけで選んだ設定、期間損益、週損益、全場損益を表示します。
+各章の銘柄ボタンはTOPIXミニ5枚と日経マイクロ10枚を切り替えます。
+各章のセッション選択と損益表の場名は、五分足と注文履歴の表示対象を切り替えます。
+新規は水色の丸、返済は桃色の菱形で表示します。マーカーの説明はtitleにも格納します。
+利益・損失・収支は手数料後の値であり、損失は正の金額として示します。
+長い仕様と全場表をdetailsへ収め、最初に手法と比較結果を確認できる構成です。
+-->
+<main id="report">
+  <header>
+    <h1 id="report-title">ティック入口とIFDトレールの損益</h1>
+    <p class="muted">板の中値が変わった価格イベントを使い、入口と返済を機械的に再生します。</p>
+    <div id="conclusion" class="intro" aria-live="polite"></div>
+    <p class="small">TOPIXミニ5枚／日経225マイクロ10枚。買いは売り気配、売りは買い気配で約定し、新規・返済の手数料を含めます。</p>
+    <nav class="nav" id="method-nav" aria-label="四機構への移動"></nav>
+    <p class="small" id="selection-note">各機構の設定は前16セッションだけで選定。後12セッションを見た選び直しは行いません。</p>
+  </header>
+  <section id="exploratory" class="intro" hidden aria-label="全期間を見た事後の黒字例"></section>
+  <p id="live-note" class="small"></p>
+  <div id="method-list"></div>
+  <section class="audit" aria-label="検証の範囲と資料">
+    <p id="conditions-link"></p>
+    <details>
+      <summary>約定条件・データの範囲・検算</summary>
+      <div id="audit-notes" class="details-body"></div>
+    </details>
+  </section>
+  <footer>保存データの再生結果です。現在場は状態のみ1回確認し、板取得・実注文は行っていません。<a href="README.md">資料案内・再現方法</a></footer>
+</main>
+<script id="report-data" type="application/json">__DATA__</script>
+<script>
+"use strict";
+const D = JSON.parse(document.getElementById("report-data").textContent);
+const FAMILY_NAMES = {1:"中値往復の反転",2:"押し戻し後の再開",3:"表示補充後の反転",4:"表示補充価格の突破"};
+const SYMBOL_NAMES = {TOPIX:"TOPIXミニ5枚",NK225:"日経マイクロ10枚"};
+const REASONS = {1:"当初逆指値",2:"トレーリング返済",3:"保有期限",4:"場内返済",10:"新規逆指値",11:"新規トレール"};
+const PERIODS = ["前16","後12","全28"];
+const NUMBER = new Intl.NumberFormat("ja-JP", {maximumFractionDigits:0});
+const CLOCK = new Intl.DateTimeFormat("ja-JP",{timeZone:"Asia/Tokyo",hour:"2-digit",minute:"2-digit",second:"2-digit",hourCycle:"h23"});
+const SHORT_CLOCK = new Intl.DateTimeFormat("ja-JP",{timeZone:"Asia/Tokyo",hour:"2-digit",minute:"2-digit",hourCycle:"h23"});
+const DATE_CLOCK = new Intl.DateTimeFormat("ja-JP",{timeZone:"Asia/Tokyo",month:"2-digit",day:"2-digit",hour:"2-digit",minute:"2-digit",second:"2-digit",hourCycle:"h23"});
+const STATE = new Map();
+
+/**
+ * 機能: 文字列を安全にHTMLへ表示できる形へ変換する。
+ * @param {unknown} value - 表示対象の値。
+ * @returns {string} 特殊文字を変換した文字列。
+ */
+function esc(value){return String(value??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]));}
+
+/**
+ * 機能: 有限数だけを表示用の数値として採用する。
+ * @param {unknown} value - 対象の値。
+ * @param {number} fallback - 欠測時に用いる数値。
+ * @returns {number} 有限の値又は代替値。
+ */
+function num(value,fallback=0){return value!==null&&value!==undefined&&Number.isFinite(Number(value))?Number(value):fallback;}
+
+/**
+ * 機能: 符号付きの円金額を読みやすく表示する。
+ * @param {unknown} value - 円金額。
+ * @param {boolean} signed - 正の金額へプラス記号を付けるか。
+ * @returns {string} 日本語の円表示。
+ */
+function yen(value,signed=false){const n=num(value);return `${signed&&n>0?"＋":n<0?"−":""}${NUMBER.format(Math.abs(n))}円`;}
+
+/**
+ * 機能: 収支の符号に対応する表示クラスを決める。
+ * @param {unknown} value - 収支金額。
+ * @returns {string} 正負又は中立のクラス名。
+ */
+function tone(value){return num(value)>0?"positive":num(value)<0?"negative":"muted";}
+
+/**
+ * 機能: 勝率又は損益比の欠測をゼロと誤表示せず整形する。
+ * @param {unknown} value - 比率。
+ * @param {boolean} percentage - パーセントで表示するか。
+ * @returns {string} 整形した比率又は欠測記号。
+ */
+function ratio(value,percentage=false){return value===null||value===undefined||!Number.isFinite(Number(value))?"—":percentage?`${(Number(value)*100).toFixed(1)}%`:Number(value).toFixed(2);}
+
+/**
+ * 機能: 保存セッションの英語区分を日本語へ変換する。
+ * @param {string} session - 保存セッションキー。
+ * @returns {string} 日本語の場名。
+ */
+function sessionName(session){return String(session).replace(/_Day$/," 日中").replace(/_Night$/," 夜間");}
+
+/**
+ * 機能: 秒又はミリ秒のUNIX時刻を日時へ変換する。
+ * @param {unknown} value - UNIX時刻。
+ * @returns {Date} 表示用の日付オブジェクト。
+ */
+function date(value){const t=num(value);return new Date(t>1e11?t:t*1000);}
+
+/**
+ * 機能: 四機構の設定から入口と返済の短い説明を生成する。
+ * @param {Object} method - 機構別の選定結果。
+ * @returns {Object} 入口、途中、出口の説明。
+ */
+function simpleSteps(method){
+  const c=method.config||{};
+  const parent=num(c.entry_type)===1?`候補後、2呼値の反転を新規トレールで待つ。`:`候補時の気配価格を新規逆指値に設定。`;
+  const child=num(c.initial_stop)>0?`IFD-OCO：${num(c.initial_stop)}呼値の損切りと利確トレールを同時監視。`:`IFD：新規成立後、返済トレールを監視。独立した初期損切りなし。`;
+  const activation=num(c.activation)>0?`${num(c.activation)}呼値の順行で追跡開始。`:`新規後に追跡開始。`;
+  return {entry:parent,middle:child,exit:`${activation}幅${num(c.trail_width)}呼値、最長${num(c.hold_seconds)/60}分。場内で全返済。`};
+}
+
+// ----------------------------------------
+// 期間、セッション、週の会計を同じ列定義で表示する。
+
+/**
+ * 機能: 集計値を利益、損失、収支、枚数、手数料の表の行へ変換する。
+ * @param {Object} row - 会計集計。
+ * @param {string} label - 行の見出し。
+ * @param {string} className - 行へ付ける表示クラス。
+ * @returns {string} 表の行のHTML。
+ */
+function moneyRow(row,label,className=""){
+  return `<tr class="${esc(className)}"><td>${label}</td><td class="money positive">${yen(row.profit)}</td><td class="money negative">${yen(row.loss)}</td><td class="money ${tone(row.net)}">${yen(row.net,true)}</td><td>${NUMBER.format(num(row.winning_lots))}</td><td>${NUMBER.format(num(row.losing_lots))}</td><td class="money">${yen(row.fees)}</td></tr>`;
+}
+
+/**
+ * 機能: 会計表の共通見出しを生成する。
+ * @param {string} first - 最初の列の名称。
+ * @returns {string} 表見出しのHTML。
+ */
+function moneyHead(first){return `<thead><tr><th scope="col">${esc(first)}</th><th scope="col">利益</th><th scope="col">損失</th><th scope="col">収支</th><th scope="col">勝ち枚数</th><th scope="col">負け枚数</th><th scope="col">手数料</th></tr></thead>`;}
+
+/**
+ * 機能: 選択銘柄の前半、後半、全期間を比較する。
+ * @param {Object} method - 機構別結果。
+ * @param {string} symbol - 選択銘柄。
+ * @returns {string} 比較表と損益管理指標のHTML。
+ */
+function periodTable(method,symbol){
+  const body=PERIODS.map(period=>moneyRow(method.periods?.[period]?.[symbol]||{},esc(period),period==="全28"?"total":"")).join("");
+  const a=method.periods?.["全28"]?.[symbol]||{};
+  return `<div class="table-wrap"><table>${moneyHead("期間")}<tbody>${body}</tbody></table></div><p class="small">全期間：勝率 ${ratio(a.win_rate,true)} ／ 1枚平均の利益・損失比 ${ratio(a.payoff)} ／ 最大1取引損失 ${yen(a.max_trade_loss)} ／ 最大時価下落 ${yen(a.drawdown)}</p>`;
+}
+
+/**
+ * 機能: 選択銘柄の全セッション損益を表示する。
+ * @param {Object} method - 機構別結果。
+ * @param {string} symbol - 選択銘柄。
+ * @param {string} selected - チャートで選択中の場。
+ * @returns {string} 全場の損益表のHTML。
+ */
+function sessionTable(method,symbol,selected){
+  const bySession=new Map((method.rows||[]).filter(row=>row.symbol===symbol).map(row=>[row.session,row]));
+  const body=(D.sessions||[]).map(session=>{
+    const row=bySession.get(session)||{};
+    const label=`<button class="session-link" data-session="${esc(session)}" title="この場のチャートを表示">${esc(sessionName(session))}</button>`;
+    return moneyRow(row,label,session===selected?"selected-row":"");
+  }).join("");
+  return `<div class="table-wrap"><table>${moneyHead("セッション")}<tbody>${body}${moneyRow(method.periods?.["全28"]?.[symbol]||{},"全28 合計","total")}</tbody></table></div>`;
+}
+
+/**
+ * 機能: 選択銘柄の週別損益を表示する。
+ * @param {Object} method - 機構別結果。
+ * @param {string} symbol - 選択銘柄。
+ * @returns {string} 週別表のHTML。
+ */
+function weekTable(method,symbol){
+  const rows=method.weeks?.[symbol]||[];
+  return rows.length?`<div class="table-wrap"><table>${moneyHead("週")}<tbody>${rows.map(row=>moneyRow(row,esc(row.label))).join("")}</tbody></table></div>`:`<p class="muted">週集計は未設定です。</p>`;
+}
+
+// ----------------------------------------
+// 五分足、注文マーカー、実行履歴を選択した場だけから描く。
+
+/**
+ * 機能: 五分足と実行済みの新規・返済をSVGへ描画する。
+ * @param {Array<Array<number>>} bars - 開始秒、始値、高値、安値、終値の配列。
+ * @param {Array<Array<number>>} orders - 約定行、判断行、組、方向、枚数、価格、理由、新規区分、秒の配列。
+ * @param {string} symbol - 描画銘柄。
+ * @param {string} label - アクセシビリティ用の場名。
+ * @returns {string} SVG又は欠測表示のHTML。
+ */
+function chartSvg(bars,orders,symbol,label){
+  const candles=(bars||[]).filter(b=>b.length>=5&&b.slice(0,5).every(v=>Number.isFinite(Number(v))));
+  const executions=(orders||[]).filter(o=>o.length>=9&&Number.isFinite(Number(o[8]))&&Number.isFinite(Number(o[5])));
+  if(!candles.length)return `<div class="empty">この場の五分足がありません。</div>`;
+  const W=1100,H=360,L=62,R=80,T=22,B=40;
+  const first=num(candles[0][0]),last=num(candles[candles.length-1][0])+300;
+  const xmin=Math.min(first,...executions.map(o=>num(o[8]))),xmax=Math.max(last,...executions.map(o=>num(o[8])));
+  const values=candles.flatMap(b=>[num(b[2]),num(b[3])]).concat(executions.map(o=>num(o[5])));
+  let low=Math.min(...values),high=Math.max(...values);const pad=Math.max((high-low)*.08,symbol==="TOPIX"?.5:10);low-=pad;high+=pad;
+  const x=t=>L+(num(t)-xmin)/Math.max(1,xmax-xmin)*(W-L-R);
+  const y=p=>T+(high-num(p))/Math.max(.0001,high-low)*(H-T-B);
+  const price=p=>symbol==="TOPIX"?Number(p).toFixed(1):NUMBER.format(p);
+  const grids=Array.from({length:6},(_,i)=>{
+    const p=low+(high-low)*i/5,py=y(p);
+    return `<line x1="${L}" y1="${py}" x2="${W-R}" y2="${py}" stroke="#293e52"/><text x="${W-R+10}" y="${py+4}" fill="#afc1d5" font-size="12">${price(p)}</text>`;
+  }).join("");
+  const times=Array.from({length:7},(_,i)=>{
+    const t=xmin+(xmax-xmin)*i/6,px=x(t);
+    return `<line x1="${px}" y1="${T}" x2="${px}" y2="${H-B}" stroke="#213447"/><text x="${px}" y="${H-13}" text-anchor="middle" fill="#afc1d5" font-size="12">${esc(SHORT_CLOCK.format(date(t)))}</text>`;
+  }).join("");
+  const width=Math.max(1,Math.min(8,(W-L-R)/Math.max(candles.length,1)*.65));
+  const sticks=candles.map(b=>{
+    const px=x(num(b[0])+150),up=num(b[4])>=num(b[1]),color=up?"#63d9b1":"#f7808e";
+    const top=Math.min(y(b[1]),y(b[4])),height=Math.max(1,Math.abs(y(b[1])-y(b[4])));
+    return `<g class="candle"><title>${esc(DATE_CLOCK.format(date(b[0])))} 始${price(b[1])} 高${price(b[2])} 安${price(b[3])} 終${price(b[4])}</title><line x1="${px}" y1="${y(b[2])}" x2="${px}" y2="${y(b[3])}" stroke="${color}"/><rect x="${px-width/2}" y="${top}" width="${width}" height="${height}" fill="${color}"/></g>`;
+  }).join("");
+  const markers=executions.map(o=>{
+    const px=x(o[8]),py=y(o[5]),entry=num(o[7])===1,color=entry?"#70d8ff":"#f6a0df";
+    const shape=entry?`<circle cx="${px}" cy="${py}" r="5.5" fill="${color}" stroke="#07121e" stroke-width="1.5"/>`:`<path d="M ${px} ${py-7} L ${px+6} ${py} L ${px} ${py+7} L ${px-6} ${py} Z" fill="${color}" stroke="#07121e" stroke-width="1.5"/>`;
+    const text=`${DATE_CLOCK.format(date(o[8]))} ${entry?"新規":"返済"} ${num(o[3])===1?"買い":"売り"} ${num(o[4])}枚 @${price(o[5])} ${REASONS[num(o[6])]||o[6]}`;
+    return `<g class="order-marker ${entry?"entry-marker":"exit-marker"}" data-cid="${num(o[2])}" data-fill-row="${num(o[0])}" tabindex="0"><title>${esc(text)}</title>${shape}</g>`;
+  }).join("");
+  return `<svg class="chart-svg" viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(label)}の五分足と全${executions.length}注文"><rect width="${W}" height="${H}" fill="#0d1622"/>${grids}${times}${sticks}${markers}<line x1="${L}" y1="${H-B}" x2="${W-R}" y2="${H-B}" stroke="#53708a"/></svg>`;
+}
+
+/**
+ * 機能: 選択した場の注文を時刻、枚数、価格、理由付きで表示する。
+ * @param {Array<Array<number>>} orders - 実行注文の配列。
+ * @param {string} symbol - 選択銘柄。
+ * @returns {string} 注文履歴のHTML。
+ */
+function orderHistory(orders,symbol){
+  if(!orders.length)return `<p class="muted">この場は無取引です。勝ちには数えていません。</p>`;
+  const entries=new Map(),value=D.values?.[symbol],fee=D.fees?.[symbol];
+  const rows=orders.map(o=>{
+    const entry=num(o[7])===1,cid=num(o[2]),origin=entries.get(cid);let net=null;
+    if(entry)entries.set(cid,o);
+    else if(origin&&Number.isFinite(value)&&Number.isFinite(fee)){
+      const qty=num(o[4]);net=(num(o[5])-num(origin[5]))*num(origin[3])*qty*value-Math.floor(num(origin[4])*fee+1e-8)-Math.floor(qty*fee+1e-8);
+    }
+    return `<tr><td>${esc(DATE_CLOCK.format(date(o[8])))}</td><td class="${entry?"entry-dot":"exit-dot"}">${entry?"新規":"返済"}</td><td>${num(o[3])===1?"買い":"売り"}</td><td>${num(o[4])}</td><td>${symbol==="TOPIX"?num(o[5]).toFixed(1):NUMBER.format(num(o[5]))}</td><td class="money ${tone(net)}">${net===null?"—":yen(net,true)}</td><td>${esc(REASONS[num(o[6])]||`理由${o[6]}`)}</td><td>${cid+1}</td></tr>`;
+  }).join("");
+  return `<div class="table-wrap history"><table><thead><tr><th scope="col">約定時刻（日本時間）</th><th scope="col">新規／返済</th><th scope="col">売買</th><th scope="col">枚数</th><th scope="col">価格</th><th scope="col">返済収支</th><th scope="col">理由</th><th scope="col">組</th></tr></thead><tbody>${rows}</tbody></table></div>`;
+}
+
+/**
+ * 機能: 一機構の選択銘柄と場を表、五分足、履歴へ反映する。
+ * @param {number} family - 機構番号。
+ * @returns {undefined} 返り値なし。
+ */
+function renderFamily(family){
+  const method=D.methods.find(m=>num(m.family)===family),state=STATE.get(family),section=document.getElementById(`family-${family}`);
+  if(!method||!state||!section)return;
+  const symbol=state.symbol,session=state.session,key=`${session}|${symbol}`;
+  const row=(method.rows||[]).find(r=>r.session===session&&r.symbol===symbol)||{};
+  section.querySelectorAll("[data-symbol]").forEach(button=>button.setAttribute("aria-pressed",String(button.dataset.symbol===symbol)));
+  section.querySelector("[data-role=period]").innerHTML=periodTable(method,symbol);
+  section.querySelector("[data-role=sessions]").innerHTML=sessionTable(method,symbol,session);
+  section.querySelector("[data-role=weeks]").innerHTML=weekTable(method,symbol);
+  section.querySelector("[data-role=chart-title]").textContent=`${SYMBOL_NAMES[symbol]} ／ ${sessionName(session)}`;
+  const amount=section.querySelector("[data-role=chart-net]");amount.textContent=`この場の収支 ${yen(row.net,true)}`;amount.className=`money ${tone(row.net)}`;
+  const orders=method.orders?.[key]||[];
+  section.querySelector("[data-role=chart]").innerHTML=chartSvg(D.bars?.[key]||[],orders,symbol,`${SYMBOL_NAMES[symbol]} ${sessionName(session)}`);
+  section.querySelector("[data-role=history]").innerHTML=orderHistory(orders,symbol);
+  section.querySelector("[data-role=session-select]").value=session;
+}
+
+/**
+ * 機能: 機構の章を作り、銘柄と場の切り替えイベントを登録する。
+ * @param {Object} method - 機構別の選定結果。
+ * @returns {HTMLElement} 完成した章の要素。
+ */
+function buildFamily(method){
+  const family=num(method.family),c=method.config||{},steps=simpleSteps(method),section=document.createElement("section");
+  section.id=`family-${family}`;section.className="method";
+  const totals=["TOPIX","NK225"].map(symbol=>{const a=method.periods?.["全28"]?.[symbol]||{};return `<div class="net-card"><span class="small">全28 ／ ${SYMBOL_NAMES[symbol]}</span><span class="value money ${tone(a.net)}">${yen(a.net,true)}</span></div>`;}).join("");
+  section.innerHTML=`<div class="method-head"><div><h2>${family}. ${esc(FAMILY_NAMES[family]||method.name||"入口機構")}</h2><p class="method-id">${esc(method.id||c.id)}</p></div><span class="status ${method.eligible?"":"unqualified"}">${method.eligible?"前半の採用条件を達成":"比較用上位・採用条件未達"}</span></div>
+    <p class="explanation">${esc(method.explanation||"")}</p>
+    <div class="steps"><div class="step"><strong>入口</strong><p>${esc(steps.entry)}</p></div><div class="step"><strong>途中</strong><p>${esc(steps.middle)}</p></div><div class="step"><strong>出口</strong><p>${esc(steps.exit)}</p></div></div>
+    <div class="net-pair">${totals}</div>
+    <div class="controls"><span>表示銘柄</span><div class="symbol-switch"><button data-symbol="TOPIX" aria-pressed="true">TOPIXミニ5枚</button><button data-symbol="NK225" aria-pressed="false">日経マイクロ10枚</button></div></div>
+    <div data-role="period"></div>
+    <details><summary>全28セッションの利益・損失・収支</summary><div data-role="sessions"></div></details>
+    <details><summary>週別の利益・損失・収支</summary><div data-role="weeks"></div></details>
+    <div class="controls"><label for="session-${family}">五分足・売買履歴</label><select id="session-${family}" data-role="session-select">${(D.sessions||[]).map(s=>`<option value="${esc(s)}">${esc(sessionName(s))}</option>`).join("")}</select></div>
+    <div class="chart-box"><div class="chart-label"><span data-role="chart-title"></span><span data-role="chart-net"></span></div><div data-role="chart"></div><div class="legend small"><span class="entry-dot">● 新規</span><span class="exit-dot">◆ 返済</span><span>マーカーに触れると時刻・価格・枚数を表示</span></div></div>
+    <details><summary>表示中のセッションの新規・返済記録</summary><div data-role="history"></div></details>
+    <details><summary>設定の詳細</summary><div class="details-body"><p>入口 ${num(c.strength)===1?"強め":"標準"} ／ 親注文の有効期限 ${num(c.parent_ttl)}秒 ／ 全返済後 ${num(c.cooldown)}秒待機。</p><p>価格幅は参照ラージの呼値単位です。親予約時点の価格を基準に子の絶対条件価格を設定し、新規約定後の次観測から監視します。</p><p>勝ち枚数・負け枚数は、手数料後に利益・損失となった決済の枚数です。部分決済なしで、1新規→全返済を1取引として数えます。</p></div></details>`;
+  const sessions=D.sessions||[];
+  STATE.set(family,{symbol:"TOPIX",session:sessions[sessions.length-1]||""});
+  section.addEventListener("click",event=>{
+    const symbolButton=event.target.closest("button[data-symbol]"),sessionButton=event.target.closest("button[data-session]");
+    if(symbolButton){STATE.get(family).symbol=symbolButton.dataset.symbol;renderFamily(family);}
+    if(sessionButton){STATE.get(family).session=sessionButton.dataset.session;renderFamily(family);section.querySelector("[data-role=session-select]").scrollIntoView({behavior:"smooth",block:"center"});}
+  });
+  section.querySelector("[data-role=session-select]").addEventListener("change",event=>{STATE.get(family).session=event.target.value;renderFamily(family);});
+  return section;
+}
+
+/**
+ * 機能: 検証範囲の短い説明と保存資料へのリンクを表示する。
+ * @param {Object} data - レポートの全埋め込みデータ。
+ * @returns {undefined} 返り値なし。
+ */
+function renderAudit(data){
+  const notes=Array.isArray(data.notes)?data.notes:[
+    "ティックは最良気配中値の価格変更です。同価格・同時計の板更新を独立した価格ティックとは数えません。",
+    "最終約定時計を用い、同時計の更新は原本行順で処理します。板受信時刻の正確な遅延は検証できません。",
+    "板の減少や表示回復は観測代理です。真の成行消費・取消・個別注文は識別していません。",
+    "買いask・売りbidは参照ラージの気配です。ミニ・マイクロの実際の気配、約定深さ、通信遅延までは証明しません。",
+    "保存28場は既知のデータです。前半選定と後半比較は行いますが、完全に未知の検証とは呼びません。",
+    "利益と損失の双方に新規・返済手数料を配賦しています。手数料列を収支から再度引かないでください。"
+  ];
+  document.getElementById("audit-notes").innerHTML=`<ul class="note-list">${notes.map(note=>`<li>${esc(note)}</li>`).join("")}</ul>`;
+  document.getElementById("conditions-link").innerHTML=`<a href="${esc(data.conditionsUrl||"全192条件の比較.html")}">全192条件の比較表</a>`;
+}
+
+/**
+ * 機能: 全期間を見た事後の少数黒字例を前半選定とは別に示す。
+ * @param {Object} data - レポートの全埋め込みデータ。
+ * @returns {undefined} 返り値なし。
+ */
+function renderExploratory(data){
+  const example=data.exploratory,root=document.getElementById("exploratory");
+  if(!example){root.hidden=true;return;}
+  const rows=["TOPIX","NK225"].map(symbol=>{
+    const a=example.periods?.["全28"]?.[symbol]||{};
+    return `<tr><td>${SYMBOL_NAMES[symbol]}</td><td class="money positive">${yen(a.profit)}</td><td class="money negative">${yen(a.loss)}</td><td class="money ${tone(a.net)}">${yen(a.net,true)}</td><td>${NUMBER.format(num(a.trades))}</td></tr>`;
+  }).join("");
+  root.hidden=false;
+  root.innerHTML=`<h3>少数の黒字例</h3><p class="small">全28場を見た事後の例です。前半だけで選んだ下の四候補とは別です。</p><p class="method-id">${esc(example.id||example.config?.id)}</p><p>${esc(example.explanation)}</p><div class="table-wrap"><table><thead><tr><th scope="col">商品</th><th scope="col">利益</th><th scope="col">損失</th><th scope="col">収支</th><th scope="col">取引数</th></tr></thead><tbody>${rows}</tbody></table></div><p class="small">1枚平均の利益／損失比はTOPIX ${ratio(example.periods['全28'].TOPIX.payoff)}・日経 ${ratio(example.periods['全28'].NK225.payoff)}。最大黒字セッションを除くと両銘柄赤字です。前半も両銘柄赤字で、安定性の根拠はまだ不足します。<a href="${esc(data.conditionsUrl||'全192条件の比較.html')}#${esc(example.id)}">この条件の全場損益</a></p>`;
+}
+
+/**
+ * 機能: 埋め込みデータから四章のレポートを初期表示する。
+ * @param {Object} data - レポートの全データ。
+ * @returns {undefined} 返り値なし。
+ */
+function initialize(data){
+  document.title=data.title||"ティック入口とIFDトレールの損益";
+  document.getElementById("report-title").textContent=document.title;
+  document.getElementById("conclusion").textContent=data.conclusion||"集計結果は設定されていません。";
+  const methods=(data.methods||[]).slice().sort((a,b)=>num(a.family)-num(b.family));
+  document.getElementById("method-nav").innerHTML=methods.map(m=>`<a href="#family-${num(m.family)}">${num(m.family)}. ${esc(FAMILY_NAMES[num(m.family)]||m.id)}</a>`).join("");
+  const list=document.getElementById("method-list");
+  for(const method of methods){list.appendChild(buildFamily(method));renderFamily(num(method.family));}
+  renderExploratory(data);
+  document.getElementById("live-note").textContent=data.live?.message||"";
+  renderAudit(data);
+}
+
+initialize(D);
+</script>
+</body>
+</html>

@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>両建て保険と途中管理の比較</title>
+<style>
+:root{color-scheme:dark;--bg:#0a111b;--panel:#121e2d;--sub:#19293c;--text:#ecf2fa;--muted:#acbdd2;--line:#354b63;--cyan:#67d7ff;--amber:#ffc973;--green:#70e2b3;--red:#ff8f9f}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.65 system-ui,"Yu Gothic UI","Meiryo",sans-serif}main{max-width:1260px;padding:28px 22px 50px;margin:auto}h1{font-size:clamp(23px,3vw,32px);line-height:1.35;margin:0 0 12px}h2{font-size:22px;margin:0 0 6px}h3{font-size:17px;margin:18px 0 8px}p{margin:8px 0}a{color:var(--cyan);text-underline-offset:3px}button,select{font:inherit;color:var(--text);background:var(--sub);border:1px solid #58718d;border-radius:6px;padding:6px 11px}button{cursor:pointer}button[aria-pressed=true]{border-color:var(--cyan);background:#22475e}button:hover{background:#26415d}button:focus-visible,select:focus-visible,summary:focus-visible,a:focus-visible{outline:3px solid var(--cyan);outline-offset:3px}.muted,.small{color:var(--muted)}.small{font-size:13px}.positive{color:var(--green)}.negative{color:var(--red)}.money{white-space:nowrap;font-variant-numeric:tabular-nums}.intro{padding:14px 18px;margin:18px 0;background:var(--panel);border-left:4px solid var(--cyan)}.nav{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0}.nav a{padding:5px 10px;text-decoration:none;border-radius:6px;background:var(--sub)}.method{padding:22px;margin:25px 0;background:var(--panel);border:1px solid var(--line);border-radius:11px;scroll-margin-top:12px}.method-id{font:12px/1.5 ui-monospace,Consolas,monospace;color:var(--muted);overflow-wrap:anywhere}.config{font-size:13px;color:#c1d2e5}.net-pair{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0}.net-card{border:1px solid var(--line);padding:10px 14px;border-radius:8px}.net-card strong{display:block;font-size:23px}.controls{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:12px 0}.switch{display:flex;gap:6px;flex-wrap:wrap}.table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:7px;margin:9px 0 12px}table{border-collapse:collapse;width:100%;font:14px/1.5 system-ui,"Yu Gothic UI","Meiryo",sans-serif;font-variant-numeric:tabular-nums}th,td{padding:9px 11px;white-space:nowrap;text-align:right;border-bottom:1px solid #2a4057}th{background:#1d3047;color:#cfe1f7;font-weight:600}th:first-child,td:first-child{text-align:left}tbody tr:last-child td{border-bottom:0}tbody tr:hover{background:#20354a}.total{font-weight:700;background:#21384c}.total td{border-top:2px solid #5f7891}.selected-row{background:#214259!important}.session-link{padding:0;border:0;background:transparent;color:var(--cyan);text-decoration:underline;text-underline-offset:3px}details{margin:13px 0}summary{cursor:pointer;color:#d7e6f5;font-weight:600;padding:4px 0}.detail-body{padding:4px 0}.legend{display:flex;flex-wrap:wrap;gap:12px;font-size:13px;margin:6px 0}.core{color:var(--cyan)}.cover{color:var(--amber)}.chart-box{padding:10px 8px;background:#0c1623;border:1px solid var(--line);border-radius:8px}.chart-svg{width:100%;height:auto;display:block;background:#0c1623;min-height:200px}.chart-title{font-size:13px;display:flex;gap:8px;justify-content:space-between;flex-wrap:wrap;margin:0 2px 5px}.history{max-height:300px;overflow:auto}.history th{position:sticky;top:0;z-index:1}.empty{padding:28px 10px;text-align:center;color:var(--muted)}.source-note{font-size:13px;color:var(--muted)}.notes{margin:5px 0;padding-left:21px}.notes li{margin:5px 0}footer{border-top:1px solid var(--line);margin-top:25px;padding-top:12px;font-size:13px;color:var(--muted)}
+@media(max-width:650px){main{padding:18px 12px 34px}.method{padding:15px 11px}h2{font-size:19px}.net-card{padding:9px}.net-card strong{font-size:19px}.chart-box{padding:8px 4px}.chart-svg{min-height:180px}th,td{padding:8px 9px}}
+</style>
+</head>
+<body>
+<!--
+[コンポーネント概要]
+#report は、同じ初回入口に異なる途中管理を適用した結果を比較するレポートです。
+#report-data の固定済みデータだけを表示し、通信と発注を行いません。
+.method は任意の選定手法の章です。銘柄と期間を切り替え、同じ入口の対照と比較します。
+主成績は初回から管理終了までの組の利益・損失です。途中で0枚になっても同じ組です。
+全セッションと週の損益はdetailsを開いて確認できます。場名を押すと売買図も切り替わります。
+売買図は5分足、元方向由来の玉が水色、保険由来の玉が橙色、新規が丸、返済が菱形です。
+-->
+<main id="report">
+<h1 id="report-title">両建て保険と途中管理の比較</h1>
+<div id="conclusion" class="intro"></div>
+<p class="small">TOPIXミニは片方向10枚、日経225マイクロは片方向20枚が上限。初回は全量。利益・損失・収支は新規と返済の手数料を含みます。</p>
+<nav id="method-nav" class="nav" aria-label="手法への移動"></nav>
+<p class="source-note">同じ初回列と共通60分枠で途中管理を比較します。初回から管理終了までを一組とし、保険玉の利確や途中の0枚だけでは勝ちに数えません。以下の3手法は比較代表で、採用条件は未達です。</p>
+<div id="method-list"></div>
+<details><summary>入口・約定・検証範囲</summary><div id="notes" class="detail-body small"></div></details>
+<p><a id="all-link" href="全条件の途中管理比較.html">全条件の比較と全セッション損益</a></p>
+<footer><a href="README.md">資料案内・再現方法</a></footer>
+</main>
+<script id="report-data" type="application/json">__DATA__</script>
+<script>
+"use strict";
+const D=JSON.parse(document.getElementById("report-data").textContent);
+const PERIODS=["前16","後12","全28"];
+const NAMES={TOPIX:"TOPIXミニ10枚",NK225:"日経225マイクロ20枚"};
+const SOURCE_NAMES={T1L1:"中値往復の反転",T2L0:"押し戻し後の再開",T3L1:"強い表示補充後の反転",T4L0:"表示補充価格の突破",E01P:"旧E01の入口部品対照",R01P:"EMA再確認の入口部品対照"};
+const REASONS={1:"元方向の逆指値",2:"元方向のトレーリング",3:"保有期限",4:"場内全返済",5:"全玉の損失枠",6:"全玉の利益保護",7:"段階保険新規",8:"保険の反転返済",9:"元方向誤判定の返済",10:"共通初回新規",11:"反転後の不足枚数追加",12:"分割利確",13:"段階利益固定",14:"保険の損切り"};
+const NUMBER=new Intl.NumberFormat("ja-JP",{maximumFractionDigits:0});
+const CLOCK=new Intl.DateTimeFormat("ja-JP",{timeZone:"Asia/Tokyo",hour:"2-digit",minute:"2-digit",second:"2-digit",hourCycle:"h23"});
+const SHORT_CLOCK=new Intl.DateTimeFormat("ja-JP",{timeZone:"Asia/Tokyo",hour:"2-digit",minute:"2-digit",hourCycle:"h23"});
+const STATE=new Map();
+
+/**
+ * 機能: 任意の値を安全なHTML表示文字列へ変換する。
+ * @param {unknown} value - 表示する値。
+ * @returns {string} 特殊文字をエスケープした文字列。
+ */
+function esc(value){return String(value??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]));}
+
+/**
+ * 機能: 有限の数値だけを採用する。
+ * @param {unknown} value - 読み取る値。
+ * @param {number} fallback - 欠測時の値。
+ * @returns {number} 有限数値又は代替値。
+ */
+function num(value,fallback=0){return value!==null&&value!==undefined&&Number.isFinite(Number(value))?Number(value):fallback;}
+
+/**
+ * 機能: 円金額と正負の色をHTMLへ整形する。
+ * @param {unknown} value - 円金額。
+ * @param {boolean} signed - 正の金額にプラスを付けるか。
+ * @returns {string} 色付きの円表示。
+ */
+function money(value,signed=false){const n=num(value),sign=n<0?"−":signed&&n>0?"＋":"",tone=n<0?"negative":n>0?"positive":"muted";return `<span class="money ${tone}">${sign}${NUMBER.format(Math.abs(n))}円</span>`;}
+
+/**
+ * 機能: 勝率又は勝敗の平均損益比を整形する。
+ * @param {unknown} value - 比率。
+ * @param {boolean} percent - 百分率表示の指定。
+ * @returns {string} 比率の文字列又は欠測記号。
+ */
+function ratio(value,percent=false){return value===null||value===undefined||!Number.isFinite(Number(value))?"—":percent?`${(Number(value)*100).toFixed(1)}%`:Number(value).toFixed(2);}
+
+/**
+ * 機能: 保存セッションキーを日本語表示にする。
+ * @param {string} key - セッションキー。
+ * @returns {string} 日付とデイ又はナイト。
+ */
+function sessionName(key){return String(key).replace("_Day"," デイ").replace("_Night"," ナイト");}
+
+/**
+ * 機能: 期間と銘柄に対応する集計値を読む。
+ * @param {object} method - 手法データ。
+ * @param {string} period - 前16、後12又は全28。
+ * @param {string} symbol - 銘柄。
+ * @param {boolean} baseline - 同入口の対照を読むか。
+ * @returns {object|null} 集計又は欠測。
+ */
+function account(method,period,symbol,baseline=false){const periods=baseline?method.baseline?.periods:method.periods;return periods?.[period]?.[symbol]??null;}
+
+/**
+ * 機能: 主成績の組勝率と損益比を欠測に対応して読む。
+ * @param {object} row - 集計値。
+ * @returns {object} 勝率、損益比、最大下落の辞書。
+ */
+function indicators(row){const wins=num(row.campaign_wins),losses=num(row.campaign_losses??row.losses),total=num(row.campaigns);return {win:row.campaign_win_rate??(total?wins/total:null),payoff:row.campaign_payoff??(wins&&losses?(num(row.campaign_profit)/wins)/(num(row.campaign_loss)/losses):null),dd:row.drawdown??row.max_drawdown??0};}
+
+/**
+ * 機能: 全返済までの組を単位に利益・損失・収支を表へ整形する。
+ * @param {Array<object>} rows - ラベルと集計の配列。
+ * @returns {string} 主成績テーブルのHTML。
+ */
+function primaryTable(rows){return `<div class="table-wrap"><table class="primary-table"><thead><tr><th>対象</th><th>組の利益</th><th>組の損失</th><th>収支</th><th>組数</th><th>組勝率</th><th>1組平均利益／損失</th><th>含み込み最大下落</th><th>最大買／売枚数</th></tr></thead><tbody>${rows.map(({label,data,total=false})=>{if(!data)return `<tr><td>${esc(label)}</td><td colspan="8" class="muted">未掲載</td></tr>`;const q=indicators(data);return `<tr${total?' class="total"':''}><td>${label}</td><td class="money">${NUMBER.format(num(data.campaign_profit))}円</td><td class="money">${NUMBER.format(num(data.campaign_loss))}円</td><td>${money(data.net,true)}</td><td>${NUMBER.format(num(data.campaigns))}</td><td>${ratio(q.win,true)}</td><td>${ratio(q.payoff)}</td><td class="money">${NUMBER.format(num(q.dd))}円</td><td>${num(data.max_long)}／${num(data.max_short)}</td></tr>`;}).join("")}</tbody></table></div>`;}
+
+/**
+ * 機能: 部分決済の損益と由来別収支を主成績とは別に表へ整形する。
+ * @param {Array<object>} rows - ラベルと集計値の配列。
+ * @returns {string} 決済明細集計テーブルのHTML。
+ */
+function detailTable(rows){return `<div class="table-wrap"><table class="detail-table"><thead><tr><th>対象</th><th>決済の利益</th><th>決済の損失</th><th>勝ち枚数</th><th>負け枚数</th><th>元由来の収支</th><th>保険由来の収支</th><th>手数料</th></tr></thead><tbody>${rows.map(({label,data})=>`<tr><td>${label}</td><td class="money">${NUMBER.format(num(data?.profit))}円</td><td class="money">${NUMBER.format(num(data?.loss))}円</td><td>${NUMBER.format(num(data?.winning_lots))}</td><td>${NUMBER.format(num(data?.losing_lots))}</td><td>${money(data?.core_net,true)}</td><td>${money(data?.cover_net,true)}</td><td class="money">${NUMBER.format(num(data?.fees))}円</td></tr>`).join("")}</tbody></table></div>`;}
+
+/**
+ * 機能: 任意の注意書き集合を短い一覧へ整形する。
+ * @param {unknown} value - 文字列、配列又は辞書。
+ * @returns {string} 安全なHTMLの一覧。
+ */
+function noteList(value){if(!value)return "";const rows=Array.isArray(value)?value:typeof value==="object"?Object.entries(value).map(([k,v])=>`${k}：${typeof v==="string"?v:JSON.stringify(v)}`):[value];return `<ul class="notes">${rows.map(v=>`<li>${esc(v)}</li>`).join("")}</ul>`;}
+
+/**
+ * 機能: 章に使う短い設定説明を読む。
+ * @param {object} method - 手法データ。
+ * @returns {string} 説明文。
+ */
+function configText(method){if(method.configText||method.configSummary)return method.configText||method.configSummary;if(typeof method.config==="string")return method.config;const c=method.config??{};return [SOURCE_NAMES[c.source]??c.source,c.manager_name??c.name??c.group].filter(Boolean).join(" ／ ");}
+
+/**
+ * 機能: 選定手法の章と、銘柄・期間・セッション切替を作る。
+ * @param {object} method - 手法データ。
+ * @param {number} index - 章の連番。
+ * @returns {HTMLElement} 初期表示済みの章。
+ */
+function buildMethod(method,index){const section=document.createElement("section");section.className="method";section.id=`method-${index}`;section.dataset.methodId=method.id;const heading=method.title??method.name??configText(method)??method.id;section.innerHTML=`<h2>${index+1}. ${esc(heading||method.id)}</h2><div class="method-id">${esc(method.id)}</div><p class="explanation">${esc(method.explanation??"")}</p><p class="config">${esc(configText(method))}</p><div class="net-pair">${["TOPIX","NK225"].map(symbol=>`<div class="net-card"><span>${NAMES[symbol]}・全28</span><strong>${money(account(method,"全28",symbol)?.net,true)}</strong></div>`).join("")}</div><div class="controls"><div class="switch symbol-switch">${["TOPIX","NK225"].map(symbol=>`<button type="button" data-symbol="${symbol}" aria-pressed="${symbol==="TOPIX"}">${NAMES[symbol]}</button>`).join("")}</div><label>期間 <select class="period-select">${PERIODS.map(p=>`<option${p==="全28"?" selected":""}>${p}</option>`).join("")}</select></label></div><h3>同じ入口の対照との比較</h3><div class="comparison"></div><details><summary>部分決済・枚数・元玉と保険玉の内訳</summary><div class="comparison-detail"></div><p class="small">元由来＋保険由来の収支が全玉の収支です。由来は新規時の役割を示します。</p></details><details class="sessions-details"><summary>全28セッションの利益・損失・収支</summary><div class="session-table"></div><details><summary>セッション別の部分決済・枚数・由来別収支</summary><div class="session-detail"></div></details></details><details><summary>週合計の利益・損失・収支</summary><div class="week-table"></div></details><h3>5分足と売買記録</h3><div class="controls"><label>セッション <select class="session-select">${(D.sessions??[]).map(s=>`<option value="${esc(s)}">${esc(sessionName(s))}</option>`).join("")}</select></label></div><div class="legend"><span class="core">● ◇ 元由来</span><span class="cover">● ◇ 保険由来</span><span>● 新規／◇ 返済／↑ 買い／↓ 売り</span></div><div class="chart-box"><div class="chart-title"></div><div class="chart"></div></div><details><summary>新規・返済の注文履歴</summary><div class="table-wrap history"></div></details>`;STATE.set(index,{symbol:"TOPIX",period:"全28",session:D.sessions?.[0]??""});section.querySelectorAll("[data-symbol]").forEach(button=>button.addEventListener("click",()=>{STATE.get(index).symbol=button.dataset.symbol;updateMethod(index);}));section.querySelector(".period-select").addEventListener("change",event=>{STATE.get(index).period=event.target.value;updateMethod(index);});section.querySelector(".session-select").addEventListener("change",event=>{STATE.get(index).session=event.target.value;drawChart(index);});return section;}
+
+/**
+ * 機能: 指定章の期間・銘柄に対応する比較表を更新する。
+ * @param {number} index - 章番号。
+ * @returns {void} 返り値なし。
+ */
+function updateMethod(index){const method=D.methods[index],state=STATE.get(index),section=document.getElementById(`method-${index}`);section.querySelectorAll("[data-symbol]").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.symbol===state.symbol)));const rows=[{label:"満額IFDトレール基準",data:account(method,state.period,state.symbol,true)}];if(method.control?.periods)rows.push({label:"同じ条件・保険だけなし（診断）",data:method.control.periods?.[state.period]?.[state.symbol]??null});rows.push({label:"今回の管理",data:account(method,state.period,state.symbol),total:true});section.querySelector(".comparison").innerHTML=primaryTable(rows);section.querySelector(".comparison-detail").innerHTML=detailTable(rows);const sessions=(D.sessions??[]).map(session=>({label:`<button type="button" class="session-link" data-session="${esc(session)}">${esc(sessionName(session))}</button>`,data:(method.rows??[]).find(r=>r.session===session&&r.symbol===state.symbol)}));const total={label:"全28合計",data:account(method,"全28",state.symbol),total:true};section.querySelector(".session-table").innerHTML=primaryTable([...sessions,total]);section.querySelector(".session-detail").innerHTML=detailTable([...sessions,total]);section.querySelectorAll(".session-link").forEach(b=>b.addEventListener("click",()=>{state.session=b.dataset.session;section.querySelector(".session-select").value=state.session;drawChart(index);}));const weeks=Array.isArray(method.weeks)?method.weeks.filter(w=>w.symbol===state.symbol):(method.weeks?.[state.symbol]??[]);section.querySelector(".week-table").innerHTML=primaryTable([...weeks.map(w=>({label:esc(w.label??w.week??"週"),data:w})),total]);drawChart(index);}
+
+/**
+ * 機能: 記録された注文の売買と建玉方向を簡単な日本語にする。
+ * @param {Array<number>} order - 十列の注文記録。
+ * @returns {string} 新規又は返済の方向説明。
+ */
+function actionName(order){const buy=num(order[3])>0,newOrder=num(order[7])===1;return `${buy?"↑ 買い":"↓ 売り"}${newOrder?`新規（${buy?"ロング":"ショート"}）`:`返済（${buy?"ショート":"ロング"}）`}`;}
+
+/**
+ * 機能: 選択セッションの5分足と全注文をSVGへ描き、注文履歴も更新する。
+ * @param {number} index - 章番号。
+ * @returns {void} 返り値なし。
+ */
+function drawChart(index){const state=STATE.get(index),method=D.methods[index],section=document.getElementById(`method-${index}`),key=`${state.session}|${state.symbol}`,bars=D.bars?.[key]??[],orders=method.orders?.[key]??[],row=(method.rows??[]).find(r=>r.session===state.session&&r.symbol===state.symbol);section.querySelector(".chart-title").innerHTML=`<span>${esc(sessionName(state.session))}／${NAMES[state.symbol]}</span><span>収支 ${money(row?.net,true)}・${num(row?.campaigns)}組</span>`;section.querySelectorAll(".session-link").forEach(b=>b.closest("tr").classList.toggle("selected-row",b.dataset.session===state.session));section.querySelector(".session-select").value=state.session;if(!bars.length){section.querySelector(".chart").innerHTML='<div class="empty">5分足データなし</div>';}else{const W=1000,H=360,L=78,R=20,T=18,B=46,plotW=W-L-R,plotH=H-T-B;const times=bars.map(b=>num(b[0])),orderTimes=orders.map(o=>num(o[9]));const left=Math.min(...times,...orderTimes),right=Math.max(...times.map(t=>t+300),...orderTimes,left+300),values=bars.flatMap(b=>[num(b[2]),num(b[3])]).concat(orders.map(o=>num(o[5]))),low=Math.min(...values),high=Math.max(...values),pad=Math.max((high-low)*.08,state.symbol==="TOPIX"?.5:10),min=low-pad,max=high+pad;const x=t=>L+(t-left)/(right-left)*plotW,y=p=>T+(max-p)/(max-min)*plotH;let lines="";for(let j=0;j<=5;j++){const yy=T+j*plotH/5,p=max-j*(max-min)/5;lines+=`<line x1="${L}" y1="${yy}" x2="${W-R}" y2="${yy}" stroke="#2c4056"/><text x="${L-8}" y="${yy+4}" text-anchor="end" fill="#b7cbe2" font-size="12">${p.toFixed(state.symbol==="TOPIX"?1:0)}</text>`;}for(let j=0;j<=6;j++){const t=left+j*(right-left)/6,xx=x(t);lines+=`<text x="${xx}" y="${H-16}" text-anchor="middle" fill="#b7cbe2" font-size="12">${SHORT_CLOCK.format(new Date(t*1000))}</text>`;}const candleWidth=Math.max(1,Math.min(12,plotW/bars.length*.7));const candles=bars.map(b=>{const xx=x(num(b[0])+150),o=num(b[1]),h=num(b[2]),l=num(b[3]),c=num(b[4]),color=c>=o?"#6bc8b2":"#ec8399";return `<g><title>${esc(SHORT_CLOCK.format(new Date(num(b[0])*1000)))} 始${o} 高${h} 安${l} 終${c}</title><line x1="${xx}" y1="${y(h)}" x2="${xx}" y2="${y(l)}" stroke="${color}"/><rect x="${xx-candleWidth/2}" y="${Math.min(y(o),y(c))}" width="${candleWidth}" height="${Math.max(1,Math.abs(y(o)-y(c)))}" fill="${color}" opacity=".75"/></g>`;}).join("");const markers=orders.map(o=>{const xx=x(num(o[9])),yy=y(num(o[5])),color=num(o[8])===1?"#ffc973":"#67d7ff",title=`${CLOCK.format(new Date(num(o[9])*1000))} ${actionName(o)} ${num(o[4])}枚 @${num(o[5])} ${REASONS[num(o[6])]??""}`;return `<g><title>${esc(title)}</title>${num(o[7])===1?`<circle cx="${xx}" cy="${yy}" r="4.4" fill="${color}" stroke="#0c1623" stroke-width="1.3"/>`:`<path d="M ${xx} ${yy-5} L ${xx+5} ${yy} L ${xx} ${yy+5} L ${xx-5} ${yy} Z" fill="${color}" stroke="#0c1623" stroke-width="1.3"/>`}</g>`;}).join("");section.querySelector(".chart").innerHTML=`<svg class="chart-svg" viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(sessionName(state.session))}の5分足と売買"><rect width="${W}" height="${H}" fill="#0c1623"/>${lines}${candles}${markers}</svg>`;}section.querySelector(".history").innerHTML=orders.length?`<table><thead><tr><th>約定時刻</th><th>売買</th><th>枚数</th><th>価格</th><th>由来</th><th>理由</th><th>組</th><th>判断行→約定行</th></tr></thead><tbody>${orders.map(o=>`<tr><td>${CLOCK.format(new Date(num(o[9])*1000))}</td><td>${esc(actionName(o))}</td><td>${num(o[4])}</td><td>${num(o[5])}</td><td class="${num(o[8])===1?"cover":"core"}">${num(o[8])===1?"保険":"元"}</td><td>${esc(REASONS[num(o[6])]??o[6])}</td><td>${num(o[2])}</td><td>${num(o[1])}→${num(o[0])}</td></tr>`).join("")}</tbody></table>`:'<div class="empty">このセッションに売買なし。勝ちには数えません。</div>';}
+
+// ----------------------------------------
+// 固定データから画面を組み立てる。外部へデータを送信しない。
+document.title=D.title??document.title;
+document.getElementById("report-title").textContent=D.title??document.title;
+document.getElementById("conclusion").textContent=typeof D.conclusion==="string"?D.conclusion:JSON.stringify(D.conclusion??"");
+document.getElementById("method-nav").innerHTML=(D.methods??[]).map((m,i)=>`<a href="#method-${i}">${i+1}. ${esc(m.title??m.name??m.id)}</a>`).join("");
+const list=document.getElementById("method-list");
+(D.methods??[]).forEach((m,i)=>list.append(buildMethod(m,i)));
+(D.methods??[]).forEach((m,i)=>updateMethod(i));
+document.getElementById("notes").innerHTML=noteList(D.notes)+noteList(D.sourceNotes);
+document.getElementById("all-link").href=D.allUrl??"全条件の途中管理比較.html";
+window.reportTest={D,STATE,updateMethod,drawChart};
+</script>
+</body>
+</html>

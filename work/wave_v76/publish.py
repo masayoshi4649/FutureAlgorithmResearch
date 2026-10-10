@@ -1,0 +1,143 @@
+"""二市場の即時判断の検証資料を、作業00072として案内する。"""
+
+from __future__ import annotations
+
+import hashlib
+import json
+from pathlib import Path
+import re
+from urllib.parse import unquote
+from bs4 import BeautifulSoup
+
+HERE=Path(__file__).resolve().parent
+ROOT=HERE.parents[1]
+OUT=ROOT/'アルゴリズム調査/00072_二市場の即時板判断と保有管理'
+MAIN='二市場の即時判断と保有管理の説明と損益.html'
+ALL='全996条件の比較.html'
+
+
+def documents() -> None:
+    """機能: 最初に読む資料、結論、再現手順を今回フォルダへ保存する。
+
+    引数: なし。返り値: なし(None)。
+    """
+    source=f'''# 作業00072：二市場の即時板判断と保有管理
+
+**最初に見るファイル：[{MAIN}]({MAIN})。**
+
+読む順序：
+
+1. 主HTML：短い結論、六機構、主3の入口・途中・出口、各セッションの利益／損失／収支、五分足と新規／返済。
+2. [{ALL}]({ALL})：996条件。銘柄・期間・管理方式を切り替え、各条件の全29場を確認できます。
+3. [公開会計](公開会計.json)：表示に使用した会計と資料の指紋。
+4. [事前固定](../../work/wave_v76/事前固定.json)・[前半選定](../../work/wave_v76/前半選定.json)：条件と選定の手順。
+5. [途中判断の効果と限界](../../work/wave_v76/analysis/板支持による途中判断の効果と限界.json)：同設定の管理比較、返済理由、ドテン後の収支、情報遅延。
+6. [事前仮説と研究](../../work/wave_v76/theory/板の支持で保有を更新する事前仮説.json)・[入力資料](../../work/wave_v76/inputs/README.md)：板の意味、時計と入力の限界。
+7. [監査](../../work/wave_v76/audit/)・[表示検査](../../work/wave_v76/review/)：独立会計、未来切断、操作、金額、売買点の照合。
+
+## 結論
+
+**両市場の情報を保有中にも使うことは機械的に実装できます。ただし、細かな変化すべてに追従する運用は悪化しました。**
+
+- 従来J1の入口に「両市場で注文増減と距離加重板が反対方向へ揃い、15秒確認したら撤退」を加えた方式（B_FD15_E0_M1_C15_T40_H30）は、全29場でTOPIXミニ10枚+822,268円、NK225マイクロ20枚+342,560円。従来比+50,000円／+14,000円です。ただし後13のTOPIXは従来より75,000円悪化し、一様な改善ではありません。
+- 板数量だけで早く入り、強い反対合意を30秒確認して返済後に再確認してドテンする方式（Q25_E10_M2_C30_T40_HS）は、主計算で+2,128,876円／+344,840円。しかし情報遅延を1秒又は15秒へ変えるとNKは赤字です。前16のNKも−11,440円で、安定した採用候補とはまだ言えません。
+- 「両市場の弱い支持が揃わなくなれば撤退」まで広げたM3は、片側の短い中立や不一致でも降り、取引経路が増えて悪化しました。支持の消失と、反対方向の成立は区別する必要があります。
+
+主3の表示順は前16の選定順を維持しています。前半首位のFD60は後13で両商品赤字でした。後半結果で代表を入れ替えていません。
+
+## 今回の条件
+
+保存された共通29セッション（2026-09-21デイ〜2026-10-09デイ）を使用。追加TOPIX10/09ナイトはNKが保存されていないため二市場比較に含めません。現在セッションAPI取得0、実注文0です。
+
+六機構は、最良板の偏り、距離を加味した10段板、注文増減、注文増減と板厚の一致、短期の気配進行、従来入口＋短期の途中判断。短期入口896条件と従来入口100条件を損益前に固定しました。
+
+予定時刻5秒ごとに新規・途中を判断し、参照窓5／15／30／60秒、入口の確認0／10秒、途中の確認15／30秒を比較します。確認中に両市場の観測が更新されることを要求し、同じ古い板の繰り返しを持続とみなしません。従来の5分は参照窓であり、5分ごとの判断ではありませんでした。
+
+管理はM0保険のみ、M1強い反対合意で撤退、M2撤退後に新しい観測で再確認してドテン、M3は弱い支持が両市場で揃わなくなった場合も撤退。M3は片側不足を含み、両側同時消失に限定しません。ドテンは返済と新規を別注文として課金し、実返済より後の観測で再確認します。
+
+保険は観測済み始値0.2／0.4%のトレーリング。保有上限30分又は場末までを比較し、必ず場内返済します。ATRは使いません。1回の保有はTOPIXミニ10枚又は日経マイクロ20枚、追加・両建てなし。両商品は別口座で、円を合算して順位を決めません。
+
+前16で両商品20取引・8活動場以上から、金額損失割合が悪い側を優先して選定。後13の基準は両商品黒字、平均利益／平均損失が1超、最大黒字場除外でも黒字です。この29場は既に研究した既知期間であり、未見将来での検証ではありません。
+
+## 約定と情報時計
+
+主計算は予定時刻より5秒遅れた情報を使用し、固定した代表と管理対照42条件を1／15秒でも再生しました。期限より厳密に過去の同時計先頭行だけを参照。鮮度30秒超、欠測、区間異常は判断不能とし、中立へ補完しません。
+
+原本には両市場共通の受信時計がなく、最終約定の時計を代理にしています。名目5秒窓の実際の時計差は中央値6秒、最大34秒です。未来データ混入を防ぐ検査に合格しても、実配信の秒単位の先行性は証明できません。
+
+判断後の次の有効気配で買いask／売りbidに仮想約定します。TOPIXミニ片道41.8円×10枚、NKマイクロ11円×20枚を新規・返済双方で課金し、1注文の合計を1円未満切捨て。気配差は約定価格に含み、手数料と別集計です。ラージ板をミニ／マイクロの執行にも代用しており、実商品の板深さ・約定順番は再現していません。
+
+利益は黒字決済の手数料後合計、損失は赤字決済の絶対額合計、収支は利益−損失です。金額損失割合は損失÷（利益＋損失）。全建玉を返済し、含み損を残した利益集計はしません。
+
+## 再現
+
+[study.py](../../work/wave_v76/study.py)、[signals.py](../../work/wave_v76/signals.py)、[engine.py](../../work/wave_v76/engine.py)が計算本体です。
+
+```text
+python -X utf8 work/wave_v76/study.py --workers 6
+python -X utf8 work/wave_v76/study.py --delay 1 --workers 3
+python -X utf8 work/wave_v76/study.py --delay 15 --workers 3
+python -X utf8 work/wave_v76/analysis/compare_management.py --delay-dir 1=sensitivity/delay1/results --delay-dir 15=sensitivity/delay15/results
+python -X utf8 work/wave_v76/report/generate.py
+```
+
+事前固定・選定・状態保存は完了済みで上書きしません。既存の結果は計算を省略します。完全な再計算は作業フォルダを複製して出力先を分けてください。原本データと実運用アプリは変更していません。
+'''
+    (OUT/'README.md').write_text(source,encoding='utf8')
+
+
+def links(paths: list[Path]) -> int:
+    """機能: 公開資料と索引のローカルリンクを検査する。
+
+    引数: paths(list[Path])。返り値: 検査件数(int)。
+    """
+    count=0
+    for path in paths:
+        source=path.read_text(encoding='utf8')
+        refs=([a['href'] for a in BeautifulSoup(source,'html.parser').select('a[href]')]
+              if path.suffix=='.html' else re.findall(r'\]\(([^)]+)\)',source))
+        for href in refs:
+            if href.startswith(('http:','https:','#')):continue
+            assert (path.parent/unquote(href.split('#',1)[0].split('?',1)[0])).exists(),(path,href)
+            count+=1
+    return count
+
+
+def main() -> None:
+    """機能: 公開前確認を要求し、過去のリンクを残して最新作業を登録する。
+
+    引数: なし。返り値: なし(None)。
+    """
+    ready=json.loads((HERE/'review/公開前確認.json').read_text(encoding='utf8'))
+    assert ready['監査確認'] and ready['目視確認'] and ready['全合格']
+    for name in (MAIN,ALL):assert hashlib.sha256((OUT/name).read_bytes()).hexdigest()==ready['HTML_SHA256'][name]
+    documents();folder=OUT.name
+    index=ROOT/'アルゴリズム調査/index.html';readme=ROOT/'アルゴリズム調査/README.md'
+    source=index.read_text(encoding='utf8').replace('class="task latest"','class="task"').replace(' <span class="badge">最新</span>','')
+    source=re.sub(r'<p class="lead">.*?</p>','<p class="lead">最新00072：二市場の板で新規・継続・撤退・ドテンを996条件比較。全29場と同設定の管理対照、情報遅延への感度。</p>',source,count=1,flags=re.S)
+    block=f'''<!--00072開始--><article class="task latest"><div class="number">作業00072 <span class="badge">最新</span></div><h2>二市場の即時板判断と保有管理</h2><p>5秒ごとの共同判定を入口と保有中へ適用。反対合意の撤退は一部改善、支持消失での頻繁な撤退は悪化。板だけの新規・ドテンは情報時刻への感度が残りました。全29場、管理7対照、五分足と全売買を掲載。</p><a class="button" href="{folder}/{MAIN}">説明と全セッション損益を開く →</a><p><a href="{folder}/{ALL}">全996条件の比較</a> · <a href="{folder}/README.md">資料案内</a> · <a href="{folder}/公開会計.json">公開会計</a></p></article><!--00072終了-->'''
+    if '<!--00072開始-->' in source:source=re.sub(r'<!--00072開始-->.*?<!--00072終了-->',block,source,flags=re.S)
+    else:
+        assert '<!--00071開始-->' in source
+        source=source.replace('<!--00071開始-->',block+'\n<!--00071開始-->',1)
+    # ----------------------------------------
+    # 過去資料は維持し、最新の案内だけを変更する。
+    text=readme.read_text(encoding='utf8').replace('**最新は00071','**00071')
+    guide=f'''<!--00072案内開始-->
+**最新は00072の[二市場の即時判断と保有管理の説明と損益]({folder}/{MAIN})。板からの新規・継続・撤退・ドテンを996条件、TOPIXミニ10枚／NKマイクロ20枚で比較。全29場の金額損益、同設定の管理対照、1／5／15秒の情報遅延。**
+
+[全996条件]({folder}/{ALL}) · [資料案内]({folder}/README.md) · [公開会計]({folder}/公開会計.json)。
+<!--00072案内終了-->
+'''
+    if '<!--00072案内開始-->' in text:text=re.sub(r'<!--00072案内開始-->.*?<!--00072案内終了-->\n?',guide,text,flags=re.S)
+    else:
+        assert '<!--00071案内開始-->' in text
+        text=text.replace('<!--00071案内開始-->',guide+'\n<!--00071案内開始-->',1)
+    index.write_text(source,encoding='utf8');readme.write_text(text,encoding='utf8')
+    count=links([index,readme,OUT/MAIN,OUT/ALL,OUT/'README.md'])
+    (HERE/'公開リンク照合.json').write_text(json.dumps(dict(合格=True,照合リンク数=count,最新='00072'),ensure_ascii=False,indent=2),encoding='utf8')
+    print(f'00072を登録、{count}リンクを確認しました')
+
+
+if __name__=='__main__':
+    main()

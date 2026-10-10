@@ -1,0 +1,899 @@
+{
+  "fixed_at": "2026-09-23T15:34:01.560228+09:00",
+  "config": {
+    "family": 1,
+    "param": 0.75,
+    "entry": "pullback",
+    "offset": 0.5,
+    "trail": 2.5,
+    "cooldown": 30,
+    "rearm": "cooldown",
+    "confirm": 1,
+    "reverse": false,
+    "seed": 271828,
+    "trail_basis": "entry",
+    "warmup": 60
+  },
+  "symbol_configs": {
+    "NK225": {
+      "family": 1,
+      "param": 0.75,
+      "entry": "pullback",
+      "offset": 0.5,
+      "trail": 2.5,
+      "cooldown": 30,
+      "rearm": "cooldown",
+      "confirm": 1,
+      "reverse": false,
+      "seed": 271828,
+      "trail_basis": "entry",
+      "warmup": 60
+    },
+    "TOPIX": {
+      "family": 1,
+      "param": 0.75,
+      "entry": "pullback",
+      "offset": 0.5,
+      "trail": 2.5,
+      "cooldown": 30,
+      "rearm": "cooldown",
+      "confirm": 1,
+      "reverse": false,
+      "seed": 271828,
+      "trail_basis": "entry",
+      "warmup": 60
+    }
+  },
+  "alternative_symbol_configs": {
+    "NK225": {
+      "family": 3,
+      "param": 0.75,
+      "entry": "pullback",
+      "offset": 0.5,
+      "trail": 4,
+      "cooldown": 30,
+      "rearm": "cooldown",
+      "confirm": 1,
+      "reverse": false,
+      "seed": 271828,
+      "trail_basis": "current",
+      "warmup": 14
+    },
+    "TOPIX": {
+      "family": 10,
+      "param": 0.75,
+      "entry": "stop",
+      "offset": 0.5,
+      "trail": 2.5,
+      "cooldown": 30,
+      "rearm": "cooldown",
+      "confirm": 1,
+      "reverse": false,
+      "seed": 271828,
+      "trail_basis": "entry",
+      "warmup": 45
+    }
+  },
+  "candidates": [
+    {
+      "config": {
+        "family": 1,
+        "param": 0.75,
+        "entry": "pullback",
+        "offset": 0.5,
+        "trail": 2.5,
+        "cooldown": 30,
+        "rearm": "cooldown",
+        "confirm": 1,
+        "reverse": false,
+        "seed": 271828,
+        "trail_basis": "entry",
+        "warmup": 60
+      },
+      "name": "価格・５分対20分移動平均と傾き"
+    },
+    {
+      "config": {
+        "family": 23,
+        "param": 1.25,
+        "entry": "trail",
+        "offset": 0.5,
+        "trail": 4.0,
+        "cooldown": 30,
+        "rearm": "cooldown",
+        "confirm": 1,
+        "reverse": false,
+        "seed": 271828,
+        "trail_basis": "current",
+        "warmup": 60
+      },
+      "name": "混合・価格と約定方向推定出来高"
+    },
+    {
+      "config": {
+        "family": 4,
+        "param": 0.75,
+        "entry": "trail",
+        "offset": 0.5,
+        "trail": 4.0,
+        "cooldown": 30,
+        "rearm": "cooldown",
+        "confirm": 1,
+        "reverse": false,
+        "seed": 271828,
+        "trail_basis": "current",
+        "warmup": 60
+      },
+      "name": "価格・30分回帰と直線性"
+    },
+    {
+      "config": {
+        "family": 10,
+        "param": 0.75,
+        "entry": "stop",
+        "offset": 0.5,
+        "trail": 2.5,
+        "cooldown": 60,
+        "rearm": "cooldown",
+        "confirm": 1,
+        "reverse": false,
+        "seed": 271828,
+        "trail_basis": "entry",
+        "warmup": 60
+      },
+      "name": "価格・直近極値からのATR方向転換"
+    },
+    {
+      "config": {
+        "family": 3,
+        "param": 0.75,
+        "entry": "pullback",
+        "offset": 0.5,
+        "trail": 1.5,
+        "cooldown": 60,
+        "rearm": "cooldown",
+        "confirm": 1,
+        "reverse": false,
+        "seed": 271828,
+        "trail_basis": "entry",
+        "warmup": 60
+      },
+      "name": "価格・15分回帰と直線性"
+    },
+    {
+      "config": {
+        "family": 102,
+        "param": 1.0,
+        "entry": "stop",
+        "offset": 0.25,
+        "trail": 1.5,
+        "cooldown": 20,
+        "rearm": "cooldown",
+        "confirm": 1,
+        "reverse": false,
+        "seed": 271828,
+        "trail_basis": "entry",
+        "warmup": 14
+      },
+      "name": "注文のみ・60分交互方向"
+    },
+    {
+      "config": {
+        "family": 16,
+        "param": 1.0,
+        "entry": "signal_limit",
+        "offset": 0.5,
+        "trail": 1.5,
+        "cooldown": 20,
+        "rearm": "cooldown",
+        "confirm": 1,
+        "reverse": false,
+        "seed": 271828,
+        "trail_basis": "entry",
+        "warmup": 14
+      },
+      "name": "板・数量加重気配の短期傾き"
+    },
+    {
+      "config": {
+        "family": 15,
+        "param": 1.0,
+        "entry": "signal_limit",
+        "offset": 0.5,
+        "trail": 1.5,
+        "cooldown": 20,
+        "rearm": "cooldown",
+        "confirm": 1,
+        "reverse": false,
+        "seed": 271828,
+        "trail_basis": "entry",
+        "warmup": 14
+      },
+      "name": "板・最良気配中心の短期傾き"
+    },
+    {
+      "config": {
+        "family": 9,
+        "param": 0.75,
+        "entry": "stop",
+        "offset": 0.5,
+        "trail": 2.5,
+        "cooldown": 60,
+        "rearm": "cooldown",
+        "confirm": 1,
+        "reverse": false,
+        "seed": 271828,
+        "trail_basis": "entry",
+        "warmup": 45
+      },
+      "name": "価格・変化点累積和"
+    },
+    {
+      "config": {
+        "family": 18,
+        "param": 1.25,
+        "entry": "trail",
+        "offset": 0.5,
+        "trail": 4.0,
+        "cooldown": 30,
+        "rearm": "cooldown",
+        "confirm": 1,
+        "reverse": false,
+        "seed": 271828,
+        "trail_basis": "current",
+        "warmup": 45
+      },
+      "name": "板・15分約定方向推定出来高"
+    },
+    {
+      "config": {
+        "family": 14,
+        "param": 1.0,
+        "entry": "trail",
+        "offset": 0.5,
+        "trail": 4.0,
+        "cooldown": 30,
+        "rearm": "cooldown",
+        "confirm": 1,
+        "reverse": false,
+        "seed": 271828,
+        "trail_basis": "current",
+        "warmup": 45
+      },
+      "name": "価格・両指数の短期回帰一致"
+    },
+    {
+      "config": {
+        "family": 24,
+        "param": 0.75,
+        "entry": "pullback",
+        "offset": 0.5,
+        "trail": 4.0,
+        "cooldown": 30,
+        "rearm": "cooldown",
+        "confirm": 1,
+        "reverse": false,
+        "seed": 271828,
+        "trail_basis": "current",
+        "warmup": 14
+      },
+      "name": "混合・両指数短期方向と気配フロー"
+    },
+    {
+      "config": {
+        "family": 7,
+        "param": 1.25,
+        "entry": "pullback",
+        "offset": 0.5,
+        "trail": 4.0,
+        "cooldown": 30,
+        "rearm": "cooldown",
+        "confirm": 1,
+        "reverse": false,
+        "seed": 271828,
+        "trail_basis": "current",
+        "warmup": 60
+      },
+      "name": "価格・５分足方向指数20分"
+    },
+    {
+      "config": {
+        "family": 105,
+        "param": 1.0,
+        "entry": "pullback",
+        "offset": 0.5,
+        "trail": 1.5,
+        "cooldown": 20,
+        "rearm": "cooldown",
+        "confirm": 1,
+        "reverse": false,
+        "seed": 271828,
+        "trail_basis": "entry",
+        "warmup": 14
+      },
+      "name": "基準・ロング固定"
+    },
+    {
+      "config": {
+        "family": 103,
+        "param": 1.0,
+        "entry": "straddle_stop",
+        "offset": 0.5,
+        "trail": 1.5,
+        "cooldown": 20,
+        "rearm": "cooldown",
+        "confirm": 1,
+        "reverse": false,
+        "seed": 271828,
+        "trail_basis": "entry",
+        "warmup": 14
+      },
+      "name": "注文のみ・上下逆指値"
+    },
+    {
+      "config": {
+        "family": 5,
+        "param": 1.0,
+        "entry": "trail",
+        "offset": 0.5,
+        "trail": 1.5,
+        "cooldown": 5,
+        "rearm": "cooldown",
+        "confirm": 1,
+        "reverse": false,
+        "seed": 271828,
+        "trail_basis": "entry",
+        "warmup": 14
+      },
+      "name": "価格・20分方向効率"
+    },
+    {
+      "config": {
+        "family": 6,
+        "param": 1.0,
+        "entry": "signal_limit",
+        "offset": 0.5,
+        "trail": 1.5,
+        "cooldown": 20,
+        "rearm": "cooldown",
+        "confirm": 1,
+        "reverse": false,
+        "seed": 271828,
+        "trail_basis": "entry",
+        "warmup": 14
+      },
+      "name": "価格・20分高安突破"
+    },
+    {
+      "config": {
+        "family": 17,
+        "param": 0.75,
+        "entry": "stop",
+        "offset": 0.5,
+        "trail": 1.5,
+        "cooldown": 20,
+        "rearm": "cooldown",
+        "confirm": 1,
+        "reverse": false,
+        "seed": 271828,
+        "trail_basis": "entry",
+        "warmup": 14
+      },
+      "name": "板・注文フロー10分と30分"
+    },
+    {
+      "config": {
+        "family": 11,
+        "param": 0.75,
+        "entry": "stop",
+        "offset": 0.5,
+        "trail": 1.5,
+        "cooldown": 5,
+        "rearm": "cooldown",
+        "confirm": 1,
+        "reverse": false,
+        "seed": 271828,
+        "trail_basis": "entry",
+        "warmup": 14
+      },
+      "name": "価格・14分RSIと変位"
+    },
+    {
+      "config": {
+        "family": 22,
+        "param": 1.25,
+        "entry": "signal_limit",
+        "offset": 0.5,
+        "trail": 1.5,
+        "cooldown": 20,
+        "rearm": "opposite",
+        "confirm": 1,
+        "reverse": false,
+        "seed": 271828,
+        "trail_basis": "entry",
+        "warmup": 14
+      },
+      "name": "板・注文フローの累積変化点"
+    },
+    {
+      "config": {
+        "family": 19,
+        "param": 0.75,
+        "entry": "pullback",
+        "offset": 0.5,
+        "trail": 1.5,
+        "cooldown": 5,
+        "rearm": "opposite",
+        "confirm": 1,
+        "reverse": false,
+        "seed": 271828,
+        "trail_basis": "entry",
+        "warmup": 14
+      },
+      "name": "板・10分売買気配更新方向"
+    },
+    {
+      "config": {
+        "family": 101,
+        "param": 1.0,
+        "entry": "trail",
+        "offset": 0.5,
+        "trail": 1.5,
+        "cooldown": 40,
+        "rearm": "cooldown",
+        "confirm": 1,
+        "reverse": false,
+        "seed": 271828,
+        "trail_basis": "entry",
+        "warmup": 14
+      },
+      "name": "注文のみ・30分固定コイントス"
+    },
+    {
+      "config": {
+        "family": 1,
+        "param": 1.0,
+        "entry": "pullback",
+        "offset": 0.5,
+        "trail": 1.5,
+        "cooldown": 5,
+        "rearm": "cooldown",
+        "confirm": 1,
+        "reverse": true,
+        "seed": 271828,
+        "trail_basis": "entry",
+        "warmup": 14
+      },
+      "name": "価格・５分対20分移動平均と傾き"
+    },
+    {
+      "config": {
+        "family": 3,
+        "param": 1.0,
+        "entry": "signal_limit",
+        "offset": 0.5,
+        "trail": 1.5,
+        "cooldown": 5,
+        "rearm": "cooldown",
+        "confirm": 1,
+        "reverse": true,
+        "seed": 271828,
+        "trail_basis": "entry",
+        "warmup": 14
+      },
+      "name": "価格・15分回帰と直線性"
+    },
+    {
+      "config": {
+        "family": 11,
+        "param": 1.0,
+        "entry": "signal_limit",
+        "offset": 0.5,
+        "trail": 2.5,
+        "cooldown": 5,
+        "rearm": "cooldown",
+        "confirm": 1,
+        "reverse": true,
+        "seed": 271828,
+        "trail_basis": "entry",
+        "warmup": 14
+      },
+      "name": "価格・14分RSIと変位"
+    },
+    {
+      "config": {
+        "family": 8,
+        "param": 1.0,
+        "entry": "pullback",
+        "offset": 0.5,
+        "trail": 4.0,
+        "cooldown": 5,
+        "rearm": "cooldown",
+        "confirm": 1,
+        "reverse": true,
+        "seed": 271828,
+        "trail_basis": "entry",
+        "warmup": 14
+      },
+      "name": "価格・セッションVWAPと傾き"
+    },
+    {
+      "config": {
+        "family": 13,
+        "param": 0.75,
+        "entry": "pullback",
+        "offset": 0.5,
+        "trail": 4.0,
+        "cooldown": 30,
+        "rearm": "cooldown",
+        "confirm": 3,
+        "reverse": false,
+        "seed": 271828,
+        "trail_basis": "current",
+        "warmup": 14
+      },
+      "name": "価格・20分と40分の方向一致"
+    },
+    {
+      "config": {
+        "family": 8,
+        "param": 1.25,
+        "entry": "stop",
+        "offset": 0.5,
+        "trail": 2.5,
+        "cooldown": 20,
+        "rearm": "cooldown",
+        "confirm": 1,
+        "reverse": false,
+        "seed": 271828,
+        "trail_basis": "entry",
+        "warmup": 14
+      },
+      "name": "価格・セッションVWAPと傾き"
+    },
+    {
+      "config": {
+        "family": 2,
+        "param": 0.75,
+        "entry": "signal_limit",
+        "offset": 0.5,
+        "trail": 4.0,
+        "cooldown": 30,
+        "rearm": "cooldown",
+        "confirm": 1,
+        "reverse": false,
+        "seed": 271828,
+        "trail_basis": "current",
+        "warmup": 14
+      },
+      "name": "価格・８分対40分移動平均と傾き"
+    },
+    {
+      "config": {
+        "family": 21,
+        "param": 0.75,
+        "entry": "signal_limit",
+        "offset": 0.5,
+        "trail": 3.0,
+        "cooldown": 10,
+        "rearm": "cooldown",
+        "confirm": 3,
+        "reverse": false,
+        "seed": 271828,
+        "trail_basis": "current",
+        "warmup": 14
+      },
+      "name": "板・10分５段数量の偏り"
+    },
+    {
+      "config": {
+        "family": 104,
+        "param": 1.0,
+        "entry": "straddle_trail",
+        "offset": 1.0,
+        "trail": 1.5,
+        "cooldown": 20,
+        "rearm": "cooldown",
+        "confirm": 1,
+        "reverse": false,
+        "seed": 271828,
+        "trail_basis": "entry",
+        "warmup": 14
+      },
+      "name": "注文のみ・上下反発追跡"
+    },
+    {
+      "config": {
+        "family": 20,
+        "param": 1.0,
+        "entry": "trail",
+        "offset": 0.5,
+        "trail": 1.5,
+        "cooldown": 5,
+        "rearm": "cooldown",
+        "confirm": 1,
+        "reverse": true,
+        "seed": 271828,
+        "trail_basis": "entry",
+        "warmup": 14
+      },
+      "name": "板・10分最良数量の偏り"
+    },
+    {
+      "config": {
+        "family": 12,
+        "param": 0.75,
+        "entry": "signal_limit",
+        "offset": 0.5,
+        "trail": 1.5,
+        "cooldown": 20,
+        "rearm": "opposite",
+        "confirm": 1,
+        "reverse": false,
+        "seed": 271828,
+        "trail_basis": "entry",
+        "warmup": 14
+      },
+      "name": "価格・適応移動平均からの変位"
+    },
+    {
+      "config": {
+        "family": 20,
+        "param": 1.0,
+        "entry": "stop",
+        "offset": 0.5,
+        "trail": 2.0,
+        "cooldown": 10,
+        "rearm": "cooldown",
+        "confirm": 3,
+        "reverse": false,
+        "seed": 271828,
+        "trail_basis": "current",
+        "warmup": 14
+      },
+      "name": "板・10分最良数量の偏り"
+    },
+    {
+      "config": {
+        "family": 106,
+        "param": 1.0,
+        "entry": "pullback",
+        "offset": 1.0,
+        "trail": 4.0,
+        "cooldown": 5,
+        "rearm": "cooldown",
+        "confirm": 1,
+        "reverse": false,
+        "seed": 271828,
+        "trail_basis": "entry",
+        "warmup": 14
+      },
+      "name": "基準・ショート固定"
+    },
+    {
+      "config": {
+        "family": 21,
+        "param": 1.0,
+        "entry": "signal_limit",
+        "offset": 0.5,
+        "trail": 1.5,
+        "cooldown": 20,
+        "rearm": "cooldown",
+        "confirm": 1,
+        "reverse": true,
+        "seed": 271828,
+        "trail_basis": "entry",
+        "warmup": 14
+      },
+      "name": "板・10分５段数量の偏り"
+    },
+    {
+      "config": {
+        "family": 1,
+        "param": 0.75,
+        "entry": "pullback",
+        "offset": 0.5,
+        "trail": 1.5,
+        "cooldown": 60,
+        "rearm": "cooldown",
+        "confirm": 1,
+        "reverse": false,
+        "seed": 271828,
+        "trail_basis": "entry",
+        "warmup": 60
+      },
+      "name": "価格・５分対20分移動平均と傾き"
+    },
+    {
+      "config": {
+        "family": 1,
+        "param": 0.75,
+        "entry": "pullback",
+        "offset": 0.5,
+        "trail": 4.0,
+        "cooldown": 30,
+        "rearm": "cooldown",
+        "confirm": 1,
+        "reverse": false,
+        "seed": 271828,
+        "trail_basis": "current",
+        "warmup": 60
+      },
+      "name": "価格・５分対20分移動平均と傾き"
+    },
+    {
+      "config": {
+        "family": 1,
+        "param": 0.75,
+        "entry": "pullback",
+        "offset": 0.5,
+        "trail": 1.5,
+        "cooldown": 30,
+        "rearm": "cooldown",
+        "confirm": 1,
+        "reverse": false,
+        "seed": 271828,
+        "trail_basis": "entry",
+        "warmup": 60
+      },
+      "name": "価格・５分対20分移動平均と傾き"
+    },
+    {
+      "config": {
+        "family": 23,
+        "param": 1.0,
+        "entry": "trail",
+        "offset": 0.5,
+        "trail": 4.0,
+        "cooldown": 30,
+        "rearm": "cooldown",
+        "confirm": 1,
+        "reverse": false,
+        "seed": 271828,
+        "trail_basis": "current",
+        "warmup": 60
+      },
+      "name": "混合・価格と約定方向推定出来高"
+    },
+    {
+      "config": {
+        "family": 1,
+        "param": 1.0,
+        "entry": "trail",
+        "offset": 0.5,
+        "trail": 4.0,
+        "cooldown": 30,
+        "rearm": "cooldown",
+        "confirm": 1,
+        "reverse": false,
+        "seed": 271828,
+        "trail_basis": "current",
+        "warmup": 60
+      },
+      "name": "価格・５分対20分移動平均と傾き"
+    },
+    {
+      "config": {
+        "family": 1,
+        "param": 1.25,
+        "entry": "trail",
+        "offset": 0.5,
+        "trail": 4.0,
+        "cooldown": 30,
+        "rearm": "cooldown",
+        "confirm": 1,
+        "reverse": false,
+        "seed": 271828,
+        "trail_basis": "current",
+        "warmup": 60
+      },
+      "name": "価格・５分対20分移動平均と傾き"
+    },
+    {
+      "config": {
+        "family": 4,
+        "param": 1.0,
+        "entry": "trail",
+        "offset": 0.5,
+        "trail": 4.0,
+        "cooldown": 30,
+        "rearm": "cooldown",
+        "confirm": 1,
+        "reverse": false,
+        "seed": 271828,
+        "trail_basis": "current",
+        "warmup": 60
+      },
+      "name": "価格・30分回帰と直線性"
+    },
+    {
+      "config": {
+        "family": 23,
+        "param": 1.25,
+        "entry": "trail",
+        "offset": 0.5,
+        "trail": 2.5,
+        "cooldown": 30,
+        "rearm": "cooldown",
+        "confirm": 1,
+        "reverse": false,
+        "seed": 271828,
+        "trail_basis": "entry",
+        "warmup": 60
+      },
+      "name": "混合・価格と約定方向推定出来高"
+    },
+    {
+      "config": {
+        "family": 3,
+        "param": 0.75,
+        "entry": "pullback",
+        "offset": 0.5,
+        "trail": 4,
+        "cooldown": 30,
+        "rearm": "cooldown",
+        "confirm": 1,
+        "reverse": false,
+        "seed": 271828,
+        "trail_basis": "current",
+        "warmup": 14
+      },
+      "name": "事前固定の銘柄別対照"
+    },
+    {
+      "config": {
+        "family": 10,
+        "param": 0.75,
+        "entry": "stop",
+        "offset": 0.5,
+        "trail": 2.5,
+        "cooldown": 30,
+        "rearm": "cooldown",
+        "confirm": 1,
+        "reverse": false,
+        "seed": 271828,
+        "trail_basis": "entry",
+        "warmup": 45
+      },
+      "name": "事前固定の銘柄別対照"
+    }
+  ],
+  "development_conditions": 14160,
+  "selection": "指定6波の新規検知、全セル1〜6回、両銘柄4ティック控除後正を必須とし、事前順位の先頭。",
+  "development_note": "指定例を含む保存4セッションで探索。現在2026-09-23Dayはまだ取得していない。",
+  "code_sha256": {
+    "engine.py": "d302418c52cde17d9de45c60309ca0ef7edf6a206bfa0908676466a71195de9b",
+    "signals.py": "2cb33ebb1f43935b45b2154fd57b89af9504a6e1b3f8da5ca2009c6d826c9699",
+    "targets.py": "f5c62bb3e514af4feaad2d14f2ad2887aa346c46f30e3cd50862e8a1239987a8",
+    "research.py": "49a6dd3c0cece331bf03035f6e857d7749092a1234faa9f465b4c731e42ddfda",
+    "current_check.py": "8db83ce7ef9e705d58cc933fff22fbc59c78cf509f05584294a318086d2019f2",
+    "../wave_v2/book_features.py": "7d847b4ca69464e20f2074ff794130cfd86416bb23538b018216affd20feb913"
+  },
+  "input_sha256": {
+    "candle_1min\\NK225\\2026-09-21_Day.csv": "4f01eaeaeb50d3c67121ccffed9ab6506c8ac8d53d5dadee1562f44ec5526c14",
+    "candle_1min\\NK225\\2026-09-21_Night.csv": "e28222a0bab2073e7fbba5b5f78ec0326dddb35317df00f09e2a8ac1a941b44a",
+    "candle_1min\\NK225\\2026-09-22_Day.csv": "984f865018a17649718a19482709c9ad8c157deacd9990df533290fb39bb95cb",
+    "candle_1min\\NK225\\2026-09-22_Night.csv": "bdc8107f27db4f6cd34a9f0c5ab497876ab01fed55f638f7bd42eda9a1295268",
+    "candle_1min\\TOPIX\\2026-09-21_Day.csv": "d697b1d521dcda8cae3c53e92223d34481cf7da0c5c5bb60fda9407f80c2189e",
+    "candle_1min\\TOPIX\\2026-09-21_Night.csv": "a28165878106ac29dffe8875d85df03edb59975e6d6f2be50355f260295f28f2",
+    "candle_1min\\TOPIX\\2026-09-22_Day.csv": "aa261c811774b621abb07b40e8069103c51f950c703e1c348bdbd4ad3638c9a8",
+    "candle_1min\\TOPIX\\2026-09-22_Night.csv": "7e8440faa232a5be2aef2333416ba4cd4b8d210c882b1f497e02f8ad593481f1",
+    "candle_5min\\NK225\\2026-09-21_Day.csv": "c0d4c82e7dd012177b6d238ac77fc7cc6425bfb168684737fdb03643b5c15abc",
+    "candle_5min\\NK225\\2026-09-21_Night.csv": "be31f16cbf2aefd1a6a1d78eb0b0cf54c37a9efd3e72d8ec1272f34e6ae71310",
+    "candle_5min\\NK225\\2026-09-22_Day.csv": "f5a7efc1a75264c91e8b88b35a7b16b4f7452613e5b4027b19c41a8e71578d9b",
+    "candle_5min\\NK225\\2026-09-22_Night.csv": "942c45e77704934ad28dd9fae28f3dbd79307b872ff26ab879d34c5692b95efb",
+    "candle_5min\\TOPIX\\2026-09-21_Day.csv": "91f39906f7948b3de69bfa3784ab4212bde9c1922571aaab7053c06e6ff41ee1",
+    "candle_5min\\TOPIX\\2026-09-21_Night.csv": "75e3b7348f85c3fd0ce524034a400797178d2427b9af4d080c3b269c605a26fa",
+    "candle_5min\\TOPIX\\2026-09-22_Day.csv": "444b2cb2303fc4d72220ea7b2b5d909ef52f0e0eff2430830bdbe0b12e4d011d",
+    "candle_5min\\TOPIX\\2026-09-22_Night.csv": "b86c53bbc697dc14bcf60b6c5340ff336ecaa51e7666e7a3d970f6109ed0bb2c",
+    "work\\wave_v2\\板特徴_NK225_2026-09-21_Day.csv": "17fa5448c44e5f12760480b6e2a1c9718abcdba5f04c0d7efe6400a7a1307c09",
+    "work\\wave_v2\\板特徴_NK225_2026-09-21_Night.csv": "56971a06446e7560f9257a2f9dc304736e09ee14b3c967b44063886843667435",
+    "work\\wave_v2\\板特徴_NK225_2026-09-22_Day.csv": "4fd8d11f1088112d7a9ae6a6974c24aee3417ef8c0817bb2b240be52f4b8f4b8",
+    "work\\wave_v2\\板特徴_TOPIX_2026-09-21_Day.csv": "59ad2a5c9a0c8c06e142a8d8eab086befd3a754b7b747f0ccc99147ff013f09e",
+    "work\\wave_v2\\板特徴_TOPIX_2026-09-21_Night.csv": "00cadbc12e2f873d9db714475bb6bd3d3f4a280f423cf4fd4cdd8f221e453095",
+    "work\\wave_v2\\板特徴_TOPIX_2026-09-22_Day.csv": "39548b350abfb56845b6d7b79f62e905b67b18476d6f37419dc63d91a5231f6e",
+    "work\\wave_v3_check\\板特徴_NK225_2026-09-22_Night.csv": "90d7b99f81f7ee949db3de81e171079354ef41da95a66acde1c8a4295606f0bd",
+    "work\\wave_v3_check\\板特徴_TOPIX_2026-09-22_Night.csv": "120a46c7ab176c84f61d9f4fdeb38f5a4f0e513ddf37802b94383d9f89fa2a00"
+  },
+  "table_sha256": "73b56efc3488263edc76521b268a2e8521a9d2ede51f85aa08d10f71d8756739"
+}

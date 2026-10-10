@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>損失を減らす改修と全セッション損益</title>
+<style>
+:root{color-scheme:dark;background:#0b1420;color:#e2edf9;font-family:Meiryo,"Yu Gothic UI",sans-serif}*{box-sizing:border-box}body{margin:0;line-height:1.65}main{max-width:1260px;margin:auto;padding:25px 20px 60px}h1{font-size:clamp(22px,3vw,30px);margin:8px 0 15px}h2{font-size:20px;margin:0 0 12px}p{margin:8px 0}a{color:#9fceff}section,.brief{background:#142234;border:1px solid #344a66;border-radius:10px;padding:20px;margin:18px 0}.brief{border-left:4px solid #81bfff}.note{color:#b5c7de;font-size:13px}.good{color:#75dfb8}.bad{color:#ff97ad}.number{white-space:nowrap;font-variant-numeric:tabular-nums}table{border-collapse:collapse;width:100%;font-size:13px}td,th{border-bottom:1px solid #334860;padding:9px;text-align:right;vertical-align:top;white-space:nowrap}th{background:#1c3048;color:#c7d9f0}td:first-child,th:first-child{text-align:left}.scroll{overflow-x:auto;max-width:100%}select{font:inherit;background:#223950;color:#eef6ff;border:1px solid #587797;padding:7px;border-radius:5px;max-width:100%}label{display:inline-block;margin:7px 20px 7px 0}.stages{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.stage{background:#1c3048;padding:14px;border-radius:7px}.stage strong{color:#a8d3ff}.total{background:#203b53;font-weight:bold}.plot{display:block;width:100%;height:auto;background:#0d1826;border:1px solid #354c67}summary{cursor:pointer;color:#acd4ff;font-weight:bold}.pill{color:#b9d7f6;font-size:13px}.explain{max-width:50em}small{color:#bfd0e6}@media(max-width:650px){main{padding:18px 11px}section,.brief{padding:14px}.stages{grid-template-columns:1fr}td,th{padding:7px}label{display:block;margin-right:0}select{width:100%}}
+</style></head><body>
+<!--
+[コンポーネント概要]
+#comparison は各銘柄で元方式と損失改善候補を比べます。
+#method / #symbol / #session は手法、商品、保存セッションの選択欄です。
+#method-note / #periods / #sessions は手法説明、期間集計、全セッションの損益です。
+#chart / #orders は5分足と原本の売買時刻・価格を表示します。
+#quotes は発注時刻・数量を固定した売買気配価格感度です。
+外部通信・実注文は行いません。表は小画面では表内を横スクロールできます。
+-->
+<main><p><a href="../index.html">作業一覧</a> / <a href="README.md">資料案内</a></p>
+<p class="pill">00065 · 保存28セッション · 2026/09/21〜10/08 · 手数料後 · 38条件</p>
+<h1>損失を減らす改修と全セッション損益</h1>
+<div class="brief"><strong>損失対策として残す候補は「2連敗後、30分休む」。</strong>
+<p>R01への追加で、全28場の負け組損失はTOPIX約10%、日経約9%減少。勝ち組の利益は約91%・96%残せました。両銘柄とも全28場で取引しています。</p>
+<p class="note">減るのは主に負けの回数です。1回の最大損失は変わらず、TOPIXの後半12場では場内最大下落が増えました。全面的な安定性改善とはまだ言えません。</p></div>
+<p class="note">初回TOPIXミニ5枚／NK225マイクロ10枚、増玉なし、片方向上限10／20枚以内。ラージの観測価格を小商品の円倍率で換算しています。</p>
+
+<section><h2>損失を減らす代わりに、利益はどれだけ残ったか</h2><div id="comparison" class="scroll"></div>
+<p class="note">この表は「新規から全返済まで」を1組として集計。負け組損失の削減率と勝ち組利益の維持率は、各改修の元E01又はR01に対する比率です。場内最大下落は、各場の含み損益・支払済み料金を含めた資産下落の最大値。</p>
+<details><summary>平均損失と最大損失も確認する</summary><div id="loss-size" class="scroll"></div></details>
+</section>
+
+<section><h2>何が効き、何が難しかったか</h2>
+<div class="stages"><div class="stage"><strong>一律に損切りを狭める</strong><p>0.75→0.5／0.375ATRを比較。通常の押し戻しでも切られ、利益を大きく削る条件が多かった。</p></div>
+<div class="stage"><strong>伸びない玉を早く閉じる</strong><p>5分で伸びず逆行なら全返済。日経では改善したが、TOPIXでは後から回復する勝ちを切った。</p></div>
+<div class="stage"><strong>負けが続いたら休む</strong><p>2連敗後30分だけ新規停止。既存の出口は維持し、休止後は元方式で再開する。</p></div></div>
+<p id="selection" class="note"></p>
+<details><summary>改善の代償が分かる実例</summary><p class="note">早期全返済：10/01日中TOPIXの10:12:42買いは、5分後に過去の順行0.320ATR・現在逆行0.320ATRで撤退。元の＋95,084円が−12,918円となりました。「最初に伸びない」と「最後まで勝てない」は同じではありません。</p><p class="note">30分休止：10/05夜間TOPIXは損失−15,418円を回避した一方、利益＋43,584円なども逃し、場収支−100,013→−128,762円へ悪化。損失総額と資産の最大下落は別に評価しています。</p></details>
+<p class="note">原本の未来価格は判定に使っていません。ただし全28場は既知で、後12の損失診断も仮説作りに用いたため、時間順の比較を完全な未見検証とは扱いません。</p>
+<p><a href="全38条件の比較.html">全38条件と不合格理由を見る</a></p></section>
+
+<section><h2>選んだ手法の説明と全セッション損益</h2>
+<label>手法 <select id="method"></select></label><label>商品 <select id="symbol"><option value="TOPIX">TOPIXミニ</option><option value="NK225">日経マイクロ</option></select></label>
+<p id="method-note" class="explain"></p><div class="stages"><div class="stage"><strong>入口</strong><p id="entry"></p></div><div class="stage"><strong>途中の追加規則</strong><p id="control"></p></div><div class="stage"><strong>出口</strong><p>元は0.75ATRの仮想組損失枠。2ATRで元枠の半分を利確。1.5ATRから幅3ATRで追跡、3ATRから幅0.75ATR。360分又は場末で全返済。</p></div></div>
+<div id="periods" class="scroll"></div><p id="stability" class="note"></p>
+<details><summary>各セッションの利益・損失・枚数</summary><div id="sessions" class="scroll"></div></details>
+<p class="note">以下の利益・損失は、手数料を配賦した各部分決済の合計です。1組集計とは分類が異なりますが収支は一致します。枚数は決済した勝ち枚数／負け枚数／その差で、勝率ではありません。1枚平均勝／負＝利益÷勝ち枚数 ÷（損失÷負け枚数）。週集計は収録範囲だけです。</p>
+<details><summary>機械的な判定の補足</summary><p class="note">ATRは確定済み5分足から計算し、新規準備時に固定。EMAは1分15／60、両ラージの方向が一致し短期の板中値が支持したら、0.25ATRの反発・反落を待って新規。R01は新規時にも両市場のEMA開始条件を再確認。指標は元方式と同じ公開待ち時間を使います。</p><p class="note">新しい途中規則は当行までの建値・経過時間・最大順行・公開済み根拠だけを使い、予約の次の原本行以降で執行します。早期返済しても元の通常仮想玉終了＋5分まで再参加せず、余計な再エントリーで効果を上乗せしません。損失予算は飛越や料金後の最大損失を保証しません。</p><p class="note">半減は既存の一回減量枠を使い、TOP5→3枚、NK10→5枚。減量した枠を後の2ATR部分利確で二重に返済しません。板中値悪化は厚さ・補充そのものの検知ではありません。EMA失効は新規後に公開された状態が継続して崩れている間も有効です。</p></details>
+</section>
+
+<section><h2>5分足で売買を確認</h2><label>セッション <select id="session"></select></label><div id="chart"></div><p class="note">水色○：新規／桃色◇：返済。点に重ねると時刻・価格・枚数・理由。板観測の注文なので5分足の確定時刻に限定されません。</p><details><summary>売買記録</summary><div id="orders" class="scroll"></div></details></section>
+
+<section><h2>売買気配で約定した場合の価格感度</h2><div id="quotes" class="scroll"></div>
+<p class="note">注文時刻・枚数を固定して、買いを売り気配、売りを買い気配へ置換。発動線・建値線・次の入口を再計算したバックテストではありません。気配は執行時点の原本連番以下かつ時計以下、最大30秒以内の過去情報のみ。小商品実板・遅延・部分約定は未評価です。</p></section>
+
+<details><summary>検証資料</summary><p class="note">38条件×56口座の台帳・整数料金・全観測の含み時価を独立検算。全38条件の原本切断・未来変更、23人工経路も検査しました。</p>
+<p><a href="検証結果.md">短い検証結果</a> · <a href="報告データ.json">表示データ</a> · <a href="../../work/wave_v68/事前固定.json">事前固定</a> · <a href="../../work/wave_v68/損失削減の比較と選定.json">採否の数値</a> · <a href="../../work/wave_v68/audit/監査結果.md">監査</a> · <a href="../../work/wave_v68/review/気配価格置換の完了.json">気配会計</a></p>
+<p class="note">前00064の保存足・板入力を継承し、読み取り専用データを変更せず再生。現在API取得0、実注文0。今回App/E01は変更していません。</p></details>
+</main><script>
+const D=__DATA__, $=id=>document.getElementById(id), labels={TOPIX:'TOPIXミニ',NK225:'日経マイクロ'};
+/**
+ * 機能: 金額を日本語の桁区切りで表示する。
+ * @param {number} value - 円の金額。
+ * @returns {string} 符号・単位付き文字列。
+ */
+function money(value){return (value>0?'+':'')+Math.round(value).toLocaleString('ja-JP')+'円';}
+/**
+ * 機能: 金額と符号に応じた色のセルを生成する。
+ * @param {number} value - 円の金額。
+ * @returns {string} HTMLセル。
+ */
+function cell(value){return `<td class="number ${value>0?'good':value<0?'bad':''}">${money(value)}</td>`;}
+/**
+ * 機能: 比率を小数二桁で表示する。
+ * @param {number|null} value - 比率。
+ * @returns {string} 表示文字列。
+ */
+function ratio(value){return value===null?'—':value.toFixed(2);}
+/**
+ * 機能: 比率を百分率で表示する。
+ * @param {number} value - 比率。
+ * @returns {string} 百分率文字列。
+ */
+function pct(value){return (value*100).toFixed(1)+'%';}
+/**
+ * 機能: UNIX秒を日本時間の時刻にする。
+ * @param {number} value - UNIX秒。
+ * @returns {string} 日本時間。
+ */
+function clock(value){return new Intl.DateTimeFormat('ja-JP',{timeZone:'Asia/Tokyo',hour:'2-digit',minute:'2-digit',second:'2-digit'}).format(new Date(value*1000));}
+/**
+ * 機能: 部分決済の利益・損失・収支・枚数を一行にする。
+ * @param {string} label - 行名。
+ * @param {object} value - 期間又は場の会計。
+ * @returns {string} HTML行。
+ */
+function accountRow(label,value){return `<tr><td>${label}</td>${cell(value.profit)}${cell(-value.loss)}${cell(value.net)}<td>${Math.round(value.fees).toLocaleString('ja-JP')}円</td><td>${value.winning_lots} / ${value.losing_lots} / ${value.winning_lots-value.losing_lots}</td><td>${ratio(value.lot_payoff??((value.winning_lots&&value.losing_lots&&value.loss)?(value.profit/value.winning_lots)/(value.loss/value.losing_lots):null))}</td></tr>`;}
+/**
+ * 機能: 選択手法の説明、期間損益、全セッション会計を更新する。
+ * @returns {undefined} 表示更新のみ。
+ */
+function render(){const id=$('method').value,symbol=$('symbol').value,result=D.methods[id],a=result.periods.全28[symbol],c=result.review.comparison.全28[symbol];
+ const header='<thead><tr><th>期間／セッション</th><th>利益</th><th>損失</th><th>収支</th><th>手数料</th><th>勝ち／負け／差枚数</th><th>1枚平均勝／負</th></tr></thead>';
+ $('method-note').textContent=id+'：'+result.explanation;
+ $('entry').textContent=result.variant.base==='R01'?'元E01の方向判定に加え、新規時も両市場のEMA差・長期EMAの傾きが入口方向に揃うことを確認。':'両市場のEMA方向が一致し、短期の板中値の動きが支持したら、反発・反落を待って新規。';
+ $('control').textContent=result.explanation;
+ $('periods').innerHTML='<table>'+header+'<tbody>'+['前16','後12','全28'].map(p=>accountRow(p,result.periods[p][symbol])).join('')+result.weeks[symbol].map(w=>accountRow(w.label,w)).join('')+'</tbody></table>';
+ $('sessions').innerHTML='<table>'+header+'<tbody>'+result.rows.filter(r=>r.symbol===symbol).map(r=>accountRow(r.session,r)).join('')+accountRow('全28合計',a)+'</tbody></table>';
+ const stability=result.review.stability.全28[symbol],later=result.review.stability.後12[symbol],effect=result.review.entry_effect[symbol];
+ $('stability').textContent=`元方式との比較：負け組損失 ${pct(c.campaign_loss_cut)}減、勝ち組利益 ${pct(c.campaign_profit_retention)}維持。最大利益日を除く収支は全28 ${money(stability.without_best_day)}、後12 ${money(later.without_best_day)}。元方式と同じ入口${effect.common}組、消えた入口${effect.removed}組、新しい入口${effect.added}組。`;
+ draw(); quoteTable();
+}
+/**
+ * 機能: 元方式と前半合格候補の損失・利益の代償を並べる。
+ * @returns {undefined} 表示更新のみ。
+ */
+function overview(){const ids=D.primary;
+ $('comparison').innerHTML='<table><thead><tr><th>全28・方式／商品</th><th>勝ち組利益</th><th>負け組損失</th><th>収支</th><th>損失削減</th><th>利益維持</th><th>場内最大下落</th></tr></thead><tbody>'+ids.flatMap(id=>['TOPIX','NK225'].map(s=>{const a=D.methods[id].periods.全28[s],c=D.methods[id].review.comparison.全28[s];return `<tr><td>${id} / ${labels[s]}</td>${cell(a.campaign_profit)}${cell(-a.campaign_loss)}${cell(a.net)}<td>${pct(c.campaign_loss_cut)}</td><td>${pct(c.campaign_profit_retention)}</td>${cell(-a.max_session_drawdown)}</tr>`;})).join('')+'</tbody></table>';
+ $('loss-size').innerHTML='<table><thead><tr><th>全28・方式／商品</th><th>平均負け組損失</th><th>最大負け組損失</th><th>負け組数</th><th>全組数</th><th>組勝率</th><th>決済勝率</th></tr></thead><tbody>'+ids.flatMap(id=>['TOPIX','NK225'].map(s=>{const a=D.methods[id].periods.全28[s];return `<tr><td>${id} / ${labels[s]}</td>${cell(-a.average_campaign_loss)}${cell(-a.max_campaign_loss)}<td>${a.campaign_losses}</td><td>${a.campaigns}</td><td>${pct(a.campaign_wins/a.campaigns)}</td><td>${pct(a.win_rate)}</td></tr>`;})).join('')+'</tbody></table>';
+ $('selection').textContent=`前16の固定規則で1位は${D.selected||'該当なし'}。しかしE01_T05Xは後12のTOPIXで−148,070円となり、両銘柄共通の改修として採用できません。30分休止の2条件も前半合格ですが、後半では一部基準を満たさず、候補として残す評価です。`;
+}
+/**
+ * 機能: 5分足と原本の新規返済位置を同じ価格軸で描く。
+ * @returns {undefined} SVGと売買記録の更新のみ。
+ */
+function draw(){const result=D.methods[$('method').value],key=$('session').value+'|'+$('symbol').value,bars=D.bars[key],orders=result.orders[key];
+ const W=1120,H=400,L=80,R=25,T=22,B=45,first=bars[0][0],last=bars.at(-1)[0]+300,low=Math.min(...bars.map(b=>b[3]),...orders.map(o=>o[5])),high=Math.max(...bars.map(b=>b[2]),...orders.map(o=>o[5])),pad=Math.max((high-low)*.07,1),lo=low-pad,hi=high+pad;
+ const x=t=>L+(t-first)/(last-first)*(W-L-R),y=p=>T+(hi-p)/(hi-lo)*(H-T-B),cw=Math.max(2,(W-L-R)/bars.length*.6);
+ let svg=`<svg class="plot" viewBox="0 0 ${W} ${H}" role="img" aria-label="5分足と新規返済位置">`;
+ for(let i=0;i<5;i++){let p=lo+(hi-lo)*i/4;svg+=`<line x1="${L}" y1="${y(p)}" x2="${W-R}" y2="${y(p)}" stroke="#30465f"/><text x="${L-7}" y="${y(p)+5}" text-anchor="end" fill="#bcd0e8" font-size="13">${p.toFixed($('symbol').value==='TOPIX'?1:0)}</text>`;}
+ for(const b of bars){const color=b[4]>=b[1]?'#76dcb5':'#ff94ab';svg+=`<line x1="${x(b[0]+150)}" y1="${y(b[2])}" x2="${x(b[0]+150)}" y2="${y(b[3])}" stroke="${color}"/><rect x="${x(b[0]+150)-cw/2}" y="${Math.min(y(b[1]),y(b[4]))}" width="${cw}" height="${Math.max(1,Math.abs(y(b[1])-y(b[4])))}" fill="${color}"/>`;}
+ const reasons={0:'追跡新規',1:'組の損切り',2:'追跡返済',7:'2ATR部分利確',8:'保有期限',9:'場内返済',30:'順行後の悪化で減量',32:'実玉損失予算',50:'新しい板中値悪化で失敗整理',51:'経過時間と逆行で失敗整理',52:'EMA失効で損失撤退'};
+ for(const o of orders){const xx=x(o[8]),yy=y(o[5]),caption=`${clock(o[8])} ${o[7]===1?'新規':'返済'} ${o[3]>0?'買い':'売り'} ${o[4]}枚 @${o[5]} ${reasons[o[6]]||'追跡新規'}`;svg+=o[7]===1?`<circle cx="${xx}" cy="${yy}" r="5" fill="#7ad9ff" stroke="#0b1420"><title>${caption}</title></circle>`:`<path d="M${xx},${yy-6} l6,6 l-6,6 l-6,-6Z" fill="#ff9cd8" stroke="#0b1420"><title>${caption}</title></path>`;}
+ for(let i=0;i<5;i++){const t=first+(last-first)*i/4;svg+=`<text x="${x(t)}" y="${H-16}" text-anchor="middle" fill="#c0d1e5" font-size="13">${clock(t).slice(0,5)}</text>`;}svg+='</svg>';$('chart').innerHTML=svg;
+ $('orders').innerHTML='<table><thead><tr><th>時刻</th><th>新規／返済</th><th>方向</th><th>枚数</th><th>価格</th><th>理由</th></tr></thead><tbody>'+orders.map(o=>`<tr><td>${clock(o[8])}</td><td>${o[7]===1?'新規':'返済'}</td><td>${o[3]>0?'買い':'売り'}</td><td>${o[4]}</td><td>${o[5]}</td><td>${reasons[o[6]]||'追跡新規'}</td></tr>`).join('')+'</tbody></table>';
+}
+/**
+ * 機能: 選択手法とその基準の固定注文価格感度を並べる。
+ * @returns {undefined} 表示更新のみ。
+ */
+function quoteTable(){const id=$('method').value,ids=[D.methods[id].variant.base,id].filter((v,i,a)=>a.indexOf(v)===i);
+ $('quotes').innerHTML='<table><thead><tr><th>手法／商品／期間</th><th>観測値全再運転</th><th>同じ注文を売買気配へ置換</th><th>価格差</th></tr></thead><tbody>'+ids.flatMap(v=>['全28','後12'].flatMap(p=>['TOPIX','NK225'].map(s=>{const q=D.methods[v].quote[p][s],a=D.methods[v].periods[p][s];return `<tr><td>${v} / ${labels[s]} / ${p}</td>${cell(a.net)}${q.complete?cell(q.net):'<td>欠測</td>'}${q.complete?cell(q.net-a.net):'<td>—</td>'}</tr>`;}))).join('')+'</tbody></table>';
+}
+// ----------------------------------------
+// 保存したデータだけを表示し、各選択変更を接続する。
+$('method').innerHTML=Object.values(D.methods).map(r=>`<option value="${r.variant.id}">${r.variant.id} ${r.variant.name}</option>`).join('');
+$('method').value=D.initial;
+const requested=new URLSearchParams(location.search).get('method');if(requested&&D.methods[requested])$('method').value=requested;
+$('session').innerHTML=D.fixed.全セッション.map(s=>`<option>${s}</option>`).join('');$('session').value=D.fixed.全セッション.at(-1);
+['method','symbol'].forEach(id=>$(id).addEventListener('change',render));$('session').addEventListener('change',draw);overview();render();document.body.dataset.ready='完了';
+</script></body></html>

@@ -1,0 +1,11 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>全162条件の比較</title><style>__CSS__</style></head><body>
+<!--
+[コンポーネント概要]
+#ranking は固定した百六十二条件を商品・期間別に表示します。
+#method は任意条件を選び、#sessions で省略しない全三十場を表示します。
+並べ替えは保存済み結果の表示だけで、前半固定の代表を変更しません。
+無取引の割合は未定義として表示し、勝ち又は金額80%達成へ数えません。
+-->
+<main><h1>全162条件の比較</h1><p><a id="main-link">主レポートへ</a></p><div class="intro">入口3 × 反対圧力への対応3 × 建値保護3 × 保有期限3 × 連敗休止2。全30場は既知資料です。</div><p class="small">金額利益割合は手数料後の利益÷（利益＋損失）。並べ替えは閲覧用で、代表選定には前16場だけを使います。</p>
+<div class="controls"><label>商品 <select id="symbol"><option value="TOPIX">TOPIXミニ</option><option value="NK225">日経225マイクロ</option></select></label><label>期間 <select id="period"></select></label><label>並び順 <select id="sort"><option value="id">条件ID</option><option value="profit_share">金額利益割合</option><option value="net">収支</option><option value="drawdown">最大下落の小さい順</option></select></label></div><div id="ranking"></div>
+<section class="panel"><h2>各条件の全セッション</h2><label>手法 <select id="method"></select></label><p id="description" class="small"></p><div id="sessions"></div></section><footer>表示は保存済み結果から生成。API取得・注文なし。</footer></main><script id="report-data" type="application/json">__DATA__</script><script>__SCRIPT__</script></body></html>

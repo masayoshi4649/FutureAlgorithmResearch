@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>全条件の途中管理比較</title>
+<style>
+:root{color-scheme:dark;--bg:#0a111b;--panel:#121e2d;--text:#ecf2fa;--muted:#acbdd2;--line:#354b63;--cyan:#67d7ff;--green:#70e2b3;--red:#ff8f9f}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.65 system-ui,"Yu Gothic UI","Meiryo",sans-serif}main{max-width:1400px;margin:auto;padding:28px 22px 50px}h1{font-size:clamp(23px,3vw,32px);line-height:1.4;margin:0 0 12px}h2{font-size:21px;margin:23px 0 8px}p{margin:8px 0}a{color:var(--cyan);text-underline-offset:3px}.small{font-size:13px;color:var(--muted)}.positive{color:var(--green)}.negative{color:var(--red)}.money{white-space:nowrap;font-variant-numeric:tabular-nums}.controls{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:14px 0}select,button{font:inherit;padding:6px 10px;background:#19293c;color:var(--text);border:1px solid #58718d;border-radius:6px}button{cursor:pointer}button[aria-pressed=true]{border-color:var(--cyan);background:#22475e}button:focus-visible,select:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid var(--cyan);outline-offset:3px}.table-wrap{overflow:auto;border:1px solid var(--line);border-radius:8px;margin:10px 0}table{border-collapse:collapse;width:100%;font:14px/1.5 system-ui,"Yu Gothic UI","Meiryo",sans-serif;font-variant-numeric:tabular-nums}th,td{padding:9px 11px;white-space:nowrap;text-align:right;border-bottom:1px solid #2a4057}th{background:#1d3047;color:#cfe1f7;font-weight:600;position:sticky;top:0;z-index:1}th:first-child,td:first-child{text-align:left}tbody tr:last-child td{border-bottom:0}tbody tr:hover{background:#20354a}.selected{background:#214259!important}.total{font-weight:700;background:#21384c}.total td{border-top:2px solid #5f7891}.summary-table{max-height:560px}.id-button{padding:0;background:transparent;border:0;color:var(--cyan);text-decoration:underline;text-underline-offset:3px;font:12px/1.5 ui-monospace,Consolas,monospace}.id{font:12px/1.5 ui-monospace,Consolas,monospace;overflow-wrap:anywhere}.panel{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:18px;margin:18px 0}.switch{display:flex;gap:6px}details{margin:12px 0}summary{cursor:pointer;color:#d7e6f5;font-weight:600;padding:4px 0}.config{color:var(--muted);font-size:13px}.empty{padding:25px;color:var(--muted);text-align:center}@media(max-width:650px){main{padding:18px 12px 34px}.panel{padding:14px 10px}th,td{padding:8px 9px}}
+</style>
+</head>
+<body>
+<!--
+[コンポーネント概要]
+#report-data の固定された全条件を一覧表示します。通信と発注は行いません。
+#source-filter と #group-filter は入口と途中管理系統で表示条件を限定します。
+#condition-select と一覧の条件IDは、下の全セッション損益を切り替えます。
+URLのhashへ選択した条件IDを保存し、同じ条件を直接開けるようにします。
+主成績は初回から管理終了までの組、部分決済と枚数の損益は別のdetailsです。
+-->
+<main>
+<h1 id="report-title">全条件の途中管理比較</h1>
+<p><a id="main-link" href="入口確認と幅拡大の説明と損益.html">主要手法の説明・売買図へ</a></p>
+<p class="small">共通60分枠の入口に対する途中管理の比較。全玉の組収支と含み込み最大下落で評価します。TOPIXミニは片方向10枚、日経マイクロは片方向20枚が上限。</p>
+<p class="small">★は前16で選んだ組合せに対応する比較3章。G3は約定時計による相手同期の参考で、主選定から除外しています。後12と追加デイでは選び直しません。</p>
+<div class="controls"><label>入口 <select id="source-filter"><option value="">すべて</option></select></label><label>管理系統 <select id="group-filter"><option value="">すべて</option></select></label><span id="count" class="small"></span></div>
+<div id="summary" class="table-wrap summary-table"></div>
+<section class="panel" id="condition-panel">
+<h2>条件別の全セッション損益</h2>
+<div class="controls"><label>条件 <select id="condition-select"></select></label><div class="switch"><button type="button" data-symbol="TOPIX" aria-pressed="true">TOPIXミニ10枚</button><button type="button" data-symbol="NK225" aria-pressed="false">日経マイクロ20枚</button></div></div>
+<p class="id" id="condition-id"></p><p class="config" id="condition-description"></p>
+<div id="period-table"></div>
+<div id="session-table"></div>
+<details><summary>部分決済・枚数・元由来と保険由来の収支</summary><div id="detail-table"></div></details>
+</section>
+<p class="small">保険だけの利益は全玉の成績と区別します。無取引セッションは勝ちに含めません。旧E01/R01の名前が付いた入口も、旧アルゴリズム全体ではなく入口部品の対照です。</p>
+</main>
+<script id="report-data" type="application/json">__DATA__</script>
+<script>
+"use strict";
+const D=JSON.parse(document.getElementById("report-data").textContent);
+const NUMBER=new Intl.NumberFormat("ja-JP",{maximumFractionDigits:0});
+const SOURCE_NAMES={T1L1:"中値往復の反転",T2L0:"押し戻し後の再開",T3L1:"強い表示補充後の反転",T4L0:"表示補充価格の突破",E01P:"旧E01の入口部品対照",R01P:"EMA再確認の入口部品対照"};
+const STATE={id:"",symbol:"TOPIX",source:"",group:""};
+
+/**
+ * 機能: 表示文字列のHTML特殊文字をエスケープする。
+ * @param {unknown} value - 表示対象。
+ * @returns {string} 安全な文字列。
+ */
+function esc(value){return String(value??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]));}
+
+/**
+ * 機能: 有限数値を読む。
+ * @param {unknown} value - 対象値。
+ * @returns {number} 数値又はゼロ。
+ */
+function num(value){return value!==null&&value!==undefined&&Number.isFinite(Number(value))?Number(value):0;}
+
+/**
+ * 機能: 符号付き円金額を整形する。
+ * @param {unknown} value - 円金額。
+ * @returns {string} 色付きHTML。
+ */
+function money(value){const n=num(value);return `<span class="money ${n<0?"negative":n>0?"positive":""}">${n<0?"−":n>0?"＋":""}${NUMBER.format(Math.abs(n))}円</span>`;}
+
+/**
+ * 機能: 欠測を区別して損益比又は勝率を整形する。
+ * @param {unknown} value - 比率。
+ * @param {boolean} percent - 百分率の指定。
+ * @returns {string} 比率又は欠測記号。
+ */
+function ratio(value,percent=false){return value===null||value===undefined||!Number.isFinite(Number(value))?"—":percent?`${(Number(value)*100).toFixed(1)}%`:Number(value).toFixed(2);}
+
+/**
+ * 機能: 手法の入口IDを読む。
+ * @param {object} method - 手法データ。
+ * @returns {string} 入口ID。
+ */
+function sourceOf(method){return method.config?.source??method.variant?.source??String(method.id).split("_")[0];}
+
+/**
+ * 機能: 手法の管理系統を読む。
+ * @param {object} method - 手法データ。
+ * @returns {string} 管理系統。
+ */
+function groupOf(method){const c=method.config??method.variant??{};return String(c.group??c.manager_group??c.kind??c.manager??"未分類");}
+
+/**
+ * 機能: 後から追加された診断対照を選定条件と区別する。
+ * @param {object} method - 手法データ。
+ * @returns {boolean} 診断専用条件ならtrue。
+ */
+function isControl(method){return method.control===true||method.config?.control===true||method.variant?.control===true;}
+
+/**
+ * 機能: 全期間の指定銘柄集計を読む。
+ * @param {object} method - 手法データ。
+ * @param {string} symbol - 銘柄。
+ * @param {string} period - 対象期間。
+ * @returns {object} 集計値。
+ */
+function account(method,symbol,period="全29"){return method.periods?.[period]?.[symbol]??{};}
+
+/**
+ * 機能: 主成績の組指標を読む。
+ * @param {object} row - 集計。
+ * @returns {object} 勝率、損益比、最大下落。
+ */
+function indicators(row){const wins=num(row.campaign_wins),losses=num(row.campaign_losses??row.losses),n=num(row.campaigns);return {win:row.campaign_win_rate??(n?wins/n:null),payoff:row.campaign_payoff??(wins&&losses?(num(row.campaign_profit)/wins)/(num(row.campaign_loss)/losses):null),dd:row.drawdown??row.max_drawdown??0};}
+
+/**
+ * 機能: セッションキーを日本語へ整形する。
+ * @param {string} value - セッションキー。
+ * @returns {string} 日付と場名。
+ */
+function sessionName(value){return String(value).replace("_Day"," デイ").replace("_Night"," ナイト");}
+
+/**
+ * 機能: 組単位の主成績テーブルを作る。
+ * @param {Array<object>} rows - ラベル付き集計。
+ * @returns {string} 表HTML。
+ */
+function primaryTable(rows){return `<div class="table-wrap"><table class="primary-table"><thead><tr><th>対象</th><th>組の利益</th><th>組の損失</th><th>収支</th><th>組数</th><th>組勝率</th><th>1組平均利益／損失</th><th>含み込み最大下落</th><th>最大買／売枚数</th></tr></thead><tbody>${rows.map(({label,data,total=false})=>{const q=indicators(data);return `<tr${total?' class="total"':''}><td>${esc(label)}</td><td class="money">${NUMBER.format(num(data.campaign_profit))}円</td><td class="money">${NUMBER.format(num(data.campaign_loss))}円</td><td>${money(data.net)}</td><td>${num(data.campaigns)}</td><td>${ratio(q.win,true)}</td><td>${ratio(q.payoff)}</td><td class="money">${NUMBER.format(num(q.dd))}円</td><td>${num(data.max_long)}／${num(data.max_short)}</td></tr>`;}).join("")}</tbody></table></div>`;}
+
+/**
+ * 機能: 部分決済と役割別の明細集計表を作る。
+ * @param {Array<object>} rows - ラベル付き集計。
+ * @returns {string} 明細表HTML。
+ */
+function detailTable(rows){return `<div class="table-wrap"><table class="detail-table"><thead><tr><th>対象</th><th>決済の利益</th><th>決済の損失</th><th>勝ち枚数</th><th>負け枚数</th><th>元由来収支</th><th>保険由来収支</th><th>手数料</th></tr></thead><tbody>${rows.map(({label,data})=>`<tr><td>${esc(label)}</td><td class="money">${NUMBER.format(num(data.profit))}円</td><td class="money">${NUMBER.format(num(data.loss))}円</td><td>${num(data.winning_lots)}</td><td>${num(data.losing_lots)}</td><td>${money(data.core_net)}</td><td>${money(data.cover_net)}</td><td class="money">${NUMBER.format(num(data.fees))}円</td></tr>`).join("")}</tbody></table></div>`;}
+
+/**
+ * 機能: 入口と管理系統による一覧絞り込みを行う。
+ * @returns {Array<object>} 表示する手法の配列。
+ */
+function visibleMethods(){return (D.methods??[]).filter(m=>(!STATE.source||sourceOf(m)===STATE.source)&&(!STATE.group||groupOf(m)===STATE.group));}
+
+/**
+ * 機能: 全期間の条件比較一覧と条件選択肢を更新する。
+ * @returns {void} 返り値なし。
+ */
+function renderList(){const rows=visibleMethods();document.getElementById("count").textContent=`${rows.length}／${D.methods?.length??0}条件`;document.getElementById("summary").innerHTML=rows.length?`<table><thead><tr><th>条件ID</th><th>入口</th><th>管理系統</th><th>TOP収支</th><th>TOP 1組損益比</th><th>TOP組数</th><th>NK収支</th><th>NK 1組損益比</th><th>NK組数</th></tr></thead><tbody>${rows.map(m=>{const top=account(m,"TOPIX"),nk=account(m,"NK225");return `<tr data-id="${esc(m.id)}" class="${m.id===STATE.id?"selected":""}"><td><button type="button" class="id-button" data-id="${esc(m.id)}">${esc(m.id)}${(D.selectedIds??[]).includes(m.id)?" ★":""}${isControl(m)?" （診断・選定外）":""}</button></td><td>${esc(SOURCE_NAMES[sourceOf(m)]??sourceOf(m))}</td><td>${esc(groupOf(m))}</td><td>${money(top.net)}</td><td>${ratio(indicators(top).payoff)}</td><td>${num(top.campaigns)}</td><td>${money(nk.net)}</td><td>${ratio(indicators(nk).payoff)}</td><td>${num(nk.campaigns)}</td></tr>`;}).join("")}</tbody></table>`:'<div class="empty">該当する条件なし</div>';const select=document.getElementById("condition-select");select.innerHTML=rows.map(m=>`<option value="${esc(m.id)}">${esc(m.id)}</option>`).join("");if(!rows.some(m=>m.id===STATE.id))STATE.id=rows[0]?.id??"";select.value=STATE.id;document.querySelectorAll(".id-button").forEach(b=>b.addEventListener("click",()=>selectMethod(b.dataset.id)));renderCondition();}
+
+/**
+ * 機能: 条件IDを選択し、URLのhashと明細を更新する。
+ * @param {string} id - 条件ID。
+ * @returns {void} 返り値なし。
+ */
+function selectMethod(id){if(!(D.methods??[]).some(m=>m.id===id))return;STATE.id=id;history.replaceState(null,"",`${location.href.split("#")[0]}#${encodeURIComponent(id)}`);document.getElementById("condition-select").value=id;document.querySelectorAll("#summary tbody tr").forEach(r=>r.classList.toggle("selected",r.dataset.id===id));renderCondition();}
+
+/**
+ * 機能: 選択条件の期間別・全セッションの組損益と明細を更新する。
+ * @returns {void} 返り値なし。
+ */
+function renderCondition(){const method=(D.methods??[]).find(m=>m.id===STATE.id);document.getElementById("condition-panel").hidden=!method;if(!method)return;document.getElementById("condition-id").textContent=method.id;const c=method.config??method.variant??{};document.getElementById("condition-description").textContent=method.configText??method.configSummary??method.explanation??`${SOURCE_NAMES[sourceOf(method)]??sourceOf(method)} ／ ${groupOf(method)} ／ ${JSON.stringify(c)}`;document.querySelectorAll("[data-symbol]").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.symbol===STATE.symbol)));document.getElementById("period-table").innerHTML=primaryTable(["前16","後12","全28","追加1","全29"].map(p=>({label:p,data:account(method,STATE.symbol,p),total:p==="全29"})));const rows=(D.sessions??[]).map(session=>({label:sessionName(session),data:(method.rows??[]).find(r=>r.session===session&&r.symbol===STATE.symbol)??{}}));const total={label:"全29合計",data:account(method,STATE.symbol),total:true};document.getElementById("session-table").innerHTML=primaryTable([...rows,total]);document.getElementById("detail-table").innerHTML=detailTable([...rows,total]);}
+
+// ----------------------------------------
+// 固定結果の表示を初期化する。未知の結果を再選定する処理は含まない。
+document.title=D.title??document.title;
+document.getElementById("report-title").textContent=D.title??document.title;
+document.getElementById("main-link").href=D.mainUrl??"入口確認と幅拡大の説明と損益.html";
+const sourceFilter=document.getElementById("source-filter"),groupFilter=document.getElementById("group-filter");
+sourceFilter.innerHTML+=[...new Set((D.methods??[]).map(sourceOf))].map(v=>`<option value="${esc(v)}">${esc(SOURCE_NAMES[v]??v)}</option>`).join("");
+groupFilter.innerHTML+=[...new Set((D.methods??[]).map(groupOf))].map(v=>`<option value="${esc(v)}">${esc(v)}</option>`).join("");
+sourceFilter.addEventListener("change",()=>{STATE.source=sourceFilter.value;renderList();});
+groupFilter.addEventListener("change",()=>{STATE.group=groupFilter.value;renderList();});
+document.getElementById("condition-select").addEventListener("change",event=>selectMethod(event.target.value));
+document.querySelectorAll("[data-symbol]").forEach(b=>b.addEventListener("click",()=>{STATE.symbol=b.dataset.symbol;renderCondition();}));
+const initialHash=decodeURIComponent(location.hash.slice(1));STATE.id=(D.methods??[]).some(m=>m.id===initialHash)?initialHash:(D.selectedIds?.[0]??D.methods?.[0]?.id??"");
+renderList();
+window.addEventListener("hashchange",()=>{const id=decodeURIComponent(location.hash.slice(1));if((D.methods??[]).some(m=>m.id===id)){STATE.source="";STATE.group="";sourceFilter.value="";groupFilter.value="";STATE.id=id;renderList();}});
+window.reportTest={D,STATE,renderList,renderCondition,selectMethod};
+</script>
+</body>
+</html>

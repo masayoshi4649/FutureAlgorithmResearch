@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="ja">
+<head><base href="file:///S:/TempDev/OSE_Future/%E3%82%A2%E3%83%AB%E3%82%B4%E3%83%AA%E3%82%BA%E3%83%A0%E8%AA%BF%E6%9F%BB/00053_%E4%BE%A1%E6%A0%BC%E3%81%8C%E5%8B%95%E3%81%8F%E7%90%86%E7%94%B1%E3%81%A8%E6%9D%BF%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AE%E5%86%8D%E7%82%B9%E6%A4%9C/">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>価格が動く理由と板データ</title>
+  <style>
+    :root{color-scheme:dark;font-family:"Yu Gothic UI",Meiryo,sans-serif;background:#0b1320;color:#e0e9f6}
+    *{box-sizing:border-box}body{margin:0;line-height:1.8}main{max-width:1040px;margin:auto;padding:28px 22px 64px}
+    h1{font-size:29px;line-height:1.45}h2{font-size:21px;margin:0 0 12px}h3{font-size:17px}p{margin:10px 0}
+    a{color:#91c9ff}nav{display:flex;gap:20px;flex-wrap:wrap}.tag{font-size:13px;color:#98c9f6}.muted,small{color:#a9bdd5}
+    section{margin:22px 0;padding:23px;background:#132035;border:1px solid #30435e;border-radius:12px}.main{border-top:4px solid #74beff}
+    .example{display:grid;grid-template-columns:1fr 60px 1fr;gap:14px;align-items:center;margin:18px 0}.box{background:#0b182a;border:1px solid #344d6b;border-radius:9px;padding:16px}.arrow{font-size:29px;text-align:center;color:#80c2ff}
+    .box strong{color:#a5d8ff}.number{font-size:22px;font-weight:700}.result{border-left:3px solid #75d6b4;padding-left:14px}.warning{border-left:3px solid #e9bb6e;padding-left:14px}
+    table{border-collapse:collapse;width:100%;font-size:14px}th,td{padding:10px 12px;border-bottom:1px solid #30455f;text-align:left;vertical-align:top}th{background:#1a2d46;color:#bed7f0}.data td:not(:first-child),.data th:not(:first-child){text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}.scroll{overflow:auto}
+    details{margin:15px 0}summary{cursor:pointer;color:#99cfff;font-weight:600}details>div{padding-top:12px}ul{padding-left:23px}code{color:#b8d8fb;overflow-wrap:anywhere}
+    @media(max-width:650px){main{padding:18px 12px}section{padding:17px}h1{font-size:23px}.example{grid-template-columns:1fr;gap:9px}.arrow{transform:rotate(90deg);line-height:1.2}th,td{padding:8px}.comparison{min-width:600px}}
+  </style>
+</head>
+<body><main>
+<!--
+[コンポーネント概要]
+#principle は売買の同量成立と価格変化が両立する理由を説明します。
+#example は他の注文変化がない仮定の数値例であり、実データの取引ではありません。
+#observations は直接観測・推定・不明と、旧測定の具体的な不足を示します。
+#details の数値は既存診断の記述であり、新しい売買成績や予測精度ではありません。
+各 details 要素はブラウザー標準で開閉します。JavaScript・外部通信・注文機能はありません。
+-->
+<p class="tag">作業00053 · 価格形成と測定の再点検</p>
+<h1>売りも買いも同じ枚数なのに、<br>なぜ価格は動くのか</h1>
+<nav><a href="../index.html">作業一覧</a><a href="README.md">資料の読む順序</a><a href="#details">実データの点検</a></nav>
+
+<section class="main" id="principle">
+  <h2>今の価格に相手が残るか、次の価格まで譲るか</h2>
+  <p>約定した買いと売りは常に同数です。価格が変わるのは、<strong>今の価格で待つ相手注文がなくなったり、売買する側が提示価格を変えたりする</strong>ためです。人数や出来高の大小だけでは方向は決まりません。</p>
+  <p>指値で待つ側も情報や在庫を見て、補充・取消・値直しをします。価格形成は、約定しに来る側だけで決まりません。<a href="https://www.jpx.co.jp/derivatives/rules/trading-methods/">JPXの取引方法</a></p>
+  <p class="muted">今回はこの原理と保存データの測り方を見直す段階です。新しい手法・新しい損益はまだ作っていません。</p>
+</section>
+
+<section id="example">
+  <h2>例：すぐに買いたい15枚が来たら</h2>
+  <div class="example">
+    <div class="box"><strong>到着前の売り板</strong><p><span class="number">100円 × 10枚</span><br>101円 × 20枚</p><small>直ちに約定できる買い15枚が到着</small></div>
+    <div class="arrow" aria-hidden="true">→</div>
+    <div class="box"><strong>成立した取引</strong><p>100円で10枚 ＋ 101円で5枚<br><span class="number">最後の価格は101円</span></p><small>買い15枚 ＝ 売り15枚</small></div>
+  </div>
+  <p class="result">100円の売りが補充され続ければ、買いが続いても100円に留まります。100円の売りが取り消されれば、約定なしでも売気配は101円になり得ます。</p>
+  <p class="muted">説明用の例です。他の注文変化がない場合を仮定しています。即時に約定する指値もあるので、「積極的な買い」は成行だけを指しません。<a href="https://www.jpx.co.jp/derivatives/rules/order-types/index.html">JPXの注文の種類</a></p>
+</section>
+
+<section>
+  <h2>上がる・下がる・止まるを分けて見る</h2>
+  <div class="scroll"><table class="comparison">
+    <thead><tr><th>状態</th><th>起き得ること</th><th>次に確かめたいこと</th></tr></thead>
+    <tbody>
+      <tr><td>上へ進む</td><td>売りが消費・撤退される。買い提示も上がる。</td><td>売りが戻らず、買いの価格譲歩が続くか。</td></tr>
+      <tr><td>下へ進む</td><td>買いが消費・撤退される。売り提示も下がる。</td><td>買いが戻らず、売りの価格譲歩が続くか。</td></tr>
+      <tr><td>約定しても止まる</td><td>相手側の表示供給が残る・補充される。</td><td>消費する側と補充する側のどちらが先に弱まるか。</td></tr>
+      <tr><td>最後値だけ往復</td><td>買気配・売気配が不変でも、約定する側が替わる。</td><td>両気配も動いたのか、配信時点がずれたのか。</td></tr>
+    </tbody>
+  </table></div>
+  <p class="muted">これは現在の動きの説明です。「止まったから反転する」「上がったから続く」とはまだ言えません。指値の追加・取消も価格形成に関わります。<a href="https://arxiv.org/abs/0904.0900">注文イベントの一次研究</a></p>
+</section>
+
+<section id="observations">
+  <h2>見えている事実と、まだ推定にすぎないもの</h2>
+  <div class="scroll"><table>
+    <thead><tr><th>区別</th><th>今回の保存データで扱えるもの</th></tr></thead>
+    <tbody>
+      <tr><td>直接見える</td><td>各保存行の板価格・表示数量、最後値、累積出来高の変化。</td></tr>
+      <tr><td>推定する</td><td>積極的な売買の側、約定が見えない数量減少、同価格の数量回復。</td></tr>
+      <tr><td>分からない</td><td>全約定の内訳、同一主体の補充、新規か返済か、心理、未表示注文、真の受信時刻。</td></tr>
+    </tbody>
+  </table></div>
+  <p class="warning"><strong>旧測定には具体的な不足がありました。</strong><br>数量差分を「前後とも表示された同じ価格」だけで数えたため、最良板が消えて次の価格へ移った瞬間の消失量を数えていませんでした。</p>
+  <p>その測定だけで板の有用性を否定できません。今回、最良板の消失を補って再集計し、10段の外へ出て見えなくなった数量は「不明」に分けました。取消・約定の原因や、その後の予測力は別に確かめます。</p>
+  <p class="muted">出来高と板は同時更新とは限りません。「出来高が増えない数量減＝取消」「数量回復＝同じ大口の補充」と断定しないことが必要です。</p>
+</section>
+
+<section id="details">
+  <h2>保存データの点検結果</h2>
+  <p>最終約定価格の変化、気配の値直し、板数量の変化を分けて調べ直しています。以下は事後の記述であり、未来の予測精度ではありません。</p>
+  <details>
+    <summary>最後値が変わった時、両最良気配も変わったか</summary>
+    <div><div class="scroll"><table class="data"><thead><tr><th>銘柄</th><th>最後値変化</th><th>うち両最良気配不変</th><th>割合</th></tr></thead><tbody><tr><td>TOPIX</td><td>78,383</td><td>69,927</td><td>89.2%</td></tr><tr><td>NK225</td><td>58,262</td><td>51,307</td><td>88.1%</td></tr></tbody></table></div>
+      <p>隣接する有効原本行を比較。気配間の約定往復と整合しますが、<strong>分割配信・更新時点のずれもあり、すべてを同じ原因とは判定できません。</strong></p>
+      <p class="muted">板・最後値の情報時点は完全同期ではなく、原本の時計は最終約定時刻です。観測空白を無取引か受信欠損かに分離できません。</p>
+    </div>
+  </details>
+  <details>
+    <summary>旧測定が落としていた最良板の消失を補完</summary>
+    <div><p>旧最良価格が後退し、その価格の表示量が0になったと確認できる数量の延べ合計です。</p>
+      <div class="scroll"><table class="data"><thead><tr><th>銘柄</th><th>最良買い板の消失量</th><th>最良売り板の消失量</th></tr></thead><tbody><tr><td>TOPIX</td><td>339,414</td><td>319,580</td></tr><tr><td>NK225</td><td>331,852</td><td>325,619</td></tr></tbody></table></div>
+      <p class="muted">同じ数量の繰り返し出入りを含む表示変化の合計です。固有注文数・出来高・取消枚数ではありません。遠方10段外へ消えた量は不明として除外。46原本の有効591万行を再点検し、不正な深板を跨ぐ差分も除外しました。</p>
+      <p><a href="../../work/wave_v56/measurement/表示範囲補正とOFIの全数監査.json">表示範囲補正と最良板変化の全数監査</a></p>
+    </div>
+  </details>
+  <details>
+    <summary>前回候補P03_W05の入口・途中・出口も分けて再点検</summary>
+    <div><p>入口後30分以内に、建値から順行1W・逆行1Wのどちらへ先に到達したか。Wは新規判断時に固定した前回の追跡幅です。</p>
+      <div class="scroll"><table class="data"><thead><tr><th>銘柄</th><th>全組</th><th>順行が先</th><th>逆行が先</th><th>双方未観測</th></tr></thead><tbody><tr><td>TOPIX</td><td>454</td><td>225</td><td>221</td><td>8</td></tr><tr><td>NK225</td><td>353</td><td>180</td><td>172</td><td>1</td></tr></tbody></table></div>
+      <p class="muted">実際の返済後も観測する説明用の経路です。場末で短縮される組、時計の空白がある組を含みます。詳細JSONに30分全長・時計空白60秒以内の層を別記。将来の回復や最大順行を「待てば取れた利益」とは扱いません。</p>
+    </div>
+  </details>
+  <details>
+    <summary>板の回復・売買代金の追加点検と資料</summary>
+    <div><p>売り側の執行代理、買い表示の回復、中値が下がらない現象が同じ時刻ブロックに共存する例を確認しています。これは吸収と整合しますが、補充が価格を支えた因果関係の証明ではありません。</p>
+      <p class="muted">量の上位・下位四分位は全保存標本から作った事後の記述尺度で、売買条件や予測閾値には使っていません。</p>
+      <div id="additional-audit"><p>全46原本の売買代金・出来高監査完了。新しい売買手法の検証ではありません。</p><p>連続する有効板行で出来高が増えた307,628件は、全件で売買代金も増加。出来高だけ・代金だけの片方更新はなく、1枚更新164,316件では代金から求めた価格が最後価格と全件一致しました。増分平均価格を補助観測として利用できる整合性があります。</p><p>最後価格による従来の方向代理と、増分平均価格による方向代理が異なったのはTOPIX1.42%・NK0.81%。大半は買い／売り側から気配の内側への変更です。旧代理が全面的に誤っていたという結果ではなく、どちらも真の約定方向や個別約定を復元するものではありません。</p><p>同じ約定時刻でも最良気配が変わった隣接行がTOPIX354,915件・NK551,221件ありました。出来高も同じ時刻のまま増える例があります。原本の行順を保持し、同時刻を無変化や実際の同時受信と解釈しません。</p><p>全有効行で出来高時刻と最終約定時刻は同じでした。受信時刻・代金固有の時刻・最良板固有の時刻はなく、厳密な通知の同期や本当の注文方向は確認できません。新戦略や新損益はまだ作成していません。</p><p><a href="../../work/wave_v56/review/売買代金と出来高の同期監査.json">全46原本の代金・出来高・時刻・代理分類の監査</a></p><p><a href="../../work/wave_v56/review/一枚更新と複数枚更新の監査.json">1枚更新と複数枚更新の整合性</a></p><p><a href="../../work/wave_v56/review/価格が動く仕組みと識別の監査.md">原理・観測・推測を分ける独立レビュー</a></p></div>
+      <ul>
+        <li><a href="../../work/wave_v56/diagnosis/板の観測可能性.json">板の観測可能性・元件数・原本例</a></li>
+        <li><a href="../../work/wave_v56/diagnosis/入口途中出口の診断.json">前回4手法の入口・途中・出口診断</a></li>
+        <li><a href="../../work/wave_v56/theory/価格が動く理由と観測対応.md">根本説明・既存測定列との対応・一次資料</a></li>
+        <li><a href="../../work/wave_v56/review/価格が動く仕組みと識別の監査.md">原理と識別の独立監査</a></li>
+      </ul>
+    </div>
+  </details>
+  <p class="result"><strong>次に問うこと：</strong>同じ程度の買い・売りの働きかけでも、供給が残る場合と消える場合で、<em>その後</em>の値動きが違うか。そこで再現する違いが確認できてから、入口・維持・撤退を組みます。<a href="https://arxiv.org/abs/1011.6402">板変化と同区間の価格影響の研究</a></p>
+</section>
+</main><script>
+/**
+ * 機能: 静的画面の幅、未置換値、背景を検査する。
+ * @returns {object} 画面の検査結果。
+ */
+function inspect(){
+ if(document.documentElement.scrollWidth>innerWidth+2)throw Error('横溢れ');
+ if(/undefined|NaN|__AUDIT__|__QUOTE_ROWS__|__ENTRY_ROWS__/.test(document.body.innerText))throw Error('未置換値');
+ return {全合格:true,文書幅:document.documentElement.scrollWidth,画面幅:innerWidth,
+         背景:getComputedStyle(document.documentElement).backgroundColor};
+}
+try{document.body.dataset.check=JSON.stringify(inspect());}
+catch(error){document.body.dataset.check=JSON.stringify({全合格:false,理由:String(error)});}
+</script><script>document.querySelector("main").replaceChildren(document.querySelector("#details"));document.querySelectorAll("details").forEach(x=>x.open=true);window.scrollTo(0,0);</script></body></html>

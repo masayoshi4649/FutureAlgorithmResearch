@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>補充監視3手法の説明と損益</title><style>
+:root{color-scheme:dark;font-family:"Yu Gothic UI",Meiryo,sans-serif;background:#0a1321;color:#e1eaf6}*{box-sizing:border-box}body{margin:0;line-height:1.75}main{max-width:1260px;margin:auto;padding:28px 22px 64px}h1{font-size:29px;line-height:1.4}h2{font-size:21px;margin:0 0 12px}h3{font-size:17px}p{margin:10px 0}a{color:#96cbff}.tag{font-size:13px;color:#97c9fb}.muted,small{color:#a5bbd5}nav{display:flex;flex-wrap:wrap;gap:20px}section{background:#132137;border:1px solid #304763;border-radius:12px;margin:22px 0;padding:22px}.primary{border-top:4px solid #7bc5ff}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:15px 0}.grid>div{background:#0a182b;border-radius:8px;padding:16px}.metric{font-size:24px;font-weight:700;display:block}.up{color:#73e8ba}.down{color:#ffa4ad}.scroll{overflow:auto;max-height:610px}table{border-collapse:collapse;width:100%;font-size:14px;white-space:nowrap}th,td{padding:9px 12px;text-align:right;border-bottom:1px solid #2d435e;font-variant-numeric:tabular-nums}th{position:sticky;top:0;background:#1a304c;color:#c3d9f1}th:first-child,td:first-child{text-align:left}.current td{background:#213e5d}label{display:inline-flex;align-items:center;gap:9px;margin:4px 18px 10px 0}select{font:inherit;background:#10223b;color:#edf5ff;border:1px solid #526e8e;border-radius:6px;padding:8px;max-width:100%}summary{color:#a0d0ff;cursor:pointer}details{margin:15px 0}ul{padding-left:23px}code{color:#b7dbff}.note{border-left:3px solid #ddb674;padding-left:14px}@media(max-width:800px){main{padding:18px 12px}section{padding:16px}.grid{grid-template-columns:1fr}h1{font-size:23px}label{display:flex;flex-wrap:wrap}select{width:100%}}
+</style></head><body><main>
+<!--
+[コンポーネント概要]
+#chapters に三つの補充監視手法の章を表示します。
+各章の condition-* は回復回数と幅、symbol-* は損益を確認する商品を選択します。
+summary-*、sessions-*、periods-*、orders-* は選択条件に対応する会計を表示します。
+各章の主条件は事前指定の回復2回・始値0.05%幅です。収支で初期条件を変えません。
+全データは埋め込みで、表示時の外部通信や実注文はありません。
+-->
+<p class="tag">作業00054 · 補充3類型 × 回復2/3回 × 幅0.05/0.10%</p>
+<h1>補充監視3手法の説明と損益</h1>
+<nav><a href="../index.html">作業一覧</a><a href="README.md">資料・再現方法</a><a href="#R1">吸収後反転</a><a href="#R2">補充切れ突破</a><a href="#R3">補充位置追従</a></nav>
+<section class="primary"><h2 id="headline"></h2><p>同じ価格の表示量が減ってから戻る過程を数え、その後の価格変化を入口にします。売りは買いの左右を交換した同じ規則です。</p><p class="note"><strong>各手法の主条件は回復2回・始値0.05%幅。</strong>結果を見る前に固定し、最高収支の条件へ差し替えていません。</p><p class="note"><strong>全12条件とも、最後値では黒字でも中値では両銘柄とも赤字です。</strong>全評価とも費用0。最後値には現在気配とずれた約定価格を含み、同じ注文行の中値・売買気配へ変えると収支の符号が反転しました。</p><div class="grid" id="main-results"></div><p class="muted">TOPIXミニ5枚／NK225マイクロ10枚、追加なし。片方向上限10枚／20枚以内、全玉場内返済。ラージ板を参照し、費用0、条件成立後の次の有効原本行で仮想約定。ATRは使いません。</p><p class="muted">常時10枚／20枚での試算は、自己注文が価格へ影響しない仮定で全金額・返済枚数が2倍。勝率と損益比は同じです。以下の表は5枚／10枚で統一しています。</p><details><summary>価格だけで黒字から赤字へ変わる実例</summary><p>R3・NK225マイクロ10枚、2026-09-21デイの売り→買戻し。判断後の約定に使った2行です。</p><div class="scroll"><table><thead><tr><th>操作・時刻</th><th>最後値</th><th>買気配</th><th>売気配</th><th>中値</th></tr></thead><tbody><tr><td>新規売り 08:50:49</td><td>65,090</td><td>65,070</td><td>65,080</td><td>65,075</td></tr><tr><td>返済買い 08:51:18</td><td>65,060</td><td>65,080</td><td>65,100</td><td>65,090</td></tr></tbody></table></div><p>最後値なら <span class="up">+3,000円</span>、中値なら <span class="down">−1,500円</span>。表示気配の外で有利な最後値が使われています。</p><p class="muted">原本行1399→1557。正確な配信遅延や特殊な約定事情は識別できず、全例が同じ原因とは断定しません。<a href="../../work/wave_v57/diagnosis/気配範囲外約定の証拠.json">原本との照合と他の例</a></p></details><details><summary>評価の補足</summary><div id="findings"></div></details></section>
+<div id="chapters"></div>
+<section><h2>確認できたことと限界</h2><div id="audit"></div><details><summary>回復回数・時計・返済の細則</summary><p>回復は、同価格の累積減少に対して80%以上が戻り、開始直前の同側最良板数量の25%以上となる周期を1回とします。回復量は減少量を上限とし、完了後は状態を消して同じ減少を再利用しません。表示回復が同じ主体や隠れ注文によるものとは断定しません。</p><p>当場120秒経過後から新規判断。減少・回復周期は30秒または500原本行を超えたら破棄し、壁の認定回数は120秒かつ2000原本行以内で数えます。10段内の価格から追跡できても、壁の認定は2回/3回への初到達時で、現在の最良価格にある場合だけです。その瞬間にR1/R2の代理圧力条件が足りなければ、後から同じ認定を使い直しません。観測範囲外や不正板を、数量ゼロや補充切れとは扱いません。</p><p>原本の時計は最終約定時刻です。R2の「2秒留まる」「回復後3秒」はその時計による経過で、真の受信時間ではありません。買い側の突破確認は売気配が壁より上、買気配が壁以上である状態を使います。同じ時計でも原本の行順を保ちます。逆行時計を含む入力は今回の売買計算で拒否します。</p><p>初期の構造逆指値は壁の外1呼値。原本中値を約定行から追跡する一定幅トレールと比べ、損失を小さくする側を採用します。逆指値を不利な側へ広げません。Day15:35／Night翌05:50に返済判断、最後5分は新規判断せず、全返済後60秒は休止。判定する中値と、主評価の最後値約定は区別します。</p></details><p class="muted">回復回数や返済幅を変えると入口集合・保有時間・次の取引も変わります。差額を一要素だけの因果効果とは呼びません。12条件は感度比較であり、補充そのものの付加価値を証明する対照実験ではありません。保存済み23場だけを使用し、現在APIは取得していません。これらは既読であり、未知期間での合格ではありません。</p><ul><li><a href="../../work/wave_v57/売買仕様固定.json">事前固定仕様</a></li><li><a href="../../work/wave_v57/売買結果.json">全条件・セッション・注文の結果</a></li><li><a href="../../work/wave_v57/report/設計時の反証メモ.md">設計時に考えた反例と解釈の注意</a></li></ul></section>
+<script id="data" type="application/json">__DATA__</script>
+<script>
+const DATA=JSON.parse(document.getElementById('data').textContent),RESULT=DATA.results;
+/**
+ * 表示要素を取得する。
+ * @param {string} id 要素ID。
+ * @returns {HTMLElement} 対象要素。
+ */
+function el(id){return document.getElementById(id);}
+/**
+ * 文字を安全なHTMLへ変換する。
+ * @param {unknown} value 値。
+ * @returns {string} エスケープした文字列。
+ */
+function esc(value){return String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+/**
+ * 数値を桁区切りで整形する。
+ * @param {number|null} value 値。
+ * @param {number} digits 小数桁。
+ * @returns {string} 表示値。
+ */
+function fmt(value,digits=0){return value===null||value===undefined||!Number.isFinite(Number(value))?'—':Number(value===0?0:value).toLocaleString('ja-JP',{minimumFractionDigits:digits,maximumFractionDigits:digits});}
+/**
+ * 符号付き収支を表示する。
+ * @param {number} value 値。
+ * @param {number} digits 小数桁。
+ * @returns {string} 符号色付きHTML。
+ */
+function signed(value,digits=0){return `<span class="${value>0?'up':value<0?'down':''}">${value>0?'+':''}${fmt(value,digits)}</span>`;}
+/**
+ * 表HTMLを作る。
+ * @param {string[]} headers 見出し。
+ * @param {Array[]} rows 本文。
+ * @param {number} selected 強調行。
+ * @returns {string} 表。
+ */
+function table(headers,rows,selected=-1){return `<table><thead><tr>${headers.map(h=>`<th>${h}</th>`).join('')}</tr></thead><tbody>${rows.map((r,i)=>`<tr${i===selected?' class="current"':''}>${r.map(c=>`<td>${c}</td>`).join('')}</tr>`).join('')}</tbody></table>`;}
+/**
+ * 金額と返済枚数を表示列にする。
+ * @param {Object} a 会計。
+ * @returns {Array} 会計列。
+ */
+function cells(a){return [fmt(a.profit),fmt(a.loss),signed(a.net),fmt(a.win_qty),fmt(a.loss_qty),fmt(a.flat_qty),signed(a.win_qty-a.loss_qty),fmt(a.cycles)];}
+const HEADERS=['期間','利益 円','損失 円','収支 円','利益返済 枚','損失返済 枚','同値返済 枚','枚数差','組数'];
+/**
+ * 日本時間の時計を表示する。
+ * @param {number} stamp UNIX秒。
+ * @returns {string} 時分秒。
+ */
+function clock(stamp){return new Date(stamp*1000).toLocaleTimeString('ja-JP',{timeZone:'Asia/Tokyo',hour:'2-digit',minute:'2-digit',second:'2-digit'});}
+/**
+ * 選択した章の損益を更新する。
+ * @param {string} family 章ID。
+ * @returns {void} 返り値なし。
+ */
+function render(family){const methods=RESULT.methods.filter(m=>m.family===family),m=methods.find(m=>m.id===el(`condition-${family}`).value),symbol=el(`symbol-${family}`).value,mode=el(`price-${family}`).value,base=m.summary[symbol],s=mode==='最後値'?base:base.sensitivity[mode];el(`comparison-${family}`).innerHTML=table(['条件','TOPIX 理想 円','TOPIX 中値 円','TOPIX 気配 円','NK 理想 円','NK 中値 円','NK 気配 円'],methods.map(x=>[esc(x.id)+'<br><small>'+esc(x.condition_label)+'</small>'+(x.main?'〈主〉':''),...['TOPIX','NK225'].flatMap(k=>[signed(x.summary[k].net),signed(x.summary[k].sensitivity['中値'].net),signed(x.summary[k].sensitivity['売買気配'].net)])]),methods.findIndex(x=>x.id===m.id));
+el(`summary-${family}`).innerHTML=`<div>${esc(mode==='最後値'?'理想・最後値':mode)}：全${s.sessions}場収支<span class="metric">${signed(s.net)}円</span><small>利益 ${fmt(s.profit)}／損失 ${fmt(s.loss)}円<br>最大利益場を除く ${signed(s.without_best)}円</small></div><div>1枚平均利益／損失<span class="metric">${fmt(s.payoff,2)}倍</span><small>${fmt(s.win_per_lot)}／${fmt(s.loss_per_lot)}円<br>PF ${fmt(s.pf,2)}</small></div><div>黒字セッション<span class="metric">${s.positive_sessions} / ${s.sessions}</span><small>${fmt(s.cycles)}組、取引勝率 ${fmt(s.cycles?100*s.wins/s.cycles:null,1)}%<br>最大資産減少幅 ${fmt(s.drawdown)}${s.drawdown===null?'（未算出）':'円'}<br>保有中央値（約定時計） ${fmt(base.median_hold_minutes===null?null:base.median_hold_minutes*60,1)}秒</small></div>`;
+el(`periods-${family}`).innerHTML=table(HEADERS,DATA.periods[m.id][symbol][mode].map(a=>[esc(a.name),...cells(a)]));el(`sessions-${family}`).innerHTML=table(HEADERS,m.accounts.filter(a=>a.symbol===symbol).map(a=>[esc(a.session),...cells(mode==='最後値'?a:a.sensitivity[mode])]));renderOrders(family);renderSensitivity(family,m,symbol);}
+/**
+ * 同じ注文の評価価格を変えた結果を表示する。
+ * @param {string} family 章ID。
+ * @param {Object} m 条件。
+ * @param {string} symbol 銘柄。
+ * @returns {void} 返り値なし。
+ */
+function renderSensitivity(family,m,symbol){const rows=DATA.sensitivity?.[m.id]?.[symbol]||[];el(`sensitivity-${family}`).innerHTML=rows.length?table(['評価価格','利益 円','損失 円','収支 円'],rows.map(r=>[esc(r.name),fmt(r.profit),fmt(r.loss),signed(r.net)])):'<p class="muted">価格評価の感度は集計資料を参照。</p>';}
+/**
+ * 選択した場の全注文を表示する。
+ * @param {string} family 章ID。
+ * @returns {void} 返り値なし。
+ */
+function renderOrders(family){const m=RESULT.methods.find(m=>m.id===el(`condition-${family}`).value),symbol=el(`symbol-${family}`).value,session=el(`session-${family}`).value,a=m.accounts.find(a=>a.symbol===symbol&&a.session===session);if(!a){el(`orders-${family}`).innerHTML='';return;}el(`orders-${family}`).innerHTML=table(['判断 → 約定','区分・方向','枚数','価格','収支 円','理由','組'],a.orders.map(o=>[`${clock(o[0])} → ${clock(o[1])}`,`${o[4]===1?'新規':'返済'} ${o[5]===1?'買い':'売り'}`,fmt(o[6]),fmt(o[7],1),o[4]===1?'—':signed(o[8]),esc(DATA.reasons?.[o[9]]??o[9]),fmt(o[10]+1)]));}
+// ----------------------------------------
+// 主条件は事前指定のフラグだけで選択し、収支順位を参照しない。
+el('headline').textContent=DATA.evaluation.headline;el('findings').innerHTML=(DATA.evaluation.findings||[]).map(s=>`<p>${esc(s)}</p>`).join('');el('audit').innerHTML=(DATA.evaluation.audit||[]).map(s=>`<p>${esc(s)}</p>`).join('');
+el('main-results').innerHTML=DATA.families.map(f=>{const m=RESULT.methods.find(m=>m.family===f.id&&m.main);return `<div><b>${esc(f.id)} ${esc(f.name)}</b><p>中値評価・費用0<br><span class="metric">TOPIX ${signed(m.summary.TOPIX.sensitivity['中値'].net)}円</span><span class="metric">NK ${signed(m.summary.NK225.sensitivity['中値'].net)}円</span></p><small>理想・最後値：TOPIX ${signed(m.summary.TOPIX.net)}円／NK ${signed(m.summary.NK225.net)}円<br>主条件 ${esc(m.id)}</small></div>`;}).join('');
+el('chapters').innerHTML=DATA.families.map(f=>{const ms=RESULT.methods.filter(m=>m.family===f.id);return `<section id="${f.id}"><h2>${esc(f.id)} ${esc(f.name)}</h2><div class="grid">${['入口','途中','出口'].map((name,i)=>`<div><b>${name}</b><p>${esc([f.entry,f.middle,f.exit][i])}</p></div>`).join('')}</div><p class="muted">${esc(f.counterexample)}</p><h3>主条件の各場収支・両商品</h3><div class="scroll" style="max-height:360px" id="primary-sessions-${f.id}"></div><p class="muted">上の表は主条件を固定表示。以下では比較条件も選べます。理想・最後値には古い約定値を含みます。中値も費用0の評価です。</p><h3>4条件の比較</h3><div class="scroll" id="comparison-${f.id}"></div><p class="muted">理想＝最後値、気配＝買いを売気配／売りを買気配で評価。すべて同じ注文時点・数量です。</p><label>条件<select id="condition-${f.id}" data-family="${f.id}">${ms.map(m=>`<option value="${esc(m.id)}">${esc(m.id)} ${esc(m.name)}${m.main?'〈主条件〉':''}</option>`).join('')}</select></label><label>商品<select id="symbol-${f.id}" data-family="${f.id}"><option value="TOPIX">TOPIXミニ</option><option value="NK225">NK225マイクロ</option></select></label><label>評価価格<select id="price-${f.id}" data-family="${f.id}"><option value="中値">中値（費用0）</option><option value="売買気配">売買気配（費用0）</option><option value="最後値">理想・最後値（古い約定値を含む）</option></select></label><div class="grid" id="summary-${f.id}"></div><details open><summary>同じ全注文の評価価格による違い</summary><div class="scroll" id="sensitivity-${f.id}"></div><p class="muted">注文の時点・方向・枚数を固定した価格感度です。気配もラージ板の値で、ミニ・マイクロの実際の約定可能価格を保証するものではありません。中値・気配の最大資産減少幅は未算出です。</p></details><details><summary>前10場・次9場・後4場と、週別の利益・損失</summary><div class="scroll" id="periods-${f.id}"></div></details><h3>各セッション・選択した評価価格</h3><div class="scroll" id="sessions-${f.id}"></div><p class="muted">利益／損失／同値の枚数は、その結果で返済した累計。枚数差は利益枚数−損失枚数で、純保有枚数や金銭収支ではありません。</p><details><summary>元の全注文・理想最後値の台帳</summary><p class="muted">集計の評価価格を選び直しても、この注文一覧は最後値の元台帳です。</p><label>セッション<select id="session-${f.id}" data-family="${f.id}" data-orders="true">${RESULT.sessions.map(s=>`<option value="${esc(s)}">${esc(s)}</option>`).join('')}</select></label><div class="scroll" id="orders-${f.id}"></div></details></section>`;}).join('');
+for(const f of DATA.families){const primary=RESULT.methods.find(m=>m.family===f.id&&m.main);el(`primary-sessions-${f.id}`).innerHTML=table(['セッション','TOPIX 理想 円','TOPIX 中値 円','NK 理想 円','NK 中値 円'],RESULT.sessions.map(session=>[esc(session),...['TOPIX','NK225'].flatMap(symbol=>{const a=primary.accounts.find(a=>a.session===session&&a.symbol===symbol);return [signed(a.net),signed(a.sensitivity['中値'].net)];})]));el(`condition-${f.id}`).value=primary.id;el(`symbol-${f.id}`).value='TOPIX';el(`price-${f.id}`).value='中値';el(`session-${f.id}`).value=RESULT.sessions.at(-1);render(f.id);}
+document.addEventListener('change',event=>{const family=event.target.dataset.family;if(!family)return;event.target.dataset.orders?renderOrders(family):render(family);});
+</script></main></body></html>

@@ -1,0 +1,135 @@
+"""金額8対2の検証結果を、新しい00073資料と既往索引へ登録する。"""
+
+import hashlib
+import json
+from pathlib import Path
+import re
+from urllib.parse import unquote
+
+from bs4 import BeautifulSoup
+
+HERE=Path(__file__).resolve().parent
+ROOT=HERE.parents[1]
+OUT=ROOT/'アルゴリズム調査/00073_二市場判断と金額利益8割への改善'
+MAIN='金額利益8割を目指す改善と全セッション損益.html'
+ALL='全492条件の比較.html'
+
+
+def documents() -> None:
+    """機能: 結論と資料順、厳密条件と再現手順を保存する。
+
+    引数: なし。返り値: なし(None)。
+    """
+    text=f'''# 作業00073：二市場判断と金額利益8割への改善
+
+**最初に見るファイル：[{MAIN}]({MAIN})。**
+
+読む順序：
+
+1. 主HTML：短い結論、代表3案の入口・途中・出口、商品別の全30セッション損益、五分足と全注文。
+2. [{ALL}]({ALL})：事前固定492条件の全29結果。追加1場は固定対象22条件だけを実行し、他は未実施と表示。
+3. [公開会計](公開会計.json)：表示会計とHTML指紋。
+4. [改善と反証](../../work/wave_v77/analysis/改善と反証の整理.json)・[管理と配分の対照分析](../../work/wave_v77/diagnostics/改善機構の対照分析.json)。
+5. [事前固定](../../work/wave_v77/事前固定.json)・[前半選定](../../work/wave_v77/前半選定.json)・[理論と一次研究](../../work/wave_v77/theory/金額8対2を目指す改善の事前仮説.json)。
+6. [監査](../../work/wave_v77/audit/)・[表示検査](../../work/wave_v77/review/)・[入力仕様](../../work/wave_v77/inputs/README.md)。
+
+## 結論
+
+**金額の利益80%・損失20%は未達です。既往29場の492条件で、両商品とも達成する条件はありませんでした。**
+
+前16で選んだJ2は、従来出口を保ったまま入口を絞る方式です。全30場の結果は以下。手数料後の利益と損失を別に合計し、商品間の円を合算しません。
+
+| 商品・上限 | 総利益 | 総損失 | 収支 | 金額利益割合 | 従来割合 |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| TOPIXミニ10枚 | 2,566,544円 | 1,833,424円 | +733,120円 | 58.33% | 58.27% |
+| 日経225マイクロ20枚 | 1,087,960円 | 600,320円 | +487,640円 | 64.44% | 58.71% |
+
+従来比収支はTOPIX−48,312円、日経+159,080円。日経は改善、TOPIXは割合がほぼ不変で収支は減少しました。J2は情報遅延1/5/15秒で両商品黒字を保ちましたが、80%には届きません。最大黒字場を除いても黒字ですが、将来の安定性の証明ではありません。
+
+最良板の偏りを使うQ代表は全30で両商品赤字。小反落後の再開を待つP代表は取引数不足です。後半の良い条件へ代表を差し替えていません。
+
+早期建値保護は損失と同時に勝ちも切り、同設定対照で収支を悪化させました。小開始のQ/P代表は追加条件が一度も成立せず、利益と損失がほぼ1/5になっただけです。数量縮小を予測精度改善や増し玉成功とは扱いません。
+
+## J2の機械条件
+
+- 入口：従来J1の候補（両指数の過去300秒中値が同方向へ0.03%以上、自市場の15秒両気配が同方向へ1呼値以上、相手の短期価格も逆行なし）。その時、どちらかの15秒OFIが明確に逆向きなら見送る。逆向きは有効非ゼロ3イベント以上、方向を掛けた符号比が−0.1以下。両300秒進行の弱い側が強い側の1/4以上であることも必要。
+- 保有：TOPIX10枚／日経20枚を初回に建てる。追加・ドテン・板だけの途中返済なし。
+- 出口：場開始時に既知の始値0.4%幅を最低2呼値へ切上げ、実建値から常時トレーリング。返済側の気配で順行極値を更新。保有上限30分又は場内撤収時刻で全返済判断。次有効気配で約定するため保護価格は保証されない。返済後30秒は再入場しない。
+
+実装は[signals.py](../../work/wave_v77/signals.py)・[engine.py](../../work/wave_v77/engine.py)・[study.py](../../work/wave_v77/study.py)。ATRや学習モデルは使いません。
+
+## 検証条件と限界
+
+前16で選定し、既知の後13で確認。前29は過去作業で調査済みなので未見の将来検証とは呼びません。今回両市場が揃った2026-10-09ナイトだけを最後に固定22条件で一度確認しました。J2はTOPIX1組+9,164円、日経無取引です。無取引を成功に数えません。
+
+5秒ごとの共通判断で、指定情報遅延より厳密に過去の同時計先頭行だけを参照。鮮度30秒、欠測や区間切断は判断不能。最終約定時計の代理であり、真の二市場共通受信時刻は保存されていません。
+
+判断後の次有効ラージ気配で買ask・売bid。ミニ/マイクロ自身の板、キュー、市場影響は再現しません。TOPIXミニは片道41.8円・倍率1000円、日経マイクロは11円・倍率10円。新規・追加・返済の注文合計で1円未満を切捨てます。
+
+金額利益割合は建値明細の利益÷（利益＋損失）。追加玉が負けなら他玉と相殺せず損失へ残します。一組（初回から全返済）の勝率は別指標です。全玉場内返済、未返済を隠す末尾架空清算なし。現在API取得0・実注文0。既往レポート、原本、実運用アプリは変更していません。
+
+## 再現
+
+```text
+python -X utf8 work/wave_v77/study.py --workers 6
+python -X utf8 work/wave_v77/study.py --delay 1 --workers 3
+python -X utf8 work/wave_v77/study.py --delay 15 --workers 3
+python -X utf8 work/wave_v77/analyze.py
+python -X utf8 work/wave_v77/report/generate.py
+```
+
+固定・選定済みの資料は上書きしません。既存結果は再生を省略します。追加未見検証の再実行は拒否します。完全な再計算には別の作業ディレクトリと出力先を用意してください。
+'''
+    (OUT/'README.md').write_text(text,encoding='utf8')
+
+
+def links(paths: list[Path]) -> int:
+    """機能: 公開ファイルと索引の全ローカルリンクを検査する。
+
+    引数: paths(list[Path])。返り値: リンク検査数(int)。
+    """
+    count=0
+    for path in paths:
+        source=path.read_text(encoding='utf8')
+        refs=[a['href'] for a in BeautifulSoup(source,'html.parser').select('a[href]')] if path.suffix=='.html' else re.findall(r'\]\(([^)]+)\)',source)
+        for href in refs:
+            if href.startswith(('http:','https:','#')):continue
+            assert (path.parent/unquote(href.split('#',1)[0].split('?',1)[0])).exists(),(path,href)
+            count+=1
+    return count
+
+
+def main() -> None:
+    """機能: 公開前検査合格とHTML指紋を確認し、旧リンクを保って最新を登録する。
+
+    引数: なし。返り値: なし(None)。
+    """
+    proof=json.loads((HERE/'review/公開前確認.json').read_text(encoding='utf8'))
+    assert proof['全合格'] and proof['監査確認'] and proof['目視確認']
+    for name in (MAIN,ALL):assert hashlib.sha256((OUT/name).read_bytes()).hexdigest()==proof['HTML_SHA256'][name]
+    documents();folder=OUT.name;index=ROOT/'アルゴリズム調査/index.html';readme=ROOT/'アルゴリズム調査/README.md'
+    source=index.read_text(encoding='utf8').replace('class="task latest"','class="task"').replace(' <span class="badge">最新</span>','')
+    source=re.sub(r'<p class="lead">.*?</p>','<p class="lead">最新00073：金額利益80%を目標に492条件。入口選別・利益保護・数量配分を比較し、未達の理由と全30場を公開。</p>',source,count=1,flags=re.S)
+    block=f'''<!--00073開始--><article class="task latest"><div class="number">作業00073 <span class="badge">最新</span></div><h2>二市場判断と金額利益8割への改善</h2><p>目標は未達。入口を絞るJ2は日経の金額利益割合が58.7%→64.4%、TOPIXはほぼ不変。492条件、代表3案、全30場と追加1場の固定確認、五分足・全注文を掲載。</p><a class="button" href="{folder}/{MAIN}">説明と全セッション損益を開く →</a><p><a href="{folder}/{ALL}">全492条件の比較</a> · <a href="{folder}/README.md">資料案内</a> · <a href="{folder}/公開会計.json">公開会計</a></p></article><!--00073終了-->'''
+    if '<!--00073開始-->' in source:source=re.sub(r'<!--00073開始-->.*?<!--00073終了-->',block,source,flags=re.S)
+    else:
+        assert '<!--00072開始-->' in source;source=source.replace('<!--00072開始-->',block+'\n<!--00072開始-->',1)
+    guide=f'''<!--00073案内開始-->
+**最新は00073の[{MAIN}]({folder}/{MAIN})。金額利益80%は未達。492条件から前半で固定した3代表、全30場の損益、入口・利益保護・数量の対照を掲載。**
+
+[全492条件]({folder}/{ALL}) · [資料案内]({folder}/README.md) · [公開会計]({folder}/公開会計.json)。
+<!--00073案内終了-->
+'''
+    text=readme.read_text(encoding='utf8').replace('**最新は00072','**00072')
+    if '<!--00073案内開始-->' in text:text=re.sub(r'<!--00073案内開始-->.*?<!--00073案内終了-->',guide.strip(),text,flags=re.S)
+    else:text=text.replace('<!--00072案内開始-->',guide+'\n<!--00072案内開始-->',1)
+    # ----------------------------------------
+    # 過去の作業本文は編集せず、総合索引の最新案内だけを更新する。
+    index.write_text(source,encoding='utf8');readme.write_text(text,encoding='utf8')
+    count=links([index,readme,OUT/'README.md',OUT/MAIN,OUT/ALL])
+    (HERE/'review/公開案内検査.json').write_text(json.dumps(dict(合格=True,リンク数=count,新作業=folder),ensure_ascii=False,indent=2),encoding='utf8')
+    print(f'00073の公開案内と{count}リンクを確認しました')
+
+
+if __name__=='__main__':
+    main()

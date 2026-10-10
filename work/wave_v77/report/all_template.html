@@ -1,0 +1,13 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>全492条件の比較</title><style>__CSS__</style></head><body>
+<!--
+[コンポーネント概要]
+#filters は商品・期間・入口群・保護方式・数量配分による一覧条件です。
+#ranking は固定した全492条件の金額利益割合・収支・組勝率を表示します。
+#condition は選択IDの全保存場の利益・損失・収支を表示します。
+追加一場は前29で固定した代表と対照だけを再生し、未実施条件を補完しません。
+URL の識別子は初期選択に使い、条件の選定又は再生は行いません。
+-->
+<main><h1 id="title"></h1><p class="intro">492条件を事前固定。金額利益80%＝建値ごとの手数料後利益:損失4:1以上。追加玉の損失も全て数え、組勝率とは分けます。両商品の円は合算しません。</p>
+<p><a id="main-link">三代表の説明と損益へ</a></p><div id="filters" class="controls"><label>商品 <select id="symbol"><option value="TOPIX">TOPIXミニ・最大10枚</option><option value="NK225">日経225マイクロ・最大20枚</option></select></label><label>期間 <select id="period"><option>前16</option><option>後13</option><option selected>全29</option><option>追加1</option><option>全30</option></select></label><label>入口群 <select id="family"><option value="">全て</option><option value="J">共同方向J</option><option value="Q">最良板Q</option><option value="P">小反落後P</option></select></label><label>保護 <select id="policy"><option value="">全て</option><option value="0">P0 従来</option><option value="1">P1 分離</option><option value="2">P2 建値保護</option><option value="3">P3 利益固定</option><option value="4">P4 高安損切り</option><option value="5">P5 進展不足</option></select></label><label>配分 <select id="allocation"><option value="">全て</option><option value="0">A0 全量</option><option value="1">A1 段階追加</option></select></label><label>並べ順 <select id="sort"><option value="share">金額利益割合</option><option value="net">収支</option><option value="id">ID</option></select></label></div>
+<p id="count" class="small"></p><p class="small">一覧の並べ替えは結果の閲覧用です。代表は前16だけで固定し、後13・追加1の順位で変更しません。追加1と全30は固定対象のみ実施、他の条件は未実施です。</p><div id="ranking"></div><section class="panel" id="condition"></section><details><summary>会計と比較の補足</summary><ul id="notes" class="notes small"></ul></details><footer><a href="公開会計.json">公開会計JSON</a></footer></main>
+<script id="report-data" type="application/json">__DATA__</script><script>__SCRIPT__</script></body></html>

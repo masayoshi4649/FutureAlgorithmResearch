@@ -1,0 +1,21 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>金額利益8割を目指す改善</title><style>__CSS__</style></head><body>
+<!--
+[コンポーネント概要]
+#conclusion は金額利益80%の達否と固定代表の確認結果を短く示します。
+#design-comparison は代表三方式と従来基準を商品・期間別に比較します。
+.method は入口・途中・出口の説明と全セッション損益をまとめます。
+.period-select は前16・後13・全29・追加1・全30を切り替えます。
+.variant-select は同じ入口・初期幅・期限の保護方式と配分対照を選びます。
+.order-marker は全注文、新規は丸、返済は菱形、追加新規は黄色の輪郭です。
+建値明細の金額利益割合と、一組の勝率は別の列で表示します。
+保存結果だけを表示し、外部通信・発注・代表変更は行いません。
+-->
+<main><h1 id="title"></h1><div id="conclusion" class="intro"></div>
+<p class="small">TOPIXミニ片方向最大10枚／日経225マイクロ最大20枚。手数料後、商品別。<strong>金額利益割合＝全建値の利益÷（利益＋損失）</strong>。80%は利益:損失4:1、組勝率80%とは別です。</p>
+<section class="panel"><h2>前半固定の三代表と従来基準</h2><div class="controls"><label>商品 <select id="comparison-symbol"><option value="TOPIX">TOPIXミニ</option><option value="NK225">日経225マイクロ</option></select></label><label>期間 <select id="comparison-period"><option>前16</option><option>後13</option><option>全29</option><option>追加1</option><option selected>全30</option></select></label></div><div id="design-comparison"></div><p class="small">前16だけで選択、後13・追加1で変更なし。前29場は既知資料、追加ナイト一場が今回の固定後確認です。従来基準との違いには再入場間隔（30秒／新案300秒）も含みます。</p></section>
+<details><summary>利益保護・数量の改善が効かなかった理由</summary><ul id="mechanisms" class="notes small"></ul></details>
+<nav id="nav" class="nav"></nav><div id="methods"></div>
+<details><summary>検証条件・会計・時計・約定の限界</summary><ul id="notes" class="notes small"></ul></details>
+<details><summary>研究上の根拠</summary><p class="small">表示数量やOFIは参加者の心理を直接測定しません。先物の金額利益80%を保証する研究ではありません。</p><ul id="research" class="small"></ul></details>
+<p><a id="all-link">全492条件の比較とセッション損益</a></p><footer><a href="README.md">資料案内</a> · <a href="公開会計.json">公開会計JSON</a></footer></main>
+<script id="report-data" type="application/json">__DATA__</script><script>__SCRIPT__</script></body></html>

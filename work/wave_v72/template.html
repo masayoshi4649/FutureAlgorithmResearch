@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>T1L1_R01の全セッション結果</title>
+<style>
+:root{color-scheme:dark;--bg:#0b121d;--panel:#142131;--line:#354b63;--text:#eaf1fa;--muted:#b0c1d5;--blue:#76d9ff;--green:#79e2b2;--red:#ff9bab;--amber:#ffc978}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.7 system-ui,"Yu Gothic UI","Meiryo",sans-serif}main{max-width:1220px;margin:auto;padding:30px 24px 50px}h1{font-size:clamp(25px,3vw,34px);line-height:1.4;margin:4px 0 10px}h2{font-size:21px;margin:22px 0 8px}h3{font-size:17px;margin:12px 0 5px}p{margin:8px 0}.muted,.small{color:var(--muted)}.small{font-size:13px}a{color:var(--blue);text-underline-offset:3px}.panel{border:1px solid var(--line);background:var(--panel);border-radius:10px;padding:18px;margin:18px 0}.cards{display:grid;grid-template-columns:1fr 1fr;gap:14px}.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:17px}.card h2{font-size:18px;margin:0 0 8px}.big{font-size:30px;line-height:1.3}.row{display:flex;justify-content:space-between;gap:12px;margin:5px 0}.positive{color:var(--green)}.negative{color:var(--red)}.money{white-space:nowrap;font-variant-numeric:tabular-nums}.switch{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 8px}button,select{font:inherit;color:var(--text);background:#1b3046;border:1px solid #577390;border-radius:6px;padding:6px 11px;max-width:100%}button{cursor:pointer}button[aria-pressed=true]{border-color:var(--blue);background:#254c63}button:focus-visible,select:focus-visible,summary:focus-visible,a:focus-visible{outline:3px solid var(--blue);outline-offset:3px}.wrap{overflow:auto;border:1px solid var(--line);border-radius:7px;margin:10px 0}table{width:100%;border-collapse:collapse;font-size:14px;font-variant-numeric:tabular-nums}th,td{padding:9px 11px;text-align:right;white-space:nowrap;border-bottom:1px solid #2d4159}th{background:#20334b;color:#d1e1f3;font-weight:600}th:first-child,td:first-child{text-align:left}tbody tr:hover{background:#20384c}.total{font-weight:700;background:#20384c}.total td{border-top:2px solid #728fa8}.selected{background:#234459}.session-link{padding:0;background:none;border:0;color:var(--blue);text-decoration:underline;text-underline-offset:3px}details{margin:14px 0}summary{cursor:pointer;font-weight:600;padding:5px 0}.rules{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}.rules h3{margin-top:0}.chart-box{background:#0c1725;border:1px solid var(--line);border-radius:7px;padding:10px}.chart-svg{display:block;width:100%;height:auto;min-height:190px;background:#0c1725}.chart-head{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:10px 0}.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:13px;margin:7px 0}.buy{color:var(--blue)}.sell{color:var(--amber)}.history{max-height:360px}.history th{position:sticky;top:0}.notice{border-left:3px solid var(--amber);padding:10px 15px;background:#172738}.empty{color:var(--muted);padding:25px;text-align:center}footer{border-top:1px solid var(--line);padding-top:14px;margin-top:25px;font-size:13px}
+@media(max-width:650px){main{padding:18px 12px 30px}.cards,.rules{grid-template-columns:1fr}.card{padding:14px}.big{font-size:27px}.panel{padding:14px 11px}th,td{padding:8px 9px}.chart-box{padding:5px}}
+</style>
+</head>
+<body>
+<!--
+[コンポーネント概要]
+#report はT1L1_R01だけの全セッション結果です。固定保存データを表示し、通信・発注は行いません。
+#summary は銘柄別の合計金額と金額損失割合です。異なる銘柄の円金額は合算しません。
+#sessions は全場の利益・損失・収支です。セッション名を押すと五分足と売買履歴が切り替わります。
+#symbol-buttons はTOPIXミニ10枚とNK225マイクロ20枚の表示を切り替えます。
+#chart は五分足と新規・返済点です。図は結果確認用で、未来の足を判断材料に使いません。
+#report-data は再会計した固定JSONです。無取引の場の率は未定義として「—」を表示します。
+-->
+<main id="report">
+<p class="small"><a href="../index.html">作業一覧</a> ／ 作業00069</p>
+<h1>T1L1_R01の全セッション結果</h1>
+<p id="range" class="muted"></p>
+<p class="notice"><strong>金額ベースでは損失が利益を上回りました。</strong> 負ける回数を減らしても、残る負けの金額が大きい手法です。</p>
+<div id="summary" class="cards"></div>
+<p class="small">金額損失割合＝総損失÷（総利益＋総損失）。50%未満なら合計黒字。すべて手数料後で、利益・損失から手数料を再度引きません。</p>
+<section class="panel">
+<h2 style="margin-top:0">手法の説明</h2>
+<div class="rules">
+<div><h3>入口</h3><p>中値が8呼値進み、4呼値戻ったとき、買い・売り両気配も反転を確認。その戻る方向へ逆指値で全量新規。</p></div>
+<div><h3>途中</h3><p>4呼値進むごとに、その段階へ利益保護線を上げる。線を下げず、小さな利益を早めに確保する。</p></div>
+<div><h3>出口</h3><p>保護線へ戻れば全返済。16呼値の損切り、通常トレール、60分での返済判断、場内全返済も併用。</p></div>
+</div>
+<details><summary>具体的な値幅と約定条件</summary>
+<div class="wrap"><table><thead><tr><th>条件</th><th>TOPIXミニ10枚</th><th>NK225マイクロ20枚</th></tr></thead><tbody>
+<tr><td>判断に使う板</td><td>TOPIXラージ</td><td>NK225ラージ</td></tr>
+<tr><td>8呼値の進行</td><td>4.0pt</td><td>80円</td></tr>
+<tr><td>反転確認・利益固定の4呼値</td><td>2.0pt</td><td>40円</td></tr>
+<tr><td>初期損切りの16呼値</td><td>8.0pt</td><td>160円</td></tr>
+<tr><td>通常トレール</td><td>2.0pt順行後、4.0pt幅</td><td>40円順行後、80円幅</td></tr>
+<tr><td>片道手数料／1枚</td><td>41.8円</td><td>11円</td></tr>
+</tbody></table></div>
+<p class="small">値幅の基準は親の予約価格です。保護線は更新した次の観測から有効で、線と同値でも返済条件が成立します。判断の次の有効気配で買いは売り気配、売りは買い気配へ約定する仮定です。保護線どおりの利益は保証しません。</p>
+<p class="small">増し玉・両建てなし。早期返済しても初回約定から60分30秒は次の新規予約を待つ、従来の管理比較用ルールを維持しています。小型商品の実際の板・約定待ちは再現していません。</p>
+</details>
+</section>
+<div id="symbol-buttons" class="switch" aria-label="銘柄を選択">
+<button type="button" data-symbol="TOPIX" aria-pressed="true">TOPIXミニ10枚</button>
+<button type="button" data-symbol="NK225" aria-pressed="false">NK225マイクロ20枚</button>
+</div>
+<h2 id="session-heading">全セッションの損益</h2>
+<p class="small">各場の利益と損失は、その場の黒字取引・赤字取引を別々に合計。無取引の場も掲載します。場名を押すと下の図が切り替わります。</p>
+<div id="sessions" class="wrap"></div>
+<details><summary>週別・既存28場と追加デイの比較</summary><div id="periods" class="wrap"></div><div id="weeks" class="wrap"></div></details>
+<details><summary>補助指標：取引回数・決済枚数・負けの大きさ</summary><p class="small">前回は赤字取引数÷全取引数でした。今回は金額指標を主にし、回数・枚数は補助として残しています。金額の率を場ごとに平均せず、合計金額から計算します。</p><div id="auxiliary" class="wrap"></div><div id="size-metrics" class="wrap"></div></details>
+<section class="panel">
+<h2 style="margin-top:0">五分足と新規・返済</h2>
+<label for="session-select" class="small">対象セッション</label>
+<select id="session-select"></select>
+<div id="chart-title" class="chart-head"></div>
+<div class="legend"><span class="buy">水色：買い</span><span class="sell">橙：売り</span><span>○ 新規 ／ ◇ 返済</span><span class="muted">点にマウスを重ねると詳細表示</span></div>
+<div id="chart" class="chart-box"></div>
+<details><summary>選択セッションの全売買履歴</summary><div id="history" class="wrap history"></div></details>
+</section>
+<details><summary>データと検証範囲</summary><p class="small">既存28場は保存済みT1L1_R01の結果を再集計。追加10月9日デイは入口・出口・枚数を変更せず再生しました。現在API取得0、実注文0。全場内で返済し、損失玉の持越し・非計上はありません。多数の既知条件から選ばれた手法であり、未知期間の安定性を示す結果ではありません。</p><p class="small">デイ・ナイトの日付は保存ファイルのキーです。検証の場内返済判断はデイ15:34以後、ナイト翌05:49以後、次の有効気配で全返済します。</p></details>
+<footer><a href="README.md">資料案内・再現方法</a> ／ <a href="銘柄別の全セッション会計.json">全会計データ</a></footer>
+</main>
+<script id="report-data" type="application/json">__DATA__</script>
+<script>
+"use strict";
+const D=JSON.parse(document.getElementById("report-data").textContent);
+const NAMES={TOPIX:"TOPIXミニ10枚",NK225:"NK225マイクロ20枚"};
+const REASONS={1:"初期損切り",2:"通常トレール",3:"保有期限",4:"場内全返済",10:"反転確認の新規",13:"段階利益固定"};
+const FMT=new Intl.NumberFormat("ja-JP",{maximumFractionDigits:0});
+const CLOCK=new Intl.DateTimeFormat("ja-JP",{timeZone:"Asia/Tokyo",hour:"2-digit",minute:"2-digit",second:"2-digit",hourCycle:"h23"});
+const SHORT=new Intl.DateTimeFormat("ja-JP",{timeZone:"Asia/Tokyo",hour:"2-digit",minute:"2-digit",hourCycle:"h23"});
+const STATE={symbol:"TOPIX",session:D.sessions.at(-1)};
+
+/**
+ * 機能: 表示文字列のHTML特殊文字をエスケープする。
+ * @param {unknown} value - 表示値。
+ * @returns {string} 安全な文字列。
+ */
+function esc(value){return String(value??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]));}
+
+/**
+ * 機能: 円金額を正負に対応した文字列へ整形する。
+ * @param {number} value - 円金額。
+ * @param {boolean} signed - 正の符号も表示する指定。
+ * @returns {string} 円金額。
+ */
+function yen(value,signed=false){return `${value<0?"−":signed&&value>0?"＋":""}${FMT.format(Math.abs(value))}円`;}
+
+/**
+ * 機能: 比率を百分率又は小数に整形し、未定義を区別する。
+ * @param {number|null} value - 比率。
+ * @param {boolean} percent - 百分率の指定。
+ * @returns {string} 比率又は欠測記号。
+ */
+function ratio(value,percent=false){return value===null||value===undefined?"—":percent?`${(value*100).toFixed(2)}%`:value.toFixed(3);}
+
+/**
+ * 機能: 保存セッション名を日本語表示にする。
+ * @param {string} key - 保存キー。
+ * @returns {string} 日付とセッション名。
+ */
+function sessionName(key){return key.replace("_Day"," デイ").replace("_Night"," ナイト");}
+
+/**
+ * 機能: 同一銘柄の金額会計を主テーブルへ整形する。
+ * @param {Array<object>} rows - ラベルと会計値。
+ * @param {boolean} clickable - 場名で図を切り替える指定。
+ * @returns {string} 金額テーブルのHTML。
+ */
+function moneyTable(rows,clickable=false){return `<table><thead><tr><th>対象</th><th>利益</th><th>損失</th><th>収支</th><th>金額損失割合</th><th>利益／損失比</th><th>取引数</th><th>手数料（内数）</th></tr></thead><tbody>${rows.map(({label,data:r,total=false,key=null})=>`<tr class="${total?"total":key===STATE.session?"selected":""}" data-session="${key??""}"><td>${clickable&&key?`<button type="button" class="session-link" data-session="${key}">${esc(label)}</button>${D.extra_sessions.includes(key)?' <span class="small">追加</span>':""}`:esc(label)}</td><td class="money positive">${yen(r.campaign_profit)}</td><td class="money negative">${yen(r.campaign_loss)}</td><td class="money ${r.net<0?"negative":r.net>0?"positive":"muted"}">${yen(r.net,true)}</td><td>${ratio(r.money_loss_share,true)}</td><td>${ratio(r.profit_loss_ratio)}</td><td>${FMT.format(r.campaigns)}</td><td class="money">${yen(r.fees)}</td></tr>`).join("")}</tbody></table>`;}
+
+/**
+ * 機能: 銘柄ごとの全期間金額をカードに表示する。
+ * @returns {void} 返り値なし。
+ */
+function renderSummary(){document.getElementById("range").textContent=`${sessionName(D.sessions[0])}〜${sessionName(D.sessions.at(-1))} ／ 全${D.sessions.length}セッション ／ 新規・返済の手数料込み`;document.getElementById("summary").innerHTML=["TOPIX","NK225"].map(s=>{const a=D.periods["全29"][s];return `<article class="card"><h2>${NAMES[s]}</h2><p class="small">金額損失割合</p><div class="big negative">${ratio(a.money_loss_share,true)}</div><div class="row"><span>利益</span><strong class="money positive">${yen(a.campaign_profit)}</strong></div><div class="row"><span>損失</span><strong class="money negative">${yen(a.campaign_loss)}</strong></div><div class="row"><span>収支</span><strong class="money ${a.net<0?"negative":"positive"}">${yen(a.net,true)}</strong></div><div class="row small"><span>利益／損失比</span><span>${ratio(a.profit_loss_ratio)}</span></div></article>`;}).join("");}
+
+/**
+ * 機能: 選択銘柄の全場・週・期間と補助指標を表示する。
+ * @returns {void} 返り値なし。
+ */
+function render(){const s=STATE.symbol,rows=D.sessions.map(key=>({label:sessionName(key),key,data:D.rows.find(r=>r.session===key&&r.symbol===s)})),total=D.periods["全29"][s];document.querySelectorAll("[data-symbol]").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.symbol===s)));document.getElementById("session-heading").textContent=`${NAMES[s]}：全セッションの損益`;document.getElementById("sessions").innerHTML=moneyTable([...rows,{label:"全29合計",data:total,total:true}],true);document.getElementById("periods").innerHTML=moneyTable(["既存28","追加デイ","全29"].map(k=>({label:k,data:D.periods[k][s],total:k==="全29"})));document.getElementById("weeks").innerHTML=moneyTable([...D.weeks[s].map(r=>({label:r.label,data:r})),{label:"全29合計",data:total,total:true}]);document.getElementById("auxiliary").innerHTML=`<table><thead><tr><th>対象</th><th>勝ち／負け取引数</th><th>回数損失率</th><th>勝ち／負け決済枚数</th></tr></thead><tbody>${[...rows,{label:"全29合計",data:total,total:true}].map(({label,data:r,total=false})=>`<tr class="${total?"total":""}"><td>${esc(label)}</td><td>${r.campaign_wins}／${r.campaign_losses}</td><td>${ratio(r.count_loss_rate,true)}</td><td>${r.winning_lots}／${r.losing_lots}</td></tr>`).join("")}</tbody></table>`;document.getElementById("size-metrics").innerHTML=`<table><thead><tr><th>対象</th><th>平均利益／勝ち1回</th><th>平均損失／負け1回</th><th>平均利益／平均損失</th><th>最大1取引損失</th><th>最大買／売枚数</th></tr></thead><tbody><tr><td>全29合計</td><td>${total.average_win===null?"—":yen(total.average_win)}</td><td>${total.average_loss===null?"—":yen(total.average_loss)}</td><td>${ratio(total.average_payoff)}</td><td>${yen(total.max_campaign_loss)}</td><td>${total.max_long}／${total.max_short}</td></tr></tbody></table>`;drawChart();}
+
+// ----------------------------------------
+// 五分足と注文履歴は結果の図示だけに使用する。
+
+/**
+ * 機能: 選択場の五分足と原本気配での新規・返済を描画する。
+ * @returns {void} 返り値なし。
+ */
+function drawChart(){const key=`${STATE.session}|${STATE.symbol}`,bars=D.bars[key],orders=D.orders[key],r=D.rows.find(a=>a.session===STATE.session&&a.symbol===STATE.symbol);document.getElementById("session-select").value=STATE.session;document.querySelectorAll("#sessions tr[data-session]").forEach(tr=>tr.classList.toggle("selected",tr.dataset.session===STATE.session));document.getElementById("chart-title").innerHTML=`<strong>${esc(sessionName(STATE.session))} ／ ${NAMES[STATE.symbol]}</strong><span class="${r.net<0?"negative":"positive"}">収支 ${yen(r.net,true)} ／ ${r.campaigns}取引</span>`;const W=1000,H=350,L=76,R=22,T=18,B=42,pw=W-L-R,ph=H-T-B;const times=bars.map(b=>b[0]),ot=orders.map(o=>o[9]),left=Math.min(...times,...ot),right=Math.max(...times.map(t=>t+300),...ot,left+300),prices=bars.flatMap(b=>[b[2],b[3]]).concat(orders.map(o=>o[5])),lo=Math.min(...prices),hi=Math.max(...prices),pad=Math.max((hi-lo)*.08,STATE.symbol==="TOPIX"?.5:10),low=lo-pad,high=hi+pad,x=t=>L+(t-left)/(right-left)*pw,y=p=>T+(high-p)/(high-low)*ph;let grid="";for(let j=0;j<=5;j++){const yy=T+j*ph/5,p=high-j*(high-low)/5;grid+=`<line x1="${L}" y1="${yy}" x2="${W-R}" y2="${yy}" stroke="#2e445a"/><text x="${L-8}" y="${yy+4}" text-anchor="end" fill="#bdd0e6" font-size="12">${p.toFixed(STATE.symbol==="TOPIX"?1:0)}</text>`;}for(let j=0;j<=6;j++){const t=left+j*(right-left)/6;grid+=`<text x="${x(t)}" y="${H-12}" text-anchor="middle" fill="#bdd0e6" font-size="12">${SHORT.format(new Date(t*1000))}</text>`;}const cw=Math.max(1,Math.min(12,pw/bars.length*.65)),candles=bars.map(b=>{const xx=x(b[0]+150),color=b[4]>=b[1]?"#76cbb4":"#e98b9e";return `<g><title>${SHORT.format(new Date(b[0]*1000))} 始${b[1]} 高${b[2]} 安${b[3]} 終${b[4]}</title><line x1="${xx}" y1="${y(b[2])}" x2="${xx}" y2="${y(b[3])}" stroke="${color}"/><rect x="${xx-cw/2}" y="${Math.min(y(b[1]),y(b[4]))}" width="${cw}" height="${Math.max(1,Math.abs(y(b[1])-y(b[4])))}" fill="${color}" opacity=".7"/></g>`;}).join(""),markers=orders.map(o=>{const xx=x(o[9]),yy=y(o[5]),color=o[3]===1?"#76d9ff":"#ffc978",text=`${CLOCK.format(new Date(o[9]*1000))} ${o[7]===1?"新規":"返済"} ${o[3]===1?"買い":"売り"} ${o[4]}枚 @${o[5]} ${REASONS[o[6]]??o[6]}`;return `<g class="order-marker"><title>${esc(text)}</title>${o[7]===1?`<circle cx="${xx}" cy="${yy}" r="4.5" fill="${color}" stroke="#0c1725" stroke-width="1.2"/>`:`<path d="M ${xx} ${yy-5} L ${xx+5} ${yy} L ${xx} ${yy+5} L ${xx-5} ${yy} Z" fill="${color}" stroke="#0c1725" stroke-width="1.2"/>`}</g>`;}).join("");document.getElementById("chart").innerHTML=`<svg class="chart-svg" viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(sessionName(STATE.session))}の五分足と新規返済"><rect width="${W}" height="${H}" fill="#0c1725"/>${grid}${candles}${markers}</svg>`;document.getElementById("history").innerHTML=orders.length?`<table><thead><tr><th>約定時刻</th><th>新規／返済</th><th>売買</th><th>枚数</th><th>価格</th><th>理由</th><th>取引番号</th></tr></thead><tbody>${orders.map(o=>`<tr><td>${CLOCK.format(new Date(o[9]*1000))}</td><td>${o[7]===1?"新規":"返済"}</td><td class="${o[3]===1?"buy":"sell"}">${o[3]===1?"買い":"売り"}</td><td>${o[4]}</td><td>${o[5]}</td><td>${esc(REASONS[o[6]]??o[6])}</td><td>${o[2]}</td></tr>`).join("")}</tbody></table>`:'<p class="empty">この場は無取引です。勝ちには数えません。</p>';}
+
+// ----------------------------------------
+// 操作は表示の切替だけを行う。
+document.getElementById("session-select").innerHTML=D.sessions.map(s=>`<option value="${s}">${sessionName(s)}</option>`).join("");
+document.getElementById("symbol-buttons").addEventListener("click",event=>{const button=event.target.closest("[data-symbol]");if(button){STATE.symbol=button.dataset.symbol;render();}});
+document.getElementById("sessions").addEventListener("click",event=>{const button=event.target.closest("[data-session].session-link");if(button){STATE.session=button.dataset.session;drawChart();}});
+document.getElementById("session-select").addEventListener("change",event=>{STATE.session=event.target.value;drawChart();});
+renderSummary();render();
+window.reportTest={D,STATE,render,drawChart,moneyTable};
+</script>
+</body>
+</html>
