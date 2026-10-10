@@ -1,0 +1,1633 @@
+{
+  "表示集計一致": true,
+  "条件数": 162,
+  "場数": 30,
+  "代表数": 3,
+  "今回未見場数": 0,
+  "選定": {
+    "代表": [
+      {
+        "id": "J0_F1_B0_H0_R0",
+        "entry": "J0",
+        "level": 0,
+        "eligible": true,
+        "front_payoff_qualified": true,
+        "score": [
+          0.44033859677681914,
+          0.4,
+          0.8353889674020891,
+          "J0_F1_B0_H0_R0"
+        ],
+        "controls": [
+          "J0_F0_B0_H0_R0",
+          "J0_F0_B0_H0_R1",
+          "J0_F0_B0_H1_R0",
+          "J0_F0_B0_H2_R0",
+          "J0_F0_B1_H0_R0",
+          "J0_F0_B2_H0_R0",
+          "J0_F1_B0_H0_R0",
+          "J0_F2_B0_H0_R0"
+        ]
+      },
+      {
+        "id": "J1_F1_B0_H0_R0",
+        "entry": "J1",
+        "level": 0,
+        "eligible": true,
+        "front_payoff_qualified": true,
+        "score": [
+          0.44033859677681914,
+          0.4,
+          0.8285405312532961,
+          "J1_F1_B0_H0_R0"
+        ],
+        "controls": [
+          "J1_F0_B0_H0_R0",
+          "J1_F0_B0_H0_R1",
+          "J1_F0_B0_H1_R0",
+          "J1_F0_B0_H2_R0",
+          "J1_F0_B1_H0_R0",
+          "J1_F0_B2_H0_R0",
+          "J1_F1_B0_H0_R0",
+          "J1_F2_B0_H0_R0"
+        ]
+      },
+      {
+        "id": "J2_F1_B0_H0_R0",
+        "entry": "J2",
+        "level": 0,
+        "eligible": true,
+        "front_payoff_qualified": true,
+        "score": [
+          0.41383572737734964,
+          0.4,
+          0.8072211573024279,
+          "J2_F1_B0_H0_R0"
+        ],
+        "controls": [
+          "J2_F0_B0_H0_R0",
+          "J2_F0_B0_H0_R1",
+          "J2_F0_B0_H1_R0",
+          "J2_F0_B0_H2_R0",
+          "J2_F0_B1_H0_R0",
+          "J2_F0_B2_H0_R0",
+          "J2_F1_B0_H0_R0",
+          "J2_F2_B0_H0_R0"
+        ]
+      }
+    ],
+    "主候補": "J2_F1_B0_H0_R0",
+    "基準": "J2_F0_B0_H0_R0",
+    "感度対象": [
+      "J0_F0_B0_H0_R0",
+      "J0_F0_B0_H0_R1",
+      "J0_F0_B0_H1_R0",
+      "J0_F0_B0_H2_R0",
+      "J0_F0_B1_H0_R0",
+      "J0_F0_B2_H0_R0",
+      "J0_F1_B0_H0_R0",
+      "J0_F2_B0_H0_R0",
+      "J1_F0_B0_H0_R0",
+      "J1_F0_B0_H0_R1",
+      "J1_F0_B0_H1_R0",
+      "J1_F0_B0_H2_R0",
+      "J1_F0_B1_H0_R0",
+      "J1_F0_B2_H0_R0",
+      "J1_F1_B0_H0_R0",
+      "J1_F2_B0_H0_R0",
+      "J2_F0_B0_H0_R0",
+      "J2_F0_B0_H0_R1",
+      "J2_F0_B0_H1_R0",
+      "J2_F0_B0_H2_R0",
+      "J2_F0_B1_H0_R0",
+      "J2_F0_B2_H0_R0",
+      "J2_F1_B0_H0_R0",
+      "J2_F2_B0_H0_R0"
+    ],
+    "前16だけで選択": true,
+    "未見確認ではない": true
+  },
+  "条件数集計": {
+    "両市場全場黒字": 0,
+    "両市場金額80": 0
+  },
+  "会計": [
+    {
+      "id": "J2_F0_B0_H0_R0",
+      "symbol": "TOPIX",
+      "全30": {
+        "profit": 2566544.0,
+        "loss": 1833424.0,
+        "net": 733120.0,
+        "gross": 800000.0,
+        "fees": 66880.0,
+        "trades": 80,
+        "wins": 46,
+        "losses": 34,
+        "flats": 0,
+        "legs": 80,
+        "winning_legs": 46,
+        "losing_legs": 34,
+        "winning_lots": 460,
+        "losing_lots": 340,
+        "flat_lots": 0,
+        "campaign_profit": 2566544.0,
+        "campaign_loss": 1833424.0,
+        "hold_seconds": 141065.0,
+        "adds": 0,
+        "risk_excesses": 0,
+        "spread_drag": 565000.0,
+        "max_trade_loss": 160836.0,
+        "max_leg_loss": 160836.0,
+        "max_long": 10,
+        "max_short": 10,
+        "active_sessions": 29,
+        "winning_sessions": 18,
+        "max_session_drawdown": 266672.0,
+        "drawdown": 485064.0,
+        "without_best_session": 443136.0,
+        "without_best_profit_share": 0.5550026909534316,
+        "without_best_profit_loss_ratio": 1.2472046002762487,
+        "profit_share": 0.5833096967977949,
+        "money_loss_share": 0.4166903032022051,
+        "profit_loss_ratio": 1.3998638612781331,
+        "average_win": 55794.434782608696,
+        "average_loss": 53924.23529411765,
+        "payoff": 1.034681984422968,
+        "win_rate": 0.575,
+        "average_net": 9164.0,
+        "average_hold_seconds": 1763.3125,
+        "campaign_profit_share": 0.5833096967977949,
+        "goal80": false,
+        "extensions": 0,
+        "protections": 0,
+        "pauses": 0,
+        "rearms": 0,
+        "skipped": 0,
+        "session_count": 30,
+        "losing_sessions": 11,
+        "no_trade_sessions": 1,
+        "flat_active_sessions": 0,
+        "positive_session_rate": 0.6206896551724138,
+        "all_sessions_profitable": false,
+        "worst_session": -182508.0,
+        "consecutive_losing_sessions": 3,
+        "max_consecutive_trade_losses": 5,
+        "days": {
+          "2026-09-21": {
+            "profit": 0.0,
+            "loss": 55836.0,
+            "net": -55836.0,
+            "trades": 1
+          },
+          "2026-09-22": {
+            "profit": 148328.0,
+            "loss": 160836.0,
+            "net": -12508.0,
+            "trades": 3
+          },
+          "2026-09-23": {
+            "profit": 98328.0,
+            "loss": 0.0,
+            "net": 98328.0,
+            "trades": 2
+          },
+          "2026-09-24": {
+            "profit": 326656.0,
+            "loss": 35836.0,
+            "net": 290820.0,
+            "trades": 5
+          },
+          "2026-09-25": {
+            "profit": 19164.0,
+            "loss": 253344.0,
+            "net": -234180.0,
+            "trades": 5
+          },
+          "2026-09-28": {
+            "profit": 171656.0,
+            "loss": 40836.0,
+            "net": 130820.0,
+            "trades": 5
+          },
+          "2026-09-29": {
+            "profit": 354148.0,
+            "loss": 76672.0,
+            "net": 277476.0,
+            "trades": 9
+          },
+          "2026-09-30": {
+            "profit": 206656.0,
+            "loss": 360852.0,
+            "net": -154196.0,
+            "trades": 11
+          },
+          "2026-10-01": {
+            "profit": 182492.0,
+            "loss": 226672.0,
+            "net": -44180.0,
+            "trades": 5
+          },
+          "2026-10-02": {
+            "profit": 262492.0,
+            "loss": 189180.0,
+            "net": 73312.0,
+            "trades": 8
+          },
+          "2026-10-05": {
+            "profit": 89164.0,
+            "loss": 254180.0,
+            "net": -165016.0,
+            "trades": 6
+          },
+          "2026-10-06": {
+            "profit": 42492.0,
+            "loss": 50836.0,
+            "net": -8344.0,
+            "trades": 4
+          },
+          "2026-10-07": {
+            "profit": 230820.0,
+            "loss": 36672.0,
+            "net": 194148.0,
+            "trades": 7
+          },
+          "2026-10-08": {
+            "profit": 390820.0,
+            "loss": 0.0,
+            "net": 390820.0,
+            "trades": 5
+          },
+          "2026-10-09": {
+            "profit": 43328.0,
+            "loss": 91672.0,
+            "net": -48344.0,
+            "trades": 4
+          }
+        },
+        "weeks": {
+          "2026-09-21": {
+            "profit": 592476.0,
+            "loss": 505852.0,
+            "net": 86624.0,
+            "trades": 16
+          },
+          "2026-09-28": {
+            "profit": 1177444.0,
+            "loss": 894212.0,
+            "net": 283232.0,
+            "trades": 38
+          },
+          "2026-10-05": {
+            "profit": 796624.0,
+            "loss": 433360.0,
+            "net": 363264.0,
+            "trades": 26
+          }
+        },
+        "worst_day": -234180.0,
+        "positive_days": 7,
+        "active_days": 15,
+        "best_day": "2026-10-08",
+        "without_best_day_net": 342300.0,
+        "without_best_day_profit_share": 0.5426898682712636,
+        "day_sessions_net": 626576.0,
+        "night_sessions_net": 106544.0,
+        "positive_weeks": 3,
+        "week_count": 3,
+        "positive_sessions": 18,
+        "negative_sessions": 11
+      },
+      "全場週一致": true
+    },
+    {
+      "id": "J2_F0_B0_H0_R0",
+      "symbol": "NK225",
+      "全30": {
+        "profit": 1087960.0,
+        "loss": 600320.0,
+        "net": 487640.0,
+        "gross": 518000.0,
+        "fees": 30360.0,
+        "trades": 69,
+        "wins": 41,
+        "losses": 28,
+        "flats": 0,
+        "legs": 69,
+        "winning_legs": 41,
+        "losing_legs": 28,
+        "winning_lots": 820,
+        "losing_lots": 560,
+        "flat_lots": 0,
+        "campaign_profit": 1087960.0,
+        "campaign_loss": 600320.0,
+        "hold_seconds": 115816.0,
+        "adds": 0,
+        "risk_excesses": 0,
+        "spread_drag": 210000.0,
+        "max_trade_loss": 54440.0,
+        "max_leg_loss": 54440.0,
+        "max_long": 20,
+        "max_short": 20,
+        "active_sessions": 27,
+        "winning_sessions": 19,
+        "max_session_drawdown": 163320.0,
+        "drawdown": 175760.0,
+        "without_best_session": 363400.0,
+        "without_best_profit_share": 0.6161734993989924,
+        "without_best_profit_loss_ratio": 1.60534381663113,
+        "profit_share": 0.6444191721752316,
+        "money_loss_share": 0.3555808278247684,
+        "profit_loss_ratio": 1.8123001066098081,
+        "average_win": 26535.60975609756,
+        "average_loss": 21440.0,
+        "payoff": 1.237668365489625,
+        "win_rate": 0.5942028985507246,
+        "average_net": 7067.246376811594,
+        "average_hold_seconds": 1678.4927536231885,
+        "campaign_profit_share": 0.6444191721752316,
+        "goal80": false,
+        "extensions": 0,
+        "protections": 0,
+        "pauses": 0,
+        "rearms": 0,
+        "skipped": 0,
+        "session_count": 30,
+        "losing_sessions": 8,
+        "no_trade_sessions": 3,
+        "flat_active_sessions": 0,
+        "positive_session_rate": 0.7037037037037037,
+        "all_sessions_profitable": false,
+        "worst_session": -134200.0,
+        "consecutive_losing_sessions": 2,
+        "max_consecutive_trade_losses": 4,
+        "days": {
+          "2026-09-21": {
+            "profit": 15560.0,
+            "loss": 30440.0,
+            "net": -14880.0,
+            "trades": 2
+          },
+          "2026-09-22": {
+            "profit": 0.0,
+            "loss": 16440.0,
+            "net": -16440.0,
+            "trades": 1
+          },
+          "2026-09-23": {
+            "profit": 27560.0,
+            "loss": 0.0,
+            "net": 27560.0,
+            "trades": 1
+          },
+          "2026-09-24": {
+            "profit": 116680.0,
+            "loss": 86880.0,
+            "net": 29800.0,
+            "trades": 5
+          },
+          "2026-09-25": {
+            "profit": 116680.0,
+            "loss": 0.0,
+            "net": 116680.0,
+            "trades": 3
+          },
+          "2026-09-28": {
+            "profit": 63120.0,
+            "loss": 51320.0,
+            "net": 11800.0,
+            "trades": 5
+          },
+          "2026-09-29": {
+            "profit": 128240.0,
+            "loss": 169080.0,
+            "net": -40840.0,
+            "trades": 11
+          },
+          "2026-09-30": {
+            "profit": 82240.0,
+            "loss": 42200.0,
+            "net": 40040.0,
+            "trades": 9
+          },
+          "2026-10-01": {
+            "profit": 64680.0,
+            "loss": 18440.0,
+            "net": 46240.0,
+            "trades": 4
+          },
+          "2026-10-02": {
+            "profit": 156920.0,
+            "loss": 0.0,
+            "net": 156920.0,
+            "trades": 7
+          },
+          "2026-10-05": {
+            "profit": 35560.0,
+            "loss": 81760.0,
+            "net": -46200.0,
+            "trades": 5
+          },
+          "2026-10-06": {
+            "profit": 19120.0,
+            "loss": 8440.0,
+            "net": 10680.0,
+            "trades": 3
+          },
+          "2026-10-07": {
+            "profit": 117800.0,
+            "loss": 14440.0,
+            "net": 103360.0,
+            "trades": 6
+          },
+          "2026-10-08": {
+            "profit": 143800.0,
+            "loss": 0.0,
+            "net": 143800.0,
+            "trades": 5
+          },
+          "2026-10-09": {
+            "profit": 0.0,
+            "loss": 80880.0,
+            "net": -80880.0,
+            "trades": 2
+          }
+        },
+        "weeks": {
+          "2026-09-21": {
+            "profit": 276480.0,
+            "loss": 133760.0,
+            "net": 142720.0,
+            "trades": 12
+          },
+          "2026-09-28": {
+            "profit": 495200.0,
+            "loss": 281040.0,
+            "net": 214160.0,
+            "trades": 36
+          },
+          "2026-10-05": {
+            "profit": 316280.0,
+            "loss": 185520.0,
+            "net": 130760.0,
+            "trades": 21
+          }
+        },
+        "worst_day": -80880.0,
+        "positive_days": 10,
+        "active_days": 15,
+        "best_day": "2026-10-02",
+        "without_best_day_net": 330720.0,
+        "without_best_day_profit_share": 0.6079824469752377,
+        "day_sessions_net": 221920.0,
+        "night_sessions_net": 265720.0,
+        "positive_weeks": 3,
+        "week_count": 3,
+        "positive_sessions": 19,
+        "negative_sessions": 8
+      },
+      "全場週一致": true
+    },
+    {
+      "id": "J0_F1_B0_H0_R0",
+      "symbol": "TOPIX",
+      "全30": {
+        "profit": 2752364.0,
+        "loss": 1920932.0,
+        "net": 831432.0,
+        "gross": 905000.0,
+        "fees": 73568.0,
+        "trades": 88,
+        "wins": 51,
+        "losses": 37,
+        "flats": 0,
+        "legs": 88,
+        "winning_legs": 51,
+        "losing_legs": 37,
+        "winning_lots": 510,
+        "losing_lots": 370,
+        "flat_lots": 0,
+        "campaign_profit": 2752364.0,
+        "campaign_loss": 1920932.0,
+        "hold_seconds": 153267.0,
+        "adds": 0,
+        "risk_excesses": 0,
+        "spread_drag": 607500.0,
+        "max_trade_loss": 160836.0,
+        "max_leg_loss": 160836.0,
+        "max_long": 10,
+        "max_short": 10,
+        "active_sessions": 29,
+        "winning_sessions": 18,
+        "max_session_drawdown": 266672.0,
+        "drawdown": 391688.0,
+        "without_best_session": 541448.0,
+        "without_best_profit_share": 0.562935066625752,
+        "without_best_profit_loss_ratio": 1.2879895494698144,
+        "profit_share": 0.588955632170528,
+        "money_loss_share": 0.41104436782947196,
+        "profit_loss_ratio": 1.4328273983670428,
+        "average_win": 53967.92156862745,
+        "average_loss": 51917.08108108108,
+        "payoff": 1.0395022301878545,
+        "win_rate": 0.5795454545454546,
+        "average_net": 9448.09090909091,
+        "average_hold_seconds": 1741.6704545454545,
+        "campaign_profit_share": 0.588955632170528,
+        "goal80": false,
+        "extensions": 0,
+        "protections": 0,
+        "pauses": 0,
+        "rearms": 0,
+        "skipped": 0,
+        "session_count": 30,
+        "losing_sessions": 11,
+        "no_trade_sessions": 1,
+        "flat_active_sessions": 0,
+        "positive_session_rate": 0.6206896551724138,
+        "all_sessions_profitable": false,
+        "worst_session": -218344.0,
+        "consecutive_losing_sessions": 2,
+        "max_consecutive_trade_losses": 5,
+        "days": {
+          "2026-09-21": {
+            "profit": 0.0,
+            "loss": 55836.0,
+            "net": -55836.0,
+            "trades": 1
+          },
+          "2026-09-22": {
+            "profit": 148328.0,
+            "loss": 160836.0,
+            "net": -12508.0,
+            "trades": 3
+          },
+          "2026-09-23": {
+            "profit": 98328.0,
+            "loss": 0.0,
+            "net": 98328.0,
+            "trades": 2
+          },
+          "2026-09-24": {
+            "profit": 326656.0,
+            "loss": 35836.0,
+            "net": 290820.0,
+            "trades": 5
+          },
+          "2026-09-25": {
+            "profit": 48328.0,
+            "loss": 294180.0,
+            "net": -245852.0,
+            "trades": 7
+          },
+          "2026-09-28": {
+            "profit": 195820.0,
+            "loss": 40836.0,
+            "net": 154984.0,
+            "trades": 6
+          },
+          "2026-09-29": {
+            "profit": 354148.0,
+            "loss": 76672.0,
+            "net": 277476.0,
+            "trades": 9
+          },
+          "2026-09-30": {
+            "profit": 206656.0,
+            "loss": 235852.0,
+            "net": -29196.0,
+            "trades": 11
+          },
+          "2026-10-01": {
+            "profit": 182492.0,
+            "loss": 226672.0,
+            "net": -44180.0,
+            "trades": 5
+          },
+          "2026-10-02": {
+            "profit": 301656.0,
+            "loss": 189180.0,
+            "net": 112476.0,
+            "trades": 9
+          },
+          "2026-10-05": {
+            "profit": 89164.0,
+            "loss": 254180.0,
+            "net": -165016.0,
+            "trades": 6
+          },
+          "2026-10-06": {
+            "profit": 42492.0,
+            "loss": 50836.0,
+            "net": -8344.0,
+            "trades": 4
+          },
+          "2026-10-07": {
+            "profit": 259984.0,
+            "loss": 112508.0,
+            "net": 147476.0,
+            "trades": 9
+          },
+          "2026-10-08": {
+            "profit": 415820.0,
+            "loss": 95836.0,
+            "net": 319984.0,
+            "trades": 6
+          },
+          "2026-10-09": {
+            "profit": 82492.0,
+            "loss": 91672.0,
+            "net": -9180.0,
+            "trades": 5
+          }
+        },
+        "weeks": {
+          "2026-09-21": {
+            "profit": 621640.0,
+            "loss": 546688.0,
+            "net": 74952.0,
+            "trades": 18
+          },
+          "2026-09-28": {
+            "profit": 1240772.0,
+            "loss": 769212.0,
+            "net": 471560.0,
+            "trades": 40
+          },
+          "2026-10-05": {
+            "profit": 889952.0,
+            "loss": 605032.0,
+            "net": 284920.0,
+            "trades": 30
+          }
+        },
+        "worst_day": -245852.0,
+        "positive_days": 7,
+        "active_days": 15,
+        "best_day": "2026-10-08",
+        "without_best_day_net": 511448.0,
+        "without_best_day_profit_share": 0.5614478907353831,
+        "day_sessions_net": 848232.0,
+        "night_sessions_net": -16800.0,
+        "positive_weeks": 3,
+        "week_count": 3,
+        "positive_sessions": 18,
+        "negative_sessions": 11
+      },
+      "全場週一致": true
+    },
+    {
+      "id": "J0_F1_B0_H0_R0",
+      "symbol": "NK225",
+      "全30": {
+        "profit": 1107520.0,
+        "loss": 764960.0,
+        "net": 342560.0,
+        "gross": 376000.0,
+        "fees": 33440.0,
+        "trades": 76,
+        "wins": 42,
+        "losses": 34,
+        "flats": 0,
+        "legs": 76,
+        "winning_legs": 42,
+        "losing_legs": 34,
+        "winning_lots": 840,
+        "losing_lots": 680,
+        "flat_lots": 0,
+        "campaign_profit": 1107520.0,
+        "campaign_loss": 764960.0,
+        "hold_seconds": 122543.0,
+        "adds": 0,
+        "risk_excesses": 0,
+        "spread_drag": 226000.0,
+        "max_trade_loss": 54440.0,
+        "max_leg_loss": 54440.0,
+        "max_long": 20,
+        "max_short": 20,
+        "active_sessions": 28,
+        "winning_sessions": 18,
+        "max_session_drawdown": 163320.0,
+        "drawdown": 213760.0,
+        "without_best_session": 218320.0,
+        "without_best_profit_share": 0.562439939596394,
+        "without_best_profit_loss_ratio": 1.2854005438192846,
+        "profit_share": 0.5914722720669914,
+        "money_loss_share": 0.4085277279330086,
+        "profit_loss_ratio": 1.4478142647981593,
+        "average_win": 26369.52380952381,
+        "average_loss": 22498.823529411766,
+        "payoff": 1.1720401191223195,
+        "win_rate": 0.5526315789473685,
+        "average_net": 4507.368421052632,
+        "average_hold_seconds": 1612.407894736842,
+        "campaign_profit_share": 0.5914722720669914,
+        "goal80": false,
+        "extensions": 0,
+        "protections": 0,
+        "pauses": 0,
+        "rearms": 0,
+        "skipped": 0,
+        "session_count": 30,
+        "losing_sessions": 10,
+        "no_trade_sessions": 2,
+        "flat_active_sessions": 0,
+        "positive_session_rate": 0.6428571428571429,
+        "all_sessions_profitable": false,
+        "worst_session": -134200.0,
+        "consecutive_losing_sessions": 3,
+        "max_consecutive_trade_losses": 5,
+        "days": {
+          "2026-09-21": {
+            "profit": 15560.0,
+            "loss": 30440.0,
+            "net": -14880.0,
+            "trades": 2
+          },
+          "2026-09-22": {
+            "profit": 0.0,
+            "loss": 60880.0,
+            "net": -60880.0,
+            "trades": 2
+          },
+          "2026-09-23": {
+            "profit": 27560.0,
+            "loss": 0.0,
+            "net": 27560.0,
+            "trades": 1
+          },
+          "2026-09-24": {
+            "profit": 116680.0,
+            "loss": 86880.0,
+            "net": 29800.0,
+            "trades": 5
+          },
+          "2026-09-25": {
+            "profit": 116680.0,
+            "loss": 0.0,
+            "net": 116680.0,
+            "trades": 3
+          },
+          "2026-09-28": {
+            "profit": 63120.0,
+            "loss": 51320.0,
+            "net": 11800.0,
+            "trades": 5
+          },
+          "2026-09-29": {
+            "profit": 128240.0,
+            "loss": 169080.0,
+            "net": -40840.0,
+            "trades": 11
+          },
+          "2026-09-30": {
+            "profit": 82240.0,
+            "loss": 34200.0,
+            "net": 48040.0,
+            "trades": 9
+          },
+          "2026-10-01": {
+            "profit": 64680.0,
+            "loss": 18440.0,
+            "net": 46240.0,
+            "trades": 4
+          },
+          "2026-10-02": {
+            "profit": 156920.0,
+            "loss": 0.0,
+            "net": 156920.0,
+            "trades": 7
+          },
+          "2026-10-05": {
+            "profit": 35560.0,
+            "loss": 86200.0,
+            "net": -50640.0,
+            "trades": 6
+          },
+          "2026-10-06": {
+            "profit": 19120.0,
+            "loss": 8440.0,
+            "net": 10680.0,
+            "trades": 3
+          },
+          "2026-10-07": {
+            "profit": 117800.0,
+            "loss": 14440.0,
+            "net": 103360.0,
+            "trades": 6
+          },
+          "2026-10-08": {
+            "profit": 163360.0,
+            "loss": 105320.0,
+            "net": 58040.0,
+            "trades": 9
+          },
+          "2026-10-09": {
+            "profit": 0.0,
+            "loss": 99320.0,
+            "net": -99320.0,
+            "trades": 3
+          }
+        },
+        "weeks": {
+          "2026-09-21": {
+            "profit": 276480.0,
+            "loss": 178200.0,
+            "net": 98280.0,
+            "trades": 13
+          },
+          "2026-09-28": {
+            "profit": 495200.0,
+            "loss": 273040.0,
+            "net": 222160.0,
+            "trades": 36
+          },
+          "2026-10-05": {
+            "profit": 335840.0,
+            "loss": 313720.0,
+            "net": 22120.0,
+            "trades": 27
+          }
+        },
+        "worst_day": -99320.0,
+        "positive_days": 10,
+        "active_days": 15,
+        "best_day": "2026-10-02",
+        "without_best_day_net": 185640.0,
+        "without_best_day_profit_share": 0.5541047821119635,
+        "day_sessions_net": 198160.0,
+        "night_sessions_net": 144400.0,
+        "positive_weeks": 3,
+        "week_count": 3,
+        "positive_sessions": 18,
+        "negative_sessions": 10
+      },
+      "全場週一致": true
+    },
+    {
+      "id": "J1_F1_B0_H0_R0",
+      "symbol": "TOPIX",
+      "全30": {
+        "profit": 2659872.0,
+        "loss": 1879260.0,
+        "net": 780612.0,
+        "gross": 850000.0,
+        "fees": 69388.0,
+        "trades": 83,
+        "wins": 48,
+        "losses": 35,
+        "flats": 0,
+        "legs": 83,
+        "winning_legs": 48,
+        "losing_legs": 35,
+        "winning_lots": 480,
+        "losing_lots": 350,
+        "flat_lots": 0,
+        "campaign_profit": 2659872.0,
+        "campaign_loss": 1879260.0,
+        "hold_seconds": 144253.0,
+        "adds": 0,
+        "risk_excesses": 0,
+        "spread_drag": 575000.0,
+        "max_trade_loss": 160836.0,
+        "max_leg_loss": 160836.0,
+        "max_long": 10,
+        "max_short": 10,
+        "active_sessions": 29,
+        "winning_sessions": 18,
+        "max_session_drawdown": 266672.0,
+        "drawdown": 412540.0,
+        "without_best_session": 490628.0,
+        "without_best_profit_share": 0.5588639262709612,
+        "without_best_profit_loss_ratio": 1.266874235758454,
+        "profit_share": 0.5859869243723249,
+        "money_loss_share": 0.4140130756276751,
+        "profit_loss_ratio": 1.4153826506177964,
+        "average_win": 55414.0,
+        "average_loss": 53693.142857142855,
+        "payoff": 1.03204984940881,
+        "win_rate": 0.5783132530120482,
+        "average_net": 9404.963855421687,
+        "average_hold_seconds": 1737.987951807229,
+        "campaign_profit_share": 0.5859869243723249,
+        "goal80": false,
+        "extensions": 0,
+        "protections": 0,
+        "pauses": 0,
+        "rearms": 0,
+        "skipped": 0,
+        "session_count": 30,
+        "losing_sessions": 11,
+        "no_trade_sessions": 1,
+        "flat_active_sessions": 0,
+        "positive_session_rate": 0.6206896551724138,
+        "all_sessions_profitable": false,
+        "worst_session": -182508.0,
+        "consecutive_losing_sessions": 2,
+        "max_consecutive_trade_losses": 5,
+        "days": {
+          "2026-09-21": {
+            "profit": 0.0,
+            "loss": 55836.0,
+            "net": -55836.0,
+            "trades": 1
+          },
+          "2026-09-22": {
+            "profit": 148328.0,
+            "loss": 160836.0,
+            "net": -12508.0,
+            "trades": 3
+          },
+          "2026-09-23": {
+            "profit": 98328.0,
+            "loss": 0.0,
+            "net": 98328.0,
+            "trades": 2
+          },
+          "2026-09-24": {
+            "profit": 326656.0,
+            "loss": 35836.0,
+            "net": 290820.0,
+            "trades": 5
+          },
+          "2026-09-25": {
+            "profit": 48328.0,
+            "loss": 253344.0,
+            "net": -205016.0,
+            "trades": 6
+          },
+          "2026-09-28": {
+            "profit": 171656.0,
+            "loss": 40836.0,
+            "net": 130820.0,
+            "trades": 5
+          },
+          "2026-09-29": {
+            "profit": 354148.0,
+            "loss": 76672.0,
+            "net": 277476.0,
+            "trades": 9
+          },
+          "2026-09-30": {
+            "profit": 206656.0,
+            "loss": 235852.0,
+            "net": -29196.0,
+            "trades": 11
+          },
+          "2026-10-01": {
+            "profit": 182492.0,
+            "loss": 226672.0,
+            "net": -44180.0,
+            "trades": 5
+          },
+          "2026-10-02": {
+            "profit": 262492.0,
+            "loss": 189180.0,
+            "net": 73312.0,
+            "trades": 8
+          },
+          "2026-10-05": {
+            "profit": 89164.0,
+            "loss": 254180.0,
+            "net": -165016.0,
+            "trades": 6
+          },
+          "2026-10-06": {
+            "profit": 42492.0,
+            "loss": 50836.0,
+            "net": -8344.0,
+            "trades": 4
+          },
+          "2026-10-07": {
+            "profit": 230820.0,
+            "loss": 111672.0,
+            "net": 119148.0,
+            "trades": 7
+          },
+          "2026-10-08": {
+            "profit": 415820.0,
+            "loss": 95836.0,
+            "net": 319984.0,
+            "trades": 6
+          },
+          "2026-10-09": {
+            "profit": 82492.0,
+            "loss": 91672.0,
+            "net": -9180.0,
+            "trades": 5
+          }
+        },
+        "weeks": {
+          "2026-09-21": {
+            "profit": 621640.0,
+            "loss": 505852.0,
+            "net": 115788.0,
+            "trades": 17
+          },
+          "2026-09-28": {
+            "profit": 1177444.0,
+            "loss": 769212.0,
+            "net": 408232.0,
+            "trades": 38
+          },
+          "2026-10-05": {
+            "profit": 860788.0,
+            "loss": 604196.0,
+            "net": 256592.0,
+            "trades": 28
+          }
+        },
+        "worst_day": -205016.0,
+        "positive_days": 7,
+        "active_days": 15,
+        "best_day": "2026-10-08",
+        "without_best_day_net": 460628.0,
+        "without_best_day_profit_share": 0.5571856914851883,
+        "day_sessions_net": 819904.0,
+        "night_sessions_net": -39292.0,
+        "positive_weeks": 3,
+        "week_count": 3,
+        "positive_sessions": 18,
+        "negative_sessions": 11
+      },
+      "全場週一致": true
+    },
+    {
+      "id": "J1_F1_B0_H0_R0",
+      "symbol": "NK225",
+      "全30": {
+        "profit": 1093960.0,
+        "loss": 695640.0,
+        "net": 398320.0,
+        "gross": 430000.0,
+        "fees": 31680.0,
+        "trades": 72,
+        "wins": 41,
+        "losses": 31,
+        "flats": 0,
+        "legs": 72,
+        "winning_legs": 41,
+        "losing_legs": 31,
+        "winning_lots": 820,
+        "losing_lots": 620,
+        "flat_lots": 0,
+        "campaign_profit": 1093960.0,
+        "campaign_loss": 695640.0,
+        "hold_seconds": 116984.0,
+        "adds": 0,
+        "risk_excesses": 0,
+        "spread_drag": 217000.0,
+        "max_trade_loss": 54440.0,
+        "max_leg_loss": 54440.0,
+        "max_long": 20,
+        "max_short": 20,
+        "active_sessions": 28,
+        "winning_sessions": 19,
+        "max_session_drawdown": 163320.0,
+        "drawdown": 191320.0,
+        "without_best_session": 274080.0,
+        "without_best_profit_share": 0.582288514195129,
+        "without_best_profit_loss_ratio": 1.3939968949456616,
+        "profit_share": 0.6112874385337506,
+        "money_loss_share": 0.38871256146624944,
+        "profit_loss_ratio": 1.5725950204128571,
+        "average_win": 26681.951219512193,
+        "average_loss": 22440.0,
+        "payoff": 1.1890352593365505,
+        "win_rate": 0.5694444444444444,
+        "average_net": 5532.222222222223,
+        "average_hold_seconds": 1624.7777777777778,
+        "campaign_profit_share": 0.6112874385337506,
+        "goal80": false,
+        "extensions": 0,
+        "protections": 0,
+        "pauses": 0,
+        "rearms": 0,
+        "skipped": 0,
+        "session_count": 30,
+        "losing_sessions": 9,
+        "no_trade_sessions": 2,
+        "flat_active_sessions": 0,
+        "positive_session_rate": 0.6785714285714286,
+        "all_sessions_profitable": false,
+        "worst_session": -134200.0,
+        "consecutive_losing_sessions": 3,
+        "max_consecutive_trade_losses": 5,
+        "days": {
+          "2026-09-21": {
+            "profit": 15560.0,
+            "loss": 30440.0,
+            "net": -14880.0,
+            "trades": 2
+          },
+          "2026-09-22": {
+            "profit": 0.0,
+            "loss": 60880.0,
+            "net": -60880.0,
+            "trades": 2
+          },
+          "2026-09-23": {
+            "profit": 27560.0,
+            "loss": 0.0,
+            "net": 27560.0,
+            "trades": 1
+          },
+          "2026-09-24": {
+            "profit": 116680.0,
+            "loss": 86880.0,
+            "net": 29800.0,
+            "trades": 5
+          },
+          "2026-09-25": {
+            "profit": 116680.0,
+            "loss": 0.0,
+            "net": 116680.0,
+            "trades": 3
+          },
+          "2026-09-28": {
+            "profit": 63120.0,
+            "loss": 51320.0,
+            "net": 11800.0,
+            "trades": 5
+          },
+          "2026-09-29": {
+            "profit": 128240.0,
+            "loss": 169080.0,
+            "net": -40840.0,
+            "trades": 11
+          },
+          "2026-09-30": {
+            "profit": 82240.0,
+            "loss": 34200.0,
+            "net": 48040.0,
+            "trades": 9
+          },
+          "2026-10-01": {
+            "profit": 64680.0,
+            "loss": 18440.0,
+            "net": 46240.0,
+            "trades": 4
+          },
+          "2026-10-02": {
+            "profit": 156920.0,
+            "loss": 0.0,
+            "net": 156920.0,
+            "trades": 7
+          },
+          "2026-10-05": {
+            "profit": 35560.0,
+            "loss": 86200.0,
+            "net": -50640.0,
+            "trades": 6
+          },
+          "2026-10-06": {
+            "profit": 19120.0,
+            "loss": 8440.0,
+            "net": 10680.0,
+            "trades": 3
+          },
+          "2026-10-07": {
+            "profit": 117800.0,
+            "loss": 14440.0,
+            "net": 103360.0,
+            "trades": 6
+          },
+          "2026-10-08": {
+            "profit": 149800.0,
+            "loss": 54440.0,
+            "net": 95360.0,
+            "trades": 6
+          },
+          "2026-10-09": {
+            "profit": 0.0,
+            "loss": 80880.0,
+            "net": -80880.0,
+            "trades": 2
+          }
+        },
+        "weeks": {
+          "2026-09-21": {
+            "profit": 276480.0,
+            "loss": 178200.0,
+            "net": 98280.0,
+            "trades": 13
+          },
+          "2026-09-28": {
+            "profit": 495200.0,
+            "loss": 273040.0,
+            "net": 222160.0,
+            "trades": 36
+          },
+          "2026-10-05": {
+            "profit": 322280.0,
+            "loss": 244400.0,
+            "net": 77880.0,
+            "trades": 23
+          }
+        },
+        "worst_day": -80880.0,
+        "positive_days": 10,
+        "active_days": 15,
+        "best_day": "2026-10-02",
+        "without_best_day_net": 241400.0,
+        "without_best_day_profit_share": 0.5739275301957518,
+        "day_sessions_net": 225480.0,
+        "night_sessions_net": 172840.0,
+        "positive_weeks": 3,
+        "week_count": 3,
+        "positive_sessions": 19,
+        "negative_sessions": 9
+      },
+      "全場週一致": true
+    },
+    {
+      "id": "J2_F1_B0_H0_R0",
+      "symbol": "TOPIX",
+      "全30": {
+        "profit": 2566544.0,
+        "loss": 1783424.0,
+        "net": 783120.0,
+        "gross": 850000.0,
+        "fees": 66880.0,
+        "trades": 80,
+        "wins": 46,
+        "losses": 34,
+        "flats": 0,
+        "legs": 80,
+        "winning_legs": 46,
+        "losing_legs": 34,
+        "winning_lots": 460,
+        "losing_lots": 340,
+        "flat_lots": 0,
+        "campaign_profit": 2566544.0,
+        "campaign_loss": 1783424.0,
+        "hold_seconds": 138856.0,
+        "adds": 0,
+        "risk_excesses": 0,
+        "spread_drag": 550000.0,
+        "max_trade_loss": 160836.0,
+        "max_leg_loss": 160836.0,
+        "max_long": 10,
+        "max_short": 10,
+        "active_sessions": 29,
+        "winning_sessions": 18,
+        "max_session_drawdown": 266672.0,
+        "drawdown": 412540.0,
+        "without_best_session": 493136.0,
+        "without_best_profit_share": 0.5619780449597719,
+        "without_best_profit_loss_ratio": 1.282990586415148,
+        "profit_share": 0.5900144552787515,
+        "money_loss_share": 0.40998554472124854,
+        "profit_loss_ratio": 1.439110385415919,
+        "average_win": 55794.434782608696,
+        "average_loss": 52453.64705882353,
+        "payoff": 1.0636902848726357,
+        "win_rate": 0.575,
+        "average_net": 9789.0,
+        "average_hold_seconds": 1735.7,
+        "campaign_profit_share": 0.5900144552787515,
+        "goal80": false,
+        "extensions": 0,
+        "protections": 0,
+        "pauses": 0,
+        "rearms": 0,
+        "skipped": 0,
+        "session_count": 30,
+        "losing_sessions": 11,
+        "no_trade_sessions": 1,
+        "flat_active_sessions": 0,
+        "positive_session_rate": 0.6206896551724138,
+        "all_sessions_profitable": false,
+        "worst_session": -182508.0,
+        "consecutive_losing_sessions": 2,
+        "max_consecutive_trade_losses": 5,
+        "days": {
+          "2026-09-21": {
+            "profit": 0.0,
+            "loss": 55836.0,
+            "net": -55836.0,
+            "trades": 1
+          },
+          "2026-09-22": {
+            "profit": 148328.0,
+            "loss": 160836.0,
+            "net": -12508.0,
+            "trades": 3
+          },
+          "2026-09-23": {
+            "profit": 98328.0,
+            "loss": 0.0,
+            "net": 98328.0,
+            "trades": 2
+          },
+          "2026-09-24": {
+            "profit": 326656.0,
+            "loss": 35836.0,
+            "net": 290820.0,
+            "trades": 5
+          },
+          "2026-09-25": {
+            "profit": 19164.0,
+            "loss": 253344.0,
+            "net": -234180.0,
+            "trades": 5
+          },
+          "2026-09-28": {
+            "profit": 171656.0,
+            "loss": 40836.0,
+            "net": 130820.0,
+            "trades": 5
+          },
+          "2026-09-29": {
+            "profit": 354148.0,
+            "loss": 76672.0,
+            "net": 277476.0,
+            "trades": 9
+          },
+          "2026-09-30": {
+            "profit": 206656.0,
+            "loss": 235852.0,
+            "net": -29196.0,
+            "trades": 11
+          },
+          "2026-10-01": {
+            "profit": 182492.0,
+            "loss": 226672.0,
+            "net": -44180.0,
+            "trades": 5
+          },
+          "2026-10-02": {
+            "profit": 262492.0,
+            "loss": 189180.0,
+            "net": 73312.0,
+            "trades": 8
+          },
+          "2026-10-05": {
+            "profit": 89164.0,
+            "loss": 254180.0,
+            "net": -165016.0,
+            "trades": 6
+          },
+          "2026-10-06": {
+            "profit": 42492.0,
+            "loss": 50836.0,
+            "net": -8344.0,
+            "trades": 4
+          },
+          "2026-10-07": {
+            "profit": 230820.0,
+            "loss": 111672.0,
+            "net": 119148.0,
+            "trades": 7
+          },
+          "2026-10-08": {
+            "profit": 390820.0,
+            "loss": 0.0,
+            "net": 390820.0,
+            "trades": 5
+          },
+          "2026-10-09": {
+            "profit": 43328.0,
+            "loss": 91672.0,
+            "net": -48344.0,
+            "trades": 4
+          }
+        },
+        "weeks": {
+          "2026-09-21": {
+            "profit": 592476.0,
+            "loss": 505852.0,
+            "net": 86624.0,
+            "trades": 16
+          },
+          "2026-09-28": {
+            "profit": 1177444.0,
+            "loss": 769212.0,
+            "net": 408232.0,
+            "trades": 38
+          },
+          "2026-10-05": {
+            "profit": 796624.0,
+            "loss": 508360.0,
+            "net": 288264.0,
+            "trades": 26
+          }
+        },
+        "worst_day": -234180.0,
+        "positive_days": 7,
+        "active_days": 15,
+        "best_day": "2026-10-08",
+        "without_best_day_net": 392300.0,
+        "without_best_day_profit_share": 0.5495434876392598,
+        "day_sessions_net": 751576.0,
+        "night_sessions_net": 31544.0,
+        "positive_weeks": 3,
+        "week_count": 3,
+        "positive_sessions": 18,
+        "negative_sessions": 11
+      },
+      "全場週一致": true
+    },
+    {
+      "id": "J2_F1_B0_H0_R0",
+      "symbol": "NK225",
+      "全30": {
+        "profit": 1087960.0,
+        "loss": 592320.0,
+        "net": 495640.0,
+        "gross": 526000.0,
+        "fees": 30360.0,
+        "trades": 69,
+        "wins": 41,
+        "losses": 28,
+        "flats": 0,
+        "legs": 69,
+        "winning_legs": 41,
+        "losing_legs": 28,
+        "winning_lots": 820,
+        "losing_lots": 560,
+        "flat_lots": 0,
+        "campaign_profit": 1087960.0,
+        "campaign_loss": 592320.0,
+        "hold_seconds": 114870.0,
+        "adds": 0,
+        "risk_excesses": 0,
+        "spread_drag": 209000.0,
+        "max_trade_loss": 54440.0,
+        "max_leg_loss": 54440.0,
+        "max_long": 20,
+        "max_short": 20,
+        "active_sessions": 27,
+        "winning_sessions": 19,
+        "max_session_drawdown": 163320.0,
+        "drawdown": 175760.0,
+        "without_best_session": 371400.0,
+        "without_best_profit_share": 0.6193414051052673,
+        "without_best_profit_loss_ratio": 1.6270259319286873,
+        "profit_share": 0.6474873235413146,
+        "money_loss_share": 0.35251267645868545,
+        "profit_loss_ratio": 1.8367774176121017,
+        "average_win": 26535.60975609756,
+        "average_loss": 21154.285714285714,
+        "payoff": 1.2543845778814353,
+        "win_rate": 0.5942028985507246,
+        "average_net": 7183.188405797101,
+        "average_hold_seconds": 1664.7826086956522,
+        "campaign_profit_share": 0.6474873235413146,
+        "goal80": false,
+        "extensions": 0,
+        "protections": 0,
+        "pauses": 0,
+        "rearms": 0,
+        "skipped": 0,
+        "session_count": 30,
+        "losing_sessions": 8,
+        "no_trade_sessions": 3,
+        "flat_active_sessions": 0,
+        "positive_session_rate": 0.7037037037037037,
+        "all_sessions_profitable": false,
+        "worst_session": -134200.0,
+        "consecutive_losing_sessions": 2,
+        "max_consecutive_trade_losses": 4,
+        "days": {
+          "2026-09-21": {
+            "profit": 15560.0,
+            "loss": 30440.0,
+            "net": -14880.0,
+            "trades": 2
+          },
+          "2026-09-22": {
+            "profit": 0.0,
+            "loss": 16440.0,
+            "net": -16440.0,
+            "trades": 1
+          },
+          "2026-09-23": {
+            "profit": 27560.0,
+            "loss": 0.0,
+            "net": 27560.0,
+            "trades": 1
+          },
+          "2026-09-24": {
+            "profit": 116680.0,
+            "loss": 86880.0,
+            "net": 29800.0,
+            "trades": 5
+          },
+          "2026-09-25": {
+            "profit": 116680.0,
+            "loss": 0.0,
+            "net": 116680.0,
+            "trades": 3
+          },
+          "2026-09-28": {
+            "profit": 63120.0,
+            "loss": 51320.0,
+            "net": 11800.0,
+            "trades": 5
+          },
+          "2026-09-29": {
+            "profit": 128240.0,
+            "loss": 169080.0,
+            "net": -40840.0,
+            "trades": 11
+          },
+          "2026-09-30": {
+            "profit": 82240.0,
+            "loss": 34200.0,
+            "net": 48040.0,
+            "trades": 9
+          },
+          "2026-10-01": {
+            "profit": 64680.0,
+            "loss": 18440.0,
+            "net": 46240.0,
+            "trades": 4
+          },
+          "2026-10-02": {
+            "profit": 156920.0,
+            "loss": 0.0,
+            "net": 156920.0,
+            "trades": 7
+          },
+          "2026-10-05": {
+            "profit": 35560.0,
+            "loss": 81760.0,
+            "net": -46200.0,
+            "trades": 5
+          },
+          "2026-10-06": {
+            "profit": 19120.0,
+            "loss": 8440.0,
+            "net": 10680.0,
+            "trades": 3
+          },
+          "2026-10-07": {
+            "profit": 117800.0,
+            "loss": 14440.0,
+            "net": 103360.0,
+            "trades": 6
+          },
+          "2026-10-08": {
+            "profit": 143800.0,
+            "loss": 0.0,
+            "net": 143800.0,
+            "trades": 5
+          },
+          "2026-10-09": {
+            "profit": 0.0,
+            "loss": 80880.0,
+            "net": -80880.0,
+            "trades": 2
+          }
+        },
+        "weeks": {
+          "2026-09-21": {
+            "profit": 276480.0,
+            "loss": 133760.0,
+            "net": 142720.0,
+            "trades": 12
+          },
+          "2026-09-28": {
+            "profit": 495200.0,
+            "loss": 273040.0,
+            "net": 222160.0,
+            "trades": 36
+          },
+          "2026-10-05": {
+            "profit": 316280.0,
+            "loss": 185520.0,
+            "net": 130760.0,
+            "trades": 21
+          }
+        },
+        "worst_day": -80880.0,
+        "positive_days": 10,
+        "active_days": 15,
+        "best_day": "2026-10-02",
+        "without_best_day_net": 338720.0,
+        "without_best_day_profit_share": 0.6111752967125302,
+        "day_sessions_net": 229920.0,
+        "night_sessions_net": 265720.0,
+        "positive_weeks": 3,
+        "week_count": 3,
+        "positive_sessions": 19,
+        "negative_sessions": 8
+      },
+      "全場週一致": true
+    }
+  ],
+  "公開SHA256": {
+    "過去の知見を統合した手法と全セッション損益.html": "5a92329699aa5b08b518d8cc55f2c0f9f7d30791125ec72076455190c57bfc12",
+    "全162条件の比較.html": "4390e2d97d12e0959d06324930940840f9ff3bdab5d15a5b0d99de6c67422dd5"
+  },
+  "入力SHA256": {
+    "work\\wave_v78\\事前固定.json": "c8e5a9db46ce50b2704c42c94098ec1a81a61228481d8e573229c229587f2d84",
+    "work\\wave_v78\\前半選定.json": "9edf1bac9bd787853e44de392d654f33a63f2571716f27e680dfee246ed06450",
+    "work\\wave_v78\\evidence\\歴代主力の再評価.json": "7eec9aed7dddc2f3ea9404bf0e1d5a5ae6bb9f988c9de052bebe14030e58c455",
+    "work\\wave_v78\\evidence\\統合部品の効果と失敗.json": "ea3933eb7e7c4615a5d6addabfac7667d376ffcc003493112b2527268477b918",
+    "work\\wave_v78\\evidence\\相場方向別の事後診断.json": "b3b344b673922922f0ed6cb3275e4f74d8004ef88b5af46f38ad87e9fe148911"
+  },
+  "API取得": 0,
+  "実注文": 0
+}
