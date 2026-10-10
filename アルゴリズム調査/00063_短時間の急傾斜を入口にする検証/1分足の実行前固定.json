@@ -1,0 +1,341 @@
+{
+  "時刻": "2026-10-08T13:22:58.275024+00:00",
+  "入口": [
+    {
+      "id": "SPEED_H02_V010",
+      "window": 2,
+      "speed": 0.01,
+      "family": "SPEED"
+    },
+    {
+      "id": "SPEED_H02_V020",
+      "window": 2,
+      "speed": 0.02,
+      "family": "SPEED"
+    },
+    {
+      "id": "SPEED_H02_V030",
+      "window": 2,
+      "speed": 0.03,
+      "family": "SPEED"
+    },
+    {
+      "id": "SPEED_H03_V010",
+      "window": 3,
+      "speed": 0.01,
+      "family": "SPEED"
+    },
+    {
+      "id": "SPEED_H03_V020",
+      "window": 3,
+      "speed": 0.02,
+      "family": "SPEED"
+    },
+    {
+      "id": "SPEED_H03_V030",
+      "window": 3,
+      "speed": 0.03,
+      "family": "SPEED"
+    },
+    {
+      "id": "SPEED_H05_V010",
+      "window": 5,
+      "speed": 0.01,
+      "family": "SPEED"
+    },
+    {
+      "id": "SPEED_H05_V020",
+      "window": 5,
+      "speed": 0.02,
+      "family": "SPEED"
+    },
+    {
+      "id": "SPEED_H05_V030",
+      "window": 5,
+      "speed": 0.03,
+      "family": "SPEED"
+    },
+    {
+      "id": "SPEED_H10_V010",
+      "window": 10,
+      "speed": 0.01,
+      "family": "SPEED"
+    },
+    {
+      "id": "SPEED_H10_V020",
+      "window": 10,
+      "speed": 0.02,
+      "family": "SPEED"
+    },
+    {
+      "id": "SPEED_H10_V030",
+      "window": 10,
+      "speed": 0.03,
+      "family": "SPEED"
+    },
+    {
+      "id": "STRAIGHT_H02_V010",
+      "window": 2,
+      "speed": 0.01,
+      "family": "STRAIGHT"
+    },
+    {
+      "id": "STRAIGHT_H02_V020",
+      "window": 2,
+      "speed": 0.02,
+      "family": "STRAIGHT"
+    },
+    {
+      "id": "STRAIGHT_H02_V030",
+      "window": 2,
+      "speed": 0.03,
+      "family": "STRAIGHT"
+    },
+    {
+      "id": "STRAIGHT_H03_V010",
+      "window": 3,
+      "speed": 0.01,
+      "family": "STRAIGHT"
+    },
+    {
+      "id": "STRAIGHT_H03_V020",
+      "window": 3,
+      "speed": 0.02,
+      "family": "STRAIGHT"
+    },
+    {
+      "id": "STRAIGHT_H03_V030",
+      "window": 3,
+      "speed": 0.03,
+      "family": "STRAIGHT"
+    },
+    {
+      "id": "STRAIGHT_H05_V010",
+      "window": 5,
+      "speed": 0.01,
+      "family": "STRAIGHT"
+    },
+    {
+      "id": "STRAIGHT_H05_V020",
+      "window": 5,
+      "speed": 0.02,
+      "family": "STRAIGHT"
+    },
+    {
+      "id": "STRAIGHT_H05_V030",
+      "window": 5,
+      "speed": 0.03,
+      "family": "STRAIGHT"
+    },
+    {
+      "id": "STRAIGHT_H10_V010",
+      "window": 10,
+      "speed": 0.01,
+      "family": "STRAIGHT"
+    },
+    {
+      "id": "STRAIGHT_H10_V020",
+      "window": 10,
+      "speed": 0.02,
+      "family": "STRAIGHT"
+    },
+    {
+      "id": "STRAIGHT_H10_V030",
+      "window": 10,
+      "speed": 0.03,
+      "family": "STRAIGHT"
+    },
+    {
+      "id": "ACCEL_H02_V010",
+      "window": 2,
+      "speed": 0.01,
+      "family": "ACCEL"
+    },
+    {
+      "id": "ACCEL_H02_V020",
+      "window": 2,
+      "speed": 0.02,
+      "family": "ACCEL"
+    },
+    {
+      "id": "ACCEL_H02_V030",
+      "window": 2,
+      "speed": 0.03,
+      "family": "ACCEL"
+    },
+    {
+      "id": "ACCEL_H03_V010",
+      "window": 3,
+      "speed": 0.01,
+      "family": "ACCEL"
+    },
+    {
+      "id": "ACCEL_H03_V020",
+      "window": 3,
+      "speed": 0.02,
+      "family": "ACCEL"
+    },
+    {
+      "id": "ACCEL_H03_V030",
+      "window": 3,
+      "speed": 0.03,
+      "family": "ACCEL"
+    },
+    {
+      "id": "ACCEL_H05_V010",
+      "window": 5,
+      "speed": 0.01,
+      "family": "ACCEL"
+    },
+    {
+      "id": "ACCEL_H05_V020",
+      "window": 5,
+      "speed": 0.02,
+      "family": "ACCEL"
+    },
+    {
+      "id": "ACCEL_H05_V030",
+      "window": 5,
+      "speed": 0.03,
+      "family": "ACCEL"
+    },
+    {
+      "id": "ACCEL_H10_V010",
+      "window": 10,
+      "speed": 0.01,
+      "family": "ACCEL"
+    },
+    {
+      "id": "ACCEL_H10_V020",
+      "window": 10,
+      "speed": 0.02,
+      "family": "ACCEL"
+    },
+    {
+      "id": "ACCEL_H10_V030",
+      "window": 10,
+      "speed": 0.03,
+      "family": "ACCEL"
+    },
+    {
+      "id": "BREAK_H02_V010",
+      "window": 2,
+      "speed": 0.01,
+      "family": "BREAK"
+    },
+    {
+      "id": "BREAK_H02_V020",
+      "window": 2,
+      "speed": 0.02,
+      "family": "BREAK"
+    },
+    {
+      "id": "BREAK_H02_V030",
+      "window": 2,
+      "speed": 0.03,
+      "family": "BREAK"
+    },
+    {
+      "id": "BREAK_H03_V010",
+      "window": 3,
+      "speed": 0.01,
+      "family": "BREAK"
+    },
+    {
+      "id": "BREAK_H03_V020",
+      "window": 3,
+      "speed": 0.02,
+      "family": "BREAK"
+    },
+    {
+      "id": "BREAK_H03_V030",
+      "window": 3,
+      "speed": 0.03,
+      "family": "BREAK"
+    },
+    {
+      "id": "BREAK_H05_V010",
+      "window": 5,
+      "speed": 0.01,
+      "family": "BREAK"
+    },
+    {
+      "id": "BREAK_H05_V020",
+      "window": 5,
+      "speed": 0.02,
+      "family": "BREAK"
+    },
+    {
+      "id": "BREAK_H05_V030",
+      "window": 5,
+      "speed": 0.03,
+      "family": "BREAK"
+    },
+    {
+      "id": "BREAK_H10_V010",
+      "window": 10,
+      "speed": 0.01,
+      "family": "BREAK"
+    },
+    {
+      "id": "BREAK_H10_V020",
+      "window": 10,
+      "speed": 0.02,
+      "family": "BREAK"
+    },
+    {
+      "id": "BREAK_H10_V030",
+      "window": 10,
+      "speed": 0.03,
+      "family": "BREAK"
+    }
+  ],
+  "主入口": [
+    "ACCEL_H03_V020",
+    "STRAIGHT_H05_V020",
+    "BREAK_H03_V020"
+  ],
+  "出口": [
+    {
+      "id": "狭幅",
+      "stop": 0.001,
+      "arm": 0.0011,
+      "trail": 0.0001,
+      "floor": 0.001
+    },
+    {
+      "id": "広幅",
+      "stop": 0.001,
+      "arm": 0.0015,
+      "trail": 0.0005,
+      "floor": 0.001
+    }
+  ],
+  "方向": [
+    "順方向",
+    "逆方向は反証対照"
+  ],
+  "条件数": 192,
+  "検知": "完全1分グリッドで直前確定足まで。次分最初の同銘柄原板行へ公開。必要全足の実観測、公開遅延/最終値経過60秒以内。",
+  "初発": "各入口系統の全条件符号状態が0か逆方向から切り替わった時だけ。フィルタ点滅で再検知し得る。",
+  "基準": "速度は100*log(終値/窓分前終値)/窓分、毎分百分率。ER>=.7、加速は直前同区間の方向成分が現在の1/2以下。",
+  "突破": "加速条件に加え、現在足除外の直前窓高安を1ラージ呼値以上超えた終値。",
+  "幅": "新規次行約定価格を基準。損切り0.1%、初期保護線0.1%、出口2種類。",
+  "枚数": {
+    "NK225micro": 20,
+    "TOPIXmini": 10
+  },
+  "休止": "返済後10分。全力初回のみ、追加/両建てなし。",
+  "締切": "新規Day15:30/Night05:45未満、返済判断15:34/05:49以後の最初の行→次行。場内完結。",
+  "費用": "次行気配約定、NKmicro片道20枚220円、TOPIXmini10枚418円。小商品実板/食い込み/通信遅延は未再現。",
+  "採点": "検知後の実建値と返済気配から保存場末の最大順行、対称0.05/0.1/0.2%先着。未来は採点専用。",
+  "選択": "前半10場で各商品10決済以上ある順方向条件の最小商品平均Rが最大の1条件を選び、中間10/後半5を分離。全25場は以前にも既知。",
+  "現在": "主入口3×出口2だけを固定し、必要なら現在セッションを最後に一度検証。途中の現在データで調整しない。",
+  "SHA": {
+    "S:\\TempDev\\OSE_Future\\work\\wave_v66\\study.py": "7082ef611961059f9a6411237e2c38e14400e073bc771b8475811b60ec794b80",
+    "S:\\TempDev\\OSE_Future\\work\\wave_v66\\steep_signals.py": "b37fba6021f6085463428f15d1c85d298ddc6433c87de6d13aa6bafc8ca5cd4c",
+    "S:\\TempDev\\OSE_Future\\work\\wave_v65\\replay.py": "51fc3b9c6c63f09876d8522de2d81c26f67c575f5ce74626ba7c7fc0d0378808",
+    "S:\\TempDev\\OSE_Future\\work\\wave_v60\\inputs.pkl": "79bd3561ccf23c8cdb558140c616406e7f956f4616ab53637dd59bd0727ae3d5",
+    "S:\\TempDev\\OSE_Future\\work\\wave_v60\\quotes.pkl": "d7894f477020db08214bb8a5845db0f56ac151e25495c2d0ba96a244d3391206"
+  }
+}

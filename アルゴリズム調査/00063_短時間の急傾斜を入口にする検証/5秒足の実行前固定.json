@@ -1,0 +1,192 @@
+{
+  "時刻": "2026-10-08T13:33:10.280777+00:00",
+  "理由": "1分確定足での入口が遅い仮説を検査。生板価格を5秒グリッドで確定後に公開。",
+  "入口": [
+    {
+      "id": "RAW_SPEED_S060_V030",
+      "window_seconds": 60,
+      "speed": 0.03,
+      "family": "SPEED"
+    },
+    {
+      "id": "RAW_SPEED_S060_V050",
+      "window_seconds": 60,
+      "speed": 0.05,
+      "family": "SPEED"
+    },
+    {
+      "id": "RAW_SPEED_S060_V080",
+      "window_seconds": 60,
+      "speed": 0.08,
+      "family": "SPEED"
+    },
+    {
+      "id": "RAW_SPEED_S120_V030",
+      "window_seconds": 120,
+      "speed": 0.03,
+      "family": "SPEED"
+    },
+    {
+      "id": "RAW_SPEED_S120_V050",
+      "window_seconds": 120,
+      "speed": 0.05,
+      "family": "SPEED"
+    },
+    {
+      "id": "RAW_SPEED_S120_V080",
+      "window_seconds": 120,
+      "speed": 0.08,
+      "family": "SPEED"
+    },
+    {
+      "id": "RAW_STRAIGHT_S060_V030",
+      "window_seconds": 60,
+      "speed": 0.03,
+      "family": "STRAIGHT"
+    },
+    {
+      "id": "RAW_STRAIGHT_S060_V050",
+      "window_seconds": 60,
+      "speed": 0.05,
+      "family": "STRAIGHT"
+    },
+    {
+      "id": "RAW_STRAIGHT_S060_V080",
+      "window_seconds": 60,
+      "speed": 0.08,
+      "family": "STRAIGHT"
+    },
+    {
+      "id": "RAW_STRAIGHT_S120_V030",
+      "window_seconds": 120,
+      "speed": 0.03,
+      "family": "STRAIGHT"
+    },
+    {
+      "id": "RAW_STRAIGHT_S120_V050",
+      "window_seconds": 120,
+      "speed": 0.05,
+      "family": "STRAIGHT"
+    },
+    {
+      "id": "RAW_STRAIGHT_S120_V080",
+      "window_seconds": 120,
+      "speed": 0.08,
+      "family": "STRAIGHT"
+    },
+    {
+      "id": "RAW_ACCEL_S060_V030",
+      "window_seconds": 60,
+      "speed": 0.03,
+      "family": "ACCEL"
+    },
+    {
+      "id": "RAW_ACCEL_S060_V050",
+      "window_seconds": 60,
+      "speed": 0.05,
+      "family": "ACCEL"
+    },
+    {
+      "id": "RAW_ACCEL_S060_V080",
+      "window_seconds": 60,
+      "speed": 0.08,
+      "family": "ACCEL"
+    },
+    {
+      "id": "RAW_ACCEL_S120_V030",
+      "window_seconds": 120,
+      "speed": 0.03,
+      "family": "ACCEL"
+    },
+    {
+      "id": "RAW_ACCEL_S120_V050",
+      "window_seconds": 120,
+      "speed": 0.05,
+      "family": "ACCEL"
+    },
+    {
+      "id": "RAW_ACCEL_S120_V080",
+      "window_seconds": 120,
+      "speed": 0.08,
+      "family": "ACCEL"
+    },
+    {
+      "id": "RAW_BREAK_S060_V030",
+      "window_seconds": 60,
+      "speed": 0.03,
+      "family": "BREAK"
+    },
+    {
+      "id": "RAW_BREAK_S060_V050",
+      "window_seconds": 60,
+      "speed": 0.05,
+      "family": "BREAK"
+    },
+    {
+      "id": "RAW_BREAK_S060_V080",
+      "window_seconds": 60,
+      "speed": 0.08,
+      "family": "BREAK"
+    },
+    {
+      "id": "RAW_BREAK_S120_V030",
+      "window_seconds": 120,
+      "speed": 0.03,
+      "family": "BREAK"
+    },
+    {
+      "id": "RAW_BREAK_S120_V050",
+      "window_seconds": 120,
+      "speed": 0.05,
+      "family": "BREAK"
+    },
+    {
+      "id": "RAW_BREAK_S120_V080",
+      "window_seconds": 120,
+      "speed": 0.08,
+      "family": "BREAK"
+    }
+  ],
+  "主入口": [
+    "RAW_ACCEL_S060_V050",
+    "RAW_STRAIGHT_S060_V050"
+  ],
+  "出口": [
+    {
+      "id": "狭幅",
+      "stop": 0.001,
+      "arm": 0.0011,
+      "trail": 0.0001,
+      "floor": 0.001
+    },
+    {
+      "id": "広幅",
+      "stop": 0.001,
+      "arm": 0.0015,
+      "trail": 0.0005,
+      "floor": 0.001
+    },
+    {
+      "id": "短期幅",
+      "stop": 0.0003,
+      "arm": 0.0005,
+      "trail": 0.0002,
+      "floor": 0.0003
+    }
+  ],
+  "条件数": 144,
+  "実観測": "受信時計ではなく最終約定時計。全必要5秒足の観測を要求し欠測で発火しない。",
+  "短期出口": "損切り0.03%、順行0.05%で開始、追跡幅0.02%、初期保護線0.03%。通常2出口は前段と同じ。",
+  "共通仕様": "次の有効原板行で売買気配約定、NKmicro20枚/TOPIXmini10枚、両側手数料、10分休止、当場返済。",
+  "採点": "検知後の実建値から場内最大順行と0.03/0.05/0.1/0.2%対称先着。未来価格は採点専用。",
+  "選択": "今回追加は主入口2を固定。全体順位は既知全場の探索結果と表示し、将来検証済みとは扱わない。",
+  "SHA": {
+    "S:\\TempDev\\OSE_Future\\work\\wave_v66\\round2\\study_raw.py": "f8f613e79589eb5befa1ee94cca6af8ff9fa86f17faa7619c94ff7dfe1bcb8cd",
+    "S:\\TempDev\\OSE_Future\\work\\wave_v66\\round2\\raw_signals.py": "eb4b6c470b7745571e1ee019e5fc32f4657d89f4245973ae09d02bcb904eb7b2",
+    "S:\\TempDev\\OSE_Future\\work\\wave_v66\\study.py": "7082ef611961059f9a6411237e2c38e14400e073bc771b8475811b60ec794b80",
+    "S:\\TempDev\\OSE_Future\\work\\wave_v65\\replay.py": "51fc3b9c6c63f09876d8522de2d81c26f67c575f5ce74626ba7c7fc0d0378808",
+    "S:\\TempDev\\OSE_Future\\work\\wave_v60\\inputs.pkl": "79bd3561ccf23c8cdb558140c616406e7f956f4616ab53637dd59bd0727ae3d5",
+    "S:\\TempDev\\OSE_Future\\work\\wave_v60\\quotes.pkl": "d7894f477020db08214bb8a5845db0f56ac151e25495c2d0ba96a244d3391206",
+    "S:\\TempDev\\OSE_Future\\work\\wave_v66\\結果.json": "815ecc98dba475b14d7919b435d1213ff53b8b2d0c37a286bfeda550e7f34639"
+  }
+}

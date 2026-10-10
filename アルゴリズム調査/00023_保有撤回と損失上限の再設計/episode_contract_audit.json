@@ -1,0 +1,27 @@
+{
+  "合成数値": {
+    "旧数値項目の全一致": true,
+    "入口10分と管理30分を分離": true,
+    "約定後の正方向保有20分": true,
+    "同値時刻の最後の原本行を境界参照": true,
+    "上下方向の保有を区別": true,
+    "独立会計2境界一致と改ざん検出": true
+  },
+  "合成参照経路": {
+    "通過2件を選別せず全追加": true,
+    "不合格1件を除外": true,
+    "固定比較3件と旧主案を保持": true,
+    "未生成方向では開始拒否": true,
+    "新旧方向の参照根を区別": true,
+    "main指定だけ保存contextを返す": true,
+    "実保存方向の読取り": false
+  },
+  "API取得": 0,
+  "新候補の損益再生": false,
+  "現在スナップショット参照": false,
+  "ソース不変SHA256": {
+    "S:\\TempDev\\OSE_Future\\work\\wave_v27\\episode_audit.py": "87d147e4d05a5279a186fa48ae9588f6416d4169916fb0e3f157ad5fff5ccead",
+    "S:\\TempDev\\OSE_Future\\work\\wave_v28\\episode_audit.py": "67f0c46aa8a3551d80ff6f4fe2215eb39f37ffc2868b99368c4280d46b62b364",
+    "S:\\TempDev\\OSE_Future\\work\\wave_v28\\engine_context.py": "5cdda2a12b602f29863b075f0e191cfb9de38803a08191b02331d6201fb66a7a"
+  }
+}

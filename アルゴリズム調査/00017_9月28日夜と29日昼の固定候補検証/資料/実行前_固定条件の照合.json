@@ -1,0 +1,22 @@
+{
+  "strategy_id": "V0800",
+  "configuration_sha256": "59b45638ff8b89089d2df80a72d5688189b41cc3b809a8346eeac4e547530c0a",
+  "code_hashes": {
+    "work/wave_v8/raw_features.py": "0062e70dd8011ad456c5307ed228cb2dca0d0729ab3b2dbd5040a1bf9cf96436",
+    "work/wave_v9/turning_signals.py": "c522d1ecdfd381010aca9a13c8e4c682baffabdd0ad4b2876d4a5c868472cae9",
+    "work/wave_v10/signals.py": "b2bfeb2db3b9647a3a43a251b254f4503375497e331c973290d719eb0a040e79",
+    "work/wave_v11/signals.py": "cf0ce5c4318693335d8feaaf4f4eb1860ab7dd394cf127f74c665e46098811fc",
+    "work/wave_v13/data.py": "1f7665803d3c84e3e40d5ccbe5f055389b89866bca953a53651d67e303f4265f",
+    "work/wave_v13/exact_engine.py": "5cb2a33c4ddefed36303de125e01646ebda098da911df039784bff244dc3d338",
+    "work/wave_v13/new_signals.py": "5352965142e3260945f18e65cb2e1524676b4a2d73e1396c4a1453d395c76855",
+    "work/wave_v13/catalog.py": "805c183c4968faa0df2c9ac2b8c045323a631afca07bce819d39f281cb5cd525",
+    "work/wave_v13/research.py": "969692d0164f243a35b8223e6bd91946dc5e96b48a136ca5da04a0c483f51473",
+    "work/wave_v16/reference.py": "afd119cbbcd7d54941f097b1c77a2184e3ce5af9444bc4b60212dc34d4a6f091",
+    "work/wave_v17/signals.py": "1cf89f179037e1eaf3531965a472ce5373d981b107252d85108fade39e7554d0",
+    "work/wave_v17/catalog.py": "fbc85681d23c44bdaedf20770126e90be8d54ce761503a2bd746fccb5dd6a1c9",
+    "work/wave_v17/engine.py": "41bd11f13884ea98377996ea18c0e34f43c90acaa7334b862e3521dbaf0bca46",
+    "work/wave_v17/research.py": "9c521355d7f09d71081de301cf6149d4740486f73742888883012be403e3fd3d",
+    "work/wave_v19/engine.py": "982e05e02f24912c23db643e1c5acd9ef317771838141eb6aa0d934393980f46",
+    "work/wave_v19/signal_variants.py": "bb27bfd8c911d09df6ecaf38b645dc4a009a7a70de4a74ecf1183a9a084e1252"
+  }
+}

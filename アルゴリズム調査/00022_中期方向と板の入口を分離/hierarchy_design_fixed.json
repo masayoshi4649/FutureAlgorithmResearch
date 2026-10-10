@@ -1,0 +1,1523 @@
+{
+  "固定日時": "2026-09-29T20:26:37.568585+09:00",
+  "損益結果未読": true,
+  "条件数": 96,
+  "条件": [
+    {
+      "id": "H000",
+      "name": "EMA8/30の方向保持・時間1倍・主方向のみ・自市場",
+      "family": "EMA8/30の方向保持",
+      "description": "中期価格による主方向と、短期入口の成立時刻を別々に判断する。",
+      "params": {
+        "main_kind": "ema8_30",
+        "time_multiplier": 1,
+        "entry_kind": "direction",
+        "peer_confirm": false,
+        "clock_multiplier": 1.0,
+        "peer_multiplier": 1.0,
+        "confirmation_multiplier": 1.0
+      }
+    },
+    {
+      "id": "H001",
+      "name": "EMA8/30の方向保持・時間1倍・主方向のみ・相手方向一致",
+      "family": "EMA8/30の方向保持",
+      "description": "中期価格による主方向と、短期入口の成立時刻を別々に判断する。",
+      "params": {
+        "main_kind": "ema8_30",
+        "time_multiplier": 1,
+        "entry_kind": "direction",
+        "peer_confirm": true,
+        "clock_multiplier": 1.0,
+        "peer_multiplier": 1.0,
+        "confirmation_multiplier": 1.0
+      }
+    },
+    {
+      "id": "H002",
+      "name": "EMA8/30の方向保持・時間1倍・短期価格の順行・自市場",
+      "family": "EMA8/30の方向保持",
+      "description": "中期価格による主方向と、短期入口の成立時刻を別々に判断する。",
+      "params": {
+        "main_kind": "ema8_30",
+        "time_multiplier": 1,
+        "entry_kind": "short_price",
+        "peer_confirm": false,
+        "clock_multiplier": 1.0,
+        "peer_multiplier": 1.0,
+        "confirmation_multiplier": 1.0
+      }
+    },
+    {
+      "id": "H003",
+      "name": "EMA8/30の方向保持・時間1倍・短期価格の順行・相手方向一致",
+      "family": "EMA8/30の方向保持",
+      "description": "中期価格による主方向と、短期入口の成立時刻を別々に判断する。",
+      "params": {
+        "main_kind": "ema8_30",
+        "time_multiplier": 1,
+        "entry_kind": "short_price",
+        "peer_confirm": true,
+        "clock_multiplier": 1.0,
+        "peer_multiplier": 1.0,
+        "confirmation_multiplier": 1.0
+      }
+    },
+    {
+      "id": "H004",
+      "name": "EMA8/30の方向保持・時間1倍・OFIと短期価格の順行・自市場",
+      "family": "EMA8/30の方向保持",
+      "description": "中期価格による主方向と、短期入口の成立時刻を別々に判断する。",
+      "params": {
+        "main_kind": "ema8_30",
+        "time_multiplier": 1,
+        "entry_kind": "ofi_price",
+        "peer_confirm": false,
+        "clock_multiplier": 1.0,
+        "peer_multiplier": 1.0,
+        "confirmation_multiplier": 1.0
+      }
+    },
+    {
+      "id": "H005",
+      "name": "EMA8/30の方向保持・時間1倍・OFIと短期価格の順行・相手方向一致",
+      "family": "EMA8/30の方向保持",
+      "description": "中期価格による主方向と、短期入口の成立時刻を別々に判断する。",
+      "params": {
+        "main_kind": "ema8_30",
+        "time_multiplier": 1,
+        "entry_kind": "ofi_price",
+        "peer_confirm": true,
+        "clock_multiplier": 1.0,
+        "peer_multiplier": 1.0,
+        "confirmation_multiplier": 1.0
+      }
+    },
+    {
+      "id": "H006",
+      "name": "EMA8/30の方向保持・時間1倍・短期逆行後の順行再開・自市場",
+      "family": "EMA8/30の方向保持",
+      "description": "中期価格による主方向と、短期入口の成立時刻を別々に判断する。",
+      "params": {
+        "main_kind": "ema8_30",
+        "time_multiplier": 1,
+        "entry_kind": "pullback_resume",
+        "peer_confirm": false,
+        "clock_multiplier": 1.0,
+        "peer_multiplier": 1.0,
+        "confirmation_multiplier": 1.0
+      }
+    },
+    {
+      "id": "H007",
+      "name": "EMA8/30の方向保持・時間1倍・短期逆行後の順行再開・相手方向一致",
+      "family": "EMA8/30の方向保持",
+      "description": "中期価格による主方向と、短期入口の成立時刻を別々に判断する。",
+      "params": {
+        "main_kind": "ema8_30",
+        "time_multiplier": 1,
+        "entry_kind": "pullback_resume",
+        "peer_confirm": true,
+        "clock_multiplier": 1.0,
+        "peer_multiplier": 1.0,
+        "confirmation_multiplier": 1.0
+      }
+    },
+    {
+      "id": "H008",
+      "name": "EMA8/30の方向保持・時間2倍・主方向のみ・自市場",
+      "family": "EMA8/30の方向保持",
+      "description": "中期価格による主方向と、短期入口の成立時刻を別々に判断する。",
+      "params": {
+        "main_kind": "ema8_30",
+        "time_multiplier": 2,
+        "entry_kind": "direction",
+        "peer_confirm": false,
+        "clock_multiplier": 1.0,
+        "peer_multiplier": 1.0,
+        "confirmation_multiplier": 1.0
+      }
+    },
+    {
+      "id": "H009",
+      "name": "EMA8/30の方向保持・時間2倍・主方向のみ・相手方向一致",
+      "family": "EMA8/30の方向保持",
+      "description": "中期価格による主方向と、短期入口の成立時刻を別々に判断する。",
+      "params": {
+        "main_kind": "ema8_30",
+        "time_multiplier": 2,
+        "entry_kind": "direction",
+        "peer_confirm": true,
+        "clock_multiplier": 1.0,
+        "peer_multiplier": 1.0,
+        "confirmation_multiplier": 1.0
+      }
+    },
+    {
+      "id": "H010",
+      "name": "EMA8/30の方向保持・時間2倍・短期価格の順行・自市場",
+      "family": "EMA8/30の方向保持",
+      "description": "中期価格による主方向と、短期入口の成立時刻を別々に判断する。",
+      "params": {
+        "main_kind": "ema8_30",
+        "time_multiplier": 2,
+        "entry_kind": "short_price",
+        "peer_confirm": false,
+        "clock_multiplier": 1.0,
+        "peer_multiplier": 1.0,
+        "confirmation_multiplier": 1.0
+      }
+    },
+    {
+      "id": "H011",
+      "name": "EMA8/30の方向保持・時間2倍・短期価格の順行・相手方向一致",
+      "family": "EMA8/30の方向保持",
+      "description": "中期価格による主方向と、短期入口の成立時刻を別々に判断する。",
+      "params": {
+        "main_kind": "ema8_30",
+        "time_multiplier": 2,
+        "entry_kind": "short_price",
+        "peer_confirm": true,
+        "clock_multiplier": 1.0,
+        "peer_multiplier": 1.0,
+        "confirmation_multiplier": 1.0
+      }
+    },
+    {
+      "id": "H012",
+      "name": "EMA8/30の方向保持・時間2倍・OFIと短期価格の順行・自市場",
+      "family": "EMA8/30の方向保持",
+      "description": "中期価格による主方向と、短期入口の成立時刻を別々に判断する。",
+      "params": {
+        "main_kind": "ema8_30",
+        "time_multiplier": 2,
+        "entry_kind": "ofi_price",
+        "peer_confirm": false,
+        "clock_multiplier": 1.0,
+        "peer_multiplier": 1.0,
+        "confirmation_multiplier": 1.0
+      }
+    },
+    {
+      "id": "H013",
+      "name": "EMA8/30の方向保持・時間2倍・OFIと短期価格の順行・相手方向一致",
+      "family": "EMA8/30の方向保持",
+      "description": "中期価格による主方向と、短期入口の成立時刻を別々に判断する。",
+      "params": {
+        "main_kind": "ema8_30",
+        "time_multiplier": 2,
+        "entry_kind": "ofi_price",
+        "peer_confirm": true,
+        "clock_multiplier": 1.0,
+        "peer_multiplier": 1.0,
+        "confirmation_multiplier": 1.0
+      }
+    },
+    {
+      "id": "H014",
+      "name": "EMA8/30の方向保持・時間2倍・短期逆行後の順行再開・自市場",
+      "family": "EMA8/30の方向保持",
+      "description": "中期価格による主方向と、短期入口の成立時刻を別々に判断する。",
+      "params": {
+        "main_kind": "ema8_30",
+        "time_multiplier": 2,
+        "entry_kind": "pullback_resume",
+        "peer_confirm": false,
+        "clock_multiplier": 1.0,
+        "peer_multiplier": 1.0,
+        "confirmation_multiplier": 1.0
+      }
+    },
+    {
+      "id": "H015",
+      "name": "EMA8/30の方向保持・時間2倍・短期逆行後の順行再開・相手方向一致",
+      "family": "EMA8/30の方向保持",
+      "description": "中期価格による主方向と、短期入口の成立時刻を別々に判断する。",
+      "params": {
+        "main_kind": "ema8_30",
+        "time_multiplier": 2,
+        "entry_kind": "pullback_resume",
+        "peer_confirm": true,
+        "clock_multiplier": 1.0,
+        "peer_multiplier": 1.0,
+        "confirmation_multiplier": 1.0
+      }
+    },
+    {
+      "id": "H016",
+      "name": "EMA15/60の方向保持・時間1倍・主方向のみ・自市場",
+      "family": "EMA15/60の方向保持",
+      "description": "中期価格による主方向と、短期入口の成立時刻を別々に判断する。",
+      "params": {
+        "main_kind": "ema15_60",
+        "time_multiplier": 1,
+        "entry_kind": "direction",
+        "peer_confirm": false,
+        "clock_multiplier": 1.0,
+        "peer_multiplier": 1.0,
+        "confirmation_multiplier": 1.0
+      }
+    },
+    {
+      "id": "H017",
+      "name": "EMA15/60の方向保持・時間1倍・主方向のみ・相手方向一致",
+      "family": "EMA15/60の方向保持",
+      "description": "中期価格による主方向と、短期入口の成立時刻を別々に判断する。",
+      "params": {
+        "main_kind": "ema15_60",
+        "time_multiplier": 1,
+        "entry_kind": "direction",
+        "peer_confirm": true,
+        "clock_multiplier": 1.0,
+        "peer_multiplier": 1.0,
+        "confirmation_multiplier": 1.0
+      }
+    },
+    {
+      "id": "H018",
+      "name": "EMA15/60の方向保持・時間1倍・短期価格の順行・自市場",
+      "family": "EMA15/60の方向保持",
+      "description": "中期価格による主方向と、短期入口の成立時刻を別々に判断する。",
+      "params": {
+        "main_kind": "ema15_60",
+        "time_multiplier": 1,
+        "entry_kind": "short_price",
+        "peer_confirm": false,
+        "clock_multiplier": 1.0,
+        "peer_multiplier": 1.0,
+        "confirmation_multiplier": 1.0
+      }
+    },
+    {
+      "id": "H019",
+      "name": "EMA15/60の方向保持・時間1倍・短期価格の順行・相手方向一致",
+      "family": "EMA15/60の方向保持",
+      "description": "中期価格による主方向と、短期入口の成立時刻を別々に判断する。",
+      "params": {
+        "main_kind": "ema15_60",
+        "time_multiplier": 1,
+        "entry_kind": "short_price",
+        "peer_confirm": true,
+        "clock_multiplier": 1.0,
+        "peer_multiplier": 1.0,
+        "confirmation_multiplier": 1.0
+      }
+    },
+    {
+      "id": "H020",
+      "name": "EMA15/60の方向保持・時間1倍・OFIと短期価格の順行・自市場",
+      "family": "EMA15/60の方向保持",
+      "description": "中期価格による主方向と、短期入口の成立時刻を別々に判断する。",
+      "params": {
+        "main_kind": "ema15_60",
+        "time_multiplier": 1,
+        "entry_kind": "ofi_price",
+        "peer_confirm": false,
+        "clock_multiplier": 1.0,
+        "peer_multiplier": 1.0,
+        "confirmation_multiplier": 1.0
+      }
+    },
+    {
+      "id": "H021",
+      "name": "EMA15/60の方向保持・時間1倍・OFIと短期価格の順行・相手方向一致",
+      "family": "EMA15/60の方向保持",
+      "description": "中期価格による主方向と、短期入口の成立時刻を別々に判断する。",
+      "params": {
+        "main_kind": "ema15_60",
+        "time_multiplier": 1,
+        "entry_kind": "ofi_price",
+        "peer_confirm": true,
+        "clock_multiplier": 1.0,
+        "peer_multiplier": 1.0,
+        "confirmation_multiplier": 1.0
+      }
+    },
+    {
+      "id": "H022",
+      "name": "EMA15/60の方向保持・時間1倍・短期逆行後の順行再開・自市場",
+      "family": "EMA15/60の方向保持",
+      "description": "中期価格による主方向と、短期入口の成立時刻を別々に判断する。",
+      "params": {
+        "main_kind": "ema15_60",
+        "time_multiplier": 1,
+        "entry_kind": "pullback_resume",
+        "peer_confirm": false,
+        "clock_multiplier": 1.0,
+        "peer_multiplier": 1.0,
+        "confirmation_multiplier": 1.0
+      }
+    },
+    {
+      "id": "H023",
+      "name": "EMA15/60の方向保持・時間1倍・短期逆行後の順行再開・相手方向一致",
+      "family": "EMA15/60の方向保持",
+      "description": "中期価格による主方向と、短期入口の成立時刻を別々に判断する。",
+      "params": {
+        "main_kind": "ema15_60",
+        "time_multiplier": 1,
+        "entry_kind": "pullback_resume",
+        "peer_confirm": true,
+        "clock_multiplier": 1.0,
+        "peer_multiplier": 1.0,
+        "confirmation_multiplier": 1.0
+      }
+    },
+    {
+      "id": "H024",
+      "name": "EMA15/60の方向保持・時間2倍・主方向のみ・自市場",
+      "family": "EMA15/60の方向保持",
+      "description": "中期価格による主方向と、短期入口の成立時刻を別々に判断する。",
+      "params": {
+        "main_kind": "ema15_60",
+        "time_multiplier": 2,
+        "entry_kind": "direction",
+        "peer_confirm": false,
+        "clock_multiplier": 1.0,
+        "peer_multiplier": 1.0,
+        "confirmation_multiplier": 1.0
+      }
+    },
+    {
+      "id": "H025",
+      "name": "EMA15/60の方向保持・時間2倍・主方向のみ・相手方向一致",
+      "family": "EMA15/60の方向保持",
+      "description": "中期価格による主方向と、短期入口の成立時刻を別々に判断する。",
+      "params": {
+        "main_kind": "ema15_60",
+        "time_multiplier": 2,
+        "entry_kind": "direction",
+        "peer_confirm": true,
+        "clock_multiplier": 1.0,
+        "peer_multiplier": 1.0,
+        "confirmation_multiplier": 1.0
+      }
+    },
+    {
+      "id": "H026",
+      "name": "EMA15/60の方向保持・時間2倍・短期価格の順行・自市場",
+      "family": "EMA15/60の方向保持",
+      "description": "中期価格による主方向と、短期入口の成立時刻を別々に判断する。",
+      "params": {
+        "main_kind": "ema15_60",
+        "time_multiplier": 2,
+        "entry_kind": "short_price",
+        "peer_confirm": false,
+        "clock_multiplier": 1.0,
+        "peer_multiplier": 1.0,
+        "confirmation_multiplier": 1.0
+      }
+    },
+    {
+      "id": "H027",
+      "name": "EMA15/60の方向保持・時間2倍・短期価格の順行・相手方向一致",
+      "family": "EMA15/60の方向保持",
+      "description": "中期価格による主方向と、短期入口の成立時刻を別々に判断する。",
+      "params": {
+        "main_kind": "ema15_60",
+        "time_multiplier": 2,
+        "entry_kind": "short_price",
+        "peer_confirm": true,
+        "clock_multiplier": 1.0,
+        "peer_multiplier": 1.0,
+        "confirmation_multiplier": 1.0
+      }
+    },
+    {
+      "id": "H028",
+      "name": "EMA15/60の方向保持・時間2倍・OFIと短期価格の順行・自市場",
+      "family": "EMA15/60の方向保持",
+      "description": "中期価格による主方向と、短期入口の成立時刻を別々に判断する。",
+      "params": {
+        "main_kind": "ema15_60",
+        "time_multiplier": 2,
+        "entry_kind": "ofi_price",
+        "peer_confirm": false,
+        "clock_multiplier": 1.0,
+        "peer_multiplier": 1.0,
+        "confirmation_multiplier": 1.0
+      }
+    },
+    {
+      "id": "H029",
+      "name": "EMA15/60の方向保持・時間2倍・OFIと短期価格の順行・相手方向一致",
+      "family": "EMA15/60の方向保持",
+      "description": "中期価格による主方向と、短期入口の成立時刻を別々に判断する。",
+      "params": {
+        "main_kind": "ema15_60",
+        "time_multiplier": 2,
+        "entry_kind": "ofi_price",
+        "peer_confirm": true,
+        "clock_multiplier": 1.0,
+        "peer_multiplier": 1.0,
+        "confirmation_multiplier": 1.0
+      }
+    },
+    {
+      "id": "H030",
+      "name": "EMA15/60の方向保持・時間2倍・短期逆行後の順行再開・自市場",
+      "family": "EMA15/60の方向保持",
+      "description": "中期価格による主方向と、短期入口の成立時刻を別々に判断する。",
+      "params": {
+        "main_kind": "ema15_60",
+        "time_multiplier": 2,
+        "entry_kind": "pullback_resume",
+        "peer_confirm": false,
+        "clock_multiplier": 1.0,
+        "peer_multiplier": 1.0,
+        "confirmation_multiplier": 1.0
+      }
+    },
+    {
+      "id": "H031",
+      "name": "EMA15/60の方向保持・時間2倍・短期逆行後の順行再開・相手方向一致",
+      "family": "EMA15/60の方向保持",
+      "description": "中期価格による主方向と、短期入口の成立時刻を別々に判断する。",
+      "params": {
+        "main_kind": "ema15_60",
+        "time_multiplier": 2,
+        "entry_kind": "pullback_resume",
+        "peer_confirm": true,
+        "clock_multiplier": 1.0,
+        "peer_multiplier": 1.0,
+        "confirmation_multiplier": 1.0
+      }
+    },
+    {
+      "id": "H032",
+      "name": "20分価格差のヒステリシス・時間1倍・主方向のみ・自市場",
+      "family": "20分価格差のヒステリシス",
+      "description": "中期価格による主方向と、短期入口の成立時刻を別々に判断する。",
+      "params": {
+        "main_kind": "momentum20",
+        "time_multiplier": 1,
+        "entry_kind": "direction",
+        "peer_confirm": false,
+        "clock_multiplier": 1.0,
+        "peer_multiplier": 1.0,
+        "confirmation_multiplier": 1.0
+      }
+    },
+    {
+      "id": "H033",
+      "name": "20分価格差のヒステリシス・時間1倍・主方向のみ・相手方向一致",
+      "family": "20分価格差のヒステリシス",
+      "description": "中期価格による主方向と、短期入口の成立時刻を別々に判断する。",
+      "params": {
+        "main_kind": "momentum20",
+        "time_multiplier": 1,
+        "entry_kind": "direction",
+        "peer_confirm": true,
+        "clock_multiplier": 1.0,
+        "peer_multiplier": 1.0,
+        "confirmation_multiplier": 1.0
+      }
+    },
+    {
+      "id": "H034",
+      "name": "20分価格差のヒステリシス・時間1倍・短期価格の順行・自市場",
+      "family": "20分価格差のヒステリシス",
+      "description": "中期価格による主方向と、短期入口の成立時刻を別々に判断する。",
+      "params": {
+        "main_kind": "momentum20",
+        "time_multiplier": 1,
+        "entry_kind": "short_price",
+        "peer_confirm": false,
+        "clock_multiplier": 1.0,
+        "peer_multiplier": 1.0,
+        "confirmation_multiplier": 1.0
+      }
+    },
+    {
+      "id": "H035",
+      "name": "20分価格差のヒステリシス・時間1倍・短期価格の順行・相手方向一致",
+      "family": "20分価格差のヒステリシス",
+      "description": "中期価格による主方向と、短期入口の成立時刻を別々に判断する。",
+      "params": {
+        "main_kind": "momentum20",
+        "time_multiplier": 1,
+        "entry_kind": "short_price",
+        "peer_confirm": true,
+        "clock_multiplier": 1.0,
+        "peer_multiplier": 1.0,
+        "confirmation_multiplier": 1.0
+      }
+    },
+    {
+      "id": "H036",
+      "name": "20分価格差のヒステリシス・時間1倍・OFIと短期価格の順行・自市場",
+      "family": "20分価格差のヒステリシス",
+      "description": "中期価格による主方向と、短期入口の成立時刻を別々に判断する。",
+      "params": {
+        "main_kind": "momentum20",
+        "time_multiplier": 1,
+        "entry_kind": "ofi_price",
+        "peer_confirm": false,
+        "clock_multiplier": 1.0,
+        "peer_multiplier": 1.0,
+        "confirmation_multiplier": 1.0
+      }
+    },
+    {
+      "id": "H037",
+      "name": "20分価格差のヒステリシス・時間1倍・OFIと短期価格の順行・相手方向一致",
+      "family": "20分価格差のヒステリシス",
+      "description": "中期価格による主方向と、短期入口の成立時刻を別々に判断する。",
+      "params": {
+        "main_kind": "momentum20",
+        "time_multiplier": 1,
+        "entry_kind": "ofi_price",
+        "peer_confirm": true,
+        "clock_multiplier": 1.0,
+        "peer_multiplier": 1.0,
+        "confirmation_multiplier": 1.0
+      }
+    },
+    {
+      "id": "H038",
+      "name": "20分価格差のヒステリシス・時間1倍・短期逆行後の順行再開・自市場",
+      "family": "20分価格差のヒステリシス",
+      "description": "中期価格による主方向と、短期入口の成立時刻を別々に判断する。",
+      "params": {
+        "main_kind": "momentum20",
+        "time_multiplier": 1,
+        "entry_kind": "pullback_resume",
+        "peer_confirm": false,
+        "clock_multiplier": 1.0,
+        "peer_multiplier": 1.0,
+        "confirmation_multiplier": 1.0
+      }
+    },
+    {
+      "id": "H039",
+      "name": "20分価格差のヒステリシス・時間1倍・短期逆行後の順行再開・相手方向一致",
+      "family": "20分価格差のヒステリシス",
+      "description": "中期価格による主方向と、短期入口の成立時刻を別々に判断する。",
+      "params": {
+        "main_kind": "momentum20",
+        "time_multiplier": 1,
+        "entry_kind": "pullback_resume",
+        "peer_confirm": true,
+        "clock_multiplier": 1.0,
+        "peer_multiplier": 1.0,
+        "confirmation_multiplier": 1.0
+      }
+    },
+    {
+      "id": "H040",
+      "name": "20分価格差のヒステリシス・時間2倍・主方向のみ・自市場",
+      "family": "20分価格差のヒステリシス",
+      "description": "中期価格による主方向と、短期入口の成立時刻を別々に判断する。",
+      "params": {
+        "main_kind": "momentum20",
+        "time_multiplier": 2,
+        "entry_kind": "direction",
+        "peer_confirm": false,
+        "clock_multiplier": 1.0,
+        "peer_multiplier": 1.0,
+        "confirmation_multiplier": 1.0
+      }
+    },
+    {
+      "id": "H041",
+      "name": "20分価格差のヒステリシス・時間2倍・主方向のみ・相手方向一致",
+      "family": "20分価格差のヒステリシス",
+      "description": "中期価格による主方向と、短期入口の成立時刻を別々に判断する。",
+      "params": {
+        "main_kind": "momentum20",
+        "time_multiplier": 2,
+        "entry_kind": "direction",
+        "peer_confirm": true,
+        "clock_multiplier": 1.0,
+        "peer_multiplier": 1.0,
+        "confirmation_multiplier": 1.0
+      }
+    },
+    {
+      "id": "H042",
+      "name": "20分価格差のヒステリシス・時間2倍・短期価格の順行・自市場",
+      "family": "20分価格差のヒステリシス",
+      "description": "中期価格による主方向と、短期入口の成立時刻を別々に判断する。",
+      "params": {
+        "main_kind": "momentum20",
+        "time_multiplier": 2,
+        "entry_kind": "short_price",
+        "peer_confirm": false,
+        "clock_multiplier": 1.0,
+        "peer_multiplier": 1.0,
+        "confirmation_multiplier": 1.0
+      }
+    },
+    {
+      "id": "H043",
+      "name": "20分価格差のヒステリシス・時間2倍・短期価格の順行・相手方向一致",
+      "family": "20分価格差のヒステリシス",
+      "description": "中期価格による主方向と、短期入口の成立時刻を別々に判断する。",
+      "params": {
+        "main_kind": "momentum20",
+        "time_multiplier": 2,
+        "entry_kind": "short_price",
+        "peer_confirm": true,
+        "clock_multiplier": 1.0,
+        "peer_multiplier": 1.0,
+        "confirmation_multiplier": 1.0
+      }
+    },
+    {
+      "id": "H044",
+      "name": "20分価格差のヒステリシス・時間2倍・OFIと短期価格の順行・自市場",
+      "family": "20分価格差のヒステリシス",
+      "description": "中期価格による主方向と、短期入口の成立時刻を別々に判断する。",
+      "params": {
+        "main_kind": "momentum20",
+        "time_multiplier": 2,
+        "entry_kind": "ofi_price",
+        "peer_confirm": false,
+        "clock_multiplier": 1.0,
+        "peer_multiplier": 1.0,
+        "confirmation_multiplier": 1.0
+      }
+    },
+    {
+      "id": "H045",
+      "name": "20分価格差のヒステリシス・時間2倍・OFIと短期価格の順行・相手方向一致",
+      "family": "20分価格差のヒステリシス",
+      "description": "中期価格による主方向と、短期入口の成立時刻を別々に判断する。",
+      "params": {
+        "main_kind": "momentum20",
+        "time_multiplier": 2,
+        "entry_kind": "ofi_price",
+        "peer_confirm": true,
+        "clock_multiplier": 1.0,
+        "peer_multiplier": 1.0,
+        "confirmation_multiplier": 1.0
+      }
+    },
+    {
+      "id": "H046",
+      "name": "20分価格差のヒステリシス・時間2倍・短期逆行後の順行再開・自市場",
+      "family": "20分価格差のヒステリシス",
+      "description": "中期価格による主方向と、短期入口の成立時刻を別々に判断する。",
+      "params": {
+        "main_kind": "momentum20",
+        "time_multiplier": 2,
+        "entry_kind": "pullback_resume",
+        "peer_confirm": false,
+        "clock_multiplier": 1.0,
+        "peer_multiplier": 1.0,
+        "confirmation_multiplier": 1.0
+      }
+    },
+    {
+      "id": "H047",
+      "name": "20分価格差のヒステリシス・時間2倍・短期逆行後の順行再開・相手方向一致",
+      "family": "20分価格差のヒステリシス",
+      "description": "中期価格による主方向と、短期入口の成立時刻を別々に判断する。",
+      "params": {
+        "main_kind": "momentum20",
+        "time_multiplier": 2,
+        "entry_kind": "pullback_resume",
+        "peer_confirm": true,
+        "clock_multiplier": 1.0,
+        "peer_multiplier": 1.0,
+        "confirmation_multiplier": 1.0
+      }
+    },
+    {
+      "id": "H048",
+      "name": "20分高安突破の状態保持・時間1倍・主方向のみ・自市場",
+      "family": "20分高安突破の状態保持",
+      "description": "中期価格による主方向と、短期入口の成立時刻を別々に判断する。",
+      "params": {
+        "main_kind": "breakout20",
+        "time_multiplier": 1,
+        "entry_kind": "direction",
+        "peer_confirm": false,
+        "clock_multiplier": 1.0,
+        "peer_multiplier": 1.0,
+        "confirmation_multiplier": 1.0
+      }
+    },
+    {
+      "id": "H049",
+      "name": "20分高安突破の状態保持・時間1倍・主方向のみ・相手方向一致",
+      "family": "20分高安突破の状態保持",
+      "description": "中期価格による主方向と、短期入口の成立時刻を別々に判断する。",
+      "params": {
+        "main_kind": "breakout20",
+        "time_multiplier": 1,
+        "entry_kind": "direction",
+        "peer_confirm": true,
+        "clock_multiplier": 1.0,
+        "peer_multiplier": 1.0,
+        "confirmation_multiplier": 1.0
+      }
+    },
+    {
+      "id": "H050",
+      "name": "20分高安突破の状態保持・時間1倍・短期価格の順行・自市場",
+      "family": "20分高安突破の状態保持",
+      "description": "中期価格による主方向と、短期入口の成立時刻を別々に判断する。",
+      "params": {
+        "main_kind": "breakout20",
+        "time_multiplier": 1,
+        "entry_kind": "short_price",
+        "peer_confirm": false,
+        "clock_multiplier": 1.0,
+        "peer_multiplier": 1.0,
+        "confirmation_multiplier": 1.0
+      }
+    },
+    {
+      "id": "H051",
+      "name": "20分高安突破の状態保持・時間1倍・短期価格の順行・相手方向一致",
+      "family": "20分高安突破の状態保持",
+      "description": "中期価格による主方向と、短期入口の成立時刻を別々に判断する。",
+      "params": {
+        "main_kind": "breakout20",
+        "time_multiplier": 1,
+        "entry_kind": "short_price",
+        "peer_confirm": true,
+        "clock_multiplier": 1.0,
+        "peer_multiplier": 1.0,
+        "confirmation_multiplier": 1.0
+      }
+    },
+    {
+      "id": "H052",
+      "name": "20分高安突破の状態保持・時間1倍・OFIと短期価格の順行・自市場",
+      "family": "20分高安突破の状態保持",
+      "description": "中期価格による主方向と、短期入口の成立時刻を別々に判断する。",
+      "params": {
+        "main_kind": "breakout20",
+        "time_multiplier": 1,
+        "entry_kind": "ofi_price",
+        "peer_confirm": false,
+        "clock_multiplier": 1.0,
+        "peer_multiplier": 1.0,
+        "confirmation_multiplier": 1.0
+      }
+    },
+    {
+      "id": "H053",
+      "name": "20分高安突破の状態保持・時間1倍・OFIと短期価格の順行・相手方向一致",
+      "family": "20分高安突破の状態保持",
+      "description": "中期価格による主方向と、短期入口の成立時刻を別々に判断する。",
+      "params": {
+        "main_kind": "breakout20",
+        "time_multiplier": 1,
+        "entry_kind": "ofi_price",
+        "peer_confirm": true,
+        "clock_multiplier": 1.0,
+        "peer_multiplier": 1.0,
+        "confirmation_multiplier": 1.0
+      }
+    },
+    {
+      "id": "H054",
+      "name": "20分高安突破の状態保持・時間1倍・短期逆行後の順行再開・自市場",
+      "family": "20分高安突破の状態保持",
+      "description": "中期価格による主方向と、短期入口の成立時刻を別々に判断する。",
+      "params": {
+        "main_kind": "breakout20",
+        "time_multiplier": 1,
+        "entry_kind": "pullback_resume",
+        "peer_confirm": false,
+        "clock_multiplier": 1.0,
+        "peer_multiplier": 1.0,
+        "confirmation_multiplier": 1.0
+      }
+    },
+    {
+      "id": "H055",
+      "name": "20分高安突破の状態保持・時間1倍・短期逆行後の順行再開・相手方向一致",
+      "family": "20分高安突破の状態保持",
+      "description": "中期価格による主方向と、短期入口の成立時刻を別々に判断する。",
+      "params": {
+        "main_kind": "breakout20",
+        "time_multiplier": 1,
+        "entry_kind": "pullback_resume",
+        "peer_confirm": true,
+        "clock_multiplier": 1.0,
+        "peer_multiplier": 1.0,
+        "confirmation_multiplier": 1.0
+      }
+    },
+    {
+      "id": "H056",
+      "name": "20分高安突破の状態保持・時間2倍・主方向のみ・自市場",
+      "family": "20分高安突破の状態保持",
+      "description": "中期価格による主方向と、短期入口の成立時刻を別々に判断する。",
+      "params": {
+        "main_kind": "breakout20",
+        "time_multiplier": 2,
+        "entry_kind": "direction",
+        "peer_confirm": false,
+        "clock_multiplier": 1.0,
+        "peer_multiplier": 1.0,
+        "confirmation_multiplier": 1.0
+      }
+    },
+    {
+      "id": "H057",
+      "name": "20分高安突破の状態保持・時間2倍・主方向のみ・相手方向一致",
+      "family": "20分高安突破の状態保持",
+      "description": "中期価格による主方向と、短期入口の成立時刻を別々に判断する。",
+      "params": {
+        "main_kind": "breakout20",
+        "time_multiplier": 2,
+        "entry_kind": "direction",
+        "peer_confirm": true,
+        "clock_multiplier": 1.0,
+        "peer_multiplier": 1.0,
+        "confirmation_multiplier": 1.0
+      }
+    },
+    {
+      "id": "H058",
+      "name": "20分高安突破の状態保持・時間2倍・短期価格の順行・自市場",
+      "family": "20分高安突破の状態保持",
+      "description": "中期価格による主方向と、短期入口の成立時刻を別々に判断する。",
+      "params": {
+        "main_kind": "breakout20",
+        "time_multiplier": 2,
+        "entry_kind": "short_price",
+        "peer_confirm": false,
+        "clock_multiplier": 1.0,
+        "peer_multiplier": 1.0,
+        "confirmation_multiplier": 1.0
+      }
+    },
+    {
+      "id": "H059",
+      "name": "20分高安突破の状態保持・時間2倍・短期価格の順行・相手方向一致",
+      "family": "20分高安突破の状態保持",
+      "description": "中期価格による主方向と、短期入口の成立時刻を別々に判断する。",
+      "params": {
+        "main_kind": "breakout20",
+        "time_multiplier": 2,
+        "entry_kind": "short_price",
+        "peer_confirm": true,
+        "clock_multiplier": 1.0,
+        "peer_multiplier": 1.0,
+        "confirmation_multiplier": 1.0
+      }
+    },
+    {
+      "id": "H060",
+      "name": "20分高安突破の状態保持・時間2倍・OFIと短期価格の順行・自市場",
+      "family": "20分高安突破の状態保持",
+      "description": "中期価格による主方向と、短期入口の成立時刻を別々に判断する。",
+      "params": {
+        "main_kind": "breakout20",
+        "time_multiplier": 2,
+        "entry_kind": "ofi_price",
+        "peer_confirm": false,
+        "clock_multiplier": 1.0,
+        "peer_multiplier": 1.0,
+        "confirmation_multiplier": 1.0
+      }
+    },
+    {
+      "id": "H061",
+      "name": "20分高安突破の状態保持・時間2倍・OFIと短期価格の順行・相手方向一致",
+      "family": "20分高安突破の状態保持",
+      "description": "中期価格による主方向と、短期入口の成立時刻を別々に判断する。",
+      "params": {
+        "main_kind": "breakout20",
+        "time_multiplier": 2,
+        "entry_kind": "ofi_price",
+        "peer_confirm": true,
+        "clock_multiplier": 1.0,
+        "peer_multiplier": 1.0,
+        "confirmation_multiplier": 1.0
+      }
+    },
+    {
+      "id": "H062",
+      "name": "20分高安突破の状態保持・時間2倍・短期逆行後の順行再開・自市場",
+      "family": "20分高安突破の状態保持",
+      "description": "中期価格による主方向と、短期入口の成立時刻を別々に判断する。",
+      "params": {
+        "main_kind": "breakout20",
+        "time_multiplier": 2,
+        "entry_kind": "pullback_resume",
+        "peer_confirm": false,
+        "clock_multiplier": 1.0,
+        "peer_multiplier": 1.0,
+        "confirmation_multiplier": 1.0
+      }
+    },
+    {
+      "id": "H063",
+      "name": "20分高安突破の状態保持・時間2倍・短期逆行後の順行再開・相手方向一致",
+      "family": "20分高安突破の状態保持",
+      "description": "中期価格による主方向と、短期入口の成立時刻を別々に判断する。",
+      "params": {
+        "main_kind": "breakout20",
+        "time_multiplier": 2,
+        "entry_kind": "pullback_resume",
+        "peer_confirm": true,
+        "clock_multiplier": 1.0,
+        "peer_multiplier": 1.0,
+        "confirmation_multiplier": 1.0
+      }
+    },
+    {
+      "id": "H064",
+      "name": "当日VWAPと傾き・時間1倍・主方向のみ・自市場",
+      "family": "当日VWAPと傾き",
+      "description": "中期価格による主方向と、短期入口の成立時刻を別々に判断する。",
+      "params": {
+        "main_kind": "vwap",
+        "time_multiplier": 1,
+        "entry_kind": "direction",
+        "peer_confirm": false,
+        "clock_multiplier": 1.0,
+        "peer_multiplier": 1.0,
+        "confirmation_multiplier": 1.0
+      }
+    },
+    {
+      "id": "H065",
+      "name": "当日VWAPと傾き・時間1倍・主方向のみ・相手方向一致",
+      "family": "当日VWAPと傾き",
+      "description": "中期価格による主方向と、短期入口の成立時刻を別々に判断する。",
+      "params": {
+        "main_kind": "vwap",
+        "time_multiplier": 1,
+        "entry_kind": "direction",
+        "peer_confirm": true,
+        "clock_multiplier": 1.0,
+        "peer_multiplier": 1.0,
+        "confirmation_multiplier": 1.0
+      }
+    },
+    {
+      "id": "H066",
+      "name": "当日VWAPと傾き・時間1倍・短期価格の順行・自市場",
+      "family": "当日VWAPと傾き",
+      "description": "中期価格による主方向と、短期入口の成立時刻を別々に判断する。",
+      "params": {
+        "main_kind": "vwap",
+        "time_multiplier": 1,
+        "entry_kind": "short_price",
+        "peer_confirm": false,
+        "clock_multiplier": 1.0,
+        "peer_multiplier": 1.0,
+        "confirmation_multiplier": 1.0
+      }
+    },
+    {
+      "id": "H067",
+      "name": "当日VWAPと傾き・時間1倍・短期価格の順行・相手方向一致",
+      "family": "当日VWAPと傾き",
+      "description": "中期価格による主方向と、短期入口の成立時刻を別々に判断する。",
+      "params": {
+        "main_kind": "vwap",
+        "time_multiplier": 1,
+        "entry_kind": "short_price",
+        "peer_confirm": true,
+        "clock_multiplier": 1.0,
+        "peer_multiplier": 1.0,
+        "confirmation_multiplier": 1.0
+      }
+    },
+    {
+      "id": "H068",
+      "name": "当日VWAPと傾き・時間1倍・OFIと短期価格の順行・自市場",
+      "family": "当日VWAPと傾き",
+      "description": "中期価格による主方向と、短期入口の成立時刻を別々に判断する。",
+      "params": {
+        "main_kind": "vwap",
+        "time_multiplier": 1,
+        "entry_kind": "ofi_price",
+        "peer_confirm": false,
+        "clock_multiplier": 1.0,
+        "peer_multiplier": 1.0,
+        "confirmation_multiplier": 1.0
+      }
+    },
+    {
+      "id": "H069",
+      "name": "当日VWAPと傾き・時間1倍・OFIと短期価格の順行・相手方向一致",
+      "family": "当日VWAPと傾き",
+      "description": "中期価格による主方向と、短期入口の成立時刻を別々に判断する。",
+      "params": {
+        "main_kind": "vwap",
+        "time_multiplier": 1,
+        "entry_kind": "ofi_price",
+        "peer_confirm": true,
+        "clock_multiplier": 1.0,
+        "peer_multiplier": 1.0,
+        "confirmation_multiplier": 1.0
+      }
+    },
+    {
+      "id": "H070",
+      "name": "当日VWAPと傾き・時間1倍・短期逆行後の順行再開・自市場",
+      "family": "当日VWAPと傾き",
+      "description": "中期価格による主方向と、短期入口の成立時刻を別々に判断する。",
+      "params": {
+        "main_kind": "vwap",
+        "time_multiplier": 1,
+        "entry_kind": "pullback_resume",
+        "peer_confirm": false,
+        "clock_multiplier": 1.0,
+        "peer_multiplier": 1.0,
+        "confirmation_multiplier": 1.0
+      }
+    },
+    {
+      "id": "H071",
+      "name": "当日VWAPと傾き・時間1倍・短期逆行後の順行再開・相手方向一致",
+      "family": "当日VWAPと傾き",
+      "description": "中期価格による主方向と、短期入口の成立時刻を別々に判断する。",
+      "params": {
+        "main_kind": "vwap",
+        "time_multiplier": 1,
+        "entry_kind": "pullback_resume",
+        "peer_confirm": true,
+        "clock_multiplier": 1.0,
+        "peer_multiplier": 1.0,
+        "confirmation_multiplier": 1.0
+      }
+    },
+    {
+      "id": "H072",
+      "name": "当日VWAPと傾き・時間2倍・主方向のみ・自市場",
+      "family": "当日VWAPと傾き",
+      "description": "中期価格による主方向と、短期入口の成立時刻を別々に判断する。",
+      "params": {
+        "main_kind": "vwap",
+        "time_multiplier": 2,
+        "entry_kind": "direction",
+        "peer_confirm": false,
+        "clock_multiplier": 1.0,
+        "peer_multiplier": 1.0,
+        "confirmation_multiplier": 1.0
+      }
+    },
+    {
+      "id": "H073",
+      "name": "当日VWAPと傾き・時間2倍・主方向のみ・相手方向一致",
+      "family": "当日VWAPと傾き",
+      "description": "中期価格による主方向と、短期入口の成立時刻を別々に判断する。",
+      "params": {
+        "main_kind": "vwap",
+        "time_multiplier": 2,
+        "entry_kind": "direction",
+        "peer_confirm": true,
+        "clock_multiplier": 1.0,
+        "peer_multiplier": 1.0,
+        "confirmation_multiplier": 1.0
+      }
+    },
+    {
+      "id": "H074",
+      "name": "当日VWAPと傾き・時間2倍・短期価格の順行・自市場",
+      "family": "当日VWAPと傾き",
+      "description": "中期価格による主方向と、短期入口の成立時刻を別々に判断する。",
+      "params": {
+        "main_kind": "vwap",
+        "time_multiplier": 2,
+        "entry_kind": "short_price",
+        "peer_confirm": false,
+        "clock_multiplier": 1.0,
+        "peer_multiplier": 1.0,
+        "confirmation_multiplier": 1.0
+      }
+    },
+    {
+      "id": "H075",
+      "name": "当日VWAPと傾き・時間2倍・短期価格の順行・相手方向一致",
+      "family": "当日VWAPと傾き",
+      "description": "中期価格による主方向と、短期入口の成立時刻を別々に判断する。",
+      "params": {
+        "main_kind": "vwap",
+        "time_multiplier": 2,
+        "entry_kind": "short_price",
+        "peer_confirm": true,
+        "clock_multiplier": 1.0,
+        "peer_multiplier": 1.0,
+        "confirmation_multiplier": 1.0
+      }
+    },
+    {
+      "id": "H076",
+      "name": "当日VWAPと傾き・時間2倍・OFIと短期価格の順行・自市場",
+      "family": "当日VWAPと傾き",
+      "description": "中期価格による主方向と、短期入口の成立時刻を別々に判断する。",
+      "params": {
+        "main_kind": "vwap",
+        "time_multiplier": 2,
+        "entry_kind": "ofi_price",
+        "peer_confirm": false,
+        "clock_multiplier": 1.0,
+        "peer_multiplier": 1.0,
+        "confirmation_multiplier": 1.0
+      }
+    },
+    {
+      "id": "H077",
+      "name": "当日VWAPと傾き・時間2倍・OFIと短期価格の順行・相手方向一致",
+      "family": "当日VWAPと傾き",
+      "description": "中期価格による主方向と、短期入口の成立時刻を別々に判断する。",
+      "params": {
+        "main_kind": "vwap",
+        "time_multiplier": 2,
+        "entry_kind": "ofi_price",
+        "peer_confirm": true,
+        "clock_multiplier": 1.0,
+        "peer_multiplier": 1.0,
+        "confirmation_multiplier": 1.0
+      }
+    },
+    {
+      "id": "H078",
+      "name": "当日VWAPと傾き・時間2倍・短期逆行後の順行再開・自市場",
+      "family": "当日VWAPと傾き",
+      "description": "中期価格による主方向と、短期入口の成立時刻を別々に判断する。",
+      "params": {
+        "main_kind": "vwap",
+        "time_multiplier": 2,
+        "entry_kind": "pullback_resume",
+        "peer_confirm": false,
+        "clock_multiplier": 1.0,
+        "peer_multiplier": 1.0,
+        "confirmation_multiplier": 1.0
+      }
+    },
+    {
+      "id": "H079",
+      "name": "当日VWAPと傾き・時間2倍・短期逆行後の順行再開・相手方向一致",
+      "family": "当日VWAPと傾き",
+      "description": "中期価格による主方向と、短期入口の成立時刻を別々に判断する。",
+      "params": {
+        "main_kind": "vwap",
+        "time_multiplier": 2,
+        "entry_kind": "pullback_resume",
+        "peer_confirm": true,
+        "clock_multiplier": 1.0,
+        "peer_multiplier": 1.0,
+        "confirmation_multiplier": 1.0
+      }
+    },
+    {
+      "id": "H080",
+      "name": "30分回帰傾き・時間1倍・主方向のみ・自市場",
+      "family": "30分回帰傾き",
+      "description": "中期価格による主方向と、短期入口の成立時刻を別々に判断する。",
+      "params": {
+        "main_kind": "regression30",
+        "time_multiplier": 1,
+        "entry_kind": "direction",
+        "peer_confirm": false,
+        "clock_multiplier": 1.0,
+        "peer_multiplier": 1.0,
+        "confirmation_multiplier": 1.0
+      }
+    },
+    {
+      "id": "H081",
+      "name": "30分回帰傾き・時間1倍・主方向のみ・相手方向一致",
+      "family": "30分回帰傾き",
+      "description": "中期価格による主方向と、短期入口の成立時刻を別々に判断する。",
+      "params": {
+        "main_kind": "regression30",
+        "time_multiplier": 1,
+        "entry_kind": "direction",
+        "peer_confirm": true,
+        "clock_multiplier": 1.0,
+        "peer_multiplier": 1.0,
+        "confirmation_multiplier": 1.0
+      }
+    },
+    {
+      "id": "H082",
+      "name": "30分回帰傾き・時間1倍・短期価格の順行・自市場",
+      "family": "30分回帰傾き",
+      "description": "中期価格による主方向と、短期入口の成立時刻を別々に判断する。",
+      "params": {
+        "main_kind": "regression30",
+        "time_multiplier": 1,
+        "entry_kind": "short_price",
+        "peer_confirm": false,
+        "clock_multiplier": 1.0,
+        "peer_multiplier": 1.0,
+        "confirmation_multiplier": 1.0
+      }
+    },
+    {
+      "id": "H083",
+      "name": "30分回帰傾き・時間1倍・短期価格の順行・相手方向一致",
+      "family": "30分回帰傾き",
+      "description": "中期価格による主方向と、短期入口の成立時刻を別々に判断する。",
+      "params": {
+        "main_kind": "regression30",
+        "time_multiplier": 1,
+        "entry_kind": "short_price",
+        "peer_confirm": true,
+        "clock_multiplier": 1.0,
+        "peer_multiplier": 1.0,
+        "confirmation_multiplier": 1.0
+      }
+    },
+    {
+      "id": "H084",
+      "name": "30分回帰傾き・時間1倍・OFIと短期価格の順行・自市場",
+      "family": "30分回帰傾き",
+      "description": "中期価格による主方向と、短期入口の成立時刻を別々に判断する。",
+      "params": {
+        "main_kind": "regression30",
+        "time_multiplier": 1,
+        "entry_kind": "ofi_price",
+        "peer_confirm": false,
+        "clock_multiplier": 1.0,
+        "peer_multiplier": 1.0,
+        "confirmation_multiplier": 1.0
+      }
+    },
+    {
+      "id": "H085",
+      "name": "30分回帰傾き・時間1倍・OFIと短期価格の順行・相手方向一致",
+      "family": "30分回帰傾き",
+      "description": "中期価格による主方向と、短期入口の成立時刻を別々に判断する。",
+      "params": {
+        "main_kind": "regression30",
+        "time_multiplier": 1,
+        "entry_kind": "ofi_price",
+        "peer_confirm": true,
+        "clock_multiplier": 1.0,
+        "peer_multiplier": 1.0,
+        "confirmation_multiplier": 1.0
+      }
+    },
+    {
+      "id": "H086",
+      "name": "30分回帰傾き・時間1倍・短期逆行後の順行再開・自市場",
+      "family": "30分回帰傾き",
+      "description": "中期価格による主方向と、短期入口の成立時刻を別々に判断する。",
+      "params": {
+        "main_kind": "regression30",
+        "time_multiplier": 1,
+        "entry_kind": "pullback_resume",
+        "peer_confirm": false,
+        "clock_multiplier": 1.0,
+        "peer_multiplier": 1.0,
+        "confirmation_multiplier": 1.0
+      }
+    },
+    {
+      "id": "H087",
+      "name": "30分回帰傾き・時間1倍・短期逆行後の順行再開・相手方向一致",
+      "family": "30分回帰傾き",
+      "description": "中期価格による主方向と、短期入口の成立時刻を別々に判断する。",
+      "params": {
+        "main_kind": "regression30",
+        "time_multiplier": 1,
+        "entry_kind": "pullback_resume",
+        "peer_confirm": true,
+        "clock_multiplier": 1.0,
+        "peer_multiplier": 1.0,
+        "confirmation_multiplier": 1.0
+      }
+    },
+    {
+      "id": "H088",
+      "name": "30分回帰傾き・時間2倍・主方向のみ・自市場",
+      "family": "30分回帰傾き",
+      "description": "中期価格による主方向と、短期入口の成立時刻を別々に判断する。",
+      "params": {
+        "main_kind": "regression30",
+        "time_multiplier": 2,
+        "entry_kind": "direction",
+        "peer_confirm": false,
+        "clock_multiplier": 1.0,
+        "peer_multiplier": 1.0,
+        "confirmation_multiplier": 1.0
+      }
+    },
+    {
+      "id": "H089",
+      "name": "30分回帰傾き・時間2倍・主方向のみ・相手方向一致",
+      "family": "30分回帰傾き",
+      "description": "中期価格による主方向と、短期入口の成立時刻を別々に判断する。",
+      "params": {
+        "main_kind": "regression30",
+        "time_multiplier": 2,
+        "entry_kind": "direction",
+        "peer_confirm": true,
+        "clock_multiplier": 1.0,
+        "peer_multiplier": 1.0,
+        "confirmation_multiplier": 1.0
+      }
+    },
+    {
+      "id": "H090",
+      "name": "30分回帰傾き・時間2倍・短期価格の順行・自市場",
+      "family": "30分回帰傾き",
+      "description": "中期価格による主方向と、短期入口の成立時刻を別々に判断する。",
+      "params": {
+        "main_kind": "regression30",
+        "time_multiplier": 2,
+        "entry_kind": "short_price",
+        "peer_confirm": false,
+        "clock_multiplier": 1.0,
+        "peer_multiplier": 1.0,
+        "confirmation_multiplier": 1.0
+      }
+    },
+    {
+      "id": "H091",
+      "name": "30分回帰傾き・時間2倍・短期価格の順行・相手方向一致",
+      "family": "30分回帰傾き",
+      "description": "中期価格による主方向と、短期入口の成立時刻を別々に判断する。",
+      "params": {
+        "main_kind": "regression30",
+        "time_multiplier": 2,
+        "entry_kind": "short_price",
+        "peer_confirm": true,
+        "clock_multiplier": 1.0,
+        "peer_multiplier": 1.0,
+        "confirmation_multiplier": 1.0
+      }
+    },
+    {
+      "id": "H092",
+      "name": "30分回帰傾き・時間2倍・OFIと短期価格の順行・自市場",
+      "family": "30分回帰傾き",
+      "description": "中期価格による主方向と、短期入口の成立時刻を別々に判断する。",
+      "params": {
+        "main_kind": "regression30",
+        "time_multiplier": 2,
+        "entry_kind": "ofi_price",
+        "peer_confirm": false,
+        "clock_multiplier": 1.0,
+        "peer_multiplier": 1.0,
+        "confirmation_multiplier": 1.0
+      }
+    },
+    {
+      "id": "H093",
+      "name": "30分回帰傾き・時間2倍・OFIと短期価格の順行・相手方向一致",
+      "family": "30分回帰傾き",
+      "description": "中期価格による主方向と、短期入口の成立時刻を別々に判断する。",
+      "params": {
+        "main_kind": "regression30",
+        "time_multiplier": 2,
+        "entry_kind": "ofi_price",
+        "peer_confirm": true,
+        "clock_multiplier": 1.0,
+        "peer_multiplier": 1.0,
+        "confirmation_multiplier": 1.0
+      }
+    },
+    {
+      "id": "H094",
+      "name": "30分回帰傾き・時間2倍・短期逆行後の順行再開・自市場",
+      "family": "30分回帰傾き",
+      "description": "中期価格による主方向と、短期入口の成立時刻を別々に判断する。",
+      "params": {
+        "main_kind": "regression30",
+        "time_multiplier": 2,
+        "entry_kind": "pullback_resume",
+        "peer_confirm": false,
+        "clock_multiplier": 1.0,
+        "peer_multiplier": 1.0,
+        "confirmation_multiplier": 1.0
+      }
+    },
+    {
+      "id": "H095",
+      "name": "30分回帰傾き・時間2倍・短期逆行後の順行再開・相手方向一致",
+      "family": "30分回帰傾き",
+      "description": "中期価格による主方向と、短期入口の成立時刻を別々に判断する。",
+      "params": {
+        "main_kind": "regression30",
+        "time_multiplier": 2,
+        "entry_kind": "pullback_resume",
+        "peer_confirm": true,
+        "clock_multiplier": 1.0,
+        "peer_multiplier": 1.0,
+        "confirmation_multiplier": 1.0
+      }
+    }
+  ],
+  "目的": "中期価格で主方向を保持し、板は入る時刻の選別に用いる。短期入口の中立化を主方向の撤回と混同しない。",
+  "主方向入力": "確定1分足のみ。バー時刻+120秒で公開。ATRはその公開時点までの因果ATR。高安突破は当該足を除く過去足を使用。",
+  "時間倍率": "time_multiplier=1/2は主方向の足数だけに適用。clock_multiplier=0.8/1.2の反証では主方向の全足数と短期価格30秒・OFI60秒も同時変更。足数/秒数はfloor(x+0.5)、最低1。",
+  "主方向": {
+    "ema8_30": {
+      "fast": 8,
+      "slow": 30,
+      "slope_bars": 3,
+      "entry_gap_atr": 0.15,
+      "entry_slope_atr": 0.02,
+      "rule": "EMA短長差が±0.15ATRを超え、長期EMAの3本差分も同方向に0.02ATR超なら開始。同じ方向を保持し、短長差が0を越えて逆になれば中立。反対の開始条件が成立すれば反転。"
+    },
+    "ema15_60": {
+      "fast": 15,
+      "slow": 60,
+      "slope_bars": 3,
+      "entry_gap_atr": 0.15,
+      "entry_slope_atr": 0.02,
+      "rule": "EMA8/30と同じ保持条件を15/60へ適用。EMAはspan本の値が集まるまで欠測。"
+    },
+    "momentum20": {
+      "window": 20,
+      "enter_atr": 0.75,
+      "release_atr": 0.15,
+      "rule": "20本前との差が±0.75ATR超で方向を開始。現在方向の価格差が0.15ATR以下へ弱まれば中立。反対開始条件は直接反転。"
+    },
+    "breakout20": {
+      "window": 20,
+      "buffer_atr": 0.1,
+      "rule": "直前20本の高値+0.10ATR超で買い、安値-0.10ATR未満で売り。帯の中央を逆に越えるまで主方向を保持する。反対突破は直接反転。"
+    },
+    "vwap": {
+      "slope_bars": 5,
+      "entry_distance_atr": 0.2,
+      "entry_slope_atr": 0.02,
+      "rule": "当日の確定足の典型価格(高+安+終)/3を完全出来高で累積加重。終値がVWAPから0.20ATR超かつVWAPの5本変化が同方向に0.02ATR超で開始。VWAPを逆側へ越えれば中立。出来高不完全の足は重み0。"
+    },
+    "regression30": {
+      "window": 30,
+      "enter_projected_atr": 1.0,
+      "release_projected_atr": 0.25,
+      "rule": "過去30本終値の最小二乗傾き×(本数-1)/ATRが±1ATR超で開始し、現在方向の値が0.25ATR以下へ弱まれば中立。反対開始は直接反転。"
+    }
+  },
+  "入口": {
+    "direction": "主方向が非中立であればその方向をそのまま返す。板を入口条件に用いない。",
+    "short_price": {
+      "seconds": 30,
+      "threshold_atr": 0.05,
+      "rule": "解放済み板のmidの30秒変化が主方向へ0.05ATR超。"
+    },
+    "ofi_price": {
+      "ofi_seconds": 60,
+      "ofi_threshold": 0.05,
+      "price_seconds": 30,
+      "price_threshold_atr": 0.05,
+      "rule": "OFI比と短期価格変化の両方が主方向へ閾値超。"
+    },
+    "pullback_resume": {
+      "price_seconds": 30,
+      "setup_adverse_atr": 0.1,
+      "confirm_atr": 0.05,
+      "setup_ttl_seconds": 600,
+      "rule": "主方向に対して30秒価格が0.10ATR超の逆行をした解放イベントを記録。その後の別イベントで30秒価格が主方向へ0.05ATR超となったとき発火。準備期限10分。主方向又は相手確認の撤回で準備を解除。"
+    }
+  },
+  "市場確認": "自市場のみ、又は相手の同じ主方向を追加60秒遅延して非ゼロ同符号のときだけ許可。相手の短期入口成立は要求しない。",
+  "保持": "短期入口発火後TTL120秒、次の同方向発火で更新。板解放イベント間隔120秒超では入口保持を解除。主方向/相手確認が撤回された原本行で入口方向を解除。主方向自体は短期入口中立化で消さない。入口のみ条件はTTL中でも主方向撤回を優先。",
+  "共通": "開始20分待機。ATR非有限/非正は中立。新規は注文管理エンジンで次行以後。連敗制限・利確損切り・場内返済は既存206管理。日付例や売買損益を規則に渡さない。",
+  "反証": {
+    "clock": "主方向全窓と短期30秒/60秒の時計を一括0.8/1.2倍。TTL120秒・開始20分・準備期限600秒は固定。",
+    "peer": "追加60秒の相手遅延だけ0.8/1.2倍。自市場のみはapplied=False。",
+    "confirmation": "短期入口の価格・OFI・逆行準備・再開確認の閾値を一括0.8/1.2倍。主方向閾値は固定。主方向のみはapplied=False。v26の経過秒ではなくv27は短期入口の確認強度の別カテゴリ。"
+  },
+  "禁止": "売買損益の計算、新API取得、旧原本・旧コードの変更、結果を見て条件を変更すること。",
+  "検証": "全96条件と代表近傍のprefix/未来部分改変、売買反射、主方向のみ=入口前原方向一致、準備と発火が別イベントを検算する。"
+}

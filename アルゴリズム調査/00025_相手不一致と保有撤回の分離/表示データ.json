@@ -1,0 +1,209 @@
+{
+  "最終資料完備": true,
+  "全条件": 84,
+  "一次反証": 84,
+  "乱数対照": 84,
+  "主候補": null,
+  "対応比較": [
+    {
+      "mode": "反転",
+      "symbol": "TOPIX",
+      "contrast": "自己−両市場",
+      "n": 12,
+      "net_median": -36750.0,
+      "dd_median": 22750.0,
+      "net_better": 4,
+      "dd_better": 4,
+      "net_equal": 0
+    },
+    {
+      "mode": "反転",
+      "symbol": "TOPIX",
+      "contrast": "自己−価格のみ",
+      "n": 12,
+      "net_median": -434250.0,
+      "dd_median": 188500.0,
+      "net_better": 1,
+      "dd_better": 3,
+      "net_equal": 0
+    },
+    {
+      "mode": "反転",
+      "symbol": "TOPIX",
+      "contrast": "両市場−価格のみ",
+      "n": 12,
+      "net_median": -402000.0,
+      "dd_median": 117250.0,
+      "net_better": 1,
+      "dd_better": 3,
+      "net_equal": 0
+    },
+    {
+      "mode": "反転",
+      "symbol": "NK225",
+      "contrast": "自己−両市場",
+      "n": 12,
+      "net_median": -1000.0,
+      "dd_median": -2250.0,
+      "net_better": 5,
+      "dd_better": 6,
+      "net_equal": 1
+    },
+    {
+      "mode": "反転",
+      "symbol": "NK225",
+      "contrast": "自己−価格のみ",
+      "n": 12,
+      "net_median": -39500.0,
+      "dd_median": -750.0,
+      "net_better": 3,
+      "dd_better": 6,
+      "net_equal": 0
+    },
+    {
+      "mode": "反転",
+      "symbol": "NK225",
+      "contrast": "両市場−価格のみ",
+      "n": 12,
+      "net_median": -13000.0,
+      "dd_median": -3500.0,
+      "net_better": 5,
+      "dd_better": 7,
+      "net_equal": 0
+    },
+    {
+      "mode": "中立10分",
+      "symbol": "TOPIX",
+      "contrast": "自己−両市場",
+      "n": 12,
+      "net_median": 79500.0,
+      "dd_median": -61500.0,
+      "net_better": 11,
+      "dd_better": 10,
+      "net_equal": 0
+    },
+    {
+      "mode": "中立10分",
+      "symbol": "TOPIX",
+      "contrast": "自己−価格のみ",
+      "n": 12,
+      "net_median": -270750.0,
+      "dd_median": 115750.0,
+      "net_better": 1,
+      "dd_better": 4,
+      "net_equal": 0
+    },
+    {
+      "mode": "中立10分",
+      "symbol": "TOPIX",
+      "contrast": "両市場−価格のみ",
+      "n": 12,
+      "net_median": -432250.0,
+      "dd_median": 154500.0,
+      "net_better": 0,
+      "dd_better": 1,
+      "net_equal": 0
+    },
+    {
+      "mode": "中立10分",
+      "symbol": "NK225",
+      "contrast": "自己−両市場",
+      "n": 12,
+      "net_median": 8500.0,
+      "dd_median": 0.0,
+      "net_better": 9,
+      "dd_better": 5,
+      "net_equal": 0
+    },
+    {
+      "mode": "中立10分",
+      "symbol": "NK225",
+      "contrast": "自己−価格のみ",
+      "n": 12,
+      "net_median": -22000.0,
+      "dd_median": -18500.0,
+      "net_better": 3,
+      "dd_better": 9,
+      "net_equal": 0
+    },
+    {
+      "mode": "中立10分",
+      "symbol": "NK225",
+      "contrast": "両市場−価格のみ",
+      "n": 12,
+      "net_median": -20500.0,
+      "dd_median": -18750.0,
+      "net_better": 3,
+      "dd_better": 10,
+      "net_equal": 0
+    },
+    {
+      "mode": "併用",
+      "symbol": "TOPIX",
+      "contrast": "自己−両市場",
+      "n": 12,
+      "net_median": 59000.0,
+      "dd_median": -34750.0,
+      "net_better": 8,
+      "dd_better": 9,
+      "net_equal": 0
+    },
+    {
+      "mode": "併用",
+      "symbol": "TOPIX",
+      "contrast": "自己−価格のみ",
+      "n": 12,
+      "net_median": -419000.0,
+      "dd_median": 152750.0,
+      "net_better": 1,
+      "dd_better": 4,
+      "net_equal": 0
+    },
+    {
+      "mode": "併用",
+      "symbol": "TOPIX",
+      "contrast": "両市場−価格のみ",
+      "n": 12,
+      "net_median": -497000.0,
+      "dd_median": 184500.0,
+      "net_better": 1,
+      "dd_better": 1,
+      "net_equal": 0
+    },
+    {
+      "mode": "併用",
+      "symbol": "NK225",
+      "contrast": "自己−両市場",
+      "n": 12,
+      "net_median": -3500.0,
+      "dd_median": 5750.0,
+      "net_better": 5,
+      "dd_better": 5,
+      "net_equal": 0
+    },
+    {
+      "mode": "併用",
+      "symbol": "NK225",
+      "contrast": "自己−価格のみ",
+      "n": 12,
+      "net_median": -37250.0,
+      "dd_median": -7000.0,
+      "net_better": 3,
+      "dd_better": 7,
+      "net_equal": 0
+    },
+    {
+      "mode": "併用",
+      "symbol": "NK225",
+      "contrast": "両市場−価格のみ",
+      "n": 12,
+      "net_median": -23250.0,
+      "dd_median": -18750.0,
+      "net_better": 5,
+      "dd_better": 8,
+      "net_equal": 0
+    }
+  ],
+  "現在データ使用": false,
+  "表数": 257
+}

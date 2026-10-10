@@ -1,0 +1,97 @@
+<!doctype html><html lang="ja"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>現在一回照合の５分足と建玉</title><style>
+    :root{color-scheme:dark;font-family:"Yu Gothic UI",Meiryo,sans-serif;background:#0a111b;color:#e6edf6}body{max-width:1250px;margin:auto;padding:28px 18px;line-height:1.7}a{color:#88c6ff}h1{font-size:26px}p{margin:12px 0}.muted{color:#a7b8ca}.good{color:#66d9b1}.bad{color:#ff929e}select{max-width:100%;background:#142438;color:#e6edf6;font:inherit;padding:6px;border:1px solid #577390}.controls{display:flex;flex-wrap:wrap;gap:15px;align-items:center}canvas{width:100%;height:490px;background:#0c1522;border:1px solid #2a4057;border-radius:8px}.scroll{overflow:auto}table{width:100%;border-collapse:collapse;font-size:14px;white-space:nowrap}th,td{padding:8px 10px;border-bottom:1px solid #2a394b;text-align:right}th{background:#172637;color:#bcd0e6}details{margin:20px 0}summary{cursor:pointer}
+    </style><body><p><a href="中期方向と入口の検証.html">検証結果へ戻る</a></p><h1>現在一回照合：５分足と建玉</h1><p>2026/09/29 ナイト、21:00締切の保存データ。17:25以降が今回初取得の区間です。自動更新・再取得はしません。</p><p>▲買い・▼売り、黄色の×は返済。破線と白い丸は<strong>未返済玉の現在値評価</strong>で、決済ではありません。線色はその玉の利益／損失です。費用０・指定価格約定。</p><!-- [コンポーネント概要] #method/#symbol/#session は保存範囲の選択。#chart は確定５分足、#open-table は未返済玉、#trade-table は全返済。外部通信なし。 --><div class="controls"><label>手法 <select id="method"></select></label><label>銘柄 <select id="symbol"><option value="TOPIX">TOPIXミニ</option><option value="NK225">NK225マイクロ</option></select></label><label>セッション <select id="session"></select></label></div><p id="chart-summary"></p><canvas id="chart" aria-label="現在一回照合の５分足と建玉"></canvas><h2>未返済玉</h2><div id="open-table"></div><details open><summary>全返済の明細</summary><div id="trade-table"></div></details><script id="chart-data" type="application/json">{"methods":{"H019__D273":"EMA15/60の方向保持・時間1倍・短期価格の順行・相手方向一致／遠い部分利確と長い残玉＋小幅の新規追跡","H011__D273":"EMA8/30の方向保持・時間2倍・短期価格の順行・相手方向一致／遠い部分利確と長い残玉＋小幅の新規追跡"},"sessions":["2026-09-29_Night"],"candles":{"2026-09-29_Night|NK225":[[1790668800.0,65770.0,65820.0,65720.0,65770.0],[1790669100.0,65770.0,65770.0,65670.0,65720.0],[1790669400.0,65720.0,65740.0,65700.0,65730.0],[1790669700.0,65730.0,65810.0,65730.0,65800.0],[1790670000.0,65800.0,65870.0,65780.0,65790.0],[1790670300.0,65800.0,65810.0,65770.0,65770.0],[1790670600.0,65780.0,65780.0,65740.0,65760.0],[1790670900.0,65760.0,65830.0,65750.0,65830.0],[1790671200.0,65820.0,65840.0,65790.0,65840.0],[1790671500.0,65840.0,65870.0,65830.0,65860.0],[1790671800.0,65870.0,65870.0,65730.0,65730.0],[1790672100.0,65740.0,65800.0,65740.0,65800.0],[1790672400.0,65780.0,65850.0,65770.0,65790.0],[1790672700.0,65800.0,65800.0,65760.0,65790.0],[1790673000.0,65780.0,65780.0,65750.0,65760.0],[1790673300.0,65750.0,65790.0,65730.0,65790.0],[1790673600.0,65790.0,65790.0,65710.0,65730.0],[1790673900.0,65720.0,65720.0,65690.0,65690.0],[1790674200.0,65700.0,65700.0,65670.0,65700.0],[1790674500.0,65710.0,65710.0,65690.0,65710.0],[1790674800.0,65710.0,65760.0,65690.0,65760.0],[1790675100.0,65770.0,65810.0,65730.0,65730.0],[1790675400.0,65720.0,65790.0,65690.0,65730.0],[1790675700.0,65720.0,65760.0,65670.0,65680.0],[1790676000.0,65680.0,65760.0,65680.0,65750.0],[1790676300.0,65770.0,65800.0,65750.0,65800.0],[1790676600.0,65810.0,65840.0,65800.0,65800.0],[1790676900.0,65800.0,65800.0,65740.0,65740.0],[1790677200.0,65750.0,65770.0,65740.0,65770.0],[1790677500.0,65760.0,65800.0,65750.0,65800.0],[1790677800.0,65810.0,65810.0,65720.0,65730.0],[1790678100.0,65730.0,65770.0,65730.0,65740.0],[1790678400.0,65760.0,65770.0,65720.0,65760.0],[1790678700.0,65760.0,65770.0,65750.0,65750.0],[1790679000.0,65740.0,65760.0,65740.0,65760.0],[1790679300.0,65750.0,65790.0,65740.0,65790.0],[1790679600.0,65800.0,65860.0,65800.0,65820.0],[1790679900.0,65820.0,65820.0,65770.0,65770.0],[1790680200.0,65770.0,65770.0,65750.0,65750.0],[1790680500.0,65760.0,65790.0,65750.0,65760.0],[1790680800.0,65800.0,65810.0,65800.0,65810.0],[1790681100.0,65790.0,65820.0,65790.0,65790.0],[1790681400.0,65810.0,65830.0,65790.0,65820.0],[1790681700.0,65850.0,65850.0,65820.0,65850.0],[1790682000.0,65850.0,65850.0,65800.0,65800.0],[1790682300.0,65790.0,65930.0,65770.0,65930.0],[1790682600.0,65920.0,65930.0,65790.0,65850.0],[1790682900.0,65860.0,65870.0,65840.0,65850.0]],"2026-09-29_Night|TOPIX":[[1790668800.0,4064.5,4067.0,4061.5,4065.5],[1790669100.0,4065.5,4065.5,4059.5,4062.0],[1790669400.0,4062.5,4063.0,4060.0,4060.0],[1790669700.0,4060.5,4063.5,4060.5,4062.5],[1790670000.0,4063.0,4066.0,4061.0,4061.0],[1790670300.0,4061.5,4062.5,4060.5,4061.0],[1790670600.0,4061.5,4062.0,4059.5,4060.5],[1790670900.0,4060.5,4063.0,4060.0,4062.5],[1790671200.0,4062.5,4064.0,4061.5,4064.0],[1790671500.0,4064.0,4066.5,4063.5,4066.0],[1790671800.0,4066.5,4067.0,4062.0,4062.0],[1790672100.0,4062.5,4065.5,4062.5,4065.5],[1790672400.0,4065.0,4069.0,4064.5,4067.5],[1790672700.0,4067.5,4068.0,4064.5,4065.5],[1790673000.0,4065.5,4065.5,4064.0,4065.5],[1790673300.0,4065.0,4067.0,4064.0,4067.0],[1790673600.0,4067.0,4067.0,4064.0,4064.5],[1790673900.0,4064.5,4064.5,4064.0,4064.0],[1790674200.0,4064.0,4064.0,4063.0,4064.0],[1790674500.0,4064.0,4064.0,4063.0,4063.5],[1790674800.0,4063.5,4065.0,4062.5,4065.0],[1790675100.0,4065.5,4067.5,4063.5,4064.0],[1790675400.0,4064.0,4066.5,4061.5,4064.5],[1790675700.0,4064.5,4066.0,4061.5,4063.0],[1790676000.0,4062.5,4066.5,4062.5,4064.5],[1790676300.0,4065.0,4066.5,4065.0,4066.5],[1790676600.0,4067.0,4070.0,4067.0,4068.0],[1790676900.0,4068.0,4068.0,4065.0,4065.0],[1790677200.0,4065.0,4068.0,4065.0,4067.5],[1790677500.0,4067.5,4068.5,4065.0,4068.5],[1790677800.0,4069.0,4069.0,4065.0,4065.5],[1790678100.0,4065.0,4065.5,4064.0,4064.5],[1790678400.0,4064.5,4064.5,4062.5,4064.5],[1790678700.0,4064.5,4064.5,4062.5,4063.0],[1790679000.0,4063.0,4064.0,4060.5,4064.0],[1790679300.0,4063.5,4066.0,4063.5,4066.0],[1790679600.0,4065.0,4069.5,4065.0,4067.5],[1790679900.0,4067.5,4067.5,4063.5,4064.0],[1790680200.0,4063.5,4065.0,4063.0,4065.0],[1790680500.0,4064.5,4067.0,4064.5,4064.5],[1790680800.0,4065.0,4069.0,4065.0,4068.5],[1790681100.0,4068.5,4069.0,4068.0,4068.5],[1790681400.0,4068.0,4069.5,4068.0,4069.0],[1790681700.0,4069.0,4070.5,4069.0,4070.0],[1790682000.0,4070.5,4070.5,4068.5,4069.5],[1790682300.0,4070.0,4075.5,4067.0,4075.0],[1790682600.0,4073.0,4073.5,4067.0,4068.5],[1790682900.0,4069.0,4071.0,4069.0,4069.5]]},"trades":{"H019__D273|2026-09-29_Night|NK225":[[1790675235.0,1790675272.0,-1,10,65730.0,65800.0,-7000.0,"合算損失上限","主玉"],[1790676257.0,1790676619.0,-1,10,65740.0,65820.0,-8000.0,"合算損失上限","主玉"],[1790677329.0,1790682578.0,1,5,65770.0,65910.0,7000.0,"一部利確","主玉"]],"H011__D273|2026-09-29_Night|NK225":[[1790675235.0,1790675272.0,-1,10,65730.0,65800.0,-7000.0,"合算損失上限","主玉"],[1790676257.0,1790676619.0,-1,10,65740.0,65820.0,-8000.0,"合算損失上限","主玉"],[1790677329.0,1790682578.0,1,5,65770.0,65910.0,7000.0,"一部利確","主玉"]],"H019__D273|2026-09-29_Night|TOPIX":[[1790675203.0,1790675272.0,-1,5,4064.0,4067.5,-17500.0,"合算損失上限","主玉"],[1790676268.0,1790676775.0,-1,5,4065.5,4069.0,-17500.0,"合算損失上限","主玉"],[1790677262.0,1790678534.0,1,5,4066.5,4063.0,-17500.0,"合算損失上限","主玉"],[1790680310.0,1790681945.0,1,2,4064.0,4070.5,13000.0,"一部利確","主玉"]],"H011__D273|2026-09-29_Night|TOPIX":[[1790675203.0,1790675272.0,-1,5,4064.0,4067.5,-17500.0,"合算損失上限","主玉"],[1790676268.0,1790676775.0,-1,5,4065.5,4069.0,-17500.0,"合算損失上限","主玉"],[1790677262.0,1790678534.0,1,5,4066.5,4063.0,-17500.0,"合算損失上限","主玉"],[1790680310.0,1790681945.0,1,2,4064.0,4070.5,13000.0,"一部利確","主玉"]]},"open":{"H019__D273|2026-09-29_Night|NK225":[[1790677329.0,1790683185.0,1,5,65770.0,65850.0,4000.0]],"H011__D273|2026-09-29_Night|NK225":[[1790677329.0,1790683185.0,1,5,65770.0,65850.0,4000.0]],"H019__D273|2026-09-29_Night|TOPIX":[[1790680310.0,1790683178.0,1,3,4064.0,4069.5,16500.0]],"H011__D273|2026-09-29_Night|TOPIX":[[1790680310.0,1790683178.0,1,3,4064.0,4069.5,16500.0]]},"totals":{"H019__D273|2026-09-29_Night|NK225":[-8000.0,4000.0,-4000.0],"H011__D273|2026-09-29_Night|NK225":[-8000.0,4000.0,-4000.0],"H019__D273|2026-09-29_Night|TOPIX":[-39500.0,16500.0,-23000.0],"H011__D273|2026-09-29_Night|TOPIX":[-39500.0,16500.0,-23000.0]}}</script><script>/**
+ * 保存された５分足と売買明細を選択に合わせて表示する。
+ * 引数: なし。
+ * 返り値: なし (undefined)。外部通信・注文処理は行わない。
+ */
+function initialize() {
+  const data = JSON.parse(document.getElementById('chart-data').textContent);
+  const method = document.getElementById('method');
+  const symbol = document.getElementById('symbol');
+  const session = document.getElementById('session');
+  for (const [id, name] of Object.entries(data.methods)) method.add(new Option(`${id} ${name}`, id));
+  for (const id of data.sessions) session.add(new Option(id.replace('_Day', ' 昼').replace('_Night', ' 夜'), id));
+  session.value = data.sessions.at(-1);
+  const canvas = document.getElementById('chart');
+
+  /**
+   * UNIX秒を日本時間の時分秒へ変換する。
+   * @param {number} time - UNIX秒。
+   * @returns {string} 日本時間の表示。
+   */
+  function stamp(time) {
+    return new Date(time * 1000).toLocaleTimeString('ja-JP', {timeZone:'Asia/Tokyo', hour12:false});
+  }
+
+  /**
+   * 選択された確定足・取引をキャンバスと表へ再描画する。
+   * 引数: なし。
+   * 返り値: なし (undefined)。
+   */
+  function render() {
+    const bars = data.candles[`${session.value}|${symbol.value}`];
+    const trades = data.trades[`${method.value}|${session.value}|${symbol.value}`];
+    const keyNow = `${method.value}|${session.value}|${symbol.value}`;
+    const open = data.open[keyNow];
+    const box = canvas.getBoundingClientRect();
+    const w = Math.max(300, box.width), h = box.height;
+    const scale = window.devicePixelRatio || 1;
+    canvas.width = w * scale; canvas.height = h * scale;
+    const g = canvas.getContext('2d'); g.scale(scale, scale);
+    g.fillStyle = '#0c1522'; g.fillRect(0, 0, w, h);
+    const left = 70, right = w - 15, top = 25, bottom = h - 40;
+    const first = bars[0][0], last = bars.at(-1)[0] + 300;
+    const prices = bars.flatMap(b=>[b[2], b[3]]).concat(trades.flatMap(t=>[t[4], t[5]]),open.flatMap(t=>[t[4],t[5]]));
+    let low = Math.min(...prices), high = Math.max(...prices);
+    const pad = Math.max(1, (high-low)*.09); low -= pad; high += pad;
+    const x = t=>left+(t-first)/(last-first)*(right-left);
+    const y = p=>bottom-(p-low)/(high-low)*(bottom-top);
+    g.font = '12px sans-serif';
+    for (let n=0;n<=5;n++) {
+      const p = low+(high-low)*n/5;
+      g.strokeStyle = '#25374c'; g.beginPath(); g.moveTo(left,y(p)); g.lineTo(right,y(p)); g.stroke();
+      g.fillStyle = '#bbcbdc'; g.fillText(p.toLocaleString('ja-JP',{maximumFractionDigits:1}), 5, y(p)+4);
+      const t = first+(last-first)*n/5;
+      g.fillText(stamp(t).slice(0,5), Math.min(right-30,Math.max(left-10,x(t)-17)),h-13);
+    }
+    const bw = Math.max(1,Math.min(8,(right-left)/bars.length*.65));
+    for (const b of bars) {
+      g.strokeStyle = g.fillStyle = b[4]>=b[1] ? '#65c5ba' : '#db718a';
+      g.beginPath();g.moveTo(x(b[0]+150),y(b[2]));g.lineTo(x(b[0]+150),y(b[3]));g.stroke();
+      g.fillRect(x(b[0]+150)-bw/2,Math.min(y(b[1]),y(b[4])),bw,Math.max(1,Math.abs(y(b[1])-y(b[4]))));
+    }
+    const seen = new Set();
+    for (const t of trades) {
+      g.strokeStyle = t[6]>=0 ? '#57e0a1' : '#ff8496';g.lineWidth=1.4;
+      g.beginPath();g.moveTo(x(t[0]),y(t[4]));g.lineTo(x(t[1]),y(t[5]));g.stroke();
+      const key = `${t[0]}|${t[2]}|${t[4]}`;
+      if (!seen.has(key)) {
+        seen.add(key);g.fillStyle=t[2]>0?'#53ffb1':'#ff6687';
+        const xx=x(t[0]), yy=y(t[4]), dir=t[2];
+        g.beginPath();g.moveTo(xx,yy);g.lineTo(xx-5,yy+dir*11);g.lineTo(xx+5,yy+dir*11);g.closePath();g.fill();
+      }
+      g.strokeStyle='#ffdf7c';g.lineWidth=2;g.beginPath();g.moveTo(x(t[1])-4,y(t[5])-4);g.lineTo(x(t[1])+4,y(t[5])+4);g.moveTo(x(t[1])-4,y(t[5])+4);g.lineTo(x(t[1])+4,y(t[5])-4);g.stroke();g.lineWidth=1;
+    }
+    // ----------------------------------------
+    // 未返済玉は破線と白い丸で現在値へつなぎ、返済を意味する黄色の×を付けない。
+    for (const t of open) {
+      g.strokeStyle=t[6]>=0?'#57e0a1':'#ff8496';g.setLineDash([5,4]);
+      g.beginPath();g.moveTo(x(t[0]),y(t[4]));g.lineTo(x(t[1]),y(t[5]));g.stroke();g.setLineDash([]);
+      g.strokeStyle='#eef4ff';g.beginPath();g.arc(x(t[1]),y(t[5]),5,0,Math.PI*2);g.stroke();
+      const key=`${t[0]}|${t[2]}|${t[4]}`;
+      if(!seen.has(key)){g.fillStyle=t[2]>0?'#53ffb1':'#ff6687';const xx=x(t[0]),yy=y(t[4]),dir=t[2];g.beginPath();g.moveTo(xx,yy);g.lineTo(xx-5,yy+dir*11);g.lineTo(xx+5,yy+dir*11);g.closePath();g.fill();}
+    }
+    const net = trades.reduce((sum,t)=>sum+t[6],0);
+    const totals=data.totals[keyNow];
+    document.getElementById('chart-summary').textContent=`実現 ${totals[0].toLocaleString('ja-JP')}円 ／ 含み ${totals[1].toLocaleString('ja-JP')}円 ／ 合算 ${totals[2].toLocaleString('ja-JP')}円。未返済 ${open.reduce((s,t)=>s+t[3],0)}枚。` ;
+    document.getElementById('open-table').innerHTML='<div class="scroll"><table><tr><th>未返済の方向</th><th>枚数</th><th>新規時刻</th><th>新規価格</th><th>現在値時刻</th><th>現在値</th><th>含み損益 円</th></tr>'+open.map(t=>`<tr><td>${t[2]>0?'買い':'売り'}</td><td>${t[3]}</td><td>${stamp(t[0])}</td><td>${t[4]}</td><td>${stamp(t[1])}</td><td>${t[5]}</td><td>${t[6].toLocaleString('ja-JP')}</td></tr>`).join('')+'</table></div>';
+    document.getElementById('trade-table').innerHTML = '<div class="scroll"><table><thead><tr><th>方向</th><th>建玉</th><th>枚数</th><th>新規時刻</th><th>新規価格</th><th>返済時刻</th><th>返済価格</th><th>収支 円</th><th>理由</th></tr></thead><tbody>'+trades.map(t=>`<tr><td>${t[2]>0?'買い':'売り'}</td><td>${t[8]||''}</td><td>${t[3]}</td><td>${stamp(t[0])}</td><td>${t[4]}</td><td>${stamp(t[1])}</td><td>${t[5]}</td><td class="${t[6]>0?'good':t[6]<0?'bad':'muted'}">${t[6]>0?'+':''}${t[6].toLocaleString('ja-JP')}</td><td>${t[7]}</td></tr>`).join('')+'</tbody></table></div>';
+  }
+  // ----------------------------------------
+  // 選択変更と表示幅の変更だけを監視する。
+  method.addEventListener('change',render);symbol.addEventListener('change',render);session.addEventListener('change',render);
+  window.addEventListener('resize',render);render();
+}
+initialize();
+</script></body></html>

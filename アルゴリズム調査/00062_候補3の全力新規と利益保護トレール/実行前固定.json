@@ -1,0 +1,131 @@
+{
+  "固定時刻": "2026-10-08T11:59:20.395850+00:00",
+  "主案": {
+    "id": "S0.10_T0.01",
+    "stop": 0.001,
+    "trail": 0.0001,
+    "arm": 0.0011,
+    "floor": 0.001,
+    "primary": true
+  },
+  "全条件": [
+    {
+      "id": "S0.10_T0.01",
+      "stop": 0.001,
+      "trail": 0.0001,
+      "arm": 0.0011,
+      "floor": 0.001,
+      "primary": true
+    },
+    {
+      "id": "S0.10_T0.02",
+      "stop": 0.001,
+      "trail": 0.0002,
+      "arm": 0.0012000000000000001,
+      "floor": 0.001,
+      "primary": false
+    },
+    {
+      "id": "S0.10_T0.05",
+      "stop": 0.001,
+      "trail": 0.0005,
+      "arm": 0.0015,
+      "floor": 0.001,
+      "primary": false
+    },
+    {
+      "id": "S0.10_T0.10",
+      "stop": 0.001,
+      "trail": 0.001,
+      "arm": 0.002,
+      "floor": 0.001,
+      "primary": false
+    },
+    {
+      "id": "S0.15_T0.01",
+      "stop": 0.0015,
+      "trail": 0.0001,
+      "arm": 0.0011,
+      "floor": 0.001,
+      "primary": false
+    },
+    {
+      "id": "S0.15_T0.02",
+      "stop": 0.0015,
+      "trail": 0.0002,
+      "arm": 0.0012000000000000001,
+      "floor": 0.001,
+      "primary": false
+    },
+    {
+      "id": "S0.15_T0.05",
+      "stop": 0.0015,
+      "trail": 0.0005,
+      "arm": 0.0015,
+      "floor": 0.001,
+      "primary": false
+    },
+    {
+      "id": "S0.15_T0.10",
+      "stop": 0.0015,
+      "trail": 0.001,
+      "arm": 0.002,
+      "floor": 0.001,
+      "primary": false
+    },
+    {
+      "id": "S0.20_T0.01",
+      "stop": 0.002,
+      "trail": 0.0001,
+      "arm": 0.0011,
+      "floor": 0.001,
+      "primary": false
+    },
+    {
+      "id": "S0.20_T0.02",
+      "stop": 0.002,
+      "trail": 0.0002,
+      "arm": 0.0012000000000000001,
+      "floor": 0.001,
+      "primary": false
+    },
+    {
+      "id": "S0.20_T0.05",
+      "stop": 0.002,
+      "trail": 0.0005,
+      "arm": 0.0015,
+      "floor": 0.001,
+      "primary": false
+    },
+    {
+      "id": "S0.20_T0.10",
+      "stop": 0.002,
+      "trail": 0.001,
+      "arm": 0.002,
+      "floor": 0.001,
+      "primary": false
+    }
+  ],
+  "入口": "凍結済みR3_DEPTHの原板行と方向。新しい入口の探索なし。",
+  "枚数": {
+    "NK225micro": 20,
+    "TOPIXmini": 10
+  },
+  "幅基準": "次行新規約定価格。連続値の監視条件で判定し、約定は板の離散価格。",
+  "監視": "含み利益は長玉bid/短玉ask。新規・返済とも条件判定の次の有効原板行の気配。",
+  "トレール": "最高含み値幅から固定割合幅を差し引き、最初の0.1%利益線より下げない。最低約定利益の保証ではない。",
+  "その他": "元入口の決済後10分休止と新規締切を維持。保有60分期限と日次停止は今回設けず、場内返済。",
+  "区間": "Day15:34/Night05:49以後の最初の有効行で返済判断し次行約定。新規は15:30/05:45未満。",
+  "比較": "旧全入口の個別追跡は重複し得るため実ポートフォリオではない。連続再生を主成績とする。",
+  "手数料": "NKmicro20枚は片道220円、TOPIXmini10枚は片道418円。両側課金。",
+  "限界": "ラージ売買気配の小商品代理。発注遅延・板の食い込みなし。全25場既知で新規未見検証ではない。",
+  "SHA": {
+    "S:\\TempDev\\OSE_Future\\work\\wave_v65\\replay.py": "51fc3b9c6c63f09876d8522de2d81c26f67c575f5ce74626ba7c7fc0d0378808",
+    "S:\\TempDev\\OSE_Future\\work\\wave_v60\\inputs.pkl": "79bd3561ccf23c8cdb558140c616406e7f956f4616ab53637dd59bd0727ae3d5",
+    "S:\\TempDev\\OSE_Future\\work\\wave_v60\\quotes.pkl": "d7894f477020db08214bb8a5845db0f56ac151e25495c2d0ba96a244d3391206",
+    "S:\\TempDev\\OSE_Future\\work\\wave_v63\\directional\\round3\\入口候補.pkl": "8ba29c5e3c358d5d46955161bff992e0de91c8520f983b612c7d9a6c68f961c9",
+    "S:\\TempDev\\OSE_Future\\work\\wave_v63\\directional\\round3\\ledgers\\R3_DEPTH_C_quote.pkl": "bc1995aea1457652dcb3e722fb1f14290a1c85638dd1128a39f298c171b87d23"
+  },
+  "現在API取得": 0,
+  "実注文": 0
+}

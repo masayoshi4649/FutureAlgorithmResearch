@@ -1,0 +1,1807 @@
+{
+  "固定日時": "2026-09-29T20:04:54.550267+09:00",
+  "新損益参照": false,
+  "仕様": {
+    "目的": "単一の時計窓や相手遅延への依存を複数条件の合意で減らせるかを反証する。複数票は独立標本ではなく、合意だけで収益や有意性は保証しない。",
+    "条件数": 96,
+    "条件": [
+      {
+        "id": "E000",
+        "name": "微価格方向の窓合意・2/3・0秒確認",
+        "family": "微価格方向の窓合意",
+        "description": "F32の120秒窓を3通りに分散し、反対票がなく必要票数が一致した方向だけを採る。",
+        "params": {
+          "mode": "F32",
+          "window_multipliers": [
+            0.8,
+            1.0,
+            1.2
+          ],
+          "required_fraction": 0.6666666666666666,
+          "confirmation_seconds": 0,
+          "clock_multiplier": 1.0,
+          "peer_multiplier": 1.0
+        }
+      },
+      {
+        "id": "E001",
+        "name": "フローと価格の不一致の合意・2/3・0秒確認",
+        "family": "フローと価格の不一致の合意",
+        "description": "両市場の板フローと価格応答が逆向きになるD016を、窓と相手遅延の9通りで確認する。",
+        "params": {
+          "mode": "D016",
+          "window_multipliers": [
+            0.8,
+            1.0,
+            1.2
+          ],
+          "required_fraction": 0.6666666666666666,
+          "confirmation_seconds": 0,
+          "clock_multiplier": 1.0,
+          "peer_multiplier": 1.0
+        }
+      },
+      {
+        "id": "E002",
+        "name": "蓄積フロー反転の合意・2/3・0秒確認",
+        "family": "蓄積フロー反転の合意",
+        "description": "長いフローに対して短いフローと価格が反転するD056を、窓と相手遅延の9通りで確認する。",
+        "params": {
+          "mode": "D056",
+          "window_multipliers": [
+            0.8,
+            1.0,
+            1.2
+          ],
+          "required_fraction": 0.6666666666666666,
+          "confirmation_seconds": 0,
+          "clock_multiplier": 1.0,
+          "peer_multiplier": 1.0
+        }
+      },
+      {
+        "id": "E003",
+        "name": "価格の短期反転の合意・2/3・0秒確認",
+        "family": "価格の短期反転の合意",
+        "description": "両市場で長短の価格方向が逆になり短期方向が揃うP02を、窓と相手遅延の9通りで確認する。",
+        "params": {
+          "mode": "P02",
+          "window_multipliers": [
+            0.8,
+            1.0,
+            1.2
+          ],
+          "required_fraction": 0.6666666666666666,
+          "confirmation_seconds": 0,
+          "clock_multiplier": 1.0,
+          "peer_multiplier": 1.0
+        }
+      },
+      {
+        "id": "E004",
+        "name": "4基礎のうち2基礎以上で合意・2/3・0秒確認",
+        "family": "4基礎のうち2基礎以上で合意",
+        "description": "4基礎のうち2つ以上が同方向になり、反対の基礎がない場合だけ採る。",
+        "params": {
+          "mode": "two_agree",
+          "window_multipliers": [
+            0.8,
+            1.0,
+            1.2
+          ],
+          "required_fraction": 0.6666666666666666,
+          "confirmation_seconds": 0,
+          "clock_multiplier": 1.0,
+          "peer_multiplier": 1.0
+        }
+      },
+      {
+        "id": "E005",
+        "name": "価格不一致を優先し微価格へ切替・2/3・0秒確認",
+        "family": "価格不一致を優先し微価格へ切替",
+        "description": "D016が有効なら優先し、中立ならF32へ切り替える。他の基礎が反対なら中立に戻す。",
+        "params": {
+          "mode": "D016_first",
+          "window_multipliers": [
+            0.8,
+            1.0,
+            1.2
+          ],
+          "required_fraction": 0.6666666666666666,
+          "confirmation_seconds": 0,
+          "clock_multiplier": 1.0,
+          "peer_multiplier": 1.0
+        }
+      },
+      {
+        "id": "E006",
+        "name": "フロー反転を優先し微価格へ切替・2/3・0秒確認",
+        "family": "フロー反転を優先し微価格へ切替",
+        "description": "D056が有効なら優先し、中立ならF32へ切り替える。他の基礎が反対なら中立に戻す。",
+        "params": {
+          "mode": "D056_first",
+          "window_multipliers": [
+            0.8,
+            1.0,
+            1.2
+          ],
+          "required_fraction": 0.6666666666666666,
+          "confirmation_seconds": 0,
+          "clock_multiplier": 1.0,
+          "peer_multiplier": 1.0
+        }
+      },
+      {
+        "id": "E007",
+        "name": "価格と板の合意を優先・2/3・0秒確認",
+        "family": "価格と板の合意を優先",
+        "description": "P02とD016またはD056の方向が一致すれば採り、成立しなければF32へ切り替える。反対の基礎があれば中立に戻す。",
+        "params": {
+          "mode": "price_and_flow",
+          "window_multipliers": [
+            0.8,
+            1.0,
+            1.2
+          ],
+          "required_fraction": 0.6666666666666666,
+          "confirmation_seconds": 0,
+          "clock_multiplier": 1.0,
+          "peer_multiplier": 1.0
+        }
+      },
+      {
+        "id": "E008",
+        "name": "微価格方向の窓合意・2/3・10秒確認",
+        "family": "微価格方向の窓合意",
+        "description": "F32の120秒窓を3通りに分散し、反対票がなく必要票数が一致した方向だけを採る。",
+        "params": {
+          "mode": "F32",
+          "window_multipliers": [
+            0.8,
+            1.0,
+            1.2
+          ],
+          "required_fraction": 0.6666666666666666,
+          "confirmation_seconds": 10,
+          "clock_multiplier": 1.0,
+          "peer_multiplier": 1.0
+        }
+      },
+      {
+        "id": "E009",
+        "name": "フローと価格の不一致の合意・2/3・10秒確認",
+        "family": "フローと価格の不一致の合意",
+        "description": "両市場の板フローと価格応答が逆向きになるD016を、窓と相手遅延の9通りで確認する。",
+        "params": {
+          "mode": "D016",
+          "window_multipliers": [
+            0.8,
+            1.0,
+            1.2
+          ],
+          "required_fraction": 0.6666666666666666,
+          "confirmation_seconds": 10,
+          "clock_multiplier": 1.0,
+          "peer_multiplier": 1.0
+        }
+      },
+      {
+        "id": "E010",
+        "name": "蓄積フロー反転の合意・2/3・10秒確認",
+        "family": "蓄積フロー反転の合意",
+        "description": "長いフローに対して短いフローと価格が反転するD056を、窓と相手遅延の9通りで確認する。",
+        "params": {
+          "mode": "D056",
+          "window_multipliers": [
+            0.8,
+            1.0,
+            1.2
+          ],
+          "required_fraction": 0.6666666666666666,
+          "confirmation_seconds": 10,
+          "clock_multiplier": 1.0,
+          "peer_multiplier": 1.0
+        }
+      },
+      {
+        "id": "E011",
+        "name": "価格の短期反転の合意・2/3・10秒確認",
+        "family": "価格の短期反転の合意",
+        "description": "両市場で長短の価格方向が逆になり短期方向が揃うP02を、窓と相手遅延の9通りで確認する。",
+        "params": {
+          "mode": "P02",
+          "window_multipliers": [
+            0.8,
+            1.0,
+            1.2
+          ],
+          "required_fraction": 0.6666666666666666,
+          "confirmation_seconds": 10,
+          "clock_multiplier": 1.0,
+          "peer_multiplier": 1.0
+        }
+      },
+      {
+        "id": "E012",
+        "name": "4基礎のうち2基礎以上で合意・2/3・10秒確認",
+        "family": "4基礎のうち2基礎以上で合意",
+        "description": "4基礎のうち2つ以上が同方向になり、反対の基礎がない場合だけ採る。",
+        "params": {
+          "mode": "two_agree",
+          "window_multipliers": [
+            0.8,
+            1.0,
+            1.2
+          ],
+          "required_fraction": 0.6666666666666666,
+          "confirmation_seconds": 10,
+          "clock_multiplier": 1.0,
+          "peer_multiplier": 1.0
+        }
+      },
+      {
+        "id": "E013",
+        "name": "価格不一致を優先し微価格へ切替・2/3・10秒確認",
+        "family": "価格不一致を優先し微価格へ切替",
+        "description": "D016が有効なら優先し、中立ならF32へ切り替える。他の基礎が反対なら中立に戻す。",
+        "params": {
+          "mode": "D016_first",
+          "window_multipliers": [
+            0.8,
+            1.0,
+            1.2
+          ],
+          "required_fraction": 0.6666666666666666,
+          "confirmation_seconds": 10,
+          "clock_multiplier": 1.0,
+          "peer_multiplier": 1.0
+        }
+      },
+      {
+        "id": "E014",
+        "name": "フロー反転を優先し微価格へ切替・2/3・10秒確認",
+        "family": "フロー反転を優先し微価格へ切替",
+        "description": "D056が有効なら優先し、中立ならF32へ切り替える。他の基礎が反対なら中立に戻す。",
+        "params": {
+          "mode": "D056_first",
+          "window_multipliers": [
+            0.8,
+            1.0,
+            1.2
+          ],
+          "required_fraction": 0.6666666666666666,
+          "confirmation_seconds": 10,
+          "clock_multiplier": 1.0,
+          "peer_multiplier": 1.0
+        }
+      },
+      {
+        "id": "E015",
+        "name": "価格と板の合意を優先・2/3・10秒確認",
+        "family": "価格と板の合意を優先",
+        "description": "P02とD016またはD056の方向が一致すれば採り、成立しなければF32へ切り替える。反対の基礎があれば中立に戻す。",
+        "params": {
+          "mode": "price_and_flow",
+          "window_multipliers": [
+            0.8,
+            1.0,
+            1.2
+          ],
+          "required_fraction": 0.6666666666666666,
+          "confirmation_seconds": 10,
+          "clock_multiplier": 1.0,
+          "peer_multiplier": 1.0
+        }
+      },
+      {
+        "id": "E016",
+        "name": "微価格方向の窓合意・2/3・30秒確認",
+        "family": "微価格方向の窓合意",
+        "description": "F32の120秒窓を3通りに分散し、反対票がなく必要票数が一致した方向だけを採る。",
+        "params": {
+          "mode": "F32",
+          "window_multipliers": [
+            0.8,
+            1.0,
+            1.2
+          ],
+          "required_fraction": 0.6666666666666666,
+          "confirmation_seconds": 30,
+          "clock_multiplier": 1.0,
+          "peer_multiplier": 1.0
+        }
+      },
+      {
+        "id": "E017",
+        "name": "フローと価格の不一致の合意・2/3・30秒確認",
+        "family": "フローと価格の不一致の合意",
+        "description": "両市場の板フローと価格応答が逆向きになるD016を、窓と相手遅延の9通りで確認する。",
+        "params": {
+          "mode": "D016",
+          "window_multipliers": [
+            0.8,
+            1.0,
+            1.2
+          ],
+          "required_fraction": 0.6666666666666666,
+          "confirmation_seconds": 30,
+          "clock_multiplier": 1.0,
+          "peer_multiplier": 1.0
+        }
+      },
+      {
+        "id": "E018",
+        "name": "蓄積フロー反転の合意・2/3・30秒確認",
+        "family": "蓄積フロー反転の合意",
+        "description": "長いフローに対して短いフローと価格が反転するD056を、窓と相手遅延の9通りで確認する。",
+        "params": {
+          "mode": "D056",
+          "window_multipliers": [
+            0.8,
+            1.0,
+            1.2
+          ],
+          "required_fraction": 0.6666666666666666,
+          "confirmation_seconds": 30,
+          "clock_multiplier": 1.0,
+          "peer_multiplier": 1.0
+        }
+      },
+      {
+        "id": "E019",
+        "name": "価格の短期反転の合意・2/3・30秒確認",
+        "family": "価格の短期反転の合意",
+        "description": "両市場で長短の価格方向が逆になり短期方向が揃うP02を、窓と相手遅延の9通りで確認する。",
+        "params": {
+          "mode": "P02",
+          "window_multipliers": [
+            0.8,
+            1.0,
+            1.2
+          ],
+          "required_fraction": 0.6666666666666666,
+          "confirmation_seconds": 30,
+          "clock_multiplier": 1.0,
+          "peer_multiplier": 1.0
+        }
+      },
+      {
+        "id": "E020",
+        "name": "4基礎のうち2基礎以上で合意・2/3・30秒確認",
+        "family": "4基礎のうち2基礎以上で合意",
+        "description": "4基礎のうち2つ以上が同方向になり、反対の基礎がない場合だけ採る。",
+        "params": {
+          "mode": "two_agree",
+          "window_multipliers": [
+            0.8,
+            1.0,
+            1.2
+          ],
+          "required_fraction": 0.6666666666666666,
+          "confirmation_seconds": 30,
+          "clock_multiplier": 1.0,
+          "peer_multiplier": 1.0
+        }
+      },
+      {
+        "id": "E021",
+        "name": "価格不一致を優先し微価格へ切替・2/3・30秒確認",
+        "family": "価格不一致を優先し微価格へ切替",
+        "description": "D016が有効なら優先し、中立ならF32へ切り替える。他の基礎が反対なら中立に戻す。",
+        "params": {
+          "mode": "D016_first",
+          "window_multipliers": [
+            0.8,
+            1.0,
+            1.2
+          ],
+          "required_fraction": 0.6666666666666666,
+          "confirmation_seconds": 30,
+          "clock_multiplier": 1.0,
+          "peer_multiplier": 1.0
+        }
+      },
+      {
+        "id": "E022",
+        "name": "フロー反転を優先し微価格へ切替・2/3・30秒確認",
+        "family": "フロー反転を優先し微価格へ切替",
+        "description": "D056が有効なら優先し、中立ならF32へ切り替える。他の基礎が反対なら中立に戻す。",
+        "params": {
+          "mode": "D056_first",
+          "window_multipliers": [
+            0.8,
+            1.0,
+            1.2
+          ],
+          "required_fraction": 0.6666666666666666,
+          "confirmation_seconds": 30,
+          "clock_multiplier": 1.0,
+          "peer_multiplier": 1.0
+        }
+      },
+      {
+        "id": "E023",
+        "name": "価格と板の合意を優先・2/3・30秒確認",
+        "family": "価格と板の合意を優先",
+        "description": "P02とD016またはD056の方向が一致すれば採り、成立しなければF32へ切り替える。反対の基礎があれば中立に戻す。",
+        "params": {
+          "mode": "price_and_flow",
+          "window_multipliers": [
+            0.8,
+            1.0,
+            1.2
+          ],
+          "required_fraction": 0.6666666666666666,
+          "confirmation_seconds": 30,
+          "clock_multiplier": 1.0,
+          "peer_multiplier": 1.0
+        }
+      },
+      {
+        "id": "E024",
+        "name": "微価格方向の窓合意・3/3・0秒確認",
+        "family": "微価格方向の窓合意",
+        "description": "F32の120秒窓を3通りに分散し、反対票がなく必要票数が一致した方向だけを採る。",
+        "params": {
+          "mode": "F32",
+          "window_multipliers": [
+            0.8,
+            1.0,
+            1.2
+          ],
+          "required_fraction": 1.0,
+          "confirmation_seconds": 0,
+          "clock_multiplier": 1.0,
+          "peer_multiplier": 1.0
+        }
+      },
+      {
+        "id": "E025",
+        "name": "フローと価格の不一致の合意・3/3・0秒確認",
+        "family": "フローと価格の不一致の合意",
+        "description": "両市場の板フローと価格応答が逆向きになるD016を、窓と相手遅延の9通りで確認する。",
+        "params": {
+          "mode": "D016",
+          "window_multipliers": [
+            0.8,
+            1.0,
+            1.2
+          ],
+          "required_fraction": 1.0,
+          "confirmation_seconds": 0,
+          "clock_multiplier": 1.0,
+          "peer_multiplier": 1.0
+        }
+      },
+      {
+        "id": "E026",
+        "name": "蓄積フロー反転の合意・3/3・0秒確認",
+        "family": "蓄積フロー反転の合意",
+        "description": "長いフローに対して短いフローと価格が反転するD056を、窓と相手遅延の9通りで確認する。",
+        "params": {
+          "mode": "D056",
+          "window_multipliers": [
+            0.8,
+            1.0,
+            1.2
+          ],
+          "required_fraction": 1.0,
+          "confirmation_seconds": 0,
+          "clock_multiplier": 1.0,
+          "peer_multiplier": 1.0
+        }
+      },
+      {
+        "id": "E027",
+        "name": "価格の短期反転の合意・3/3・0秒確認",
+        "family": "価格の短期反転の合意",
+        "description": "両市場で長短の価格方向が逆になり短期方向が揃うP02を、窓と相手遅延の9通りで確認する。",
+        "params": {
+          "mode": "P02",
+          "window_multipliers": [
+            0.8,
+            1.0,
+            1.2
+          ],
+          "required_fraction": 1.0,
+          "confirmation_seconds": 0,
+          "clock_multiplier": 1.0,
+          "peer_multiplier": 1.0
+        }
+      },
+      {
+        "id": "E028",
+        "name": "4基礎のうち2基礎以上で合意・3/3・0秒確認",
+        "family": "4基礎のうち2基礎以上で合意",
+        "description": "4基礎のうち2つ以上が同方向になり、反対の基礎がない場合だけ採る。",
+        "params": {
+          "mode": "two_agree",
+          "window_multipliers": [
+            0.8,
+            1.0,
+            1.2
+          ],
+          "required_fraction": 1.0,
+          "confirmation_seconds": 0,
+          "clock_multiplier": 1.0,
+          "peer_multiplier": 1.0
+        }
+      },
+      {
+        "id": "E029",
+        "name": "価格不一致を優先し微価格へ切替・3/3・0秒確認",
+        "family": "価格不一致を優先し微価格へ切替",
+        "description": "D016が有効なら優先し、中立ならF32へ切り替える。他の基礎が反対なら中立に戻す。",
+        "params": {
+          "mode": "D016_first",
+          "window_multipliers": [
+            0.8,
+            1.0,
+            1.2
+          ],
+          "required_fraction": 1.0,
+          "confirmation_seconds": 0,
+          "clock_multiplier": 1.0,
+          "peer_multiplier": 1.0
+        }
+      },
+      {
+        "id": "E030",
+        "name": "フロー反転を優先し微価格へ切替・3/3・0秒確認",
+        "family": "フロー反転を優先し微価格へ切替",
+        "description": "D056が有効なら優先し、中立ならF32へ切り替える。他の基礎が反対なら中立に戻す。",
+        "params": {
+          "mode": "D056_first",
+          "window_multipliers": [
+            0.8,
+            1.0,
+            1.2
+          ],
+          "required_fraction": 1.0,
+          "confirmation_seconds": 0,
+          "clock_multiplier": 1.0,
+          "peer_multiplier": 1.0
+        }
+      },
+      {
+        "id": "E031",
+        "name": "価格と板の合意を優先・3/3・0秒確認",
+        "family": "価格と板の合意を優先",
+        "description": "P02とD016またはD056の方向が一致すれば採り、成立しなければF32へ切り替える。反対の基礎があれば中立に戻す。",
+        "params": {
+          "mode": "price_and_flow",
+          "window_multipliers": [
+            0.8,
+            1.0,
+            1.2
+          ],
+          "required_fraction": 1.0,
+          "confirmation_seconds": 0,
+          "clock_multiplier": 1.0,
+          "peer_multiplier": 1.0
+        }
+      },
+      {
+        "id": "E032",
+        "name": "微価格方向の窓合意・3/3・10秒確認",
+        "family": "微価格方向の窓合意",
+        "description": "F32の120秒窓を3通りに分散し、反対票がなく必要票数が一致した方向だけを採る。",
+        "params": {
+          "mode": "F32",
+          "window_multipliers": [
+            0.8,
+            1.0,
+            1.2
+          ],
+          "required_fraction": 1.0,
+          "confirmation_seconds": 10,
+          "clock_multiplier": 1.0,
+          "peer_multiplier": 1.0
+        }
+      },
+      {
+        "id": "E033",
+        "name": "フローと価格の不一致の合意・3/3・10秒確認",
+        "family": "フローと価格の不一致の合意",
+        "description": "両市場の板フローと価格応答が逆向きになるD016を、窓と相手遅延の9通りで確認する。",
+        "params": {
+          "mode": "D016",
+          "window_multipliers": [
+            0.8,
+            1.0,
+            1.2
+          ],
+          "required_fraction": 1.0,
+          "confirmation_seconds": 10,
+          "clock_multiplier": 1.0,
+          "peer_multiplier": 1.0
+        }
+      },
+      {
+        "id": "E034",
+        "name": "蓄積フロー反転の合意・3/3・10秒確認",
+        "family": "蓄積フロー反転の合意",
+        "description": "長いフローに対して短いフローと価格が反転するD056を、窓と相手遅延の9通りで確認する。",
+        "params": {
+          "mode": "D056",
+          "window_multipliers": [
+            0.8,
+            1.0,
+            1.2
+          ],
+          "required_fraction": 1.0,
+          "confirmation_seconds": 10,
+          "clock_multiplier": 1.0,
+          "peer_multiplier": 1.0
+        }
+      },
+      {
+        "id": "E035",
+        "name": "価格の短期反転の合意・3/3・10秒確認",
+        "family": "価格の短期反転の合意",
+        "description": "両市場で長短の価格方向が逆になり短期方向が揃うP02を、窓と相手遅延の9通りで確認する。",
+        "params": {
+          "mode": "P02",
+          "window_multipliers": [
+            0.8,
+            1.0,
+            1.2
+          ],
+          "required_fraction": 1.0,
+          "confirmation_seconds": 10,
+          "clock_multiplier": 1.0,
+          "peer_multiplier": 1.0
+        }
+      },
+      {
+        "id": "E036",
+        "name": "4基礎のうち2基礎以上で合意・3/3・10秒確認",
+        "family": "4基礎のうち2基礎以上で合意",
+        "description": "4基礎のうち2つ以上が同方向になり、反対の基礎がない場合だけ採る。",
+        "params": {
+          "mode": "two_agree",
+          "window_multipliers": [
+            0.8,
+            1.0,
+            1.2
+          ],
+          "required_fraction": 1.0,
+          "confirmation_seconds": 10,
+          "clock_multiplier": 1.0,
+          "peer_multiplier": 1.0
+        }
+      },
+      {
+        "id": "E037",
+        "name": "価格不一致を優先し微価格へ切替・3/3・10秒確認",
+        "family": "価格不一致を優先し微価格へ切替",
+        "description": "D016が有効なら優先し、中立ならF32へ切り替える。他の基礎が反対なら中立に戻す。",
+        "params": {
+          "mode": "D016_first",
+          "window_multipliers": [
+            0.8,
+            1.0,
+            1.2
+          ],
+          "required_fraction": 1.0,
+          "confirmation_seconds": 10,
+          "clock_multiplier": 1.0,
+          "peer_multiplier": 1.0
+        }
+      },
+      {
+        "id": "E038",
+        "name": "フロー反転を優先し微価格へ切替・3/3・10秒確認",
+        "family": "フロー反転を優先し微価格へ切替",
+        "description": "D056が有効なら優先し、中立ならF32へ切り替える。他の基礎が反対なら中立に戻す。",
+        "params": {
+          "mode": "D056_first",
+          "window_multipliers": [
+            0.8,
+            1.0,
+            1.2
+          ],
+          "required_fraction": 1.0,
+          "confirmation_seconds": 10,
+          "clock_multiplier": 1.0,
+          "peer_multiplier": 1.0
+        }
+      },
+      {
+        "id": "E039",
+        "name": "価格と板の合意を優先・3/3・10秒確認",
+        "family": "価格と板の合意を優先",
+        "description": "P02とD016またはD056の方向が一致すれば採り、成立しなければF32へ切り替える。反対の基礎があれば中立に戻す。",
+        "params": {
+          "mode": "price_and_flow",
+          "window_multipliers": [
+            0.8,
+            1.0,
+            1.2
+          ],
+          "required_fraction": 1.0,
+          "confirmation_seconds": 10,
+          "clock_multiplier": 1.0,
+          "peer_multiplier": 1.0
+        }
+      },
+      {
+        "id": "E040",
+        "name": "微価格方向の窓合意・3/3・30秒確認",
+        "family": "微価格方向の窓合意",
+        "description": "F32の120秒窓を3通りに分散し、反対票がなく必要票数が一致した方向だけを採る。",
+        "params": {
+          "mode": "F32",
+          "window_multipliers": [
+            0.8,
+            1.0,
+            1.2
+          ],
+          "required_fraction": 1.0,
+          "confirmation_seconds": 30,
+          "clock_multiplier": 1.0,
+          "peer_multiplier": 1.0
+        }
+      },
+      {
+        "id": "E041",
+        "name": "フローと価格の不一致の合意・3/3・30秒確認",
+        "family": "フローと価格の不一致の合意",
+        "description": "両市場の板フローと価格応答が逆向きになるD016を、窓と相手遅延の9通りで確認する。",
+        "params": {
+          "mode": "D016",
+          "window_multipliers": [
+            0.8,
+            1.0,
+            1.2
+          ],
+          "required_fraction": 1.0,
+          "confirmation_seconds": 30,
+          "clock_multiplier": 1.0,
+          "peer_multiplier": 1.0
+        }
+      },
+      {
+        "id": "E042",
+        "name": "蓄積フロー反転の合意・3/3・30秒確認",
+        "family": "蓄積フロー反転の合意",
+        "description": "長いフローに対して短いフローと価格が反転するD056を、窓と相手遅延の9通りで確認する。",
+        "params": {
+          "mode": "D056",
+          "window_multipliers": [
+            0.8,
+            1.0,
+            1.2
+          ],
+          "required_fraction": 1.0,
+          "confirmation_seconds": 30,
+          "clock_multiplier": 1.0,
+          "peer_multiplier": 1.0
+        }
+      },
+      {
+        "id": "E043",
+        "name": "価格の短期反転の合意・3/3・30秒確認",
+        "family": "価格の短期反転の合意",
+        "description": "両市場で長短の価格方向が逆になり短期方向が揃うP02を、窓と相手遅延の9通りで確認する。",
+        "params": {
+          "mode": "P02",
+          "window_multipliers": [
+            0.8,
+            1.0,
+            1.2
+          ],
+          "required_fraction": 1.0,
+          "confirmation_seconds": 30,
+          "clock_multiplier": 1.0,
+          "peer_multiplier": 1.0
+        }
+      },
+      {
+        "id": "E044",
+        "name": "4基礎のうち2基礎以上で合意・3/3・30秒確認",
+        "family": "4基礎のうち2基礎以上で合意",
+        "description": "4基礎のうち2つ以上が同方向になり、反対の基礎がない場合だけ採る。",
+        "params": {
+          "mode": "two_agree",
+          "window_multipliers": [
+            0.8,
+            1.0,
+            1.2
+          ],
+          "required_fraction": 1.0,
+          "confirmation_seconds": 30,
+          "clock_multiplier": 1.0,
+          "peer_multiplier": 1.0
+        }
+      },
+      {
+        "id": "E045",
+        "name": "価格不一致を優先し微価格へ切替・3/3・30秒確認",
+        "family": "価格不一致を優先し微価格へ切替",
+        "description": "D016が有効なら優先し、中立ならF32へ切り替える。他の基礎が反対なら中立に戻す。",
+        "params": {
+          "mode": "D016_first",
+          "window_multipliers": [
+            0.8,
+            1.0,
+            1.2
+          ],
+          "required_fraction": 1.0,
+          "confirmation_seconds": 30,
+          "clock_multiplier": 1.0,
+          "peer_multiplier": 1.0
+        }
+      },
+      {
+        "id": "E046",
+        "name": "フロー反転を優先し微価格へ切替・3/3・30秒確認",
+        "family": "フロー反転を優先し微価格へ切替",
+        "description": "D056が有効なら優先し、中立ならF32へ切り替える。他の基礎が反対なら中立に戻す。",
+        "params": {
+          "mode": "D056_first",
+          "window_multipliers": [
+            0.8,
+            1.0,
+            1.2
+          ],
+          "required_fraction": 1.0,
+          "confirmation_seconds": 30,
+          "clock_multiplier": 1.0,
+          "peer_multiplier": 1.0
+        }
+      },
+      {
+        "id": "E047",
+        "name": "価格と板の合意を優先・3/3・30秒確認",
+        "family": "価格と板の合意を優先",
+        "description": "P02とD016またはD056の方向が一致すれば採り、成立しなければF32へ切り替える。反対の基礎があれば中立に戻す。",
+        "params": {
+          "mode": "price_and_flow",
+          "window_multipliers": [
+            0.8,
+            1.0,
+            1.2
+          ],
+          "required_fraction": 1.0,
+          "confirmation_seconds": 30,
+          "clock_multiplier": 1.0,
+          "peer_multiplier": 1.0
+        }
+      },
+      {
+        "id": "E048",
+        "name": "微価格方向の窓合意・2/3・0秒確認",
+        "family": "微価格方向の窓合意",
+        "description": "F32の120秒窓を3通りに分散し、反対票がなく必要票数が一致した方向だけを採る。",
+        "params": {
+          "mode": "F32",
+          "window_multipliers": [
+            0.5,
+            1.0,
+            2.0
+          ],
+          "required_fraction": 0.6666666666666666,
+          "confirmation_seconds": 0,
+          "clock_multiplier": 1.0,
+          "peer_multiplier": 1.0
+        }
+      },
+      {
+        "id": "E049",
+        "name": "フローと価格の不一致の合意・2/3・0秒確認",
+        "family": "フローと価格の不一致の合意",
+        "description": "両市場の板フローと価格応答が逆向きになるD016を、窓と相手遅延の9通りで確認する。",
+        "params": {
+          "mode": "D016",
+          "window_multipliers": [
+            0.5,
+            1.0,
+            2.0
+          ],
+          "required_fraction": 0.6666666666666666,
+          "confirmation_seconds": 0,
+          "clock_multiplier": 1.0,
+          "peer_multiplier": 1.0
+        }
+      },
+      {
+        "id": "E050",
+        "name": "蓄積フロー反転の合意・2/3・0秒確認",
+        "family": "蓄積フロー反転の合意",
+        "description": "長いフローに対して短いフローと価格が反転するD056を、窓と相手遅延の9通りで確認する。",
+        "params": {
+          "mode": "D056",
+          "window_multipliers": [
+            0.5,
+            1.0,
+            2.0
+          ],
+          "required_fraction": 0.6666666666666666,
+          "confirmation_seconds": 0,
+          "clock_multiplier": 1.0,
+          "peer_multiplier": 1.0
+        }
+      },
+      {
+        "id": "E051",
+        "name": "価格の短期反転の合意・2/3・0秒確認",
+        "family": "価格の短期反転の合意",
+        "description": "両市場で長短の価格方向が逆になり短期方向が揃うP02を、窓と相手遅延の9通りで確認する。",
+        "params": {
+          "mode": "P02",
+          "window_multipliers": [
+            0.5,
+            1.0,
+            2.0
+          ],
+          "required_fraction": 0.6666666666666666,
+          "confirmation_seconds": 0,
+          "clock_multiplier": 1.0,
+          "peer_multiplier": 1.0
+        }
+      },
+      {
+        "id": "E052",
+        "name": "4基礎のうち2基礎以上で合意・2/3・0秒確認",
+        "family": "4基礎のうち2基礎以上で合意",
+        "description": "4基礎のうち2つ以上が同方向になり、反対の基礎がない場合だけ採る。",
+        "params": {
+          "mode": "two_agree",
+          "window_multipliers": [
+            0.5,
+            1.0,
+            2.0
+          ],
+          "required_fraction": 0.6666666666666666,
+          "confirmation_seconds": 0,
+          "clock_multiplier": 1.0,
+          "peer_multiplier": 1.0
+        }
+      },
+      {
+        "id": "E053",
+        "name": "価格不一致を優先し微価格へ切替・2/3・0秒確認",
+        "family": "価格不一致を優先し微価格へ切替",
+        "description": "D016が有効なら優先し、中立ならF32へ切り替える。他の基礎が反対なら中立に戻す。",
+        "params": {
+          "mode": "D016_first",
+          "window_multipliers": [
+            0.5,
+            1.0,
+            2.0
+          ],
+          "required_fraction": 0.6666666666666666,
+          "confirmation_seconds": 0,
+          "clock_multiplier": 1.0,
+          "peer_multiplier": 1.0
+        }
+      },
+      {
+        "id": "E054",
+        "name": "フロー反転を優先し微価格へ切替・2/3・0秒確認",
+        "family": "フロー反転を優先し微価格へ切替",
+        "description": "D056が有効なら優先し、中立ならF32へ切り替える。他の基礎が反対なら中立に戻す。",
+        "params": {
+          "mode": "D056_first",
+          "window_multipliers": [
+            0.5,
+            1.0,
+            2.0
+          ],
+          "required_fraction": 0.6666666666666666,
+          "confirmation_seconds": 0,
+          "clock_multiplier": 1.0,
+          "peer_multiplier": 1.0
+        }
+      },
+      {
+        "id": "E055",
+        "name": "価格と板の合意を優先・2/3・0秒確認",
+        "family": "価格と板の合意を優先",
+        "description": "P02とD016またはD056の方向が一致すれば採り、成立しなければF32へ切り替える。反対の基礎があれば中立に戻す。",
+        "params": {
+          "mode": "price_and_flow",
+          "window_multipliers": [
+            0.5,
+            1.0,
+            2.0
+          ],
+          "required_fraction": 0.6666666666666666,
+          "confirmation_seconds": 0,
+          "clock_multiplier": 1.0,
+          "peer_multiplier": 1.0
+        }
+      },
+      {
+        "id": "E056",
+        "name": "微価格方向の窓合意・2/3・10秒確認",
+        "family": "微価格方向の窓合意",
+        "description": "F32の120秒窓を3通りに分散し、反対票がなく必要票数が一致した方向だけを採る。",
+        "params": {
+          "mode": "F32",
+          "window_multipliers": [
+            0.5,
+            1.0,
+            2.0
+          ],
+          "required_fraction": 0.6666666666666666,
+          "confirmation_seconds": 10,
+          "clock_multiplier": 1.0,
+          "peer_multiplier": 1.0
+        }
+      },
+      {
+        "id": "E057",
+        "name": "フローと価格の不一致の合意・2/3・10秒確認",
+        "family": "フローと価格の不一致の合意",
+        "description": "両市場の板フローと価格応答が逆向きになるD016を、窓と相手遅延の9通りで確認する。",
+        "params": {
+          "mode": "D016",
+          "window_multipliers": [
+            0.5,
+            1.0,
+            2.0
+          ],
+          "required_fraction": 0.6666666666666666,
+          "confirmation_seconds": 10,
+          "clock_multiplier": 1.0,
+          "peer_multiplier": 1.0
+        }
+      },
+      {
+        "id": "E058",
+        "name": "蓄積フロー反転の合意・2/3・10秒確認",
+        "family": "蓄積フロー反転の合意",
+        "description": "長いフローに対して短いフローと価格が反転するD056を、窓と相手遅延の9通りで確認する。",
+        "params": {
+          "mode": "D056",
+          "window_multipliers": [
+            0.5,
+            1.0,
+            2.0
+          ],
+          "required_fraction": 0.6666666666666666,
+          "confirmation_seconds": 10,
+          "clock_multiplier": 1.0,
+          "peer_multiplier": 1.0
+        }
+      },
+      {
+        "id": "E059",
+        "name": "価格の短期反転の合意・2/3・10秒確認",
+        "family": "価格の短期反転の合意",
+        "description": "両市場で長短の価格方向が逆になり短期方向が揃うP02を、窓と相手遅延の9通りで確認する。",
+        "params": {
+          "mode": "P02",
+          "window_multipliers": [
+            0.5,
+            1.0,
+            2.0
+          ],
+          "required_fraction": 0.6666666666666666,
+          "confirmation_seconds": 10,
+          "clock_multiplier": 1.0,
+          "peer_multiplier": 1.0
+        }
+      },
+      {
+        "id": "E060",
+        "name": "4基礎のうち2基礎以上で合意・2/3・10秒確認",
+        "family": "4基礎のうち2基礎以上で合意",
+        "description": "4基礎のうち2つ以上が同方向になり、反対の基礎がない場合だけ採る。",
+        "params": {
+          "mode": "two_agree",
+          "window_multipliers": [
+            0.5,
+            1.0,
+            2.0
+          ],
+          "required_fraction": 0.6666666666666666,
+          "confirmation_seconds": 10,
+          "clock_multiplier": 1.0,
+          "peer_multiplier": 1.0
+        }
+      },
+      {
+        "id": "E061",
+        "name": "価格不一致を優先し微価格へ切替・2/3・10秒確認",
+        "family": "価格不一致を優先し微価格へ切替",
+        "description": "D016が有効なら優先し、中立ならF32へ切り替える。他の基礎が反対なら中立に戻す。",
+        "params": {
+          "mode": "D016_first",
+          "window_multipliers": [
+            0.5,
+            1.0,
+            2.0
+          ],
+          "required_fraction": 0.6666666666666666,
+          "confirmation_seconds": 10,
+          "clock_multiplier": 1.0,
+          "peer_multiplier": 1.0
+        }
+      },
+      {
+        "id": "E062",
+        "name": "フロー反転を優先し微価格へ切替・2/3・10秒確認",
+        "family": "フロー反転を優先し微価格へ切替",
+        "description": "D056が有効なら優先し、中立ならF32へ切り替える。他の基礎が反対なら中立に戻す。",
+        "params": {
+          "mode": "D056_first",
+          "window_multipliers": [
+            0.5,
+            1.0,
+            2.0
+          ],
+          "required_fraction": 0.6666666666666666,
+          "confirmation_seconds": 10,
+          "clock_multiplier": 1.0,
+          "peer_multiplier": 1.0
+        }
+      },
+      {
+        "id": "E063",
+        "name": "価格と板の合意を優先・2/3・10秒確認",
+        "family": "価格と板の合意を優先",
+        "description": "P02とD016またはD056の方向が一致すれば採り、成立しなければF32へ切り替える。反対の基礎があれば中立に戻す。",
+        "params": {
+          "mode": "price_and_flow",
+          "window_multipliers": [
+            0.5,
+            1.0,
+            2.0
+          ],
+          "required_fraction": 0.6666666666666666,
+          "confirmation_seconds": 10,
+          "clock_multiplier": 1.0,
+          "peer_multiplier": 1.0
+        }
+      },
+      {
+        "id": "E064",
+        "name": "微価格方向の窓合意・2/3・30秒確認",
+        "family": "微価格方向の窓合意",
+        "description": "F32の120秒窓を3通りに分散し、反対票がなく必要票数が一致した方向だけを採る。",
+        "params": {
+          "mode": "F32",
+          "window_multipliers": [
+            0.5,
+            1.0,
+            2.0
+          ],
+          "required_fraction": 0.6666666666666666,
+          "confirmation_seconds": 30,
+          "clock_multiplier": 1.0,
+          "peer_multiplier": 1.0
+        }
+      },
+      {
+        "id": "E065",
+        "name": "フローと価格の不一致の合意・2/3・30秒確認",
+        "family": "フローと価格の不一致の合意",
+        "description": "両市場の板フローと価格応答が逆向きになるD016を、窓と相手遅延の9通りで確認する。",
+        "params": {
+          "mode": "D016",
+          "window_multipliers": [
+            0.5,
+            1.0,
+            2.0
+          ],
+          "required_fraction": 0.6666666666666666,
+          "confirmation_seconds": 30,
+          "clock_multiplier": 1.0,
+          "peer_multiplier": 1.0
+        }
+      },
+      {
+        "id": "E066",
+        "name": "蓄積フロー反転の合意・2/3・30秒確認",
+        "family": "蓄積フロー反転の合意",
+        "description": "長いフローに対して短いフローと価格が反転するD056を、窓と相手遅延の9通りで確認する。",
+        "params": {
+          "mode": "D056",
+          "window_multipliers": [
+            0.5,
+            1.0,
+            2.0
+          ],
+          "required_fraction": 0.6666666666666666,
+          "confirmation_seconds": 30,
+          "clock_multiplier": 1.0,
+          "peer_multiplier": 1.0
+        }
+      },
+      {
+        "id": "E067",
+        "name": "価格の短期反転の合意・2/3・30秒確認",
+        "family": "価格の短期反転の合意",
+        "description": "両市場で長短の価格方向が逆になり短期方向が揃うP02を、窓と相手遅延の9通りで確認する。",
+        "params": {
+          "mode": "P02",
+          "window_multipliers": [
+            0.5,
+            1.0,
+            2.0
+          ],
+          "required_fraction": 0.6666666666666666,
+          "confirmation_seconds": 30,
+          "clock_multiplier": 1.0,
+          "peer_multiplier": 1.0
+        }
+      },
+      {
+        "id": "E068",
+        "name": "4基礎のうち2基礎以上で合意・2/3・30秒確認",
+        "family": "4基礎のうち2基礎以上で合意",
+        "description": "4基礎のうち2つ以上が同方向になり、反対の基礎がない場合だけ採る。",
+        "params": {
+          "mode": "two_agree",
+          "window_multipliers": [
+            0.5,
+            1.0,
+            2.0
+          ],
+          "required_fraction": 0.6666666666666666,
+          "confirmation_seconds": 30,
+          "clock_multiplier": 1.0,
+          "peer_multiplier": 1.0
+        }
+      },
+      {
+        "id": "E069",
+        "name": "価格不一致を優先し微価格へ切替・2/3・30秒確認",
+        "family": "価格不一致を優先し微価格へ切替",
+        "description": "D016が有効なら優先し、中立ならF32へ切り替える。他の基礎が反対なら中立に戻す。",
+        "params": {
+          "mode": "D016_first",
+          "window_multipliers": [
+            0.5,
+            1.0,
+            2.0
+          ],
+          "required_fraction": 0.6666666666666666,
+          "confirmation_seconds": 30,
+          "clock_multiplier": 1.0,
+          "peer_multiplier": 1.0
+        }
+      },
+      {
+        "id": "E070",
+        "name": "フロー反転を優先し微価格へ切替・2/3・30秒確認",
+        "family": "フロー反転を優先し微価格へ切替",
+        "description": "D056が有効なら優先し、中立ならF32へ切り替える。他の基礎が反対なら中立に戻す。",
+        "params": {
+          "mode": "D056_first",
+          "window_multipliers": [
+            0.5,
+            1.0,
+            2.0
+          ],
+          "required_fraction": 0.6666666666666666,
+          "confirmation_seconds": 30,
+          "clock_multiplier": 1.0,
+          "peer_multiplier": 1.0
+        }
+      },
+      {
+        "id": "E071",
+        "name": "価格と板の合意を優先・2/3・30秒確認",
+        "family": "価格と板の合意を優先",
+        "description": "P02とD016またはD056の方向が一致すれば採り、成立しなければF32へ切り替える。反対の基礎があれば中立に戻す。",
+        "params": {
+          "mode": "price_and_flow",
+          "window_multipliers": [
+            0.5,
+            1.0,
+            2.0
+          ],
+          "required_fraction": 0.6666666666666666,
+          "confirmation_seconds": 30,
+          "clock_multiplier": 1.0,
+          "peer_multiplier": 1.0
+        }
+      },
+      {
+        "id": "E072",
+        "name": "微価格方向の窓合意・3/3・0秒確認",
+        "family": "微価格方向の窓合意",
+        "description": "F32の120秒窓を3通りに分散し、反対票がなく必要票数が一致した方向だけを採る。",
+        "params": {
+          "mode": "F32",
+          "window_multipliers": [
+            0.5,
+            1.0,
+            2.0
+          ],
+          "required_fraction": 1.0,
+          "confirmation_seconds": 0,
+          "clock_multiplier": 1.0,
+          "peer_multiplier": 1.0
+        }
+      },
+      {
+        "id": "E073",
+        "name": "フローと価格の不一致の合意・3/3・0秒確認",
+        "family": "フローと価格の不一致の合意",
+        "description": "両市場の板フローと価格応答が逆向きになるD016を、窓と相手遅延の9通りで確認する。",
+        "params": {
+          "mode": "D016",
+          "window_multipliers": [
+            0.5,
+            1.0,
+            2.0
+          ],
+          "required_fraction": 1.0,
+          "confirmation_seconds": 0,
+          "clock_multiplier": 1.0,
+          "peer_multiplier": 1.0
+        }
+      },
+      {
+        "id": "E074",
+        "name": "蓄積フロー反転の合意・3/3・0秒確認",
+        "family": "蓄積フロー反転の合意",
+        "description": "長いフローに対して短いフローと価格が反転するD056を、窓と相手遅延の9通りで確認する。",
+        "params": {
+          "mode": "D056",
+          "window_multipliers": [
+            0.5,
+            1.0,
+            2.0
+          ],
+          "required_fraction": 1.0,
+          "confirmation_seconds": 0,
+          "clock_multiplier": 1.0,
+          "peer_multiplier": 1.0
+        }
+      },
+      {
+        "id": "E075",
+        "name": "価格の短期反転の合意・3/3・0秒確認",
+        "family": "価格の短期反転の合意",
+        "description": "両市場で長短の価格方向が逆になり短期方向が揃うP02を、窓と相手遅延の9通りで確認する。",
+        "params": {
+          "mode": "P02",
+          "window_multipliers": [
+            0.5,
+            1.0,
+            2.0
+          ],
+          "required_fraction": 1.0,
+          "confirmation_seconds": 0,
+          "clock_multiplier": 1.0,
+          "peer_multiplier": 1.0
+        }
+      },
+      {
+        "id": "E076",
+        "name": "4基礎のうち2基礎以上で合意・3/3・0秒確認",
+        "family": "4基礎のうち2基礎以上で合意",
+        "description": "4基礎のうち2つ以上が同方向になり、反対の基礎がない場合だけ採る。",
+        "params": {
+          "mode": "two_agree",
+          "window_multipliers": [
+            0.5,
+            1.0,
+            2.0
+          ],
+          "required_fraction": 1.0,
+          "confirmation_seconds": 0,
+          "clock_multiplier": 1.0,
+          "peer_multiplier": 1.0
+        }
+      },
+      {
+        "id": "E077",
+        "name": "価格不一致を優先し微価格へ切替・3/3・0秒確認",
+        "family": "価格不一致を優先し微価格へ切替",
+        "description": "D016が有効なら優先し、中立ならF32へ切り替える。他の基礎が反対なら中立に戻す。",
+        "params": {
+          "mode": "D016_first",
+          "window_multipliers": [
+            0.5,
+            1.0,
+            2.0
+          ],
+          "required_fraction": 1.0,
+          "confirmation_seconds": 0,
+          "clock_multiplier": 1.0,
+          "peer_multiplier": 1.0
+        }
+      },
+      {
+        "id": "E078",
+        "name": "フロー反転を優先し微価格へ切替・3/3・0秒確認",
+        "family": "フロー反転を優先し微価格へ切替",
+        "description": "D056が有効なら優先し、中立ならF32へ切り替える。他の基礎が反対なら中立に戻す。",
+        "params": {
+          "mode": "D056_first",
+          "window_multipliers": [
+            0.5,
+            1.0,
+            2.0
+          ],
+          "required_fraction": 1.0,
+          "confirmation_seconds": 0,
+          "clock_multiplier": 1.0,
+          "peer_multiplier": 1.0
+        }
+      },
+      {
+        "id": "E079",
+        "name": "価格と板の合意を優先・3/3・0秒確認",
+        "family": "価格と板の合意を優先",
+        "description": "P02とD016またはD056の方向が一致すれば採り、成立しなければF32へ切り替える。反対の基礎があれば中立に戻す。",
+        "params": {
+          "mode": "price_and_flow",
+          "window_multipliers": [
+            0.5,
+            1.0,
+            2.0
+          ],
+          "required_fraction": 1.0,
+          "confirmation_seconds": 0,
+          "clock_multiplier": 1.0,
+          "peer_multiplier": 1.0
+        }
+      },
+      {
+        "id": "E080",
+        "name": "微価格方向の窓合意・3/3・10秒確認",
+        "family": "微価格方向の窓合意",
+        "description": "F32の120秒窓を3通りに分散し、反対票がなく必要票数が一致した方向だけを採る。",
+        "params": {
+          "mode": "F32",
+          "window_multipliers": [
+            0.5,
+            1.0,
+            2.0
+          ],
+          "required_fraction": 1.0,
+          "confirmation_seconds": 10,
+          "clock_multiplier": 1.0,
+          "peer_multiplier": 1.0
+        }
+      },
+      {
+        "id": "E081",
+        "name": "フローと価格の不一致の合意・3/3・10秒確認",
+        "family": "フローと価格の不一致の合意",
+        "description": "両市場の板フローと価格応答が逆向きになるD016を、窓と相手遅延の9通りで確認する。",
+        "params": {
+          "mode": "D016",
+          "window_multipliers": [
+            0.5,
+            1.0,
+            2.0
+          ],
+          "required_fraction": 1.0,
+          "confirmation_seconds": 10,
+          "clock_multiplier": 1.0,
+          "peer_multiplier": 1.0
+        }
+      },
+      {
+        "id": "E082",
+        "name": "蓄積フロー反転の合意・3/3・10秒確認",
+        "family": "蓄積フロー反転の合意",
+        "description": "長いフローに対して短いフローと価格が反転するD056を、窓と相手遅延の9通りで確認する。",
+        "params": {
+          "mode": "D056",
+          "window_multipliers": [
+            0.5,
+            1.0,
+            2.0
+          ],
+          "required_fraction": 1.0,
+          "confirmation_seconds": 10,
+          "clock_multiplier": 1.0,
+          "peer_multiplier": 1.0
+        }
+      },
+      {
+        "id": "E083",
+        "name": "価格の短期反転の合意・3/3・10秒確認",
+        "family": "価格の短期反転の合意",
+        "description": "両市場で長短の価格方向が逆になり短期方向が揃うP02を、窓と相手遅延の9通りで確認する。",
+        "params": {
+          "mode": "P02",
+          "window_multipliers": [
+            0.5,
+            1.0,
+            2.0
+          ],
+          "required_fraction": 1.0,
+          "confirmation_seconds": 10,
+          "clock_multiplier": 1.0,
+          "peer_multiplier": 1.0
+        }
+      },
+      {
+        "id": "E084",
+        "name": "4基礎のうち2基礎以上で合意・3/3・10秒確認",
+        "family": "4基礎のうち2基礎以上で合意",
+        "description": "4基礎のうち2つ以上が同方向になり、反対の基礎がない場合だけ採る。",
+        "params": {
+          "mode": "two_agree",
+          "window_multipliers": [
+            0.5,
+            1.0,
+            2.0
+          ],
+          "required_fraction": 1.0,
+          "confirmation_seconds": 10,
+          "clock_multiplier": 1.0,
+          "peer_multiplier": 1.0
+        }
+      },
+      {
+        "id": "E085",
+        "name": "価格不一致を優先し微価格へ切替・3/3・10秒確認",
+        "family": "価格不一致を優先し微価格へ切替",
+        "description": "D016が有効なら優先し、中立ならF32へ切り替える。他の基礎が反対なら中立に戻す。",
+        "params": {
+          "mode": "D016_first",
+          "window_multipliers": [
+            0.5,
+            1.0,
+            2.0
+          ],
+          "required_fraction": 1.0,
+          "confirmation_seconds": 10,
+          "clock_multiplier": 1.0,
+          "peer_multiplier": 1.0
+        }
+      },
+      {
+        "id": "E086",
+        "name": "フロー反転を優先し微価格へ切替・3/3・10秒確認",
+        "family": "フロー反転を優先し微価格へ切替",
+        "description": "D056が有効なら優先し、中立ならF32へ切り替える。他の基礎が反対なら中立に戻す。",
+        "params": {
+          "mode": "D056_first",
+          "window_multipliers": [
+            0.5,
+            1.0,
+            2.0
+          ],
+          "required_fraction": 1.0,
+          "confirmation_seconds": 10,
+          "clock_multiplier": 1.0,
+          "peer_multiplier": 1.0
+        }
+      },
+      {
+        "id": "E087",
+        "name": "価格と板の合意を優先・3/3・10秒確認",
+        "family": "価格と板の合意を優先",
+        "description": "P02とD016またはD056の方向が一致すれば採り、成立しなければF32へ切り替える。反対の基礎があれば中立に戻す。",
+        "params": {
+          "mode": "price_and_flow",
+          "window_multipliers": [
+            0.5,
+            1.0,
+            2.0
+          ],
+          "required_fraction": 1.0,
+          "confirmation_seconds": 10,
+          "clock_multiplier": 1.0,
+          "peer_multiplier": 1.0
+        }
+      },
+      {
+        "id": "E088",
+        "name": "微価格方向の窓合意・3/3・30秒確認",
+        "family": "微価格方向の窓合意",
+        "description": "F32の120秒窓を3通りに分散し、反対票がなく必要票数が一致した方向だけを採る。",
+        "params": {
+          "mode": "F32",
+          "window_multipliers": [
+            0.5,
+            1.0,
+            2.0
+          ],
+          "required_fraction": 1.0,
+          "confirmation_seconds": 30,
+          "clock_multiplier": 1.0,
+          "peer_multiplier": 1.0
+        }
+      },
+      {
+        "id": "E089",
+        "name": "フローと価格の不一致の合意・3/3・30秒確認",
+        "family": "フローと価格の不一致の合意",
+        "description": "両市場の板フローと価格応答が逆向きになるD016を、窓と相手遅延の9通りで確認する。",
+        "params": {
+          "mode": "D016",
+          "window_multipliers": [
+            0.5,
+            1.0,
+            2.0
+          ],
+          "required_fraction": 1.0,
+          "confirmation_seconds": 30,
+          "clock_multiplier": 1.0,
+          "peer_multiplier": 1.0
+        }
+      },
+      {
+        "id": "E090",
+        "name": "蓄積フロー反転の合意・3/3・30秒確認",
+        "family": "蓄積フロー反転の合意",
+        "description": "長いフローに対して短いフローと価格が反転するD056を、窓と相手遅延の9通りで確認する。",
+        "params": {
+          "mode": "D056",
+          "window_multipliers": [
+            0.5,
+            1.0,
+            2.0
+          ],
+          "required_fraction": 1.0,
+          "confirmation_seconds": 30,
+          "clock_multiplier": 1.0,
+          "peer_multiplier": 1.0
+        }
+      },
+      {
+        "id": "E091",
+        "name": "価格の短期反転の合意・3/3・30秒確認",
+        "family": "価格の短期反転の合意",
+        "description": "両市場で長短の価格方向が逆になり短期方向が揃うP02を、窓と相手遅延の9通りで確認する。",
+        "params": {
+          "mode": "P02",
+          "window_multipliers": [
+            0.5,
+            1.0,
+            2.0
+          ],
+          "required_fraction": 1.0,
+          "confirmation_seconds": 30,
+          "clock_multiplier": 1.0,
+          "peer_multiplier": 1.0
+        }
+      },
+      {
+        "id": "E092",
+        "name": "4基礎のうち2基礎以上で合意・3/3・30秒確認",
+        "family": "4基礎のうち2基礎以上で合意",
+        "description": "4基礎のうち2つ以上が同方向になり、反対の基礎がない場合だけ採る。",
+        "params": {
+          "mode": "two_agree",
+          "window_multipliers": [
+            0.5,
+            1.0,
+            2.0
+          ],
+          "required_fraction": 1.0,
+          "confirmation_seconds": 30,
+          "clock_multiplier": 1.0,
+          "peer_multiplier": 1.0
+        }
+      },
+      {
+        "id": "E093",
+        "name": "価格不一致を優先し微価格へ切替・3/3・30秒確認",
+        "family": "価格不一致を優先し微価格へ切替",
+        "description": "D016が有効なら優先し、中立ならF32へ切り替える。他の基礎が反対なら中立に戻す。",
+        "params": {
+          "mode": "D016_first",
+          "window_multipliers": [
+            0.5,
+            1.0,
+            2.0
+          ],
+          "required_fraction": 1.0,
+          "confirmation_seconds": 30,
+          "clock_multiplier": 1.0,
+          "peer_multiplier": 1.0
+        }
+      },
+      {
+        "id": "E094",
+        "name": "フロー反転を優先し微価格へ切替・3/3・30秒確認",
+        "family": "フロー反転を優先し微価格へ切替",
+        "description": "D056が有効なら優先し、中立ならF32へ切り替える。他の基礎が反対なら中立に戻す。",
+        "params": {
+          "mode": "D056_first",
+          "window_multipliers": [
+            0.5,
+            1.0,
+            2.0
+          ],
+          "required_fraction": 1.0,
+          "confirmation_seconds": 30,
+          "clock_multiplier": 1.0,
+          "peer_multiplier": 1.0
+        }
+      },
+      {
+        "id": "E095",
+        "name": "価格と板の合意を優先・3/3・30秒確認",
+        "family": "価格と板の合意を優先",
+        "description": "P02とD016またはD056の方向が一致すれば採り、成立しなければF32へ切り替える。反対の基礎があれば中立に戻す。",
+        "params": {
+          "mode": "price_and_flow",
+          "window_multipliers": [
+            0.5,
+            1.0,
+            2.0
+          ],
+          "required_fraction": 1.0,
+          "confirmation_seconds": 30,
+          "clock_multiplier": 1.0,
+          "peer_multiplier": 1.0
+        }
+      }
+    ],
+    "窓集合": [
+      [
+        0.8,
+        1.0,
+        1.2
+      ],
+      [
+        0.5,
+        1.0,
+        2.0
+      ]
+    ],
+    "F32": "元120秒の集計窓×3倍率。元の微価格閾値0.06、価格進行確認、開始20分を維持。相手市場なし。",
+    "D016": "元60秒の板集計窓×3倍率、相手60秒追加遅延×3倍率を独立に組み合わせる9票。OFI閾値0.03、逆向き価格閾値0.03ATR、OFI方向の60秒進行上限0.35ATRは固定。",
+    "D056": "元60秒の板集計窓×3倍率、相手60秒追加遅延×3倍率の9票。過去フローは集計窓の3倍、比較時点も集計窓だけ遅らせる。短いフローと価格が過去フローと逆で、相手が逆方向でなければ成立。",
+    "P02": "両市場で集計窓の価格符号と短い価格窓の符号が逆、かつ両市場の短い価格符号が一致。集計窓と相手遅延の9票。OFIや数量を入口・撤回へ使わず、価格だけで撤回する。板イベント由来の観測時刻は残る。",
+    "短期価格窓": "元30秒に集計窓と同じ倍率を掛ける。相手側も同じ集計窓・短期価格窓を使用する。",
+    "票の単位": "D016/D056/P02は、各変形の元の120秒保持・撤回を適用した後の方向を1票とする。F32は保持しない元方向が1票。全て同じ自市場原本seqへ後方展開する。",
+    "基礎合意": "F32は2/3または3/3、残りは6/9または9/9。反対票が1つでもあれば中立。中立票は賛成に数えない。",
+    "合成規則": [
+      {
+        "mode": "F32",
+        "name": "微価格方向の窓合意",
+        "rule": "F32の120秒窓を3通りに分散し、反対票がなく必要票数が一致した方向だけを採る。"
+      },
+      {
+        "mode": "D016",
+        "name": "フローと価格の不一致の合意",
+        "rule": "両市場の板フローと価格応答が逆向きになるD016を、窓と相手遅延の9通りで確認する。"
+      },
+      {
+        "mode": "D056",
+        "name": "蓄積フロー反転の合意",
+        "rule": "長いフローに対して短いフローと価格が反転するD056を、窓と相手遅延の9通りで確認する。"
+      },
+      {
+        "mode": "P02",
+        "name": "価格の短期反転の合意",
+        "rule": "両市場で長短の価格方向が逆になり短期方向が揃うP02を、窓と相手遅延の9通りで確認する。"
+      },
+      {
+        "mode": "two_agree",
+        "name": "4基礎のうち2基礎以上で合意",
+        "rule": "4基礎のうち2つ以上が同方向になり、反対の基礎がない場合だけ採る。"
+      },
+      {
+        "mode": "D016_first",
+        "name": "価格不一致を優先し微価格へ切替",
+        "rule": "D016が有効なら優先し、中立ならF32へ切り替える。他の基礎が反対なら中立に戻す。"
+      },
+      {
+        "mode": "D056_first",
+        "name": "フロー反転を優先し微価格へ切替",
+        "rule": "D056が有効なら優先し、中立ならF32へ切り替える。他の基礎が反対なら中立に戻す。"
+      },
+      {
+        "mode": "price_and_flow",
+        "name": "価格と板の合意を優先",
+        "rule": "P02とD016またはD056の方向が一致すれば採り、成立しなければF32へ切り替える。反対の基礎があれば中立に戻す。"
+      }
+    ],
+    "合成の反対基礎": "単独4方式では指定基礎以外を判断に使わない。複合4方式では4基礎のいずれかが採用方向の反対なら中立。優先元が中立なら固定した次候補へ移る。損益や事後の相場分類で切替先を変えない。",
+    "連続確認": "合成後の方向が同じまま0/10/30秒続いた時に有効化する。原本行数ではなくCurrentPriceTimeの経過秒を使う。同値時刻の行数では進まない。中立・逆向きで確認を再開始し、隣接原本時刻の間隔が120秒超でも再開始。",
+    "固定時間": "方向保持TTL120秒・特徴最大観測間隔120秒・開始20分待機は倍率を掛けない。連続確認は開始20分待機を適用した後に開始する。",
+    "丸め": "集計窓、短期価格窓、相手遅延はfloor(秒+0.5)で整数秒へ四捨五入し最低1秒。連続確認秒は数値のまま経過時間と比較する。",
+    "近傍反証": "clock_multiplier±20%は集計・短期価格・D056過去窓と参照差へ一律適用。peer_multiplier±20%は全相手遅延へ独立適用。confirmation_seconds±20%も記録。TTLや開始待機は不変。",
+    "重複": "全入力方向をSHA256で数える。構造上不使用（F32単独peer、0秒確認）と、有効な変形でも今回のデータで方向が不変になる場合を分けて記録する。",
+    "データ限界": "過去の既知期間のみ。CurrentPriceTimeは受信時刻ではなく、二市場の実到着順は復元できない。特徴素材は次の異時刻群の先頭で解放し、自銘柄seqと相手時刻＋遅延の後方参照を守る。",
+    "禁止": "原本とv25凍結コードの変更、現在API取得、新しい売買損益の計算・閲覧、過去損益を用いた切替。"
+  }
+}

@@ -1,0 +1,463 @@
+{
+  "全合格": true,
+  "要求方式数": 26,
+  "方式数": 26,
+  "口座数": 832,
+  "実施既存候補": [
+    "F50_NONE__E10",
+    "F50_NONE__E11"
+  ],
+  "準備許可検査数": 6242,
+  "初回直前許可検査数": 3914,
+  "基準全指紋一致口座数": 64,
+  "全口座金額枚数一致": true,
+  "全行注文時価別式一致": true,
+  "セッション内完済": true,
+  "全準備と初回直前が独立CSVゲートに一致": true,
+  "結果": [
+    {
+      "id": "F50_NONE__E10__G00",
+      "method": "F50_NONE__E10",
+      "gate": "G00",
+      "旧15": {
+        "TOPIX": 629000.0,
+        "NK225": 307000.0
+      },
+      "問題Night": {
+        "TOPIX": -8500.0,
+        "NK225": -64000.0
+      },
+      "全場取引あり": true
+    },
+    {
+      "id": "F50_NONE__E10__G01",
+      "method": "F50_NONE__E10",
+      "gate": "G01",
+      "旧15": {
+        "TOPIX": 573000.0,
+        "NK225": 314100.0
+      },
+      "問題Night": {
+        "TOPIX": -44500.0,
+        "NK225": -76500.0
+      },
+      "全場取引あり": true
+    },
+    {
+      "id": "F50_NONE__E10__G02",
+      "method": "F50_NONE__E10",
+      "gate": "G02",
+      "旧15": {
+        "TOPIX": 682500.0,
+        "NK225": 316400.0
+      },
+      "問題Night": {
+        "TOPIX": -30500.0,
+        "NK225": -97700.0
+      },
+      "全場取引あり": true
+    },
+    {
+      "id": "F50_NONE__E10__G03",
+      "method": "F50_NONE__E10",
+      "gate": "G03",
+      "旧15": {
+        "TOPIX": 604500.0,
+        "NK225": 317100.0
+      },
+      "問題Night": {
+        "TOPIX": -8500.0,
+        "NK225": -52000.0
+      },
+      "全場取引あり": true
+    },
+    {
+      "id": "F50_NONE__E10__G04",
+      "method": "F50_NONE__E10",
+      "gate": "G04",
+      "旧15": {
+        "TOPIX": 270000.0,
+        "NK225": 282800.0
+      },
+      "問題Night": {
+        "TOPIX": -17000.0,
+        "NK225": -80000.0
+      },
+      "全場取引あり": true
+    },
+    {
+      "id": "F50_NONE__E10__G05",
+      "method": "F50_NONE__E10",
+      "gate": "G05",
+      "旧15": {
+        "TOPIX": 573000.0,
+        "NK225": 206400.0
+      },
+      "問題Night": {
+        "TOPIX": -30500.0,
+        "NK225": -61700.0
+      },
+      "全場取引あり": true
+    },
+    {
+      "id": "F50_NONE__E10__G06",
+      "method": "F50_NONE__E10",
+      "gate": "G06",
+      "旧15": {
+        "TOPIX": 629500.0,
+        "NK225": 258200.0
+      },
+      "問題Night": {
+        "TOPIX": -8500.0,
+        "NK225": -51000.0
+      },
+      "全場取引あり": true
+    },
+    {
+      "id": "F50_NONE__E10__G07",
+      "method": "F50_NONE__E10",
+      "gate": "G07",
+      "旧15": {
+        "TOPIX": 240000.0,
+        "NK225": 190400.0
+      },
+      "問題Night": {
+        "TOPIX": -19500.0,
+        "NK225": -43500.0
+      },
+      "全場取引あり": true
+    },
+    {
+      "id": "F50_NONE__E10__G08",
+      "method": "F50_NONE__E10",
+      "gate": "G08",
+      "旧15": {
+        "TOPIX": 319500.0,
+        "NK225": 124600.0
+      },
+      "問題Night": {
+        "TOPIX": -58000.0,
+        "NK225": -49700.0
+      },
+      "全場取引あり": true
+    },
+    {
+      "id": "F50_NONE__E10__G09",
+      "method": "F50_NONE__E10",
+      "gate": "G09",
+      "旧15": {
+        "TOPIX": 586000.0,
+        "NK225": 137900.0
+      },
+      "問題Night": {
+        "TOPIX": -63000.0,
+        "NK225": -60700.0
+      },
+      "全場取引あり": true
+    },
+    {
+      "id": "F50_NONE__E10__G10",
+      "method": "F50_NONE__E10",
+      "gate": "G10",
+      "旧15": {
+        "TOPIX": 520000.0,
+        "NK225": 256300.0
+      },
+      "問題Night": {
+        "TOPIX": -8500.0,
+        "NK225": -49500.0
+      },
+      "全場取引あり": true
+    },
+    {
+      "id": "F50_NONE__E10__G11",
+      "method": "F50_NONE__E10",
+      "gate": "G11",
+      "旧15": {
+        "TOPIX": 522500.0,
+        "NK225": 279100.0
+      },
+      "問題Night": {
+        "TOPIX": -8500.0,
+        "NK225": -39000.0
+      },
+      "全場取引あり": true
+    },
+    {
+      "id": "F50_NONE__E10__G12",
+      "method": "F50_NONE__E10",
+      "gate": "G12",
+      "旧15": {
+        "TOPIX": 471500.0,
+        "NK225": 214700.0
+      },
+      "問題Night": {
+        "TOPIX": -8500.0,
+        "NK225": -26000.0
+      },
+      "全場取引あり": true
+    },
+    {
+      "id": "F50_NONE__E11__G00",
+      "method": "F50_NONE__E11",
+      "gate": "G00",
+      "旧15": {
+        "TOPIX": 675500.0,
+        "NK225": 305200.0
+      },
+      "問題Night": {
+        "TOPIX": -34000.0,
+        "NK225": -68000.0
+      },
+      "全場取引あり": true
+    },
+    {
+      "id": "F50_NONE__E11__G01",
+      "method": "F50_NONE__E11",
+      "gate": "G01",
+      "旧15": {
+        "TOPIX": 626500.0,
+        "NK225": 311600.0
+      },
+      "問題Night": {
+        "TOPIX": -70000.0,
+        "NK225": -80500.0
+      },
+      "全場取引あり": true
+    },
+    {
+      "id": "F50_NONE__E11__G02",
+      "method": "F50_NONE__E11",
+      "gate": "G02",
+      "旧15": {
+        "TOPIX": 742500.0,
+        "NK225": 321200.0
+      },
+      "問題Night": {
+        "TOPIX": -56000.0,
+        "NK225": -95600.0
+      },
+      "全場取引あり": true
+    },
+    {
+      "id": "F50_NONE__E11__G03",
+      "method": "F50_NONE__E11",
+      "gate": "G03",
+      "旧15": {
+        "TOPIX": 638000.0,
+        "NK225": 321600.0
+      },
+      "問題Night": {
+        "TOPIX": -34000.0,
+        "NK225": -56000.0
+      },
+      "全場取引あり": true
+    },
+    {
+      "id": "F50_NONE__E11__G04",
+      "method": "F50_NONE__E11",
+      "gate": "G04",
+      "旧15": {
+        "TOPIX": 295500.0,
+        "NK225": 291900.0
+      },
+      "問題Night": {
+        "TOPIX": -42500.0,
+        "NK225": -76000.0
+      },
+      "全場取引あり": true
+    },
+    {
+      "id": "F50_NONE__E11__G05",
+      "method": "F50_NONE__E11",
+      "gate": "G05",
+      "旧15": {
+        "TOPIX": 622000.0,
+        "NK225": 198600.0
+      },
+      "問題Night": {
+        "TOPIX": -56000.0,
+        "NK225": -59600.0
+      },
+      "全場取引あり": true
+    },
+    {
+      "id": "F50_NONE__E11__G06",
+      "method": "F50_NONE__E11",
+      "gate": "G06",
+      "旧15": {
+        "TOPIX": 653000.0,
+        "NK225": 262800.0
+      },
+      "問題Night": {
+        "TOPIX": -34000.0,
+        "NK225": -55000.0
+      },
+      "全場取引あり": true
+    },
+    {
+      "id": "F50_NONE__E11__G07",
+      "method": "F50_NONE__E11",
+      "gate": "G07",
+      "旧15": {
+        "TOPIX": 236500.0,
+        "NK225": 177400.0
+      },
+      "問題Night": {
+        "TOPIX": -45000.0,
+        "NK225": -39500.0
+      },
+      "全場取引あり": true
+    },
+    {
+      "id": "F50_NONE__E11__G08",
+      "method": "F50_NONE__E11",
+      "gate": "G08",
+      "旧15": {
+        "TOPIX": 338000.0,
+        "NK225": 124400.0
+      },
+      "問題Night": {
+        "TOPIX": -83500.0,
+        "NK225": -47600.0
+      },
+      "全場取引あり": true
+    },
+    {
+      "id": "F50_NONE__E11__G09",
+      "method": "F50_NONE__E11",
+      "gate": "G09",
+      "旧15": {
+        "TOPIX": 595500.0,
+        "NK225": 124100.0
+      },
+      "問題Night": {
+        "TOPIX": -88500.0,
+        "NK225": -58600.0
+      },
+      "全場取引あり": true
+    },
+    {
+      "id": "F50_NONE__E11__G10",
+      "method": "F50_NONE__E11",
+      "gate": "G10",
+      "旧15": {
+        "TOPIX": 552000.0,
+        "NK225": 264300.0
+      },
+      "問題Night": {
+        "TOPIX": -34000.0,
+        "NK225": -45500.0
+      },
+      "全場取引あり": true
+    },
+    {
+      "id": "F50_NONE__E11__G11",
+      "method": "F50_NONE__E11",
+      "gate": "G11",
+      "旧15": {
+        "TOPIX": 546000.0,
+        "NK225": 294200.0
+      },
+      "問題Night": {
+        "TOPIX": -34000.0,
+        "NK225": -43000.0
+      },
+      "全場取引あり": true
+    },
+    {
+      "id": "F50_NONE__E11__G12",
+      "method": "F50_NONE__E11",
+      "gate": "G12",
+      "旧15": {
+        "TOPIX": 510500.0,
+        "NK225": 221200.0
+      },
+      "問題Night": {
+        "TOPIX": -34000.0,
+        "NK225": -22000.0
+      },
+      "全場取引あり": true
+    }
+  ],
+  "出力SHA256": {
+    "work/wave_v49/gates/summaries/F50_NONE__E10__G00.json": "a27bd66f0c550dfb5c1880c3c4ab8b04d876f0a6529807d57f078e898339378f",
+    "work/wave_v49/gates/sessions/F50_NONE__E10__G00.json.gz": "af1d39416b2149d23cabcfac42065af48a1d6cc6836a41a2de79611626aa0cf2",
+    "work/wave_v49/gates/ledgers/F50_NONE__E10__G00.json.gz": "d10e6e662524cddcb9334cf29c74b0f4e1eda9f1e9e89488dc44f5114e0fa71e",
+    "work/wave_v49/gates/summaries/F50_NONE__E10__G01.json": "f6cca610fcad84a07f17fedf64a5a6ef134ab1682df8066b1d336416f986a26a",
+    "work/wave_v49/gates/sessions/F50_NONE__E10__G01.json.gz": "4c40be1d0b737c87af925e3f1a70492ca6992f789f115a7e204512c9888f0c09",
+    "work/wave_v49/gates/ledgers/F50_NONE__E10__G01.json.gz": "650a90be9d16d1ec6037018ca99398a75a27f765b0eaa02704f795391db1d2b0",
+    "work/wave_v49/gates/summaries/F50_NONE__E10__G02.json": "fff384d43774a6e2f7c68fb9925a3c48ba30e62c7e5c426f088e63ef6f186f4b",
+    "work/wave_v49/gates/sessions/F50_NONE__E10__G02.json.gz": "c016b2a24bcd62671ce4cbbf3134f1928ae21dc04fe67a43c6568bbc49701a41",
+    "work/wave_v49/gates/ledgers/F50_NONE__E10__G02.json.gz": "b5dab6cc97f8d6581c4e3c1ce1fc15d7989e2f542cfd549755165b1cfcd7f80a",
+    "work/wave_v49/gates/summaries/F50_NONE__E10__G03.json": "e90a13cd082389a3b4f93e5c29c2215addf18e1fddf84bd5a06ebd71109137b4",
+    "work/wave_v49/gates/sessions/F50_NONE__E10__G03.json.gz": "811d7bfa14e780ca1b15e25c28b7bf55c558690ec55a386b3447a33d224564a8",
+    "work/wave_v49/gates/ledgers/F50_NONE__E10__G03.json.gz": "042d573fd2b1ca46147478a2fe58bf6a8d277569f6f04c3880df3cc1f49f4f08",
+    "work/wave_v49/gates/summaries/F50_NONE__E10__G04.json": "abd41541c49535ceb33bcf55ba7dd46edc248acda0f7718ec8f645f26f454970",
+    "work/wave_v49/gates/sessions/F50_NONE__E10__G04.json.gz": "ac9d8b5b5bbe49c768a1b7e8c49ffede53d4fbd261524f9df2dd0a3c94fd7aba",
+    "work/wave_v49/gates/ledgers/F50_NONE__E10__G04.json.gz": "dad2199f610efa86688f202336ff85cc52462b3b00ba4f21f85d4fdb922bab8d",
+    "work/wave_v49/gates/summaries/F50_NONE__E10__G05.json": "46d31ce0ed58b9fdb72213f27d63bf4097e0d13b30ad5c6737b8f3ebae27e508",
+    "work/wave_v49/gates/sessions/F50_NONE__E10__G05.json.gz": "f605ea4ee442c51f981ee4ffa9c8c4b30385ea0989de07598178fcb26d9f21c7",
+    "work/wave_v49/gates/ledgers/F50_NONE__E10__G05.json.gz": "551a2058c729ae00c1d1a0659c27a35591e8413e2f831fbd20698106a250d750",
+    "work/wave_v49/gates/summaries/F50_NONE__E10__G06.json": "a9996f6a2ce5e1daf1c82bc134f55bdc39b74a1384666702f45953436f5ace51",
+    "work/wave_v49/gates/sessions/F50_NONE__E10__G06.json.gz": "0ca25270ff58e691b0f1cf13e416198ef54795afe242c6ba0ef17d9cb21bf791",
+    "work/wave_v49/gates/ledgers/F50_NONE__E10__G06.json.gz": "143cd09e9a8da6c75dbe5041ea8e482908f885aa512c46824e5bf58ef3a59020",
+    "work/wave_v49/gates/summaries/F50_NONE__E10__G07.json": "17899a8e501dd54a19aa7cb87a55ba1595f10c5922dec20541a7bb9ce5021f2f",
+    "work/wave_v49/gates/sessions/F50_NONE__E10__G07.json.gz": "ffa57da376520aed25952c8bafea909afb35de6502f13918ea32918a50185b26",
+    "work/wave_v49/gates/ledgers/F50_NONE__E10__G07.json.gz": "09960b813404869b63ae3ea0ca069a26cbbb8d94a29b9687f80b6be7cf272612",
+    "work/wave_v49/gates/summaries/F50_NONE__E10__G08.json": "3da762820fcf9404ce38d72c9f709350c9ff57428ecd4c827dad3680f827b20b",
+    "work/wave_v49/gates/sessions/F50_NONE__E10__G08.json.gz": "7316a1540d149d258c803978c376193901234442b3d1c61c0b67471f6d438178",
+    "work/wave_v49/gates/ledgers/F50_NONE__E10__G08.json.gz": "842a4f404832a13e5de1e60435fe58d17c836c7683e956915adfa54199f9ebf5",
+    "work/wave_v49/gates/summaries/F50_NONE__E10__G09.json": "e9d604802f370578373f8fe6addb79bd3bad9bd27f78144c77d7f42a5d272892",
+    "work/wave_v49/gates/sessions/F50_NONE__E10__G09.json.gz": "937d39b9aea64546f7ca0a21888e0e799df9b9b6492acaed798906010aa27ec9",
+    "work/wave_v49/gates/ledgers/F50_NONE__E10__G09.json.gz": "88f695c11b6410b8205b7085420e3091d80e2546608252f859bf84997705201d",
+    "work/wave_v49/gates/summaries/F50_NONE__E10__G10.json": "95ee453ddaeb0c9c7eae36c7ca1305f5614f827255dc1da046e64037152120bc",
+    "work/wave_v49/gates/sessions/F50_NONE__E10__G10.json.gz": "c627ef5aefc9291e96dbdb9b38904fa9156a02ac3fddc58cf1e8a97ff3beafdb",
+    "work/wave_v49/gates/ledgers/F50_NONE__E10__G10.json.gz": "6f7406c0d40c18392a2a25125efd8ec5abed946a07698cfdff1fb13d7d2fa8dd",
+    "work/wave_v49/gates/summaries/F50_NONE__E10__G11.json": "861a6bf0a6c5f540043aa57b30a0555b77e51590bb22f7f26f3f0d7e50868c00",
+    "work/wave_v49/gates/sessions/F50_NONE__E10__G11.json.gz": "94b50324a760c36aaf1675cf8f2d0e2d39f8302ad3b1e1690385fc3738697901",
+    "work/wave_v49/gates/ledgers/F50_NONE__E10__G11.json.gz": "1db5177ef12c046fe783562d2af3e24ce1e6ecdaf2f33dd5062490fdd980fea8",
+    "work/wave_v49/gates/summaries/F50_NONE__E10__G12.json": "303900bac6c42eea7e6eb03a4fe8bb87142d8a55a788ec81d250a00f7c8bfedd",
+    "work/wave_v49/gates/sessions/F50_NONE__E10__G12.json.gz": "b38ee01188615ccc526d77c1f153e0da82f998df8e4062b98eb154f07eb044e8",
+    "work/wave_v49/gates/ledgers/F50_NONE__E10__G12.json.gz": "cae0311d05541a35b36a6eff86926f784e4c1860b6d889ec7095ce51c33c5071",
+    "work/wave_v49/gates/summaries/F50_NONE__E11__G00.json": "27d6fb4556a6db88d43443da02e5121298d78f93ab662216a53b4babad3c58ad",
+    "work/wave_v49/gates/sessions/F50_NONE__E11__G00.json.gz": "52e4f949260bf60447a6410d62d347ebf09f355f90d8995b80b3f967939bd8f6",
+    "work/wave_v49/gates/ledgers/F50_NONE__E11__G00.json.gz": "735dae3241c659cc78f8295996f1c703478000814356325f76efa60adbbff6eb",
+    "work/wave_v49/gates/summaries/F50_NONE__E11__G01.json": "d661b1fa1b15a220c8ebd2d7e07ea350f740f2554f81937f97e15ae703b17438",
+    "work/wave_v49/gates/sessions/F50_NONE__E11__G01.json.gz": "87b2280ec146a29b726fab7fa157c05e00175de85d8ee13d82d40c154e792543",
+    "work/wave_v49/gates/ledgers/F50_NONE__E11__G01.json.gz": "af393f8f54f3bdf8ade8e2a3b7b2290275b9b35875f45383a091be150777ce53",
+    "work/wave_v49/gates/summaries/F50_NONE__E11__G02.json": "88e283c7569d2c69b36180c3bdf8dc0707d4369fefca59ea177425dc5c9229ca",
+    "work/wave_v49/gates/sessions/F50_NONE__E11__G02.json.gz": "bd3ec997d19969edc42821356f4f1069259fb3c6d9f51034596b5416daa94029",
+    "work/wave_v49/gates/ledgers/F50_NONE__E11__G02.json.gz": "210e90813c1ff6c42bb47782d4f3d49184ab954a408111330085a5d6ddae4a4e",
+    "work/wave_v49/gates/summaries/F50_NONE__E11__G03.json": "472ea5cde5f04318cfc4f53fbc6f0f195efefdf24f7bf9d1c7bcb534c3c0e501",
+    "work/wave_v49/gates/sessions/F50_NONE__E11__G03.json.gz": "9cf63cbc9bf04d9082a4b0aafd39a13fe58a5de366733a6c1de38dc18b3bb652",
+    "work/wave_v49/gates/ledgers/F50_NONE__E11__G03.json.gz": "6ed42c1e1af4cf4073ade05b24df345266e0649601b3b8a4db43000467b591a2",
+    "work/wave_v49/gates/summaries/F50_NONE__E11__G04.json": "d5d8f9c6ce21dca5292e2eb47fcbd098acf4f6e3c386b4328198f998e2fef3be",
+    "work/wave_v49/gates/sessions/F50_NONE__E11__G04.json.gz": "fdfb759a0014a81fdc299dd9727efcf3a4836265e7716f37c48bda84bf4144f7",
+    "work/wave_v49/gates/ledgers/F50_NONE__E11__G04.json.gz": "6d0a42bd08c737e3a760275b29d6a4888961b0df28732571524014e7d50cb637",
+    "work/wave_v49/gates/summaries/F50_NONE__E11__G05.json": "3fccc6d9f704da29efcb387ebc43a25bdf69029e15337b9e4e1e43ac6249e676",
+    "work/wave_v49/gates/sessions/F50_NONE__E11__G05.json.gz": "9277de4890da60c132e63128b01eaca2c67b6678ccd6e5a763295071d0d1d941",
+    "work/wave_v49/gates/ledgers/F50_NONE__E11__G05.json.gz": "ba66063d4e18822c40ce7aa6d10eb6b72b223d076529c2f175ddf42d89cc34e8",
+    "work/wave_v49/gates/summaries/F50_NONE__E11__G06.json": "0e7082e840a16f4ef0284503af500e8db952795cbb80f228abf27121ce942f11",
+    "work/wave_v49/gates/sessions/F50_NONE__E11__G06.json.gz": "2324b4831a02fa98c6fb87a514ac274a20011553d04295190059e8541c32281f",
+    "work/wave_v49/gates/ledgers/F50_NONE__E11__G06.json.gz": "0e748cf9d212e6bd35452772d534dbcacc5c999cf16eaa9938b5af779c517544",
+    "work/wave_v49/gates/summaries/F50_NONE__E11__G07.json": "0a0fe6588a165b8b22930cc8f9318ebd4a25c8a727123a8821bb365a09dbf94a",
+    "work/wave_v49/gates/sessions/F50_NONE__E11__G07.json.gz": "1469c378f8f489480c57c992cb104c8911cdd2c1d224fbf2a3550a0077209ae9",
+    "work/wave_v49/gates/ledgers/F50_NONE__E11__G07.json.gz": "c50a2a5e5f9f1e958f8bd15a50a6a4ffe42baeae03564ee6d38eaf49662f6724",
+    "work/wave_v49/gates/summaries/F50_NONE__E11__G08.json": "8154f00d2ddb0261ca41112cbb5b335c82983d34fdd393e5ef720ed372404146",
+    "work/wave_v49/gates/sessions/F50_NONE__E11__G08.json.gz": "f9f0f59e809132bd27ae18a85cfb961f9fa2ab3430483fb47b7491d71c641d2b",
+    "work/wave_v49/gates/ledgers/F50_NONE__E11__G08.json.gz": "ea06bd6016391fe5a6d24090459e2af1cc33f2dbb68de413d0ab297a4afc981e",
+    "work/wave_v49/gates/summaries/F50_NONE__E11__G09.json": "29056b5dbbce7214ceb7837f7bae6eed6bd0e82e99fb2f48ae6da6748b943f1b",
+    "work/wave_v49/gates/sessions/F50_NONE__E11__G09.json.gz": "717315fba9d1ec1714845228e6f3b4a1d6822c7335708eb87c52000e00251bdf",
+    "work/wave_v49/gates/ledgers/F50_NONE__E11__G09.json.gz": "932e9b19233c5853721af062679d4501438a59fc9892196682c726c3b97cc1b4",
+    "work/wave_v49/gates/summaries/F50_NONE__E11__G10.json": "6719f5e4cf9c7f0f5b3449dc7332176a1569b7928a01e25f85525e4860fefc70",
+    "work/wave_v49/gates/sessions/F50_NONE__E11__G10.json.gz": "992278f9620092ef21b5057eb5f8555d319f72a1b7b057bd027563ec8cc54259",
+    "work/wave_v49/gates/ledgers/F50_NONE__E11__G10.json.gz": "819fc15975cebe640af99f21a83167ed0e5a640738ddbff4ab321925823effab",
+    "work/wave_v49/gates/summaries/F50_NONE__E11__G11.json": "826317532acc84cb4ef46fe8a79d4ea64aabef770c7d4075dff447763cec2570",
+    "work/wave_v49/gates/sessions/F50_NONE__E11__G11.json.gz": "282bdd0c3d831299d41d6f0439933f775bc7fc4e5afcf77bc969efe798c687bd",
+    "work/wave_v49/gates/ledgers/F50_NONE__E11__G11.json.gz": "ae7d7ac61ec29815683779b8c98315251ccd95a5ee91b86d94afa9cac67c3f1b",
+    "work/wave_v49/gates/summaries/F50_NONE__E11__G12.json": "84bc107340caf09263f3607506f44ebee26ccb877f6abe9c19f44b987f2c9390",
+    "work/wave_v49/gates/sessions/F50_NONE__E11__G12.json.gz": "82391f592c809266f2b49b35806099a4eb783240086098cfac25e02515b36412",
+    "work/wave_v49/gates/ledgers/F50_NONE__E11__G12.json.gz": "0a8f2ce594eb5a436e159305d0ff492a46459d5a7f41b1ecacf21486836641a1"
+  }
+}

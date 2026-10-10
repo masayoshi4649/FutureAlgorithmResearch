@@ -1,0 +1,1833 @@
+{
+  "修正": "毎分境界ちょうどで入力が終わる場合を含めるため np.arange 終端を nextafter で1ULP進める",
+  "数値条件変更": false,
+  "固定仕様とcatalog一致": true,
+  "実データ全長方向比較数": 260,
+  "全長方向一致": true,
+  "選択履歴件数": 132330,
+  "全長選択履歴一致": true,
+  "修正後SHA256": "48b6e7241a12f2fe9c045b555e7dfd95bd23c0f21391af8f920912faa09d10a2",
+  "秒数": 3.9261152744293213,
+  "比較": [
+    {
+      "selector": "X00",
+      "session": "2026-09-21_Day",
+      "symbol": "NK225",
+      "rows": 56290,
+      "同一": true
+    },
+    {
+      "selector": "X00",
+      "session": "2026-09-21_Day",
+      "symbol": "TOPIX",
+      "rows": 48523,
+      "同一": true
+    },
+    {
+      "selector": "X00",
+      "session": "2026-09-21_Night",
+      "symbol": "NK225",
+      "rows": 81260,
+      "同一": true
+    },
+    {
+      "selector": "X00",
+      "session": "2026-09-21_Night",
+      "symbol": "TOPIX",
+      "rows": 83382,
+      "同一": true
+    },
+    {
+      "selector": "X00",
+      "session": "2026-09-22_Day",
+      "symbol": "NK225",
+      "rows": 66851,
+      "同一": true
+    },
+    {
+      "selector": "X00",
+      "session": "2026-09-22_Day",
+      "symbol": "TOPIX",
+      "rows": 55761,
+      "同一": true
+    },
+    {
+      "selector": "X00",
+      "session": "2026-09-22_Night",
+      "symbol": "NK225",
+      "rows": 120649,
+      "同一": true
+    },
+    {
+      "selector": "X00",
+      "session": "2026-09-22_Night",
+      "symbol": "TOPIX",
+      "rows": 120829,
+      "同一": true
+    },
+    {
+      "selector": "X00",
+      "session": "2026-09-23_Day",
+      "symbol": "NK225",
+      "rows": 53887,
+      "同一": true
+    },
+    {
+      "selector": "X00",
+      "session": "2026-09-23_Day",
+      "symbol": "TOPIX",
+      "rows": 49476,
+      "同一": true
+    },
+    {
+      "selector": "X00",
+      "session": "2026-09-23_Night",
+      "symbol": "NK225",
+      "rows": 120392,
+      "同一": true
+    },
+    {
+      "selector": "X00",
+      "session": "2026-09-23_Night",
+      "symbol": "TOPIX",
+      "rows": 121254,
+      "同一": true
+    },
+    {
+      "selector": "X00",
+      "session": "2026-09-24_Day",
+      "symbol": "NK225",
+      "rows": 123433,
+      "同一": true
+    },
+    {
+      "selector": "X00",
+      "session": "2026-09-24_Day",
+      "symbol": "TOPIX",
+      "rows": 112983,
+      "同一": true
+    },
+    {
+      "selector": "X00",
+      "session": "2026-09-24_Night",
+      "symbol": "NK225",
+      "rows": 176569,
+      "同一": true
+    },
+    {
+      "selector": "X00",
+      "session": "2026-09-24_Night",
+      "symbol": "TOPIX",
+      "rows": 168155,
+      "同一": true
+    },
+    {
+      "selector": "X00",
+      "session": "2026-09-25_Day",
+      "symbol": "NK225",
+      "rows": 106773,
+      "同一": true
+    },
+    {
+      "selector": "X00",
+      "session": "2026-09-25_Day",
+      "symbol": "TOPIX",
+      "rows": 106522,
+      "同一": true
+    },
+    {
+      "selector": "X00",
+      "session": "2026-09-25_Night",
+      "symbol": "NK225",
+      "rows": 145548,
+      "同一": true
+    },
+    {
+      "selector": "X00",
+      "session": "2026-09-25_Night",
+      "symbol": "TOPIX",
+      "rows": 138165,
+      "同一": true
+    },
+    {
+      "selector": "X00",
+      "session": "2026-09-28_Day",
+      "symbol": "NK225",
+      "rows": 135222,
+      "同一": true
+    },
+    {
+      "selector": "X00",
+      "session": "2026-09-28_Day",
+      "symbol": "TOPIX",
+      "rows": 127525,
+      "同一": true
+    },
+    {
+      "selector": "X00",
+      "session": "2026-09-28_Night",
+      "symbol": "NK225",
+      "rows": 171595,
+      "同一": true
+    },
+    {
+      "selector": "X00",
+      "session": "2026-09-28_Night",
+      "symbol": "TOPIX",
+      "rows": 164200,
+      "同一": true
+    },
+    {
+      "selector": "X00",
+      "session": "2026-09-29_Day",
+      "symbol": "NK225",
+      "rows": 144052,
+      "同一": true
+    },
+    {
+      "selector": "X00",
+      "session": "2026-09-29_Day",
+      "symbol": "TOPIX",
+      "rows": 132549,
+      "同一": true
+    },
+    {
+      "selector": "X01",
+      "session": "2026-09-21_Day",
+      "symbol": "NK225",
+      "rows": 56290,
+      "同一": true
+    },
+    {
+      "selector": "X01",
+      "session": "2026-09-21_Day",
+      "symbol": "TOPIX",
+      "rows": 48523,
+      "同一": true
+    },
+    {
+      "selector": "X01",
+      "session": "2026-09-21_Night",
+      "symbol": "NK225",
+      "rows": 81260,
+      "同一": true
+    },
+    {
+      "selector": "X01",
+      "session": "2026-09-21_Night",
+      "symbol": "TOPIX",
+      "rows": 83382,
+      "同一": true
+    },
+    {
+      "selector": "X01",
+      "session": "2026-09-22_Day",
+      "symbol": "NK225",
+      "rows": 66851,
+      "同一": true
+    },
+    {
+      "selector": "X01",
+      "session": "2026-09-22_Day",
+      "symbol": "TOPIX",
+      "rows": 55761,
+      "同一": true
+    },
+    {
+      "selector": "X01",
+      "session": "2026-09-22_Night",
+      "symbol": "NK225",
+      "rows": 120649,
+      "同一": true
+    },
+    {
+      "selector": "X01",
+      "session": "2026-09-22_Night",
+      "symbol": "TOPIX",
+      "rows": 120829,
+      "同一": true
+    },
+    {
+      "selector": "X01",
+      "session": "2026-09-23_Day",
+      "symbol": "NK225",
+      "rows": 53887,
+      "同一": true
+    },
+    {
+      "selector": "X01",
+      "session": "2026-09-23_Day",
+      "symbol": "TOPIX",
+      "rows": 49476,
+      "同一": true
+    },
+    {
+      "selector": "X01",
+      "session": "2026-09-23_Night",
+      "symbol": "NK225",
+      "rows": 120392,
+      "同一": true
+    },
+    {
+      "selector": "X01",
+      "session": "2026-09-23_Night",
+      "symbol": "TOPIX",
+      "rows": 121254,
+      "同一": true
+    },
+    {
+      "selector": "X01",
+      "session": "2026-09-24_Day",
+      "symbol": "NK225",
+      "rows": 123433,
+      "同一": true
+    },
+    {
+      "selector": "X01",
+      "session": "2026-09-24_Day",
+      "symbol": "TOPIX",
+      "rows": 112983,
+      "同一": true
+    },
+    {
+      "selector": "X01",
+      "session": "2026-09-24_Night",
+      "symbol": "NK225",
+      "rows": 176569,
+      "同一": true
+    },
+    {
+      "selector": "X01",
+      "session": "2026-09-24_Night",
+      "symbol": "TOPIX",
+      "rows": 168155,
+      "同一": true
+    },
+    {
+      "selector": "X01",
+      "session": "2026-09-25_Day",
+      "symbol": "NK225",
+      "rows": 106773,
+      "同一": true
+    },
+    {
+      "selector": "X01",
+      "session": "2026-09-25_Day",
+      "symbol": "TOPIX",
+      "rows": 106522,
+      "同一": true
+    },
+    {
+      "selector": "X01",
+      "session": "2026-09-25_Night",
+      "symbol": "NK225",
+      "rows": 145548,
+      "同一": true
+    },
+    {
+      "selector": "X01",
+      "session": "2026-09-25_Night",
+      "symbol": "TOPIX",
+      "rows": 138165,
+      "同一": true
+    },
+    {
+      "selector": "X01",
+      "session": "2026-09-28_Day",
+      "symbol": "NK225",
+      "rows": 135222,
+      "同一": true
+    },
+    {
+      "selector": "X01",
+      "session": "2026-09-28_Day",
+      "symbol": "TOPIX",
+      "rows": 127525,
+      "同一": true
+    },
+    {
+      "selector": "X01",
+      "session": "2026-09-28_Night",
+      "symbol": "NK225",
+      "rows": 171595,
+      "同一": true
+    },
+    {
+      "selector": "X01",
+      "session": "2026-09-28_Night",
+      "symbol": "TOPIX",
+      "rows": 164200,
+      "同一": true
+    },
+    {
+      "selector": "X01",
+      "session": "2026-09-29_Day",
+      "symbol": "NK225",
+      "rows": 144052,
+      "同一": true
+    },
+    {
+      "selector": "X01",
+      "session": "2026-09-29_Day",
+      "symbol": "TOPIX",
+      "rows": 132549,
+      "同一": true
+    },
+    {
+      "selector": "X02",
+      "session": "2026-09-21_Day",
+      "symbol": "NK225",
+      "rows": 56290,
+      "同一": true
+    },
+    {
+      "selector": "X02",
+      "session": "2026-09-21_Day",
+      "symbol": "TOPIX",
+      "rows": 48523,
+      "同一": true
+    },
+    {
+      "selector": "X02",
+      "session": "2026-09-21_Night",
+      "symbol": "NK225",
+      "rows": 81260,
+      "同一": true
+    },
+    {
+      "selector": "X02",
+      "session": "2026-09-21_Night",
+      "symbol": "TOPIX",
+      "rows": 83382,
+      "同一": true
+    },
+    {
+      "selector": "X02",
+      "session": "2026-09-22_Day",
+      "symbol": "NK225",
+      "rows": 66851,
+      "同一": true
+    },
+    {
+      "selector": "X02",
+      "session": "2026-09-22_Day",
+      "symbol": "TOPIX",
+      "rows": 55761,
+      "同一": true
+    },
+    {
+      "selector": "X02",
+      "session": "2026-09-22_Night",
+      "symbol": "NK225",
+      "rows": 120649,
+      "同一": true
+    },
+    {
+      "selector": "X02",
+      "session": "2026-09-22_Night",
+      "symbol": "TOPIX",
+      "rows": 120829,
+      "同一": true
+    },
+    {
+      "selector": "X02",
+      "session": "2026-09-23_Day",
+      "symbol": "NK225",
+      "rows": 53887,
+      "同一": true
+    },
+    {
+      "selector": "X02",
+      "session": "2026-09-23_Day",
+      "symbol": "TOPIX",
+      "rows": 49476,
+      "同一": true
+    },
+    {
+      "selector": "X02",
+      "session": "2026-09-23_Night",
+      "symbol": "NK225",
+      "rows": 120392,
+      "同一": true
+    },
+    {
+      "selector": "X02",
+      "session": "2026-09-23_Night",
+      "symbol": "TOPIX",
+      "rows": 121254,
+      "同一": true
+    },
+    {
+      "selector": "X02",
+      "session": "2026-09-24_Day",
+      "symbol": "NK225",
+      "rows": 123433,
+      "同一": true
+    },
+    {
+      "selector": "X02",
+      "session": "2026-09-24_Day",
+      "symbol": "TOPIX",
+      "rows": 112983,
+      "同一": true
+    },
+    {
+      "selector": "X02",
+      "session": "2026-09-24_Night",
+      "symbol": "NK225",
+      "rows": 176569,
+      "同一": true
+    },
+    {
+      "selector": "X02",
+      "session": "2026-09-24_Night",
+      "symbol": "TOPIX",
+      "rows": 168155,
+      "同一": true
+    },
+    {
+      "selector": "X02",
+      "session": "2026-09-25_Day",
+      "symbol": "NK225",
+      "rows": 106773,
+      "同一": true
+    },
+    {
+      "selector": "X02",
+      "session": "2026-09-25_Day",
+      "symbol": "TOPIX",
+      "rows": 106522,
+      "同一": true
+    },
+    {
+      "selector": "X02",
+      "session": "2026-09-25_Night",
+      "symbol": "NK225",
+      "rows": 145548,
+      "同一": true
+    },
+    {
+      "selector": "X02",
+      "session": "2026-09-25_Night",
+      "symbol": "TOPIX",
+      "rows": 138165,
+      "同一": true
+    },
+    {
+      "selector": "X02",
+      "session": "2026-09-28_Day",
+      "symbol": "NK225",
+      "rows": 135222,
+      "同一": true
+    },
+    {
+      "selector": "X02",
+      "session": "2026-09-28_Day",
+      "symbol": "TOPIX",
+      "rows": 127525,
+      "同一": true
+    },
+    {
+      "selector": "X02",
+      "session": "2026-09-28_Night",
+      "symbol": "NK225",
+      "rows": 171595,
+      "同一": true
+    },
+    {
+      "selector": "X02",
+      "session": "2026-09-28_Night",
+      "symbol": "TOPIX",
+      "rows": 164200,
+      "同一": true
+    },
+    {
+      "selector": "X02",
+      "session": "2026-09-29_Day",
+      "symbol": "NK225",
+      "rows": 144052,
+      "同一": true
+    },
+    {
+      "selector": "X02",
+      "session": "2026-09-29_Day",
+      "symbol": "TOPIX",
+      "rows": 132549,
+      "同一": true
+    },
+    {
+      "selector": "X03",
+      "session": "2026-09-21_Day",
+      "symbol": "NK225",
+      "rows": 56290,
+      "同一": true
+    },
+    {
+      "selector": "X03",
+      "session": "2026-09-21_Day",
+      "symbol": "TOPIX",
+      "rows": 48523,
+      "同一": true
+    },
+    {
+      "selector": "X03",
+      "session": "2026-09-21_Night",
+      "symbol": "NK225",
+      "rows": 81260,
+      "同一": true
+    },
+    {
+      "selector": "X03",
+      "session": "2026-09-21_Night",
+      "symbol": "TOPIX",
+      "rows": 83382,
+      "同一": true
+    },
+    {
+      "selector": "X03",
+      "session": "2026-09-22_Day",
+      "symbol": "NK225",
+      "rows": 66851,
+      "同一": true
+    },
+    {
+      "selector": "X03",
+      "session": "2026-09-22_Day",
+      "symbol": "TOPIX",
+      "rows": 55761,
+      "同一": true
+    },
+    {
+      "selector": "X03",
+      "session": "2026-09-22_Night",
+      "symbol": "NK225",
+      "rows": 120649,
+      "同一": true
+    },
+    {
+      "selector": "X03",
+      "session": "2026-09-22_Night",
+      "symbol": "TOPIX",
+      "rows": 120829,
+      "同一": true
+    },
+    {
+      "selector": "X03",
+      "session": "2026-09-23_Day",
+      "symbol": "NK225",
+      "rows": 53887,
+      "同一": true
+    },
+    {
+      "selector": "X03",
+      "session": "2026-09-23_Day",
+      "symbol": "TOPIX",
+      "rows": 49476,
+      "同一": true
+    },
+    {
+      "selector": "X03",
+      "session": "2026-09-23_Night",
+      "symbol": "NK225",
+      "rows": 120392,
+      "同一": true
+    },
+    {
+      "selector": "X03",
+      "session": "2026-09-23_Night",
+      "symbol": "TOPIX",
+      "rows": 121254,
+      "同一": true
+    },
+    {
+      "selector": "X03",
+      "session": "2026-09-24_Day",
+      "symbol": "NK225",
+      "rows": 123433,
+      "同一": true
+    },
+    {
+      "selector": "X03",
+      "session": "2026-09-24_Day",
+      "symbol": "TOPIX",
+      "rows": 112983,
+      "同一": true
+    },
+    {
+      "selector": "X03",
+      "session": "2026-09-24_Night",
+      "symbol": "NK225",
+      "rows": 176569,
+      "同一": true
+    },
+    {
+      "selector": "X03",
+      "session": "2026-09-24_Night",
+      "symbol": "TOPIX",
+      "rows": 168155,
+      "同一": true
+    },
+    {
+      "selector": "X03",
+      "session": "2026-09-25_Day",
+      "symbol": "NK225",
+      "rows": 106773,
+      "同一": true
+    },
+    {
+      "selector": "X03",
+      "session": "2026-09-25_Day",
+      "symbol": "TOPIX",
+      "rows": 106522,
+      "同一": true
+    },
+    {
+      "selector": "X03",
+      "session": "2026-09-25_Night",
+      "symbol": "NK225",
+      "rows": 145548,
+      "同一": true
+    },
+    {
+      "selector": "X03",
+      "session": "2026-09-25_Night",
+      "symbol": "TOPIX",
+      "rows": 138165,
+      "同一": true
+    },
+    {
+      "selector": "X03",
+      "session": "2026-09-28_Day",
+      "symbol": "NK225",
+      "rows": 135222,
+      "同一": true
+    },
+    {
+      "selector": "X03",
+      "session": "2026-09-28_Day",
+      "symbol": "TOPIX",
+      "rows": 127525,
+      "同一": true
+    },
+    {
+      "selector": "X03",
+      "session": "2026-09-28_Night",
+      "symbol": "NK225",
+      "rows": 171595,
+      "同一": true
+    },
+    {
+      "selector": "X03",
+      "session": "2026-09-28_Night",
+      "symbol": "TOPIX",
+      "rows": 164200,
+      "同一": true
+    },
+    {
+      "selector": "X03",
+      "session": "2026-09-29_Day",
+      "symbol": "NK225",
+      "rows": 144052,
+      "同一": true
+    },
+    {
+      "selector": "X03",
+      "session": "2026-09-29_Day",
+      "symbol": "TOPIX",
+      "rows": 132549,
+      "同一": true
+    },
+    {
+      "selector": "X04",
+      "session": "2026-09-21_Day",
+      "symbol": "NK225",
+      "rows": 56290,
+      "同一": true
+    },
+    {
+      "selector": "X04",
+      "session": "2026-09-21_Day",
+      "symbol": "TOPIX",
+      "rows": 48523,
+      "同一": true
+    },
+    {
+      "selector": "X04",
+      "session": "2026-09-21_Night",
+      "symbol": "NK225",
+      "rows": 81260,
+      "同一": true
+    },
+    {
+      "selector": "X04",
+      "session": "2026-09-21_Night",
+      "symbol": "TOPIX",
+      "rows": 83382,
+      "同一": true
+    },
+    {
+      "selector": "X04",
+      "session": "2026-09-22_Day",
+      "symbol": "NK225",
+      "rows": 66851,
+      "同一": true
+    },
+    {
+      "selector": "X04",
+      "session": "2026-09-22_Day",
+      "symbol": "TOPIX",
+      "rows": 55761,
+      "同一": true
+    },
+    {
+      "selector": "X04",
+      "session": "2026-09-22_Night",
+      "symbol": "NK225",
+      "rows": 120649,
+      "同一": true
+    },
+    {
+      "selector": "X04",
+      "session": "2026-09-22_Night",
+      "symbol": "TOPIX",
+      "rows": 120829,
+      "同一": true
+    },
+    {
+      "selector": "X04",
+      "session": "2026-09-23_Day",
+      "symbol": "NK225",
+      "rows": 53887,
+      "同一": true
+    },
+    {
+      "selector": "X04",
+      "session": "2026-09-23_Day",
+      "symbol": "TOPIX",
+      "rows": 49476,
+      "同一": true
+    },
+    {
+      "selector": "X04",
+      "session": "2026-09-23_Night",
+      "symbol": "NK225",
+      "rows": 120392,
+      "同一": true
+    },
+    {
+      "selector": "X04",
+      "session": "2026-09-23_Night",
+      "symbol": "TOPIX",
+      "rows": 121254,
+      "同一": true
+    },
+    {
+      "selector": "X04",
+      "session": "2026-09-24_Day",
+      "symbol": "NK225",
+      "rows": 123433,
+      "同一": true
+    },
+    {
+      "selector": "X04",
+      "session": "2026-09-24_Day",
+      "symbol": "TOPIX",
+      "rows": 112983,
+      "同一": true
+    },
+    {
+      "selector": "X04",
+      "session": "2026-09-24_Night",
+      "symbol": "NK225",
+      "rows": 176569,
+      "同一": true
+    },
+    {
+      "selector": "X04",
+      "session": "2026-09-24_Night",
+      "symbol": "TOPIX",
+      "rows": 168155,
+      "同一": true
+    },
+    {
+      "selector": "X04",
+      "session": "2026-09-25_Day",
+      "symbol": "NK225",
+      "rows": 106773,
+      "同一": true
+    },
+    {
+      "selector": "X04",
+      "session": "2026-09-25_Day",
+      "symbol": "TOPIX",
+      "rows": 106522,
+      "同一": true
+    },
+    {
+      "selector": "X04",
+      "session": "2026-09-25_Night",
+      "symbol": "NK225",
+      "rows": 145548,
+      "同一": true
+    },
+    {
+      "selector": "X04",
+      "session": "2026-09-25_Night",
+      "symbol": "TOPIX",
+      "rows": 138165,
+      "同一": true
+    },
+    {
+      "selector": "X04",
+      "session": "2026-09-28_Day",
+      "symbol": "NK225",
+      "rows": 135222,
+      "同一": true
+    },
+    {
+      "selector": "X04",
+      "session": "2026-09-28_Day",
+      "symbol": "TOPIX",
+      "rows": 127525,
+      "同一": true
+    },
+    {
+      "selector": "X04",
+      "session": "2026-09-28_Night",
+      "symbol": "NK225",
+      "rows": 171595,
+      "同一": true
+    },
+    {
+      "selector": "X04",
+      "session": "2026-09-28_Night",
+      "symbol": "TOPIX",
+      "rows": 164200,
+      "同一": true
+    },
+    {
+      "selector": "X04",
+      "session": "2026-09-29_Day",
+      "symbol": "NK225",
+      "rows": 144052,
+      "同一": true
+    },
+    {
+      "selector": "X04",
+      "session": "2026-09-29_Day",
+      "symbol": "TOPIX",
+      "rows": 132549,
+      "同一": true
+    },
+    {
+      "selector": "X05",
+      "session": "2026-09-21_Day",
+      "symbol": "NK225",
+      "rows": 56290,
+      "同一": true
+    },
+    {
+      "selector": "X05",
+      "session": "2026-09-21_Day",
+      "symbol": "TOPIX",
+      "rows": 48523,
+      "同一": true
+    },
+    {
+      "selector": "X05",
+      "session": "2026-09-21_Night",
+      "symbol": "NK225",
+      "rows": 81260,
+      "同一": true
+    },
+    {
+      "selector": "X05",
+      "session": "2026-09-21_Night",
+      "symbol": "TOPIX",
+      "rows": 83382,
+      "同一": true
+    },
+    {
+      "selector": "X05",
+      "session": "2026-09-22_Day",
+      "symbol": "NK225",
+      "rows": 66851,
+      "同一": true
+    },
+    {
+      "selector": "X05",
+      "session": "2026-09-22_Day",
+      "symbol": "TOPIX",
+      "rows": 55761,
+      "同一": true
+    },
+    {
+      "selector": "X05",
+      "session": "2026-09-22_Night",
+      "symbol": "NK225",
+      "rows": 120649,
+      "同一": true
+    },
+    {
+      "selector": "X05",
+      "session": "2026-09-22_Night",
+      "symbol": "TOPIX",
+      "rows": 120829,
+      "同一": true
+    },
+    {
+      "selector": "X05",
+      "session": "2026-09-23_Day",
+      "symbol": "NK225",
+      "rows": 53887,
+      "同一": true
+    },
+    {
+      "selector": "X05",
+      "session": "2026-09-23_Day",
+      "symbol": "TOPIX",
+      "rows": 49476,
+      "同一": true
+    },
+    {
+      "selector": "X05",
+      "session": "2026-09-23_Night",
+      "symbol": "NK225",
+      "rows": 120392,
+      "同一": true
+    },
+    {
+      "selector": "X05",
+      "session": "2026-09-23_Night",
+      "symbol": "TOPIX",
+      "rows": 121254,
+      "同一": true
+    },
+    {
+      "selector": "X05",
+      "session": "2026-09-24_Day",
+      "symbol": "NK225",
+      "rows": 123433,
+      "同一": true
+    },
+    {
+      "selector": "X05",
+      "session": "2026-09-24_Day",
+      "symbol": "TOPIX",
+      "rows": 112983,
+      "同一": true
+    },
+    {
+      "selector": "X05",
+      "session": "2026-09-24_Night",
+      "symbol": "NK225",
+      "rows": 176569,
+      "同一": true
+    },
+    {
+      "selector": "X05",
+      "session": "2026-09-24_Night",
+      "symbol": "TOPIX",
+      "rows": 168155,
+      "同一": true
+    },
+    {
+      "selector": "X05",
+      "session": "2026-09-25_Day",
+      "symbol": "NK225",
+      "rows": 106773,
+      "同一": true
+    },
+    {
+      "selector": "X05",
+      "session": "2026-09-25_Day",
+      "symbol": "TOPIX",
+      "rows": 106522,
+      "同一": true
+    },
+    {
+      "selector": "X05",
+      "session": "2026-09-25_Night",
+      "symbol": "NK225",
+      "rows": 145548,
+      "同一": true
+    },
+    {
+      "selector": "X05",
+      "session": "2026-09-25_Night",
+      "symbol": "TOPIX",
+      "rows": 138165,
+      "同一": true
+    },
+    {
+      "selector": "X05",
+      "session": "2026-09-28_Day",
+      "symbol": "NK225",
+      "rows": 135222,
+      "同一": true
+    },
+    {
+      "selector": "X05",
+      "session": "2026-09-28_Day",
+      "symbol": "TOPIX",
+      "rows": 127525,
+      "同一": true
+    },
+    {
+      "selector": "X05",
+      "session": "2026-09-28_Night",
+      "symbol": "NK225",
+      "rows": 171595,
+      "同一": true
+    },
+    {
+      "selector": "X05",
+      "session": "2026-09-28_Night",
+      "symbol": "TOPIX",
+      "rows": 164200,
+      "同一": true
+    },
+    {
+      "selector": "X05",
+      "session": "2026-09-29_Day",
+      "symbol": "NK225",
+      "rows": 144052,
+      "同一": true
+    },
+    {
+      "selector": "X05",
+      "session": "2026-09-29_Day",
+      "symbol": "TOPIX",
+      "rows": 132549,
+      "同一": true
+    },
+    {
+      "selector": "X06",
+      "session": "2026-09-21_Day",
+      "symbol": "NK225",
+      "rows": 56290,
+      "同一": true
+    },
+    {
+      "selector": "X06",
+      "session": "2026-09-21_Day",
+      "symbol": "TOPIX",
+      "rows": 48523,
+      "同一": true
+    },
+    {
+      "selector": "X06",
+      "session": "2026-09-21_Night",
+      "symbol": "NK225",
+      "rows": 81260,
+      "同一": true
+    },
+    {
+      "selector": "X06",
+      "session": "2026-09-21_Night",
+      "symbol": "TOPIX",
+      "rows": 83382,
+      "同一": true
+    },
+    {
+      "selector": "X06",
+      "session": "2026-09-22_Day",
+      "symbol": "NK225",
+      "rows": 66851,
+      "同一": true
+    },
+    {
+      "selector": "X06",
+      "session": "2026-09-22_Day",
+      "symbol": "TOPIX",
+      "rows": 55761,
+      "同一": true
+    },
+    {
+      "selector": "X06",
+      "session": "2026-09-22_Night",
+      "symbol": "NK225",
+      "rows": 120649,
+      "同一": true
+    },
+    {
+      "selector": "X06",
+      "session": "2026-09-22_Night",
+      "symbol": "TOPIX",
+      "rows": 120829,
+      "同一": true
+    },
+    {
+      "selector": "X06",
+      "session": "2026-09-23_Day",
+      "symbol": "NK225",
+      "rows": 53887,
+      "同一": true
+    },
+    {
+      "selector": "X06",
+      "session": "2026-09-23_Day",
+      "symbol": "TOPIX",
+      "rows": 49476,
+      "同一": true
+    },
+    {
+      "selector": "X06",
+      "session": "2026-09-23_Night",
+      "symbol": "NK225",
+      "rows": 120392,
+      "同一": true
+    },
+    {
+      "selector": "X06",
+      "session": "2026-09-23_Night",
+      "symbol": "TOPIX",
+      "rows": 121254,
+      "同一": true
+    },
+    {
+      "selector": "X06",
+      "session": "2026-09-24_Day",
+      "symbol": "NK225",
+      "rows": 123433,
+      "同一": true
+    },
+    {
+      "selector": "X06",
+      "session": "2026-09-24_Day",
+      "symbol": "TOPIX",
+      "rows": 112983,
+      "同一": true
+    },
+    {
+      "selector": "X06",
+      "session": "2026-09-24_Night",
+      "symbol": "NK225",
+      "rows": 176569,
+      "同一": true
+    },
+    {
+      "selector": "X06",
+      "session": "2026-09-24_Night",
+      "symbol": "TOPIX",
+      "rows": 168155,
+      "同一": true
+    },
+    {
+      "selector": "X06",
+      "session": "2026-09-25_Day",
+      "symbol": "NK225",
+      "rows": 106773,
+      "同一": true
+    },
+    {
+      "selector": "X06",
+      "session": "2026-09-25_Day",
+      "symbol": "TOPIX",
+      "rows": 106522,
+      "同一": true
+    },
+    {
+      "selector": "X06",
+      "session": "2026-09-25_Night",
+      "symbol": "NK225",
+      "rows": 145548,
+      "同一": true
+    },
+    {
+      "selector": "X06",
+      "session": "2026-09-25_Night",
+      "symbol": "TOPIX",
+      "rows": 138165,
+      "同一": true
+    },
+    {
+      "selector": "X06",
+      "session": "2026-09-28_Day",
+      "symbol": "NK225",
+      "rows": 135222,
+      "同一": true
+    },
+    {
+      "selector": "X06",
+      "session": "2026-09-28_Day",
+      "symbol": "TOPIX",
+      "rows": 127525,
+      "同一": true
+    },
+    {
+      "selector": "X06",
+      "session": "2026-09-28_Night",
+      "symbol": "NK225",
+      "rows": 171595,
+      "同一": true
+    },
+    {
+      "selector": "X06",
+      "session": "2026-09-28_Night",
+      "symbol": "TOPIX",
+      "rows": 164200,
+      "同一": true
+    },
+    {
+      "selector": "X06",
+      "session": "2026-09-29_Day",
+      "symbol": "NK225",
+      "rows": 144052,
+      "同一": true
+    },
+    {
+      "selector": "X06",
+      "session": "2026-09-29_Day",
+      "symbol": "TOPIX",
+      "rows": 132549,
+      "同一": true
+    },
+    {
+      "selector": "X07",
+      "session": "2026-09-21_Day",
+      "symbol": "NK225",
+      "rows": 56290,
+      "同一": true
+    },
+    {
+      "selector": "X07",
+      "session": "2026-09-21_Day",
+      "symbol": "TOPIX",
+      "rows": 48523,
+      "同一": true
+    },
+    {
+      "selector": "X07",
+      "session": "2026-09-21_Night",
+      "symbol": "NK225",
+      "rows": 81260,
+      "同一": true
+    },
+    {
+      "selector": "X07",
+      "session": "2026-09-21_Night",
+      "symbol": "TOPIX",
+      "rows": 83382,
+      "同一": true
+    },
+    {
+      "selector": "X07",
+      "session": "2026-09-22_Day",
+      "symbol": "NK225",
+      "rows": 66851,
+      "同一": true
+    },
+    {
+      "selector": "X07",
+      "session": "2026-09-22_Day",
+      "symbol": "TOPIX",
+      "rows": 55761,
+      "同一": true
+    },
+    {
+      "selector": "X07",
+      "session": "2026-09-22_Night",
+      "symbol": "NK225",
+      "rows": 120649,
+      "同一": true
+    },
+    {
+      "selector": "X07",
+      "session": "2026-09-22_Night",
+      "symbol": "TOPIX",
+      "rows": 120829,
+      "同一": true
+    },
+    {
+      "selector": "X07",
+      "session": "2026-09-23_Day",
+      "symbol": "NK225",
+      "rows": 53887,
+      "同一": true
+    },
+    {
+      "selector": "X07",
+      "session": "2026-09-23_Day",
+      "symbol": "TOPIX",
+      "rows": 49476,
+      "同一": true
+    },
+    {
+      "selector": "X07",
+      "session": "2026-09-23_Night",
+      "symbol": "NK225",
+      "rows": 120392,
+      "同一": true
+    },
+    {
+      "selector": "X07",
+      "session": "2026-09-23_Night",
+      "symbol": "TOPIX",
+      "rows": 121254,
+      "同一": true
+    },
+    {
+      "selector": "X07",
+      "session": "2026-09-24_Day",
+      "symbol": "NK225",
+      "rows": 123433,
+      "同一": true
+    },
+    {
+      "selector": "X07",
+      "session": "2026-09-24_Day",
+      "symbol": "TOPIX",
+      "rows": 112983,
+      "同一": true
+    },
+    {
+      "selector": "X07",
+      "session": "2026-09-24_Night",
+      "symbol": "NK225",
+      "rows": 176569,
+      "同一": true
+    },
+    {
+      "selector": "X07",
+      "session": "2026-09-24_Night",
+      "symbol": "TOPIX",
+      "rows": 168155,
+      "同一": true
+    },
+    {
+      "selector": "X07",
+      "session": "2026-09-25_Day",
+      "symbol": "NK225",
+      "rows": 106773,
+      "同一": true
+    },
+    {
+      "selector": "X07",
+      "session": "2026-09-25_Day",
+      "symbol": "TOPIX",
+      "rows": 106522,
+      "同一": true
+    },
+    {
+      "selector": "X07",
+      "session": "2026-09-25_Night",
+      "symbol": "NK225",
+      "rows": 145548,
+      "同一": true
+    },
+    {
+      "selector": "X07",
+      "session": "2026-09-25_Night",
+      "symbol": "TOPIX",
+      "rows": 138165,
+      "同一": true
+    },
+    {
+      "selector": "X07",
+      "session": "2026-09-28_Day",
+      "symbol": "NK225",
+      "rows": 135222,
+      "同一": true
+    },
+    {
+      "selector": "X07",
+      "session": "2026-09-28_Day",
+      "symbol": "TOPIX",
+      "rows": 127525,
+      "同一": true
+    },
+    {
+      "selector": "X07",
+      "session": "2026-09-28_Night",
+      "symbol": "NK225",
+      "rows": 171595,
+      "同一": true
+    },
+    {
+      "selector": "X07",
+      "session": "2026-09-28_Night",
+      "symbol": "TOPIX",
+      "rows": 164200,
+      "同一": true
+    },
+    {
+      "selector": "X07",
+      "session": "2026-09-29_Day",
+      "symbol": "NK225",
+      "rows": 144052,
+      "同一": true
+    },
+    {
+      "selector": "X07",
+      "session": "2026-09-29_Day",
+      "symbol": "TOPIX",
+      "rows": 132549,
+      "同一": true
+    },
+    {
+      "selector": "X08",
+      "session": "2026-09-21_Day",
+      "symbol": "NK225",
+      "rows": 56290,
+      "同一": true
+    },
+    {
+      "selector": "X08",
+      "session": "2026-09-21_Day",
+      "symbol": "TOPIX",
+      "rows": 48523,
+      "同一": true
+    },
+    {
+      "selector": "X08",
+      "session": "2026-09-21_Night",
+      "symbol": "NK225",
+      "rows": 81260,
+      "同一": true
+    },
+    {
+      "selector": "X08",
+      "session": "2026-09-21_Night",
+      "symbol": "TOPIX",
+      "rows": 83382,
+      "同一": true
+    },
+    {
+      "selector": "X08",
+      "session": "2026-09-22_Day",
+      "symbol": "NK225",
+      "rows": 66851,
+      "同一": true
+    },
+    {
+      "selector": "X08",
+      "session": "2026-09-22_Day",
+      "symbol": "TOPIX",
+      "rows": 55761,
+      "同一": true
+    },
+    {
+      "selector": "X08",
+      "session": "2026-09-22_Night",
+      "symbol": "NK225",
+      "rows": 120649,
+      "同一": true
+    },
+    {
+      "selector": "X08",
+      "session": "2026-09-22_Night",
+      "symbol": "TOPIX",
+      "rows": 120829,
+      "同一": true
+    },
+    {
+      "selector": "X08",
+      "session": "2026-09-23_Day",
+      "symbol": "NK225",
+      "rows": 53887,
+      "同一": true
+    },
+    {
+      "selector": "X08",
+      "session": "2026-09-23_Day",
+      "symbol": "TOPIX",
+      "rows": 49476,
+      "同一": true
+    },
+    {
+      "selector": "X08",
+      "session": "2026-09-23_Night",
+      "symbol": "NK225",
+      "rows": 120392,
+      "同一": true
+    },
+    {
+      "selector": "X08",
+      "session": "2026-09-23_Night",
+      "symbol": "TOPIX",
+      "rows": 121254,
+      "同一": true
+    },
+    {
+      "selector": "X08",
+      "session": "2026-09-24_Day",
+      "symbol": "NK225",
+      "rows": 123433,
+      "同一": true
+    },
+    {
+      "selector": "X08",
+      "session": "2026-09-24_Day",
+      "symbol": "TOPIX",
+      "rows": 112983,
+      "同一": true
+    },
+    {
+      "selector": "X08",
+      "session": "2026-09-24_Night",
+      "symbol": "NK225",
+      "rows": 176569,
+      "同一": true
+    },
+    {
+      "selector": "X08",
+      "session": "2026-09-24_Night",
+      "symbol": "TOPIX",
+      "rows": 168155,
+      "同一": true
+    },
+    {
+      "selector": "X08",
+      "session": "2026-09-25_Day",
+      "symbol": "NK225",
+      "rows": 106773,
+      "同一": true
+    },
+    {
+      "selector": "X08",
+      "session": "2026-09-25_Day",
+      "symbol": "TOPIX",
+      "rows": 106522,
+      "同一": true
+    },
+    {
+      "selector": "X08",
+      "session": "2026-09-25_Night",
+      "symbol": "NK225",
+      "rows": 145548,
+      "同一": true
+    },
+    {
+      "selector": "X08",
+      "session": "2026-09-25_Night",
+      "symbol": "TOPIX",
+      "rows": 138165,
+      "同一": true
+    },
+    {
+      "selector": "X08",
+      "session": "2026-09-28_Day",
+      "symbol": "NK225",
+      "rows": 135222,
+      "同一": true
+    },
+    {
+      "selector": "X08",
+      "session": "2026-09-28_Day",
+      "symbol": "TOPIX",
+      "rows": 127525,
+      "同一": true
+    },
+    {
+      "selector": "X08",
+      "session": "2026-09-28_Night",
+      "symbol": "NK225",
+      "rows": 171595,
+      "同一": true
+    },
+    {
+      "selector": "X08",
+      "session": "2026-09-28_Night",
+      "symbol": "TOPIX",
+      "rows": 164200,
+      "同一": true
+    },
+    {
+      "selector": "X08",
+      "session": "2026-09-29_Day",
+      "symbol": "NK225",
+      "rows": 144052,
+      "同一": true
+    },
+    {
+      "selector": "X08",
+      "session": "2026-09-29_Day",
+      "symbol": "TOPIX",
+      "rows": 132549,
+      "同一": true
+    },
+    {
+      "selector": "X09",
+      "session": "2026-09-21_Day",
+      "symbol": "NK225",
+      "rows": 56290,
+      "同一": true
+    },
+    {
+      "selector": "X09",
+      "session": "2026-09-21_Day",
+      "symbol": "TOPIX",
+      "rows": 48523,
+      "同一": true
+    },
+    {
+      "selector": "X09",
+      "session": "2026-09-21_Night",
+      "symbol": "NK225",
+      "rows": 81260,
+      "同一": true
+    },
+    {
+      "selector": "X09",
+      "session": "2026-09-21_Night",
+      "symbol": "TOPIX",
+      "rows": 83382,
+      "同一": true
+    },
+    {
+      "selector": "X09",
+      "session": "2026-09-22_Day",
+      "symbol": "NK225",
+      "rows": 66851,
+      "同一": true
+    },
+    {
+      "selector": "X09",
+      "session": "2026-09-22_Day",
+      "symbol": "TOPIX",
+      "rows": 55761,
+      "同一": true
+    },
+    {
+      "selector": "X09",
+      "session": "2026-09-22_Night",
+      "symbol": "NK225",
+      "rows": 120649,
+      "同一": true
+    },
+    {
+      "selector": "X09",
+      "session": "2026-09-22_Night",
+      "symbol": "TOPIX",
+      "rows": 120829,
+      "同一": true
+    },
+    {
+      "selector": "X09",
+      "session": "2026-09-23_Day",
+      "symbol": "NK225",
+      "rows": 53887,
+      "同一": true
+    },
+    {
+      "selector": "X09",
+      "session": "2026-09-23_Day",
+      "symbol": "TOPIX",
+      "rows": 49476,
+      "同一": true
+    },
+    {
+      "selector": "X09",
+      "session": "2026-09-23_Night",
+      "symbol": "NK225",
+      "rows": 120392,
+      "同一": true
+    },
+    {
+      "selector": "X09",
+      "session": "2026-09-23_Night",
+      "symbol": "TOPIX",
+      "rows": 121254,
+      "同一": true
+    },
+    {
+      "selector": "X09",
+      "session": "2026-09-24_Day",
+      "symbol": "NK225",
+      "rows": 123433,
+      "同一": true
+    },
+    {
+      "selector": "X09",
+      "session": "2026-09-24_Day",
+      "symbol": "TOPIX",
+      "rows": 112983,
+      "同一": true
+    },
+    {
+      "selector": "X09",
+      "session": "2026-09-24_Night",
+      "symbol": "NK225",
+      "rows": 176569,
+      "同一": true
+    },
+    {
+      "selector": "X09",
+      "session": "2026-09-24_Night",
+      "symbol": "TOPIX",
+      "rows": 168155,
+      "同一": true
+    },
+    {
+      "selector": "X09",
+      "session": "2026-09-25_Day",
+      "symbol": "NK225",
+      "rows": 106773,
+      "同一": true
+    },
+    {
+      "selector": "X09",
+      "session": "2026-09-25_Day",
+      "symbol": "TOPIX",
+      "rows": 106522,
+      "同一": true
+    },
+    {
+      "selector": "X09",
+      "session": "2026-09-25_Night",
+      "symbol": "NK225",
+      "rows": 145548,
+      "同一": true
+    },
+    {
+      "selector": "X09",
+      "session": "2026-09-25_Night",
+      "symbol": "TOPIX",
+      "rows": 138165,
+      "同一": true
+    },
+    {
+      "selector": "X09",
+      "session": "2026-09-28_Day",
+      "symbol": "NK225",
+      "rows": 135222,
+      "同一": true
+    },
+    {
+      "selector": "X09",
+      "session": "2026-09-28_Day",
+      "symbol": "TOPIX",
+      "rows": 127525,
+      "同一": true
+    },
+    {
+      "selector": "X09",
+      "session": "2026-09-28_Night",
+      "symbol": "NK225",
+      "rows": 171595,
+      "同一": true
+    },
+    {
+      "selector": "X09",
+      "session": "2026-09-28_Night",
+      "symbol": "TOPIX",
+      "rows": 164200,
+      "同一": true
+    },
+    {
+      "selector": "X09",
+      "session": "2026-09-29_Day",
+      "symbol": "NK225",
+      "rows": 144052,
+      "同一": true
+    },
+    {
+      "selector": "X09",
+      "session": "2026-09-29_Day",
+      "symbol": "TOPIX",
+      "rows": 132549,
+      "同一": true
+    }
+  ]
+}

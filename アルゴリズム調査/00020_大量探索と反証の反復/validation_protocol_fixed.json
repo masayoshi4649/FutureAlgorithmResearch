@@ -1,0 +1,13 @@
+{
+  "記録時刻": "2026-09-29T19:32:22.122616+09:00",
+  "今回探索成績を未読": true,
+  "既存研究の成績は既読": true,
+  "一次入口は親runnerと整合": true,
+  "追加提案と未実装事項は本文に区別": "反証・時間順順位案・共通初期リスク総額",
+  "SHA256": {
+    "validation_protocol.md": "07807e254ba5287241d4589358115bd0f2652d84fe234d5ac5bc4be8e91a5bc8",
+    "validation_protocol.json": "fe1b36378a8c262bc6a6d022fcc6b10973260f19cbcde0d1e293b21b3291294c",
+    "audit_data.py": "217f2421f07800ee8e85113a48bd5884c8bb9312c7176fe41a635a92d606f75c",
+    "data_audit.json": "c4217175b5d066ffa80b17ae54548079b8dfb4bed72fe02afbb7c5702f97fcc3"
+  }
+}

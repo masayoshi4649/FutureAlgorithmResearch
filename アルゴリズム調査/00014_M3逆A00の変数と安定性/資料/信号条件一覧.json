@@ -1,0 +1,189 @@
+[
+  {
+    "id": "S00",
+    "name": "基準のM3逆",
+    "description": "EMA8/30、間隔0.15ATR、傾き0.03ATR、各２回確認、相手を追加60秒遅延する元のM3逆。",
+    "change_count": 0,
+    "changes": {}
+  },
+  {
+    "id": "S01",
+    "name": "短期EMAを５分",
+    "description": "短期EMAだけを８本から５本へ変更する。",
+    "change_count": 1,
+    "changes": {
+      "fast": 5
+    }
+  },
+  {
+    "id": "S02",
+    "name": "短期EMAを12分",
+    "description": "短期EMAだけを８本から12本へ変更する。",
+    "change_count": 1,
+    "changes": {
+      "fast": 12
+    }
+  },
+  {
+    "id": "S03",
+    "name": "長期EMAを20分",
+    "description": "長期EMAだけを30本から20本へ変更する。",
+    "change_count": 1,
+    "changes": {
+      "slow": 20
+    }
+  },
+  {
+    "id": "S04",
+    "name": "長期EMAを45分",
+    "description": "長期EMAだけを30本から45本へ変更する。",
+    "change_count": 1,
+    "changes": {
+      "slow": 45
+    }
+  },
+  {
+    "id": "S05",
+    "name": "EMA間隔を0.10ATR",
+    "description": "方向候補となるEMA間隔の下限だけを0.10ATRへ変更する。",
+    "change_count": 1,
+    "changes": {
+      "gap": 0.1
+    }
+  },
+  {
+    "id": "S06",
+    "name": "EMA間隔を0.25ATR",
+    "description": "方向候補となるEMA間隔の下限だけを0.25ATRへ変更する。",
+    "change_count": 1,
+    "changes": {
+      "gap": 0.25
+    }
+  },
+  {
+    "id": "S07",
+    "name": "EMA傾きを0.015ATR",
+    "description": "長期EMAの３本変化の下限だけを0.015ATRへ変更する。",
+    "change_count": 1,
+    "changes": {
+      "slope": 0.015
+    }
+  },
+  {
+    "id": "S08",
+    "name": "EMA傾きを0.06ATR",
+    "description": "長期EMAの３本変化の下限だけを0.06ATRへ変更する。",
+    "change_count": 1,
+    "changes": {
+      "slope": 0.06
+    }
+  },
+  {
+    "id": "S09",
+    "name": "銘柄内の確認を１回",
+    "description": "銘柄ごとのM1方向の連続確認だけを１回にする。",
+    "change_count": 1,
+    "changes": {
+      "m1_confirmations": 1
+    }
+  },
+  {
+    "id": "S10",
+    "name": "銘柄内の確認を３回",
+    "description": "銘柄ごとのM1方向の連続確認だけを３回にする。",
+    "change_count": 1,
+    "changes": {
+      "m1_confirmations": 3
+    }
+  },
+  {
+    "id": "S11",
+    "name": "両銘柄一致の確認を１回",
+    "description": "M3の両銘柄一致の連続確認だけを１回にする。",
+    "change_count": 1,
+    "changes": {
+      "m3_confirmations": 1
+    }
+  },
+  {
+    "id": "S12",
+    "name": "両銘柄一致の確認を３回",
+    "description": "M3の両銘柄一致の連続確認だけを３回にする。",
+    "change_count": 1,
+    "changes": {
+      "m3_confirmations": 3
+    }
+  },
+  {
+    "id": "S13",
+    "name": "相手の追加遅延なし",
+    "description": "既に公開済みの相手M1を使い、追加60秒だけをなくす。確定足の公開遅延120秒は維持する。",
+    "change_count": 1,
+    "changes": {
+      "peer_delay_seconds": 0
+    }
+  },
+  {
+    "id": "S14",
+    "name": "相手の追加遅延120秒",
+    "description": "公開済み相手M1の追加遅延だけを60秒から120秒へ変更する。",
+    "change_count": 1,
+    "changes": {
+      "peer_delay_seconds": 120
+    }
+  },
+  {
+    "id": "S15",
+    "name": "現在の一致がなければ新規禁止",
+    "description": "現在の両銘柄一致が保持中のM3方向を裏付けない間だけ、新規入口を中立にする。",
+    "change_count": 1,
+    "changes": {
+      "require_current_agreement": true
+    }
+  },
+  {
+    "id": "S16",
+    "name": "確認後15分で根拠を失効",
+    "description": "最後に同方向を連続確認できた時刻から15分超で新規禁止。同方向の確認継続中は期限を更新する。",
+    "change_count": 1,
+    "changes": {
+      "max_age_minutes": 15
+    }
+  },
+  {
+    "id": "S17",
+    "name": "確認後30分で根拠を失効",
+    "description": "最後に同方向を連続確認できた時刻から30分超で新規禁止。同方向の確認継続中は期限を更新する。",
+    "change_count": 1,
+    "changes": {
+      "max_age_minutes": 30
+    }
+  },
+  {
+    "id": "S18",
+    "name": "確認後60分で根拠を失効",
+    "description": "最後に同方向を連続確認できた時刻から60分超で新規禁止。同方向の確認継続中は期限を更新する。",
+    "change_count": 1,
+    "changes": {
+      "max_age_minutes": 60
+    }
+  },
+  {
+    "id": "S19",
+    "name": "板方向と売買方向の一致",
+    "description": "元のM3逆の売買方向と、保存済みM2の主方向が一致する場合だけ新規を許可する。",
+    "change_count": 1,
+    "changes": {
+      "board_filter": "same_trade"
+    }
+  },
+  {
+    "id": "S20",
+    "name": "板の逆方向と売買方向の一致",
+    "description": "元のM3逆の売買方向と、保存済みM2の逆方向が一致する場合だけ新規を許可する。",
+    "change_count": 1,
+    "changes": {
+      "board_filter": "opposite_trade"
+    }
+  }
+]

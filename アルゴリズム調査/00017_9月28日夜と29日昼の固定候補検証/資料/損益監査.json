@@ -1,0 +1,91 @@
+{
+  "監査日時": "2026-09-29T16:43:36.999297+09:00",
+  "合格": true,
+  "行": [
+    {
+      "セッション": "2026-09-28_Night",
+      "銘柄": "TOPIX",
+      "独立再計算": {
+        "gross_profit_yen": 22000.0,
+        "gross_loss_yen": 10000.0,
+        "net_yen": 12000.0,
+        "profit_units": 2,
+        "loss_units": 2,
+        "zero_units": 1,
+        "closed_units": 5,
+        "cycles": 5,
+        "unit_balance": 0
+      },
+      "取引明細一致": true,
+      "公開台帳一致": true,
+      "監査原本SHA256一致": true,
+      "場またぎなし": true,
+      "固定一枚と非重複保有": true,
+      "保有上限での収支": 120000.0
+    },
+    {
+      "セッション": "2026-09-28_Night",
+      "銘柄": "NK225",
+      "独立再計算": {
+        "gross_profit_yen": 9100.0,
+        "gross_loss_yen": 3600.0,
+        "net_yen": 5500.0,
+        "profit_units": 4,
+        "loss_units": 4,
+        "zero_units": 1,
+        "closed_units": 9,
+        "cycles": 9,
+        "unit_balance": 0
+      },
+      "取引明細一致": true,
+      "公開台帳一致": true,
+      "監査原本SHA256一致": true,
+      "場またぎなし": true,
+      "固定一枚と非重複保有": true,
+      "保有上限での収支": 110000.0
+    },
+    {
+      "セッション": "2026-09-29_Day",
+      "銘柄": "TOPIX",
+      "独立再計算": {
+        "gross_profit_yen": 17500.0,
+        "gross_loss_yen": 26500.0,
+        "net_yen": -9000.0,
+        "profit_units": 2,
+        "loss_units": 4,
+        "zero_units": 0,
+        "closed_units": 6,
+        "cycles": 6,
+        "unit_balance": -2
+      },
+      "取引明細一致": true,
+      "公開台帳一致": true,
+      "監査原本SHA256一致": true,
+      "場またぎなし": true,
+      "固定一枚と非重複保有": true,
+      "保有上限での収支": -90000.0
+    },
+    {
+      "セッション": "2026-09-29_Day",
+      "銘柄": "NK225",
+      "独立再計算": {
+        "gross_profit_yen": 6500.0,
+        "gross_loss_yen": 7300.0,
+        "net_yen": -800.0,
+        "profit_units": 1,
+        "loss_units": 7,
+        "zero_units": 0,
+        "closed_units": 8,
+        "cycles": 8,
+        "unit_balance": -6
+      },
+      "取引明細一致": true,
+      "公開台帳一致": true,
+      "監査原本SHA256一致": true,
+      "場またぎなし": true,
+      "固定一枚と非重複保有": true,
+      "保有上限での収支": -16000.0
+    }
+  ],
+  "注記": "取引明細から独立に損益会計を照合した。シグナルと注文成立の全再実装ではない。"
+}

@@ -1,0 +1,66 @@
+[
+  {
+    "method_id": "M3_逆_A03",
+    "symbol": "TOPIX",
+    "candidate_count": 46,
+    "eligible_count": 28,
+    "selected_id": "M3_逆_A03__TOPIX__I07_A03",
+    "max_net_id": "M3_逆_A03__TOPIX__I10_A00"
+  },
+  {
+    "method_id": "M3_逆_A03",
+    "symbol": "NK225",
+    "candidate_count": 191,
+    "eligible_count": 130,
+    "selected_id": "M3_逆_A03__NK225__I01_A16",
+    "max_net_id": "M3_逆_A03__NK225__I16_A04"
+  },
+  {
+    "method_id": "M3_逆_A00",
+    "symbol": "TOPIX",
+    "candidate_count": 10,
+    "eligible_count": 10,
+    "selected_id": "M3_逆_A00__TOPIX__I01_A00",
+    "max_net_id": "M3_逆_A00__TOPIX__I10_A00"
+  },
+  {
+    "method_id": "M3_逆_A00",
+    "symbol": "NK225",
+    "candidate_count": 20,
+    "eligible_count": 20,
+    "selected_id": "M3_逆_A00__NK225__I01_A00",
+    "max_net_id": "M3_逆_A00__NK225__I20_A00"
+  },
+  {
+    "method_id": "M2_逆_A00",
+    "symbol": "TOPIX",
+    "candidate_count": 10,
+    "eligible_count": 10,
+    "selected_id": "M2_逆_A00__TOPIX__I01_A00",
+    "max_net_id": "M2_逆_A00__TOPIX__I10_A00"
+  },
+  {
+    "method_id": "M2_逆_A00",
+    "symbol": "NK225",
+    "candidate_count": 20,
+    "eligible_count": 20,
+    "selected_id": "M2_逆_A00__NK225__I01_A00",
+    "max_net_id": "M2_逆_A00__NK225__I20_A00"
+  },
+  {
+    "method_id": "M2_逆_A01",
+    "symbol": "TOPIX",
+    "candidate_count": 10,
+    "eligible_count": 10,
+    "selected_id": "M2_逆_A01__TOPIX__I01_A00",
+    "max_net_id": "M2_逆_A01__TOPIX__I10_A00"
+  },
+  {
+    "method_id": "M2_逆_A01",
+    "symbol": "NK225",
+    "candidate_count": 20,
+    "eligible_count": 20,
+    "selected_id": "M2_逆_A01__NK225__I01_A00",
+    "max_net_id": "M2_逆_A01__NK225__I20_A00"
+  }
+]

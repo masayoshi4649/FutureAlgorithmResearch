@@ -1,0 +1,217 @@
+{
+  "時刻": "2026-09-29T17:35:32.337806+09:00",
+  "選択条件": [
+    {
+      "id": "X00",
+      "name": "効率比で順張りと吸収を切替",
+      "family": "機械的な手法選択",
+      "description": "30分効率比が0.30以上なら60分方向追随、0.15以下なら補充吸収、中間なら最良板。2回確認し最低3分保持する。",
+      "params": {
+        "kind": "efficiency",
+        "decision_seconds": 60,
+        "warmup_minutes": 20,
+        "high": 0.3,
+        "low": 0.15,
+        "trend": "F08",
+        "range": "F40",
+        "middle": "F32",
+        "confirm": 2,
+        "hold_minutes": 3
+      },
+      "responsibility": "本モジュールは信号手法の選択と新規方向を担当する。既存建玉の返済・反転・損失制限は組み合わせる共通管理が担当する。"
+    },
+    {
+      "id": "X01",
+      "name": "効率比で多数決と転換を切替",
+      "family": "機械的な手法選択",
+      "description": "効率比0.35以上は三系統多数決、0.20以下は蓄積フロー反転、中間は最良板。2回確認し最低5分保持する。",
+      "params": {
+        "kind": "efficiency",
+        "decision_seconds": 60,
+        "warmup_minutes": 20,
+        "high": 0.35,
+        "low": 0.2,
+        "trend": "F35",
+        "range": "F47",
+        "middle": "F32",
+        "confirm": 2,
+        "hold_minutes": 5
+      },
+      "responsibility": "本モジュールは信号手法の選択と新規方向を担当する。既存建玉の返済・反転・損失制限は組み合わせる共通管理が担当する。"
+    },
+    {
+      "id": "X02",
+      "name": "両市場一致から選ぶ",
+      "family": "機械的な手法選択",
+      "description": "両市場EMAが一致し効率比0.25以上なら両銘柄順張り。低効率は突破失敗、中間・不一致は最良板を選ぶ。",
+      "params": {
+        "kind": "agreement",
+        "decision_seconds": 60,
+        "warmup_minutes": 20,
+        "high": 0.25,
+        "low": 0.15,
+        "trend": "F24",
+        "range": "F14",
+        "middle": "F32",
+        "confirm": 2,
+        "hold_minutes": 3,
+        "peer_delay": 60
+      },
+      "responsibility": "本モジュールは信号手法の選択と新規方向を担当する。既存建玉の返済・反転・損失制限は組み合わせる共通管理が担当する。"
+    },
+    {
+      "id": "X03",
+      "name": "吸収とフロー継続を切替",
+      "family": "機械的な手法選択",
+      "description": "強いフローの価格停滞と短期反転なら吸収反転、同方向フローの持続なら継続追随、それ以外は最良板を選ぶ。",
+      "params": {
+        "kind": "flow",
+        "decision_seconds": 60,
+        "warmup_minutes": 20,
+        "absorption": "F39",
+        "persistent": "F38",
+        "middle": "F32",
+        "confirm": 1,
+        "hold_minutes": 3
+      },
+      "responsibility": "本モジュールは信号手法の選択と新規方向を担当する。既存建玉の返済・反転・損失制限は組み合わせる共通管理が担当する。"
+    },
+    {
+      "id": "X04",
+      "name": "衝撃後の板回復で切替",
+      "family": "機械的な手法選択",
+      "description": "60秒で0.75ATR動いた後、板数量回復なら反転、板不足なら継続。通常は効率比で60分順張りか最良板を選ぶ。",
+      "params": {
+        "kind": "shock",
+        "decision_seconds": 60,
+        "warmup_minutes": 20,
+        "shock_atr": 0.75,
+        "recovered": 1.25,
+        "depleted": 0.8,
+        "high": 0.3,
+        "recover": "F49",
+        "continue": "F50",
+        "trend": "F08",
+        "middle": "F32",
+        "confirm": 1,
+        "hold_minutes": 3
+      },
+      "responsibility": "本モジュールは信号手法の選択と新規方向を担当する。既存建玉の返済・反転・損失制限は組み合わせる共通管理が担当する。"
+    },
+    {
+      "id": "X05",
+      "name": "近遠の板と補充壁で切替",
+      "family": "機械的な手法選択",
+      "description": "同価格補充の支えから反発すれば補充壁、近遠が同方向なら近い板追随、遠い板だけ先行なら先行圧力、それ以外は最良板を選ぶ。",
+      "params": {
+        "kind": "distance",
+        "decision_seconds": 60,
+        "warmup_minutes": 20,
+        "refill": 0.2,
+        "pressure": 0.1,
+        "flow": 0.05,
+        "wall": "F44",
+        "near": "F42",
+        "far": "F43",
+        "middle": "F32",
+        "confirm": 2,
+        "hold_minutes": 3
+      },
+      "responsibility": "本モジュールは信号手法の選択と新規方向を担当する。既存建玉の返済・反転・損失制限は組み合わせる共通管理が担当する。"
+    },
+    {
+      "id": "X06",
+      "name": "開場と米国開始の時間切替",
+      "family": "機械的な手法選択",
+      "description": "開始90分までは短期EMA。夜間の米国開始後60分は効率比が0.20以上なら高安突破、低ければ補充吸収。通常は多数決か最良板を選ぶ。",
+      "params": {
+        "kind": "clock",
+        "decision_seconds": 60,
+        "warmup_minutes": 20,
+        "opening_minutes": 90,
+        "us_minutes": 60,
+        "us_efficiency": 0.2,
+        "high": 0.3,
+        "opening": "F00",
+        "us_trend": "F04",
+        "us_range": "F40",
+        "trend": "F35",
+        "middle": "F32",
+        "confirm": 2,
+        "hold_minutes": 3
+      },
+      "responsibility": "本モジュールは信号手法の選択と新規方向を担当する。既存建玉の返済・反転・損失制限は組み合わせる共通管理が担当する。"
+    },
+    {
+      "id": "X07",
+      "name": "現在の根拠強度で選ぶ",
+      "family": "機械的な手法選択",
+      "description": "効率比・OFI・吸収・最良板偏差を各固定閾値との比で比較し、現在方向がある系統で最大のものを選ぶ。損益で重みを学習しない。",
+      "params": {
+        "kind": "strength",
+        "decision_seconds": 60,
+        "warmup_minutes": 20,
+        "er_scale": 0.3,
+        "ofi_scale": 0.08,
+        "micro_scale": 0.06,
+        "trade_scale": 0.15,
+        "absorption_progress": 0.35,
+        "score_cap": 3.0,
+        "choices": [
+          "F35",
+          "F38",
+          "F40",
+          "F32"
+        ],
+        "middle": "F32",
+        "confirm": 2,
+        "hold_minutes": 3
+      },
+      "responsibility": "本モジュールは信号手法の選択と新規方向を担当する。既存建玉の返済・反転・損失制限は組み合わせる共通管理が担当する。"
+    },
+    {
+      "id": "X08",
+      "name": "局面の継続を待って切替",
+      "family": "機械的な手法選択",
+      "description": "効率比0.40以上で60分方向追随、0.20以下でフロー転換。中間では直前系統を維持し、3回確認・最低10分滞在で細かな切替を抑える。",
+      "params": {
+        "kind": "sticky",
+        "decision_seconds": 60,
+        "warmup_minutes": 20,
+        "high": 0.4,
+        "low": 0.2,
+        "trend": "F08",
+        "range": "F47",
+        "middle": "F32",
+        "confirm": 3,
+        "hold_minutes": 10
+      },
+      "responsibility": "本モジュールは信号手法の選択と新規方向を担当する。既存建玉の返済・反転・損失制限は組み合わせる共通管理が担当する。"
+    },
+    {
+      "id": "X09",
+      "name": "両市場の吸収を優先する切替",
+      "family": "機械的な手法選択",
+      "description": "両市場が吸収から同方向へ転換した候補を優先。共通圧力なら板枯渇、流れがある通常時は多数決、低効率はフロー転換、中間は最良板を選ぶ。",
+      "params": {
+        "kind": "market",
+        "decision_seconds": 60,
+        "warmup_minutes": 20,
+        "high": 0.3,
+        "low": 0.15,
+        "turn": "F53",
+        "pressure": "F52",
+        "trend": "F35",
+        "range": "F47",
+        "middle": "F32",
+        "confirm": 2,
+        "hold_minutes": 3
+      },
+      "responsibility": "本モジュールは信号手法の選択と新規方向を担当する。既存建玉の返済・反転・損失制限は組み合わせる共通管理が担当する。"
+    }
+  ],
+  "固定根拠": "相場状態と観測可能な売買仮説で固定。セッションの未来価格や利益順位から閾値を調整しない。",
+  "責任範囲": "実行するアルゴリズムは機械的な信号手法選択と共通注文管理の組合せ。手法選択の変更だけでは既存玉を強制返済しない。",
+  "因果性": "確定1分足は120秒遅延、解放済み板は原本seqで対応、相手銘柄は60秒追加遅延。各分最初の観測行で選択する。",
+  "現在取得回数": 0
+}

@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>E01 リアルタイム仮想トレード</title>
+<style>
+:root{color-scheme:dark;font-family:"Yu Gothic UI",Meiryo,sans-serif;background:#0d1420;color:#e8eef7}
+body{margin:0;line-height:1.8}main{max-width:920px;margin:auto;padding:36px 22px 64px}
+h1{font-size:28px;margin:8px 0}h2{font-size:21px}section{background:#172335;border:1px solid #334760;border-radius:14px;padding:18px 24px;margin:20px 0}
+p{margin:8px 0 14px}a{color:#8cc8ff}code,pre{background:#0b111c;color:#a9e9d4}code{padding:2px 6px}pre{padding:14px;overflow-x:auto;border-radius:8px}
+table{width:100%;border-collapse:collapse}th,td{text-align:left;padding:10px 8px;border-bottom:1px solid #35445b}th{color:#a9c9e8}.lead{color:#b5c5da}.tag{color:#a9e9d4;font-weight:700}.small{font-size:14px;color:#bdcadd}
+</style>
+</head>
+<body>
+<!--
+[コンポーネント概要]
+#guide は起動方法・出力・売買ルールをまとめた静的な運転案内です。
+.tag は実注文を行わない構成を示します。注文を送る操作や外部通信はありません。
+各sectionは起動、記録、手法、運転条件をそれぞれ説明します。
+-->
+<main id="guide">
+<p class="tag">作業00045 ／ 実注文なし</p>
+<h1>E01 リアルタイム仮想トレード</h1>
+<p class="lead">kabus-controllerの板PUSHと確定足で判断し、新規・返済をCSVに残し続けます。</p>
+<p class="tag">10/02修正：無約定を通信断と誤認しない。3分以内の切断では建玉・返済条件を維持。</p>
+<p class="tag">追加修正：start.pyでWindows・Linux共通の起動。セッション切替時の価格時刻nullは除外して継続。</p>
+<section>
+<h2>1. 起動する</h2>
+<p>このフォルダでターミナルを開き、次を実行します。</p>
+<p>Windows</p>
+<pre><code>python start.py</code></pre>
+<p>Linux</p>
+<pre><code>python3 start.py</code></pre>
+<p><code>Ctrl+C</code>で終了処理。実行中は市場データを受信し続けます。</p>
+<p class="small">Python 3.11以上と依存ライブラリが必要です。導入方法・引数は<a href="README.md">README</a>へ。別フォルダからファイルのパスを指定しても実行できます。Linux実機での運転は未検証です。</p>
+</section>
+<section>
+<h2>2. 記録を見る</h2>
+<p>起動後に作られる <code>運転記録</code> フォルダを確認してください。</p>
+<table><thead><tr><th>ファイル</th><th>内容</th></tr></thead><tbody>
+<tr><td>売買記録.csv</td><td>新規／返済・時刻・方向・枚数・価格・理由・確定損益</td></tr>
+<tr><td>稼働記録.csv</td><td>受信中断・復旧・セッション切替・停止</td></tr>
+<tr><td>現在状態.json</td><td>建玉、受信状況、直近の判断材料</td></tr>
+</tbody></table>
+<p class="small">再起動で引き継ぎます。同じ保存先の二重起動は禁止。CSVが開かれていても正本DBに保存し、後でCSVへ反映します。</p>
+</section>
+<section>
+<h2>3. 売買ルール</h2>
+<table><tbody>
+<tr><th>入口</th><td>両市場の主方向が一致。短期の板価格も支持したら、0.25ATRの反発・反落で入る。</td></tr>
+<tr><th>途中</th><td>2ATRで一部利確。順行後の短期逆行でも一度半減する。</td></tr>
+<tr><th>出口</th><td>初期損切り0.75ATR。利益を追跡し、3ATR順行後は追跡幅を0.75ATRにする。</td></tr>
+<tr><th>枚数</th><td>TOPIXミニ換算5枚／NK225マイクロ換算10枚。追加なし。上限は片方向10枚／20枚。</td></tr>
+</tbody></table>
+<p class="small">通常影による再参入待機も移植。注文器は同じ判定材料を使った過去17セッション×両銘柄で旧E01と完全一致。</p>
+</section>
+<section>
+<h2>運転上の扱い</h2>
+<p>確定済みで実際に受信した情報だけを使用。途中起動では指標を準備してから開始し、起動前の売買は作りません。</p>
+<p>短い切断では新規だけを一時停止し、復旧価格で既設の返済条件を確認します。毎回120秒待つことはありません。3分超の無受信・世代変更は別扱いです。</p>
+<p>同じ保存先で起動し直すと修正版へ移行します。旧台帳は自動でバックアップします。セッション終端まで返済できなければ未返済を記録して異常停止します。</p>
+<p>既定は費用ゼロ・指定条件価格の仮想約定。大型先物の価格をミニ／マイクロの倍率へ換算します。</p>
+<p><a href="README.md">詳しい条件と再起動・設定変更の扱い</a> ／ <a href="検証結果.md">検証結果</a> ／ <a href="../index.html">作業一覧</a></p>
+</section>
+</main>
+</body>
+</html>

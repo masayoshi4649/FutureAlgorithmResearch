@@ -1,0 +1,16 @@
+{
+  "条件数": 180,
+  "全データ既読": true,
+  "現在API取得回数": 0,
+  "買い上限": 100,
+  "売り上限": 100,
+  "総上限": 200,
+  "初期数量": 10,
+  "ハッシュ": {
+    "engine.py": "41bd11f13884ea98377996ea18c0e34f43c90acaa7334b862e3521dbaf0bca46",
+    "catalog.py": "fbc85681d23c44bdaedf20770126e90be8d54ce761503a2bd746fccb5dd6a1c9",
+    "signals.py": "1cf89f179037e1eaf3531965a472ce5373d981b107252d85108fade39e7554d0",
+    "主方向状態.pkl": "6d05579074b5d666d56f2bb234cae6892d2fba8b7e330b64af06a639706e2dec",
+    "research.py": "9c521355d7f09d71081de301cf6149d4740486f73742888883012be403e3fd3d"
+  }
+}

@@ -1,0 +1,176 @@
+{
+  "凍結時刻": "2026-09-29T17:25:22.432517+09:00",
+  "主候補": "F32_G08",
+  "最終候補": [
+    {
+      "id": "F32_G08",
+      "signal_id": "F32",
+      "manager_id": "G08",
+      "family": "加重気配",
+      "name": "最良板の加重気配＋連敗とセッション損失を制限",
+      "signal": {
+        "id": "F32",
+        "name": "最良板の加重気配",
+        "family": "加重気配",
+        "description": "2分間平均の最良数量による加重気配偏差0.06以上と価格変化が一致した方向へ進む。論文の学習型micropriceとは異なる。",
+        "params": {
+          "kind": "weighted",
+          "seconds": 120,
+          "threshold": 0.06,
+          "minute_release_seconds": 120,
+          "warmup_minutes": 20
+        }
+      },
+      "manager": {
+        "id": "G08",
+        "name": "連敗とセッション損失を制限",
+        "description": "２連敗停止に加え、開始時に定める初回予定損失３回分へ総損益が達したら当該セッションを終了する。",
+        "changes": {
+          "max_same_losses": 2,
+          "session_budget_r": 3.0
+        }
+      }
+    },
+    {
+      "id": "F08_G08",
+      "signal_id": "F08",
+      "manager_id": "G08",
+      "family": "価格差",
+      "name": "価格差60分順張り＋連敗とセッション損失を制限",
+      "signal": {
+        "id": "F08",
+        "name": "価格差60分順張り",
+        "family": "価格差",
+        "description": "60本前から1ATR以上動いた方向へ進む。",
+        "params": {
+          "kind": "momentum",
+          "window": 60,
+          "threshold": 1.0,
+          "minute_release_seconds": 120,
+          "warmup_minutes": 20
+        }
+      },
+      "manager": {
+        "id": "G08",
+        "name": "連敗とセッション損失を制限",
+        "description": "２連敗停止に加え、開始時に定める初回予定損失３回分へ総損益が達したら当該セッションを終了する。",
+        "changes": {
+          "max_same_losses": 2,
+          "session_budget_r": 3.0
+        }
+      }
+    },
+    {
+      "id": "F47_G18",
+      "signal_id": "F47",
+      "manager_id": "G18",
+      "family": "蓄積解消候補",
+      "name": "蓄積フローの反転＋方向確定の次観測で新規",
+      "signal": {
+        "id": "F47",
+        "name": "蓄積フローの反転",
+        "family": "蓄積解消候補",
+        "description": "直前までの30分推定売買が一方へ偏っていた後、2分の推定売買と価格が反対へ揃う場面を拾う。返済取引とは断定しない。",
+        "params": {
+          "kind": "flow_reversal",
+          "seconds": 120,
+          "threshold": 0.15,
+          "history_seconds": 1800,
+          "prior_threshold": 0.2,
+          "minute_release_seconds": 120,
+          "warmup_minutes": 20
+        }
+      },
+      "manager": {
+        "id": "G18",
+        "name": "方向確定の次観測で新規",
+        "description": "１枚。方向確定後の次観測価格で新規し、追加の値幅確認を要求しない。緩やかな一方向相場も対象にする。",
+        "changes": {
+          "entry_mode": 2
+        }
+      }
+    },
+    {
+      "id": "F35_G12",
+      "signal_id": "F35",
+      "manager_id": "G12",
+      "family": "複数手法",
+      "name": "三系統の多数決＋半分利確して残りを追跡",
+      "signal": {
+        "id": "F35",
+        "name": "三系統の多数決",
+        "family": "複数手法",
+        "description": "EMA8/30、30分価格差、30分高安突破のうち二つ以上が一致した方向へ進む。",
+        "params": {
+          "kind": "ensemble",
+          "votes": 2,
+          "minute_release_seconds": 120,
+          "warmup_minutes": 20
+        }
+      },
+      "manager": {
+        "id": "G12",
+        "name": "半分利確して残りを追跡",
+        "description": "上限の半分で開始。１.５ATRで保有の半分を利確し、残りを２.５ATR幅で伸ばす。",
+        "changes": {
+          "quantity_fraction": 0.5,
+          "split_target": 1.5,
+          "main_trail": 2.5
+        }
+      }
+    },
+    {
+      "id": "F17_G12",
+      "signal_id": "F17",
+      "manager_id": "G12",
+      "family": "収縮拡大",
+      "name": "収縮後の拡大30分＋半分利確して残りを追跡",
+      "signal": {
+        "id": "F17",
+        "name": "収縮後の拡大30分",
+        "family": "収縮拡大",
+        "description": "30本標準偏差が過去60本中央値の0.8倍未満へ縮んだ後、10本高安を突破した方向を狙う。",
+        "params": {
+          "kind": "squeeze",
+          "window": 30,
+          "ratio": 0.8,
+          "ttl": 30,
+          "minute_release_seconds": 120,
+          "warmup_minutes": 20
+        }
+      },
+      "manager": {
+        "id": "G12",
+        "name": "半分利確して残りを追跡",
+        "description": "上限の半分で開始。１.５ATRで保有の半分を利確し、残りを２.５ATR幅で伸ばす。",
+        "changes": {
+          "quantity_fraction": 0.5,
+          "split_target": 1.5,
+          "main_trail": 2.5
+        }
+      }
+    }
+  ],
+  "ファイルSHA256": {
+    "work/wave_v23/research.py": "f03c82943f34f89d1d8e6f4a0b82da814aa1d0e168b7723db1db9f3a6d21c042",
+    "work/wave_v23/signals.py": "32722cce5092b07afbafc6535a83e78c103f2a483d4012c52ee8eb11ffd99760",
+    "work/wave_v23/engine.py": "4bbcf7667698f56ac0b82f1c903cd101b93d14f5b92b8090040d8b39c11b4b1e",
+    "work/wave_v23/managers.py": "ede5ba900ea8792d7f5389a5f9eaf12d21760a4ab04421dbe9a36dd0a7d99873",
+    "work/wave_v23/learned_flow.py": "f2d4ea4e4b678277050fd50ea311517a78ef6a68ef814d1b83430a59d4809d18",
+    "work/wave_v23/depth_features.py": "c3ceb5d0144a549a2255897bed4e152158a8076e51a5effc510d2913583f7f70",
+    "work/wave_v23/current_check.py": "4d22600ae5bf923be6bcf9bcf8943b82ef60b3e21e8d320b7088b7903601ac55",
+    "work/wave_v23/選択結果.json": "04de7a2c5d3d131e815f2a841a6670a621ccdbc12ec55334cca4b8f7066951dd",
+    "work/wave_v23/全条件一覧.json": "7e0c39af8cd4bc1fd131113ff46be86e0e45087f57d7d9b92ac315ae56fe5c6b",
+    "work/wave_v7/fetch_once.py": "90cb30e1fca0a4febea3113258c513d0e7204f9aeb8ac6e498652da62ed8d58c",
+    "work/wave_v8/raw_features.py": "0062e70dd8011ad456c5307ed228cb2dca0d0729ab3b2dbd5040a1bf9cf96436",
+    "work/wave_v11/signals.py": "cf0ce5c4318693335d8feaaf4f4eb1860ab7dd394cf127f74c665e46098811fc",
+    "work/wave_v13/data.py": "1f7665803d3c84e3e40d5ccbe5f055389b89866bca953a53651d67e303f4265f",
+    "work/wave_v13/research.py": "969692d0164f243a35b8223e6bd91946dc5e96b48a136ca5da04a0c483f51473",
+    "work/wave_v13/exact_engine.py": "5cb2a33c4ddefed36303de125e01646ebda098da911df039784bff244dc3d338",
+    "work/wave_v13/new_signals.py": "5352965142e3260945f18e65cb2e1524676b4a2d73e1396c4a1453d395c76855",
+    "work/wave_v16/reference.py": "afd119cbbcd7d54941f097b1c77a2184e3ce5af9444bc4b60212dc34d4a6f091"
+  },
+  "条件の再選択なし": true,
+  "取得前未閲覧の現在セッション": true,
+  "位置付け": "凍結後の一回取得。取得前から進行しているセッションの再生であり、前向き実発注試験ではない。"
+}

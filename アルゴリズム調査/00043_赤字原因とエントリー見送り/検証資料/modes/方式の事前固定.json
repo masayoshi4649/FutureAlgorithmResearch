@@ -1,0 +1,232 @@
+{
+  "方式": [
+    {
+      "id": "T00",
+      "name": "追従のみ",
+      "mode_choice": 1,
+      "book_rule": 0,
+      "exit_rule": 0,
+      "flip_rule": 0,
+      "mode_exit": 0,
+      "sr_rule": 0
+    },
+    {
+      "id": "T01",
+      "name": "追従のみ・板確認",
+      "mode_choice": 1,
+      "book_rule": 1,
+      "exit_rule": 0,
+      "flip_rule": 0,
+      "mode_exit": 0,
+      "sr_rule": 0
+    },
+    {
+      "id": "R00",
+      "name": "反復のみ",
+      "mode_choice": 2,
+      "book_rule": 0,
+      "exit_rule": 0,
+      "flip_rule": 0,
+      "mode_exit": 0,
+      "sr_rule": 0
+    },
+    {
+      "id": "R01",
+      "name": "反復のみ・板確認",
+      "mode_choice": 2,
+      "book_rule": 1,
+      "exit_rule": 0,
+      "flip_rule": 0,
+      "mode_exit": 0,
+      "sr_rule": 0
+    },
+    {
+      "id": "A00",
+      "name": "追従・反復の自動選択",
+      "mode_choice": 0,
+      "book_rule": 0,
+      "exit_rule": 0,
+      "flip_rule": 0,
+      "mode_exit": 0,
+      "sr_rule": 0
+    },
+    {
+      "id": "A01",
+      "name": "自動選択・板確認",
+      "mode_choice": 0,
+      "book_rule": 1,
+      "exit_rule": 0,
+      "flip_rule": 0,
+      "mode_exit": 0,
+      "sr_rule": 0
+    },
+    {
+      "id": "A02",
+      "name": "自動選択・反復は吸収確認",
+      "mode_choice": 0,
+      "book_rule": 2,
+      "exit_rule": 0,
+      "flip_rule": 0,
+      "mode_exit": 0,
+      "sr_rule": 0
+    },
+    {
+      "id": "A03",
+      "name": "自動選択・経過時間で早めに短縮",
+      "mode_choice": 0,
+      "book_rule": 0,
+      "exit_rule": 1,
+      "flip_rule": 0,
+      "mode_exit": 0,
+      "sr_rule": 0
+    },
+    {
+      "id": "A04",
+      "name": "自動選択・経過時間で遅めに短縮",
+      "mode_choice": 0,
+      "book_rule": 0,
+      "exit_rule": 2,
+      "flip_rule": 0,
+      "mode_exit": 0,
+      "sr_rule": 0
+    },
+    {
+      "id": "A05",
+      "name": "自動選択・高安更新停止10分で短縮",
+      "mode_choice": 0,
+      "book_rule": 0,
+      "exit_rule": 3,
+      "flip_rule": 0,
+      "mode_exit": 0,
+      "sr_rule": 0
+    },
+    {
+      "id": "A06",
+      "name": "自動選択・高安更新停止20分で短縮",
+      "mode_choice": 0,
+      "book_rule": 0,
+      "exit_rule": 4,
+      "flip_rule": 0,
+      "mode_exit": 0,
+      "sr_rule": 0
+    },
+    {
+      "id": "A07",
+      "name": "自動選択・板逆行で短縮",
+      "mode_choice": 0,
+      "book_rule": 0,
+      "exit_rule": 7,
+      "flip_rule": 0,
+      "mode_exit": 0,
+      "sr_rule": 0
+    },
+    {
+      "id": "A08",
+      "name": "板確認・時間と板逆行で短縮",
+      "mode_choice": 0,
+      "book_rule": 1,
+      "exit_rule": 5,
+      "flip_rule": 0,
+      "mode_exit": 0,
+      "sr_rule": 0
+    },
+    {
+      "id": "A09",
+      "name": "板確認・更新停止10分と板逆行で短縮",
+      "mode_choice": 0,
+      "book_rule": 1,
+      "exit_rule": 6,
+      "flip_rule": 0,
+      "mode_exit": 0,
+      "sr_rule": 0
+    },
+    {
+      "id": "A10",
+      "name": "反復の利確後に毎回逆向きへ",
+      "mode_choice": 0,
+      "book_rule": 0,
+      "exit_rule": 0,
+      "flip_rule": 1,
+      "mode_exit": 0,
+      "sr_rule": 0
+    },
+    {
+      "id": "A11",
+      "name": "反復の利確後に逆側の価格と板を確認",
+      "mode_choice": 0,
+      "book_rule": 0,
+      "exit_rule": 0,
+      "flip_rule": 2,
+      "mode_exit": 0,
+      "sr_rule": 0
+    },
+    {
+      "id": "A12",
+      "name": "自動選択・非中立モード変化で退出",
+      "mode_choice": 0,
+      "book_rule": 0,
+      "exit_rule": 0,
+      "flip_rule": 0,
+      "mode_exit": 1,
+      "sr_rule": 0
+    },
+    {
+      "id": "A13",
+      "name": "板確認・更新停止10分・モード変化退出",
+      "mode_choice": 0,
+      "book_rule": 1,
+      "exit_rule": 3,
+      "flip_rule": 0,
+      "mode_exit": 1,
+      "sr_rule": 0
+    },
+    {
+      "id": "SR01",
+      "name": "反復入口を20分支持抵抗へ置換",
+      "mode_choice": 0,
+      "book_rule": 0,
+      "exit_rule": 0,
+      "flip_rule": 0,
+      "mode_exit": 0,
+      "sr_rule": 1
+    },
+    {
+      "id": "SR02",
+      "name": "支持抵抗の反発と追従時の突破",
+      "mode_choice": 0,
+      "book_rule": 0,
+      "exit_rule": 0,
+      "flip_rule": 0,
+      "mode_exit": 0,
+      "sr_rule": 2
+    }
+  ],
+  "比較": "二十方式の共通試作器。同じ入口・単一保有・固定初期枚数。既存候補1の部分決済・影運転とは異なる。",
+  "初期枚数": {
+    "TOPIX": 5,
+    "NK225": 10
+  },
+  "片方向上限": {
+    "TOPIX": 10,
+    "NK225": 20
+  },
+  "増玉": "なし",
+  "円換算": {
+    "TOPIX": 1000,
+    "NK225": 10
+  },
+  "費用": 0,
+  "API取得数": 0,
+  "エントリー": "方向が有効なら追跡安値/高値から0.2ATR反発の逆指値。準備は最大300秒、無効なら次観測から取消。",
+  "追従出口": "準備時ATR固定、初期損切1ATR、1.5ATR順行で3ATRトレール、3ATR順行後0.75ATR、最大360分。",
+  "反復出口": "準備時ATR固定、初期損切0.8ATR、0.5ATR順行で0.35ATRトレール、最大45分。",
+  "時間早": "追従30/60分で幅1/0.5ATR、反復10/20分で0.25/0.15ATR。",
+  "時間遅": "追従60/120分で幅1/0.5ATR、反復20/40分で0.25/0.15ATR。",
+  "更新停止": "最高含み益価格を10分/20分更新しない場合、追従0.5ATR・反復0.25ATR。",
+  "板逆行": "公開済み板scoreが保有と逆へ0.15超の場合、追従0.5ATR・反復0.25ATR。",
+  "短縮共通": "通常トレールの順行開始条件を満たしてからのみ。ストップを緩めない。新しい水準を既に通過していれば次行価格で成行返済。",
+  "支持抵抗": "直近20実分の確定足高安。反復は端から0.25ATR以内、追従突破は端を0.1ATR超えることを追加。未来の確定ピボット不使用。",
+  "反転": "反復のトレール黒字返済後120秒のみ。毎回反転は逆方向1呼値の逆指値、確認反転は逆側の通常価格条件と板score0.1超を要求。",
+  "場内返済": "15:35/05:50で次行返済要求。最終まで建玉ゼロを検算。新規はその60秒前まで。",
+  "評価": "旧15と原因分析済み09/30Nightを分離。全16は探索結果で未見試験ではない。取引ゼロを優位と呼ばない。"
+}

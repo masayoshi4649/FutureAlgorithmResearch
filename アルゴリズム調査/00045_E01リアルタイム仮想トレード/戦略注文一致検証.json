@@ -1,0 +1,277 @@
+{
+  "全合格": true,
+  "results": [
+    {
+      "session": "2026-09-21_Day",
+      "symbol": "NK225",
+      "observations": 56290,
+      "orders": 3,
+      "realized_yen": 16500.0,
+      "注文8項目全一致": true
+    },
+    {
+      "session": "2026-09-21_Day",
+      "symbol": "TOPIX",
+      "observations": 48523,
+      "orders": 4,
+      "realized_yen": 26500.0,
+      "注文8項目全一致": true
+    },
+    {
+      "session": "2026-09-21_Night",
+      "symbol": "NK225",
+      "observations": 81260,
+      "orders": 13,
+      "realized_yen": 31600.0,
+      "注文8項目全一致": true
+    },
+    {
+      "session": "2026-09-21_Night",
+      "symbol": "TOPIX",
+      "observations": 83382,
+      "orders": 13,
+      "realized_yen": 41500.0,
+      "注文8項目全一致": true
+    },
+    {
+      "session": "2026-09-22_Day",
+      "symbol": "NK225",
+      "observations": 66851,
+      "orders": 8,
+      "realized_yen": -27000.0,
+      "注文8項目全一致": true
+    },
+    {
+      "session": "2026-09-22_Day",
+      "symbol": "TOPIX",
+      "observations": 55761,
+      "orders": 12,
+      "realized_yen": -19000.0,
+      "注文8項目全一致": true
+    },
+    {
+      "session": "2026-09-22_Night",
+      "symbol": "NK225",
+      "observations": 120649,
+      "orders": 9,
+      "realized_yen": 35400.0,
+      "注文8項目全一致": true
+    },
+    {
+      "session": "2026-09-22_Night",
+      "symbol": "TOPIX",
+      "observations": 120829,
+      "orders": 13,
+      "realized_yen": 13000.0,
+      "注文8項目全一致": true
+    },
+    {
+      "session": "2026-09-23_Day",
+      "symbol": "NK225",
+      "observations": 53887,
+      "orders": 3,
+      "realized_yen": 3500.0,
+      "注文8項目全一致": true
+    },
+    {
+      "session": "2026-09-23_Day",
+      "symbol": "TOPIX",
+      "observations": 49476,
+      "orders": 4,
+      "realized_yen": 83000.0,
+      "注文8項目全一致": true
+    },
+    {
+      "session": "2026-09-23_Night",
+      "symbol": "NK225",
+      "observations": 120392,
+      "orders": 15,
+      "realized_yen": 22800.0,
+      "注文8項目全一致": true
+    },
+    {
+      "session": "2026-09-23_Night",
+      "symbol": "TOPIX",
+      "observations": 121254,
+      "orders": 23,
+      "realized_yen": 32500.0,
+      "注文8項目全一致": true
+    },
+    {
+      "session": "2026-09-24_Day",
+      "symbol": "NK225",
+      "observations": 123433,
+      "orders": 12,
+      "realized_yen": 14100.0,
+      "注文8項目全一致": true
+    },
+    {
+      "session": "2026-09-24_Day",
+      "symbol": "TOPIX",
+      "observations": 112983,
+      "orders": 3,
+      "realized_yen": 82500.0,
+      "注文8項目全一致": true
+    },
+    {
+      "session": "2026-09-24_Night",
+      "symbol": "NK225",
+      "observations": 176569,
+      "orders": 31,
+      "realized_yen": -17100.0,
+      "注文8項目全一致": true
+    },
+    {
+      "session": "2026-09-24_Night",
+      "symbol": "TOPIX",
+      "observations": 168155,
+      "orders": 14,
+      "realized_yen": -70500.0,
+      "注文8項目全一致": true
+    },
+    {
+      "session": "2026-09-25_Day",
+      "symbol": "NK225",
+      "observations": 106773,
+      "orders": 3,
+      "realized_yen": 28000.0,
+      "注文8項目全一致": true
+    },
+    {
+      "session": "2026-09-25_Day",
+      "symbol": "TOPIX",
+      "observations": 106522,
+      "orders": 3,
+      "realized_yen": 81000.0,
+      "注文8項目全一致": true
+    },
+    {
+      "session": "2026-09-25_Night",
+      "symbol": "NK225",
+      "observations": 145548,
+      "orders": 22,
+      "realized_yen": 9900.0,
+      "注文8項目全一致": true
+    },
+    {
+      "session": "2026-09-25_Night",
+      "symbol": "TOPIX",
+      "observations": 138165,
+      "orders": 20,
+      "realized_yen": 95000.0,
+      "注文8項目全一致": true
+    },
+    {
+      "session": "2026-09-28_Day",
+      "symbol": "NK225",
+      "observations": 135222,
+      "orders": 5,
+      "realized_yen": 36500.0,
+      "注文8項目全一致": true
+    },
+    {
+      "session": "2026-09-28_Day",
+      "symbol": "TOPIX",
+      "observations": 127525,
+      "orders": 5,
+      "realized_yen": 97000.0,
+      "注文8項目全一致": true
+    },
+    {
+      "session": "2026-09-28_Night",
+      "symbol": "NK225",
+      "observations": 171595,
+      "orders": 15,
+      "realized_yen": 49500.0,
+      "注文8項目全一致": true
+    },
+    {
+      "session": "2026-09-28_Night",
+      "symbol": "TOPIX",
+      "observations": 164200,
+      "orders": 14,
+      "realized_yen": 4000.0,
+      "注文8項目全一致": true
+    },
+    {
+      "session": "2026-09-29_Day",
+      "symbol": "NK225",
+      "observations": 144052,
+      "orders": 6,
+      "realized_yen": 55500.0,
+      "注文8項目全一致": true
+    },
+    {
+      "session": "2026-09-29_Day",
+      "symbol": "TOPIX",
+      "observations": 132549,
+      "orders": 3,
+      "realized_yen": 14000.0,
+      "注文8項目全一致": true
+    },
+    {
+      "session": "2026-09-29_Night",
+      "symbol": "NK225",
+      "observations": 162228,
+      "orders": 25,
+      "realized_yen": -2500.0,
+      "注文8項目全一致": true
+    },
+    {
+      "session": "2026-09-29_Night",
+      "symbol": "TOPIX",
+      "observations": 151610,
+      "orders": 27,
+      "realized_yen": -23500.0,
+      "注文8項目全一致": true
+    },
+    {
+      "session": "2026-09-30_Day",
+      "symbol": "NK225",
+      "observations": 131450,
+      "orders": 15,
+      "realized_yen": -26000.0,
+      "注文8項目全一致": true
+    },
+    {
+      "session": "2026-09-30_Day",
+      "symbol": "TOPIX",
+      "observations": 122649,
+      "orders": 7,
+      "realized_yen": 19500.0,
+      "注文8項目全一致": true
+    },
+    {
+      "session": "2026-09-30_Night",
+      "symbol": "NK225",
+      "observations": 172305,
+      "orders": 22,
+      "realized_yen": -45000.0,
+      "注文8項目全一致": true
+    },
+    {
+      "session": "2026-09-30_Night",
+      "symbol": "TOPIX",
+      "observations": 179889,
+      "orders": 20,
+      "realized_yen": 500.0,
+      "注文8項目全一致": true
+    },
+    {
+      "session": "2026-10-01_Day",
+      "symbol": "NK225",
+      "observations": 138148,
+      "orders": 6,
+      "realized_yen": 25000.0,
+      "注文8項目全一致": true
+    },
+    {
+      "session": "2026-10-01_Day",
+      "symbol": "TOPIX",
+      "observations": 126664,
+      "orders": 4,
+      "realized_yen": 95500.0,
+      "注文8項目全一致": true
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "日時": "2026-09-29T21:16:56.159454+09:00",
+  "派生元": "work\\wave_v28\\engine_context.py",
+  "派生先": "work\\wave_v28\\engine_context_observed.py",
+  "派生元SHA256": "5cdda2a12b602f29863b075f0e191cfb9de38803a08191b02331d6201fb66a7a",
+  "派生先SHA256": "b684693d488654e0bfa2f7c5c8382e524f3e8817d51a726c68fe7df326bfa354",
+  "変更": [
+    {
+      "元": "fill=level",
+      "先": "fill=p if event!=6 else level",
+      "箇所数": 1
+    },
+    {
+      "元": "anchor=p if pending_market else pending_level",
+      "先": "anchor=p",
+      "箇所数": 1
+    }
+  ],
+  "その他の変更": false,
+  "二入力run契約保持": true
+}

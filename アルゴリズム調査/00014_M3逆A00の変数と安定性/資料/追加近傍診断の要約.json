@@ -1,0 +1,23 @@
+{
+  "primary": "V0800",
+  "count": 135,
+  "both_positive": 135,
+  "both_drop_positive": 124,
+  "both_eligible": 116,
+  "elapsed_seconds": 35.102853298187256,
+  "holding_only": [
+    "D065",
+    "D066",
+    "D067",
+    "D068",
+    "D069"
+  ],
+  "minimum_net": {
+    "TOPIX": 51500.0,
+    "NK225": 6200.0
+  },
+  "minimum_drop_net": {
+    "TOPIX": 27500.0,
+    "NK225": -2900.0
+  }
+}

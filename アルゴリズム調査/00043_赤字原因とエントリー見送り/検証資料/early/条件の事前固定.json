@@ -1,0 +1,113 @@
+{
+  "基準": "F50_NONE__E11",
+  "条件": [
+    {
+      "id": "E00",
+      "name": "元の候補1",
+      "changes": {}
+    },
+    {
+      "id": "E01",
+      "name": "初期損切0.75ATR",
+      "changes": {
+        "stop_atr": 0.75
+      }
+    },
+    {
+      "id": "E02",
+      "name": "初期損切0.5ATR",
+      "changes": {
+        "stop_atr": 0.5
+      }
+    },
+    {
+      "id": "E03",
+      "name": "1ATR順行から幅1ATR",
+      "changes": {
+        "activation_atr": 1.0,
+        "main_trail": 1.0
+      }
+    },
+    {
+      "id": "E04",
+      "name": "0.75ATR順行から幅0.75ATR",
+      "changes": {
+        "activation_atr": 0.75,
+        "main_trail": 0.75
+      }
+    },
+    {
+      "id": "E05",
+      "name": "0.5ATR順行から幅0.5ATR",
+      "changes": {
+        "activation_atr": 0.5,
+        "main_trail": 0.5
+      }
+    },
+    {
+      "id": "E06",
+      "name": "0.5ATR順行から幅0.75ATR",
+      "changes": {
+        "activation_atr": 0.5,
+        "main_trail": 0.75
+      }
+    },
+    {
+      "id": "E07",
+      "name": "初期0.75ATR・0.75ATR順行から幅0.75ATR",
+      "changes": {
+        "stop_atr": 0.75,
+        "activation_atr": 0.75,
+        "main_trail": 0.75
+      }
+    },
+    {
+      "id": "E08",
+      "name": "初期0.5ATR・0.5ATR順行から幅0.5ATR",
+      "changes": {
+        "stop_atr": 0.5,
+        "activation_atr": 0.5,
+        "main_trail": 0.5
+      }
+    },
+    {
+      "id": "E09",
+      "name": "0.75ATR順行後に組全体の建値を守る",
+      "changes": {
+        "breakeven_atr": 0.75,
+        "breakeven_floor": 0.0
+      }
+    },
+    {
+      "id": "E10",
+      "name": "15分で0.5ATR未達なら損失枠0.5ATRへ",
+      "changes": {
+        "failure_min": 15.0,
+        "failure_mfe": 0.5,
+        "failure_stop": 0.5
+      }
+    }
+  ],
+  "入口": "元H019の準備・初回時刻・価格・方向・ATR・数量を全件固定",
+  "影時計": "元の通常影stop1ATR/activation1.5ATR/main_trail3ATR/tightenなしを毎回過去から再生成し、その新規準備行だけ許可",
+  "途中": "F50_NONEの悪化時半減・復元なし。1.5ATR減量許可も元通常影から計算する。早期全返済後に再参加しない。",
+  "出口": "変更は指定config値だけ。3ATR順行後0.75ATR上限・2ATR部分利確・360分・場内返済は維持。",
+  "注文": "観測行後に設けたストップは次行から有効。すでに通過した条件は次行価格で返済し、過去の有利な水準へ遡及しない。",
+  "枚数": {
+    "TOPIX": {
+      "初回": 5,
+      "上限": 10,
+      "円倍率": 1000
+    },
+    "NK225": {
+      "初回": 10,
+      "上限": 20,
+      "円倍率": 10
+    }
+  },
+  "リスク単位": "実口座の既存R集計は初回枚数×初回ATRを維持。初期stopを狭めてもR分母を縮めない。金額と1枚平均勝敗比で比較。",
+  "評価": "全16の再探索。旧15と問題Nightを別掲。新20モード版と混ぜず、既存候補1の出口変更として扱う。",
+  "費用": 0,
+  "指定価格約定": true,
+  "API取得数": 0
+}

@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>共通上位４手法のスケールダウン</title>
+  <style>
+    :root { color-scheme: dark; font-family: "Yu Gothic UI", "Meiryo", sans-serif; color: #e4edf7; background: #0c121c; }
+    * { box-sizing: border-box; }
+    body { margin: 0; line-height: 1.75; }
+    main { max-width: 1220px; margin: auto; padding: 44px 28px 64px; }
+    h1 { font-size: clamp(25px, 4vw, 39px); line-height: 1.4; margin: 12px 0; }
+    h2 { font-size: clamp(21px, 3vw, 27px); line-height: 1.45; margin: 8px 0 14px; }
+    h3 { font-size: 21px; margin: 0 0 8px; }
+    p { margin: 10px 0; }
+    a { color: #99cdff; text-underline-offset: 4px; }
+    a:focus-visible, summary:focus-visible { outline: 3px solid #ebbc70; outline-offset: 5px; }
+    .eyebrow { color: #a2b5ce; font-size: 13px; letter-spacing: .08em; }
+    .lead { color: #c2d0e3; font-size: 17px; }
+    .muted, .note { color: #aebfd5; }
+    .note { font-size: 13px; }
+    .panel, .chapter { border: 1px solid #2d415d; background: #121f30; border-radius: 15px; margin: 26px 0; padding: 24px; }
+    .chapter { scroll-margin-top: 18px; }
+    .chapter-head { border-bottom: 1px solid #30435a; padding-bottom: 18px; margin-bottom: 22px; }
+    .chapter-number { color: #88baff; font-weight: 700; font-size: 14px; }
+    .method-id { font-family: Consolas, monospace; color: #b7cce6; font-size: 15px; }
+    .rules { display: grid; grid-template-columns: 75px 1fr; gap: 8px 14px; margin: 16px 0 0; }
+    .rules dt { color: #c5d5ec; font-weight: 700; }
+    .rules dd { margin: 0; }
+    .variant { background: #0e1826; border: 1px solid #263b55; border-radius: 10px; padding: 20px; margin: 18px 0; }
+    .variant.topix { border-left: 4px solid #9ad9dd; }
+    .variant.nk { border-left: 4px solid #ada9ff; }
+    .allocation { margin: 14px 0; }
+    .allocation h4 { font-size: 17px; margin: 10px 0; }
+    .allocation-header { display: flex; flex-wrap: wrap; gap: 8px 20px; align-items: baseline; }
+    .allocation-header strong { color: #e1ebf7; }
+    .allocation-rule { color: #d4e0f1; }
+    .position-limit { font-size: 16px; color: #d9e7fa; font-weight: 700; }
+    .maximum-result { color: #a9bfdc; font-size: 14px; font-weight: 400; }
+    .result-line { display: flex; flex-wrap: wrap; align-items: baseline; gap: 12px 24px; margin: 10px 0 18px; }
+    .result-line strong { font-size: 29px; font-variant-numeric: tabular-nums; }
+    .stats { display: flex; flex-wrap: wrap; gap: 10px 25px; color: #c5d6ea; margin: 15px 0; }
+    .stats b { color: #e5edf8; }
+    .table-wrap { overflow-x: auto; border: 1px solid #2a3e57; border-radius: 9px; margin: 16px 0; }
+    table { border-collapse: collapse; width: 100%; white-space: nowrap; font-variant-numeric: tabular-nums; }
+    th, td { text-align: right; padding: 12px 15px; border-bottom: 1px solid #24374f; }
+    th { background: #1b2b40; color: #c5d8f2; font-weight: 700; font-size: 13px; }
+    th:first-child, td:first-child { text-align: left; }
+    tr:last-child td { border-bottom: 0; }
+    td span { display: block; font-size: 12px; color: #aabed8; }
+    .positive { color: #87dfb1; }
+    .negative { color: #ffa6a9; }
+    .summary-net { font-weight: 700; font-size: 17px; }
+    .callout { background: #213147; border-left: 3px solid #e7bd77; padding: 12px 16px; margin: 18px 0; }
+    .callout p { margin: 0; }
+    details { border-top: 1px solid #2d415a; margin-top: 18px; padding-top: 14px; }
+    summary { cursor: pointer; color: #a9ceff; font-weight: 700; }
+    .nav { display: flex; flex-wrap: wrap; gap: 9px; margin: 22px 0; }
+    .nav a { text-decoration: none; border: 1px solid #355171; padding: 6px 12px; border-radius: 6px; background: #18273b; font-size: 14px; }
+    code { font-family: Consolas, monospace; color: #c6dafa; }
+    footer { color: #a6bad3; font-size: 13px; margin-top: 32px; }
+    @media (max-width: 640px) {
+      main { padding: 24px 13px 40px; }
+      .panel, .chapter { padding: 17px 13px; }
+      .variant { padding: 16px 11px; }
+      .rules { grid-template-columns: 54px 1fr; gap: 8px; }
+      th, td { padding: 10px 11px; }
+      .result-line strong { font-size: 25px; }
+    }
+  </style>
+</head>
+<body>
+<!--
+[コンポーネント概要]
+#scale-report は片方向の同時保有上限を守って初回・追加枚数を比較した結果です。
+#weekly-overview は損小利大候補と週収支最大の配分を一覧表示します。
+.chapter は手法ごとの入口・出口と、TOPIXミニ版・NK225マイクロ版をまとめます。
+.variant は銘柄ごとの上限・初回・追加・実績最大と、週合計・セッション別明細を表示します。
+.allocation は同じ手法の初回・追加枚数の配分候補を示します。
+details は長い明細や補足の開閉に使い、初期表示の説明を短く保ちます。
+金額と枚数は保存済み集計から生成し、外部への通信やブラウザーでの再計算は行いません。
+-->
+<main id="scale-report">
+  <header>
+    <div class="eyebrow">作業 00013 · 2026/9/21 日中〜9/25 夜間（9/26 朝）</div>
+    <h1>共通上位４手法の<br>スケールダウン</h1>
+    <p class="lead">片方向の同時保有上限は、TOPIXミニ10枚・NK225マイクロ20枚。上限の範囲で、初回・追加枚数を比較しました。</p>
+    <div class="callout"><p><b>上限は未返済の建玉です。</b>買いと売りを別々に数えます。この４手法は両建てしません。例えば１枚を建てて返す売買を20回行っても、同時保有は１枚、累計返済は20枚です。返済後の再入場は可能で、累計返済枚数にこの上限は適用しません。</p></div>
+    <p class="note">同じ既読１週間での配分比較です。ラージの信号・価格を使う試算で、mini・micro自体の板での検証ではありません。費用０・指定価格約定・セッション内全返済。各手法を別々に運用した場合を示します。</p>
+  </header>
+  __OVERVIEW__
+  __NAV__
+  __CHAPTERS__
+  __SUPPLEMENT__
+  <footer>
+    <p><a href="README.md">読む順序と再現方法</a> · <a href="資料/配分比較集計.json">数値の元データ</a> · <a href="資料/配分比較監査.json">独立監査</a> · <a href="../index.html">調査一覧</a></p>
+    <p>HTMLは静的検査で確認しています。ブラウザーのURLポリシーによる既存の拒否を再試行せず、実画面は未確認です。</p>
+  </footer>
+</main>
+</body>
+</html>

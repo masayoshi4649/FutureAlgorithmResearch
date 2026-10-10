@@ -1,0 +1,18 @@
+[
+  {
+    "symbol": "NK225",
+    "net": 41880.0,
+    "trades": 23,
+    "wins": 17,
+    "losses": 6,
+    "win_rate": 0.7391304347826086
+  },
+  {
+    "symbol": "TOPIX",
+    "net": -100884.0,
+    "trades": 19,
+    "wins": 11,
+    "losses": 8,
+    "win_rate": 0.5789473684210527
+  }
+]

@@ -1,0 +1,55 @@
+{
+  "全検査合格": true,
+  "新損益の集計表示比較": false,
+  "API取得数": 0,
+  "現在スナップショット使用": false,
+  "構造検査": {
+    "保有判定だけ4箇所変更": true,
+    "context参照行": [
+      286,
+      279,
+      281,
+      283
+    ],
+    "注文会計補助関数は同一": true
+  },
+  "合成論理": {
+    "contextだけで通常新規しない": true,
+    "entry中立だけでは保有中立撤回しない": true,
+    "context反転の次行で撤回": true,
+    "entry点滅はcontext中立時計を戻さない": true,
+    "未約定取消はentryのみ": true,
+    "連敗解除はcontextでなくentry": true,
+    "部分利確の整数枚と元建値を保持し組全体で連敗": true,
+    "含み損予算を割った次行返済かつ反発後も再開禁止": true,
+    "contextの型長さ値を拒否": true
+  },
+  "上下反射ケース数": 10,
+  "中期入力対応": {
+    "主方向系列数": 24,
+    "入口対応比較数": 2496,
+    "未来情報なしの既存主方向関数使用": true
+  },
+  "既存原本による監査": {
+    "旧互換比較数": 228,
+    "prefix比較数": 32,
+    "未来値改変比較数": 32,
+    "注文からの会計照合行数": 25527076
+  },
+  "参照コード不変": true,
+  "SHA256": {
+    "S:\\TempDev\\OSE_Future\\work\\wave_v28\\context_engine_audit.py": "4b5c23d7be87890a1d4380c4c0219eeeb4eec0e5d7a3c038aa9424848002dac2",
+    "S:\\TempDev\\OSE_Future\\work\\wave_v28\\context_audit_plan.md": "9172a0e95173da30bd9e70f4cfe4a83ef42b534a67833718e200be247cb9ba15",
+    "S:\\TempDev\\OSE_Future\\work\\wave_v28\\engine_context.py": "5cdda2a12b602f29863b075f0e191cfb9de38803a08191b02331d6201fb66a7a",
+    "S:\\TempDev\\OSE_Future\\work\\wave_v23\\engine.py": "4bbcf7667698f56ac0b82f1c903cd101b93d14f5b92b8090040d8b39c11b4b1e",
+    "S:\\TempDev\\OSE_Future\\work\\wave_v23\\managers.py": "ede5ba900ea8792d7f5389a5f9eaf12d21760a4ab04421dbe9a36dd0a7d99873",
+    "S:\\TempDev\\OSE_Future\\work\\wave_v27\\hierarchy_signals.py": "59b90b081b8bb865455056f6030633681d9313137dca14ea1ab5e67735b053b9",
+    "S:\\TempDev\\OSE_Future\\work\\wave_v27\\hierarchy_design_fixed.json": "a86766997a5c0c40721deb8c0abbe4c2ef310a142fc1ca4d4bf21830df20c5cc"
+  },
+  "限界": [
+    "監査通過は収益性の保証ではない。",
+    "context反転の補充新規は保有管理の例外。今回の管理候補では反転を使わない。",
+    "セッション損失予算は次行執行のため価格飛躍で超過し得る。",
+    "CurrentPriceTimeは受信時刻ではない。"
+  ]
+}

@@ -1,0 +1,1166 @@
+{
+  "新損益閲覧と計算": false,
+  "現在API取得数": 0,
+  "固定条件数": 96,
+  "倍率1の基礎方向再現": {
+    "F32": {
+      "入力数": 26,
+      "一致方向要素": 2931845
+    },
+    "D016": {
+      "入力数": 26,
+      "一致方向要素": 2931845
+    },
+    "D056": {
+      "入力数": 26,
+      "一致方向要素": 2931845
+    },
+    "P02": {
+      "入力数": 26,
+      "一致方向要素": 2931845
+    }
+  },
+  "機械的論理": {
+    "反対票は拒否": true,
+    "合意6票の整数閾値": true,
+    "優先先と代替先を固定": true,
+    "行数でなく経過秒": true,
+    "中立と逆方向で再確認": true,
+    "観測欠落120秒超で再確認": true
+  },
+  "一意方向数": 82,
+  "重複方向数": 14,
+  "方向ハッシュ": [
+    {
+      "id": "E000",
+      "hash": "927c2592eded71462f3ed33c47dc066107b2909b9312e8d976e36b0520d4ab89",
+      "非中立原本行数": 115796
+    },
+    {
+      "id": "E001",
+      "hash": "2eb6c5aeee463cddee73498dabb7470047a0bd9b7c3066eba8899e0e530a0fd7",
+      "非中立原本行数": 8080
+    },
+    {
+      "id": "E002",
+      "hash": "9623cbde5baa12a667afcf6d3f8a9b916dde8cd7653aeac151b2364272c411fd",
+      "非中立原本行数": 512326
+    },
+    {
+      "id": "E003",
+      "hash": "ad9c1728b45db9920c6e3147380252f104246e9e5b205ee430484873bf5909c1",
+      "非中立原本行数": 17431
+    },
+    {
+      "id": "E004",
+      "hash": "2cde0a4f58148c70dd0877756746dc11f69c7374037620e36d4c4f1cb4ed38dc",
+      "非中立原本行数": 40112
+    },
+    {
+      "id": "E005",
+      "hash": "a50e84a3ab65cdb67a817c05c4e8f6b735fc221157975d661dbcbc367c70f02c",
+      "非中立原本行数": 121110
+    },
+    {
+      "id": "E006",
+      "hash": "f8a28548b6e964ef7e916d9185e797d64ad974b03e664df451b9a2dcd00d3f6f",
+      "非中立原本行数": 590290
+    },
+    {
+      "id": "E007",
+      "hash": "823f9200841f41ac6376a10a8e54135e4d0b2aabc7a4109d9671cfab3529793c",
+      "非中立原本行数": 120071
+    },
+    {
+      "id": "E008",
+      "hash": "41c4ff9b5031dbdc2340ba022ff15300cef316696f1278d3e8a536dd8652fb48",
+      "非中立原本行数": 63141
+    },
+    {
+      "id": "E009",
+      "hash": "9e37b4cbef45bc2ea7ac7f169838119275f79a17c369a5d32de0bb9e2fb4b0c3",
+      "非中立原本行数": 5654
+    },
+    {
+      "id": "E010",
+      "hash": "9883dba0109c9dc6edf50d406c3f2662d23451a600fae0f0349c7efcaa57213d",
+      "非中立原本行数": 412853
+    },
+    {
+      "id": "E011",
+      "hash": "4aeb7e2c2832f087fa9048002a30bec82fa042cc90017caf3eb39324da35e205",
+      "非中立原本行数": 12001
+    },
+    {
+      "id": "E012",
+      "hash": "aaad32abe84f9c8d9e55819ed742214d50a3375df633fc574faf65aa75a273c8",
+      "非中立原本行数": 23424
+    },
+    {
+      "id": "E013",
+      "hash": "7085d605ad2b95f994dad59150b00db125185c709bae830e8678c444a1e7824e",
+      "非中立原本行数": 67039
+    },
+    {
+      "id": "E014",
+      "hash": "a6baa97018d2629aea06584b752e158ddecfb1f2d7d8333ecf569241497415d4",
+      "非中立原本行数": 454200
+    },
+    {
+      "id": "E015",
+      "hash": "9fe9012ff5f04715c792e3581d06132f413d993c51f90e3a4f4ec6de10988673",
+      "非中立原本行数": 66166
+    },
+    {
+      "id": "E016",
+      "hash": "1d86f07ca59d711b23fe0578a3fbb9178d0db419cf511808b156719ba7c4c3e9",
+      "非中立原本行数": 37350
+    },
+    {
+      "id": "E017",
+      "hash": "12ab7c07a40c4fcff1acf6d6e25e40007ebc8af051c04a42e8b11a5f86e3e160",
+      "非中立原本行数": 4119
+    },
+    {
+      "id": "E018",
+      "hash": "9ad7ed67bf3d41c031f88227cb26f99e76658c59b63472a1fd362eb95a1e953f",
+      "非中立原本行数": 301221
+    },
+    {
+      "id": "E019",
+      "hash": "c308cf8b4bce8697e8f8c7ed325c6f8913d486575087fd0d6a9584ffde164ca0",
+      "非中立原本行数": 8046
+    },
+    {
+      "id": "E020",
+      "hash": "0e5d6fb40452f7e4ea2472d7a1c31be3becb07c835226d84421d248af750c3c3",
+      "非中立原本行数": 13658
+    },
+    {
+      "id": "E021",
+      "hash": "ca484bec35a192ae63599d7715aa313fc2f86c9f653f0922e5f9e88403d4587b",
+      "非中立原本行数": 40209
+    },
+    {
+      "id": "E022",
+      "hash": "38faabfdd0fe074fc8609f6c69556c808458d1ab1cf7bc9d69efde917878fe29",
+      "非中立原本行数": 326164
+    },
+    {
+      "id": "E023",
+      "hash": "1b4ee697e708bb58c587e67883b3e14cabaa305b03c7362eda7102f249d3a9a7",
+      "非中立原本行数": 39407
+    },
+    {
+      "id": "E024",
+      "hash": "2b8d6f077899382f7855b4d2be0bed8c75e925cdc0d682d4845fcd3d7fb99e2b",
+      "非中立原本行数": 60881
+    },
+    {
+      "id": "E025",
+      "hash": "814846eaecf4234e7d9f38d44562d76889436911d75124fac6b90c3219e46f79",
+      "非中立原本行数": 1447
+    },
+    {
+      "id": "E026",
+      "hash": "2dabf0a4d3022b5ae333394fc644ee9169ca2c7dad6b5b4d1019a5847e1ad25d",
+      "非中立原本行数": 216697
+    },
+    {
+      "id": "E027",
+      "hash": "70851155f35e864e410e59652e522fe0d0a9504caa49a540ccba5381ec2ce99d",
+      "非中立原本行数": 674
+    },
+    {
+      "id": "E028",
+      "hash": "5ff597f430729474253561beafc811865379c4e3244ae379c1840d02ce9f3afd",
+      "非中立原本行数": 9874
+    },
+    {
+      "id": "E029",
+      "hash": "fcb70660ce1509a83439a85419c7227214b4035f632e559af57105741042f460",
+      "非中立原本行数": 62215
+    },
+    {
+      "id": "E030",
+      "hash": "093d13cdd1f00dcb65e139d7c4087bbc3b505c71dde0f7c75c61c68fab40fcc9",
+      "非中立原本行数": 268457
+    },
+    {
+      "id": "E031",
+      "hash": "14c8350351e32e1434ac2479d81e46c566683d29ee4c8e37155442f6401e3012",
+      "非中立原本行数": 61216
+    },
+    {
+      "id": "E032",
+      "hash": "2836166fbc681b7ebe87fe6207b5135cc1e19c5fd6905b6673a0870d1dc65870",
+      "非中立原本行数": 30183
+    },
+    {
+      "id": "E033",
+      "hash": "814ce265f2ee7570a164b515b68a74ab0a1e6c9214104eba950642ae501ae1eb",
+      "非中立原本行数": 1118
+    },
+    {
+      "id": "E034",
+      "hash": "897e621b277533c142f98c41c310ba0d50424f6b4c278458267bca92d1431623",
+      "非中立原本行数": 167957
+    },
+    {
+      "id": "E035",
+      "hash": "0984c9158cf825bbdb457fae95cc72adcb8db2c18a177a864eb74dae67dd8ea3",
+      "非中立原本行数": 492
+    },
+    {
+      "id": "E036",
+      "hash": "9e8026470b5249e380af31d4188e39e947eb5aececac7bc81df9e9c1816b618d",
+      "非中立原本行数": 4525
+    },
+    {
+      "id": "E037",
+      "hash": "c3531f464653f4953a107e39d2713da1dd0ec448a905ffba467a37bf265197f8",
+      "非中立原本行数": 31273
+    },
+    {
+      "id": "E038",
+      "hash": "3b7ae64e255857b1bf942f252759256674849d99452b3d7809c7123276432433",
+      "非中立原本行数": 195163
+    },
+    {
+      "id": "E039",
+      "hash": "bd8c9a9798cd13a9657b33326220a63b766d5f5aeef07691c27b689604586677",
+      "非中立原本行数": 30491
+    },
+    {
+      "id": "E040",
+      "hash": "d270af1077adc340a74710a74ab2ea2fafc39e316d788be9d0bcccfde34f0eed",
+      "非中立原本行数": 16098
+    },
+    {
+      "id": "E041",
+      "hash": "a883c83eb364eff32442a5037cd4e6070b7b1cc6c7b86d58e40b28fd85cad5ae",
+      "非中立原本行数": 933
+    },
+    {
+      "id": "E042",
+      "hash": "23308af1a8ea8b4a52f4335f0122d41849862de673a1eb219674c354d2ba8625",
+      "非中立原本行数": 114077
+    },
+    {
+      "id": "E043",
+      "hash": "66fa7d905829d391b7b6c584e62f8502c9234d8cef7982be1d37ab77ed5d9832",
+      "非中立原本行数": 414
+    },
+    {
+      "id": "E044",
+      "hash": "84dec49e32a86346bce5716487a6cd49e0ff198b4f178af17d3a7c11eec4659d",
+      "非中立原本行数": 2368
+    },
+    {
+      "id": "E045",
+      "hash": "251f531551e6bf3d0612eea8bc4491b9222fbf744caed0c6bb7d79971c1288bb",
+      "非中立原本行数": 17031
+    },
+    {
+      "id": "E046",
+      "hash": "8fc5992af4b8018b4b393dc07e8e918982f8834caf75ad5e804257a0be2dfc74",
+      "非中立原本行数": 129760
+    },
+    {
+      "id": "E047",
+      "hash": "10711534c6654dcc21a6f920e63343695d8205bbab75b4996f784b1de854d70a",
+      "非中立原本行数": 16414
+    },
+    {
+      "id": "E048",
+      "hash": "cda8e761de28d3926bbf1d9ff3145077e59d4a8bbf61049cd38d18b62b9acc0b",
+      "非中立原本行数": 77027
+    },
+    {
+      "id": "E049",
+      "hash": "c10b6afaf91ae367890b29898b569c6c4d9c1c01b00d9061a541ae414e534555",
+      "非中立原本行数": 395
+    },
+    {
+      "id": "E050",
+      "hash": "50035d9cf7271b1c198ba4e3ff2c75cf0ff8e0ae047d6884caa888b5363e4f15",
+      "非中立原本行数": 245480
+    },
+    {
+      "id": "E051",
+      "hash": "981c3c7659e17d962205ccfef706e700b790715295d0423917d0ab75f9a170e8",
+      "非中立原本行数": 0
+    },
+    {
+      "id": "E052",
+      "hash": "0737f8e79000153bce947da8b2c618f002110add125cecc845cc9760306fc61c",
+      "非中立原本行数": 15525
+    },
+    {
+      "id": "E053",
+      "hash": "95f26aa5e4138a9bc26ff158869e22f31e881472aed34daa5956df1ae0a13351",
+      "非中立原本行数": 77233
+    },
+    {
+      "id": "E054",
+      "hash": "a6d24db7093109054b0df3050eb37b8971ae5847e20785816a12ffa30e44edab",
+      "非中立原本行数": 306604
+    },
+    {
+      "id": "E055",
+      "hash": "699630e75a707fa3db68a1667cfd188e85b217755a53c778617b7e56614b8a8b",
+      "非中立原本行数": 76838
+    },
+    {
+      "id": "E056",
+      "hash": "18016c39e14b5e0f67077dc7b11814878f44c7646087bbf07616b01f9e94a41e",
+      "非中立原本行数": 38290
+    },
+    {
+      "id": "E057",
+      "hash": "f1a1b599052fbd4b841ce7b79d7d0227434e490ce5a5ade3c200e6d02f450709",
+      "非中立原本行数": 154
+    },
+    {
+      "id": "E058",
+      "hash": "54be43713abb7500e3eaff366a669c788ae45f8683c82ecc53d35d74e4825d0f",
+      "非中立原本行数": 179680
+    },
+    {
+      "id": "E059",
+      "hash": "981c3c7659e17d962205ccfef706e700b790715295d0423917d0ab75f9a170e8",
+      "非中立原本行数": 0,
+      "同一方向の先行条件": "E051"
+    },
+    {
+      "id": "E060",
+      "hash": "4a5ca726cbf59eaa6ef044c4ca5a8c8631e23d55f020ac3b2e20d0a284d4eda6",
+      "非中立原本行数": 8446
+    },
+    {
+      "id": "E061",
+      "hash": "18d826388f4f13a96cc7beca27fc10ed1a284039548dd1422c26f200c10ed94e",
+      "非中立原本行数": 38395
+    },
+    {
+      "id": "E062",
+      "hash": "60292ec651127e7ca703b50c03d26e5530d2c77ca1a2df4d1feafd9b50ca62e0",
+      "非中立原本行数": 210224
+    },
+    {
+      "id": "E063",
+      "hash": "104ae94b92b8e5f4b5d28291cfa97a9f309102507c26e944e6b21bdeb9fe2305",
+      "非中立原本行数": 38241
+    },
+    {
+      "id": "E064",
+      "hash": "b1decc08b23a2310b292c70bf22cfd64ac96ea6620e92c2de2ca7204992f7b8b",
+      "非中立原本行数": 19106
+    },
+    {
+      "id": "E065",
+      "hash": "1c1241fee2d738293654728d155830cdfcef8fb080db9389ec6a70a44ff4cb09",
+      "非中立原本行数": 65
+    },
+    {
+      "id": "E066",
+      "hash": "5772902c99205bc1fdb8a67e1cfcfe9fb6e711a80785f4171142a0d0ccbd6d8f",
+      "非中立原本行数": 115004
+    },
+    {
+      "id": "E067",
+      "hash": "981c3c7659e17d962205ccfef706e700b790715295d0423917d0ab75f9a170e8",
+      "非中立原本行数": 0,
+      "同一方向の先行条件": "E051"
+    },
+    {
+      "id": "E068",
+      "hash": "96d447b8dc0ee751e07b3c91bc9c4104cb1f11b91f54615597796352708c3f0a",
+      "非中立原本行数": 4421
+    },
+    {
+      "id": "E069",
+      "hash": "851eb0b6cdbd5eeee9ec6f9e12dcb780546067f210c7f7a8650d93f1baa434a4",
+      "非中立原本行数": 19140
+    },
+    {
+      "id": "E070",
+      "hash": "124a58e968bcb6e34ada0deb314f8b62738502975f59ff1ecc4a3ed3f23c0666",
+      "非中立原本行数": 131434
+    },
+    {
+      "id": "E071",
+      "hash": "6965172542a77635d5f36afb659a3f432cdaf7b867c976d9082b5a78cf18c4fe",
+      "非中立原本行数": 19075
+    },
+    {
+      "id": "E072",
+      "hash": "d152826ca61b92c4b0891f9e45a7e828ec29b6688bd978bd3f1cc65c9a935774",
+      "非中立原本行数": 17703
+    },
+    {
+      "id": "E073",
+      "hash": "981c3c7659e17d962205ccfef706e700b790715295d0423917d0ab75f9a170e8",
+      "非中立原本行数": 0,
+      "同一方向の先行条件": "E051"
+    },
+    {
+      "id": "E074",
+      "hash": "cb61066a708cba90c7a48e208acea009f04ac38f128582f672f69cf52be663d5",
+      "非中立原本行数": 24621
+    },
+    {
+      "id": "E075",
+      "hash": "981c3c7659e17d962205ccfef706e700b790715295d0423917d0ab75f9a170e8",
+      "非中立原本行数": 0,
+      "同一方向の先行条件": "E051"
+    },
+    {
+      "id": "E076",
+      "hash": "39e301dd148bed2c4c08d2d89b23a9506caa8c653b48c7a153e84ffbfbe17c8c",
+      "非中立原本行数": 1052
+    },
+    {
+      "id": "E077",
+      "hash": "d152826ca61b92c4b0891f9e45a7e828ec29b6688bd978bd3f1cc65c9a935774",
+      "非中立原本行数": 17703,
+      "同一方向の先行条件": "E072"
+    },
+    {
+      "id": "E078",
+      "hash": "a5e3faff7ec0698356de7ca9680fdaca246a3af25f3fd3e5599a7d121977fae9",
+      "非中立原本行数": 41272
+    },
+    {
+      "id": "E079",
+      "hash": "d152826ca61b92c4b0891f9e45a7e828ec29b6688bd978bd3f1cc65c9a935774",
+      "非中立原本行数": 17703,
+      "同一方向の先行条件": "E072"
+    },
+    {
+      "id": "E080",
+      "hash": "2d9431b00882de17bcd3e3737583e9412c6c326040a0630dd23a0b0b228cabe1",
+      "非中立原本行数": 8355
+    },
+    {
+      "id": "E081",
+      "hash": "981c3c7659e17d962205ccfef706e700b790715295d0423917d0ab75f9a170e8",
+      "非中立原本行数": 0,
+      "同一方向の先行条件": "E051"
+    },
+    {
+      "id": "E082",
+      "hash": "3f05b3c126849ca65ed97a2a3c69f86e578b23c9ca806020cb3d5ad22ba8ff48",
+      "非中立原本行数": 16505
+    },
+    {
+      "id": "E083",
+      "hash": "981c3c7659e17d962205ccfef706e700b790715295d0423917d0ab75f9a170e8",
+      "非中立原本行数": 0,
+      "同一方向の先行条件": "E051"
+    },
+    {
+      "id": "E084",
+      "hash": "5ed9a5fdf7e128f86a5db0da346a3d59499df07cb7f24aa50bdf48c83eb279fd",
+      "非中立原本行数": 535
+    },
+    {
+      "id": "E085",
+      "hash": "2d9431b00882de17bcd3e3737583e9412c6c326040a0630dd23a0b0b228cabe1",
+      "非中立原本行数": 8355,
+      "同一方向の先行条件": "E080"
+    },
+    {
+      "id": "E086",
+      "hash": "e6300c00b03003a5454def7ebcddd5cea66af10c730e3b63de5177354936da2c",
+      "非中立原本行数": 24426
+    },
+    {
+      "id": "E087",
+      "hash": "2d9431b00882de17bcd3e3737583e9412c6c326040a0630dd23a0b0b228cabe1",
+      "非中立原本行数": 8355,
+      "同一方向の先行条件": "E080"
+    },
+    {
+      "id": "E088",
+      "hash": "ace4c62bde55f9f0f24d1e342a1b5d8941e284baefd3f8528b2e6fb6fcba2342",
+      "非中立原本行数": 3186
+    },
+    {
+      "id": "E089",
+      "hash": "981c3c7659e17d962205ccfef706e700b790715295d0423917d0ab75f9a170e8",
+      "非中立原本行数": 0,
+      "同一方向の先行条件": "E051"
+    },
+    {
+      "id": "E090",
+      "hash": "606676ce8f6ee34349b145391016851f8be45f0bdd7361c429c9da2e601ba82d",
+      "非中立原本行数": 9294
+    },
+    {
+      "id": "E091",
+      "hash": "981c3c7659e17d962205ccfef706e700b790715295d0423917d0ab75f9a170e8",
+      "非中立原本行数": 0,
+      "同一方向の先行条件": "E051"
+    },
+    {
+      "id": "E092",
+      "hash": "f3a743efe82f38d9d32279f55feb04a9c44d49d6e4653a88eec25146afe21a9f",
+      "非中立原本行数": 138
+    },
+    {
+      "id": "E093",
+      "hash": "ace4c62bde55f9f0f24d1e342a1b5d8941e284baefd3f8528b2e6fb6fcba2342",
+      "非中立原本行数": 3186,
+      "同一方向の先行条件": "E088"
+    },
+    {
+      "id": "E094",
+      "hash": "02b14cad5fa1aa569fef861561a1f70ab6a2568c099d061e543136d4643297b9",
+      "非中立原本行数": 12619
+    },
+    {
+      "id": "E095",
+      "hash": "ace4c62bde55f9f0f24d1e342a1b5d8941e284baefd3f8528b2e6fb6fcba2342",
+      "非中立原本行数": 3186,
+      "同一方向の先行条件": "E088"
+    }
+  ],
+  "重複条件": [
+    {
+      "id": "E059",
+      "same_as": "E051"
+    },
+    {
+      "id": "E067",
+      "same_as": "E051"
+    },
+    {
+      "id": "E073",
+      "same_as": "E051"
+    },
+    {
+      "id": "E075",
+      "same_as": "E051"
+    },
+    {
+      "id": "E077",
+      "same_as": "E072"
+    },
+    {
+      "id": "E079",
+      "same_as": "E072"
+    },
+    {
+      "id": "E081",
+      "same_as": "E051"
+    },
+    {
+      "id": "E083",
+      "same_as": "E051"
+    },
+    {
+      "id": "E085",
+      "same_as": "E080"
+    },
+    {
+      "id": "E087",
+      "same_as": "E080"
+    },
+    {
+      "id": "E089",
+      "same_as": "E051"
+    },
+    {
+      "id": "E091",
+      "same_as": "E051"
+    },
+    {
+      "id": "E093",
+      "same_as": "E088"
+    },
+    {
+      "id": "E095",
+      "same_as": "E088"
+    }
+  ],
+  "構造上無効な近傍": [
+    {
+      "id": "E000_PEER_M20",
+      "category": "peer",
+      "reason": "F32単独は相手市場を判断に使わない"
+    },
+    {
+      "id": "E000_PEER_P20",
+      "category": "peer",
+      "reason": "F32単独は相手市場を判断に使わない"
+    },
+    {
+      "id": "E000_CONFIRMATION_M20",
+      "category": "confirmation",
+      "reason": "0秒確認を倍率変更しても確認秒数は同じ"
+    },
+    {
+      "id": "E000_CONFIRMATION_P20",
+      "category": "confirmation",
+      "reason": "0秒確認を倍率変更しても確認秒数は同じ"
+    },
+    {
+      "id": "E001_CONFIRMATION_M20",
+      "category": "confirmation",
+      "reason": "0秒確認を倍率変更しても確認秒数は同じ"
+    },
+    {
+      "id": "E001_CONFIRMATION_P20",
+      "category": "confirmation",
+      "reason": "0秒確認を倍率変更しても確認秒数は同じ"
+    },
+    {
+      "id": "E002_CONFIRMATION_M20",
+      "category": "confirmation",
+      "reason": "0秒確認を倍率変更しても確認秒数は同じ"
+    },
+    {
+      "id": "E002_CONFIRMATION_P20",
+      "category": "confirmation",
+      "reason": "0秒確認を倍率変更しても確認秒数は同じ"
+    },
+    {
+      "id": "E003_CONFIRMATION_M20",
+      "category": "confirmation",
+      "reason": "0秒確認を倍率変更しても確認秒数は同じ"
+    },
+    {
+      "id": "E003_CONFIRMATION_P20",
+      "category": "confirmation",
+      "reason": "0秒確認を倍率変更しても確認秒数は同じ"
+    },
+    {
+      "id": "E004_CONFIRMATION_M20",
+      "category": "confirmation",
+      "reason": "0秒確認を倍率変更しても確認秒数は同じ"
+    },
+    {
+      "id": "E004_CONFIRMATION_P20",
+      "category": "confirmation",
+      "reason": "0秒確認を倍率変更しても確認秒数は同じ"
+    },
+    {
+      "id": "E005_CONFIRMATION_M20",
+      "category": "confirmation",
+      "reason": "0秒確認を倍率変更しても確認秒数は同じ"
+    },
+    {
+      "id": "E005_CONFIRMATION_P20",
+      "category": "confirmation",
+      "reason": "0秒確認を倍率変更しても確認秒数は同じ"
+    },
+    {
+      "id": "E006_CONFIRMATION_M20",
+      "category": "confirmation",
+      "reason": "0秒確認を倍率変更しても確認秒数は同じ"
+    },
+    {
+      "id": "E006_CONFIRMATION_P20",
+      "category": "confirmation",
+      "reason": "0秒確認を倍率変更しても確認秒数は同じ"
+    },
+    {
+      "id": "E007_CONFIRMATION_M20",
+      "category": "confirmation",
+      "reason": "0秒確認を倍率変更しても確認秒数は同じ"
+    },
+    {
+      "id": "E007_CONFIRMATION_P20",
+      "category": "confirmation",
+      "reason": "0秒確認を倍率変更しても確認秒数は同じ"
+    },
+    {
+      "id": "E008_PEER_M20",
+      "category": "peer",
+      "reason": "F32単独は相手市場を判断に使わない"
+    },
+    {
+      "id": "E008_PEER_P20",
+      "category": "peer",
+      "reason": "F32単独は相手市場を判断に使わない"
+    },
+    {
+      "id": "E016_PEER_M20",
+      "category": "peer",
+      "reason": "F32単独は相手市場を判断に使わない"
+    },
+    {
+      "id": "E016_PEER_P20",
+      "category": "peer",
+      "reason": "F32単独は相手市場を判断に使わない"
+    },
+    {
+      "id": "E024_PEER_M20",
+      "category": "peer",
+      "reason": "F32単独は相手市場を判断に使わない"
+    },
+    {
+      "id": "E024_PEER_P20",
+      "category": "peer",
+      "reason": "F32単独は相手市場を判断に使わない"
+    },
+    {
+      "id": "E024_CONFIRMATION_M20",
+      "category": "confirmation",
+      "reason": "0秒確認を倍率変更しても確認秒数は同じ"
+    },
+    {
+      "id": "E024_CONFIRMATION_P20",
+      "category": "confirmation",
+      "reason": "0秒確認を倍率変更しても確認秒数は同じ"
+    },
+    {
+      "id": "E025_CONFIRMATION_M20",
+      "category": "confirmation",
+      "reason": "0秒確認を倍率変更しても確認秒数は同じ"
+    },
+    {
+      "id": "E025_CONFIRMATION_P20",
+      "category": "confirmation",
+      "reason": "0秒確認を倍率変更しても確認秒数は同じ"
+    },
+    {
+      "id": "E026_CONFIRMATION_M20",
+      "category": "confirmation",
+      "reason": "0秒確認を倍率変更しても確認秒数は同じ"
+    },
+    {
+      "id": "E026_CONFIRMATION_P20",
+      "category": "confirmation",
+      "reason": "0秒確認を倍率変更しても確認秒数は同じ"
+    },
+    {
+      "id": "E027_CONFIRMATION_M20",
+      "category": "confirmation",
+      "reason": "0秒確認を倍率変更しても確認秒数は同じ"
+    },
+    {
+      "id": "E027_CONFIRMATION_P20",
+      "category": "confirmation",
+      "reason": "0秒確認を倍率変更しても確認秒数は同じ"
+    },
+    {
+      "id": "E028_CONFIRMATION_M20",
+      "category": "confirmation",
+      "reason": "0秒確認を倍率変更しても確認秒数は同じ"
+    },
+    {
+      "id": "E028_CONFIRMATION_P20",
+      "category": "confirmation",
+      "reason": "0秒確認を倍率変更しても確認秒数は同じ"
+    },
+    {
+      "id": "E029_CONFIRMATION_M20",
+      "category": "confirmation",
+      "reason": "0秒確認を倍率変更しても確認秒数は同じ"
+    },
+    {
+      "id": "E029_CONFIRMATION_P20",
+      "category": "confirmation",
+      "reason": "0秒確認を倍率変更しても確認秒数は同じ"
+    },
+    {
+      "id": "E030_CONFIRMATION_M20",
+      "category": "confirmation",
+      "reason": "0秒確認を倍率変更しても確認秒数は同じ"
+    },
+    {
+      "id": "E030_CONFIRMATION_P20",
+      "category": "confirmation",
+      "reason": "0秒確認を倍率変更しても確認秒数は同じ"
+    },
+    {
+      "id": "E031_CONFIRMATION_M20",
+      "category": "confirmation",
+      "reason": "0秒確認を倍率変更しても確認秒数は同じ"
+    },
+    {
+      "id": "E031_CONFIRMATION_P20",
+      "category": "confirmation",
+      "reason": "0秒確認を倍率変更しても確認秒数は同じ"
+    },
+    {
+      "id": "E032_PEER_M20",
+      "category": "peer",
+      "reason": "F32単独は相手市場を判断に使わない"
+    },
+    {
+      "id": "E032_PEER_P20",
+      "category": "peer",
+      "reason": "F32単独は相手市場を判断に使わない"
+    },
+    {
+      "id": "E040_PEER_M20",
+      "category": "peer",
+      "reason": "F32単独は相手市場を判断に使わない"
+    },
+    {
+      "id": "E040_PEER_P20",
+      "category": "peer",
+      "reason": "F32単独は相手市場を判断に使わない"
+    },
+    {
+      "id": "E048_PEER_M20",
+      "category": "peer",
+      "reason": "F32単独は相手市場を判断に使わない"
+    },
+    {
+      "id": "E048_PEER_P20",
+      "category": "peer",
+      "reason": "F32単独は相手市場を判断に使わない"
+    },
+    {
+      "id": "E048_CONFIRMATION_M20",
+      "category": "confirmation",
+      "reason": "0秒確認を倍率変更しても確認秒数は同じ"
+    },
+    {
+      "id": "E048_CONFIRMATION_P20",
+      "category": "confirmation",
+      "reason": "0秒確認を倍率変更しても確認秒数は同じ"
+    },
+    {
+      "id": "E049_CONFIRMATION_M20",
+      "category": "confirmation",
+      "reason": "0秒確認を倍率変更しても確認秒数は同じ"
+    },
+    {
+      "id": "E049_CONFIRMATION_P20",
+      "category": "confirmation",
+      "reason": "0秒確認を倍率変更しても確認秒数は同じ"
+    },
+    {
+      "id": "E050_CONFIRMATION_M20",
+      "category": "confirmation",
+      "reason": "0秒確認を倍率変更しても確認秒数は同じ"
+    },
+    {
+      "id": "E050_CONFIRMATION_P20",
+      "category": "confirmation",
+      "reason": "0秒確認を倍率変更しても確認秒数は同じ"
+    },
+    {
+      "id": "E051_CONFIRMATION_M20",
+      "category": "confirmation",
+      "reason": "0秒確認を倍率変更しても確認秒数は同じ"
+    },
+    {
+      "id": "E051_CONFIRMATION_P20",
+      "category": "confirmation",
+      "reason": "0秒確認を倍率変更しても確認秒数は同じ"
+    },
+    {
+      "id": "E052_CONFIRMATION_M20",
+      "category": "confirmation",
+      "reason": "0秒確認を倍率変更しても確認秒数は同じ"
+    },
+    {
+      "id": "E052_CONFIRMATION_P20",
+      "category": "confirmation",
+      "reason": "0秒確認を倍率変更しても確認秒数は同じ"
+    },
+    {
+      "id": "E053_CONFIRMATION_M20",
+      "category": "confirmation",
+      "reason": "0秒確認を倍率変更しても確認秒数は同じ"
+    },
+    {
+      "id": "E053_CONFIRMATION_P20",
+      "category": "confirmation",
+      "reason": "0秒確認を倍率変更しても確認秒数は同じ"
+    },
+    {
+      "id": "E054_CONFIRMATION_M20",
+      "category": "confirmation",
+      "reason": "0秒確認を倍率変更しても確認秒数は同じ"
+    },
+    {
+      "id": "E054_CONFIRMATION_P20",
+      "category": "confirmation",
+      "reason": "0秒確認を倍率変更しても確認秒数は同じ"
+    },
+    {
+      "id": "E055_CONFIRMATION_M20",
+      "category": "confirmation",
+      "reason": "0秒確認を倍率変更しても確認秒数は同じ"
+    },
+    {
+      "id": "E055_CONFIRMATION_P20",
+      "category": "confirmation",
+      "reason": "0秒確認を倍率変更しても確認秒数は同じ"
+    },
+    {
+      "id": "E056_PEER_M20",
+      "category": "peer",
+      "reason": "F32単独は相手市場を判断に使わない"
+    },
+    {
+      "id": "E056_PEER_P20",
+      "category": "peer",
+      "reason": "F32単独は相手市場を判断に使わない"
+    },
+    {
+      "id": "E064_PEER_M20",
+      "category": "peer",
+      "reason": "F32単独は相手市場を判断に使わない"
+    },
+    {
+      "id": "E064_PEER_P20",
+      "category": "peer",
+      "reason": "F32単独は相手市場を判断に使わない"
+    },
+    {
+      "id": "E072_PEER_M20",
+      "category": "peer",
+      "reason": "F32単独は相手市場を判断に使わない"
+    },
+    {
+      "id": "E072_PEER_P20",
+      "category": "peer",
+      "reason": "F32単独は相手市場を判断に使わない"
+    },
+    {
+      "id": "E072_CONFIRMATION_M20",
+      "category": "confirmation",
+      "reason": "0秒確認を倍率変更しても確認秒数は同じ"
+    },
+    {
+      "id": "E072_CONFIRMATION_P20",
+      "category": "confirmation",
+      "reason": "0秒確認を倍率変更しても確認秒数は同じ"
+    },
+    {
+      "id": "E073_CONFIRMATION_M20",
+      "category": "confirmation",
+      "reason": "0秒確認を倍率変更しても確認秒数は同じ"
+    },
+    {
+      "id": "E073_CONFIRMATION_P20",
+      "category": "confirmation",
+      "reason": "0秒確認を倍率変更しても確認秒数は同じ"
+    },
+    {
+      "id": "E074_CONFIRMATION_M20",
+      "category": "confirmation",
+      "reason": "0秒確認を倍率変更しても確認秒数は同じ"
+    },
+    {
+      "id": "E074_CONFIRMATION_P20",
+      "category": "confirmation",
+      "reason": "0秒確認を倍率変更しても確認秒数は同じ"
+    },
+    {
+      "id": "E075_CONFIRMATION_M20",
+      "category": "confirmation",
+      "reason": "0秒確認を倍率変更しても確認秒数は同じ"
+    },
+    {
+      "id": "E075_CONFIRMATION_P20",
+      "category": "confirmation",
+      "reason": "0秒確認を倍率変更しても確認秒数は同じ"
+    },
+    {
+      "id": "E076_CONFIRMATION_M20",
+      "category": "confirmation",
+      "reason": "0秒確認を倍率変更しても確認秒数は同じ"
+    },
+    {
+      "id": "E076_CONFIRMATION_P20",
+      "category": "confirmation",
+      "reason": "0秒確認を倍率変更しても確認秒数は同じ"
+    },
+    {
+      "id": "E077_CONFIRMATION_M20",
+      "category": "confirmation",
+      "reason": "0秒確認を倍率変更しても確認秒数は同じ"
+    },
+    {
+      "id": "E077_CONFIRMATION_P20",
+      "category": "confirmation",
+      "reason": "0秒確認を倍率変更しても確認秒数は同じ"
+    },
+    {
+      "id": "E078_CONFIRMATION_M20",
+      "category": "confirmation",
+      "reason": "0秒確認を倍率変更しても確認秒数は同じ"
+    },
+    {
+      "id": "E078_CONFIRMATION_P20",
+      "category": "confirmation",
+      "reason": "0秒確認を倍率変更しても確認秒数は同じ"
+    },
+    {
+      "id": "E079_CONFIRMATION_M20",
+      "category": "confirmation",
+      "reason": "0秒確認を倍率変更しても確認秒数は同じ"
+    },
+    {
+      "id": "E079_CONFIRMATION_P20",
+      "category": "confirmation",
+      "reason": "0秒確認を倍率変更しても確認秒数は同じ"
+    },
+    {
+      "id": "E080_PEER_M20",
+      "category": "peer",
+      "reason": "F32単独は相手市場を判断に使わない"
+    },
+    {
+      "id": "E080_PEER_P20",
+      "category": "peer",
+      "reason": "F32単独は相手市場を判断に使わない"
+    },
+    {
+      "id": "E088_PEER_M20",
+      "category": "peer",
+      "reason": "F32単独は相手市場を判断に使わない"
+    },
+    {
+      "id": "E088_PEER_P20",
+      "category": "peer",
+      "reason": "F32単独は相手市場を判断に使わない"
+    }
+  ],
+  "因果監査": {
+    "基準条件数": 20,
+    "有効近傍を含む条件数": 118,
+    "検査条件": [
+      "E000",
+      "E000_CLOCK_M20",
+      "E000_CLOCK_P20",
+      "E001",
+      "E001_CLOCK_M20",
+      "E001_CLOCK_P20",
+      "E001_PEER_M20",
+      "E001_PEER_P20",
+      "E003",
+      "E003_CLOCK_M20",
+      "E003_CLOCK_P20",
+      "E003_PEER_M20",
+      "E003_PEER_P20",
+      "E006",
+      "E006_CLOCK_M20",
+      "E006_CLOCK_P20",
+      "E006_PEER_M20",
+      "E006_PEER_P20",
+      "E009",
+      "E009_CLOCK_M20",
+      "E009_CLOCK_P20",
+      "E009_PEER_M20",
+      "E009_PEER_P20",
+      "E009_CONFIRMATION_M20",
+      "E009_CONFIRMATION_P20",
+      "E012",
+      "E012_CLOCK_M20",
+      "E012_CLOCK_P20",
+      "E012_PEER_M20",
+      "E012_PEER_P20",
+      "E012_CONFIRMATION_M20",
+      "E012_CONFIRMATION_P20",
+      "E018",
+      "E018_CLOCK_M20",
+      "E018_CLOCK_P20",
+      "E018_PEER_M20",
+      "E018_PEER_P20",
+      "E018_CONFIRMATION_M20",
+      "E018_CONFIRMATION_P20",
+      "E025",
+      "E025_CLOCK_M20",
+      "E025_CLOCK_P20",
+      "E025_PEER_M20",
+      "E025_PEER_P20",
+      "E027",
+      "E027_CLOCK_M20",
+      "E027_CLOCK_P20",
+      "E027_PEER_M20",
+      "E027_PEER_P20",
+      "E033",
+      "E033_CLOCK_M20",
+      "E033_CLOCK_P20",
+      "E033_PEER_M20",
+      "E033_PEER_P20",
+      "E033_CONFIRMATION_M20",
+      "E033_CONFIRMATION_P20",
+      "E039",
+      "E039_CLOCK_M20",
+      "E039_CLOCK_P20",
+      "E039_PEER_M20",
+      "E039_PEER_P20",
+      "E039_CONFIRMATION_M20",
+      "E039_CONFIRMATION_P20",
+      "E045",
+      "E045_CLOCK_M20",
+      "E045_CLOCK_P20",
+      "E045_PEER_M20",
+      "E045_PEER_P20",
+      "E045_CONFIRMATION_M20",
+      "E045_CONFIRMATION_P20",
+      "E048",
+      "E048_CLOCK_M20",
+      "E048_CLOCK_P20",
+      "E054",
+      "E054_CLOCK_M20",
+      "E054_CLOCK_P20",
+      "E054_PEER_M20",
+      "E054_PEER_P20",
+      "E060",
+      "E060_CLOCK_M20",
+      "E060_CLOCK_P20",
+      "E060_PEER_M20",
+      "E060_PEER_P20",
+      "E060_CONFIRMATION_M20",
+      "E060_CONFIRMATION_P20",
+      "E066",
+      "E066_CLOCK_M20",
+      "E066_CLOCK_P20",
+      "E066_PEER_M20",
+      "E066_PEER_P20",
+      "E066_CONFIRMATION_M20",
+      "E066_CONFIRMATION_P20",
+      "E075",
+      "E075_CLOCK_M20",
+      "E075_CLOCK_P20",
+      "E075_PEER_M20",
+      "E075_PEER_P20",
+      "E081",
+      "E081_CLOCK_M20",
+      "E081_CLOCK_P20",
+      "E081_PEER_M20",
+      "E081_PEER_P20",
+      "E081_CONFIRMATION_M20",
+      "E081_CONFIRMATION_P20",
+      "E087",
+      "E087_CLOCK_M20",
+      "E087_CLOCK_P20",
+      "E087_PEER_M20",
+      "E087_PEER_P20",
+      "E087_CONFIRMATION_M20",
+      "E087_CONFIRMATION_P20",
+      "E093",
+      "E093_CLOCK_M20",
+      "E093_CLOCK_P20",
+      "E093_PEER_M20",
+      "E093_PEER_P20",
+      "E093_CONFIRMATION_M20",
+      "E093_CONFIRMATION_P20"
+    ],
+    "prefix比較数": 944,
+    "未来改変比較数": 944,
+    "方向要素": 128275440,
+    "不一致": [],
+    "足ファイル不要": true
+  },
+  "旧凍結コード不変": true,
+  "旧凍結SHA256": {
+    "S:\\TempDev\\OSE_Future\\work\\wave_v25\\discovery_signals.py": "43f03b5630558a68cf6848b89f17e40f73c41720fcecbb07600cf7e2f3eb4653",
+    "S:\\TempDev\\OSE_Future\\work\\wave_v25\\d016_price_control.py": "e3a0add063c10bb538b551cbf8136e7afd058b5c65d70f1161d3dbb6d9fc4fc1",
+    "S:\\TempDev\\OSE_Future\\work\\wave_v23\\signals.py": "32722cce5092b07afbafc6535a83e78c103f2a483d4012c52ee8eb11ffd99760"
+  },
+  "実行秒": 42.586,
+  "注意": "同じ方向になる条件は独立の発見ではない。prefixは記録に対する因果性であり、実受信順の証明ではない。"
+}

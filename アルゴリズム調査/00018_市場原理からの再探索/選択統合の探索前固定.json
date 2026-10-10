@@ -1,0 +1,17 @@
+{
+  "時刻": "2026-09-29T17:38:17.374141+09:00",
+  "選択則数": 18,
+  "管理数": 20,
+  "全条件数": 360,
+  "全13セッション既読": true,
+  "現在データの追加取得なし": true,
+  "実行": "選択後の方向を一つのengineへ渡し、建玉・待機・連敗・損失予算を引き継いで再生。",
+  "候補比較": "元探索の資格と順位式を変更せず使用。選択ルール自体の事後最適化は残る。",
+  "SHA256": {
+    "selector_research.py": "2c05126964cb915daef05e63ff2ccdc0fcf5c38df7f781971206f0517c69101e",
+    "selector_signals.py": "48b6e7241a12f2fe9c045b555e7dfd95bd23c0f21391af8f920912faa09d10a2",
+    "selector_past.py": "db3d71ab2c8a2efd44456acefddc1e18eeb5d8852ccd9b5c94edb203346725b2",
+    "engine.py": "4bbcf7667698f56ac0b82f1c903cd101b93d14f5b92b8090040d8b39c11b4b1e",
+    "managers.py": "ede5ba900ea8792d7f5389a5f9eaf12d21760a4ab04421dbe9a36dd0a7d99873"
+  }
+}

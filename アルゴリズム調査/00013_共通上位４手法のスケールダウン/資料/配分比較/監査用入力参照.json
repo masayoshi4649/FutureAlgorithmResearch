@@ -1,0 +1,20 @@
+{
+  "inputs": [
+    "S:\\TempDev\\OSE_Future\\work\\wave_v16\\入力_development.pkl",
+    "S:\\TempDev\\OSE_Future\\work\\wave_v16\\入力_holdout.pkl"
+  ],
+  "states": "S:\\TempDev\\OSE_Future\\work\\wave_v17\\主方向状態.pkl",
+  "source_hashes": {
+    "S:\\TempDev\\OSE_Future\\work\\wave_v17\\engine.py": "41bd11f13884ea98377996ea18c0e34f43c90acaa7334b862e3521dbaf0bca46",
+    "S:\\TempDev\\OSE_Future\\work\\wave_v17\\research.py": "9c521355d7f09d71081de301cf6149d4740486f73742888883012be403e3fd3d",
+    "S:\\TempDev\\OSE_Future\\work\\wave_v17\\全条件一覧.json": "17f4d186bdf5372d49a4fb73b9d934739752db7eb5cf06259a1cfe999f23d437",
+    "S:\\TempDev\\OSE_Future\\work\\wave_v17\\主方向状態.pkl": "6d05579074b5d666d56f2bb234cae6892d2fba8b7e330b64af06a639706e2dec",
+    "S:\\TempDev\\OSE_Future\\work\\wave_v18\\audit_engine_scaled.py": "3c7f88c4f38c37e1206d59faf030357d615d3e170c92df234a2c7b8e7535a7bf",
+    "S:\\TempDev\\OSE_Future\\work\\wave_v18\\allocation\\search_allocation.py": "c7b5b0b1618affabeb92b9729cba4d63a18f04c14052698d694cc5d3e90801c2",
+    "S:\\TempDev\\OSE_Future\\work\\wave_v16\\入力_development.pkl": "d1dd949c47df77b9af21620ec3b0a21d6ee0888bf729ecf7a16552ce9c19189a",
+    "S:\\TempDev\\OSE_Future\\work\\wave_v16\\入力_holdout.pkl": "58cd7910df951703abd20ae271071f42bb5dbf1380cf342bab2301baaa7a0741"
+  },
+  "direction": "state[(session,symbol)][config.signal] * config.sign",
+  "result_key": "(allocation_id,session,symbol)",
+  "selected_allocation_count": 16
+}

@@ -1,0 +1,1876 @@
+{
+  "目的": "候補3つの銘柄差と、少数両銘柄黒字対照の事後診断。新規売買計算・条件変更なし。",
+  "限界": [
+    "全25場既読で候補自体も事後選定。将来の銘柄固有性を証明しない。",
+    "銘柄間の円を直接比較せず、勝率・平均勝負比・呼値・初期リスク比を併記。",
+    "同注文中値は説明用の価格差分解。中値で実際に約定する主張ではない。",
+    "共通入口は同銘柄・同セッション・同判断原本行・同方向。銘柄間の時計を真の同時性に代用しない。"
+  ],
+  "候補": [
+    {
+      "id": "M3_Q1_L1_T16_S8_H600_保有30分_校正10_60",
+      "config": {
+        "id": "M3_Q1_L1_T16_S8_H600_保有30分_校正10_60",
+        "signal": 1,
+        "target": 16,
+        "stop": 8,
+        "hold": 1800,
+        "cooldown": 10,
+        "protect": 0,
+        "calibration": 1,
+        "window": 10,
+        "required_wins": 6,
+        "control_id": "M2_Q1_L1_T16_S8_H600_保有30分",
+        "treatment": "当場の完了済み影取引から入口の可否を決める"
+      },
+      "summary": {
+        "TOPIX": {
+          "gross_profit": 847500.0,
+          "gross_loss": 507500.0,
+          "fees": 23826.0,
+          "net": 316174.0,
+          "wins": 29,
+          "losses": 28,
+          "flats": 0,
+          "cycles": 57,
+          "profit": 835378.0,
+          "loss": 519204.0,
+          "win_qty": 145,
+          "loss_qty": 140,
+          "flat_qty": 0,
+          "win_rate": 0.5087719298245614,
+          "pf": 1.6089590989283595,
+          "payoff": 1.5534777506894506,
+          "positive_sessions": 6,
+          "active_sessions": 8,
+          "sessions": 25,
+          "drawdown": 109172.0,
+          "max_loss_session": -21254.0,
+          "without_best": 199108.0,
+          "win95_observed": false,
+          "risk_good": true,
+          "goal95": false,
+          "goal95_with_sample": false
+        },
+        "NK225": {
+          "gross_profit": 178000.0,
+          "gross_loss": 176000.0,
+          "fees": 10120.0,
+          "net": -8120.0,
+          "wins": 20,
+          "losses": 26,
+          "flats": 0,
+          "cycles": 46,
+          "profit": 173600.0,
+          "loss": 181720.0,
+          "win_qty": 200,
+          "loss_qty": 260,
+          "flat_qty": 0,
+          "win_rate": 0.43478260869565216,
+          "pf": 0.9553158705701078,
+          "payoff": 1.2419106317411401,
+          "positive_sessions": 2,
+          "active_sessions": 6,
+          "sessions": 25,
+          "drawdown": 66960.0,
+          "max_loss_session": -30320.0,
+          "without_best": -41040.0,
+          "win95_observed": false,
+          "risk_good": false,
+          "goal95": false,
+          "goal95_with_sample": false
+        }
+      },
+      "measured": {
+        "TOPIX": {
+          "groups": 57,
+          "wins": 29,
+          "losses": 28,
+          "net": 316174.0,
+          "gross": 340000.0,
+          "fees": 23826.0,
+          "win_rate": 0.5087719298245614,
+          "mean_win": 28806.137931034482,
+          "mean_loss": 18543.0,
+          "payoff": 1.5534777506894506,
+          "descriptive_break_even_win_rate": 0.391622758306782,
+          "same_orders_mid_net": 487424.0,
+          "same_orders_price_difference": 171250.0,
+          "target_reached_before_exit_decision": 18,
+          "stop_reached_before_exit_decision": 24,
+          "reasons": {
+            "目標": {
+              "count": 18,
+              "net": 707476.0
+            },
+            "損切り": {
+              "count": 24,
+              "net": -485032.0
+            },
+            "期限": {
+              "count": 15,
+              "net": 93730.0
+            },
+            "場内": {
+              "count": 0,
+              "net": 0.0
+            },
+            "保護": {
+              "count": 0,
+              "net": 0.0
+            }
+          },
+          "observations": {
+            "same_order_mid_net": {
+              "n": 57,
+              "mean": 8551.298245614034,
+              "median": 4582.0
+            },
+            "spread_entry_ticks": {
+              "n": 57,
+              "mean": 1.1403508771929824,
+              "median": 1.0
+            },
+            "spread_exit_ticks": {
+              "n": 57,
+              "mean": 1.263157894736842,
+              "median": 1.0
+            },
+            "target_percent": {
+              "n": 57,
+              "mean": 0.19299330854016344,
+              "median": 0.19293379959001566
+            },
+            "stop_percent": {
+              "n": 57,
+              "mean": 0.09649665427008172,
+              "median": 0.09646689979500783
+            },
+            "target_ticks": {
+              "n": 57,
+              "mean": 16.0,
+              "median": 16.0
+            },
+            "stop_ticks": {
+              "n": 57,
+              "mean": 8.0,
+              "median": 8.0
+            },
+            "fee_ticks": {
+              "n": 57,
+              "mean": 0.16719999999999996,
+              "median": 0.1672
+            },
+            "cost_price_ticks": {
+              "n": 57,
+              "mean": 1.2017543859649122,
+              "median": 1.0
+            },
+            "hold_seconds": {
+              "n": 57,
+              "mean": 971.0350877192982,
+              "median": 827.0
+            },
+            "mfe_ticks": {
+              "n": 57,
+              "mean": 8.491228070175438,
+              "median": 7.0
+            },
+            "mae_ticks": {
+              "n": 57,
+              "mean": 5.298245614035087,
+              "median": 6.0
+            },
+            "prior5_range_ticks": {
+              "n": 57,
+              "mean": 10.289473684210526,
+              "median": 8.0
+            },
+            "prior5_range_over_target": {
+              "n": 57,
+              "mean": 0.6430921052631579,
+              "median": 0.5
+            },
+            "realized_net_R": {
+              "n": 57,
+              "mean": 0.27734561403508773,
+              "median": 0.1041
+            }
+          },
+          "direction": {
+            "-1": {
+              "groups": 30,
+              "net": 214960.0
+            },
+            "1": {
+              "groups": 27,
+              "net": 101214.0
+            }
+          }
+        },
+        "NK225": {
+          "groups": 46,
+          "wins": 20,
+          "losses": 26,
+          "net": -8120.0,
+          "gross": 2000.0,
+          "fees": 10120.0,
+          "win_rate": 0.43478260869565216,
+          "mean_win": 8680.0,
+          "mean_loss": 6989.2307692307695,
+          "payoff": 1.2419106317411401,
+          "descriptive_break_even_win_rate": 0.44604810996563576,
+          "same_orders_mid_net": 54880.0,
+          "same_orders_price_difference": 63000.0,
+          "target_reached_before_exit_decision": 7,
+          "stop_reached_before_exit_decision": 21,
+          "reasons": {
+            "目標": {
+              "count": 7,
+              "net": 109460.0
+            },
+            "損切り": {
+              "count": 21,
+              "net": -167620.0
+            },
+            "期限": {
+              "count": 18,
+              "net": 50040.0
+            },
+            "場内": {
+              "count": 0,
+              "net": 0.0
+            },
+            "保護": {
+              "count": 0,
+              "net": 0.0
+            }
+          },
+          "observations": {
+            "same_order_mid_net": {
+              "n": 46,
+              "mean": 1193.0434782608695,
+              "median": -1970.0
+            },
+            "spread_entry_ticks": {
+              "n": 46,
+              "mean": 1.2826086956521738,
+              "median": 1.0
+            },
+            "spread_exit_ticks": {
+              "n": 46,
+              "mean": 1.4565217391304348,
+              "median": 1.0
+            },
+            "target_percent": {
+              "n": 46,
+              "mean": 0.23980463244604777,
+              "median": 0.2415094394647932
+            },
+            "stop_percent": {
+              "n": 46,
+              "mean": 0.11990231622302389,
+              "median": 0.1207547197323966
+            },
+            "target_ticks": {
+              "n": 46,
+              "mean": 16.0,
+              "median": 16.0
+            },
+            "stop_ticks": {
+              "n": 46,
+              "mean": 8.0,
+              "median": 8.0
+            },
+            "fee_ticks": {
+              "n": 46,
+              "mean": 0.2200000000000001,
+              "median": 0.22
+            },
+            "cost_price_ticks": {
+              "n": 46,
+              "mean": 1.3695652173913044,
+              "median": 1.5
+            },
+            "hold_seconds": {
+              "n": 46,
+              "mean": 1063.3260869565217,
+              "median": 1015.5
+            },
+            "mfe_ticks": {
+              "n": 46,
+              "mean": 7.086956521739131,
+              "median": 5.5
+            },
+            "mae_ticks": {
+              "n": 46,
+              "mean": 5.782608695652174,
+              "median": 7.0
+            },
+            "prior5_range_ticks": {
+              "n": 46,
+              "mean": 10.478260869565217,
+              "median": 8.75
+            },
+            "prior5_range_over_target": {
+              "n": 46,
+              "mean": 0.654891304347826,
+              "median": 0.546875
+            },
+            "realized_net_R": {
+              "n": 46,
+              "mean": -0.02206521739130438,
+              "median": -0.46499999999999997
+            }
+          },
+          "direction": {
+            "-1": {
+              "groups": 24,
+              "net": 14720.0
+            },
+            "1": {
+              "groups": 22,
+              "net": -22840.0
+            }
+          }
+        }
+      },
+      "shadow_selection": {
+        "TOPIX": {
+          "window": 10,
+          "required_wins": 6,
+          "historical_win_rate_at_entry": {
+            "n": 57,
+            "mean": 0.6333333333333333,
+            "median": 0.6
+          },
+          "finished_shadows_at_entry": {
+            "n": 57,
+            "mean": 19.12280701754386,
+            "median": 19.0
+          },
+          "shadow_finished": 619,
+          "allowed": 57,
+          "blocked": 2895,
+          "actual_win_rate": 0.5087719298245614,
+          "uncalibrated": {
+            "gross_profit": 5800000.0,
+            "gross_loss": 7115000.0,
+            "fees": 258742.0,
+            "net": -1573742.0,
+            "wins": 223,
+            "losses": 396,
+            "flats": 0,
+            "cycles": 619,
+            "profit": 5706786.0,
+            "loss": 7280528.0,
+            "win_qty": 1115,
+            "loss_qty": 1980,
+            "flat_qty": 0,
+            "win_rate": 0.3602584814216478,
+            "pf": 0.7838423257214312,
+            "payoff": 1.3919352510568912,
+            "positive_sessions": 8,
+            "active_sessions": 25,
+            "sessions": 25,
+            "drawdown": 2016693.0,
+            "max_loss_session": -401720.0,
+            "without_best": -1812038.0,
+            "win95_observed": false,
+            "risk_good": false,
+            "goal95": false,
+            "goal95_with_sample": false
+          },
+          "entry_set": {
+            "common": 56,
+            "removed": 563,
+            "added": 1,
+            "common_net_before": 336592.0,
+            "common_net_after": 336592.0,
+            "common_delta": 0.0,
+            "removed_net": -1910334.0,
+            "added_net": -20418.0,
+            "removed_win_rate": 0.34458259325044405,
+            "added_win_rate": 0.0
+          }
+        },
+        "NK225": {
+          "window": 10,
+          "required_wins": 6,
+          "historical_win_rate_at_entry": {
+            "n": 46,
+            "mean": 0.6391304347826088,
+            "median": 0.6
+          },
+          "finished_shadows_at_entry": {
+            "n": 46,
+            "mean": 17.152173913043477,
+            "median": 15.0
+          },
+          "shadow_finished": 711,
+          "allowed": 46,
+          "blocked": 3558,
+          "actual_win_rate": 0.43478260869565216,
+          "uncalibrated": {
+            "gross_profit": 2508000.0,
+            "gross_loss": 3455000.0,
+            "fees": 156420.0,
+            "net": -1103420.0,
+            "wins": 235,
+            "losses": 476,
+            "flats": 0,
+            "cycles": 711,
+            "profit": 2456300.0,
+            "loss": 3559720.0,
+            "win_qty": 2350,
+            "loss_qty": 4760,
+            "flat_qty": 0,
+            "win_rate": 0.33052039381153303,
+            "pf": 0.6900261818345264,
+            "payoff": 1.397670053418019,
+            "positive_sessions": 7,
+            "active_sessions": 25,
+            "sessions": 25,
+            "drawdown": 1109310.0,
+            "max_loss_session": -132480.0,
+            "without_best": -1164140.0,
+            "win95_observed": false,
+            "risk_good": false,
+            "goal95": false,
+            "goal95_with_sample": false
+          },
+          "entry_set": {
+            "common": 44,
+            "removed": 667,
+            "added": 2,
+            "common_net_before": -15680.0,
+            "common_net_after": -15680.0,
+            "common_delta": 0.0,
+            "removed_net": -1087740.0,
+            "added_net": 7560.0,
+            "removed_win_rate": 0.3238380809595202,
+            "added_win_rate": 0.5
+          }
+        }
+      }
+    },
+    {
+      "id": "M3_Q2_L0_T16_S8_H600_保有30分_校正5_60",
+      "config": {
+        "id": "M3_Q2_L0_T16_S8_H600_保有30分_校正5_60",
+        "signal": 3,
+        "target": 16,
+        "stop": 8,
+        "hold": 1800,
+        "cooldown": 10,
+        "protect": 0,
+        "calibration": 1,
+        "window": 5,
+        "required_wins": 3,
+        "control_id": "M2_Q2_L0_T16_S8_H600_保有30分",
+        "treatment": "当場の完了済み影取引から入口の可否を決める"
+      },
+      "summary": {
+        "TOPIX": {
+          "gross_profit": 670000.0,
+          "gross_loss": 900000.0,
+          "fees": 32186.0,
+          "net": -262186.0,
+          "wins": 25,
+          "losses": 52,
+          "flats": 0,
+          "cycles": 77,
+          "profit": 659550.0,
+          "loss": 921736.0,
+          "win_qty": 125,
+          "loss_qty": 260,
+          "flat_qty": 0,
+          "win_rate": 0.3246753246753247,
+          "pf": 0.7155519584783495,
+          "payoff": 1.488348073634967,
+          "positive_sessions": 5,
+          "active_sessions": 18,
+          "sessions": 25,
+          "drawdown": 330241.0,
+          "max_loss_session": -120426.0,
+          "without_best": -380924.0,
+          "win95_observed": false,
+          "risk_good": false,
+          "goal95": false,
+          "goal95_with_sample": false
+        },
+        "NK225": {
+          "gross_profit": 308000.0,
+          "gross_loss": 214000.0,
+          "fees": 12980.0,
+          "net": 81020.0,
+          "wins": 30,
+          "losses": 29,
+          "flats": 0,
+          "cycles": 59,
+          "profit": 301400.0,
+          "loss": 220380.0,
+          "win_qty": 300,
+          "loss_qty": 290,
+          "flat_qty": 0,
+          "win_rate": 0.5084745762711864,
+          "pf": 1.3676377166712044,
+          "payoff": 1.3220497927821642,
+          "positive_sessions": 7,
+          "active_sessions": 14,
+          "sessions": 25,
+          "drawdown": 53980.0,
+          "max_loss_session": -23660.0,
+          "without_best": 20320.0,
+          "win95_observed": false,
+          "risk_good": true,
+          "goal95": false,
+          "goal95_with_sample": false
+        }
+      },
+      "measured": {
+        "TOPIX": {
+          "groups": 77,
+          "wins": 25,
+          "losses": 52,
+          "net": -262186.0,
+          "gross": -230000.0,
+          "fees": 32186.0,
+          "win_rate": 0.3246753246753247,
+          "mean_win": 26382.0,
+          "mean_loss": 17725.69230769231,
+          "payoff": 1.488348073634967,
+          "descriptive_break_even_win_rate": 0.401873038018835,
+          "same_orders_mid_net": -19686.0,
+          "same_orders_price_difference": 242500.0,
+          "target_reached_before_exit_decision": 13,
+          "stop_reached_before_exit_decision": 43,
+          "reasons": {
+            "目標": {
+              "count": 13,
+              "net": 509566.0
+            },
+            "損切り": {
+              "count": 43,
+              "net": -875474.0
+            },
+            "期限": {
+              "count": 20,
+              "net": 104140.0
+            },
+            "場内": {
+              "count": 1,
+              "net": -418.0
+            },
+            "保護": {
+              "count": 0,
+              "net": 0.0
+            }
+          },
+          "observations": {
+            "same_order_mid_net": {
+              "n": 77,
+              "mean": -255.66233766233765,
+              "median": -15418.0
+            },
+            "spread_entry_ticks": {
+              "n": 77,
+              "mean": 1.12987012987013,
+              "median": 1.0
+            },
+            "spread_exit_ticks": {
+              "n": 77,
+              "mean": 1.3896103896103895,
+              "median": 1.0
+            },
+            "target_percent": {
+              "n": 77,
+              "mean": 0.1946938565015091,
+              "median": 0.19455252918287938
+            },
+            "stop_percent": {
+              "n": 77,
+              "mean": 0.09734692825075456,
+              "median": 0.09727626459143969
+            },
+            "target_ticks": {
+              "n": 77,
+              "mean": 16.0,
+              "median": 16.0
+            },
+            "stop_ticks": {
+              "n": 77,
+              "mean": 8.0,
+              "median": 8.0
+            },
+            "fee_ticks": {
+              "n": 77,
+              "mean": 0.16719999999999996,
+              "median": 0.1672
+            },
+            "cost_price_ticks": {
+              "n": 77,
+              "mean": 1.2597402597402598,
+              "median": 1.0
+            },
+            "hold_seconds": {
+              "n": 77,
+              "mean": 926.5324675324675,
+              "median": 785.0
+            },
+            "mfe_ticks": {
+              "n": 77,
+              "mean": 6.337662337662338,
+              "median": 5.0
+            },
+            "mae_ticks": {
+              "n": 77,
+              "mean": 6.285714285714286,
+              "median": 8.0
+            },
+            "prior5_range_ticks": {
+              "n": 77,
+              "mean": 10.090909090909092,
+              "median": 8.0
+            },
+            "prior5_range_over_target": {
+              "n": 77,
+              "mean": 0.6306818181818182,
+              "median": 0.5
+            },
+            "realized_net_R": {
+              "n": 77,
+              "mean": -0.17025064935064926,
+              "median": -1.0209
+            }
+          },
+          "direction": {
+            "-1": {
+              "groups": 33,
+              "net": 66206.0
+            },
+            "1": {
+              "groups": 44,
+              "net": -328392.0
+            }
+          }
+        },
+        "NK225": {
+          "groups": 59,
+          "wins": 30,
+          "losses": 29,
+          "net": 81020.0,
+          "gross": 94000.0,
+          "fees": 12980.0,
+          "win_rate": 0.5084745762711864,
+          "mean_win": 10046.666666666666,
+          "mean_loss": 7599.310344827586,
+          "payoff": 1.3220497927821642,
+          "descriptive_break_even_win_rate": 0.4306539864512767,
+          "same_orders_mid_net": 162520.0,
+          "same_orders_price_difference": 81500.0,
+          "target_reached_before_exit_decision": 14,
+          "stop_reached_before_exit_decision": 27,
+          "reasons": {
+            "目標": {
+              "count": 14,
+              "net": 216920.0
+            },
+            "損切り": {
+              "count": 27,
+              "net": -219940.0
+            },
+            "期限": {
+              "count": 16,
+              "net": 74480.0
+            },
+            "場内": {
+              "count": 2,
+              "net": 9560.0
+            },
+            "保護": {
+              "count": 0,
+              "net": 0.0
+            }
+          },
+          "observations": {
+            "same_order_mid_net": {
+              "n": 59,
+              "mean": 2754.576271186441,
+              "median": 3280.0
+            },
+            "spread_entry_ticks": {
+              "n": 59,
+              "mean": 1.1355932203389831,
+              "median": 1.0
+            },
+            "spread_exit_ticks": {
+              "n": 59,
+              "mean": 1.6271186440677967,
+              "median": 1.0
+            },
+            "target_percent": {
+              "n": 59,
+              "mean": 0.23580842830216106,
+              "median": 0.23470734927387413
+            },
+            "stop_percent": {
+              "n": 59,
+              "mean": 0.11790421415108053,
+              "median": 0.11735367463693706
+            },
+            "target_ticks": {
+              "n": 59,
+              "mean": 16.0,
+              "median": 16.0
+            },
+            "stop_ticks": {
+              "n": 59,
+              "mean": 8.0,
+              "median": 8.0
+            },
+            "fee_ticks": {
+              "n": 59,
+              "mean": 0.22000000000000003,
+              "median": 0.22
+            },
+            "cost_price_ticks": {
+              "n": 59,
+              "mean": 1.38135593220339,
+              "median": 1.0
+            },
+            "hold_seconds": {
+              "n": 59,
+              "mean": 912.6271186440678,
+              "median": 781.0
+            },
+            "mfe_ticks": {
+              "n": 59,
+              "mean": 7.932203389830509,
+              "median": 8.0
+            },
+            "mae_ticks": {
+              "n": 59,
+              "mean": 5.677966101694915,
+              "median": 7.0
+            },
+            "prior5_range_ticks": {
+              "n": 59,
+              "mean": 11.567796610169491,
+              "median": 8.5
+            },
+            "prior5_range_over_target": {
+              "n": 59,
+              "mean": 0.7229872881355932,
+              "median": 0.53125
+            },
+            "realized_net_R": {
+              "n": 59,
+              "mean": 0.17165254237288136,
+              "median": 0.2225
+            }
+          },
+          "direction": {
+            "-1": {
+              "groups": 21,
+              "net": 10380.0
+            },
+            "1": {
+              "groups": 38,
+              "net": 70640.0
+            }
+          }
+        }
+      },
+      "shadow_selection": {
+        "TOPIX": {
+          "window": 5,
+          "required_wins": 3,
+          "historical_win_rate_at_entry": {
+            "n": 77,
+            "mean": 0.638961038961039,
+            "median": 0.6
+          },
+          "finished_shadows_at_entry": {
+            "n": 77,
+            "mean": 14.532467532467532,
+            "median": 16.0
+          },
+          "shadow_finished": 470,
+          "allowed": 77,
+          "blocked": 1195,
+          "actual_win_rate": 0.3246753246753247,
+          "uncalibrated": {
+            "gross_profit": 4447500.0,
+            "gross_loss": 5857500.0,
+            "fees": 196460.0,
+            "net": -1606460.0,
+            "wins": 153,
+            "losses": 317,
+            "flats": 0,
+            "cycles": 470,
+            "profit": 4383546.0,
+            "loss": 5990006.0,
+            "win_qty": 765,
+            "loss_qty": 1585,
+            "flat_qty": 0,
+            "win_rate": 0.32553191489361705,
+            "pf": 0.7318099514424526,
+            "payoff": 1.516233690243513,
+            "positive_sessions": 6,
+            "active_sessions": 25,
+            "sessions": 25,
+            "drawdown": 1667690.0,
+            "max_loss_session": -259606.0,
+            "without_best": -1739764.0,
+            "win95_observed": false,
+            "risk_good": false,
+            "goal95": false,
+            "goal95_with_sample": false
+          },
+          "entry_set": {
+            "common": 74,
+            "removed": 396,
+            "added": 3,
+            "common_net_before": -225932.0,
+            "common_net_after": -225932.0,
+            "common_delta": 0.0,
+            "removed_net": -1380528.0,
+            "added_net": -36254.0,
+            "removed_win_rate": 0.32575757575757575,
+            "added_win_rate": 0.3333333333333333
+          }
+        },
+        "NK225": {
+          "window": 5,
+          "required_wins": 3,
+          "historical_win_rate_at_entry": {
+            "n": 59,
+            "mean": 0.6440677966101697,
+            "median": 0.6
+          },
+          "finished_shadows_at_entry": {
+            "n": 59,
+            "mean": 11.525423728813559,
+            "median": 10.0
+          },
+          "shadow_finished": 375,
+          "allowed": 59,
+          "blocked": 614,
+          "actual_win_rate": 0.5084745762711864,
+          "uncalibrated": {
+            "gross_profit": 1579000.0,
+            "gross_loss": 1838000.0,
+            "fees": 82500.0,
+            "net": -341500.0,
+            "wins": 131,
+            "losses": 244,
+            "flats": 0,
+            "cycles": 375,
+            "profit": 1550180.0,
+            "loss": 1891680.0,
+            "win_qty": 1310,
+            "loss_qty": 2440,
+            "flat_qty": 0,
+            "win_rate": 0.34933333333333333,
+            "pf": 0.8194726380783219,
+            "payoff": 1.5263459823748897,
+            "positive_sessions": 9,
+            "active_sessions": 25,
+            "sessions": 25,
+            "drawdown": 513180.0,
+            "max_loss_session": -110500.0,
+            "without_best": -433100.0,
+            "win95_observed": false,
+            "risk_good": false,
+            "goal95": false,
+            "goal95_with_sample": false
+          },
+          "entry_set": {
+            "common": 59,
+            "removed": 316,
+            "added": 0,
+            "common_net_before": 81020.0,
+            "common_net_after": 81020.0,
+            "common_delta": 0.0,
+            "removed_net": -422520.0,
+            "added_net": 0,
+            "removed_win_rate": 0.31962025316455694,
+            "added_win_rate": null
+          }
+        }
+      }
+    },
+    {
+      "id": "M3_Q2_L0_T16_S8_H600_保有30分_校正10_60",
+      "config": {
+        "id": "M3_Q2_L0_T16_S8_H600_保有30分_校正10_60",
+        "signal": 3,
+        "target": 16,
+        "stop": 8,
+        "hold": 1800,
+        "cooldown": 10,
+        "protect": 0,
+        "calibration": 1,
+        "window": 10,
+        "required_wins": 6,
+        "control_id": "M2_Q2_L0_T16_S8_H600_保有30分",
+        "treatment": "当場の完了済み影取引から入口の可否を決める"
+      },
+      "summary": {
+        "TOPIX": {
+          "gross_profit": 205000.0,
+          "gross_loss": 130000.0,
+          "fees": 6688.0,
+          "net": 68312.0,
+          "wins": 8,
+          "losses": 8,
+          "flats": 0,
+          "cycles": 16,
+          "profit": 201656.0,
+          "loss": 133344.0,
+          "win_qty": 40,
+          "loss_qty": 40,
+          "flat_qty": 0,
+          "win_rate": 0.5,
+          "pf": 1.5122990160787138,
+          "payoff": 1.5122990160787138,
+          "positive_sessions": 3,
+          "active_sessions": 6,
+          "sessions": 25,
+          "drawdown": 105008.0,
+          "max_loss_session": -40836.0,
+          "without_best": -10016.0,
+          "win95_observed": false,
+          "risk_good": true,
+          "goal95": false,
+          "goal95_with_sample": false
+        },
+        "NK225": {
+          "gross_profit": 103000.0,
+          "gross_loss": 65000.0,
+          "fees": 3740.0,
+          "net": 34260.0,
+          "wins": 9,
+          "losses": 8,
+          "flats": 0,
+          "cycles": 17,
+          "profit": 101020.0,
+          "loss": 66760.0,
+          "win_qty": 90,
+          "loss_qty": 80,
+          "flat_qty": 0,
+          "win_rate": 0.5294117647058824,
+          "pf": 1.5131815458358298,
+          "payoff": 1.3450502629651822,
+          "positive_sessions": 2,
+          "active_sessions": 3,
+          "sessions": 25,
+          "drawdown": 28880.0,
+          "max_loss_session": -8220.0,
+          "without_best": 3460.0,
+          "win95_observed": false,
+          "risk_good": true,
+          "goal95": false,
+          "goal95_with_sample": false
+        }
+      },
+      "measured": {
+        "TOPIX": {
+          "groups": 16,
+          "wins": 8,
+          "losses": 8,
+          "net": 68312.0,
+          "gross": 75000.0,
+          "fees": 6688.0,
+          "win_rate": 0.5,
+          "mean_win": 25207.0,
+          "mean_loss": 16668.0,
+          "payoff": 1.5122990160787138,
+          "descriptive_break_even_win_rate": 0.3980417910447761,
+          "same_orders_mid_net": 117062.0,
+          "same_orders_price_difference": 48750.0,
+          "target_reached_before_exit_decision": 4,
+          "stop_reached_before_exit_decision": 6,
+          "reasons": {
+            "目標": {
+              "count": 4,
+              "net": 158328.0
+            },
+            "損切り": {
+              "count": 6,
+              "net": -122508.0
+            },
+            "期限": {
+              "count": 6,
+              "net": 32492.0
+            },
+            "場内": {
+              "count": 0,
+              "net": 0.0
+            },
+            "保護": {
+              "count": 0,
+              "net": 0.0
+            }
+          },
+          "observations": {
+            "same_order_mid_net": {
+              "n": 16,
+              "mean": 7316.375,
+              "median": 5207.0
+            },
+            "spread_entry_ticks": {
+              "n": 16,
+              "mean": 1.0625,
+              "median": 1.0
+            },
+            "spread_exit_ticks": {
+              "n": 16,
+              "mean": 1.375,
+              "median": 1.0
+            },
+            "target_percent": {
+              "n": 16,
+              "mean": 0.19525361985455233,
+              "median": 0.19507444459816353
+            },
+            "stop_percent": {
+              "n": 16,
+              "mean": 0.09762680992727617,
+              "median": 0.09753722229908177
+            },
+            "target_ticks": {
+              "n": 16,
+              "mean": 16.0,
+              "median": 16.0
+            },
+            "stop_ticks": {
+              "n": 16,
+              "mean": 8.0,
+              "median": 8.0
+            },
+            "fee_ticks": {
+              "n": 16,
+              "mean": 0.1672,
+              "median": 0.1672
+            },
+            "cost_price_ticks": {
+              "n": 16,
+              "mean": 1.21875,
+              "median": 1.0
+            },
+            "hold_seconds": {
+              "n": 16,
+              "mean": 1075.625,
+              "median": 1243.0
+            },
+            "mfe_ticks": {
+              "n": 16,
+              "mean": 7.75,
+              "median": 7.0
+            },
+            "mae_ticks": {
+              "n": 16,
+              "mean": 5.5625,
+              "median": 5.5
+            },
+            "prior5_range_ticks": {
+              "n": 16,
+              "mean": 9.78125,
+              "median": 8.0
+            },
+            "prior5_range_over_target": {
+              "n": 16,
+              "mean": 0.611328125,
+              "median": 0.5
+            },
+            "realized_net_R": {
+              "n": 16,
+              "mean": 0.21347500000000008,
+              "median": 0.1041
+            }
+          },
+          "direction": {
+            "-1": {
+              "groups": 6,
+              "net": 122492.0
+            },
+            "1": {
+              "groups": 10,
+              "net": -54180.0
+            }
+          }
+        },
+        "NK225": {
+          "groups": 17,
+          "wins": 9,
+          "losses": 8,
+          "net": 34260.0,
+          "gross": 38000.0,
+          "fees": 3740.0,
+          "win_rate": 0.5294117647058824,
+          "mean_win": 11224.444444444445,
+          "mean_loss": 8345.0,
+          "payoff": 1.3450502629651822,
+          "descriptive_break_even_win_rate": 0.426430092264017,
+          "same_orders_mid_net": 56260.0,
+          "same_orders_price_difference": 22000.0,
+          "target_reached_before_exit_decision": 5,
+          "stop_reached_before_exit_decision": 8,
+          "reasons": {
+            "目標": {
+              "count": 5,
+              "net": 77900.0
+            },
+            "損切り": {
+              "count": 8,
+              "net": -66760.0
+            },
+            "期限": {
+              "count": 4,
+              "net": 23120.0
+            },
+            "場内": {
+              "count": 0,
+              "net": 0.0
+            },
+            "保護": {
+              "count": 0,
+              "net": 0.0
+            }
+          },
+          "observations": {
+            "same_order_mid_net": {
+              "n": 17,
+              "mean": 3309.4117647058824,
+              "median": 3280.0
+            },
+            "spread_entry_ticks": {
+              "n": 17,
+              "mean": 1.1764705882352942,
+              "median": 1.0
+            },
+            "spread_exit_ticks": {
+              "n": 17,
+              "mean": 1.411764705882353,
+              "median": 1.0
+            },
+            "target_percent": {
+              "n": 17,
+              "mean": 0.23671003975126811,
+              "median": 0.23371311714869997
+            },
+            "stop_percent": {
+              "n": 17,
+              "mean": 0.11835501987563406,
+              "median": 0.11685655857434998
+            },
+            "target_ticks": {
+              "n": 17,
+              "mean": 16.0,
+              "median": 16.0
+            },
+            "stop_ticks": {
+              "n": 17,
+              "mean": 8.0,
+              "median": 8.0
+            },
+            "fee_ticks": {
+              "n": 17,
+              "mean": 0.22,
+              "median": 0.22
+            },
+            "cost_price_ticks": {
+              "n": 17,
+              "mean": 1.2941176470588236,
+              "median": 1.0
+            },
+            "hold_seconds": {
+              "n": 17,
+              "mean": 815.2941176470588,
+              "median": 616.0
+            },
+            "mfe_ticks": {
+              "n": 17,
+              "mean": 7.705882352941177,
+              "median": 7.0
+            },
+            "mae_ticks": {
+              "n": 17,
+              "mean": 5.823529411764706,
+              "median": 7.0
+            },
+            "prior5_range_ticks": {
+              "n": 17,
+              "mean": 15.176470588235293,
+              "median": 11.0
+            },
+            "prior5_range_over_target": {
+              "n": 17,
+              "mean": 0.9485294117647058,
+              "median": 0.6875
+            },
+            "realized_net_R": {
+              "n": 17,
+              "mean": 0.2519117647058823,
+              "median": 0.2225
+            }
+          },
+          "direction": {
+            "-1": {
+              "groups": 7,
+              "net": -34540.0
+            },
+            "1": {
+              "groups": 10,
+              "net": 68800.0
+            }
+          }
+        }
+      },
+      "shadow_selection": {
+        "TOPIX": {
+          "window": 10,
+          "required_wins": 6,
+          "historical_win_rate_at_entry": {
+            "n": 16,
+            "mean": 0.6,
+            "median": 0.6
+          },
+          "finished_shadows_at_entry": {
+            "n": 16,
+            "mean": 19.6875,
+            "median": 20.0
+          },
+          "shadow_finished": 470,
+          "allowed": 16,
+          "blocked": 1361,
+          "actual_win_rate": 0.5,
+          "uncalibrated": {
+            "gross_profit": 4447500.0,
+            "gross_loss": 5857500.0,
+            "fees": 196460.0,
+            "net": -1606460.0,
+            "wins": 153,
+            "losses": 317,
+            "flats": 0,
+            "cycles": 470,
+            "profit": 4383546.0,
+            "loss": 5990006.0,
+            "win_qty": 765,
+            "loss_qty": 1585,
+            "flat_qty": 0,
+            "win_rate": 0.32553191489361705,
+            "pf": 0.7318099514424526,
+            "payoff": 1.516233690243513,
+            "positive_sessions": 6,
+            "active_sessions": 25,
+            "sessions": 25,
+            "drawdown": 1667690.0,
+            "max_loss_session": -259606.0,
+            "without_best": -1739764.0,
+            "win95_observed": false,
+            "risk_good": false,
+            "goal95": false,
+            "goal95_with_sample": false
+          },
+          "entry_set": {
+            "common": 13,
+            "removed": 457,
+            "added": 3,
+            "common_net_before": 9566.0,
+            "common_net_after": 9566.0,
+            "common_delta": 0.0,
+            "removed_net": -1616026.0,
+            "added_net": 58746.0,
+            "removed_win_rate": 0.32166301969365424,
+            "added_win_rate": 0.6666666666666666
+          }
+        },
+        "NK225": {
+          "window": 10,
+          "required_wins": 6,
+          "historical_win_rate_at_entry": {
+            "n": 17,
+            "mean": 0.6588235294117646,
+            "median": 0.6
+          },
+          "finished_shadows_at_entry": {
+            "n": 17,
+            "mean": 14.058823529411764,
+            "median": 14.0
+          },
+          "shadow_finished": 375,
+          "allowed": 17,
+          "blocked": 703,
+          "actual_win_rate": 0.5294117647058824,
+          "uncalibrated": {
+            "gross_profit": 1579000.0,
+            "gross_loss": 1838000.0,
+            "fees": 82500.0,
+            "net": -341500.0,
+            "wins": 131,
+            "losses": 244,
+            "flats": 0,
+            "cycles": 375,
+            "profit": 1550180.0,
+            "loss": 1891680.0,
+            "win_qty": 1310,
+            "loss_qty": 2440,
+            "flat_qty": 0,
+            "win_rate": 0.34933333333333333,
+            "pf": 0.8194726380783219,
+            "payoff": 1.5263459823748897,
+            "positive_sessions": 9,
+            "active_sessions": 25,
+            "sessions": 25,
+            "drawdown": 513180.0,
+            "max_loss_session": -110500.0,
+            "without_best": -433100.0,
+            "win95_observed": false,
+            "risk_good": false,
+            "goal95": false,
+            "goal95_with_sample": false
+          },
+          "entry_set": {
+            "common": 17,
+            "removed": 358,
+            "added": 0,
+            "common_net_before": 34260.0,
+            "common_net_after": 34260.0,
+            "common_delta": 0.0,
+            "removed_net": -375760.0,
+            "added_net": 0,
+            "removed_win_rate": 0.3407821229050279,
+            "added_win_rate": null
+          }
+        }
+      }
+    },
+    {
+      "id": "R3_DEPTH_C_quote",
+      "config": {
+        "id": "R3_DEPTH_C_quote",
+        "family": "DEPTH",
+        "exit_mode": 1,
+        "exit_id": "C",
+        "minutes": 60,
+        "fraction": 0.001,
+        "initial_fraction": 0.5,
+        "pyramid": false,
+        "cooldown_minutes": 10,
+        "passive_entry": false,
+        "primary": false,
+        "reference_only": false,
+        "name": "DEPTH・出口C・新規成行"
+      },
+      "summary": {
+        "TOPIX": {
+          "gross_pnl": -42500.0,
+          "gross_profit": 137500.0,
+          "gross_loss": 180000.0,
+          "fees": 7942.0,
+          "net": -50442.0,
+          "profit": 132902.0,
+          "loss": 183344.0,
+          "win_qty": 55,
+          "loss_qty": 40,
+          "flat_qty": 0,
+          "lot_trades": 19,
+          "wins": 11,
+          "losses": 8,
+          "cycles": 19,
+          "group_wins": 11,
+          "group_losses": 8,
+          "group_profit": 132902.0,
+          "group_loss": 183344.0,
+          "additions": 0,
+          "added_lot_net": 0.0,
+          "initial_lot_net": -50442.0,
+          "pf": 0.724877825290165,
+          "payoff": 0.5271838729383017,
+          "win_per_lot": 2416.4,
+          "loss_per_lot": 4583.6,
+          "win_rate": 0.5789473684210527,
+          "group_win_rate": 0.5789473684210527,
+          "group_pf": 0.724877825290165,
+          "sessions": 25,
+          "positive_sessions": 7,
+          "negative_sessions": 7,
+          "active_sessions": 14,
+          "without_best": -65024.0,
+          "drawdown": 125016.0,
+          "max_long_qty": 5,
+          "max_short_qty": 5,
+          "unrealized_start": 0.0,
+          "unrealized_end": 0.0,
+          "mtm_change": -50442.0,
+          "budget_halt_sessions": 0,
+          "hold_mean_minutes": 4.481578947368422,
+          "hold_median_minutes": 3.316666666666667,
+          "hold_min_minutes": 0.15,
+          "hold_max_minutes": 12.933333333333334,
+          "reasons": {
+            "初回建値の損切り": {
+              "cycles": 8,
+              "net": -183344.0
+            },
+            "順行後の追跡返済": {
+              "cycles": 0,
+              "net": 0.0
+            },
+            "初回からの保有期限": {
+              "cycles": 0,
+              "net": 0.0
+            },
+            "場内返済": {
+              "cycles": 0,
+              "net": 0.0
+            },
+            "日内損失予算": {
+              "cycles": 0,
+              "net": 0.0
+            },
+            "固定回収": {
+              "cycles": 11,
+              "net": 132902.0
+            },
+            "費用を含む建値保護": {
+              "cycles": 0,
+              "net": 0.0
+            }
+          },
+          "group_mean_win": 12082.0,
+          "group_mean_loss": 22918.0,
+          "group_payoff": 0.5271838729383018,
+          "max_losing_session": -22918.0,
+          "active_rate": 0.56,
+          "net_qty": 15
+        },
+        "NK225": {
+          "gross_pnl": 26000.0,
+          "gross_profit": 68000.0,
+          "gross_loss": 42000.0,
+          "fees": 5060.0,
+          "net": 20940.0,
+          "profit": 64260.0,
+          "loss": 43320.0,
+          "win_qty": 170,
+          "loss_qty": 60,
+          "flat_qty": 0,
+          "lot_trades": 23,
+          "wins": 17,
+          "losses": 6,
+          "cycles": 23,
+          "group_wins": 17,
+          "group_losses": 6,
+          "group_profit": 64260.0,
+          "group_loss": 43320.0,
+          "additions": 0,
+          "added_lot_net": 0.0,
+          "initial_lot_net": 20940.0,
+          "pf": 1.4833795013850415,
+          "payoff": 0.5235457063711911,
+          "win_per_lot": 378.0,
+          "loss_per_lot": 722.0,
+          "win_rate": 0.7391304347826086,
+          "group_win_rate": 0.7391304347826086,
+          "group_pf": 1.4833795013850415,
+          "sessions": 25,
+          "positive_sessions": 10,
+          "negative_sessions": 4,
+          "active_sessions": 14,
+          "without_best": 9600.0,
+          "drawdown": 19660.0,
+          "max_long_qty": 10,
+          "max_short_qty": 10,
+          "unrealized_start": 0.0,
+          "unrealized_end": 0.0,
+          "mtm_change": 20940.0,
+          "budget_halt_sessions": 0,
+          "hold_mean_minutes": 4.335507246376812,
+          "hold_median_minutes": 2.8666666666666667,
+          "hold_min_minutes": 0.26666666666666666,
+          "hold_max_minutes": 18.683333333333334,
+          "reasons": {
+            "初回建値の損切り": {
+              "cycles": 6,
+              "net": -43320.0
+            },
+            "順行後の追跡返済": {
+              "cycles": 0,
+              "net": 0.0
+            },
+            "初回からの保有期限": {
+              "cycles": 0,
+              "net": 0.0
+            },
+            "場内返済": {
+              "cycles": 0,
+              "net": 0.0
+            },
+            "日内損失予算": {
+              "cycles": 0,
+              "net": 0.0
+            },
+            "固定回収": {
+              "cycles": 17,
+              "net": 64260.0
+            },
+            "費用を含む建値保護": {
+              "cycles": 0,
+              "net": 0.0
+            }
+          },
+          "group_mean_win": 3780.0,
+          "group_mean_loss": 7220.0,
+          "group_payoff": 0.5235457063711911,
+          "max_losing_session": -7220.0,
+          "active_rate": 0.56,
+          "net_qty": 110
+        }
+      },
+      "measured": {
+        "TOPIX": {
+          "groups": 19,
+          "wins": 11,
+          "losses": 8,
+          "net": -50442.0,
+          "gross": -42500.0,
+          "fees": 7942.0,
+          "win_rate": 0.5789473684210527,
+          "mean_win": 12082.0,
+          "mean_loss": 22918.0,
+          "payoff": 0.5271838729383018,
+          "descriptive_break_even_win_rate": 0.6548,
+          "same_orders_mid_net": 9558.0,
+          "same_orders_price_difference": 60000.0,
+          "target_reached_before_exit_decision": 11,
+          "stop_reached_before_exit_decision": 8,
+          "reasons": {
+            "損切り": {
+              "count": 8,
+              "net": -183344.0
+            },
+            "トレール": {
+              "count": 0,
+              "net": 0.0
+            },
+            "期限": {
+              "count": 0,
+              "net": 0.0
+            },
+            "場内": {
+              "count": 0,
+              "net": 0.0
+            },
+            "日予算": {
+              "count": 0,
+              "net": 0.0
+            },
+            "目標": {
+              "count": 11,
+              "net": 132902.0
+            },
+            "保護": {
+              "count": 0,
+              "net": 0.0
+            }
+          },
+          "observations": {
+            "same_order_mid_net": {
+              "n": 19,
+              "mean": 503.05263157894734,
+              "median": 14582.0
+            },
+            "spread_entry_ticks": {
+              "n": 19,
+              "mean": 1.3157894736842106,
+              "median": 1.0
+            },
+            "spread_exit_ticks": {
+              "n": 19,
+              "mean": 1.2105263157894737,
+              "median": 1.0
+            },
+            "target_percent": {
+              "n": 19,
+              "mean": 0.06086141140787939,
+              "median": 0.06090133982947624
+            },
+            "stop_percent": {
+              "n": 19,
+              "mean": 0.1095505405341829,
+              "median": 0.10962241169305724
+            },
+            "target_ticks": {
+              "n": 19,
+              "mean": 5.0,
+              "median": 5.0
+            },
+            "stop_ticks": {
+              "n": 19,
+              "mean": 9.0,
+              "median": 9.0
+            },
+            "fee_ticks": {
+              "n": 19,
+              "mean": 0.16719999999999996,
+              "median": 0.1672
+            },
+            "cost_price_ticks": {
+              "n": 19,
+              "mean": 1.263157894736842,
+              "median": 1.0
+            },
+            "hold_seconds": {
+              "n": 19,
+              "mean": 268.89473684210526,
+              "median": 199.0
+            },
+            "mfe_ticks": {
+              "n": 19,
+              "mean": 3.736842105263158,
+              "median": 5.0
+            },
+            "mae_ticks": {
+              "n": 19,
+              "mean": 6.0,
+              "median": 7.0
+            },
+            "prior5_range_ticks": {
+              "n": 19,
+              "mean": 14.052631578947368,
+              "median": 12.0
+            },
+            "prior5_range_over_target": {
+              "n": 19,
+              "mean": 2.810526315789474,
+              "median": 2.4
+            },
+            "realized_net_R": {
+              "n": 19,
+              "mean": -0.1179929824561404,
+              "median": 0.5369777777777778
+            }
+          },
+          "direction": {
+            "-1": {
+              "groups": 6,
+              "net": -67508.0
+            },
+            "1": {
+              "groups": 13,
+              "net": 17066.0
+            }
+          }
+        },
+        "NK225": {
+          "groups": 23,
+          "wins": 17,
+          "losses": 6,
+          "net": 20940.0,
+          "gross": 26000.0,
+          "fees": 5060.0,
+          "win_rate": 0.7391304347826086,
+          "mean_win": 3780.0,
+          "mean_loss": 7220.0,
+          "payoff": 0.5235457063711911,
+          "descriptive_break_even_win_rate": 0.6563636363636364,
+          "same_orders_mid_net": 52440.0,
+          "same_orders_price_difference": 31500.0,
+          "target_reached_before_exit_decision": 17,
+          "stop_reached_before_exit_decision": 6,
+          "reasons": {
+            "損切り": {
+              "count": 6,
+              "net": -43320.0
+            },
+            "トレール": {
+              "count": 0,
+              "net": 0.0
+            },
+            "期限": {
+              "count": 0,
+              "net": 0.0
+            },
+            "場内": {
+              "count": 0,
+              "net": 0.0
+            },
+            "日予算": {
+              "count": 0,
+              "net": 0.0
+            },
+            "目標": {
+              "count": 17,
+              "net": 64260.0
+            },
+            "保護": {
+              "count": 0,
+              "net": 0.0
+            }
+          },
+          "observations": {
+            "same_order_mid_net": {
+              "n": 23,
+              "mean": 2280.0,
+              "median": 4780.0
+            },
+            "spread_entry_ticks": {
+              "n": 23,
+              "mean": 1.434782608695652,
+              "median": 1.0
+            },
+            "spread_exit_ticks": {
+              "n": 23,
+              "mean": 1.3043478260869565,
+              "median": 1.0
+            },
+            "target_percent": {
+              "n": 23,
+              "mean": 0.059648266693250324,
+              "median": 0.060313630880579006
+            },
+            "stop_percent": {
+              "n": 23,
+              "mean": 0.10500355059286295,
+              "median": 0.10588413250642867
+            },
+            "target_ticks": {
+              "n": 23,
+              "mean": 4.0,
+              "median": 4.0
+            },
+            "stop_ticks": {
+              "n": 23,
+              "mean": 7.043478260869565,
+              "median": 7.0
+            },
+            "fee_ticks": {
+              "n": 23,
+              "mean": 0.21999999999999997,
+              "median": 0.22
+            },
+            "cost_price_ticks": {
+              "n": 23,
+              "mean": 1.3695652173913044,
+              "median": 1.5
+            },
+            "hold_seconds": {
+              "n": 23,
+              "mean": 260.1304347826087,
+              "median": 172.0
+            },
+            "mfe_ticks": {
+              "n": 23,
+              "mean": 3.1739130434782608,
+              "median": 4.0
+            },
+            "mae_ticks": {
+              "n": 23,
+              "mean": 4.217391304347826,
+              "median": 3.0
+            },
+            "prior5_range_ticks": {
+              "n": 23,
+              "mean": 11.91304347826087,
+              "median": 11.0
+            },
+            "prior5_range_over_target": {
+              "n": 23,
+              "mean": 2.9782608695652173,
+              "median": 2.75
+            },
+            "realized_net_R": {
+              "n": 23,
+              "mean": 0.12790372670807457,
+              "median": 0.54
+            }
+          },
+          "direction": {
+            "-1": {
+              "groups": 7,
+              "net": 3460.0
+            },
+            "1": {
+              "groups": 16,
+              "net": 17480.0
+            }
+          }
+        }
+      },
+      "candidates": {
+        "TOPIX": {
+          "P2": 76,
+          "WAIT": 67,
+          "FLOW": 23,
+          "DEPTH": 19
+        },
+        "NK225": {
+          "P2": 82,
+          "WAIT": 71,
+          "FLOW": 22,
+          "DEPTH": 23
+        }
+      },
+      "same_entry_exit_comparison": {
+        "TOPIX": {
+          "common": 19,
+          "removed": 0,
+          "added": 0,
+          "common_net_before": -170442.0,
+          "common_net_after": -50442.0,
+          "common_delta": 120000.0,
+          "removed_net": 0,
+          "added_net": 0,
+          "removed_win_rate": null,
+          "added_win_rate": null
+        },
+        "NK225": {
+          "common": 22,
+          "removed": 0,
+          "added": 1,
+          "common_net_before": 4160.0,
+          "common_net_after": 28160.0,
+          "common_delta": 24000.0,
+          "removed_net": 0,
+          "added_net": -7220.0,
+          "removed_win_rate": null,
+          "added_win_rate": 0.0
+        }
+      }
+    }
+  ],
+  "校正5と10の入口集合差": {
+    "TOPIX": {
+      "common": 11,
+      "removed": 66,
+      "added": 5,
+      "common_net_before": 50402.0,
+      "common_net_after": 50402.0,
+      "common_delta": 0.0,
+      "removed_net": -312588.0,
+      "added_net": 17910.0,
+      "removed_win_rate": 0.2878787878787879,
+      "added_win_rate": 0.4
+    },
+    "NK225": {
+      "common": 17,
+      "removed": 42,
+      "added": 0,
+      "common_net_before": 34260.0,
+      "common_net_after": 34260.0,
+      "common_delta": 0.0,
+      "removed_net": 46760.0,
+      "added_net": 0,
+      "removed_win_rate": 0.5,
+      "added_win_rate": null
+    }
+  },
+  "入力SHA": {
+    "microstructure\\round3\\集計結果.json": "bf2d2bc7f68e0201895f1ce21e2624cedb6a691c6de7d0c124b62c9f840e0ac4",
+    "directional\\round3\\集計結果.json": "8bcd88016a8c965b3c91a66c74925a9bb6882724c775355a5d9291f355b1aa51"
+  }
+}

@@ -1,0 +1,204 @@
+{
+  "固定時刻": "2026-09-29T17:33:40.948858+09:00",
+  "固定内容": {
+    "catalog": [
+      {
+        "id": "P00",
+        "name": "過去全体・自銘柄PF",
+        "family": "過去成績による機械的手法選択",
+        "description": "完了区間のG00固定１枚成績だけで次区間の方向手法を選ぶ。選んだ方向列を共通出口で新たに再生する。",
+        "params": {
+          "window": 0,
+          "scope": "own",
+          "metric": "pf",
+          "top": 1,
+          "min_past_sessions": 2,
+          "min_cycles": 2,
+          "fallback": "F32",
+          "vote_threshold": 0.25
+        }
+      },
+      {
+        "id": "P01",
+        "name": "直近３区間・自銘柄PF",
+        "family": "過去成績による機械的手法選択",
+        "description": "完了区間のG00固定１枚成績だけで次区間の方向手法を選ぶ。選んだ方向列を共通出口で新たに再生する。",
+        "params": {
+          "window": 3,
+          "scope": "own",
+          "metric": "pf",
+          "top": 1,
+          "min_past_sessions": 2,
+          "min_cycles": 2,
+          "fallback": "F32",
+          "vote_threshold": 0.25
+        }
+      },
+      {
+        "id": "P02",
+        "name": "直近５区間・自銘柄収支DD",
+        "family": "過去成績による機械的手法選択",
+        "description": "完了区間のG00固定１枚成績だけで次区間の方向手法を選ぶ。選んだ方向列を共通出口で新たに再生する。",
+        "params": {
+          "window": 5,
+          "scope": "own",
+          "metric": "risk",
+          "top": 1,
+          "min_past_sessions": 2,
+          "min_cycles": 2,
+          "fallback": "F32",
+          "vote_threshold": 0.25
+        }
+      },
+      {
+        "id": "P03",
+        "name": "過去全体・両銘柄弱い側PF",
+        "family": "過去成績による機械的手法選択",
+        "description": "完了区間のG00固定１枚成績だけで次区間の方向手法を選ぶ。選んだ方向列を共通出口で新たに再生する。",
+        "params": {
+          "window": 0,
+          "scope": "both",
+          "metric": "pf",
+          "top": 1,
+          "min_past_sessions": 2,
+          "min_cycles": 2,
+          "fallback": "F32",
+          "vote_threshold": 0.25
+        }
+      },
+      {
+        "id": "P04",
+        "name": "直近３区間・両銘柄弱い側収支DD",
+        "family": "過去成績による機械的手法選択",
+        "description": "完了区間のG00固定１枚成績だけで次区間の方向手法を選ぶ。選んだ方向列を共通出口で新たに再生する。",
+        "params": {
+          "window": 3,
+          "scope": "both",
+          "metric": "risk",
+          "top": 1,
+          "min_past_sessions": 2,
+          "min_cycles": 2,
+          "fallback": "F32",
+          "vote_threshold": 0.25
+        }
+      },
+      {
+        "id": "P05",
+        "name": "直近５区間・両銘柄弱い側PF",
+        "family": "過去成績による機械的手法選択",
+        "description": "完了区間のG00固定１枚成績だけで次区間の方向手法を選ぶ。選んだ方向列を共通出口で新たに再生する。",
+        "params": {
+          "window": 5,
+          "scope": "both",
+          "metric": "pf",
+          "top": 1,
+          "min_past_sessions": 2,
+          "min_cycles": 2,
+          "fallback": "F32",
+          "vote_threshold": 0.25
+        }
+      },
+      {
+        "id": "P06",
+        "name": "直近５区間・自銘柄上位２つの合議",
+        "family": "過去成績による機械的手法選択",
+        "description": "完了区間のG00固定１枚成績だけで次区間の方向手法を選ぶ。選んだ方向列を共通出口で新たに再生する。",
+        "params": {
+          "window": 5,
+          "scope": "own",
+          "metric": "risk",
+          "top": 2,
+          "min_past_sessions": 2,
+          "min_cycles": 2,
+          "fallback": "F32",
+          "vote_threshold": 0.25
+        }
+      },
+      {
+        "id": "P07",
+        "name": "過去全体・両銘柄上位３つの合議",
+        "family": "過去成績による機械的手法選択",
+        "description": "完了区間のG00固定１枚成績だけで次区間の方向手法を選ぶ。選んだ方向列を共通出口で新たに再生する。",
+        "params": {
+          "window": 0,
+          "scope": "both",
+          "metric": "pf",
+          "top": 3,
+          "min_past_sessions": 2,
+          "min_cycles": 2,
+          "fallback": "F32",
+          "vote_threshold": 0.25
+        }
+      }
+    ],
+    "source_ids": [
+      "F00",
+      "F01",
+      "F02",
+      "F03",
+      "F04",
+      "F05",
+      "F06",
+      "F07",
+      "F08",
+      "F09",
+      "F10",
+      "F11",
+      "F12",
+      "F13",
+      "F14",
+      "F15",
+      "F16",
+      "F17",
+      "F18",
+      "F19",
+      "F20",
+      "F21",
+      "F22",
+      "F23",
+      "F24",
+      "F25",
+      "F26",
+      "F27",
+      "F28",
+      "F29",
+      "F30",
+      "F31",
+      "F32",
+      "F33",
+      "F34",
+      "F35",
+      "F36",
+      "F37",
+      "F38",
+      "F39",
+      "F40",
+      "F41",
+      "F42",
+      "F43",
+      "F44",
+      "F45",
+      "F46",
+      "F47",
+      "F48",
+      "F49",
+      "F50",
+      "F51",
+      "F52",
+      "F53",
+      "L00",
+      "L01",
+      "L02",
+      "L03"
+    ],
+    "比較管理": "G00固定１枚",
+    "PF順位": "金額PF（損失なし利益ありは５、５で上限）→収支/時価DD→１組平均NetR",
+    "収支DD順位": "収支/時価DD→１組平均NetR→金額PF",
+    "両銘柄順位": "それぞれ無次元化した指標の小さい側を各順位軸に使用",
+    "同点順位": "元信号IDの昇順",
+    "重み": "1+clip(順位の第１指標,-0.9,4)、合計１へ正規化",
+    "合議": "重み付き方向和が+0.25以上で買い、-0.25以下で売り、それ以外中立",
+    "fallback": "最初２区間と有効候補なしはF32。学習区間内で取引組が２未満の銘柄は順位対象外。",
+    "事後設計": "既知１３セッションを使う設計の再現。未見期間として扱わない。"
+  }
+}

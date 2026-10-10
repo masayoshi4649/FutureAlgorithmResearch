@@ -1,0 +1,395 @@
+{
+  "結論": "追加５秒足の全特徴・全24入口・公開境界prefix・未来改変・全必要観測抑止と数値境界が別式で一致",
+  "口座数": 50,
+  "公開足照合数": 154378,
+  "入口候補照合数": 8218,
+  "入口口座群数": 1200,
+  "prefix検査数": 662,
+  "未来価格改変検査数": 662,
+  "欠測合成検査": [
+    {
+      "指標": "window_observed_60",
+      "必要区間数": 13,
+      "欠測影響全区間抑止": true,
+      "必要区間の観測復帰後解除": true
+    },
+    {
+      "指標": "accel_observed_60",
+      "必要区間数": 25,
+      "欠測影響全区間抑止": true,
+      "必要区間の観測復帰後解除": true
+    },
+    {
+      "指標": "window_observed_120",
+      "必要区間数": 25,
+      "欠測影響全区間抑止": true,
+      "必要区間の観測復帰後解除": true
+    },
+    {
+      "指標": "accel_observed_120",
+      "必要区間数": 49,
+      "欠測影響全区間抑止": true,
+      "必要区間の観測復帰後解除": true
+    }
+  ],
+  "全4系統の閾値同値一致": true,
+  "口座別": [
+    {
+      "session": "2026-09-21_Day",
+      "symbol": "NK225",
+      "公開足": 1003,
+      "全24入口一致": true,
+      "prefix数": 11
+    },
+    {
+      "session": "2026-09-21_Day",
+      "symbol": "TOPIX",
+      "公開足": 1049,
+      "全24入口一致": true,
+      "prefix数": 9
+    },
+    {
+      "session": "2026-09-21_Night",
+      "symbol": "NK225",
+      "公開足": 1610,
+      "全24入口一致": true,
+      "prefix数": 9
+    },
+    {
+      "session": "2026-09-21_Night",
+      "symbol": "TOPIX",
+      "公開足": 2154,
+      "全24入口一致": true,
+      "prefix数": 9
+    },
+    {
+      "session": "2026-09-22_Day",
+      "symbol": "NK225",
+      "公開足": 1374,
+      "全24入口一致": true,
+      "prefix数": 15
+    },
+    {
+      "session": "2026-09-22_Day",
+      "symbol": "TOPIX",
+      "公開足": 1444,
+      "全24入口一致": true,
+      "prefix数": 11
+    },
+    {
+      "session": "2026-09-22_Night",
+      "symbol": "NK225",
+      "公開足": 2108,
+      "全24入口一致": true,
+      "prefix数": 11
+    },
+    {
+      "session": "2026-09-22_Night",
+      "symbol": "TOPIX",
+      "公開足": 3175,
+      "全24入口一致": true,
+      "prefix数": 13
+    },
+    {
+      "session": "2026-09-23_Day",
+      "symbol": "NK225",
+      "公開足": 1025,
+      "全24入口一致": true,
+      "prefix数": 11
+    },
+    {
+      "session": "2026-09-23_Day",
+      "symbol": "TOPIX",
+      "公開足": 1308,
+      "全24入口一致": true,
+      "prefix数": 11
+    },
+    {
+      "session": "2026-09-23_Night",
+      "symbol": "NK225",
+      "公開足": 1860,
+      "全24入口一致": true,
+      "prefix数": 9
+    },
+    {
+      "session": "2026-09-23_Night",
+      "symbol": "TOPIX",
+      "公開足": 2433,
+      "全24入口一致": true,
+      "prefix数": 11
+    },
+    {
+      "session": "2026-09-24_Day",
+      "symbol": "NK225",
+      "公開足": 3120,
+      "全24入口一致": true,
+      "prefix数": 15
+    },
+    {
+      "session": "2026-09-24_Day",
+      "symbol": "TOPIX",
+      "公開足": 3744,
+      "全24入口一致": true,
+      "prefix数": 15
+    },
+    {
+      "session": "2026-09-24_Night",
+      "symbol": "NK225",
+      "公開足": 2955,
+      "全24入口一致": true,
+      "prefix数": 13
+    },
+    {
+      "session": "2026-09-24_Night",
+      "symbol": "TOPIX",
+      "公開足": 4192,
+      "全24入口一致": true,
+      "prefix数": 15
+    },
+    {
+      "session": "2026-09-25_Day",
+      "symbol": "NK225",
+      "公開足": 2895,
+      "全24入口一致": true,
+      "prefix数": 15
+    },
+    {
+      "session": "2026-09-25_Day",
+      "symbol": "TOPIX",
+      "公開足": 3940,
+      "全24入口一致": true,
+      "prefix数": 15
+    },
+    {
+      "session": "2026-09-25_Night",
+      "symbol": "NK225",
+      "公開足": 2357,
+      "全24入口一致": true,
+      "prefix数": 11
+    },
+    {
+      "session": "2026-09-25_Night",
+      "symbol": "TOPIX",
+      "公開足": 3734,
+      "全24入口一致": true,
+      "prefix数": 11
+    },
+    {
+      "session": "2026-09-28_Day",
+      "symbol": "NK225",
+      "公開足": 3385,
+      "全24入口一致": true,
+      "prefix数": 15
+    },
+    {
+      "session": "2026-09-28_Day",
+      "symbol": "TOPIX",
+      "公開足": 3950,
+      "全24入口一致": true,
+      "prefix数": 15
+    },
+    {
+      "session": "2026-09-28_Night",
+      "symbol": "NK225",
+      "公開足": 2612,
+      "全24入口一致": true,
+      "prefix数": 11
+    },
+    {
+      "session": "2026-09-28_Night",
+      "symbol": "TOPIX",
+      "公開足": 4057,
+      "全24入口一致": true,
+      "prefix数": 13
+    },
+    {
+      "session": "2026-09-29_Day",
+      "symbol": "NK225",
+      "公開足": 3585,
+      "全24入口一致": true,
+      "prefix数": 15
+    },
+    {
+      "session": "2026-09-29_Day",
+      "symbol": "TOPIX",
+      "公開足": 4057,
+      "全24入口一致": true,
+      "prefix数": 15
+    },
+    {
+      "session": "2026-09-29_Night",
+      "symbol": "NK225",
+      "公開足": 2825,
+      "全24入口一致": true,
+      "prefix数": 15
+    },
+    {
+      "session": "2026-09-29_Night",
+      "symbol": "TOPIX",
+      "公開足": 3913,
+      "全24入口一致": true,
+      "prefix数": 13
+    },
+    {
+      "session": "2026-09-30_Day",
+      "symbol": "NK225",
+      "公開足": 3384,
+      "全24入口一致": true,
+      "prefix数": 15
+    },
+    {
+      "session": "2026-09-30_Day",
+      "symbol": "TOPIX",
+      "公開足": 3986,
+      "全24入口一致": true,
+      "prefix数": 15
+    },
+    {
+      "session": "2026-09-30_Night",
+      "symbol": "NK225",
+      "公開足": 3314,
+      "全24入口一致": true,
+      "prefix数": 15
+    },
+    {
+      "session": "2026-09-30_Night",
+      "symbol": "TOPIX",
+      "公開足": 4576,
+      "全24入口一致": true,
+      "prefix数": 13
+    },
+    {
+      "session": "2026-10-01_Day",
+      "symbol": "NK225",
+      "公開足": 3647,
+      "全24入口一致": true,
+      "prefix数": 15
+    },
+    {
+      "session": "2026-10-01_Day",
+      "symbol": "TOPIX",
+      "公開足": 3773,
+      "全24入口一致": true,
+      "prefix数": 15
+    },
+    {
+      "session": "2026-10-01_Night",
+      "symbol": "NK225",
+      "公開足": 3712,
+      "全24入口一致": true,
+      "prefix数": 15
+    },
+    {
+      "session": "2026-10-01_Night",
+      "symbol": "TOPIX",
+      "公開足": 4669,
+      "全24入口一致": true,
+      "prefix数": 13
+    },
+    {
+      "session": "2026-10-02_Day",
+      "symbol": "NK225",
+      "公開足": 3266,
+      "全24入口一致": true,
+      "prefix数": 15
+    },
+    {
+      "session": "2026-10-02_Day",
+      "symbol": "TOPIX",
+      "公開足": 3725,
+      "全24入口一致": true,
+      "prefix数": 15
+    },
+    {
+      "session": "2026-10-02_Night",
+      "symbol": "NK225",
+      "公開足": 3634,
+      "全24入口一致": true,
+      "prefix数": 13
+    },
+    {
+      "session": "2026-10-02_Night",
+      "symbol": "TOPIX",
+      "公開足": 4668,
+      "全24入口一致": true,
+      "prefix数": 15
+    },
+    {
+      "session": "2026-10-05_Day",
+      "symbol": "NK225",
+      "公開足": 3260,
+      "全24入口一致": true,
+      "prefix数": 15
+    },
+    {
+      "session": "2026-10-05_Day",
+      "symbol": "TOPIX",
+      "公開足": 3485,
+      "全24入口一致": true,
+      "prefix数": 15
+    },
+    {
+      "session": "2026-10-05_Night",
+      "symbol": "NK225",
+      "公開足": 2550,
+      "全24入口一致": true,
+      "prefix数": 11
+    },
+    {
+      "session": "2026-10-05_Night",
+      "symbol": "TOPIX",
+      "公開足": 3716,
+      "全24入口一致": true,
+      "prefix数": 13
+    },
+    {
+      "session": "2026-10-06_Day",
+      "symbol": "NK225",
+      "公開足": 3018,
+      "全24入口一致": true,
+      "prefix数": 13
+    },
+    {
+      "session": "2026-10-06_Day",
+      "symbol": "TOPIX",
+      "公開足": 3577,
+      "全24入口一致": true,
+      "prefix数": 15
+    },
+    {
+      "session": "2026-10-06_Night",
+      "symbol": "NK225",
+      "公開足": 2495,
+      "全24入口一致": true,
+      "prefix数": 11
+    },
+    {
+      "session": "2026-10-06_Night",
+      "symbol": "TOPIX",
+      "公開足": 3913,
+      "全24入口一致": true,
+      "prefix数": 13
+    },
+    {
+      "session": "2026-10-07_Day",
+      "symbol": "NK225",
+      "公開足": 2889,
+      "全24入口一致": true,
+      "prefix数": 15
+    },
+    {
+      "session": "2026-10-07_Day",
+      "symbol": "TOPIX",
+      "公開足": 3257,
+      "全24入口一致": true,
+      "prefix数": 15
+    }
+  ],
+  "注意": [
+    "時計は最終約定時計で受信時計ではない。保存された時計と原板順の５秒区間としての因果性を検査した。",
+    "60秒速度は13確定終値、120秒速度は25確定終値。加速は25/49観測区間が全て揃うことを要求する。",
+    "加速・突破を含む各系統全条件の符号stateを更新する。フィルタ点滅で同じ波が再検知され得る。"
+  ],
+  "原実装SHA256": "eb4b6c470b7745571e1ee019e5fc32f4657d89f4245973ae09d02bcb904eb7b2",
+  "監査コードSHA256": "af4f0b86a9c395899f8e2ba3b9670451dc76bc189089ca3d55e370d61d25969c"
+}

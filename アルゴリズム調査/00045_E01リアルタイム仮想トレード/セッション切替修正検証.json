@@ -1,0 +1,45 @@
+{
+  "全合格": true,
+  "自動テスト": {
+    "件数": 67,
+    "合格": true,
+    "実行環境": "3.14.3 (tags/v3.14.3:323c59a, Feb  3 2026, 16:04:56) [MSC v.1944 64 bit (AMD64)]",
+    "対象": "Windows上のPython。Linux実機は未実行。"
+  },
+  "原本台帳は読み取り専用": true,
+  "原本売買履歴不変": true,
+  "実台帳複製の互換移行": {
+    "成功": true,
+    "元売買件数": 22,
+    "売買ID本文完全一致": true,
+    "建玉条件維持": true,
+    "移行前バックアップあり": true
+  },
+  "保存済みnull板再生": [
+    {
+      "銘柄": "TOPIX",
+      "原本": "book\\TOPIX\\2026-10-01_Night.jsonl",
+      "行": 9,
+      "CurrentPriceTime": null,
+      "例外停止なし": true,
+      "建玉条件不変": true
+    },
+    {
+      "銘柄": "NK225",
+      "原本": "book\\NK225\\2026-10-01_Night.jsonl",
+      "行": 11,
+      "CurrentPriceTime": null,
+      "例外停止なし": true,
+      "建玉条件不変": true
+    }
+  ],
+  "ライブAPI追加取得数": 0,
+  "戦略条件変更": false,
+  "修正版SHA256": {
+    "start.py": "f653895c5fc3c7d0c4df94ba4fff3dadff34a41a12f6ece082e98ce1582e1bd7",
+    "papertrade/runtime.py": "eca18bc3421b812d9bffe50bcb84f2e2e4361ddbfa3e6d586f6e96b8c921dd3c",
+    "papertrade/legacy_compatibility.json": "d600e50bf4ff595d4eec19969d21f0a01922ddb54a9fccf3736ccded3cd72d5a",
+    "papertrade/test_session_transition.py": "3c0fdcbe51278bf46a6538d2beeaa9308ad91cd35b609ce3f67e6b396e2dbd6e",
+    "papertrade/test_start.py": "4388d2b8bdab7dad7cfad0a7928dbd4912a14c0745988bd0128b3c49d8fd8fa3"
+  }
+}

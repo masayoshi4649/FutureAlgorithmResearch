@@ -1,0 +1,91 @@
+{
+  "合格": true,
+  "全配分数": 327,
+  "全区間集計数": 3270,
+  "順位一致数": 8,
+  "数値等照合数": 53889,
+  "表示生台帳セル数": 160,
+  "表示配分数": 16,
+  "独立再構成原本行数": 16453616,
+  "独立返済行数": 1768,
+  "全同時保有上限内": true,
+  "全セッション末在庫ゼロ": true,
+  "次行以降注文": true,
+  "返済後再入場数": 1325,
+  "累計返済枚数が同時保有上限を超える表示セル数": 112,
+  "固定型全配分数": 90,
+  "固定型経路一致セル数": 900,
+  "固定型返済経路一致行数": 7640,
+  "固定型結論": "固定型の全枚数で約定価格・時刻・方向・理由は完全一致。損益・下落額は枚数比例、損益比・一枚平均・件数は不変。小数10桁丸め後の同点規則で最小1枚を代表とし、丸め差による偽の最適化なし。",
+  "入力原本不変": true,
+  "追加条件探索数": 0,
+  "現在API取得数": 0,
+  "表示データSHA256": "f458689f91dbd75f2fc8d2a76a7391a02d56e83aa822f54211bdd55efba51b22",
+  "順位": [
+    {
+      "method_id": "M3_逆_A03",
+      "symbol": "TOPIX",
+      "selected": "M3_逆_A03__TOPIX__I07_A03",
+      "max_net": "M3_逆_A03__TOPIX__I10_A00",
+      "eligible_count": 28,
+      "candidate_count": 46
+    },
+    {
+      "method_id": "M3_逆_A03",
+      "symbol": "NK225",
+      "selected": "M3_逆_A03__NK225__I01_A16",
+      "max_net": "M3_逆_A03__NK225__I16_A04",
+      "eligible_count": 130,
+      "candidate_count": 191
+    },
+    {
+      "method_id": "M3_逆_A00",
+      "symbol": "TOPIX",
+      "selected": "M3_逆_A00__TOPIX__I01_A00",
+      "max_net": "M3_逆_A00__TOPIX__I10_A00",
+      "eligible_count": 10,
+      "candidate_count": 10
+    },
+    {
+      "method_id": "M3_逆_A00",
+      "symbol": "NK225",
+      "selected": "M3_逆_A00__NK225__I01_A00",
+      "max_net": "M3_逆_A00__NK225__I20_A00",
+      "eligible_count": 20,
+      "candidate_count": 20
+    },
+    {
+      "method_id": "M2_逆_A00",
+      "symbol": "TOPIX",
+      "selected": "M2_逆_A00__TOPIX__I01_A00",
+      "max_net": "M2_逆_A00__TOPIX__I10_A00",
+      "eligible_count": 10,
+      "candidate_count": 10
+    },
+    {
+      "method_id": "M2_逆_A00",
+      "symbol": "NK225",
+      "selected": "M2_逆_A00__NK225__I01_A00",
+      "max_net": "M2_逆_A00__NK225__I20_A00",
+      "eligible_count": 20,
+      "candidate_count": 20
+    },
+    {
+      "method_id": "M2_逆_A01",
+      "symbol": "TOPIX",
+      "selected": "M2_逆_A01__TOPIX__I01_A00",
+      "max_net": "M2_逆_A01__TOPIX__I10_A00",
+      "eligible_count": 10,
+      "candidate_count": 10
+    },
+    {
+      "method_id": "M2_逆_A01",
+      "symbol": "NK225",
+      "selected": "M2_逆_A01__NK225__I01_A00",
+      "max_net": "M2_逆_A01__NK225__I20_A00",
+      "eligible_count": 20,
+      "candidate_count": 20
+    }
+  ],
+  "経過秒": 1.3821396827697754
+}

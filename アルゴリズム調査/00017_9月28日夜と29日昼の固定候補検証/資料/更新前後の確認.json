@@ -1,0 +1,73 @@
+{
+  "合格": true,
+  "過去11セッション不変": true,
+  "固定条件とコード照合不変": true,
+  "追加セッション": [
+    "2026-09-28_Night",
+    "2026-09-29_Day"
+  ],
+  "新規集計数": 4,
+  "新規取引数": 28,
+  "API取得数": 0,
+  "パラメータ再探索数": 0,
+  "追加合計": {
+    "TOPIX": {
+      "gross_profit_yen": 39500.0,
+      "gross_loss_yen": 36500.0,
+      "net_yen": 3000.0,
+      "profit_units": 4,
+      "loss_units": 6,
+      "zero_units": 1,
+      "cycles": 11
+    },
+    "NK225": {
+      "gross_profit_yen": 15600.0,
+      "gross_loss_yen": 10900.0,
+      "net_yen": 4700.0,
+      "profit_units": 5,
+      "loss_units": 11,
+      "zero_units": 1,
+      "cycles": 17
+    }
+  },
+  "条件固定後合計": {
+    "TOPIX": {
+      "gross_profit_yen": 77500.0,
+      "gross_loss_yen": 36500.0,
+      "net_yen": 41000.0,
+      "profit_units": 5,
+      "loss_units": 6,
+      "zero_units": 1,
+      "cycles": 12
+    },
+    "NK225": {
+      "gross_profit_yen": 25100.0,
+      "gross_loss_yen": 10900.0,
+      "net_yen": 14200.0,
+      "profit_units": 6,
+      "loss_units": 11,
+      "zero_units": 1,
+      "cycles": 18
+    }
+  },
+  "全期間合計": {
+    "TOPIX": {
+      "gross_profit_yen": 340500.0,
+      "gross_loss_yen": 131500.0,
+      "net_yen": 209000.0,
+      "profit_units": 29,
+      "loss_units": 34,
+      "zero_units": 4,
+      "cycles": 67
+    },
+    "NK225": {
+      "gross_profit_yen": 69900.0,
+      "gross_loss_yen": 39200.0,
+      "net_yen": 30700.0,
+      "profit_units": 29,
+      "loss_units": 51,
+      "zero_units": 3,
+      "cycles": 83
+    }
+  }
+}

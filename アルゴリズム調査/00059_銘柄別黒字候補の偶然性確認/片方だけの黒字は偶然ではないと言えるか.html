@@ -1,0 +1,27 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>片方だけの黒字は偶然ではないと言えるか</title><style>
+body{background:#101720;color:#e3eaf3;font:16px/1.75 system-ui,sans-serif;margin:0}main{max-width:1160px;margin:auto;padding:24px}a{color:#93c8ff}h1{font-size:1.6rem}h2{font-size:1.15rem;margin-top:24px}.notice{background:#182432;border-left:4px solid #8abcff;padding:15px}.wrap{overflow-x:auto;margin:15px 0;border:1px solid #35485e}table{border-collapse:collapse;width:100%;white-space:nowrap;font-size:.88rem}th,td{padding:9px;text-align:right;border-bottom:1px solid #35485e}th{background:#25374c}td:first-child,th:first-child{text-align:left}small,.muted{color:#adc0d3}summary{cursor:pointer;color:#b0d1ff}@media(max-width:600px){main{padding:12px}h1{font-size:1.3rem}}
+</style></head><body>
+<!--
+[コンポーネント概要]
+main は銘柄別黒字候補の偶然性を確認した短い報告です。
+.notice は結論、.wrap は比較表の内部横スクロール領域です。
+details は仮定付き統計診断の仕様と全感度結果を開閉します。
+--><main><nav><a href="../index.html">調査一覧</a> · <a href="README.md">資料案内</a></nav><h1>片方だけの黒字は偶然ではないと言えるか</h1>
+<div class="notice"><strong>現時点では言えません。今回の2候補は「偶然を排除できていない黒字候補」です。</strong><p>片方の銘柄だけに有効な手法はあり得ます。しかし、片方で黒字だった結果だけでは、銘柄固有の性質に効いたのか、探索中の偶然なのかを区別できません。</p></div>
+<p>00058の売買条件・約定結果は変更せず、手数料後の25場を追加診断しました。TOPIX mini最大10枚・NK225 micro最大20枚の枠内です。新しい売買条件の探索、現在APIの追加取得は行っていません。</p>
+<div class="wrap"><table><thead><tr><th>対象</th><th>全25場</th><th>最大黒字場除外</th><th>最大黒字日除外</th><th>完全12日の平均日収支・参考95%区間</th><th>単独の参考p値</th></tr></thead><tbody><tr><td>TOPIX<br><small>D4_H30_W20_A1</small></td><td>+92,002円</td><td>+2,010円</td><td>−33,408円</td><td>−26,706円 ～ +40,756円</td><td>0.32</td></tr><tr><td>NK225<br><small>D3_H120_W20_A2</small></td><td>+45,052円</td><td>−44,088円</td><td>−55,340円</td><td>−22,163円 ～ +25,951円</td><td>0.37</td></tr></tbody></table></div>
+<p class="muted">「日」は同じ日付ラベルのデイ＋ナイト。全25場は12日分と10/7デイのみです。収支・除外額は全25場、参考区間とp値は比較単位を揃えた完全12日を使用。平均2日ブロック・2万回の再抽出による、選択未補正の基本法区間です。この少数標本による区間を精密な確率評価とは扱いません。</p>
+<h2>今回の黒字を強い根拠にできない理由</h2>
+<ol><li><strong>利益に対して変動が大きい。</strong>候補を最初から1つだけ決めていたと仮定した補助診断でも、両方の平均日収支の区間が赤字と黒字をまたぎます。参考p値も0.32・0.37で、通常の5%水準を満たしません。</li>
+<li><strong>好成績を後から選んでいる。</strong>450条件×2銘柄の900系列を同時に見た選択を考慮した参考診断でも、優位性の裏付けは得られません。過去のさらに多くの探索まで補正できているわけではありません。</li>
+<li><strong>特定の日と設定への依存がある。</strong>最大黒字日を除くと両方赤字です。TOPIXは上限30分で黒字でも15分・60分では赤字でした。これは集中度の点検であり、大勝ちを伴う戦略を一律に否定する試験ではありません。</li></ol>
+<h2>片方専用の手法を認めるには</h2>
+<p>両銘柄で黒字になることは必須条件ではありません。必要なのは、<strong>銘柄を選ぶ理由・入口・保有管理・出口を先に固定し、その銘柄の未参照データでも費用後の優位性が再現すること</strong>です。値動きの戻り方、気配差、変動幅などの違いに理由を置き、その条件が成立した場で効くかを確かめます。</p>
+<p>今回の2候補には、その確認がまだありません。00058で現在確認したのは別の固定参考条件であり、この2候補の未知成績の代わりにはしません。今後の評価期間・判定基準を先に決め、結果を見て条件を変更した場合は新候補として扱う必要があります。</p>
+<p><strong>結論は「偶然だったと証明した」でもありません。利益の源泉を示して採用できるほどの証拠が、現状は不足しています。</strong></p>
+<details><summary>統計診断の仕様・全感度結果・限界</summary>
+<p>日別の費用後収支を900列へ並べ、全列に同じ再抽出日を適用します。連続する日を幾何分布の長さで再利用し、列間の関連を保ちます。各列を自身の平均で中心化し、原標本の標準偏差で尺度を揃えた平均と、900列の最大値を比較します。全900系列の期待収支をゼロに置く保守的な基準による、片側・最大値の仮定付き再標本化診断です。標準t検定やWhite検定の完全実装とは呼びません。</p>
+<p>計算前に固定した平均ブロック長1・2・4日、完全12日と全13日の6通りを省略せず掲載します。すべて同じく優位性を裏付けません。定常性・弱い依存などを仮定し、短期資料の相場変化を証明で消せません。4日ブロックでは実質的な塊も約3つしかありません。取引や枚数を独立標本として水増ししていません。p値は『偶然である確率』ではなく、仮定した基準の下で同等以上の統計量が出る参考頻度です。</p>
+<div class="wrap"><table><thead><tr><th>資料</th><th>平均ブロック日数</th><th>銘柄</th><th>平均日収支の参考95%区間</th><th>単独参考p</th><th>900系列最大値参考p</th></tr></thead><tbody><tr><td>13日・25場</td><td>1</td><td>TOPIX</td><td>−27,057円 ～ +38,135円</td><td>0.332</td><td>1.000</td></tr><tr><td>13日・25場</td><td>1</td><td>NK225</td><td>−23,478円 ～ +26,507円</td><td>0.378</td><td>1.000</td></tr><tr><td>13日・25場</td><td>2</td><td>TOPIX</td><td>−26,127円 ～ +36,852円</td><td>0.327</td><td>0.998</td></tr><tr><td>13日・25場</td><td>2</td><td>NK225</td><td>−20,780円 ～ +24,632円</td><td>0.368</td><td>0.998</td></tr><tr><td>13日・25場</td><td>4</td><td>TOPIX</td><td>−23,723円 ～ +35,986円</td><td>0.300</td><td>0.954</td></tr><tr><td>13日・25場</td><td>4</td><td>NK225</td><td>−17,720円 ～ +22,575円</td><td>0.344</td><td>0.954</td></tr><tr><td>12日・24場</td><td>1</td><td>TOPIX</td><td>−27,956円 ～ +42,180円</td><td>0.316</td><td>1.000</td></tr><tr><td>12日・24場</td><td>1</td><td>NK225</td><td>−24,834円 ～ +28,590円</td><td>0.381</td><td>1.000</td></tr><tr><td>12日・24場</td><td>2</td><td>TOPIX</td><td>−26,706円 ～ +40,756円</td><td>0.315</td><td>0.999</td></tr><tr><td>12日・24場</td><td>2</td><td>NK225</td><td>−22,163円 ～ +25,951円</td><td>0.374</td><td>0.999</td></tr><tr><td>12日・24場</td><td>4</td><td>TOPIX</td><td>−24,069円 ～ +39,021円</td><td>0.292</td><td>0.939</td></tr><tr><td>12日・24場</td><td>4</td><td>NK225</td><td>−19,023円 ～ +24,589円</td><td>0.341</td><td>0.939</td></tr></tbody></table></div>
+<p>多条件の探索による偶然性を考慮する理由は<a href="https://doi.org/10.1111/1468-0262.00152">WhiteのData Snooping研究</a>、連続性を残す再抽出は<a href="https://www.tandfonline.com/doi/abs/10.1080/01621459.1994.10476870">Politis–RomanoのStationary Bootstrap</a>を参照。論文の一般理論が、この短期資料の利益や検定精度を保証するものではありません。</p>
+<nav><a href="../../work/wave_v62/診断仕様.json">仕様</a> · <a href="../../work/wave_v62/偶然性の診断.json">計算結果</a> · <a href="../../work/wave_v62/review/README.md">独立確認</a></nav></details></main></body></html>

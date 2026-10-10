@@ -1,0 +1,43 @@
+{
+  "対象": "2026-10-01_Day",
+  "銘柄": {
+    "NK225": {
+      "価格行数": 138148,
+      "確定1分足数": 416,
+      "ATR全行一致": true,
+      "EMA15とEMA60全足一致": true,
+      "公開イベント数": 6369,
+      "B00不一致数": 0,
+      "H019不一致数": 0
+    },
+    "TOPIX": {
+      "価格行数": 126664,
+      "確定1分足数": 415,
+      "ATR全行一致": true,
+      "EMA15とEMA60全足一致": true,
+      "公開イベント数": 7367,
+      "B00不一致数": 0,
+      "H019不一致数": 0
+    }
+  },
+  "全一致": true,
+  "現在APIアクセス数": 0,
+  "時計": "研究と同じCurrentPriceTime代理時計。足は確定時受信、利用は終了後60秒以降。",
+  "適用限界": "実運用では実受信時計を使う。遅延・断線・開始途中の暖機による売買時刻差まで一致とは主張しない。",
+  "再現コマンド": "python -X utf8 検証用/特徴量一致検証.py",
+  "入力と実装SHA256": {
+    "work\\wave_v50\\update_20261001_day\\new_inputs.pkl": "29709a23313c3d4bf0f32fa6fab289582c1b37cb134d4089bdf1c2a3c84c237f",
+    "work\\wave_v50\\update_20261001_day\\new_features_depth.pkl": "38b93dd7e7bb59323373386a9c0a8a18066f3682922a7c0f71df884fa64ec380",
+    "アルゴリズム調査\\00045_E01リアルタイム仮想トレード\\papertrade\\features.py": "2128b94cce7a92635e57a98b7414441631f47e8e5f01c939d00a4adafabec052",
+    "アルゴリズム調査\\00045_E01リアルタイム仮想トレード\\検証用\\特徴量一致検証.py": "afac212a235e5454cfc8254f431590664ecd8d3a740ca1e5c9fd93585fdcce22",
+    "work\\wave_v35\\deterioration_signals.py": "fce22e67722bd371ab122ea0273bf9b0ab5e15c964962204ec4292b02a9ddf22",
+    "work\\wave_v47\\component_signals.py": "c56a540dffa40a0a61d6ad7cfde0227d05d920a28964178ec9b379433c2cde1e",
+    "work\\wave_v27\\hierarchy_signals.py": "59b90b081b8bb865455056f6030633681d9313137dca14ea1ab5e67735b053b9",
+    "work\\wave_v27\\hierarchy_design_fixed.json": "a86766997a5c0c40721deb8c0abbe4c2ef310a142fc1ca4d4bf21830df20c5cc",
+    "work\\wave_v23\\signals.py": "32722cce5092b07afbafc6535a83e78c103f2a483d4012c52ee8eb11ffd99760",
+    "candle_5min\\NK225\\2026-10-01_Day.csv": "e03b1cee05b9293eb08beda2101003e5e9f83154bb9bef2a352e9c3b4ce4ae5a",
+    "candle_1min\\NK225\\2026-10-01_Day.csv": "95a36e0277cb725b913006ac8d8a50854b592128720a1579738abb022db4209c",
+    "candle_5min\\TOPIX\\2026-10-01_Day.csv": "fff308c1f92e0e0a9b446c3591fa0273035908f41c503a274821e879e71bae00",
+    "candle_1min\\TOPIX\\2026-10-01_Day.csv": "9784a32e98f5719cee4753a895a26d1b1caf853d61d8a1b1c1a4d4ed04b336d8"
+  }
+}

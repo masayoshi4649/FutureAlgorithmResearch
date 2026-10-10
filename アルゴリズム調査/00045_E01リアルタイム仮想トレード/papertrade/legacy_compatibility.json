@@ -1,0 +1,39 @@
+{
+  "説明": "確認済みの旧版だけを台帳維持で移行するための署名。戦略・設定の未確認な組合せは許可しない。",
+  "signatures": {
+    "26fa8d1c147c6d492561defc8526d04c399eea44e5cfa499d9d1d887df4670bd": {
+      "fill_mode": "specified",
+      "base_url": "http://10.10.100.1:8080"
+    },
+    "b5cae27bcdd0248f067abfbb3aad9c13417e068dc9d44a4a06087372fa20fc89": {
+      "fill_mode": "observed",
+      "base_url": "http://10.10.100.1:8080"
+    },
+    "45713b09fc61653994fd6ff01d540a0b39b9c663f56c5f74c611112b26000f52": {
+      "base_url": "http://10.10.100.1:8080",
+      "fill_mode": "specified",
+      "max_price_age": 30,
+      "stale_seconds": 60,
+      "poll_seconds": 10,
+      "reconnect_grace_seconds": 180
+    },
+    "c82180f4c6b77098a78ba77f1abc675a62821de6a5ac20f330b72bef0c5308bd": {
+      "base_url": "http://10.10.100.1:8080",
+      "fill_mode": "observed",
+      "max_price_age": 30,
+      "stale_seconds": 60,
+      "poll_seconds": 10,
+      "reconnect_grace_seconds": 180
+    }
+  },
+  "旧ソース指紋": {
+    "runtime.py": "503ec1bff5b077689e161fa9a6cdd7f8cc572f156fecd8d3f09e40d1629c9e24",
+    "features.py": "2128b94cce7a92635e57a98b7414441631f47e8e5f01c939d00a4adafabec052",
+    "strategy.py": "503818a2b3ca2eb101229fbbfee4d55938acdb09b8393a851fddc935dcba16fe"
+  },
+  "20261002_セッション切替修正前": {
+    "runtime.py": "1d547ecf3199832ac5fc6490733b00ac5cb26287f8c5d5671126889f4079fa53",
+    "features.py": "e38800ad264ad36e7d912a73be710839d1d7ecdd639cf987c8905ef4bd135045",
+    "strategy.py": "bedb46967bc85c605481c0142be7a4b616305065d847ff09bbce7469b3fd435c"
+  }
+}

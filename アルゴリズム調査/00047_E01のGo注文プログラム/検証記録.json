@@ -1,0 +1,54 @@
+{
+  "日付": "2026-10-03",
+  "全合格": true,
+  "通常テスト数": 42,
+  "合格パッケージ": [
+    "ose-future/e01/internal/config",
+    "ose-future/e01/internal/journal",
+    "ose-future/e01/cmd/build-dist",
+    "ose-future/e01/internal/controller",
+    "ose-future/e01/internal/execution",
+    "ose-future/e01/internal/runner",
+    "ose-future/e01/internal/strategy"
+  ],
+  "Go静的検査": "go vet ./... 成功",
+  "Windowsビルド": "成功",
+  "Linux_amd64ビルド": "成功。実機運転は未検証",
+  "配布構成": "dist。設定サンプル4種と初回用の実設定を同梱。再配布時は既存の実設定・記録・状態を保持",
+  "実API180秒": {
+    "開始": "2026-10-03T04:30:01+09:00",
+    "終了": "2026-10-03T04:33:01+09:00",
+    "セッション": "2026-10-02_Night",
+    "モード": "dryrun",
+    "銘柄": "TOPIXmini",
+    "片方向上限": 10,
+    "初回枚数": 5,
+    "有効PUSH": {
+      "NK225": 337,
+      "TOPIX": 500,
+      "TOPIXmini": 287
+    },
+    "仮想約定": 0,
+    "実注文送信": 0
+  },
+  "再起動30秒": {
+    "開始": "2026-10-03T04:36:57+09:00",
+    "終了": "2026-10-03T04:37:27+09:00",
+    "結果": "同じ正本から復元して正常終了",
+    "仮想約定": 0,
+    "実注文送信": 0
+  },
+  "原本データ": "変更なし。運転はcontroller APIだけを使用",
+  "文書リンク数": 12,
+  "SHA256": {
+    "App\\E01\\dist\\e01.exe": "6aee5bac2faaaeb298f14c135be6db37fb8af70bd131089f3f03c1a84f6a00c2",
+    "App\\E01\\dist\\e01-linux-amd64": "81bdb6b2c577b1cbac23c5a04d897a7204bdd62d1c5e90e498278fe7da18c409",
+    "App\\E01\\dist\\conf\\products.toml.sample": "cbf277bd05f23d02b61ff9c7feb62fb929c5c4b4a378dfc0ad1af696eee67685",
+    "App\\E01\\dist\\conf\\strategy.toml.sample": "32d9297d021c503533f8a182b444aa7b55eb44d3c2edd211b169009b5ac7999d",
+    "App\\E01\\dist\\conf\\system.toml.sample": "21af884cc7f09ab9bc18b8a8f71b1707a68efe942dd3e4576b41704380ee634e",
+    "App\\E01\\dist\\conf\\trade.toml.sample": "00862565ca338921fa0107da1fb7cc94ec11852862aae018c8431a018ff5f08b",
+    "App\\E01\\internal\\strategy\\testdata\\historical_orders.json.gz": "75751bf23e3956c0153a9907a8fc4e4e7599afa71b0cd20971fbad28e648dd7e",
+    "App\\E01\\internal\\strategy\\testdata\\python_features.json.gz": "a573a0f4cc573b1b86fbc9cf629c32519baefb094be53f17585de9b8e3becb0b",
+    "App\\E01\\internal\\strategy\\testdata\\python_orders.json.gz": "4386c5ab2497bb2eb96795fbd2b5a758b100c9fd55416993e7c45c2e5276ca55"
+  }
+}

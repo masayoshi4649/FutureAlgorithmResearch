@@ -1,0 +1,401 @@
+{
+  "合格": true,
+  "検証時刻": "2026-09-28T20:42:46.287795+09:00",
+  "検証方法": "集計JSONを再利用せず、各取引の方向×枚数×（返済値−建値）×銘柄乗数を独立計算し、利益・損失・収支・枚数を照合。",
+  "候補ID": "V0800",
+  "条件変更": false,
+  "原本変更": false,
+  "API取得回数": 0,
+  "乗数": {
+    "TOPIXミニ": 1000,
+    "NK225マイクロ": 10
+  },
+  "セッション数": 11,
+  "銘柄別セル数": 22,
+  "独立照合取引数": 122,
+  "元データ": [
+    "work/wave_v19/セッション比較.json",
+    "work/wave_v19/全取引台帳.pkl",
+    "work/wave_v20/結果.json",
+    "work/wave_v20/再生台帳.pkl"
+  ],
+  "セル": [
+    {
+      "method_id": "V0800",
+      "session": "2026-09-21_Day",
+      "symbol": "TOPIX",
+      "quantity": 1,
+      "独立計算": {
+        "gross_profit_yen": 17500.0,
+        "gross_loss_yen": 0.0,
+        "net_yen": 17500.0,
+        "profit_units": 1,
+        "loss_units": 0,
+        "zero_units": 0,
+        "closed_units": 1
+      },
+      "合格": true
+    },
+    {
+      "method_id": "V0800",
+      "session": "2026-09-21_Night",
+      "symbol": "TOPIX",
+      "quantity": 1,
+      "独立計算": {
+        "gross_profit_yen": 16000.0,
+        "gross_loss_yen": 24000.0,
+        "net_yen": -8000.0,
+        "profit_units": 3,
+        "loss_units": 8,
+        "zero_units": 0,
+        "closed_units": 11
+      },
+      "合格": true
+    },
+    {
+      "method_id": "V0800",
+      "session": "2026-09-22_Day",
+      "symbol": "TOPIX",
+      "quantity": 1,
+      "独立計算": {
+        "gross_profit_yen": 13500.0,
+        "gross_loss_yen": 0.0,
+        "net_yen": 13500.0,
+        "profit_units": 3,
+        "loss_units": 0,
+        "zero_units": 1,
+        "closed_units": 4
+      },
+      "合格": true
+    },
+    {
+      "method_id": "V0800",
+      "session": "2026-09-22_Night",
+      "symbol": "TOPIX",
+      "quantity": 1,
+      "独立計算": {
+        "gross_profit_yen": 38000.0,
+        "gross_loss_yen": 9000.0,
+        "net_yen": 29000.0,
+        "profit_units": 3,
+        "loss_units": 2,
+        "zero_units": 0,
+        "closed_units": 5
+      },
+      "合格": true
+    },
+    {
+      "method_id": "V0800",
+      "session": "2026-09-23_Day",
+      "symbol": "TOPIX",
+      "quantity": 1,
+      "独立計算": {
+        "gross_profit_yen": 19500.0,
+        "gross_loss_yen": 0.0,
+        "net_yen": 19500.0,
+        "profit_units": 1,
+        "loss_units": 0,
+        "zero_units": 0,
+        "closed_units": 1
+      },
+      "合格": true
+    },
+    {
+      "method_id": "V0800",
+      "session": "2026-09-23_Night",
+      "symbol": "TOPIX",
+      "quantity": 1,
+      "独立計算": {
+        "gross_profit_yen": 37000.0,
+        "gross_loss_yen": 17000.0,
+        "net_yen": 20000.0,
+        "profit_units": 4,
+        "loss_units": 8,
+        "zero_units": 0,
+        "closed_units": 12
+      },
+      "合格": true
+    },
+    {
+      "method_id": "V0800",
+      "session": "2026-09-24_Day",
+      "symbol": "TOPIX",
+      "quantity": 1,
+      "独立計算": {
+        "gross_profit_yen": 25500.0,
+        "gross_loss_yen": 0.0,
+        "net_yen": 25500.0,
+        "profit_units": 1,
+        "loss_units": 0,
+        "zero_units": 0,
+        "closed_units": 1
+      },
+      "合格": true
+    },
+    {
+      "method_id": "V0800",
+      "session": "2026-09-24_Night",
+      "symbol": "TOPIX",
+      "quantity": 1,
+      "独立計算": {
+        "gross_profit_yen": 48000.0,
+        "gross_loss_yen": 23500.0,
+        "net_yen": 24500.0,
+        "profit_units": 4,
+        "loss_units": 6,
+        "zero_units": 0,
+        "closed_units": 10
+      },
+      "合格": true
+    },
+    {
+      "method_id": "V0800",
+      "session": "2026-09-25_Day",
+      "symbol": "TOPIX",
+      "quantity": 1,
+      "独立計算": {
+        "gross_profit_yen": 500.0,
+        "gross_loss_yen": 20500.0,
+        "net_yen": -20000.0,
+        "profit_units": 1,
+        "loss_units": 3,
+        "zero_units": 1,
+        "closed_units": 5
+      },
+      "合格": true
+    },
+    {
+      "method_id": "V0800",
+      "session": "2026-09-25_Night",
+      "symbol": "TOPIX",
+      "quantity": 1,
+      "独立計算": {
+        "gross_profit_yen": 47500.0,
+        "gross_loss_yen": 1000.0,
+        "net_yen": 46500.0,
+        "profit_units": 3,
+        "loss_units": 1,
+        "zero_units": 1,
+        "closed_units": 5
+      },
+      "合格": true
+    },
+    {
+      "method_id": "V0800",
+      "session": "2026-09-21_Day",
+      "symbol": "NK225",
+      "quantity": 1,
+      "独立計算": {
+        "gross_profit_yen": 0.0,
+        "gross_loss_yen": 1900.0,
+        "net_yen": -1900.0,
+        "profit_units": 0,
+        "loss_units": 2,
+        "zero_units": 0,
+        "closed_units": 2
+      },
+      "合格": true
+    },
+    {
+      "method_id": "V0800",
+      "session": "2026-09-21_Night",
+      "symbol": "NK225",
+      "quantity": 1,
+      "独立計算": {
+        "gross_profit_yen": 3800.0,
+        "gross_loss_yen": 6200.0,
+        "net_yen": -2400.0,
+        "profit_units": 4,
+        "loss_units": 11,
+        "zero_units": 0,
+        "closed_units": 15
+      },
+      "合格": true
+    },
+    {
+      "method_id": "V0800",
+      "session": "2026-09-22_Day",
+      "symbol": "NK225",
+      "quantity": 1,
+      "独立計算": {
+        "gross_profit_yen": 6600.0,
+        "gross_loss_yen": 0.0,
+        "net_yen": 6600.0,
+        "profit_units": 2,
+        "loss_units": 0,
+        "zero_units": 0,
+        "closed_units": 2
+      },
+      "合格": true
+    },
+    {
+      "method_id": "V0800",
+      "session": "2026-09-22_Night",
+      "symbol": "NK225",
+      "quantity": 1,
+      "独立計算": {
+        "gross_profit_yen": 9900.0,
+        "gross_loss_yen": 400.0,
+        "net_yen": 9500.0,
+        "profit_units": 2,
+        "loss_units": 1,
+        "zero_units": 0,
+        "closed_units": 3
+      },
+      "合格": true
+    },
+    {
+      "method_id": "V0800",
+      "session": "2026-09-23_Day",
+      "symbol": "NK225",
+      "quantity": 1,
+      "独立計算": {
+        "gross_profit_yen": 1900.0,
+        "gross_loss_yen": 0.0,
+        "net_yen": 1900.0,
+        "profit_units": 1,
+        "loss_units": 0,
+        "zero_units": 0,
+        "closed_units": 1
+      },
+      "合格": true
+    },
+    {
+      "method_id": "V0800",
+      "session": "2026-09-23_Night",
+      "symbol": "NK225",
+      "quantity": 1,
+      "独立計算": {
+        "gross_profit_yen": 4000.0,
+        "gross_loss_yen": 5300.0,
+        "net_yen": -1300.0,
+        "profit_units": 5,
+        "loss_units": 10,
+        "zero_units": 2,
+        "closed_units": 17
+      },
+      "合格": true
+    },
+    {
+      "method_id": "V0800",
+      "session": "2026-09-24_Day",
+      "symbol": "NK225",
+      "quantity": 1,
+      "独立計算": {
+        "gross_profit_yen": 5300.0,
+        "gross_loss_yen": 0.0,
+        "net_yen": 5300.0,
+        "profit_units": 1,
+        "loss_units": 0,
+        "zero_units": 0,
+        "closed_units": 1
+      },
+      "合格": true
+    },
+    {
+      "method_id": "V0800",
+      "session": "2026-09-24_Night",
+      "symbol": "NK225",
+      "quantity": 1,
+      "独立計算": {
+        "gross_profit_yen": 8000.0,
+        "gross_loss_yen": 4800.0,
+        "net_yen": 3200.0,
+        "profit_units": 6,
+        "loss_units": 5,
+        "zero_units": 0,
+        "closed_units": 11
+      },
+      "合格": true
+    },
+    {
+      "method_id": "V0800",
+      "session": "2026-09-25_Day",
+      "symbol": "NK225",
+      "quantity": 1,
+      "独立計算": {
+        "gross_profit_yen": 0.0,
+        "gross_loss_yen": 7600.0,
+        "net_yen": -7600.0,
+        "profit_units": 0,
+        "loss_units": 8,
+        "zero_units": 0,
+        "closed_units": 8
+      },
+      "合格": true
+    },
+    {
+      "method_id": "V0800",
+      "session": "2026-09-25_Night",
+      "symbol": "NK225",
+      "quantity": 1,
+      "独立計算": {
+        "gross_profit_yen": 5300.0,
+        "gross_loss_yen": 2100.0,
+        "net_yen": 3200.0,
+        "profit_units": 2,
+        "loss_units": 3,
+        "zero_units": 0,
+        "closed_units": 5
+      },
+      "合格": true
+    },
+    {
+      "method_id": "V0800",
+      "session": "2026-09-28_Day",
+      "symbol": "TOPIX",
+      "quantity": 1,
+      "独立計算": {
+        "gross_profit_yen": 38000.0,
+        "gross_loss_yen": 0.0,
+        "net_yen": 38000.0,
+        "profit_units": 1,
+        "loss_units": 0,
+        "zero_units": 0,
+        "closed_units": 1
+      },
+      "合格": true
+    },
+    {
+      "method_id": "V0800",
+      "session": "2026-09-28_Day",
+      "symbol": "NK225",
+      "quantity": 1,
+      "独立計算": {
+        "gross_profit_yen": 9500.0,
+        "gross_loss_yen": 0.0,
+        "net_yen": 9500.0,
+        "profit_units": 1,
+        "loss_units": 0,
+        "zero_units": 0,
+        "closed_units": 1
+      },
+      "合格": true
+    }
+  ],
+  "合計": {
+    "TOPIX": {
+      "gross_profit_yen": 301000.0,
+      "gross_loss_yen": 95000.0,
+      "net_yen": 206000.0,
+      "profit_units": 25,
+      "loss_units": 28,
+      "zero_units": 3,
+      "closed_units": 56
+    },
+    "NK225": {
+      "gross_profit_yen": 54300.0,
+      "gross_loss_yen": 28300.0,
+      "net_yen": 26000.0,
+      "profit_units": 24,
+      "loss_units": 40,
+      "zero_units": 2,
+      "closed_units": 66
+    }
+  },
+  "注意": [
+    "利益・損失枚数は累計返済枚数。同時保有枚数ではない。",
+    "選定期間は2026-09-21〜2026-09-25、固定後の追加検証は2026-09-28_Day。",
+    "ナイトセッションの日付は開始日。"
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "配分数": 327,
+  "セッションセル数": 3270,
+  "対象手法": [
+    "M3_逆_A03",
+    "M3_逆_A00",
+    "M2_逆_A00",
+    "M2_逆_A01"
+  ],
+  "片方向同時保有上限": {
+    "TOPIX": 10,
+    "NK225": 20
+  },
+  "契約倍率": {
+    "TOPIX": 1000.0,
+    "NK225": 10.0
+  },
+  "現在API取得数": 0,
+  "全期間既読": true,
+  "変更する条件": [
+    "初回枚数",
+    "追加枚数",
+    "片方向の同時保有上限",
+    "商品倍率"
+  ],
+  "固定する条件": "信号・ATR・価格刻み・時間条件・新規条件・出口条件は変更しない。",
+  "配分列挙": "A03は初回1〜上限、追加1〜残り枠。初回が上限なら追加0。固定型は初回1〜上限、追加0。追加注文は空き枠まで切り詰める。",
+  "週収支最大": "週net降順、同値なら初回小→追加小。金額は小数6桁丸め。",
+  "損小利大資格": "net>0、金額PF>1、１枚平均利益/損失>1、黒字セッション6/10以上、最大利益セッションを除いてもnet>0。",
+  "損小利大順位": "min(金額PF,１枚平均利益/損失)降順→net/週最大下落降順→初回小→追加小。比率は小数10桁丸め。同等な固定型は初回1枚が代表。",
+  "資格未達": "該当なしと明記し、週収支最大を参考としてのみ表示する。",
+  "注意": "同じ既知１週間で配分を選んだ比較探索。未使用データでの再現確認ではない。自己資本・許容損失額は未指定。",
+  "ソースSHA256": {
+    "S:\\TempDev\\OSE_Future\\work\\wave_v17\\engine.py": "41bd11f13884ea98377996ea18c0e34f43c90acaa7334b862e3521dbaf0bca46",
+    "S:\\TempDev\\OSE_Future\\work\\wave_v17\\research.py": "9c521355d7f09d71081de301cf6149d4740486f73742888883012be403e3fd3d",
+    "S:\\TempDev\\OSE_Future\\work\\wave_v17\\全条件一覧.json": "17f4d186bdf5372d49a4fb73b9d934739752db7eb5cf06259a1cfe999f23d437",
+    "S:\\TempDev\\OSE_Future\\work\\wave_v17\\主方向状態.pkl": "6d05579074b5d666d56f2bb234cae6892d2fba8b7e330b64af06a639706e2dec",
+    "S:\\TempDev\\OSE_Future\\work\\wave_v18\\audit_engine_scaled.py": "3c7f88c4f38c37e1206d59faf030357d615d3e170c92df234a2c7b8e7535a7bf",
+    "S:\\TempDev\\OSE_Future\\work\\wave_v18\\allocation\\search_allocation.py": "c7b5b0b1618affabeb92b9729cba4d63a18f04c14052698d694cc5d3e90801c2",
+    "S:\\TempDev\\OSE_Future\\work\\wave_v16\\入力_development.pkl": "d1dd949c47df77b9af21620ec3b0a21d6ee0888bf729ecf7a16552ce9c19189a",
+    "S:\\TempDev\\OSE_Future\\work\\wave_v16\\入力_holdout.pkl": "58cd7910df951703abd20ae271071f42bb5dbf1380cf342bab2301baaa7a0741"
+  }
+}
