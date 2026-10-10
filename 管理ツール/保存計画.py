@@ -25,6 +25,15 @@ def 一覧取得(ルート):
         出力 = subprocess.check_output(引数, cwd=ルート)
         結果.update(出力.decode("utf-8").split("\0"))
     結果.discard("")
+    以前 = subprocess.run(["git", "show", "HEAD:保存データ/保存計画.json"], cwd=ルート, capture_output=True)
+    if 以前.returncode == 0:
+        以前の計画 = json.loads(以前.stdout.decode("utf-8"))
+        結果.update(以前の計画.get("direct_paths", []))
+        for 群 in 以前の計画.get("groups", []):
+            for 名 in 群["paths"]:
+                if not (ルート / 名).is_file():
+                    raise ValueError(f"保存済みの原本がありません。復元してから計画を更新してください: {名}")
+                結果.add(名)
     対象外 = []
     除外根 = {".playwright-mcp"}
     for 起点 in ("work", "book", "candle_1min", "candle_5min"):
