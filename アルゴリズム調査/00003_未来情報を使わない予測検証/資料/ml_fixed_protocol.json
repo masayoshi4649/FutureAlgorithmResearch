@@ -1,0 +1,52 @@
+{
+  "検証の区分": "既に研究した保存期間の時間順再評価。真の未観測試験ではない。",
+  "開始UTC": "2026-09-23T10:09:09.667956+00:00",
+  "入力": "S:\\TempDev\\OSE_Future\\work\\wave_v7\\dataset.npz",
+  "入力SHA256": "20145f25d6cf90ef8b9f06cf77afc47e372a774e1e19e58cdc98e61aea5e24cb",
+  "コードSHA256": "e7e3eac8f0792af25fe35a995090d9f54d75cf6e97af6c18df8d149cbb33e348",
+  "条件": {
+    "対象期間分": [
+      30,
+      60,
+      120
+    ],
+    "LSTMの乱数": [
+      1729,
+      1730,
+      1731
+    ],
+    "系列長": 30,
+    "LSTM隠れ状態": 16,
+    "LSTM層数": 1,
+    "双方向": false,
+    "epoch": 20,
+    "batch": 128,
+    "optimizer": "Adam",
+    "学習率": 0.001,
+    "ロジスティックL2": 0.01,
+    "ロジスティック固定反復": 60,
+    "学習抽出": "セッション開始からの分数ageについて(age-45)%5=0。差0は除外。両銘柄をまとめて学習。",
+    "推論": "有効な行を毎分。LSTMは同一セッション・同一銘柄の連続30分。",
+    "判定閾値": 0.5,
+    "早期停止": false,
+    "seed選別": false,
+    "主LSTM予測": "3seedの予測確率を等重みで平均"
+  },
+  "環境": {
+    "Python": "3.12.0 (tags/v3.12.0:0fb18b0, Oct  2 2023, 13:03:39) [MSC v.1935 64 bit (AMD64)]",
+    "実行ファイル": "S:\\TempDev\\OSE_Future\\work\\wave_v7\\ml_gpu_env\\Scripts\\python.exe",
+    "OS": "Windows-11-10.0.26200-SP0",
+    "numpy": "2.4.6",
+    "torch": "2.9.1+cu128",
+    "CUDA": "12.8",
+    "HIP": null,
+    "装置": "cuda",
+    "GPU": "NVIDIA GeForce RTX 4090",
+    "cudnn": 91002,
+    "決定的演算": true,
+    "CUBLAS_WORKSPACE_CONFIG": ":4096:8",
+    "cudnn_benchmark": false,
+    "TF32": false
+  },
+  "学習記録": []
+}

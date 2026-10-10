@@ -1,0 +1,13 @@
+{
+  "name": "TOPIX_5min",
+  "url": "http://10.10.100.1:8080/api/v1/history/TOPIX/candles/5min?from=2026-09-23T17%3A00%3A00%2B09%3A00&to=2026-09-23T23%3A22%3A00%2B09%3A00",
+  "started_at": "2026-09-23T23:22:13.579838+09:00",
+  "attempts": 1,
+  "timeout_seconds": 45,
+  "http_status": 200,
+  "ok": true,
+  "bytes": 10915,
+  "sha256": "31728aef0e8e95d9d2f14022075f9d3d42245e8cb33be7a65abdbce97b5b4b7b",
+  "finished_at": "2026-09-23T23:22:13.823911+09:00",
+  "path": "work/wave_v9/live/応答/TOPIX_5min.json"
+}

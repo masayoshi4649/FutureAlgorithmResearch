@@ -1,0 +1,62 @@
+[
+  {
+    "原本": "S:\\TempDev\\OSE_Future\\book\\NK225\\2026-09-21_Day.jsonl",
+    "SHA256": "332b5885814a21de36ea002eb99ef9fde16487f8cfaccb438620089d304c4888",
+    "前回抽出時と一致": true
+  },
+  {
+    "原本": "S:\\TempDev\\OSE_Future\\book\\NK225\\2026-09-21_Night.jsonl",
+    "SHA256": "887ce536c0416748da79533b20a8af499cefb106cebf1852966c09a3316e8b32",
+    "前回抽出時と一致": true
+  },
+  {
+    "原本": "S:\\TempDev\\OSE_Future\\book\\NK225\\2026-09-22_Day.jsonl",
+    "SHA256": "1e0f54c99956b18bb92db9ba8d278c7e747115499305c8cba4e7b56f0dffdabd",
+    "前回抽出時と一致": true
+  },
+  {
+    "原本": "S:\\TempDev\\OSE_Future\\book\\NK225\\2026-09-22_Night.jsonl",
+    "SHA256": "ac5cb5721e1db13fa6d92ed27ab8d85ae8fd9c30e9185a1386bbb34ecf7f7cbb",
+    "前回抽出時と一致": true
+  },
+  {
+    "原本": "S:\\TempDev\\OSE_Future\\book\\NK225\\2026-09-23_Day.jsonl",
+    "SHA256": "69d18625134c6fd441dc088be0c0718b6ee346be1a821e7091a3fa678c5ad455",
+    "前回抽出時と一致": true
+  },
+  {
+    "原本": "S:\\TempDev\\OSE_Future\\work\\wave_v7\\live\\book\\NK225\\2026-09-23_Night.jsonl",
+    "SHA256": "383aabb09cac8defc1752f93cd64139af042c29fbc70ad545e774745fb543b93",
+    "前回抽出時と一致": true
+  },
+  {
+    "原本": "S:\\TempDev\\OSE_Future\\book\\TOPIX\\2026-09-21_Day.jsonl",
+    "SHA256": "016fab8183aac956edadb5a880c98e3338659f649187126e0b4b12cac13dec5e",
+    "前回抽出時と一致": true
+  },
+  {
+    "原本": "S:\\TempDev\\OSE_Future\\book\\TOPIX\\2026-09-21_Night.jsonl",
+    "SHA256": "703b0e8b6286c2192ccab73e968fe6d8e4034115bef1f54e1bc2053c0c499d0a",
+    "前回抽出時と一致": true
+  },
+  {
+    "原本": "S:\\TempDev\\OSE_Future\\book\\TOPIX\\2026-09-22_Day.jsonl",
+    "SHA256": "6a629da4ce0dc78c07d67d75447fe9baed416edc411f8152caae8a1bfe2cf893",
+    "前回抽出時と一致": true
+  },
+  {
+    "原本": "S:\\TempDev\\OSE_Future\\book\\TOPIX\\2026-09-22_Night.jsonl",
+    "SHA256": "cdbdc5cb9793b8f140ec740e386cef9aa435cdb24b31c6ffa74f8ae18998adb9",
+    "前回抽出時と一致": true
+  },
+  {
+    "原本": "S:\\TempDev\\OSE_Future\\book\\TOPIX\\2026-09-23_Day.jsonl",
+    "SHA256": "87b857af993b1db116a6a97beda80dcd1908c71b05b0fee79817c987c4d789f5",
+    "前回抽出時と一致": true
+  },
+  {
+    "原本": "S:\\TempDev\\OSE_Future\\work\\wave_v7\\live\\book\\TOPIX\\2026-09-23_Night.jsonl",
+    "SHA256": "ac6747ecbb9ac178ac9e4874e93a573cc7833e0ba3029da3a42f14c3d1288618",
+    "前回抽出時と一致": true
+  }
+]

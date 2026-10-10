@@ -1,0 +1,73 @@
+{
+  "モデルSHA256": "474c0eab758fd946a33825fb6dc6049ceb2431bf4d2a4f918213fa1649b8f85e",
+  "確認": [
+    {
+      "方向": "ロング",
+      "全行で同じCurrentPriceTime": true,
+      "発注から成立と約定を分離": true,
+      "2.5ATR順行後の0.5ATR保護": true,
+      "ストップ価格でなく次行の不利な価格で返済": true,
+      "約定済み気配差に追加往復2tick控除": true,
+      "取引": {
+        "side": 1,
+        "entry_price": 66100.0,
+        "entry_time_s": 1790123400.0,
+        "entry_seq": 12,
+        "atr": 20.0,
+        "signal_seq": 10,
+        "source_last_seq": 9,
+        "signal_time_s": 1790123400.0,
+        "trigger_seq": 11,
+        "extreme": 66160.0,
+        "stop": 66150.0,
+        "max_favorable": 60.0,
+        "entry_spread": 10.0,
+        "closed": true,
+        "exit_time_s": 1790123400.0,
+        "exit_seq": 16,
+        "exit_price": 66080.0,
+        "exit_reason": "保護ストップ",
+        "exit_trigger_seq": 15,
+        "net_points": -40.0,
+        "stress_points": -60.0,
+        "duration_min": 0.0,
+        "exit_spread": 10.0,
+        "exit_in_session": true
+      }
+    },
+    {
+      "方向": "ショート",
+      "全行で同じCurrentPriceTime": true,
+      "発注から成立と約定を分離": true,
+      "2.5ATR順行後の0.5ATR保護": true,
+      "ストップ価格でなく次行の不利な価格で返済": true,
+      "約定済み気配差に追加往復2tick控除": true,
+      "取引": {
+        "side": -1,
+        "entry_price": 65900.0,
+        "entry_time_s": 1790123400.0,
+        "entry_seq": 12,
+        "atr": 20.0,
+        "signal_seq": 10,
+        "source_last_seq": 9,
+        "signal_time_s": 1790123400.0,
+        "trigger_seq": 11,
+        "extreme": 65840.0,
+        "stop": 65850.0,
+        "max_favorable": 60.0,
+        "entry_spread": 10.0,
+        "closed": true,
+        "exit_time_s": 1790123400.0,
+        "exit_seq": 16,
+        "exit_price": 65920.0,
+        "exit_reason": "保護ストップ",
+        "exit_trigger_seq": 15,
+        "net_points": -40.0,
+        "stress_points": -60.0,
+        "duration_min": 0.0,
+        "exit_spread": 10.0,
+        "exit_in_session": true
+      }
+    }
+  ]
+}

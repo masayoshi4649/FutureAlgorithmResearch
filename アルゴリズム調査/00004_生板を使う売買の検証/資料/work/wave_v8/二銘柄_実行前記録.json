@@ -1,0 +1,12 @@
+{
+  "時刻": "2026-09-23 21:00:17.990418+09:00",
+  "条件数": 48,
+  "新規API取得": false,
+  "既存108結果を使った閾値調整": false,
+  "SHA256": {
+    "二銘柄検証計画.md": "6e6297f4724aa56674b14327043635a569e345105724bf2b5bbc3966a014fde7",
+    "cross_research.py": "4ee649eb93b72fc9ee8b484a954398f6dcf5f8d90631f022a2a451e21ca8761d",
+    "model.py": "474c0eab758fd946a33825fb6dc6049ceb2431bf4d2a4f918213fa1649b8f85e",
+    "research.py": "b910fea1b660d5b94c4ef1346b0b55db5d523cddb5b2657442814cd6dd86c6b2"
+  }
+}

@@ -1,0 +1,407 @@
+{
+  "fixed_at": "2026-09-23T19:14:39.991513+09:00",
+  "known_sessions": [
+    "2026-09-21_Day",
+    "2026-09-21_Night",
+    "2026-09-22_Day",
+    "2026-09-22_Night",
+    "2026-09-23_Day"
+  ],
+  "live_methods": [
+    "機械09/元4ATR",
+    "機械09/利益保護",
+    "機械14/利益保護",
+    "logistic_60/元4ATR",
+    "logistic_60/利益保護",
+    "lstm_60/元4ATR",
+    "lstm_60/利益保護",
+    "上昇固定/元4ATR",
+    "下降固定/元4ATR"
+  ],
+  "次回機械条件の選択": {
+    "学習セッション": [
+      "2026-09-21_Day",
+      "2026-09-21_Night",
+      "2026-09-22_Day",
+      "2026-09-22_Night",
+      "2026-09-23_Day"
+    ],
+    "採用": {
+      "方式": "機械14/利益保護",
+      "適格": true,
+      "最小銘柄得点": 13.395461074767063,
+      "合計得点": 29.14902821300865
+    },
+    "全順位": [
+      {
+        "方式": "機械14/利益保護",
+        "適格": true,
+        "最小銘柄得点": 13.395461074767063,
+        "合計得点": 29.14902821300865
+      },
+      {
+        "方式": "機械09/元4ATR",
+        "適格": true,
+        "最小銘柄得点": 12.320113207024722,
+        "合計得点": 31.321316947254466
+      },
+      {
+        "方式": "機械09/利益保護",
+        "適格": true,
+        "最小銘柄得点": 12.149243710566545,
+        "合計得点": 24.78148716340363
+      },
+      {
+        "方式": "機械14/元4ATR",
+        "適格": true,
+        "最小銘柄得点": 9.56498558934416,
+        "合計得点": 29.966472257626343
+      },
+      {
+        "方式": "機械10/元4ATR",
+        "適格": true,
+        "最小銘柄得点": 9.555621789748134,
+        "合計得点": 22.55521518138544
+      },
+      {
+        "方式": "機械11/元4ATR",
+        "適格": true,
+        "最小銘柄得点": 9.324018545771217,
+        "合計得点": 26.70221593766509
+      },
+      {
+        "方式": "機械23/元4ATR",
+        "適格": true,
+        "最小銘柄得点": 9.314893347112974,
+        "合計得点": 20.990950211270825
+      },
+      {
+        "方式": "機械01/元4ATR",
+        "適格": true,
+        "最小銘柄得点": 9.074133454828527,
+        "合計得点": 32.945296161741744
+      },
+      {
+        "方式": "機械12/元4ATR",
+        "適格": true,
+        "最小銘柄得点": 8.957245595983792,
+        "合計得点": 19.203108908053732
+      },
+      {
+        "方式": "機械24/元4ATR",
+        "適格": true,
+        "最小銘柄得点": 8.76563807505751,
+        "合計得点": 29.958803223064024
+      },
+      {
+        "方式": "機械11/利益保護",
+        "適格": true,
+        "最小銘柄得点": 6.21280124001721,
+        "合計得点": 16.165175492789
+      },
+      {
+        "方式": "機械01/利益保護",
+        "適格": true,
+        "最小銘柄得点": 5.717559116474303,
+        "合計得点": 20.260036497283465
+      },
+      {
+        "方式": "機械13/元4ATR",
+        "適格": true,
+        "最小銘柄得点": 5.695278713705453,
+        "合計得点": 16.325928542444156
+      },
+      {
+        "方式": "機械08/元4ATR",
+        "適格": true,
+        "最小銘柄得点": 5.686233306925876,
+        "合計得点": 11.98511275666176
+      },
+      {
+        "方式": "機械18/元4ATR",
+        "適格": true,
+        "最小銘柄得点": 5.411440714315601,
+        "合計得点": 18.579076576343276
+      },
+      {
+        "方式": "機械24/利益保護",
+        "適格": true,
+        "最小銘柄得点": 5.1417734376713895,
+        "合計得点": 21.348458504474735
+      },
+      {
+        "方式": "機械03/元4ATR",
+        "適格": true,
+        "最小銘柄得点": 3.8401897057977585,
+        "合計得点": 21.232012353073763
+      },
+      {
+        "方式": "機械05/元4ATR",
+        "適格": true,
+        "最小銘柄得点": 3.3562612637582463,
+        "合計得点": 22.26232777950572
+      },
+      {
+        "方式": "機械02/元4ATR",
+        "適格": true,
+        "最小銘柄得点": 3.098671939117432,
+        "合計得点": 7.919775768308594
+      },
+      {
+        "方式": "機械10/利益保護",
+        "適格": true,
+        "最小銘柄得点": 2.5564090342800014,
+        "合計得点": 8.870905983704155
+      },
+      {
+        "方式": "機械06/元4ATR",
+        "適格": true,
+        "最小銘柄得点": 2.483583397407918,
+        "合計得点": 21.23933009165977
+      },
+      {
+        "方式": "機械12/利益保護",
+        "適格": true,
+        "最小銘柄得点": 0.00393172406520656,
+        "合計得点": 1.3074822072336914
+      },
+      {
+        "方式": "機械23/利益保護",
+        "適格": true,
+        "最小銘柄得点": -0.4641115249684753,
+        "合計得点": 7.181362135119473
+      },
+      {
+        "方式": "機械13/利益保護",
+        "適格": true,
+        "最小銘柄得点": -0.7258801061611176,
+        "合計得点": -0.7136379284258356
+      },
+      {
+        "方式": "機械08/利益保護",
+        "適格": true,
+        "最小銘柄得点": -0.7465187834661227,
+        "合計得点": 2.095517066109505
+      },
+      {
+        "方式": "機械04/元4ATR",
+        "適格": true,
+        "最小銘柄得点": -2.0042296268643467,
+        "合計得点": -0.0017014063173061977
+      },
+      {
+        "方式": "機械20/元4ATR",
+        "適格": true,
+        "最小銘柄得点": -2.309687683868708,
+        "合計得点": -4.19853312695691
+      },
+      {
+        "方式": "機械03/利益保護",
+        "適格": true,
+        "最小銘柄得点": -2.449192278525926,
+        "合計得点": 5.077499277114544
+      },
+      {
+        "方式": "機械15/元4ATR",
+        "適格": true,
+        "最小銘柄得点": -2.6768991147906522,
+        "合計得点": 21.793670636437916
+      },
+      {
+        "方式": "機械16/元4ATR",
+        "適格": true,
+        "最小銘柄得点": -2.6768991147906522,
+        "合計得点": 21.793670636437916
+      },
+      {
+        "方式": "機械05/利益保護",
+        "適格": true,
+        "最小銘柄得点": -2.802361202645066,
+        "合計得点": 9.164323665691077
+      },
+      {
+        "方式": "機械07/元4ATR",
+        "適格": true,
+        "最小銘柄得点": -3.788008660074795,
+        "合計得点": 13.057904520567554
+      },
+      {
+        "方式": "機械22/元4ATR",
+        "適格": true,
+        "最小銘柄得点": -4.969893476301508,
+        "合計得点": 0.3906650072351434
+      },
+      {
+        "方式": "機械20/利益保護",
+        "適格": true,
+        "最小銘柄得点": -5.952085201303321,
+        "合計得点": -10.538089314732083
+      },
+      {
+        "方式": "機械02/利益保護",
+        "適格": true,
+        "最小銘柄得点": -6.4813765670107895,
+        "合計得点": -8.75514059931707
+      },
+      {
+        "方式": "機械06/利益保護",
+        "適格": true,
+        "最小銘柄得点": -6.70098740488867,
+        "合計得点": 1.6708818337172158
+      },
+      {
+        "方式": "機械19/利益保護",
+        "適格": true,
+        "最小銘柄得点": -8.376004689310568,
+        "合計得点": -6.362681332664581
+      },
+      {
+        "方式": "機械18/利益保護",
+        "適格": true,
+        "最小銘柄得点": -9.443530369073343,
+        "合計得点": -6.881424618424151
+      },
+      {
+        "方式": "機械16/利益保護",
+        "適格": true,
+        "最小銘柄得点": -10.151391190190797,
+        "合計得点": 7.704177705713928
+      },
+      {
+        "方式": "機械15/利益保護",
+        "適格": true,
+        "最小銘柄得点": -10.151391190190797,
+        "合計得点": 7.369462790371987
+      },
+      {
+        "方式": "機械07/利益保護",
+        "適格": true,
+        "最小銘柄得点": -10.306289386785126,
+        "合計得点": -9.34382725575504
+      },
+      {
+        "方式": "機械04/利益保護",
+        "適格": true,
+        "最小銘柄得点": -10.604356864893266,
+        "合計得点": -20.527627629460724
+      },
+      {
+        "方式": "機械22/利益保護",
+        "適格": true,
+        "最小銘柄得点": -14.911951124120115,
+        "合計得点": -16.095297330394086
+      },
+      {
+        "方式": "機械17/利益保護",
+        "適格": true,
+        "最小銘柄得点": -15.870556317724835,
+        "合計得点": -11.563278936734918
+      },
+      {
+        "方式": "機械19/元4ATR",
+        "適格": true,
+        "最小銘柄得点": -16.314012489856218,
+        "合計得点": -13.414732918810088
+      },
+      {
+        "方式": "機械17/元4ATR",
+        "適格": true,
+        "最小銘柄得点": -16.892409401728408,
+        "合計得点": -11.252520343446598
+      },
+      {
+        "方式": "機械21/利益保護",
+        "適格": false,
+        "最小銘柄得点": -4.565858271824638,
+        "合計得点": -6.124591013135094
+      },
+      {
+        "方式": "機械21/元4ATR",
+        "適格": false,
+        "最小銘柄得点": -8.748698675106063,
+        "合計得点": -12.616487065993992
+      }
+    ]
+  },
+  "files_sha256": {
+    "work/wave_v7/research.py": "dfb6032e3d8695f7a8c490046290bc21b878bba97d874d5449bcf08356caa7f9",
+    "work/wave_v7/live_evaluate.py": "e2de3a7a9e502e5e1ab0e8084f7c33244dd5e0141f82271fad9f531d0404a512",
+    "work/wave_v7/fetch_once.py": "90cb30e1fca0a4febea3113258c513d0e7204f9aeb8ac6e498652da62ed8d58c",
+    "work/wave_v7/ml_models.py": "e7e3eac8f0792af25fe35a995090d9f54d75cf6e97af6c18df8d149cbb33e348",
+    "work/wave_v7/null_evaluate.py": "5421e1730f9900070a8d18cd7dcbb9d6c041feac89d453f2317580c7753906c1",
+    "work/wave_v7/検証計画.md": "afad780593d9bd65d4ba75b18de536763d76fa4ea8a62b7ef65626525ef1d46d",
+    "work/wave_v7/ml_fixed_protocol.json": "e06cc4709856af74678ebf276c8e5094e3ed7c0f4123b2b314e6af9b0553bea6",
+    "work/wave_v7/dataset.npz": "3e4df7478d3ede66e728b71dc9dd603479f1a829d4083e4bf9bc23176234ea98",
+    "work/wave_v7/ml_predictions.npz": "b4cd189e151b8280e7f178f9920a61cab52a4eb71ce02ff0eac613ff180f39e1",
+    "work/wave_v7/時間順検証.json": "9b4498a51e42770a61d931a2db26d9960de5316ee7e88abd2109f18a5c9dfbdf",
+    "work/wave_v7/models/final_120_logistic.npz": "4be4d1ed777ff4d30ab168d8953ecd6b23a8b30d69621f7fb8810581fd50ee57",
+    "work/wave_v7/models/final_120_lstm_seed1729.pt": "489441e1a12eb939650518ca54884be296a001de139bcb40f65eabd9e0fc8f14",
+    "work/wave_v7/models/final_120_lstm_seed1730.pt": "dd010d67ec2f1e1c2579205ad0371b62576d3631ca50cdb0dfcdb2a52f23b1c8",
+    "work/wave_v7/models/final_120_lstm_seed1731.pt": "31af756d44e7f391382e096cd12ab211f6ab1bccbf75d59c7820d0531ca8efb8",
+    "work/wave_v7/models/final_120_scaler.npz": "6fa6a30294e95d0b8afbc14ee5af6304b044615408992544a977b69eceb0977e",
+    "work/wave_v7/models/final_30_logistic.npz": "4ab97814296406dea8a2b07aa58cb81ee6b301a9ad33ac257048ec631d350067",
+    "work/wave_v7/models/final_30_lstm_seed1729.pt": "275abe49de0f635af7a0e2172f860530a35f04ef5dace7901643667ad918b396",
+    "work/wave_v7/models/final_30_lstm_seed1730.pt": "2e690c57a10b1b669d9e06611d47edce96311fd011cbfc11a18160a7b16a9c3e",
+    "work/wave_v7/models/final_30_lstm_seed1731.pt": "e6b3e44cc67c81d6651e65bf87616295d1a3691712ed0fe91de2cec18066a30b",
+    "work/wave_v7/models/final_30_scaler.npz": "383a366138d0108613d27a5489f112213218076ea333ddf3819e443e5f72ceae",
+    "work/wave_v7/models/final_60_logistic.npz": "aac0945bcc5b6967797756eca73d90b0ddbc457cc1d79010b20d9ba52f0b98b6",
+    "work/wave_v7/models/final_60_lstm_seed1729.pt": "aef3a6583dc739c2ac63f7ae010b03b408d2d1d365c8a987ddf2e8178d4e1bd7",
+    "work/wave_v7/models/final_60_lstm_seed1730.pt": "057da41c225a7f3d9abd00eba1b4375bcd420e532402d4f806e5b446f834e910",
+    "work/wave_v7/models/final_60_lstm_seed1731.pt": "05c4f74c20b777351357074b0fb6686302461f9097deb44e27e1a2343d0e4c1f",
+    "work/wave_v7/models/final_60_scaler.npz": "0c99abdc880c653be36431542a3431f7117a64dc6a35ab133053f35249481807",
+    "work/wave_v7/models/fold2_120_logistic.npz": "037f38bed4be72ab561498210a0fbfe42991e2801b4c4ace09f6c254dd3bf60f",
+    "work/wave_v7/models/fold2_120_lstm_seed1729.pt": "e3e4fbcb445b5b0ab9ed0bdeebe1b3944d10e140443a70e34dfdd2ae301c07cb",
+    "work/wave_v7/models/fold2_120_lstm_seed1730.pt": "254ccbbfe7a51917bd2b7d9e38d55bacba7da1957601bfd9c03b6abbe2e120dd",
+    "work/wave_v7/models/fold2_120_lstm_seed1731.pt": "97cba68d4a51f5fc0038ebd082feed15a3335b8ae5562c5256c2ae7b24564ab2",
+    "work/wave_v7/models/fold2_120_scaler.npz": "922c2cb042d72608f2787cfa7dd3f507f06e98d45bf51019f03832349c09fc44",
+    "work/wave_v7/models/fold2_30_logistic.npz": "aec8f4a4654d49cb68d7c711bc97cd7a3e9fab3b81911e2521b1e23c1be02518",
+    "work/wave_v7/models/fold2_30_lstm_seed1729.pt": "6877e5daa310e6249f8b0e6ff5ec9907df97de535605b20909c8dba61f9ca7d4",
+    "work/wave_v7/models/fold2_30_lstm_seed1730.pt": "19447527122d8b09a6d45421139b4d26eab9793f25927db6e6d56c3fd44436ae",
+    "work/wave_v7/models/fold2_30_lstm_seed1731.pt": "a4f447de7f13defbd1c00a630ba270be27df9af43ac1bb2c2acf55f944c0c92c",
+    "work/wave_v7/models/fold2_30_scaler.npz": "d0e91603ab15bd8bfb1358d7a3d7075d2a6939e4eaece93220db68c48c1228da",
+    "work/wave_v7/models/fold2_60_logistic.npz": "821bbecda391c989e3f1a7fd7142d9e98b6f2cdf68934517b0439312ec2baa98",
+    "work/wave_v7/models/fold2_60_lstm_seed1729.pt": "2bc9592e58973d99c4c8dc48c1ad4fd3c70b7b0a8830f58079803758dcfb4244",
+    "work/wave_v7/models/fold2_60_lstm_seed1730.pt": "e204b9ed7caaa28673e504444fe4976a971ad1f1ae357f23f5c1b937ea76cd79",
+    "work/wave_v7/models/fold2_60_lstm_seed1731.pt": "1c6bdec4d884388c32a174a13f78005d40d3773d6655922010aecda3308d5201",
+    "work/wave_v7/models/fold2_60_scaler.npz": "34b4d5336721aa8a18a36609d1f957cef75e4f0d83518684987a93bbcb97ecfa",
+    "work/wave_v7/models/fold3_120_logistic.npz": "2bb777348b6c1f35d705a243984b145099a38be7f51914d972f57741fc4cc070",
+    "work/wave_v7/models/fold3_120_lstm_seed1729.pt": "a62187e46844983a3b427623fb04b4a1a4354369ee874f56ef1550619eac3242",
+    "work/wave_v7/models/fold3_120_lstm_seed1730.pt": "c09ce0e7e4af43301f5866b6ab58ad8d1da2ded9dab02eda53111f7779eaf017",
+    "work/wave_v7/models/fold3_120_lstm_seed1731.pt": "de8c0c64d1edca6fff44e9123ba1bab7d7cb93e4ddbd9be395073b72a7298453",
+    "work/wave_v7/models/fold3_120_scaler.npz": "b66277aee6d059d937b41699f92202d70a37cde0be4c3c2dee4509d2787d7168",
+    "work/wave_v7/models/fold3_30_logistic.npz": "f4907b3c881fd670c06c4250bd5143ab05e27ff7430c5b7e078548d2fccc79b2",
+    "work/wave_v7/models/fold3_30_lstm_seed1729.pt": "198971a14951ae389d401f6e207960a1caa5b014149ec2bbbae01f339fa9a798",
+    "work/wave_v7/models/fold3_30_lstm_seed1730.pt": "e1a8da1b4d6379cb9f7ba1bf908c0dd367ad579d83624159b179fb770ff5bc1d",
+    "work/wave_v7/models/fold3_30_lstm_seed1731.pt": "8b733ee019692ce0b98a1a43f1048d9fe64561ad86e56bf5bf8989606a94cd63",
+    "work/wave_v7/models/fold3_30_scaler.npz": "9aa0c2d57adf2a6dd483aedca9ca547510a64d46c979be7e2ddb5d2ad5859d92",
+    "work/wave_v7/models/fold3_60_logistic.npz": "b6b8492fe35d6479175efdc4f2d793f8679cffd20a667a37949eee08ee8f1207",
+    "work/wave_v7/models/fold3_60_lstm_seed1729.pt": "dc04c518a5bb3affed1ac25aeaa90da865e8a9625dff43442b94bc07d88d9de2",
+    "work/wave_v7/models/fold3_60_lstm_seed1730.pt": "705be1ca23da632a86820a84354420e0746acfdee4604fd34b1fba89f3a84996",
+    "work/wave_v7/models/fold3_60_lstm_seed1731.pt": "007d696d36f61dc86d82ef2642356e0845f5011f4263a206e7518f98584cd5e3",
+    "work/wave_v7/models/fold3_60_scaler.npz": "f43408897560316310a87ded4d7182529a017ce26940c6b914ec7501b8ece569",
+    "work/wave_v7/models/fold4_120_logistic.npz": "cee4e8a739cfd5c8d13c470a08f9a579951a6ac660f929f67240881b3cb4d682",
+    "work/wave_v7/models/fold4_120_lstm_seed1729.pt": "f514ded0eaf668496c245a4c88f810b71fa4d49f62b0017f6b112f8222cc106c",
+    "work/wave_v7/models/fold4_120_lstm_seed1730.pt": "7bbf38087501dcf50dd3c78bc3207c887e7524abad147283cf330a78a05f7e1f",
+    "work/wave_v7/models/fold4_120_lstm_seed1731.pt": "f36b93f95b4d0c1286c0516f406bf4164f176e97da028e6f6f2c77c76ecd64c4",
+    "work/wave_v7/models/fold4_120_scaler.npz": "8c9ccf479a6bb5d3518c7e152b8ec2e93df2a4c0ba6674c48b827bc4d06b4c17",
+    "work/wave_v7/models/fold4_30_logistic.npz": "d402f110238505a8883242b6508341e0c3ea294162af475d3b2c207c3dab095d",
+    "work/wave_v7/models/fold4_30_lstm_seed1729.pt": "dc55e2e6008add3995bed4cb42c5f33aa2080a48d8b5e983b7c714ffd72acb21",
+    "work/wave_v7/models/fold4_30_lstm_seed1730.pt": "82f8637f68178f58e378c6b737a34ce8959047229661245c4b8501ec183c584a",
+    "work/wave_v7/models/fold4_30_lstm_seed1731.pt": "4a697edaee578c636d800f954ee58417545a3968066260bb2608b6851da7a270",
+    "work/wave_v7/models/fold4_30_scaler.npz": "3368dd099afd2f5259b3ffbfd776371d498854c84279638d4d48adfa7dd57cdd",
+    "work/wave_v7/models/fold4_60_logistic.npz": "9f77dba20aae85d1604442969716315536dc2c750a556ab0c03a9949c3f764c2",
+    "work/wave_v7/models/fold4_60_lstm_seed1729.pt": "48df0ad4b36acb8ffd609791cd1dc5d78793c495c2ed7a9501ee9d0ed79c2457",
+    "work/wave_v7/models/fold4_60_lstm_seed1730.pt": "8b2799bbbf0250e601020ce1afbfd164fc41194840a91765db3232e6c0254ca4",
+    "work/wave_v7/models/fold4_60_lstm_seed1731.pt": "5e9bec9b106f0b946be3f35addb059f4cafcc70ee0711441685b397a851706d1",
+    "work/wave_v7/models/fold4_60_scaler.npz": "bde0ecd86adce761f1a2da2fcefef9fd0773e0a5a7f4934eced1ac176be2fd7e",
+    "work/wave_v2/book_features.py": "7d847b4ca69464e20f2074ff794130cfd86416bb23538b018216affd20feb913",
+    "work/wave_v6/exit_engine.py": "0e8047df50f1f74ca48baa7fa20635a6d9dcb6cdad85e460bf41d6decade7c1b",
+    "アルゴリズム調査/00001_波検知と売買ポイントの調査/保存版/work/wave_v4/engine.py": "d302418c52cde17d9de45c60309ca0ef7edf6a206bfa0908676466a71195de9b",
+    "アルゴリズム調査/00001_波検知と売買ポイントの調査/保存版/work/wave_v4/signals.py": "2cb33ebb1f43935b45b2154fd57b89af9504a6e1b3f8da5ca2009c6d826c9699",
+    "アルゴリズム調査/00001_波検知と売買ポイントの調査/保存版/work/wave_v5/exits.py": "e5a7d463f088878a167780effc2ce6e61ecd6e64a38c4f4f7349bc9d792ba802"
+  },
+  "取得後の再学習": false,
+  "取得後の条件変更": false,
+  "主予測先分": 60,
+  "実注文送信": false
+}

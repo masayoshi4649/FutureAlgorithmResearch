@@ -1,0 +1,11 @@
+{
+  "時刻": "2026-09-23 20:50:15.217111+09:00",
+  "条件数": 108,
+  "API取得": false,
+  "既知データのみ": true,
+  "SHA256": {
+    "検証計画.md": "1a103e01a69a633fb4ca34dd084e5a9f95c0fdcddd5a57356a6cb829bf9ddd4f",
+    "model.py": "474c0eab758fd946a33825fb6dc6049ceb2431bf4d2a4f918213fa1649b8f85e",
+    "research.py": "b910fea1b660d5b94c4ef1346b0b55db5d523cddb5b2657442814cd6dd86c6b2"
+  }
+}

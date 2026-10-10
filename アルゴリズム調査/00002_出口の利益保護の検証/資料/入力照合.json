@@ -1,0 +1,122 @@
+{
+  "保存足": [
+    {
+      "ファイル": "candle_1min/NK225/2026-09-21_Day.csv",
+      "一致": true,
+      "SHA256": "4f01eaeaeb50d3c67121ccffed9ab6506c8ac8d53d5dadee1562f44ec5526c14"
+    },
+    {
+      "ファイル": "candle_1min/NK225/2026-09-21_Night.csv",
+      "一致": true,
+      "SHA256": "e28222a0bab2073e7fbba5b5f78ec0326dddb35317df00f09e2a8ac1a941b44a"
+    },
+    {
+      "ファイル": "candle_1min/NK225/2026-09-22_Day.csv",
+      "一致": true,
+      "SHA256": "984f865018a17649718a19482709c9ad8c157deacd9990df533290fb39bb95cb"
+    },
+    {
+      "ファイル": "candle_1min/NK225/2026-09-22_Night.csv",
+      "一致": true,
+      "SHA256": "bdc8107f27db4f6cd34a9f0c5ab497876ab01fed55f638f7bd42eda9a1295268"
+    },
+    {
+      "ファイル": "candle_1min/NK225/2026-09-23_Day.csv",
+      "一致": true,
+      "SHA256": "f79b4fcfe34dcffe1a0777493f26645354da18f60da575884a18b0345def604c"
+    },
+    {
+      "ファイル": "candle_1min/TOPIX/2026-09-21_Day.csv",
+      "一致": true,
+      "SHA256": "d697b1d521dcda8cae3c53e92223d34481cf7da0c5c5bb60fda9407f80c2189e"
+    },
+    {
+      "ファイル": "candle_1min/TOPIX/2026-09-21_Night.csv",
+      "一致": true,
+      "SHA256": "a28165878106ac29dffe8875d85df03edb59975e6d6f2be50355f260295f28f2"
+    },
+    {
+      "ファイル": "candle_1min/TOPIX/2026-09-22_Day.csv",
+      "一致": true,
+      "SHA256": "aa261c811774b621abb07b40e8069103c51f950c703e1c348bdbd4ad3638c9a8"
+    },
+    {
+      "ファイル": "candle_1min/TOPIX/2026-09-22_Night.csv",
+      "一致": true,
+      "SHA256": "7e8440faa232a5be2aef2333416ba4cd4b8d210c882b1f497e02f8ad593481f1"
+    },
+    {
+      "ファイル": "candle_1min/TOPIX/2026-09-23_Day.csv",
+      "一致": true,
+      "SHA256": "68fabae7e1c573c51345b070cc0d7031f7db52cfde74089004aad183d477cc49"
+    },
+    {
+      "ファイル": "candle_5min/NK225/2026-09-21_Day.csv",
+      "一致": true,
+      "SHA256": "c0d4c82e7dd012177b6d238ac77fc7cc6425bfb168684737fdb03643b5c15abc"
+    },
+    {
+      "ファイル": "candle_5min/NK225/2026-09-21_Night.csv",
+      "一致": true,
+      "SHA256": "be31f16cbf2aefd1a6a1d78eb0b0cf54c37a9efd3e72d8ec1272f34e6ae71310"
+    },
+    {
+      "ファイル": "candle_5min/NK225/2026-09-22_Day.csv",
+      "一致": true,
+      "SHA256": "f5a7efc1a75264c91e8b88b35a7b16b4f7452613e5b4027b19c41a8e71578d9b"
+    },
+    {
+      "ファイル": "candle_5min/NK225/2026-09-22_Night.csv",
+      "一致": true,
+      "SHA256": "942c45e77704934ad28dd9fae28f3dbd79307b872ff26ab879d34c5692b95efb"
+    },
+    {
+      "ファイル": "candle_5min/NK225/2026-09-23_Day.csv",
+      "一致": true,
+      "SHA256": "712dad9ea7a739ababc2e12318774c7fbc9a5901ea490dc966846c0977c251dd"
+    },
+    {
+      "ファイル": "candle_5min/TOPIX/2026-09-21_Day.csv",
+      "一致": true,
+      "SHA256": "91f39906f7948b3de69bfa3784ab4212bde9c1922571aaab7053c06e6ff41ee1"
+    },
+    {
+      "ファイル": "candle_5min/TOPIX/2026-09-21_Night.csv",
+      "一致": true,
+      "SHA256": "75e3b7348f85c3fd0ce524034a400797178d2427b9af4d080c3b269c605a26fa"
+    },
+    {
+      "ファイル": "candle_5min/TOPIX/2026-09-22_Day.csv",
+      "一致": true,
+      "SHA256": "444b2cb2303fc4d72220ea7b2b5d909ef52f0e0eff2430830bdbe0b12e4d011d"
+    },
+    {
+      "ファイル": "candle_5min/TOPIX/2026-09-22_Night.csv",
+      "一致": true,
+      "SHA256": "b86c53bbc697dc14bcf60b6c5340ff336ecaa51e7666e7a3d970f6109ed0bb2c"
+    },
+    {
+      "ファイル": "candle_5min/TOPIX/2026-09-23_Day.csv",
+      "一致": true,
+      "SHA256": "13780e89d9b035bbd8476c4af512328ef0a9cc4b561534bba91d7ecdeb91d62a"
+    }
+  ],
+  "現在API取得": false,
+  "固定入口": {
+    "family": 9,
+    "param": 0.75,
+    "entry": "trail",
+    "offset": 1.0,
+    "trail": 4.0,
+    "cooldown": 45,
+    "rearm": "cooldown",
+    "confirm": 1,
+    "reverse": false,
+    "seed": 271828,
+    "trail_basis": "entry",
+    "warmup": 45,
+    "exit_mode": "nativebaseline",
+    "stop_loss": 1.0,
+    "take_profit": 3.0
+  }
+}

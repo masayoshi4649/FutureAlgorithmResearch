@@ -1,0 +1,15 @@
+﻿方式,検証セッション,銘柄,収支万円,厳格収支万円,選択条件
+時系列,2026-09-22_Night,NK225,+56.00,+54.00,009_0.75_trail_1_4_45_cooldown_1_0_271828_entry_45_nativebaseline_損切1_利確3
+時系列,2026-09-22_Night,TOPIX,+24.50,+23.50,009_0.75_trail_1_4_45_cooldown_1_0_271828_entry_45_nativebaseline_損切1_利確3
+時系列,2026-09-23_Day,NK225,-54.00,-58.00,003_0.75_pullback_0.5_4_45_cooldown_1_0_271828_entry_15_nativebaseline_損切1_利確3
+時系列,2026-09-23_Day,TOPIX,+23.00,+22.00,003_0.75_pullback_0.5_4_45_cooldown_1_0_271828_entry_15_nativebaseline_損切1_利確3
+一セッション除外,2026-09-21_Day,NK225,+35.00,+33.00,009_0.75_trail_0.25_4_15_cooldown_1_0_271828_entry_45_nativebaseline_損切1_利確3
+一セッション除外,2026-09-21_Day,TOPIX,+15.00,+14.00,009_0.75_trail_0.25_4_15_cooldown_1_0_271828_entry_45_nativebaseline_損切1_利確3
+一セッション除外,2026-09-21_Night,NK225,+38.00,+34.00,009_0.75_trail_0.25_4_15_cooldown_1_0_271828_entry_45_nativebaseline_損切1_利確3
+一セッション除外,2026-09-21_Night,TOPIX,+7.00,+6.00,009_0.75_trail_0.25_4_15_cooldown_1_0_271828_entry_45_nativebaseline_損切1_利確3
+一セッション除外,2026-09-22_Day,NK225,+54.00,+52.00,009_0.75_trail_1_4_45_cooldown_1_0_271828_entry_45_nativebaseline_損切1_利確3
+一セッション除外,2026-09-22_Day,TOPIX,+6.50,+5.50,009_0.75_trail_1_4_45_cooldown_1_0_271828_entry_45_nativebaseline_損切1_利確3
+一セッション除外,2026-09-22_Night,NK225,+56.00,+54.00,009_0.75_trail_1_4_45_cooldown_1_0_271828_entry_45_nativebaseline_損切1_利確3
+一セッション除外,2026-09-22_Night,TOPIX,+24.50,+23.50,009_0.75_trail_1_4_45_cooldown_1_0_271828_entry_45_nativebaseline_損切1_利確3
+一セッション除外,2026-09-23_Day,NK225,-54.00,-58.00,003_0.75_pullback_0.5_4_45_cooldown_1_0_271828_entry_15_nativebaseline_損切1_利確3
+一セッション除外,2026-09-23_Day,TOPIX,+23.00,+22.00,003_0.75_pullback_0.5_4_45_cooldown_1_0_271828_entry_15_nativebaseline_損切1_利確3

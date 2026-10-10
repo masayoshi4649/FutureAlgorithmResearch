@@ -1,0 +1,13 @@
+{
+  "name": "NK225_5min",
+  "url": "http://10.10.100.1:8080/api/v1/history/NK225/candles/5min?from=2026-09-23T17%3A00%3A00%2B09%3A00&to=2026-09-23T23%3A22%3A00%2B09%3A00",
+  "started_at": "2026-09-23T23:22:13.578465+09:00",
+  "attempts": 1,
+  "timeout_seconds": 45,
+  "http_status": 200,
+  "ok": true,
+  "bytes": 10864,
+  "sha256": "90a7da4188892e27101a89683bf3f0d06db9d5879d051bf0e3ccfc20d4afe959",
+  "finished_at": "2026-09-23T23:22:13.824046+09:00",
+  "path": "work/wave_v9/live/応答/NK225_5min.json"
+}

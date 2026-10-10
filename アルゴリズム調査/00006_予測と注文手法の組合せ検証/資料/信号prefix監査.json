@@ -1,0 +1,331 @@
+{
+  "検査数": 36,
+  "全件一致": true,
+  "検査": [
+    {
+      "session": "2026-09-21_Day",
+      "symbol": "NK225",
+      "cutoff": 1789951261.0,
+      "events": 39,
+      "atr_rows": 13038,
+      "信号一致": true,
+      "ATR一致": true
+    },
+    {
+      "session": "2026-09-21_Day",
+      "symbol": "NK225",
+      "cutoff": 1789958499.0,
+      "events": 68,
+      "atr_rows": 33428,
+      "信号一致": true,
+      "ATR一致": true
+    },
+    {
+      "session": "2026-09-21_Day",
+      "symbol": "NK225",
+      "cutoff": 1789969037.0,
+      "events": 106,
+      "atr_rows": 49032,
+      "信号一致": true,
+      "ATR一致": true
+    },
+    {
+      "session": "2026-09-21_Day",
+      "symbol": "TOPIX",
+      "cutoff": 1789954116.0,
+      "events": 44,
+      "atr_rows": 20020,
+      "信号一致": true,
+      "ATR一致": true
+    },
+    {
+      "session": "2026-09-21_Day",
+      "symbol": "TOPIX",
+      "cutoff": 1789963432.0,
+      "events": 84,
+      "atr_rows": 35534,
+      "信号一致": true,
+      "ATR一致": true
+    },
+    {
+      "session": "2026-09-21_Day",
+      "symbol": "TOPIX",
+      "cutoff": 1789970673.0,
+      "events": 145,
+      "atr_rows": 44907,
+      "信号一致": true,
+      "ATR一致": true
+    },
+    {
+      "session": "2026-09-21_Night",
+      "symbol": "NK225",
+      "cutoff": 1789995364.0,
+      "events": 70,
+      "atr_rows": 29365,
+      "信号一致": true,
+      "ATR一致": true
+    },
+    {
+      "session": "2026-09-21_Night",
+      "symbol": "NK225",
+      "cutoff": 1790001490.0,
+      "events": 159,
+      "atr_rows": 47365,
+      "信号一致": true,
+      "ATR一致": true
+    },
+    {
+      "session": "2026-09-21_Night",
+      "symbol": "NK225",
+      "cutoff": 1790009448.0,
+      "events": 250,
+      "atr_rows": 64544,
+      "信号一致": true,
+      "ATR一致": true
+    },
+    {
+      "session": "2026-09-21_Night",
+      "symbol": "TOPIX",
+      "cutoff": 1789995780.0,
+      "events": 134,
+      "atr_rows": 32377,
+      "信号一致": true,
+      "ATR一致": true
+    },
+    {
+      "session": "2026-09-21_Night",
+      "symbol": "TOPIX",
+      "cutoff": 1790003381.0,
+      "events": 261,
+      "atr_rows": 53483,
+      "信号一致": true,
+      "ATR一致": true
+    },
+    {
+      "session": "2026-09-21_Night",
+      "symbol": "TOPIX",
+      "cutoff": 1790014481.0,
+      "events": 386,
+      "atr_rows": 72362,
+      "信号一致": true,
+      "ATR一致": true
+    },
+    {
+      "session": "2026-09-22_Day",
+      "symbol": "NK225",
+      "cutoff": 1790040808.0,
+      "events": 77,
+      "atr_rows": 21834,
+      "信号一致": true,
+      "ATR一致": true
+    },
+    {
+      "session": "2026-09-22_Day",
+      "symbol": "NK225",
+      "cutoff": 1790050267.0,
+      "events": 152,
+      "atr_rows": 42953,
+      "信号一致": true,
+      "ATR一致": true
+    },
+    {
+      "session": "2026-09-22_Day",
+      "symbol": "NK225",
+      "cutoff": 1790054978.0,
+      "events": 240,
+      "atr_rows": 54294,
+      "信号一致": true,
+      "ATR一致": true
+    },
+    {
+      "session": "2026-09-22_Day",
+      "symbol": "TOPIX",
+      "cutoff": 1790042082.0,
+      "events": 89,
+      "atr_rows": 21040,
+      "信号一致": true,
+      "ATR一致": true
+    },
+    {
+      "session": "2026-09-22_Day",
+      "symbol": "TOPIX",
+      "cutoff": 1790050522.0,
+      "events": 168,
+      "atr_rows": 35869,
+      "信号一致": true,
+      "ATR一致": true
+    },
+    {
+      "session": "2026-09-22_Day",
+      "symbol": "TOPIX",
+      "cutoff": 1790056585.0,
+      "events": 291,
+      "atr_rows": 49181,
+      "信号一致": true,
+      "ATR一致": true
+    },
+    {
+      "session": "2026-09-22_Night",
+      "symbol": "NK225",
+      "cutoff": 1790075240.0,
+      "events": 65,
+      "atr_rows": 37164,
+      "信号一致": true,
+      "ATR一致": true
+    },
+    {
+      "session": "2026-09-22_Night",
+      "symbol": "NK225",
+      "cutoff": 1790086334.0,
+      "events": 172,
+      "atr_rows": 70395,
+      "信号一致": true,
+      "ATR一致": true
+    },
+    {
+      "session": "2026-09-22_Night",
+      "symbol": "NK225",
+      "cutoff": 1790094695.0,
+      "events": 280,
+      "atr_rows": 97374,
+      "信号一致": true,
+      "ATR一致": true
+    },
+    {
+      "session": "2026-09-22_Night",
+      "symbol": "TOPIX",
+      "cutoff": 1790080006.0,
+      "events": 168,
+      "atr_rows": 47947,
+      "信号一致": true,
+      "ATR一致": true
+    },
+    {
+      "session": "2026-09-22_Night",
+      "symbol": "TOPIX",
+      "cutoff": 1790087673.0,
+      "events": 337,
+      "atr_rows": 73635,
+      "信号一致": true,
+      "ATR一致": true
+    },
+    {
+      "session": "2026-09-22_Night",
+      "symbol": "TOPIX",
+      "cutoff": 1790100718.0,
+      "events": 502,
+      "atr_rows": 107060,
+      "信号一致": true,
+      "ATR一致": true
+    },
+    {
+      "session": "2026-09-23_Day",
+      "symbol": "NK225",
+      "cutoff": 1790124307.0,
+      "events": 63,
+      "atr_rows": 11256,
+      "信号一致": true,
+      "ATR一致": true
+    },
+    {
+      "session": "2026-09-23_Day",
+      "symbol": "NK225",
+      "cutoff": 1790129700.0,
+      "events": 116,
+      "atr_rows": 25744,
+      "信号一致": true,
+      "ATR一致": true
+    },
+    {
+      "session": "2026-09-23_Day",
+      "symbol": "NK225",
+      "cutoff": 1790141165.0,
+      "events": 153,
+      "atr_rows": 45656,
+      "信号一致": true,
+      "ATR一致": true
+    },
+    {
+      "session": "2026-09-23_Day",
+      "symbol": "TOPIX",
+      "cutoff": 1790125969.0,
+      "events": 98,
+      "atr_rows": 14197,
+      "信号一致": true,
+      "ATR一致": true
+    },
+    {
+      "session": "2026-09-23_Day",
+      "symbol": "TOPIX",
+      "cutoff": 1790134459.0,
+      "events": 156,
+      "atr_rows": 30581,
+      "信号一致": true,
+      "ATR一致": true
+    },
+    {
+      "session": "2026-09-23_Day",
+      "symbol": "TOPIX",
+      "cutoff": 1790142851.0,
+      "events": 233,
+      "atr_rows": 43614,
+      "信号一致": true,
+      "ATR一致": true
+    },
+    {
+      "session": "2026-09-23_Night",
+      "symbol": "NK225",
+      "cutoff": 1790163521.0,
+      "events": 55,
+      "atr_rows": 26044,
+      "信号一致": true,
+      "ATR一致": true
+    },
+    {
+      "session": "2026-09-23_Night",
+      "symbol": "NK225",
+      "cutoff": 1790170953.0,
+      "events": 104,
+      "atr_rows": 45457,
+      "信号一致": true,
+      "ATR一致": true
+    },
+    {
+      "session": "2026-09-23_Night",
+      "symbol": "NK225",
+      "cutoff": 1790173715.0,
+      "events": 154,
+      "atr_rows": 59541,
+      "信号一致": true,
+      "ATR一致": true
+    },
+    {
+      "session": "2026-09-23_Night",
+      "symbol": "TOPIX",
+      "cutoff": 1790162084.0,
+      "events": 80,
+      "atr_rows": 23340,
+      "信号一致": true,
+      "ATR一致": true
+    },
+    {
+      "session": "2026-09-23_Night",
+      "symbol": "TOPIX",
+      "cutoff": 1790170302.0,
+      "events": 141,
+      "atr_rows": 43360,
+      "信号一致": true,
+      "ATR一致": true
+    },
+    {
+      "session": "2026-09-23_Night",
+      "symbol": "TOPIX",
+      "cutoff": 1790173618.0,
+      "events": 211,
+      "atr_rows": 59116,
+      "信号一致": true,
+      "ATR一致": true
+    }
+  ],
+  "説明": "特徴原本はv8の既存同時刻ブロック解放済み。今回は信号計算のprefix不変性を検査。raw再抽出監査の代替ではない。"
+}

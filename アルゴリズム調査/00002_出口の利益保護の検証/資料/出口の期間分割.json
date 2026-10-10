@@ -1,0 +1,457 @@
+[
+  {
+    "label": "時間順３→４",
+    "train": [
+      "2026-09-21_Day",
+      "2026-09-21_Night",
+      "2026-09-22_Day"
+    ],
+    "test": [
+      "2026-09-22_Night"
+    ],
+    "selection": {
+      "key": "target_開始2_幅2.5_保護0.7_本数10_遅延0",
+      "eligible": false,
+      "NK_ratio": 0.6120689655172413,
+      "TOP_ratio": 1.3777777777777778,
+      "giveback_ratio": 0.0,
+      "score": 0.8607998084291187
+    },
+    "rule": {
+      "kind": "target",
+      "trigger": 2.0,
+      "width": 2.5,
+      "retain": 0.7,
+      "window": 10,
+      "delay": 0
+    },
+    "cells": [
+      {
+        "session": "2026-09-22_Night",
+        "symbol": "NK225",
+        "count": 6,
+        "profit": 710.0,
+        "loss": 170.0,
+        "net": 540.0,
+        "stress": 420.0,
+        "profit_yen": 710000.0,
+        "loss_yen": 170000.0,
+        "net_yen": 540000.0,
+        "stress_yen": 420000.0,
+        "giveback_points": 150.0,
+        "giveback_yen": 150000.0,
+        "mfe_close_points": 810.0,
+        "mfe_close_yen": 810000.0,
+        "wins": 5,
+        "losses": 1,
+        "time_exits": 0,
+        "micro15_count": 3,
+        "realized_dd_yen": 170000.0,
+        "overlapping_anchors": 0
+      },
+      {
+        "session": "2026-09-22_Night",
+        "symbol": "TOPIX",
+        "count": 3,
+        "profit": 15.5,
+        "loss": 18.0,
+        "net": -2.5,
+        "stress": -5.5,
+        "profit_yen": 155000.0,
+        "loss_yen": 180000.0,
+        "net_yen": -25000.0,
+        "stress_yen": -55000.0,
+        "giveback_points": 24.0,
+        "giveback_yen": 240000.0,
+        "mfe_close_points": 24.5,
+        "mfe_close_yen": 245000.0,
+        "wins": 1,
+        "losses": 2,
+        "time_exits": 0,
+        "micro15_count": 0,
+        "realized_dd_yen": 180000.0,
+        "overlapping_anchors": 0
+      }
+    ]
+  },
+  {
+    "label": "一セッション除外",
+    "train": [
+      "2026-09-21_Night",
+      "2026-09-22_Day",
+      "2026-09-22_Night",
+      "2026-09-23_Day"
+    ],
+    "test": [
+      "2026-09-21_Day"
+    ],
+    "selection": {
+      "key": "target_開始2_幅2.5_保護0.7_本数10_遅延0",
+      "eligible": false,
+      "NK_ratio": 0.8227848101265823,
+      "TOP_ratio": 0.8723404255319149,
+      "giveback_ratio": 0.0,
+      "score": 1.0346754645838945
+    },
+    "rule": {
+      "kind": "target",
+      "trigger": 2.0,
+      "width": 2.5,
+      "retain": 0.7,
+      "window": 10,
+      "delay": 0
+    },
+    "cells": [
+      {
+        "session": "2026-09-21_Day",
+        "symbol": "NK225",
+        "count": 1,
+        "profit": 210.0,
+        "loss": -0.0,
+        "net": 210.0,
+        "stress": 190.0,
+        "profit_yen": 210000.0,
+        "loss_yen": -0.0,
+        "net_yen": 210000.0,
+        "stress_yen": 190000.0,
+        "giveback_points": 0.0,
+        "giveback_yen": 0.0,
+        "mfe_close_points": 230.0,
+        "mfe_close_yen": 230000.0,
+        "wins": 1,
+        "losses": 0,
+        "time_exits": 1,
+        "micro15_count": 0,
+        "realized_dd_yen": 0.0,
+        "overlapping_anchors": 0
+      },
+      {
+        "session": "2026-09-21_Day",
+        "symbol": "TOPIX",
+        "count": 1,
+        "profit": 7.0,
+        "loss": -0.0,
+        "net": 7.0,
+        "stress": 6.0,
+        "profit_yen": 70000.0,
+        "loss_yen": -0.0,
+        "net_yen": 70000.0,
+        "stress_yen": 60000.0,
+        "giveback_points": 0.0,
+        "giveback_yen": 0.0,
+        "mfe_close_points": 8.0,
+        "mfe_close_yen": 80000.0,
+        "wins": 1,
+        "losses": 0,
+        "time_exits": 0,
+        "micro15_count": 0,
+        "realized_dd_yen": 0.0,
+        "overlapping_anchors": 0
+      }
+    ]
+  },
+  {
+    "label": "一セッション除外",
+    "train": [
+      "2026-09-21_Day",
+      "2026-09-22_Day",
+      "2026-09-22_Night",
+      "2026-09-23_Day"
+    ],
+    "test": [
+      "2026-09-21_Night"
+    ],
+    "selection": {
+      "key": "stepped_開始2.5_幅0.5_保護0.7_本数10_遅延0",
+      "eligible": true,
+      "NK_ratio": 0.9696969696969697,
+      "TOP_ratio": 1.0833333333333333,
+      "giveback_ratio": 0.3987730061349693,
+      "score": 1.1665098066555122
+    },
+    "rule": {
+      "kind": "stepped",
+      "trigger": 2.5,
+      "width": 0.5,
+      "retain": 0.7,
+      "window": 10,
+      "delay": 0
+    },
+    "cells": [
+      {
+        "session": "2026-09-21_Night",
+        "symbol": "NK225",
+        "count": 6,
+        "profit": 380.0,
+        "loss": 290.0,
+        "net": 90.0,
+        "stress": -30.0,
+        "profit_yen": 380000.0,
+        "loss_yen": 290000.0,
+        "net_yen": 90000.0,
+        "stress_yen": -30000.0,
+        "giveback_points": 310.0,
+        "giveback_yen": 310000.0,
+        "mfe_close_points": 520.0,
+        "mfe_close_yen": 520000.0,
+        "wins": 4,
+        "losses": 2,
+        "time_exits": 0,
+        "micro15_count": 2,
+        "realized_dd_yen": 290000.0,
+        "overlapping_anchors": 0
+      },
+      {
+        "session": "2026-09-21_Night",
+        "symbol": "TOPIX",
+        "count": 5,
+        "profit": 17.0,
+        "loss": 7.0,
+        "net": 10.0,
+        "stress": 5.0,
+        "profit_yen": 170000.0,
+        "loss_yen": 70000.0,
+        "net_yen": 100000.0,
+        "stress_yen": 50000.0,
+        "giveback_points": 15.5,
+        "giveback_yen": 155000.0,
+        "mfe_close_points": 30.5,
+        "mfe_close_yen": 305000.0,
+        "wins": 4,
+        "losses": 1,
+        "time_exits": 0,
+        "micro15_count": 1,
+        "realized_dd_yen": 70000.0,
+        "overlapping_anchors": 0
+      }
+    ]
+  },
+  {
+    "label": "一セッション除外",
+    "train": [
+      "2026-09-21_Day",
+      "2026-09-21_Night",
+      "2026-09-22_Night",
+      "2026-09-23_Day"
+    ],
+    "test": [
+      "2026-09-22_Day"
+    ],
+    "selection": {
+      "key": "target_開始2_幅5_保護0.7_本数10_遅延0",
+      "eligible": false,
+      "NK_ratio": 0.872,
+      "TOP_ratio": 0.7821782178217822,
+      "giveback_ratio": 0.4908256880733945,
+      "score": 0.9153266418384958
+    },
+    "rule": {
+      "kind": "target",
+      "trigger": 2.0,
+      "width": 5,
+      "retain": 0.7,
+      "window": 10,
+      "delay": 0
+    },
+    "cells": [
+      {
+        "session": "2026-09-22_Day",
+        "symbol": "NK225",
+        "count": 1,
+        "profit": 550.0,
+        "loss": -0.0,
+        "net": 550.0,
+        "stress": 530.0,
+        "profit_yen": 550000.0,
+        "loss_yen": -0.0,
+        "net_yen": 550000.0,
+        "stress_yen": 530000.0,
+        "giveback_points": 0.0,
+        "giveback_yen": 0.0,
+        "mfe_close_points": 570.0,
+        "mfe_close_yen": 570000.0,
+        "wins": 1,
+        "losses": 0,
+        "time_exits": 0,
+        "micro15_count": 0,
+        "realized_dd_yen": 0.0,
+        "overlapping_anchors": 0
+      },
+      {
+        "session": "2026-09-22_Day",
+        "symbol": "TOPIX",
+        "count": 1,
+        "profit": 6.5,
+        "loss": -0.0,
+        "net": 6.5,
+        "stress": 5.5,
+        "profit_yen": 65000.0,
+        "loss_yen": -0.0,
+        "net_yen": 65000.0,
+        "stress_yen": 55000.0,
+        "giveback_points": 8.0,
+        "giveback_yen": 80000.0,
+        "mfe_close_points": 15.5,
+        "mfe_close_yen": 155000.0,
+        "wins": 1,
+        "losses": 0,
+        "time_exits": 1,
+        "micro15_count": 0,
+        "realized_dd_yen": 0.0,
+        "overlapping_anchors": 0
+      }
+    ]
+  },
+  {
+    "label": "一セッション除外",
+    "train": [
+      "2026-09-21_Day",
+      "2026-09-21_Night",
+      "2026-09-22_Day",
+      "2026-09-23_Day"
+    ],
+    "test": [
+      "2026-09-22_Night"
+    ],
+    "selection": {
+      "key": "target_開始2_幅2.5_保護0.7_本数10_遅延0",
+      "eligible": false,
+      "NK_ratio": 0.8699186991869918,
+      "TOP_ratio": 1.6153846153846154,
+      "giveback_ratio": 0.0,
+      "score": 1.1805816135084428
+    },
+    "rule": {
+      "kind": "target",
+      "trigger": 2.0,
+      "width": 2.5,
+      "retain": 0.7,
+      "window": 10,
+      "delay": 0
+    },
+    "cells": [
+      {
+        "session": "2026-09-22_Night",
+        "symbol": "NK225",
+        "count": 6,
+        "profit": 710.0,
+        "loss": 170.0,
+        "net": 540.0,
+        "stress": 420.0,
+        "profit_yen": 710000.0,
+        "loss_yen": 170000.0,
+        "net_yen": 540000.0,
+        "stress_yen": 420000.0,
+        "giveback_points": 150.0,
+        "giveback_yen": 150000.0,
+        "mfe_close_points": 810.0,
+        "mfe_close_yen": 810000.0,
+        "wins": 5,
+        "losses": 1,
+        "time_exits": 0,
+        "micro15_count": 3,
+        "realized_dd_yen": 170000.0,
+        "overlapping_anchors": 0
+      },
+      {
+        "session": "2026-09-22_Night",
+        "symbol": "TOPIX",
+        "count": 3,
+        "profit": 15.5,
+        "loss": 18.0,
+        "net": -2.5,
+        "stress": -5.5,
+        "profit_yen": 155000.0,
+        "loss_yen": 180000.0,
+        "net_yen": -25000.0,
+        "stress_yen": -55000.0,
+        "giveback_points": 24.0,
+        "giveback_yen": 240000.0,
+        "mfe_close_points": 24.5,
+        "mfe_close_yen": 245000.0,
+        "wins": 1,
+        "losses": 2,
+        "time_exits": 0,
+        "micro15_count": 0,
+        "realized_dd_yen": 180000.0,
+        "overlapping_anchors": 0
+      }
+    ]
+  },
+  {
+    "label": "一セッション除外",
+    "train": [
+      "2026-09-21_Day",
+      "2026-09-21_Night",
+      "2026-09-22_Day",
+      "2026-09-22_Night"
+    ],
+    "test": [
+      "2026-09-23_Day"
+    ],
+    "selection": {
+      "key": "target_開始2_幅5_保護0.7_本数10_遅延0",
+      "eligible": false,
+      "NK_ratio": 0.9117647058823529,
+      "TOP_ratio": 0.7608695652173914,
+      "giveback_ratio": 0.2789473684210526,
+      "score": 0.9281067438417014
+    },
+    "rule": {
+      "kind": "target",
+      "trigger": 2.0,
+      "width": 5,
+      "retain": 0.7,
+      "window": 10,
+      "delay": 0
+    },
+    "cells": [
+      {
+        "session": "2026-09-23_Day",
+        "symbol": "NK225",
+        "count": 1,
+        "profit": 90.0,
+        "loss": -0.0,
+        "net": 90.0,
+        "stress": 70.0,
+        "profit_yen": 90000.0,
+        "loss_yen": -0.0,
+        "net_yen": 90000.0,
+        "stress_yen": 70000.0,
+        "giveback_points": 260.0,
+        "giveback_yen": 260000.0,
+        "mfe_close_points": 370.0,
+        "mfe_close_yen": 370000.0,
+        "wins": 1,
+        "losses": 0,
+        "time_exits": 1,
+        "micro15_count": 0,
+        "realized_dd_yen": 0.0,
+        "overlapping_anchors": 0
+      },
+      {
+        "session": "2026-09-23_Day",
+        "symbol": "TOPIX",
+        "count": 1,
+        "profit": 11.0,
+        "loss": -0.0,
+        "net": 11.0,
+        "stress": 10.0,
+        "profit_yen": 110000.0,
+        "loss_yen": -0.0,
+        "net_yen": 110000.0,
+        "stress_yen": 100000.0,
+        "giveback_points": 9.0,
+        "giveback_yen": 90000.0,
+        "mfe_close_points": 21.0,
+        "mfe_close_yen": 210000.0,
+        "wins": 1,
+        "losses": 0,
+        "time_exits": 1,
+        "micro15_count": 0,
+        "realized_dd_yen": 0.0,
+        "overlapping_anchors": 0
+      }
+    ]
+  }
+]

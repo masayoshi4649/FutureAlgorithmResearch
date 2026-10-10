@@ -1,0 +1,120 @@
+{
+  "fixed_at": "2026-09-23T23:22:09.033665+09:00",
+  "session": "2026-09-23_Night",
+  "starts_at": "2026-09-23T17:00:00+09:00",
+  "ends_at": "2026-09-24T06:00:00+09:00",
+  "known_cutoff": "2026-09-23T19:14:00+09:00",
+  "selected_ids": [
+    "T00_追跡0.25ATR_追跡2ATR",
+    "T01_追跡0.25ATR_追跡2ATR",
+    "T03_追跡0.25ATR_追跡2ATR",
+    "T06_追跡0.25ATR_追跡2ATR",
+    "T11_初動逆指値_追跡2ATR",
+    "T12_追跡0.25ATR_追跡2ATR",
+    "T13_初動逆指値_追跡2ATR"
+  ],
+  "selected_groups": {
+    "転換方式全体": "T13_初動逆指値_追跡2ATR",
+    "価格CUSUM転換": "T00_追跡0.25ATR_追跡2ATR",
+    "移動平均の転換": "T03_追跡0.25ATR_追跡2ATR",
+    "板の転換": "T11_初動逆指値_追跡2ATR",
+    "価格と板の転換": "T12_追跡0.25ATR_追跡2ATR",
+    "２銘柄の転換": "T13_初動逆指値_追跡2ATR"
+  },
+  "fixed_comparators": [
+    "T01_追跡0.25ATR_追跡2ATR",
+    "T06_追跡0.25ATR_追跡2ATR",
+    "T12_追跡0.25ATR_追跡2ATR"
+  ],
+  "selected_configs": [
+    {
+      "id": "T00_追跡0.25ATR_追跡2ATR",
+      "family": "T00",
+      "group": "価格CUSUM転換",
+      "entry": "追跡0.25ATR",
+      "exit": "追跡2ATR",
+      "warmup": 20,
+      "cooldown": 10,
+      "expiry": 10
+    },
+    {
+      "id": "T01_追跡0.25ATR_追跡2ATR",
+      "family": "T01",
+      "group": "移動平均の転換",
+      "entry": "追跡0.25ATR",
+      "exit": "追跡2ATR",
+      "warmup": 20,
+      "cooldown": 10,
+      "expiry": 10
+    },
+    {
+      "id": "T03_追跡0.25ATR_追跡2ATR",
+      "family": "T03",
+      "group": "移動平均の転換",
+      "entry": "追跡0.25ATR",
+      "exit": "追跡2ATR",
+      "warmup": 20,
+      "cooldown": 10,
+      "expiry": 10
+    },
+    {
+      "id": "T06_追跡0.25ATR_追跡2ATR",
+      "family": "T06",
+      "group": "板の転換",
+      "entry": "追跡0.25ATR",
+      "exit": "追跡2ATR",
+      "warmup": 20,
+      "cooldown": 10,
+      "expiry": 10
+    },
+    {
+      "id": "T11_初動逆指値_追跡2ATR",
+      "family": "T11",
+      "group": "板の転換",
+      "entry": "初動逆指値",
+      "exit": "追跡2ATR",
+      "warmup": 20,
+      "cooldown": 10,
+      "expiry": 10
+    },
+    {
+      "id": "T12_追跡0.25ATR_追跡2ATR",
+      "family": "T12",
+      "group": "価格と板の転換",
+      "entry": "追跡0.25ATR",
+      "exit": "追跡2ATR",
+      "warmup": 20,
+      "cooldown": 10,
+      "expiry": 10
+    },
+    {
+      "id": "T13_初動逆指値_追跡2ATR",
+      "family": "T13",
+      "group": "２銘柄の転換",
+      "entry": "初動逆指値",
+      "exit": "追跡2ATR",
+      "warmup": 20,
+      "cooldown": 10,
+      "expiry": 10
+    }
+  ],
+  "files_sha256": {
+    "work/wave_v9/execution.py": "2f14f082bd0137479aa730e6a6b7d88ba40364098fb407577ac537f26f92f100",
+    "work/wave_v9/turning_signals.py": "c522d1ecdfd381010aca9a13c8e4c682baffabdd0ad4b2876d4a5c868472cae9",
+    "work/wave_v9/research.py": "f3b68efc3f5563e169237020511db5690d02661faa024b63b351a02d2b45088d",
+    "work/wave_v9/live_check.py": "016d3d77c9ec9711cb20b42cbbd9416391ffa3bb8654bee5805a4888aba801aa",
+    "work/wave_v9/現在照合計画.md": "744f037fa98102335ff87074bbc1e4c01a431b94398ab4c146ceb9a99d6773b0",
+    "work/wave_v9/既知５セッション選択.json": "89fc20bdbc3846bc52cdc5789656f2409ca29efc58780a1db878f02e0e49cc92",
+    "work/wave_v9/転換入口の定義.md": "b95ee696e3a950c5edb0a9f4871477f89d09ffb85d426341c1e01c8b3919a5ea",
+    "work/wave_v8/raw_features.py": "0062e70dd8011ad456c5307ed228cb2dca0d0729ab3b2dbd5040a1bf9cf96436",
+    "work/wave_v7/fetch_once.py": "90cb30e1fca0a4febea3113258c513d0e7204f9aeb8ac6e498652da62ed8d58c",
+    "work/wave_v7/live/取得記録.json": "75953d765ffbf63bf305d05835ab5d4af89317f0740fb5d6881d9934bb605401"
+  },
+  "説明": "未読追加分を一回取得して固定条件を照合する。取得前に起きたデータであり、実時間の前向き運用ではない。",
+  "主評価": "全区間を状態継続して再生し、signal_time_sが既知上限以降の取引だけ集計する。",
+  "取得後再選択": false,
+  "要求数": 6,
+  "各要求回数": 1,
+  "再試行": false,
+  "リダイレクト": false
+}

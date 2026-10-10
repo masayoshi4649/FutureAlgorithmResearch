@@ -1,0 +1,13 @@
+{
+  "name": "NK225_book",
+  "url": "http://10.10.100.1:8080/api/v1/history/NK225/book?from=2026-09-23T17%3A00%3A00%2B09%3A00&to=2026-09-23T23%3A22%3A00%2B09%3A00",
+  "started_at": "2026-09-23T23:22:13.578029+09:00",
+  "attempts": 1,
+  "timeout_seconds": 45,
+  "http_status": 200,
+  "ok": true,
+  "bytes": 92032215,
+  "sha256": "baa478ece5d639866c13237a5d118cc64b3219fa81b65ddd7b6dac20721d975f",
+  "finished_at": "2026-09-23T23:22:46.651059+09:00",
+  "path": "work/wave_v9/live/book/NK225/2026-09-23_Night.jsonl"
+}

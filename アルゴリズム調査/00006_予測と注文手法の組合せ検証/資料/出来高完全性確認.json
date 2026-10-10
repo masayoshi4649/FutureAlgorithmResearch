@@ -1,0 +1,86 @@
+[
+  {
+    "session": "2026-09-21_Day",
+    "symbol": "NK225",
+    "observed": 347,
+    "incomplete": 1,
+    "first_incomplete": "2026-09-21 08:45:00+09:00"
+  },
+  {
+    "session": "2026-09-21_Day",
+    "symbol": "TOPIX",
+    "observed": 367,
+    "incomplete": 1,
+    "first_incomplete": "2026-09-21 08:45:00+09:00"
+  },
+  {
+    "session": "2026-09-21_Night",
+    "symbol": "NK225",
+    "observed": 593,
+    "incomplete": 1,
+    "first_incomplete": "2026-09-21 17:00:00+09:00"
+  },
+  {
+    "session": "2026-09-21_Night",
+    "symbol": "TOPIX",
+    "observed": 669,
+    "incomplete": 1,
+    "first_incomplete": "2026-09-21 17:00:00+09:00"
+  },
+  {
+    "session": "2026-09-22_Day",
+    "symbol": "NK225",
+    "observed": 383,
+    "incomplete": 0,
+    "first_incomplete": null
+  },
+  {
+    "session": "2026-09-22_Day",
+    "symbol": "TOPIX",
+    "observed": 393,
+    "incomplete": 0,
+    "first_incomplete": null
+  },
+  {
+    "session": "2026-09-22_Night",
+    "symbol": "NK225",
+    "observed": 610,
+    "incomplete": 1,
+    "first_incomplete": "2026-09-22 17:00:00+09:00"
+  },
+  {
+    "session": "2026-09-22_Night",
+    "symbol": "TOPIX",
+    "observed": 707,
+    "incomplete": 1,
+    "first_incomplete": "2026-09-22 17:00:00+09:00"
+  },
+  {
+    "session": "2026-09-23_Day",
+    "symbol": "NK225",
+    "observed": 358,
+    "incomplete": 0,
+    "first_incomplete": null
+  },
+  {
+    "session": "2026-09-23_Day",
+    "symbol": "TOPIX",
+    "observed": 375,
+    "incomplete": 0,
+    "first_incomplete": null
+  },
+  {
+    "session": "2026-09-23_Night",
+    "symbol": "NK225",
+    "observed": 362,
+    "incomplete": 1,
+    "first_incomplete": "2026-09-23 17:00:00+09:00"
+  },
+  {
+    "session": "2026-09-23_Night",
+    "symbol": "TOPIX",
+    "observed": 384,
+    "incomplete": 1,
+    "first_incomplete": "2026-09-23 17:00:00+09:00"
+  }
+]

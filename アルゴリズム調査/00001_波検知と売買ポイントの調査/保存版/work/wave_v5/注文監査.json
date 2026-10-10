@@ -1,0 +1,16 @@
+{
+  "監査方法": "読み取りレビュー。エンジン変更は担当者が実施。追加通信なし。",
+  "コードSHA256": {
+    "hedge.py": "b935af7e54e098b23567edcbb7bd5830870de073a677ef1301efd453f835723e",
+    "test_hedge.py": "28af904f72367287cd1a548f4fb8be92d8aa2c67b32ec1d2fca710cc0a38807a",
+    "hedge_search.py": "448e13b7682c149dd60df9fd05c3a4fd73cd372a636b326678a2c8fb23bee505",
+    "search.py": "70c1c758f442242a9fea2f2a1ea5dbeebbe2828616dd52dae1bb87d961adc79f",
+    "exits.py": "e5a7d463f088878a167780effc2ce6e61ecd6e64a38c4f4f7349bc9d792ba802"
+  },
+  "発見修正": "既存脚の利確側始値ギャップを、その後同足の損切りより先に扱う。凍結前に担当者が修正。",
+  "担当試験結果": {
+    "test_hedge.py": 9,
+    "成功": true
+  },
+  "未完了の別作業": "全探索完了後の件数・台帳の総突合"
+}

@@ -1,0 +1,270 @@
+{
+  "時刻": "2026-09-23 16:27:58.914176+09:00",
+  "成功": true,
+  "API取得": false,
+  "対象条件数": 13006,
+  "元データ一致数": 30,
+  "元データ照合": [
+    {
+      "ファイル": "book\\NK225\\2026-09-21_Day.jsonl",
+      "SHA256": "332b5885814a21de36ea002eb99ef9fde16487f8cfaccb438620089d304c4888",
+      "一致": true
+    },
+    {
+      "ファイル": "book\\NK225\\2026-09-21_Night.jsonl",
+      "SHA256": "887ce536c0416748da79533b20a8af499cefb106cebf1852966c09a3316e8b32",
+      "一致": true
+    },
+    {
+      "ファイル": "book\\NK225\\2026-09-22_Day.jsonl",
+      "SHA256": "1e0f54c99956b18bb92db9ba8d278c7e747115499305c8cba4e7b56f0dffdabd",
+      "一致": true
+    },
+    {
+      "ファイル": "book\\NK225\\2026-09-22_Night.jsonl",
+      "SHA256": "ac5cb5721e1db13fa6d92ed27ab8d85ae8fd9c30e9185a1386bbb34ecf7f7cbb",
+      "一致": true
+    },
+    {
+      "ファイル": "book\\NK225\\2026-09-23_Day.jsonl",
+      "SHA256": "69d18625134c6fd441dc088be0c0718b6ee346be1a821e7091a3fa678c5ad455",
+      "一致": true
+    },
+    {
+      "ファイル": "book\\TOPIX\\2026-09-21_Day.jsonl",
+      "SHA256": "016fab8183aac956edadb5a880c98e3338659f649187126e0b4b12cac13dec5e",
+      "一致": true
+    },
+    {
+      "ファイル": "book\\TOPIX\\2026-09-21_Night.jsonl",
+      "SHA256": "703b0e8b6286c2192ccab73e968fe6d8e4034115bef1f54e1bc2053c0c499d0a",
+      "一致": true
+    },
+    {
+      "ファイル": "book\\TOPIX\\2026-09-22_Day.jsonl",
+      "SHA256": "6a629da4ce0dc78c07d67d75447fe9baed416edc411f8152caae8a1bfe2cf893",
+      "一致": true
+    },
+    {
+      "ファイル": "book\\TOPIX\\2026-09-22_Night.jsonl",
+      "SHA256": "cdbdc5cb9793b8f140ec740e386cef9aa435cdb24b31c6ffa74f8ae18998adb9",
+      "一致": true
+    },
+    {
+      "ファイル": "book\\TOPIX\\2026-09-23_Day.jsonl",
+      "SHA256": "87b857af993b1db116a6a97beda80dcd1908c71b05b0fee79817c987c4d789f5",
+      "一致": true
+    },
+    {
+      "ファイル": "candle_1min\\NK225\\2026-09-21_Day.csv",
+      "SHA256": "4f01eaeaeb50d3c67121ccffed9ab6506c8ac8d53d5dadee1562f44ec5526c14",
+      "一致": true
+    },
+    {
+      "ファイル": "candle_1min\\NK225\\2026-09-21_Night.csv",
+      "SHA256": "e28222a0bab2073e7fbba5b5f78ec0326dddb35317df00f09e2a8ac1a941b44a",
+      "一致": true
+    },
+    {
+      "ファイル": "candle_1min\\NK225\\2026-09-22_Day.csv",
+      "SHA256": "984f865018a17649718a19482709c9ad8c157deacd9990df533290fb39bb95cb",
+      "一致": true
+    },
+    {
+      "ファイル": "candle_1min\\NK225\\2026-09-22_Night.csv",
+      "SHA256": "bdc8107f27db4f6cd34a9f0c5ab497876ab01fed55f638f7bd42eda9a1295268",
+      "一致": true
+    },
+    {
+      "ファイル": "candle_1min\\NK225\\2026-09-23_Day.csv",
+      "SHA256": "f79b4fcfe34dcffe1a0777493f26645354da18f60da575884a18b0345def604c",
+      "一致": true
+    },
+    {
+      "ファイル": "candle_1min\\TOPIX\\2026-09-21_Day.csv",
+      "SHA256": "d697b1d521dcda8cae3c53e92223d34481cf7da0c5c5bb60fda9407f80c2189e",
+      "一致": true
+    },
+    {
+      "ファイル": "candle_1min\\TOPIX\\2026-09-21_Night.csv",
+      "SHA256": "a28165878106ac29dffe8875d85df03edb59975e6d6f2be50355f260295f28f2",
+      "一致": true
+    },
+    {
+      "ファイル": "candle_1min\\TOPIX\\2026-09-22_Day.csv",
+      "SHA256": "aa261c811774b621abb07b40e8069103c51f950c703e1c348bdbd4ad3638c9a8",
+      "一致": true
+    },
+    {
+      "ファイル": "candle_1min\\TOPIX\\2026-09-22_Night.csv",
+      "SHA256": "7e8440faa232a5be2aef2333416ba4cd4b8d210c882b1f497e02f8ad593481f1",
+      "一致": true
+    },
+    {
+      "ファイル": "candle_1min\\TOPIX\\2026-09-23_Day.csv",
+      "SHA256": "68fabae7e1c573c51345b070cc0d7031f7db52cfde74089004aad183d477cc49",
+      "一致": true
+    },
+    {
+      "ファイル": "candle_5min\\NK225\\2026-09-21_Day.csv",
+      "SHA256": "c0d4c82e7dd012177b6d238ac77fc7cc6425bfb168684737fdb03643b5c15abc",
+      "一致": true
+    },
+    {
+      "ファイル": "candle_5min\\NK225\\2026-09-21_Night.csv",
+      "SHA256": "be31f16cbf2aefd1a6a1d78eb0b0cf54c37a9efd3e72d8ec1272f34e6ae71310",
+      "一致": true
+    },
+    {
+      "ファイル": "candle_5min\\NK225\\2026-09-22_Day.csv",
+      "SHA256": "f5a7efc1a75264c91e8b88b35a7b16b4f7452613e5b4027b19c41a8e71578d9b",
+      "一致": true
+    },
+    {
+      "ファイル": "candle_5min\\NK225\\2026-09-22_Night.csv",
+      "SHA256": "942c45e77704934ad28dd9fae28f3dbd79307b872ff26ab879d34c5692b95efb",
+      "一致": true
+    },
+    {
+      "ファイル": "candle_5min\\NK225\\2026-09-23_Day.csv",
+      "SHA256": "712dad9ea7a739ababc2e12318774c7fbc9a5901ea490dc966846c0977c251dd",
+      "一致": true
+    },
+    {
+      "ファイル": "candle_5min\\TOPIX\\2026-09-21_Day.csv",
+      "SHA256": "91f39906f7948b3de69bfa3784ab4212bde9c1922571aaab7053c06e6ff41ee1",
+      "一致": true
+    },
+    {
+      "ファイル": "candle_5min\\TOPIX\\2026-09-21_Night.csv",
+      "SHA256": "75e3b7348f85c3fd0ce524034a400797178d2427b9af4d080c3b269c605a26fa",
+      "一致": true
+    },
+    {
+      "ファイル": "candle_5min\\TOPIX\\2026-09-22_Day.csv",
+      "SHA256": "444b2cb2303fc4d72220ea7b2b5d909ef52f0e0eff2430830bdbe0b12e4d011d",
+      "一致": true
+    },
+    {
+      "ファイル": "candle_5min\\TOPIX\\2026-09-22_Night.csv",
+      "SHA256": "b86c53bbc697dc14bcf60b6c5340ff336ecaa51e7666e7a3d970f6109ed0bb2c",
+      "一致": true
+    },
+    {
+      "ファイル": "candle_5min\\TOPIX\\2026-09-23_Day.csv",
+      "SHA256": "13780e89d9b035bbd8476c4af512328ef0a9cc4b561534bba91d7ecdeb91d62a",
+      "一致": true
+    }
+  ],
+  "候補再現": [
+    {
+      "役割": [
+        "主候補",
+        "系統9代表"
+      ],
+      "条件": "009_0.75_trail_1_4_45_cooldown_1_0_271828_entry_45_nativebaseline_損切1_利確3",
+      "保存再現": true,
+      "取引数": 12,
+      "セル数": 10,
+      "時刻返済件数": 9,
+      "有利ギャップの利確価格抑制件数": 0
+    },
+    {
+      "役割": [
+        "系統18代表"
+      ],
+      "条件": "018_1_trail_1_4_45_cooldown_1_0_271828_entry_45_nativebaseline_損切1_利確3",
+      "保存再現": true,
+      "取引数": 14,
+      "セル数": 10,
+      "時刻返済件数": 9,
+      "有利ギャップの利確価格抑制件数": 0
+    },
+    {
+      "役割": [
+        "出口fixed_bracket代表"
+      ],
+      "条件": "005_1_pullback_0.5_4_30_cooldown_1_0_271828_entry_45_fixed_bracket_損切1.5_利確4",
+      "保存再現": true,
+      "取引数": 32,
+      "セル数": 10,
+      "時刻返済件数": 6,
+      "有利ギャップの利確価格抑制件数": 0
+    },
+    {
+      "役割": [
+        "出口small_stop_trail代表"
+      ],
+      "条件": "015_1_stop_0.5_4_30_cooldown_1_0_271828_entry_45_small_stop_trail_損切1.5_利確4",
+      "保存再現": true,
+      "取引数": 12,
+      "セル数": 10,
+      "時刻返済件数": 10,
+      "有利ギャップの利確価格抑制件数": 0
+    }
+  ],
+  "段階切断一致": {
+    "特徴一致": 50,
+    "信号一致": 200,
+    "約定一致": 200
+  },
+  "セッション外価格拒否数": 10,
+  "入口感度会計確認数": 29,
+  "追加返済単体試験": "test_exits.py 14試験成功。160切断条件、60条件の既存互換も確認済み。",
+  "検証コードSHA256": {
+    "exits.py": "e5a7d463f088878a167780effc2ce6e61ecd6e64a38c4f4f7349bc9d792ba802",
+    "test_exits.py": "31c1abdee7d65c94fc58709cb79bbfec9b4cc509ca29bcd7f4a3ce0060e9c2b5",
+    "search.py": "70c1c758f442242a9fea2f2a1ea5dbeebbe2828616dd52dae1bb87d961adc79f",
+    "data.py": "e7fdb354e369dfa9fe5bc1f46ba7af6373daa5d94e6d72ad50b758b0a8bce5d9",
+    "validate.py": "fd311456e168678d73337799ce542d8ea842da1f0c406a1253139f58c6b46b93"
+  },
+  "追跡幅の追加監査": {
+    "時刻": "2026-09-23 16:33:17.046404+09:00",
+    "成功": true,
+    "対象4条件": [
+      {
+        "条件": "追跡幅_1.5ATR",
+        "初期損切りATR": 2.5,
+        "保存再現": true,
+        "基準との約定損益一致": null,
+        "取引数": 36,
+        "セル数": 10,
+        "時刻返済件数": 0,
+        "有利ギャップの利確価格抑制件数": 0
+      },
+      {
+        "条件": "追跡幅_2.5ATR",
+        "初期損切りATR": 2.5,
+        "保存再現": true,
+        "基準との約定損益一致": null,
+        "取引数": 22,
+        "セル数": 10,
+        "時刻返済件数": 5,
+        "有利ギャップの利確価格抑制件数": 0
+      },
+      {
+        "条件": "追跡幅_4ATR",
+        "初期損切りATR": 2.5,
+        "保存再現": true,
+        "基準との約定損益一致": true,
+        "取引数": 12,
+        "セル数": 10,
+        "時刻返済件数": 9,
+        "有利ギャップの利確価格抑制件数": 0
+      },
+      {
+        "条件": "追跡幅_6ATR",
+        "初期損切りATR": 2.5,
+        "保存再現": true,
+        "基準との約定損益一致": null,
+        "取引数": 12,
+        "セル数": 10,
+        "時刻返済件数": 10,
+        "有利ギャップの利確価格抑制件数": 0
+      }
+    ],
+    "実施範囲": "初期損切り2.5ATR固定の追跡幅1.5/2.5/4/6ATRだけ再検証。全探索・全テストは再実行しない。",
+    "入口比較コードSHA256": "322b0277d2b678b8cacb5b67101e10a2027502f226911cc01a13205665b01362",
+    "感度明細SHA256": "1a1b608cff345065395a8e4ce6417c3fdd431ec1e1beaf032d2f9510ea559611"
+  }
+}

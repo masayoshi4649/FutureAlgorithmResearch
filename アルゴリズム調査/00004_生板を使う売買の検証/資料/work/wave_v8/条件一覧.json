@@ -1,0 +1,866 @@
+[
+  {
+    "id": "B01_60_逆指値_利益保護",
+    "family": "B01",
+    "window": 60,
+    "entry": "逆指値",
+    "exit": "利益保護",
+    "group": "板のみ"
+  },
+  {
+    "id": "B01_60_逆指値_板反転併用",
+    "family": "B01",
+    "window": 60,
+    "entry": "逆指値",
+    "exit": "板反転併用",
+    "group": "板のみ"
+  },
+  {
+    "id": "B01_60_追跡1ATR_利益保護",
+    "family": "B01",
+    "window": 60,
+    "entry": "追跡1ATR",
+    "exit": "利益保護",
+    "group": "板のみ"
+  },
+  {
+    "id": "B01_60_追跡1ATR_板反転併用",
+    "family": "B01",
+    "window": 60,
+    "entry": "追跡1ATR",
+    "exit": "板反転併用",
+    "group": "板のみ"
+  },
+  {
+    "id": "B01_300_逆指値_利益保護",
+    "family": "B01",
+    "window": 300,
+    "entry": "逆指値",
+    "exit": "利益保護",
+    "group": "板のみ"
+  },
+  {
+    "id": "B01_300_逆指値_板反転併用",
+    "family": "B01",
+    "window": 300,
+    "entry": "逆指値",
+    "exit": "板反転併用",
+    "group": "板のみ"
+  },
+  {
+    "id": "B01_300_追跡1ATR_利益保護",
+    "family": "B01",
+    "window": 300,
+    "entry": "追跡1ATR",
+    "exit": "利益保護",
+    "group": "板のみ"
+  },
+  {
+    "id": "B01_300_追跡1ATR_板反転併用",
+    "family": "B01",
+    "window": 300,
+    "entry": "追跡1ATR",
+    "exit": "板反転併用",
+    "group": "板のみ"
+  },
+  {
+    "id": "B02_60_逆指値_利益保護",
+    "family": "B02",
+    "window": 60,
+    "entry": "逆指値",
+    "exit": "利益保護",
+    "group": "板のみ"
+  },
+  {
+    "id": "B02_60_逆指値_板反転併用",
+    "family": "B02",
+    "window": 60,
+    "entry": "逆指値",
+    "exit": "板反転併用",
+    "group": "板のみ"
+  },
+  {
+    "id": "B02_60_追跡1ATR_利益保護",
+    "family": "B02",
+    "window": 60,
+    "entry": "追跡1ATR",
+    "exit": "利益保護",
+    "group": "板のみ"
+  },
+  {
+    "id": "B02_60_追跡1ATR_板反転併用",
+    "family": "B02",
+    "window": 60,
+    "entry": "追跡1ATR",
+    "exit": "板反転併用",
+    "group": "板のみ"
+  },
+  {
+    "id": "B02_300_逆指値_利益保護",
+    "family": "B02",
+    "window": 300,
+    "entry": "逆指値",
+    "exit": "利益保護",
+    "group": "板のみ"
+  },
+  {
+    "id": "B02_300_逆指値_板反転併用",
+    "family": "B02",
+    "window": 300,
+    "entry": "逆指値",
+    "exit": "板反転併用",
+    "group": "板のみ"
+  },
+  {
+    "id": "B02_300_追跡1ATR_利益保護",
+    "family": "B02",
+    "window": 300,
+    "entry": "追跡1ATR",
+    "exit": "利益保護",
+    "group": "板のみ"
+  },
+  {
+    "id": "B02_300_追跡1ATR_板反転併用",
+    "family": "B02",
+    "window": 300,
+    "entry": "追跡1ATR",
+    "exit": "板反転併用",
+    "group": "板のみ"
+  },
+  {
+    "id": "B03_60_逆指値_利益保護",
+    "family": "B03",
+    "window": 60,
+    "entry": "逆指値",
+    "exit": "利益保護",
+    "group": "板のみ"
+  },
+  {
+    "id": "B03_60_逆指値_板反転併用",
+    "family": "B03",
+    "window": 60,
+    "entry": "逆指値",
+    "exit": "板反転併用",
+    "group": "板のみ"
+  },
+  {
+    "id": "B03_60_追跡1ATR_利益保護",
+    "family": "B03",
+    "window": 60,
+    "entry": "追跡1ATR",
+    "exit": "利益保護",
+    "group": "板のみ"
+  },
+  {
+    "id": "B03_60_追跡1ATR_板反転併用",
+    "family": "B03",
+    "window": 60,
+    "entry": "追跡1ATR",
+    "exit": "板反転併用",
+    "group": "板のみ"
+  },
+  {
+    "id": "B03_300_逆指値_利益保護",
+    "family": "B03",
+    "window": 300,
+    "entry": "逆指値",
+    "exit": "利益保護",
+    "group": "板のみ"
+  },
+  {
+    "id": "B03_300_逆指値_板反転併用",
+    "family": "B03",
+    "window": 300,
+    "entry": "逆指値",
+    "exit": "板反転併用",
+    "group": "板のみ"
+  },
+  {
+    "id": "B03_300_追跡1ATR_利益保護",
+    "family": "B03",
+    "window": 300,
+    "entry": "追跡1ATR",
+    "exit": "利益保護",
+    "group": "板のみ"
+  },
+  {
+    "id": "B03_300_追跡1ATR_板反転併用",
+    "family": "B03",
+    "window": 300,
+    "entry": "追跡1ATR",
+    "exit": "板反転併用",
+    "group": "板のみ"
+  },
+  {
+    "id": "B04_60_逆指値_利益保護",
+    "family": "B04",
+    "window": 60,
+    "entry": "逆指値",
+    "exit": "利益保護",
+    "group": "板のみ"
+  },
+  {
+    "id": "B04_60_逆指値_板反転併用",
+    "family": "B04",
+    "window": 60,
+    "entry": "逆指値",
+    "exit": "板反転併用",
+    "group": "板のみ"
+  },
+  {
+    "id": "B04_60_追跡1ATR_利益保護",
+    "family": "B04",
+    "window": 60,
+    "entry": "追跡1ATR",
+    "exit": "利益保護",
+    "group": "板のみ"
+  },
+  {
+    "id": "B04_60_追跡1ATR_板反転併用",
+    "family": "B04",
+    "window": 60,
+    "entry": "追跡1ATR",
+    "exit": "板反転併用",
+    "group": "板のみ"
+  },
+  {
+    "id": "B04_300_逆指値_利益保護",
+    "family": "B04",
+    "window": 300,
+    "entry": "逆指値",
+    "exit": "利益保護",
+    "group": "板のみ"
+  },
+  {
+    "id": "B04_300_逆指値_板反転併用",
+    "family": "B04",
+    "window": 300,
+    "entry": "逆指値",
+    "exit": "板反転併用",
+    "group": "板のみ"
+  },
+  {
+    "id": "B04_300_追跡1ATR_利益保護",
+    "family": "B04",
+    "window": 300,
+    "entry": "追跡1ATR",
+    "exit": "利益保護",
+    "group": "板のみ"
+  },
+  {
+    "id": "B04_300_追跡1ATR_板反転併用",
+    "family": "B04",
+    "window": 300,
+    "entry": "追跡1ATR",
+    "exit": "板反転併用",
+    "group": "板のみ"
+  },
+  {
+    "id": "B05_60_逆指値_利益保護",
+    "family": "B05",
+    "window": 60,
+    "entry": "逆指値",
+    "exit": "利益保護",
+    "group": "板のみ"
+  },
+  {
+    "id": "B05_60_逆指値_板反転併用",
+    "family": "B05",
+    "window": 60,
+    "entry": "逆指値",
+    "exit": "板反転併用",
+    "group": "板のみ"
+  },
+  {
+    "id": "B05_60_追跡1ATR_利益保護",
+    "family": "B05",
+    "window": 60,
+    "entry": "追跡1ATR",
+    "exit": "利益保護",
+    "group": "板のみ"
+  },
+  {
+    "id": "B05_60_追跡1ATR_板反転併用",
+    "family": "B05",
+    "window": 60,
+    "entry": "追跡1ATR",
+    "exit": "板反転併用",
+    "group": "板のみ"
+  },
+  {
+    "id": "B05_300_逆指値_利益保護",
+    "family": "B05",
+    "window": 300,
+    "entry": "逆指値",
+    "exit": "利益保護",
+    "group": "板のみ"
+  },
+  {
+    "id": "B05_300_逆指値_板反転併用",
+    "family": "B05",
+    "window": 300,
+    "entry": "逆指値",
+    "exit": "板反転併用",
+    "group": "板のみ"
+  },
+  {
+    "id": "B05_300_追跡1ATR_利益保護",
+    "family": "B05",
+    "window": 300,
+    "entry": "追跡1ATR",
+    "exit": "利益保護",
+    "group": "板のみ"
+  },
+  {
+    "id": "B05_300_追跡1ATR_板反転併用",
+    "family": "B05",
+    "window": 300,
+    "entry": "追跡1ATR",
+    "exit": "板反転併用",
+    "group": "板のみ"
+  },
+  {
+    "id": "B06_60_逆指値_利益保護",
+    "family": "B06",
+    "window": 60,
+    "entry": "逆指値",
+    "exit": "利益保護",
+    "group": "板のみ"
+  },
+  {
+    "id": "B06_60_逆指値_板反転併用",
+    "family": "B06",
+    "window": 60,
+    "entry": "逆指値",
+    "exit": "板反転併用",
+    "group": "板のみ"
+  },
+  {
+    "id": "B06_60_追跡1ATR_利益保護",
+    "family": "B06",
+    "window": 60,
+    "entry": "追跡1ATR",
+    "exit": "利益保護",
+    "group": "板のみ"
+  },
+  {
+    "id": "B06_60_追跡1ATR_板反転併用",
+    "family": "B06",
+    "window": 60,
+    "entry": "追跡1ATR",
+    "exit": "板反転併用",
+    "group": "板のみ"
+  },
+  {
+    "id": "B06_300_逆指値_利益保護",
+    "family": "B06",
+    "window": 300,
+    "entry": "逆指値",
+    "exit": "利益保護",
+    "group": "板のみ"
+  },
+  {
+    "id": "B06_300_逆指値_板反転併用",
+    "family": "B06",
+    "window": 300,
+    "entry": "逆指値",
+    "exit": "板反転併用",
+    "group": "板のみ"
+  },
+  {
+    "id": "B06_300_追跡1ATR_利益保護",
+    "family": "B06",
+    "window": 300,
+    "entry": "追跡1ATR",
+    "exit": "利益保護",
+    "group": "板のみ"
+  },
+  {
+    "id": "B06_300_追跡1ATR_板反転併用",
+    "family": "B06",
+    "window": 300,
+    "entry": "追跡1ATR",
+    "exit": "板反転併用",
+    "group": "板のみ"
+  },
+  {
+    "id": "B07_60_逆指値_利益保護",
+    "family": "B07",
+    "window": 60,
+    "entry": "逆指値",
+    "exit": "利益保護",
+    "group": "板のみ"
+  },
+  {
+    "id": "B07_60_逆指値_板反転併用",
+    "family": "B07",
+    "window": 60,
+    "entry": "逆指値",
+    "exit": "板反転併用",
+    "group": "板のみ"
+  },
+  {
+    "id": "B07_60_追跡1ATR_利益保護",
+    "family": "B07",
+    "window": 60,
+    "entry": "追跡1ATR",
+    "exit": "利益保護",
+    "group": "板のみ"
+  },
+  {
+    "id": "B07_60_追跡1ATR_板反転併用",
+    "family": "B07",
+    "window": 60,
+    "entry": "追跡1ATR",
+    "exit": "板反転併用",
+    "group": "板のみ"
+  },
+  {
+    "id": "B07_300_逆指値_利益保護",
+    "family": "B07",
+    "window": 300,
+    "entry": "逆指値",
+    "exit": "利益保護",
+    "group": "板のみ"
+  },
+  {
+    "id": "B07_300_逆指値_板反転併用",
+    "family": "B07",
+    "window": 300,
+    "entry": "逆指値",
+    "exit": "板反転併用",
+    "group": "板のみ"
+  },
+  {
+    "id": "B07_300_追跡1ATR_利益保護",
+    "family": "B07",
+    "window": 300,
+    "entry": "追跡1ATR",
+    "exit": "利益保護",
+    "group": "板のみ"
+  },
+  {
+    "id": "B07_300_追跡1ATR_板反転併用",
+    "family": "B07",
+    "window": 300,
+    "entry": "追跡1ATR",
+    "exit": "板反転併用",
+    "group": "板のみ"
+  },
+  {
+    "id": "B08_60_逆指値_利益保護",
+    "family": "B08",
+    "window": 60,
+    "entry": "逆指値",
+    "exit": "利益保護",
+    "group": "板のみ"
+  },
+  {
+    "id": "B08_60_逆指値_板反転併用",
+    "family": "B08",
+    "window": 60,
+    "entry": "逆指値",
+    "exit": "板反転併用",
+    "group": "板のみ"
+  },
+  {
+    "id": "B08_60_追跡1ATR_利益保護",
+    "family": "B08",
+    "window": 60,
+    "entry": "追跡1ATR",
+    "exit": "利益保護",
+    "group": "板のみ"
+  },
+  {
+    "id": "B08_60_追跡1ATR_板反転併用",
+    "family": "B08",
+    "window": 60,
+    "entry": "追跡1ATR",
+    "exit": "板反転併用",
+    "group": "板のみ"
+  },
+  {
+    "id": "B08_300_逆指値_利益保護",
+    "family": "B08",
+    "window": 300,
+    "entry": "逆指値",
+    "exit": "利益保護",
+    "group": "板のみ"
+  },
+  {
+    "id": "B08_300_逆指値_板反転併用",
+    "family": "B08",
+    "window": 300,
+    "entry": "逆指値",
+    "exit": "板反転併用",
+    "group": "板のみ"
+  },
+  {
+    "id": "B08_300_追跡1ATR_利益保護",
+    "family": "B08",
+    "window": 300,
+    "entry": "追跡1ATR",
+    "exit": "利益保護",
+    "group": "板のみ"
+  },
+  {
+    "id": "B08_300_追跡1ATR_板反転併用",
+    "family": "B08",
+    "window": 300,
+    "entry": "追跡1ATR",
+    "exit": "板反転併用",
+    "group": "板のみ"
+  },
+  {
+    "id": "B09_60_逆指値_利益保護",
+    "family": "B09",
+    "window": 60,
+    "entry": "逆指値",
+    "exit": "利益保護",
+    "group": "板のみ"
+  },
+  {
+    "id": "B09_60_逆指値_板反転併用",
+    "family": "B09",
+    "window": 60,
+    "entry": "逆指値",
+    "exit": "板反転併用",
+    "group": "板のみ"
+  },
+  {
+    "id": "B09_60_追跡1ATR_利益保護",
+    "family": "B09",
+    "window": 60,
+    "entry": "追跡1ATR",
+    "exit": "利益保護",
+    "group": "板のみ"
+  },
+  {
+    "id": "B09_60_追跡1ATR_板反転併用",
+    "family": "B09",
+    "window": 60,
+    "entry": "追跡1ATR",
+    "exit": "板反転併用",
+    "group": "板のみ"
+  },
+  {
+    "id": "B09_300_逆指値_利益保護",
+    "family": "B09",
+    "window": 300,
+    "entry": "逆指値",
+    "exit": "利益保護",
+    "group": "板のみ"
+  },
+  {
+    "id": "B09_300_逆指値_板反転併用",
+    "family": "B09",
+    "window": 300,
+    "entry": "逆指値",
+    "exit": "板反転併用",
+    "group": "板のみ"
+  },
+  {
+    "id": "B09_300_追跡1ATR_利益保護",
+    "family": "B09",
+    "window": 300,
+    "entry": "追跡1ATR",
+    "exit": "利益保護",
+    "group": "板のみ"
+  },
+  {
+    "id": "B09_300_追跡1ATR_板反転併用",
+    "family": "B09",
+    "window": 300,
+    "entry": "追跡1ATR",
+    "exit": "板反転併用",
+    "group": "板のみ"
+  },
+  {
+    "id": "B10_60_逆指値_利益保護",
+    "family": "B10",
+    "window": 60,
+    "entry": "逆指値",
+    "exit": "利益保護",
+    "group": "板のみ"
+  },
+  {
+    "id": "B10_60_逆指値_板反転併用",
+    "family": "B10",
+    "window": 60,
+    "entry": "逆指値",
+    "exit": "板反転併用",
+    "group": "板のみ"
+  },
+  {
+    "id": "B10_60_追跡1ATR_利益保護",
+    "family": "B10",
+    "window": 60,
+    "entry": "追跡1ATR",
+    "exit": "利益保護",
+    "group": "板のみ"
+  },
+  {
+    "id": "B10_60_追跡1ATR_板反転併用",
+    "family": "B10",
+    "window": 60,
+    "entry": "追跡1ATR",
+    "exit": "板反転併用",
+    "group": "板のみ"
+  },
+  {
+    "id": "B10_300_逆指値_利益保護",
+    "family": "B10",
+    "window": 300,
+    "entry": "逆指値",
+    "exit": "利益保護",
+    "group": "板のみ"
+  },
+  {
+    "id": "B10_300_逆指値_板反転併用",
+    "family": "B10",
+    "window": 300,
+    "entry": "逆指値",
+    "exit": "板反転併用",
+    "group": "板のみ"
+  },
+  {
+    "id": "B10_300_追跡1ATR_利益保護",
+    "family": "B10",
+    "window": 300,
+    "entry": "追跡1ATR",
+    "exit": "利益保護",
+    "group": "板のみ"
+  },
+  {
+    "id": "B10_300_追跡1ATR_板反転併用",
+    "family": "B10",
+    "window": 300,
+    "entry": "追跡1ATR",
+    "exit": "板反転併用",
+    "group": "板のみ"
+  },
+  {
+    "id": "B11_60_逆指値_利益保護",
+    "family": "B11",
+    "window": 60,
+    "entry": "逆指値",
+    "exit": "利益保護",
+    "group": "板のみ"
+  },
+  {
+    "id": "B11_60_逆指値_板反転併用",
+    "family": "B11",
+    "window": 60,
+    "entry": "逆指値",
+    "exit": "板反転併用",
+    "group": "板のみ"
+  },
+  {
+    "id": "B11_60_追跡1ATR_利益保護",
+    "family": "B11",
+    "window": 60,
+    "entry": "追跡1ATR",
+    "exit": "利益保護",
+    "group": "板のみ"
+  },
+  {
+    "id": "B11_60_追跡1ATR_板反転併用",
+    "family": "B11",
+    "window": 60,
+    "entry": "追跡1ATR",
+    "exit": "板反転併用",
+    "group": "板のみ"
+  },
+  {
+    "id": "B11_300_逆指値_利益保護",
+    "family": "B11",
+    "window": 300,
+    "entry": "逆指値",
+    "exit": "利益保護",
+    "group": "板のみ"
+  },
+  {
+    "id": "B11_300_逆指値_板反転併用",
+    "family": "B11",
+    "window": 300,
+    "entry": "逆指値",
+    "exit": "板反転併用",
+    "group": "板のみ"
+  },
+  {
+    "id": "B11_300_追跡1ATR_利益保護",
+    "family": "B11",
+    "window": 300,
+    "entry": "追跡1ATR",
+    "exit": "利益保護",
+    "group": "板のみ"
+  },
+  {
+    "id": "B11_300_追跡1ATR_板反転併用",
+    "family": "B11",
+    "window": 300,
+    "entry": "追跡1ATR",
+    "exit": "板反転併用",
+    "group": "板のみ"
+  },
+  {
+    "id": "B12_60_逆指値_利益保護",
+    "family": "B12",
+    "window": 60,
+    "entry": "逆指値",
+    "exit": "利益保護",
+    "group": "板のみ"
+  },
+  {
+    "id": "B12_60_逆指値_板反転併用",
+    "family": "B12",
+    "window": 60,
+    "entry": "逆指値",
+    "exit": "板反転併用",
+    "group": "板のみ"
+  },
+  {
+    "id": "B12_60_追跡1ATR_利益保護",
+    "family": "B12",
+    "window": 60,
+    "entry": "追跡1ATR",
+    "exit": "利益保護",
+    "group": "板のみ"
+  },
+  {
+    "id": "B12_60_追跡1ATR_板反転併用",
+    "family": "B12",
+    "window": 60,
+    "entry": "追跡1ATR",
+    "exit": "板反転併用",
+    "group": "板のみ"
+  },
+  {
+    "id": "B12_300_逆指値_利益保護",
+    "family": "B12",
+    "window": 300,
+    "entry": "逆指値",
+    "exit": "利益保護",
+    "group": "板のみ"
+  },
+  {
+    "id": "B12_300_逆指値_板反転併用",
+    "family": "B12",
+    "window": 300,
+    "entry": "逆指値",
+    "exit": "板反転併用",
+    "group": "板のみ"
+  },
+  {
+    "id": "B12_300_追跡1ATR_利益保護",
+    "family": "B12",
+    "window": 300,
+    "entry": "追跡1ATR",
+    "exit": "利益保護",
+    "group": "板のみ"
+  },
+  {
+    "id": "B12_300_追跡1ATR_板反転併用",
+    "family": "B12",
+    "window": 300,
+    "entry": "追跡1ATR",
+    "exit": "板反転併用",
+    "group": "板のみ"
+  },
+  {
+    "id": "P00_0_逆指値_利益保護",
+    "family": "P00",
+    "window": 0,
+    "entry": "逆指値",
+    "exit": "利益保護",
+    "group": "価格のみ"
+  },
+  {
+    "id": "P00_0_逆指値_板反転併用",
+    "family": "P00",
+    "window": 0,
+    "entry": "逆指値",
+    "exit": "板反転併用",
+    "group": "価格のみ"
+  },
+  {
+    "id": "P00_0_追跡1ATR_利益保護",
+    "family": "P00",
+    "window": 0,
+    "entry": "追跡1ATR",
+    "exit": "利益保護",
+    "group": "価格のみ"
+  },
+  {
+    "id": "P00_0_追跡1ATR_板反転併用",
+    "family": "P00",
+    "window": 0,
+    "entry": "追跡1ATR",
+    "exit": "板反転併用",
+    "group": "価格のみ"
+  },
+  {
+    "id": "H01_300_逆指値_利益保護",
+    "family": "H01",
+    "window": 300,
+    "entry": "逆指値",
+    "exit": "利益保護",
+    "group": "価格と板"
+  },
+  {
+    "id": "H01_300_逆指値_板反転併用",
+    "family": "H01",
+    "window": 300,
+    "entry": "逆指値",
+    "exit": "板反転併用",
+    "group": "価格と板"
+  },
+  {
+    "id": "H01_300_追跡1ATR_利益保護",
+    "family": "H01",
+    "window": 300,
+    "entry": "追跡1ATR",
+    "exit": "利益保護",
+    "group": "価格と板"
+  },
+  {
+    "id": "H01_300_追跡1ATR_板反転併用",
+    "family": "H01",
+    "window": 300,
+    "entry": "追跡1ATR",
+    "exit": "板反転併用",
+    "group": "価格と板"
+  },
+  {
+    "id": "H02_300_逆指値_利益保護",
+    "family": "H02",
+    "window": 300,
+    "entry": "逆指値",
+    "exit": "利益保護",
+    "group": "価格と板"
+  },
+  {
+    "id": "H02_300_逆指値_板反転併用",
+    "family": "H02",
+    "window": 300,
+    "entry": "逆指値",
+    "exit": "板反転併用",
+    "group": "価格と板"
+  },
+  {
+    "id": "H02_300_追跡1ATR_利益保護",
+    "family": "H02",
+    "window": 300,
+    "entry": "追跡1ATR",
+    "exit": "利益保護",
+    "group": "価格と板"
+  },
+  {
+    "id": "H02_300_追跡1ATR_板反転併用",
+    "family": "H02",
+    "window": 300,
+    "entry": "追跡1ATR",
+    "exit": "板反転併用",
+    "group": "価格と板"
+  }
+]

@@ -1,0 +1,13 @@
+{
+  "name": "status",
+  "url": "http://10.10.100.1:8080/api/v1/history/status",
+  "started_at": "2026-09-23T19:14:40.737607+09:00",
+  "attempts": 1,
+  "timeout_seconds": 45,
+  "http_status": 200,
+  "ok": true,
+  "bytes": 282,
+  "sha256": "01d48f0b211fdca2f0e34b678613d32ce3aba4f47f5c75e4e4aa583d1f261922",
+  "finished_at": "2026-09-23T19:14:40.806175+09:00",
+  "path": "work/wave_v7/live/status.json"
+}

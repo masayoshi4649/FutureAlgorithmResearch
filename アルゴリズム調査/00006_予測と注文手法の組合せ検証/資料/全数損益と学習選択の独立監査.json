@@ -1,0 +1,29 @@
+{
+  "一致": true,
+  "条件数": 1598,
+  "セル数": 19176,
+  "全売買数": 109117,
+  "集計属性照合数": 349344,
+  "全順位選択照合数": 56,
+  "原本API取得数": 0,
+  "監査入力SHA256": {
+    "条件一覧.json": "4b6004feaebfc241f23fbd2084f0f3128d95bdb5f318709bf111de9b5e6b7d79",
+    "数値形式.json": "020b3d8c22cc327b025bc4ead03008f925fa0fdded5c078287e6b699a2e4bc8f",
+    "全条件_セッション集計.csv": "e86cb067cae628482a1e15db84a683fb0419f08163aecb86a01434491e99f08f",
+    "全売買数値.npz": "4ecc36a7f49a9e3545ce8dbaaba877c5bb26f0eff81ba5a9e10a21cb924c802a",
+    "最終選択.json": "829a0f89dcaebb688bfa93225506a37b683923b456a1128a8f41d41760d79581",
+    "時間順選択.json": "b94a3c5771e9d86edc2cbe87b00e710d253532ae1dfa6ed3db1cbed54d74ca51",
+    "実行前記録.json": "6b49eb2df9b2e1e698b1557e9dcd9156541250ffcc69656a28d8d32fc88c6c8a"
+  },
+  "実装SHA256": {
+    "signals.py": "cf0ce5c4318693335d8feaaf4f4eb1860ab7dd394cf127f74c665e46098811fc",
+    "single.py": "02d69e0c43392a1a22f8cd097a4f9bb7de8031070bd9375499dcbb3acbc55b76",
+    "orders.py": "0b3cbd247d1d62a928d3dce525e2aa03ec21d025460f5573b0f1bb106e6e9bb3",
+    "accounting.py": "0c42e4e1a13cc1824c10c0359dbda7c1fb8f24465c54b6c0561feec2d77752df",
+    "catalog.py": "fdd7b88ba297d06760023d96da4a04fb8f78e1da20372f1f59c708a402213714",
+    "research.py": "d8edab40ad7b06cd40d1d747fdb2cc920a945efb1993ff1887bd8f6a9e862643",
+    "検証計画.md": "3250430fe73fcd5827667e82b2aa50eebaab205c338c8ed65d4f12a1e0400b48"
+  },
+  "説明": "注文器集計を呼ばず全脚価格・費用・最大順行・全生気配の含み損DDを差分配列から独立再計算。",
+  "秒": 197.96890390000044
+}

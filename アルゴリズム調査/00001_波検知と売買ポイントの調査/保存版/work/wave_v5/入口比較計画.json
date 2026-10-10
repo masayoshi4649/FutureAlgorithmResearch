@@ -1,0 +1,511 @@
+{
+  "条件": [
+    {
+      "name": "基準",
+      "config": {
+        "family": 9,
+        "param": 0.75,
+        "entry": "trail",
+        "offset": 1.0,
+        "trail": 4.0,
+        "cooldown": 45,
+        "rearm": "cooldown",
+        "confirm": 1,
+        "reverse": false,
+        "seed": 271828,
+        "trail_basis": "entry",
+        "warmup": 45,
+        "exit_mode": "nativebaseline",
+        "stop_loss": 1.0,
+        "take_profit": 3.0
+      }
+    },
+    {
+      "name": "新規方式_signal_limit",
+      "config": {
+        "family": 9,
+        "param": 0.75,
+        "entry": "signal_limit",
+        "offset": 1.0,
+        "trail": 4.0,
+        "cooldown": 45,
+        "rearm": "cooldown",
+        "confirm": 1,
+        "reverse": false,
+        "seed": 271828,
+        "trail_basis": "entry",
+        "warmup": 45,
+        "exit_mode": "nativebaseline",
+        "stop_loss": 1.0,
+        "take_profit": 3.0
+      }
+    },
+    {
+      "name": "新規方式_stop",
+      "config": {
+        "family": 9,
+        "param": 0.75,
+        "entry": "stop",
+        "offset": 1.0,
+        "trail": 4.0,
+        "cooldown": 45,
+        "rearm": "cooldown",
+        "confirm": 1,
+        "reverse": false,
+        "seed": 271828,
+        "trail_basis": "entry",
+        "warmup": 45,
+        "exit_mode": "nativebaseline",
+        "stop_loss": 1.0,
+        "take_profit": 3.0
+      }
+    },
+    {
+      "name": "新規方式_pullback",
+      "config": {
+        "family": 9,
+        "param": 0.75,
+        "entry": "pullback",
+        "offset": 1.0,
+        "trail": 4.0,
+        "cooldown": 45,
+        "rearm": "cooldown",
+        "confirm": 1,
+        "reverse": false,
+        "seed": 271828,
+        "trail_basis": "entry",
+        "warmup": 45,
+        "exit_mode": "nativebaseline",
+        "stop_loss": 1.0,
+        "take_profit": 3.0
+      }
+    },
+    {
+      "name": "新規方式_trail",
+      "config": {
+        "family": 9,
+        "param": 0.75,
+        "entry": "trail",
+        "offset": 1.0,
+        "trail": 4.0,
+        "cooldown": 45,
+        "rearm": "cooldown",
+        "confirm": 1,
+        "reverse": false,
+        "seed": 271828,
+        "trail_basis": "entry",
+        "warmup": 45,
+        "exit_mode": "nativebaseline",
+        "stop_loss": 1.0,
+        "take_profit": 3.0
+      }
+    },
+    {
+      "name": "入口幅_0.25ATR",
+      "config": {
+        "family": 9,
+        "param": 0.75,
+        "entry": "trail",
+        "offset": 0.25,
+        "trail": 4.0,
+        "cooldown": 45,
+        "rearm": "cooldown",
+        "confirm": 1,
+        "reverse": false,
+        "seed": 271828,
+        "trail_basis": "entry",
+        "warmup": 45,
+        "exit_mode": "nativebaseline",
+        "stop_loss": 1.0,
+        "take_profit": 3.0
+      }
+    },
+    {
+      "name": "入口幅_0.5ATR",
+      "config": {
+        "family": 9,
+        "param": 0.75,
+        "entry": "trail",
+        "offset": 0.5,
+        "trail": 4.0,
+        "cooldown": 45,
+        "rearm": "cooldown",
+        "confirm": 1,
+        "reverse": false,
+        "seed": 271828,
+        "trail_basis": "entry",
+        "warmup": 45,
+        "exit_mode": "nativebaseline",
+        "stop_loss": 1.0,
+        "take_profit": 3.0
+      }
+    },
+    {
+      "name": "入口幅_1ATR",
+      "config": {
+        "family": 9,
+        "param": 0.75,
+        "entry": "trail",
+        "offset": 1.0,
+        "trail": 4.0,
+        "cooldown": 45,
+        "rearm": "cooldown",
+        "confirm": 1,
+        "reverse": false,
+        "seed": 271828,
+        "trail_basis": "entry",
+        "warmup": 45,
+        "exit_mode": "nativebaseline",
+        "stop_loss": 1.0,
+        "take_profit": 3.0
+      }
+    },
+    {
+      "name": "方向確認_1分",
+      "config": {
+        "family": 9,
+        "param": 0.75,
+        "entry": "trail",
+        "offset": 1.0,
+        "trail": 4.0,
+        "cooldown": 45,
+        "rearm": "cooldown",
+        "confirm": 1,
+        "reverse": false,
+        "seed": 271828,
+        "trail_basis": "entry",
+        "warmup": 45,
+        "exit_mode": "nativebaseline",
+        "stop_loss": 1.0,
+        "take_profit": 3.0
+      }
+    },
+    {
+      "name": "方向確認_3分",
+      "config": {
+        "family": 9,
+        "param": 0.75,
+        "entry": "trail",
+        "offset": 1.0,
+        "trail": 4.0,
+        "cooldown": 45,
+        "rearm": "cooldown",
+        "confirm": 3,
+        "reverse": false,
+        "seed": 271828,
+        "trail_basis": "entry",
+        "warmup": 45,
+        "exit_mode": "nativebaseline",
+        "stop_loss": 1.0,
+        "take_profit": 3.0
+      }
+    },
+    {
+      "name": "方向確認_5分",
+      "config": {
+        "family": 9,
+        "param": 0.75,
+        "entry": "trail",
+        "offset": 1.0,
+        "trail": 4.0,
+        "cooldown": 45,
+        "rearm": "cooldown",
+        "confirm": 5,
+        "reverse": false,
+        "seed": 271828,
+        "trail_basis": "entry",
+        "warmup": 45,
+        "exit_mode": "nativebaseline",
+        "stop_loss": 1.0,
+        "take_profit": 3.0
+      }
+    },
+    {
+      "name": "再新規待機_5分",
+      "config": {
+        "family": 9,
+        "param": 0.75,
+        "entry": "trail",
+        "offset": 1.0,
+        "trail": 4.0,
+        "cooldown": 5,
+        "rearm": "cooldown",
+        "confirm": 1,
+        "reverse": false,
+        "seed": 271828,
+        "trail_basis": "entry",
+        "warmup": 45,
+        "exit_mode": "nativebaseline",
+        "stop_loss": 1.0,
+        "take_profit": 3.0
+      }
+    },
+    {
+      "name": "再新規待機_15分",
+      "config": {
+        "family": 9,
+        "param": 0.75,
+        "entry": "trail",
+        "offset": 1.0,
+        "trail": 4.0,
+        "cooldown": 15,
+        "rearm": "cooldown",
+        "confirm": 1,
+        "reverse": false,
+        "seed": 271828,
+        "trail_basis": "entry",
+        "warmup": 45,
+        "exit_mode": "nativebaseline",
+        "stop_loss": 1.0,
+        "take_profit": 3.0
+      }
+    },
+    {
+      "name": "再新規待機_30分",
+      "config": {
+        "family": 9,
+        "param": 0.75,
+        "entry": "trail",
+        "offset": 1.0,
+        "trail": 4.0,
+        "cooldown": 30,
+        "rearm": "cooldown",
+        "confirm": 1,
+        "reverse": false,
+        "seed": 271828,
+        "trail_basis": "entry",
+        "warmup": 45,
+        "exit_mode": "nativebaseline",
+        "stop_loss": 1.0,
+        "take_profit": 3.0
+      }
+    },
+    {
+      "name": "再新規待機_60分",
+      "config": {
+        "family": 9,
+        "param": 0.75,
+        "entry": "trail",
+        "offset": 1.0,
+        "trail": 4.0,
+        "cooldown": 60,
+        "rearm": "cooldown",
+        "confirm": 1,
+        "reverse": false,
+        "seed": 271828,
+        "trail_basis": "entry",
+        "warmup": 45,
+        "exit_mode": "nativebaseline",
+        "stop_loss": 1.0,
+        "take_profit": 3.0
+      }
+    },
+    {
+      "name": "初動待機_15分",
+      "config": {
+        "family": 9,
+        "param": 0.75,
+        "entry": "trail",
+        "offset": 1.0,
+        "trail": 4.0,
+        "cooldown": 45,
+        "rearm": "cooldown",
+        "confirm": 1,
+        "reverse": false,
+        "seed": 271828,
+        "trail_basis": "entry",
+        "warmup": 15,
+        "exit_mode": "nativebaseline",
+        "stop_loss": 1.0,
+        "take_profit": 3.0
+      }
+    },
+    {
+      "name": "初動待機_45分",
+      "config": {
+        "family": 9,
+        "param": 0.75,
+        "entry": "trail",
+        "offset": 1.0,
+        "trail": 4.0,
+        "cooldown": 45,
+        "rearm": "cooldown",
+        "confirm": 1,
+        "reverse": false,
+        "seed": 271828,
+        "trail_basis": "entry",
+        "warmup": 45,
+        "exit_mode": "nativebaseline",
+        "stop_loss": 1.0,
+        "take_profit": 3.0
+      }
+    },
+    {
+      "name": "初動待機_60分",
+      "config": {
+        "family": 9,
+        "param": 0.75,
+        "entry": "trail",
+        "offset": 1.0,
+        "trail": 4.0,
+        "cooldown": 45,
+        "rearm": "cooldown",
+        "confirm": 1,
+        "reverse": false,
+        "seed": 271828,
+        "trail_basis": "entry",
+        "warmup": 60,
+        "exit_mode": "nativebaseline",
+        "stop_loss": 1.0,
+        "take_profit": 3.0
+      }
+    },
+    {
+      "name": "信号閾値_80%",
+      "config": {
+        "family": 9,
+        "param": 0.6000000000000001,
+        "entry": "trail",
+        "offset": 1.0,
+        "trail": 4.0,
+        "cooldown": 45,
+        "rearm": "cooldown",
+        "confirm": 1,
+        "reverse": false,
+        "seed": 271828,
+        "trail_basis": "entry",
+        "warmup": 45,
+        "exit_mode": "nativebaseline",
+        "stop_loss": 1.0,
+        "take_profit": 3.0
+      }
+    },
+    {
+      "name": "信号閾値_100%",
+      "config": {
+        "family": 9,
+        "param": 0.75,
+        "entry": "trail",
+        "offset": 1.0,
+        "trail": 4.0,
+        "cooldown": 45,
+        "rearm": "cooldown",
+        "confirm": 1,
+        "reverse": false,
+        "seed": 271828,
+        "trail_basis": "entry",
+        "warmup": 45,
+        "exit_mode": "nativebaseline",
+        "stop_loss": 1.0,
+        "take_profit": 3.0
+      }
+    },
+    {
+      "name": "信号閾値_120%",
+      "config": {
+        "family": 9,
+        "param": 0.8999999999999999,
+        "entry": "trail",
+        "offset": 1.0,
+        "trail": 4.0,
+        "cooldown": 45,
+        "rearm": "cooldown",
+        "confirm": 1,
+        "reverse": false,
+        "seed": 271828,
+        "trail_basis": "entry",
+        "warmup": 45,
+        "exit_mode": "nativebaseline",
+        "stop_loss": 1.0,
+        "take_profit": 3.0
+      }
+    },
+    {
+      "name": "追跡幅_1.5ATR",
+      "config": {
+        "family": 9,
+        "param": 0.75,
+        "entry": "trail",
+        "offset": 1.0,
+        "trail": 1.5,
+        "cooldown": 45,
+        "rearm": "cooldown",
+        "confirm": 1,
+        "reverse": false,
+        "seed": 271828,
+        "trail_basis": "entry",
+        "warmup": 45,
+        "exit_mode": "small_stop_trail",
+        "stop_loss": 2.5,
+        "take_profit": 3.0
+      }
+    },
+    {
+      "name": "追跡幅_2.5ATR",
+      "config": {
+        "family": 9,
+        "param": 0.75,
+        "entry": "trail",
+        "offset": 1.0,
+        "trail": 2.5,
+        "cooldown": 45,
+        "rearm": "cooldown",
+        "confirm": 1,
+        "reverse": false,
+        "seed": 271828,
+        "trail_basis": "entry",
+        "warmup": 45,
+        "exit_mode": "small_stop_trail",
+        "stop_loss": 2.5,
+        "take_profit": 3.0
+      }
+    },
+    {
+      "name": "追跡幅_4ATR",
+      "config": {
+        "family": 9,
+        "param": 0.75,
+        "entry": "trail",
+        "offset": 1.0,
+        "trail": 4.0,
+        "cooldown": 45,
+        "rearm": "cooldown",
+        "confirm": 1,
+        "reverse": false,
+        "seed": 271828,
+        "trail_basis": "entry",
+        "warmup": 45,
+        "exit_mode": "small_stop_trail",
+        "stop_loss": 2.5,
+        "take_profit": 3.0
+      }
+    },
+    {
+      "name": "追跡幅_6ATR",
+      "config": {
+        "family": 9,
+        "param": 0.75,
+        "entry": "trail",
+        "offset": 1.0,
+        "trail": 6.0,
+        "cooldown": 45,
+        "rearm": "cooldown",
+        "confirm": 1,
+        "reverse": false,
+        "seed": 271828,
+        "trail_basis": "entry",
+        "warmup": 45,
+        "exit_mode": "small_stop_trail",
+        "stop_loss": 2.5,
+        "take_profit": 3.0
+      }
+    }
+  ],
+  "補助": [
+    "追加１分遅延",
+    "追加２分遅延",
+    "指値１ティック通過",
+    "指値２ティック通過"
+  ],
+  "用途": "主候補の感度と入口の比較。ここから再選択しない。追跡幅の対照は初期損切り幅を基準と同じに固定する。"
+}

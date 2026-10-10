@@ -1,0 +1,142 @@
+[
+  {
+    "id": "S01",
+    "family": "S01",
+    "name": "EMA3/8収束",
+    "group": "移動平均",
+    "description": "EMA3−EMA8の乖離が拡大後２本連続で縮小。乖離と反対方向。"
+  },
+  {
+    "id": "S02",
+    "family": "S02",
+    "name": "EMA5/13収束",
+    "group": "移動平均",
+    "description": "S01のEMA期間を5と13へ変更。"
+  },
+  {
+    "id": "S03",
+    "family": "S03",
+    "name": "EMA3/8交差",
+    "group": "移動平均",
+    "description": "EMA3がEMA8を上抜けたら買い、下抜けたら売り。"
+  },
+  {
+    "id": "S04",
+    "family": "S04",
+    "name": "EMA5/13交差",
+    "group": "移動平均",
+    "description": "S03のEMA期間を5と13へ変更。"
+  },
+  {
+    "id": "S05",
+    "family": "S05",
+    "name": "EMA帯収束後の再拡散",
+    "group": "移動平均",
+    "description": "EMA3/8/21帯が２本連続縮小し0.6ATR以下。その後10分以内に0.05ATR拡散しEMA3傾きと3/8乖離が同方向。"
+  },
+  {
+    "id": "S06",
+    "family": "S06",
+    "name": "OFI反転0.1",
+    "group": "板",
+    "description": "最良気配OFI60秒が反対側の±0.1閾値を２ブロック連続で満たす。"
+  },
+  {
+    "id": "S07",
+    "family": "S07",
+    "name": "板圧力反転0.1",
+    "group": "板",
+    "description": "OFI・気配更新・共通価格数量純変化の60秒平均が反対側±0.1を２ブロック確認。"
+  },
+  {
+    "id": "S08",
+    "family": "S08",
+    "name": "板圧力反転0.2",
+    "group": "板",
+    "description": "S07の閾値を±0.2へ変更。"
+  },
+  {
+    "id": "S09",
+    "family": "S09",
+    "name": "EMA収束と板反転300秒",
+    "group": "価格と板",
+    "description": "S01とS07が同方向で300秒以内。両材料は一回だけ使う。v9 T12と同一。"
+  },
+  {
+    "id": "S10",
+    "family": "S10",
+    "name": "EMA収束と板反転180秒",
+    "group": "価格と板",
+    "description": "S09の同期窓を180秒へ短縮。"
+  },
+  {
+    "id": "S11",
+    "family": "S11",
+    "name": "EMA収束と板反転60秒",
+    "group": "価格と板",
+    "description": "S09の同期窓を60秒へ短縮。"
+  },
+  {
+    "id": "S12",
+    "family": "S12",
+    "name": "緩いEMA収束と板反転",
+    "group": "価格と板",
+    "description": "S02とS07が同方向で300秒以内。"
+  },
+  {
+    "id": "S13",
+    "family": "S13",
+    "name": "EMA交差と板反転",
+    "group": "価格と板",
+    "description": "S03とS07が同方向で180秒以内。"
+  },
+  {
+    "id": "S14",
+    "family": "S14",
+    "name": "EMA収束と強い板反転",
+    "group": "価格と板",
+    "description": "S01とS08が同方向で300秒以内。"
+  },
+  {
+    "id": "S15",
+    "family": "S15",
+    "name": "EMA収束と板反転・逆行回避",
+    "group": "価格と板",
+    "description": "S09発生時、EMA21の直近３分変化がエントリー方向に対して−0.05ATR未満なら除外。"
+  },
+  {
+    "id": "S16",
+    "family": "S16",
+    "name": "EMA収束と板反転・他銘柄確認",
+    "group": "２銘柄",
+    "description": "S09発生時、他銘柄の遅延付き板圧力が同方向に0.1以上。"
+  },
+  {
+    "id": "S17",
+    "family": "S17",
+    "name": "両銘柄の板反転0.1",
+    "group": "２銘柄",
+    "description": "自銘柄圧力反転は５分以内、他銘柄は60秒待機後かつ元時刻３分以内。同方向。v9 T13と同一。"
+  },
+  {
+    "id": "S18",
+    "family": "S18",
+    "name": "両銘柄の板反転0.2",
+    "group": "２銘柄",
+    "description": "S17の両銘柄閾値を±0.2へ変更。"
+  },
+  {
+    "id": "S19",
+    "family": "S19",
+    "name": "EMA帯再拡散と板現状",
+    "group": "価格と板",
+    "description": "S05発生時、自銘柄の板圧力が同方向に0.1以上。新しい板反転は要求しない。"
+  },
+  {
+    "id": "S20",
+    "family": "S20",
+    "name": "EMA収束と板現状",
+    "group": "価格と板",
+    "description": "S01発生時、自銘柄の板圧力が同方向に0.1以上。新しい板反転は要求しない。"
+  }
+]

@@ -1,0 +1,513 @@
+[
+  {
+    "source": "book\\NK225\\2026-09-21_Day.jsonl",
+    "counts": {
+      "raw_rows": 56436,
+      "missing_time_rows": 16,
+      "invalid_quote_rows": 130,
+      "valid_quote_rows": 56290,
+      "valid_blocks": 1199,
+      "multiple_row_blocks": 1196,
+      "bid_range_ticks_ge_1": 1076,
+      "bid_range_ticks_ge_2": 423,
+      "bid_range_ticks_ge_5": 17,
+      "ask_range_ticks_ge_1": 1033,
+      "ask_range_ticks_ge_2": 438,
+      "ask_range_ticks_ge_5": 20,
+      "first_bid_drop_ticks_ge_1": 638,
+      "first_bid_drop_ticks_ge_2": 198,
+      "first_bid_drop_ticks_ge_5": 5,
+      "first_ask_rise_ticks_ge_1": 634,
+      "first_ask_rise_ticks_ge_2": 190,
+      "first_ask_rise_ticks_ge_5": 8
+    },
+    "maximum": {
+      "bid_range_ticks": 8.0,
+      "ask_range_ticks": 8.0,
+      "first_bid_drop_ticks": 8.0,
+      "first_ask_rise_ticks": 7.0
+    },
+    "example": {
+      "time": "2026-09-21T08:45:01+09:00",
+      "first": [
+        19,
+        65190.0,
+        65200.0
+      ],
+      "lowest_bid": [
+        23,
+        65170.0,
+        65190.0
+      ]
+    }
+  },
+  {
+    "source": "book\\NK225\\2026-09-21_Night.jsonl",
+    "counts": {
+      "raw_rows": 81631,
+      "outside_session_rows": 5,
+      "missing_time_rows": 286,
+      "invalid_quote_rows": 80,
+      "valid_quote_rows": 81260,
+      "valid_blocks": 1898,
+      "multiple_row_blocks": 1890,
+      "bid_range_ticks_ge_1": 1546,
+      "bid_range_ticks_ge_2": 374,
+      "bid_range_ticks_ge_5": 5,
+      "ask_range_ticks_ge_1": 1557,
+      "ask_range_ticks_ge_2": 369,
+      "ask_range_ticks_ge_5": 4,
+      "first_bid_drop_ticks_ge_1": 828,
+      "first_bid_drop_ticks_ge_2": 140,
+      "first_bid_drop_ticks_ge_5": 3,
+      "first_ask_rise_ticks_ge_1": 892,
+      "first_ask_rise_ticks_ge_2": 157,
+      "first_ask_rise_ticks_ge_5": 1
+    },
+    "maximum": {
+      "bid_range_ticks": 6.0,
+      "ask_range_ticks": 6.0,
+      "first_bid_drop_ticks": 5.0,
+      "first_ask_rise_ticks": 5.0
+    },
+    "example": {
+      "time": "2026-09-21T17:00:01+09:00",
+      "first": [
+        294,
+        65500.0,
+        65510.0
+      ],
+      "lowest_bid": [
+        296,
+        65480.0,
+        65510.0
+      ]
+    }
+  },
+  {
+    "source": "book\\NK225\\2026-09-22_Day.jsonl",
+    "counts": {
+      "raw_rows": 67575,
+      "outside_session_rows": 7,
+      "missing_time_rows": 567,
+      "invalid_quote_rows": 150,
+      "valid_quote_rows": 66851,
+      "valid_blocks": 1688,
+      "multiple_row_blocks": 1680,
+      "bid_range_ticks_ge_1": 1370,
+      "bid_range_ticks_ge_2": 524,
+      "bid_range_ticks_ge_5": 10,
+      "ask_range_ticks_ge_1": 1390,
+      "ask_range_ticks_ge_2": 517,
+      "ask_range_ticks_ge_5": 16,
+      "first_bid_drop_ticks_ge_1": 860,
+      "first_bid_drop_ticks_ge_2": 232,
+      "first_bid_drop_ticks_ge_5": 2,
+      "first_ask_rise_ticks_ge_1": 812,
+      "first_ask_rise_ticks_ge_2": 224,
+      "first_ask_rise_ticks_ge_5": 6
+    },
+    "maximum": {
+      "bid_range_ticks": 5.0,
+      "ask_range_ticks": 6.0,
+      "first_bid_drop_ticks": 5.0,
+      "first_ask_rise_ticks": 5.0
+    },
+    "example": {
+      "time": "2026-09-22T08:45:06+09:00",
+      "first": [
+        620,
+        66420.0,
+        66440.0
+      ],
+      "lowest_bid": [
+        627,
+        66390.0,
+        66420.0
+      ]
+    }
+  },
+  {
+    "source": "book\\NK225\\2026-09-22_Night.jsonl",
+    "counts": {
+      "raw_rows": 121169,
+      "outside_session_rows": 7,
+      "missing_time_rows": 436,
+      "invalid_quote_rows": 77,
+      "valid_quote_rows": 120649,
+      "valid_blocks": 2697,
+      "multiple_row_blocks": 2688,
+      "bid_range_ticks_ge_1": 2301,
+      "bid_range_ticks_ge_2": 912,
+      "bid_range_ticks_ge_5": 28,
+      "ask_range_ticks_ge_1": 2374,
+      "ask_range_ticks_ge_2": 903,
+      "ask_range_ticks_ge_5": 27,
+      "first_bid_drop_ticks_ge_1": 1370,
+      "first_bid_drop_ticks_ge_2": 356,
+      "first_bid_drop_ticks_ge_5": 5,
+      "first_ask_rise_ticks_ge_1": 1444,
+      "first_ask_rise_ticks_ge_2": 370,
+      "first_ask_rise_ticks_ge_5": 18
+    },
+    "maximum": {
+      "bid_range_ticks": 10.0,
+      "ask_range_ticks": 11.0,
+      "first_bid_drop_ticks": 8.0,
+      "first_ask_rise_ticks": 10.0
+    },
+    "example": {
+      "time": "2026-09-22T17:00:31+09:00",
+      "first": [
+        602,
+        66150.0,
+        66170.0
+      ],
+      "lowest_bid": [
+        609,
+        66120.0,
+        66150.0
+      ]
+    }
+  },
+  {
+    "source": "book\\NK225\\2026-09-23_Day.jsonl",
+    "counts": {
+      "raw_rows": 54501,
+      "outside_session_rows": 6,
+      "missing_time_rows": 421,
+      "invalid_quote_rows": 187,
+      "valid_quote_rows": 53887,
+      "valid_blocks": 1191,
+      "multiple_row_blocks": 1190,
+      "bid_range_ticks_ge_1": 1026,
+      "bid_range_ticks_ge_2": 372,
+      "bid_range_ticks_ge_5": 9,
+      "ask_range_ticks_ge_1": 1037,
+      "ask_range_ticks_ge_2": 371,
+      "ask_range_ticks_ge_5": 6,
+      "first_bid_drop_ticks_ge_1": 600,
+      "first_bid_drop_ticks_ge_2": 167,
+      "first_bid_drop_ticks_ge_5": 5,
+      "first_ask_rise_ticks_ge_1": 637,
+      "first_ask_rise_ticks_ge_2": 152,
+      "first_ask_rise_ticks_ge_5": 1
+    },
+    "maximum": {
+      "bid_range_ticks": 6.0,
+      "ask_range_ticks": 6.0,
+      "first_bid_drop_ticks": 5.0,
+      "first_ask_rise_ticks": 5.0
+    },
+    "example": {
+      "time": "2026-09-23T08:45:15+09:00",
+      "first": [
+        536,
+        67060.0,
+        67070.0
+      ],
+      "lowest_bid": [
+        545,
+        67030.0,
+        67050.0
+      ]
+    }
+  },
+  {
+    "source": "book\\TOPIX\\2026-09-21_Day.jsonl",
+    "counts": {
+      "raw_rows": 48692,
+      "missing_time_rows": 9,
+      "invalid_quote_rows": 160,
+      "valid_quote_rows": 48523,
+      "valid_blocks": 1256,
+      "multiple_row_blocks": 1252,
+      "bid_range_ticks_ge_1": 1010,
+      "bid_range_ticks_ge_2": 356,
+      "bid_range_ticks_ge_5": 14,
+      "ask_range_ticks_ge_1": 1028,
+      "ask_range_ticks_ge_2": 375,
+      "ask_range_ticks_ge_5": 12,
+      "first_bid_drop_ticks_ge_1": 560,
+      "first_bid_drop_ticks_ge_2": 168,
+      "first_bid_drop_ticks_ge_5": 4,
+      "first_ask_rise_ticks_ge_1": 616,
+      "first_ask_rise_ticks_ge_2": 171,
+      "first_ask_rise_ticks_ge_5": 4
+    },
+    "maximum": {
+      "bid_range_ticks": 10.0,
+      "ask_range_ticks": 10.0,
+      "first_bid_drop_ticks": 8.0,
+      "first_ask_rise_ticks": 10.0
+    },
+    "example": {
+      "time": "2026-09-21T08:45:01+09:00",
+      "first": [
+        10,
+        4071.5,
+        4072.5
+      ],
+      "lowest_bid": [
+        15,
+        4070.0,
+        4071.0
+      ]
+    }
+  },
+  {
+    "source": "book\\TOPIX\\2026-09-21_Night.jsonl",
+    "counts": {
+      "raw_rows": 83801,
+      "outside_session_rows": 5,
+      "missing_time_rows": 309,
+      "invalid_quote_rows": 105,
+      "valid_quote_rows": 83382,
+      "valid_blocks": 2696,
+      "multiple_row_blocks": 2683,
+      "bid_range_ticks_ge_1": 1927,
+      "bid_range_ticks_ge_2": 306,
+      "bid_range_ticks_ge_5": 4,
+      "ask_range_ticks_ge_1": 1927,
+      "ask_range_ticks_ge_2": 318,
+      "ask_range_ticks_ge_5": 4,
+      "first_bid_drop_ticks_ge_1": 1040,
+      "first_bid_drop_ticks_ge_2": 123,
+      "first_bid_drop_ticks_ge_5": 1,
+      "first_ask_rise_ticks_ge_1": 1039,
+      "first_ask_rise_ticks_ge_2": 151,
+      "first_ask_rise_ticks_ge_5": 4
+    },
+    "maximum": {
+      "bid_range_ticks": 21.0,
+      "ask_range_ticks": 11.0,
+      "first_bid_drop_ticks": 19.0,
+      "first_ask_rise_ticks": 7.0
+    },
+    "example": {
+      "time": "2026-09-21T17:00:06+09:00",
+      "first": [
+        364,
+        4093.5,
+        4094.5
+      ],
+      "lowest_bid": [
+        369,
+        4092.5,
+        4093.5
+      ]
+    }
+  },
+  {
+    "source": "book\\TOPIX\\2026-09-22_Day.jsonl",
+    "counts": {
+      "raw_rows": 56252,
+      "outside_session_rows": 3,
+      "missing_time_rows": 317,
+      "invalid_quote_rows": 171,
+      "valid_quote_rows": 55761,
+      "valid_blocks": 1784,
+      "multiple_row_blocks": 1779,
+      "bid_range_ticks_ge_1": 1353,
+      "bid_range_ticks_ge_2": 373,
+      "bid_range_ticks_ge_5": 8,
+      "ask_range_ticks_ge_1": 1347,
+      "ask_range_ticks_ge_2": 398,
+      "ask_range_ticks_ge_5": 7,
+      "first_bid_drop_ticks_ge_1": 722,
+      "first_bid_drop_ticks_ge_2": 176,
+      "first_bid_drop_ticks_ge_5": 4,
+      "first_ask_rise_ticks_ge_1": 770,
+      "first_ask_rise_ticks_ge_2": 208,
+      "first_ask_rise_ticks_ge_5": 5
+    },
+    "maximum": {
+      "bid_range_ticks": 27.0,
+      "ask_range_ticks": 21.0,
+      "first_bid_drop_ticks": 5.0,
+      "first_ask_rise_ticks": 21.0
+    },
+    "example": {
+      "time": "2026-09-22T08:45:05+09:00",
+      "first": [
+        350,
+        4112.0,
+        4113.0
+      ],
+      "lowest_bid": [
+        351,
+        4110.0,
+        4113.0
+      ]
+    }
+  },
+  {
+    "source": "book\\TOPIX\\2026-09-22_Night.jsonl",
+    "counts": {
+      "raw_rows": 121396,
+      "outside_session_rows": 8,
+      "missing_time_rows": 343,
+      "invalid_quote_rows": 216,
+      "valid_quote_rows": 120829,
+      "valid_blocks": 4401,
+      "multiple_row_blocks": 4375,
+      "bid_range_ticks_ge_1": 3194,
+      "bid_range_ticks_ge_2": 709,
+      "bid_range_ticks_ge_5": 15,
+      "ask_range_ticks_ge_1": 3136,
+      "ask_range_ticks_ge_2": 696,
+      "ask_range_ticks_ge_5": 17,
+      "first_bid_drop_ticks_ge_1": 1732,
+      "first_bid_drop_ticks_ge_2": 318,
+      "first_bid_drop_ticks_ge_5": 3,
+      "first_ask_rise_ticks_ge_1": 1840,
+      "first_ask_rise_ticks_ge_2": 350,
+      "first_ask_rise_ticks_ge_5": 13
+    },
+    "maximum": {
+      "bid_range_ticks": 10.0,
+      "ask_range_ticks": 10.0,
+      "first_bid_drop_ticks": 5.0,
+      "first_ask_rise_ticks": 10.0
+    },
+    "example": {
+      "time": "2026-09-22T17:00:31+09:00",
+      "first": [
+        515,
+        4114.5,
+        4115.0
+      ],
+      "lowest_bid": [
+        519,
+        4113.0,
+        4114.0
+      ]
+    }
+  },
+  {
+    "source": "book\\TOPIX\\2026-09-23_Day.jsonl",
+    "counts": {
+      "raw_rows": 49948,
+      "outside_session_rows": 7,
+      "missing_time_rows": 269,
+      "valid_quote_rows": 49476,
+      "valid_blocks": 1614,
+      "multiple_row_blocks": 1605,
+      "bid_range_ticks_ge_1": 1167,
+      "bid_range_ticks_ge_2": 329,
+      "bid_range_ticks_ge_5": 6,
+      "ask_range_ticks_ge_1": 1179,
+      "ask_range_ticks_ge_2": 326,
+      "ask_range_ticks_ge_5": 8,
+      "first_bid_drop_ticks_ge_1": 654,
+      "first_bid_drop_ticks_ge_2": 159,
+      "first_bid_drop_ticks_ge_5": 5,
+      "first_ask_rise_ticks_ge_1": 660,
+      "first_ask_rise_ticks_ge_2": 158,
+      "first_ask_rise_ticks_ge_5": 2,
+      "invalid_quote_rows": 196
+    },
+    "maximum": {
+      "bid_range_ticks": 9.0,
+      "ask_range_ticks": 11.0,
+      "first_bid_drop_ticks": 8.0,
+      "first_ask_rise_ticks": 6.0
+    },
+    "example": {
+      "time": "2026-09-23T08:45:01+09:00",
+      "first": [
+        276,
+        4154.5,
+        4156.5
+      ],
+      "lowest_bid": [
+        277,
+        4150.5,
+        4154.5
+      ]
+    }
+  },
+  {
+    "source": "work\\wave_v7\\live\\book\\NK225\\2026-09-23_Night.jsonl",
+    "counts": {
+      "raw_rows": 16659,
+      "invalid_quote_rows": 9,
+      "valid_quote_rows": 16650,
+      "valid_blocks": 327,
+      "multiple_row_blocks": 326,
+      "bid_range_ticks_ge_1": 282,
+      "bid_range_ticks_ge_2": 87,
+      "bid_range_ticks_ge_5": 1,
+      "ask_range_ticks_ge_1": 289,
+      "ask_range_ticks_ge_2": 87,
+      "ask_range_ticks_ge_5": 2,
+      "first_bid_drop_ticks_ge_1": 167,
+      "first_bid_drop_ticks_ge_2": 31,
+      "first_bid_drop_ticks_ge_5": 0,
+      "first_ask_rise_ticks_ge_1": 163,
+      "first_ask_rise_ticks_ge_2": 34,
+      "first_ask_rise_ticks_ge_5": 0
+    },
+    "maximum": {
+      "bid_range_ticks": 5.0,
+      "ask_range_ticks": 5.0,
+      "first_bid_drop_ticks": 4.0,
+      "first_ask_rise_ticks": 4.0
+    },
+    "example": {
+      "time": "2026-09-23T17:00:04+09:00",
+      "first": [
+        21,
+        66690.0,
+        66700.0
+      ],
+      "lowest_bid": [
+        29,
+        66670.0,
+        66690.0
+      ]
+    }
+  },
+  {
+    "source": "work\\wave_v7\\live\\book\\TOPIX\\2026-09-23_Night.jsonl",
+    "counts": {
+      "raw_rows": 17028,
+      "missing_time_rows": 1,
+      "invalid_quote_rows": 13,
+      "valid_quote_rows": 17014,
+      "valid_blocks": 427,
+      "multiple_row_blocks": 427,
+      "bid_range_ticks_ge_1": 310,
+      "bid_range_ticks_ge_2": 80,
+      "bid_range_ticks_ge_5": 0,
+      "ask_range_ticks_ge_1": 318,
+      "ask_range_ticks_ge_2": 85,
+      "ask_range_ticks_ge_5": 2,
+      "first_bid_drop_ticks_ge_1": 182,
+      "first_bid_drop_ticks_ge_2": 40,
+      "first_bid_drop_ticks_ge_5": 0,
+      "first_ask_rise_ticks_ge_1": 175,
+      "first_ask_rise_ticks_ge_2": 35,
+      "first_ask_rise_ticks_ge_5": 0
+    },
+    "maximum": {
+      "bid_range_ticks": 4.0,
+      "ask_range_ticks": 5.0,
+      "first_bid_drop_ticks": 4.0,
+      "first_ask_rise_ticks": 4.0
+    },
+    "example": {
+      "time": "2026-09-23T17:00:21+09:00",
+      "first": [
+        126,
+        4131.0,
+        4131.5
+      ],
+      "lowest_bid": [
+        128,
+        4130.0,
+        4131.0
+      ]
+    }
+  }
+]

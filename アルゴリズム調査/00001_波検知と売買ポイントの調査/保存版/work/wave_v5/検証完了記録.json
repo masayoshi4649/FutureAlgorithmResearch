@@ -1,0 +1,25 @@
+{
+  "完了時刻": "2026-09-23T16:35:23.933199+09:00",
+  "現在API取得": false,
+  "方向条件数": 13006,
+  "両建て条件数": 108,
+  "片側乱数種数": 100,
+  "セッション銘柄セル数": 10,
+  "利益損失表行数": 60,
+  "SHA256": {
+    "data.py": "e7fdb354e369dfa9fe5bc1f46ba7af6373daa5d94e6d72ad50b758b0a8bce5d9",
+    "search.py": "70c1c758f442242a9fea2f2a1ea5dbeebbe2828616dd52dae1bb87d961adc79f",
+    "exits.py": "e5a7d463f088878a167780effc2ce6e61ecd6e64a38c4f4f7349bc9d792ba802",
+    "hedge.py": "b935af7e54e098b23567edcbb7bd5830870de073a677ef1301efd453f835723e",
+    "hedge_search.py": "448e13b7682c149dd60df9fd05c3a4fd73cd372a636b326678a2c8fb23bee505",
+    "tradeoff.py": "322b0277d2b678b8cacb5b67101e10a2027502f226911cc01a13205665b01362",
+    "build_report.py": "6e4837679cd29e0a5ad40ffbafc3c970e2c84e726f656fb6e0c0cc3ab4f93071",
+    "検証結果.md": "bdea7ade94878cf29aff9b42f7d19d9d1134fcc2cc988b481a86673f1bd268d1",
+    "セッション別利益損失.csv": "087733ea5a052f55a228ec2f86ef8d40e5f5e45217f298015bba031de9d8e512",
+    "方向主候補.json": "2adff91deacf6639af257025c709c0175594ce4bfdb2bfebd067f9bc6a49f291",
+    "報告対象手法.json": "0323c9effe0f020c4991e0ec84be15f69d218a54699f4dea30ce41d77d965835",
+    "入口と微細波比較.csv": "be7c7fe3416a37d3d4d3c7e85a208dc97de23a2fa261dcabdb0c83763dcf21bc",
+    "終値評価リスク.csv": "155cdf94e1ede33be924c9c0d6136688d0fa727896a10cefc3440379b1e07da7",
+    "独立監査.md": "611e232a59e2112bed4ddafbb04e0d1264c12650485c3f30140d29d94d5c69d5"
+  }
+}

@@ -1,0 +1,787 @@
+[
+  {
+    "ファイル": "candle_1min/NK225/2026-09-21_Day.csv",
+    "SHA256": "4f01eaeaeb50d3c67121ccffed9ab6506c8ac8d53d5dadee1562f44ec5526c14",
+    "バイト": 21643
+  },
+  {
+    "ファイル": "candle_1min/NK225/2026-09-21_Night.csv",
+    "SHA256": "e28222a0bab2073e7fbba5b5f78ec0326dddb35317df00f09e2a8ac1a941b44a",
+    "バイト": 36964
+  },
+  {
+    "ファイル": "candle_1min/NK225/2026-09-22_Day.csv",
+    "SHA256": "984f865018a17649718a19482709c9ad8c157deacd9990df533290fb39bb95cb",
+    "バイト": 23927
+  },
+  {
+    "ファイル": "candle_1min/NK225/2026-09-22_Night.csv",
+    "SHA256": "bdc8107f27db4f6cd34a9f0c5ab497876ab01fed55f638f7bd42eda9a1295268",
+    "バイト": 38045
+  },
+  {
+    "ファイル": "candle_1min/NK225/2026-09-23_Day.csv",
+    "SHA256": "f79b4fcfe34dcffe1a0777493f26645354da18f60da575884a18b0345def604c",
+    "バイト": 22318
+  },
+  {
+    "ファイル": "candle_1min/TOPIX/2026-09-21_Day.csv",
+    "SHA256": "d697b1d521dcda8cae3c53e92223d34481cf7da0c5c5bb60fda9407f80c2189e",
+    "バイト": 22955
+  },
+  {
+    "ファイル": "candle_1min/TOPIX/2026-09-21_Night.csv",
+    "SHA256": "a28165878106ac29dffe8875d85df03edb59975e6d6f2be50355f260295f28f2",
+    "バイト": 41741
+  },
+  {
+    "ファイル": "candle_1min/TOPIX/2026-09-22_Day.csv",
+    "SHA256": "aa261c811774b621abb07b40e8069103c51f950c703e1c348bdbd4ad3638c9a8",
+    "バイト": 24481
+  },
+  {
+    "ファイル": "candle_1min/TOPIX/2026-09-22_Night.csv",
+    "SHA256": "7e8440faa232a5be2aef2333416ba4cd4b8d210c882b1f497e02f8ad593481f1",
+    "バイト": 44238
+  },
+  {
+    "ファイル": "candle_1min/TOPIX/2026-09-23_Day.csv",
+    "SHA256": "68fabae7e1c573c51345b070cc0d7031f7db52cfde74089004aad183d477cc49",
+    "バイト": 23362
+  },
+  {
+    "ファイル": "candle_5min/NK225/2026-09-21_Day.csv",
+    "SHA256": "c0d4c82e7dd012177b6d238ac77fc7cc6425bfb168684737fdb03643b5c15abc",
+    "バイト": 5275
+  },
+  {
+    "ファイル": "candle_5min/NK225/2026-09-21_Night.csv",
+    "SHA256": "be31f16cbf2aefd1a6a1d78eb0b0cf54c37a9efd3e72d8ec1272f34e6ae71310",
+    "バイト": 9595
+  },
+  {
+    "ファイル": "candle_5min/NK225/2026-09-22_Day.csv",
+    "SHA256": "f5a7efc1a75264c91e8b88b35a7b16b4f7452613e5b4027b19c41a8e71578d9b",
+    "バイト": 5290
+  },
+  {
+    "ファイル": "candle_5min/NK225/2026-09-22_Night.csv",
+    "SHA256": "942c45e77704934ad28dd9fae28f3dbd79307b872ff26ab879d34c5692b95efb",
+    "バイト": 9606
+  },
+  {
+    "ファイル": "candle_5min/NK225/2026-09-23_Day.csv",
+    "SHA256": "712dad9ea7a739ababc2e12318774c7fbc9a5901ea490dc966846c0977c251dd",
+    "バイト": 5273
+  },
+  {
+    "ファイル": "candle_5min/TOPIX/2026-09-21_Day.csv",
+    "SHA256": "91f39906f7948b3de69bfa3784ab4212bde9c1922571aaab7053c06e6ff41ee1",
+    "バイト": 5325
+  },
+  {
+    "ファイル": "candle_5min/TOPIX/2026-09-21_Night.csv",
+    "SHA256": "75e3b7348f85c3fd0ce524034a400797178d2427b9af4d080c3b269c605a26fa",
+    "バイト": 9661
+  },
+  {
+    "ファイル": "candle_5min/TOPIX/2026-09-22_Day.csv",
+    "SHA256": "444b2cb2303fc4d72220ea7b2b5d909ef52f0e0eff2430830bdbe0b12e4d011d",
+    "バイト": 5278
+  },
+  {
+    "ファイル": "candle_5min/TOPIX/2026-09-22_Night.csv",
+    "SHA256": "b86c53bbc697dc14bcf60b6c5340ff336ecaa51e7666e7a3d970f6109ed0bb2c",
+    "バイト": 9720
+  },
+  {
+    "ファイル": "candle_5min/TOPIX/2026-09-23_Day.csv",
+    "SHA256": "13780e89d9b035bbd8476c4af512328ef0a9cc4b561534bba91d7ecdeb91d62a",
+    "バイト": 5270
+  },
+  {
+    "ファイル": "work/wave_v7/fetch_once.py",
+    "SHA256": "90cb30e1fca0a4febea3113258c513d0e7204f9aeb8ac6e498652da62ed8d58c",
+    "バイト": 19350
+  },
+  {
+    "ファイル": "work/wave_v7/live/candle_1min/NK225/2026-09-23_Night.csv",
+    "SHA256": "8f56eae1148a0744949dfb041f0888a78b5fa0abb1622799a1b527e34dbfd1be",
+    "バイト": 7316
+  },
+  {
+    "ファイル": "work/wave_v7/live/candle_1min/TOPIX/2026-09-23_Night.csv",
+    "SHA256": "8300db28cc7a68659d76c6d0918832b5ce951ef1536f5b4e2e69639d6e835e09",
+    "バイト": 7693
+  },
+  {
+    "ファイル": "work/wave_v7/live/candle_5min/NK225/2026-09-23_Night.csv",
+    "SHA256": "f9bf1c03091bf796595669749a49e187d8239cb88c362e408a10b4c57846af39",
+    "バイト": 1716
+  },
+  {
+    "ファイル": "work/wave_v7/live/candle_5min/TOPIX/2026-09-23_Night.csv",
+    "SHA256": "b9933b2d24fbdcec7ab3e9cb8bcde1ceed21bc7b056329f3b36aa2b042f91fed",
+    "バイト": 1730
+  },
+  {
+    "ファイル": "work/wave_v7/live/取得記録.json",
+    "SHA256": "75953d765ffbf63bf305d05835ab5d4af89317f0740fb5d6881d9934bb605401",
+    "バイト": 21995
+  },
+  {
+    "ファイル": "work/wave_v8/cross_research.py",
+    "SHA256": "4ee649eb93b72fc9ee8b484a954398f6dcf5f8d90631f022a2a451e21ca8761d",
+    "バイト": 16051
+  },
+  {
+    "ファイル": "work/wave_v8/features/NK225_2026-09-21_Day.csv",
+    "SHA256": "2cd2261edb2a94cbbcb51ffd745ff5cbafa25aa16950dcfb904c56adbfc8c1a1",
+    "バイト": 364067
+  },
+  {
+    "ファイル": "work/wave_v8/features/NK225_2026-09-21_Day.npz",
+    "SHA256": "190817a14410f9a7749fff8e748b04690ebaa9d5a335afee9d5809c594d86d33",
+    "バイト": 95759
+  },
+  {
+    "ファイル": "work/wave_v8/features/NK225_2026-09-21_Day_audit.json",
+    "SHA256": "51d6060a736823bf880078416b189870a86bcbcd21ca11e3971770561d4a8959",
+    "バイト": 3003
+  },
+  {
+    "ファイル": "work/wave_v8/features/NK225_2026-09-21_Night.csv",
+    "SHA256": "5f8714b82c5b7c43af1b3b7acf50f1760a634537aa656379dc5a64406c7e4e94",
+    "バイト": 572800
+  },
+  {
+    "ファイル": "work/wave_v8/features/NK225_2026-09-21_Night.npz",
+    "SHA256": "6d462abee337d424e65f5af369526500bf7d97942d87187ee8786c3941b39cd4",
+    "バイト": 141131
+  },
+  {
+    "ファイル": "work/wave_v8/features/NK225_2026-09-21_Night_audit.json",
+    "SHA256": "70c4213553cef61a3c5a74ac4f07f35db6f804502483b80e6135a639a0d797f5",
+    "バイト": 3007
+  },
+  {
+    "ファイル": "work/wave_v8/features/NK225_2026-09-22_Day.csv",
+    "SHA256": "85125a0c33665618f485b22e4667d69891456e8d0a673eaf077ec768504be218",
+    "バイト": 512324
+  },
+  {
+    "ファイル": "work/wave_v8/features/NK225_2026-09-22_Day.npz",
+    "SHA256": "1d76e0c784aa03fa0d5433767ce4ba344beb9735257837e2bc65c77777be69e8",
+    "バイト": 127820
+  },
+  {
+    "ファイル": "work/wave_v8/features/NK225_2026-09-22_Day_audit.json",
+    "SHA256": "5c96027c350de3dce3de8036af1b0bb09cdab254f24f9e694fcbd9db8acf6fcf",
+    "バイト": 3004
+  },
+  {
+    "ファイル": "work/wave_v8/features/NK225_2026-09-22_Night.csv",
+    "SHA256": "4b50e932a2cb134cf215aabadd7559d4852f2ebf2caf124c4cd91b0067d6e55d",
+    "バイト": 819064
+  },
+  {
+    "ファイル": "work/wave_v8/features/NK225_2026-09-22_Night.npz",
+    "SHA256": "a3a93bf2ab598c93a886e76f55812c3306af30fbf370b186981379b198e96e93",
+    "バイト": 195761
+  },
+  {
+    "ファイル": "work/wave_v8/features/NK225_2026-09-22_Night_audit.json",
+    "SHA256": "876ee216e1de6b57213535e8c8f85281da447c9dbefeb2dda0222b95b7b0502a",
+    "バイト": 3011
+  },
+  {
+    "ファイル": "work/wave_v8/features/NK225_2026-09-23_Day.csv",
+    "SHA256": "a10d83ff4fa8288a0fe347fbb8152785fe73b34f55239924e42508a5942d1c57",
+    "バイト": 362850
+  },
+  {
+    "ファイル": "work/wave_v8/features/NK225_2026-09-23_Day.npz",
+    "SHA256": "91ad9406dca197b84db356474119030a629c90db4e356ef8a71e03ae281832b5",
+    "バイト": 94204
+  },
+  {
+    "ファイル": "work/wave_v8/features/NK225_2026-09-23_Day_audit.json",
+    "SHA256": "26c3f13b2b126ba90620b30fe6fd7795b95578af91a0040c68fb2399c8304a04",
+    "バイト": 3003
+  },
+  {
+    "ファイル": "work/wave_v8/features/NK225_2026-09-23_Night.csv",
+    "SHA256": "e46ecdc630f2f882e0cfaf240350dbd039935b2fe3dc2f5ffd1f44dec239303d",
+    "バイト": 98824
+  },
+  {
+    "ファイル": "work/wave_v8/features/NK225_2026-09-23_Night.npz",
+    "SHA256": "d66f0c51c6c6ad0d19a51ad0a60eca084ff31ea3eaea9a8a3c6daddafb1e2c8e",
+    "バイト": 32935
+  },
+  {
+    "ファイル": "work/wave_v8/features/NK225_2026-09-23_Night_audit.json",
+    "SHA256": "34a5699856c372b2e5d2a6785fa424b86040cd32b568fe5769468641901970c5",
+    "バイト": 3021
+  },
+  {
+    "ファイル": "work/wave_v8/features/TOPIX_2026-09-21_Day.csv",
+    "SHA256": "2cdbe41bc5b4e137a6c66fca5e851d4281e0ff5fdedda89b59d77c82ad3ab963",
+    "バイト": 370192
+  },
+  {
+    "ファイル": "work/wave_v8/features/TOPIX_2026-09-21_Day.npz",
+    "SHA256": "6477daf351d0af23994889beafd0dccb59eaa18e208b7687b2b641673977c9ba",
+    "バイト": 96202
+  },
+  {
+    "ファイル": "work/wave_v8/features/TOPIX_2026-09-21_Day_audit.json",
+    "SHA256": "a5a4359651b387cfdf9e52fb329fadff1e7fcd858ab9599e79719cd6d4421d54",
+    "バイト": 3003
+  },
+  {
+    "ファイル": "work/wave_v8/features/TOPIX_2026-09-21_Night.csv",
+    "SHA256": "f0086a36b56bb38af7bb4f6c3633568c3b4d4bf391e779a2574ccfcd1bb03485",
+    "バイト": 798896
+  },
+  {
+    "ファイル": "work/wave_v8/features/TOPIX_2026-09-21_Night.npz",
+    "SHA256": "6cb881c9a20815cf147e9ae4c570b389f4f013e212544589b43dec9fbb91080d",
+    "バイト": 189949
+  },
+  {
+    "ファイル": "work/wave_v8/features/TOPIX_2026-09-21_Night_audit.json",
+    "SHA256": "7e954f2363bbc14e3537638c9d785d97390c6ec948bc0e6797a47cd41908b90c",
+    "バイト": 3008
+  },
+  {
+    "ファイル": "work/wave_v8/features/TOPIX_2026-09-22_Day.csv",
+    "SHA256": "74497c15191919abe5b07f291083ac099fe9f9acf8c0c44bccd56c8f21b00768",
+    "バイト": 530564
+  },
+  {
+    "ファイル": "work/wave_v8/features/TOPIX_2026-09-22_Day.npz",
+    "SHA256": "86da0a2776b2746102fdf3874b8784860d0112807785f0a36bb0e1faa3297371",
+    "バイト": 130229
+  },
+  {
+    "ファイル": "work/wave_v8/features/TOPIX_2026-09-22_Day_audit.json",
+    "SHA256": "dcabb0f0bb4a0ef04b5df0926b7a085496150e0f677929cac638165245f63c83",
+    "バイト": 3004
+  },
+  {
+    "ファイル": "work/wave_v8/features/TOPIX_2026-09-22_Night.csv",
+    "SHA256": "5a26914ec794f74ec5d0f745f7fca727fb2eafe6cae87b4c453ff2f09d167ef9",
+    "バイト": 1305042
+  },
+  {
+    "ファイル": "work/wave_v8/features/TOPIX_2026-09-22_Night.npz",
+    "SHA256": "412e877cb0e4df9dd9e1e717def6a05fe16bd639f5e43266275cb3137839a77a",
+    "バイト": 298330
+  },
+  {
+    "ファイル": "work/wave_v8/features/TOPIX_2026-09-22_Night_audit.json",
+    "SHA256": "7d87528ec24bac95f34374d33a763c2edd656e3bd41afcc0e6b19502038f2615",
+    "バイト": 3012
+  },
+  {
+    "ファイル": "work/wave_v8/features/TOPIX_2026-09-23_Day.csv",
+    "SHA256": "ebb02af8f7edc836c86841379d2e9bc5b40ac84eca9f231fd43fee29021276c6",
+    "バイト": 479874
+  },
+  {
+    "ファイル": "work/wave_v8/features/TOPIX_2026-09-23_Day.npz",
+    "SHA256": "5d298dd6469fb799bf1ab191c8032b97c4c794b34a143fcd4808a5b6239d920a",
+    "バイト": 119269
+  },
+  {
+    "ファイル": "work/wave_v8/features/TOPIX_2026-09-23_Day_audit.json",
+    "SHA256": "89dcd4317cf3fa76161e99bae272d8af5b5955c3a93ce7e5e423ee1c0b097753",
+    "バイト": 3003
+  },
+  {
+    "ファイル": "work/wave_v8/features/TOPIX_2026-09-23_Night.csv",
+    "SHA256": "79def5318020fcd0724f950efffd52549ff24565381b9f838fde7d8a6ad0ae0a",
+    "バイト": 126965
+  },
+  {
+    "ファイル": "work/wave_v8/features/TOPIX_2026-09-23_Night.npz",
+    "SHA256": "bfe5325be444a0a177b1266e83b1a7e09d70ac43812346c7cefa7787e1e06fdf",
+    "バイト": 39315
+  },
+  {
+    "ファイル": "work/wave_v8/features/TOPIX_2026-09-23_Night_audit.json",
+    "SHA256": "b90fcfed195ad1785b19733f3f32f950166b0e0de5cc3ee4bca0837439e4bb0b",
+    "バイト": 3021
+  },
+  {
+    "ファイル": "work/wave_v8/features/全入力監査.json",
+    "SHA256": "b95a17b0e6016b177e5822f19a29feeedc46d253bbe7906f0d5d35795882b1c3",
+    "バイト": 37195
+  },
+  {
+    "ファイル": "work/wave_v8/features/出力整合監査.json",
+    "SHA256": "c36fc75f42a062582eebfeb3178240be8e64803306d90bf3394b1e5494b0508d",
+    "バイト": 2296
+  },
+  {
+    "ファイル": "work/wave_v8/features/約定系列_NK225_2026-09-21_Day.npz",
+    "SHA256": "85a0f39c96e44280f1ad2e1747f63a483c1550654779c1a0105bfaa3215ee4ae",
+    "バイト": 201753
+  },
+  {
+    "ファイル": "work/wave_v8/features/約定系列_NK225_2026-09-21_Night.npz",
+    "SHA256": "b58e0a6decf0f101501052c0f054198d90857879b0a332dcc7f608e28689b63b",
+    "バイト": 267893
+  },
+  {
+    "ファイル": "work/wave_v8/features/約定系列_NK225_2026-09-22_Day.npz",
+    "SHA256": "a78c8d876bb65f30396bcd7efd456eea0f3975508637ece8af7cc5696a9c8ff2",
+    "バイト": 240368
+  },
+  {
+    "ファイル": "work/wave_v8/features/約定系列_NK225_2026-09-22_Night.npz",
+    "SHA256": "a4fcd8fcd87768275ddda769b309d07efac8bca16e53956939a13ddf2fb516f0",
+    "バイト": 413425
+  },
+  {
+    "ファイル": "work/wave_v8/features/約定系列_NK225_2026-09-23_Day.npz",
+    "SHA256": "6c71e06cac4a38638ff0dc243d7abb1f6f8dfc0c99727232ec9437532c165260",
+    "バイト": 188125
+  },
+  {
+    "ファイル": "work/wave_v8/features/約定系列_NK225_2026-09-23_Night.npz",
+    "SHA256": "74b79790450824ab141ebf35d0dd110d57fffc7c91ee7779806f39da8b7e452e",
+    "バイト": 56682
+  },
+  {
+    "ファイル": "work/wave_v8/features/約定系列_TOPIX_2026-09-21_Day.npz",
+    "SHA256": "ac56be93fa208e07a84354bebd0f8a715f2ae2448a28055262cabb76c16f9fa1",
+    "バイト": 167544
+  },
+  {
+    "ファイル": "work/wave_v8/features/約定系列_TOPIX_2026-09-21_Night.npz",
+    "SHA256": "2c384a4251d84b8abc98d23e31336a0db7015a21ad0d25611828fedaa5c6f59a",
+    "バイト": 270281
+  },
+  {
+    "ファイル": "work/wave_v8/features/約定系列_TOPIX_2026-09-22_Day.npz",
+    "SHA256": "70824518fe1c60ca23fa9e0b2c638a18e3d0227d8968e57712c1ae2b9e3c6bbd",
+    "バイト": 184303
+  },
+  {
+    "ファイル": "work/wave_v8/features/約定系列_TOPIX_2026-09-22_Night.npz",
+    "SHA256": "e4e19201126be2b586d0b1c244d86b47dc6537f079c77e125eb9d5ef10c9622c",
+    "バイト": 396139
+  },
+  {
+    "ファイル": "work/wave_v8/features/約定系列_TOPIX_2026-09-23_Day.npz",
+    "SHA256": "40dc81a19d773a6b3dd18bd8c1abbb722c34f9103481136ef4a440572774d621",
+    "バイト": 161341
+  },
+  {
+    "ファイル": "work/wave_v8/features/約定系列_TOPIX_2026-09-23_Night.npz",
+    "SHA256": "4a31194ae6d250e8ba3cbac6d6b74c81ab810acb4f52461801a28d4896e209bd",
+    "バイト": 56923
+  },
+  {
+    "ファイル": "work/wave_v8/model.py",
+    "SHA256": "474c0eab758fd946a33825fb6dc6049ceb2431bf4d2a4f918213fa1649b8f85e",
+    "バイト": 18406
+  },
+  {
+    "ファイル": "work/wave_v8/raw_features.py",
+    "SHA256": "0062e70dd8011ad456c5307ed228cb2dca0d0729ab3b2dbd5040a1bf9cf96436",
+    "バイト": 21301
+  },
+  {
+    "ファイル": "work/wave_v8/全条件セッション集計.csv",
+    "SHA256": "a9826c921fd32fff461c286017495598238aac099f8fe22200d032da8b0b6a50",
+    "バイト": 197796
+  },
+  {
+    "ファイル": "work/wave_v9/ATR独立再計算監査.json",
+    "SHA256": "07de147f21299e5ee20580cb0b7df0e8513c598f288a2739362e0a45e5d48045",
+    "バイト": 7005
+  },
+  {
+    "ファイル": "work/wave_v9/audit_atr.py",
+    "SHA256": "d966bf4005fbc5da44f2b659c2f478682d2c3303764a0bde7fd9ce27c67cd00d",
+    "バイト": 4399
+  },
+  {
+    "ファイル": "work/wave_v9/audit_execution_cases.py",
+    "SHA256": "7933640219d4a28b1b8a7dc355338422c3353b632edf5a45c4ee787f1df0aed1",
+    "バイト": 6272
+  },
+  {
+    "ファイル": "work/wave_v9/audit_live_saved.py",
+    "SHA256": "bdbedd1388ef5efed62b23a00f62b63b374ff0b26994010a81cca9ed02d3567e",
+    "バイト": 17155
+  },
+  {
+    "ファイル": "work/wave_v9/audit_notes.md",
+    "SHA256": "13f2cd97f8e769300ed940a438f930615a598e8421c4c112088e4da4db9bbe15",
+    "バイト": 4663
+  },
+  {
+    "ファイル": "work/wave_v9/audit_prefix.py",
+    "SHA256": "8070f490963b22181dc36181e8459b02bf322a178d36aec49c20c1e285f299bc",
+    "バイト": 6645
+  },
+  {
+    "ファイル": "work/wave_v9/audit_results.py",
+    "SHA256": "b975fef047813ec746a4b52c94e3264e9131c03438dca820bc463d7b44990d80",
+    "バイト": 3937
+  },
+  {
+    "ファイル": "work/wave_v9/audit_trade_prefix.py",
+    "SHA256": "bc7e4d2c9daedda4494227e959a1e2088e7ba4e5300dd993aa7e5274b21996b5",
+    "バイト": 8235
+  },
+  {
+    "ファイル": "work/wave_v9/execution.py",
+    "SHA256": "2f14f082bd0137479aa730e6a6b7d88ba40364098fb407577ac537f26f92f100",
+    "バイト": 13931
+  },
+  {
+    "ファイル": "work/wave_v9/live/book/NK225/2026-09-23_Night.jsonl",
+    "SHA256": "baa478ece5d639866c13237a5d118cc64b3219fa81b65ddd7b6dac20721d975f",
+    "バイト": 92032215
+  },
+  {
+    "ファイル": "work/wave_v9/live/book/TOPIX/2026-09-23_Night.jsonl",
+    "SHA256": "8fc512102d46cbd6ceb9a3443694b82a03df4a7228cb4bdcefa9a03478122797",
+    "バイト": 90179156
+  },
+  {
+    "ファイル": "work/wave_v9/live/features/NK225_2026-09-23_Night.csv",
+    "SHA256": "ff5dac0a2f5c12f31531c0f217baa473075ab6d8a3813de540ad6b5abc35c71d",
+    "バイト": 345943
+  },
+  {
+    "ファイル": "work/wave_v9/live/features/NK225_2026-09-23_Night.npz",
+    "SHA256": "9efc25c8557b4ae412e2e669239d985bda7c2f4e4228884041deccf899a77f7c",
+    "バイト": 90284
+  },
+  {
+    "ファイル": "work/wave_v9/live/features/NK225_2026-09-23_Night_audit.json",
+    "SHA256": "90c39170a05f57aa0c64c934d27b1bbfb2ce89106b1ac0c81089a683faa4f3af",
+    "バイト": 3024
+  },
+  {
+    "ファイル": "work/wave_v9/live/features/TOPIX_2026-09-23_Night.csv",
+    "SHA256": "808e315fb30837454911ea4771797f150207a1d71aa9edeacde1955205553524",
+    "バイト": 442121
+  },
+  {
+    "ファイル": "work/wave_v9/live/features/TOPIX_2026-09-23_Night.npz",
+    "SHA256": "0cf7a1c9fb7b6619273a766315652d2f193bef532f819239feb75529bd980701",
+    "バイト": 111205
+  },
+  {
+    "ファイル": "work/wave_v9/live/features/TOPIX_2026-09-23_Night_audit.json",
+    "SHA256": "78ed2cdbba03f975e2b853389bd9660aa210e319159d9a49504baba5634a7251",
+    "バイト": 3025
+  },
+  {
+    "ファイル": "work/wave_v9/live/features/約定系列_NK225_2026-09-23_Night.npz",
+    "SHA256": "8aaed220834c0ea7906fe73c6f3e9f55f564260c0fb7621940390c8abcc117c8",
+    "バイト": 193003
+  },
+  {
+    "ファイル": "work/wave_v9/live/features/約定系列_TOPIX_2026-09-23_Night.npz",
+    "SHA256": "092a49284aef58100ae5d145435172b45b0321b9430ea3d513804212c0de7945",
+    "バイト": 186217
+  },
+  {
+    "ファイル": "work/wave_v9/live/work/wave_v7/live/candle_1min/NK225/2026-09-23_Night.csv",
+    "SHA256": "a72e0c441feccb55e721245e9f82474376f7694d517d55ec3898118b068c1b2a",
+    "バイト": 20418
+  },
+  {
+    "ファイル": "work/wave_v9/live/work/wave_v7/live/candle_1min/TOPIX/2026-09-23_Night.csv",
+    "SHA256": "0e0025880b498e77deeb66b10a97b9478fb316b3940c7e366f236ed6ef698493",
+    "バイト": 21837
+  },
+  {
+    "ファイル": "work/wave_v9/live/work/wave_v7/live/candle_5min/NK225/2026-09-23_Night.csv",
+    "SHA256": "e37d57b550f6777b455967752e6d7adb33b5e3be47d5f2801811d16f705aceeb",
+    "バイト": 4910
+  },
+  {
+    "ファイル": "work/wave_v9/live/work/wave_v7/live/candle_5min/TOPIX/2026-09-23_Night.csv",
+    "SHA256": "8dd7a47876b514572aeb5e11fdb52f0c66df63843d0a7cba7f25ca0a3f662f1f",
+    "バイト": 4965
+  },
+  {
+    "ファイル": "work/wave_v9/live/一回取得開始.json",
+    "SHA256": "9cd12a4bd466790dd503ffd1d8b6e9c40fd5e406509e8f4626b993e466ba1186",
+    "バイト": 915
+  },
+  {
+    "ファイル": "work/wave_v9/live/凍結記録の写し.json",
+    "SHA256": "e1482a0c0973ede4ab76ff3fb5c16379a96f18f6db9f29adc39be2220e8252d7",
+    "バイト": 4347
+  },
+  {
+    "ファイル": "work/wave_v9/live/取得記録.json",
+    "SHA256": "6b4ddf98d2fc87800799c8393d7c9efc952fbf30b1cf4da26fadfb24d655659b",
+    "バイト": 8834
+  },
+  {
+    "ファイル": "work/wave_v9/live/応答/NK225_1min.json",
+    "SHA256": "fff4d19ad8da64b6da7bf292b4fee108d91990fe8e0024c6551a4499a1f9572f",
+    "バイト": 44192
+  },
+  {
+    "ファイル": "work/wave_v9/live/応答/NK225_5min.json",
+    "SHA256": "90a7da4188892e27101a89683bf3f0d06db9d5879d051bf0e3ccfc20d4afe959",
+    "バイト": 10864
+  },
+  {
+    "ファイル": "work/wave_v9/live/応答/TOPIX_1min.json",
+    "SHA256": "353a538d1af79e968b92b200d36050ef074059df3d7bc1f7b52c52ef750ca0f6",
+    "バイト": 47217
+  },
+  {
+    "ファイル": "work/wave_v9/live/応答/TOPIX_5min.json",
+    "SHA256": "31728aef0e8e95d9d2f14022075f9d3d42245e8cb33be7a65abdbce97b5b4b7b",
+    "バイト": 10915
+  },
+  {
+    "ファイル": "work/wave_v9/live/要求記録/NK225_1min.json",
+    "SHA256": "5e10960dcc799f24826bf3ea5fb5a88599202870459ee87afee75e7f41d41efd",
+    "バイト": 519
+  },
+  {
+    "ファイル": "work/wave_v9/live/要求記録/NK225_5min.json",
+    "SHA256": "bf2aec6b02fe01cad9bba578e90250fbcd8437f271399c0babd944d6f6ed2b95",
+    "バイト": 519
+  },
+  {
+    "ファイル": "work/wave_v9/live/要求記録/NK225_book.json",
+    "SHA256": "b0de6a69a95e80916a3ec319a0b456a41c5753c7591925f183ef4493d369d425",
+    "バイト": 525
+  },
+  {
+    "ファイル": "work/wave_v9/live/要求記録/TOPIX_1min.json",
+    "SHA256": "e4782fa6d26d940c5a1b1a7fa476953eda1dab4d8e8e636a948b4f6001d635d1",
+    "バイト": 519
+  },
+  {
+    "ファイル": "work/wave_v9/live/要求記録/TOPIX_5min.json",
+    "SHA256": "b7443943b3f1677e6cc1ecff44572362b5c879557b00fe21b2dec8517af8c610",
+    "バイト": 519
+  },
+  {
+    "ファイル": "work/wave_v9/live/要求記録/TOPIX_book.json",
+    "SHA256": "f73b25f6d04badc7382a8cecd2d249538ccde36a24667ac2a8ce5d9678840978",
+    "バイト": 525
+  },
+  {
+    "ファイル": "work/wave_v9/live_check.py",
+    "SHA256": "016d3d77c9ec9711cb20b42cbbd9416391ffa3bb8654bee5805a4888aba801aa",
+    "バイト": 18976
+  },
+  {
+    "ファイル": "work/wave_v9/report.py",
+    "SHA256": "03ce1682958b6961955ef1580c88592c878c828efa15a6aecf78451d67eb0065",
+    "バイト": 67958
+  },
+  {
+    "ファイル": "work/wave_v9/research.py",
+    "SHA256": "f3b68efc3f5563e169237020511db5690d02661faa024b63b351a02d2b45088d",
+    "バイト": 7507
+  },
+  {
+    "ファイル": "work/wave_v9/turning_signals.py",
+    "SHA256": "c522d1ecdfd381010aca9a13c8e4c682baffabdd0ad4b2876d4a5c868472cae9",
+    "バイト": 23755
+  },
+  {
+    "ファイル": "work/wave_v9/信号単体監査.json",
+    "SHA256": "84083a0e190240a57ce20b6fe6c2603b471bd2d00790b33c6bd74db1ac14f70b",
+    "バイト": 527
+  },
+  {
+    "ファイル": "work/wave_v9/入力原本確認.json",
+    "SHA256": "7bb22c94cefd02d8d83b2b2eb5b1f636a5fa628f196ba3e3341d7ba256439012",
+    "バイト": 2565
+  },
+  {
+    "ファイル": "work/wave_v9/入口と微細な波の比較.csv",
+    "SHA256": "50bd403a708d234031c88764ab615904a9c3c5f406d33e33696d2d2a5b548096",
+    "バイト": 988
+  },
+  {
+    "ファイル": "work/wave_v9/全取引.csv",
+    "SHA256": "464e75d0016d131f611b48fa1acfd6163925f306f0befca2b66b1a0e0d7d20b2",
+    "バイト": 2943005
+  },
+  {
+    "ファイル": "work/wave_v9/全取引.json",
+    "SHA256": "2252b9b7270599c80bd4c9ba9e0709a467d65535fd7d6f3c3bad85b3a77146a9",
+    "バイト": 6781963
+  },
+  {
+    "ファイル": "work/wave_v9/全条件セッション集計.csv",
+    "SHA256": "d31ad9e43b5db6372d325c008fd3a892ee942403356186c71b2f080684de14fb",
+    "バイト": 178711
+  },
+  {
+    "ファイル": "work/wave_v9/図解表示確認.json",
+    "SHA256": "7c2c7e3e05a1167e70390863fe81c525da487707e350241e8a8aa01dac998350",
+    "バイト": 892
+  },
+  {
+    "ファイル": "work/wave_v9/完了記録.json",
+    "SHA256": "db836f7580d6e5a5f44ef57b3ce478bd7b71902e2c3803a05192df3bfea06b0e",
+    "バイト": 260
+  },
+  {
+    "ファイル": "work/wave_v9/実行前記録.json",
+    "SHA256": "783a9e05b12c0ce4ef7837add84c648c1d7b4c761803b54d7b4c8ee4ef4369f7",
+    "バイト": 487
+  },
+  {
+    "ファイル": "work/wave_v9/指定４波照合.csv",
+    "SHA256": "2dd8226168011e407be31cdd4772f07de446cebd1e4accfaf7b051c9feb484cc",
+    "バイト": 5251
+  },
+  {
+    "ファイル": "work/wave_v9/損益再集計と選択監査.json",
+    "SHA256": "5926dbaef96186c7ecae3978c5fb33e0d7c16e0447c082ce4e046fc7d3f1c8f9",
+    "バイト": 8306
+  },
+  {
+    "ファイル": "work/wave_v9/既知５セッション選択.json",
+    "SHA256": "89fc20bdbc3846bc52cdc5789656f2409ca29efc58780a1db878f02e0e49cc92",
+    "バイト": 42403
+  },
+  {
+    "ファイル": "work/wave_v9/時間順セッション集計.csv",
+    "SHA256": "61cffd6d615a27f4ff828f7a19b96c04b916a5e39787dfd68cc4d98899a0f1b9",
+    "バイト": 8775
+  },
+  {
+    "ファイル": "work/wave_v9/時間順選択.json",
+    "SHA256": "abe279bbd99130bb4929befb45e5fb68b5a4e0eef2c6e5ac849a421062c28fc9",
+    "バイト": 175365
+  },
+  {
+    "ファイル": "work/wave_v9/条件一覧.json",
+    "SHA256": "674ad3136c74b6684ebf365d7c5fd2934922bfa9c5f74e8c0b0193fc9e56f0f5",
+    "バイト": 30963
+  },
+  {
+    "ファイル": "work/wave_v9/検証計画.md",
+    "SHA256": "e414b26b38472fdd146360e084e1da27bf0cde814d7adb76c5264685cc373348",
+    "バイト": 5934
+  },
+  {
+    "ファイル": "work/wave_v9/注文再生手計算監査.json",
+    "SHA256": "a126572ae5277a6e65bc4d336bb59264bc54054d6fcef48e7303b42b7ec31559",
+    "バイト": 14330
+  },
+  {
+    "ファイル": "work/wave_v9/現在照合_T12明細.md",
+    "SHA256": "1ef03be0b04d790554f0b4861b4483c693c216f3cfa90ea3a208ac8536594322",
+    "バイト": 5690
+  },
+  {
+    "ファイル": "work/wave_v9/現在照合_セッション集計.csv",
+    "SHA256": "31c47a6f3df7b1516c0c92eabbe259b853c6b3b85ef55e43ba15951b1f69e999",
+    "バイト": 4275
+  },
+  {
+    "ファイル": "work/wave_v9/現在照合_保存再生単体監査.json",
+    "SHA256": "4d05a63f7d0fd474e4f45b80b73ac3b7f0277dff516b0c08e4b08078a87da154",
+    "バイト": 687
+  },
+  {
+    "ファイル": "work/wave_v9/現在照合_全取引.json",
+    "SHA256": "4621dc3ad504715dd8874456c781ffee069e1362eb2cc8513abe9fb5bbe5e786",
+    "バイト": 82867
+  },
+  {
+    "ファイル": "work/wave_v9/現在照合_凍結記録.json",
+    "SHA256": "e1482a0c0973ede4ab76ff3fb5c16379a96f18f6db9f29adc39be2220e8252d7",
+    "バイト": 4347
+  },
+  {
+    "ファイル": "work/wave_v9/現在照合_取得記録.json",
+    "SHA256": "6b4ddf98d2fc87800799c8393d7c9efc952fbf30b1cf4da26fadfb24d655659b",
+    "バイト": 8834
+  },
+  {
+    "ファイル": "work/wave_v9/現在照合_既知起源集計.csv",
+    "SHA256": "410cc4d393b936f696e44f8a5a18d267ead0d0d7a0c2e760bfdef0d070b975b3",
+    "バイト": 3877
+  },
+  {
+    "ファイル": "work/wave_v9/現在照合_独立監査.json",
+    "SHA256": "b6d70fa3fe2e9c65178747bbd6824227f27fa03ba213f56d51d1d1f780fd0f43",
+    "バイト": 9683
+  },
+  {
+    "ファイル": "work/wave_v9/現在照合_監査.json",
+    "SHA256": "816cfc8bd6271f58c4e96360fbabaefbb0df16b27a9bc4be5c0f5cef6a0adbc1",
+    "バイト": 9015
+  },
+  {
+    "ファイル": "work/wave_v9/現在照合_転換イベント.json",
+    "SHA256": "8887c98d61cfba3411fe187fee46fe59efcf012fe24fecc497011511957fc08a",
+    "バイト": 109982
+  },
+  {
+    "ファイル": "work/wave_v9/現在照合計画.md",
+    "SHA256": "744f037fa98102335ff87074bbc1e4c01a431b94398ab4c146ceb9a99d6773b0",
+    "バイト": 4556
+  },
+  {
+    "ファイル": "work/wave_v9/確定売買原本打切り監査.json",
+    "SHA256": "6018c74e58b321ed078c7dd382ef45fa41149395814169dc22e4a53ffab70679",
+    "バイト": 545374
+  },
+  {
+    "ファイル": "work/wave_v9/約定遅延感度.csv",
+    "SHA256": "d0f1ad70286ba8068fbaec53b823c9948e2a41e329fbd1be55a6048a55d15e36",
+    "バイト": 51379
+  },
+  {
+    "ファイル": "work/wave_v9/資料リンク監査.json",
+    "SHA256": "8940c41455dbcaa40c05fbc5d496d921a8d1913407ff1f46e96b78aa1a206306",
+    "バイト": 228
+  },
+  {
+    "ファイル": "work/wave_v9/転換イベント.csv",
+    "SHA256": "67fccb2525a7fafe50a074c02251449ef5239a36536a522ff66470764f6cbf65",
+    "バイト": 1032608
+  },
+  {
+    "ファイル": "work/wave_v9/転換イベント.json",
+    "SHA256": "af00cd22e4da1efa8c346857466197f2e92018a4761e1281f91373d9219cffae",
+    "バイト": 2152671
+  },
+  {
+    "ファイル": "work/wave_v9/転換イベント作成監査.json",
+    "SHA256": "2f1b28891c58ad726205b431259049ce8e24b51e75f31fe687c0e37cfd71127f",
+    "バイト": 10580
+  },
+  {
+    "ファイル": "work/wave_v9/転換イベント原本打切り監査.json",
+    "SHA256": "cbf580b5889a589af10e54efd82b833c80957e00d300287aa0f8d28dcb15423c",
+    "バイト": 16458
+  },
+  {
+    "ファイル": "work/wave_v9/転換入口の定義.md",
+    "SHA256": "b95ee696e3a950c5edb0a9f4871477f89d09ffb85d426341c1e01c8b3919a5ea",
+    "バイト": 8758
+  },
+  {
+    "ファイル": "アルゴリズム調査/00001_波検知と売買ポイントの調査/保存版/work/wave_v4/signals.py",
+    "SHA256": "2cb33ebb1f43935b45b2154fd57b89af9504a6e1b3f8da5ca2009c6d826c9699",
+    "バイト": 16837
+  }
+]

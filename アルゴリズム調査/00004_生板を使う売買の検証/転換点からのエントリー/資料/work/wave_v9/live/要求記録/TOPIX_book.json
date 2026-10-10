@@ -1,0 +1,13 @@
+{
+  "name": "TOPIX_book",
+  "url": "http://10.10.100.1:8080/api/v1/history/TOPIX/book?from=2026-09-23T17%3A00%3A00%2B09%3A00&to=2026-09-23T23%3A22%3A00%2B09%3A00",
+  "started_at": "2026-09-23T23:22:13.578744+09:00",
+  "attempts": 1,
+  "timeout_seconds": 45,
+  "http_status": 200,
+  "ok": true,
+  "bytes": 90179156,
+  "sha256": "8fc512102d46cbd6ceb9a3443694b82a03df4a7228cb4bdcefa9a03478122797",
+  "finished_at": "2026-09-23T23:22:46.600561+09:00",
+  "path": "work/wave_v9/live/book/TOPIX/2026-09-23_Night.jsonl"
+}
