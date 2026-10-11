@@ -1,6 +1,22 @@
 const METHODS=[D.benchmark,...D.methods],BYID=new Map(METHODS.map(m=>[m.id,m]));
 
 /**
+ * 機能: 選択した手法の全セッションを、両商品の利益・損失・収支で併記する。
+ * @param {void} なし - 画面の手法選択と保存済み会計を参照する。
+ * @returns {void} 返り値なし。折り畳みのない表を更新する。
+ */
+function allSessions(){
+    const method=BYID.get(document.getElementById('session-method').value);
+    const rows=D.sessions.map(session=>({
+        label:sessionName(session),
+        values:['TOPIX','NK225'].map(symbol=>method.rows.find(row=>row.session===session&&row.symbol===symbol)),
+        total:false
+    }));
+    rows.push({label:'全30セッション合計',values:['TOPIX','NK225'].map(symbol=>method.periods.全30[symbol]),total:true});
+    document.getElementById('all-session-results').innerHTML=`<table class="session-profit-table"><thead><tr><th rowspan="2" scope="col">セッション</th><th colspan="3" scope="colgroup">TOPIXミニ10枚</th><th colspan="3" scope="colgroup">日経225マイクロ20枚</th></tr><tr>${['TOPIX','NK225'].map(()=>'<th scope="col">利益</th><th scope="col">損失</th><th scope="col">収支</th>').join('')}</tr></thead><tbody>${rows.map(row=>`<tr${row.total?' class="total"':''}><th scope="row">${esc(row.label)}</th>${row.values.map(a=>`<td>${money(a.profit)}</td><td>${money(a.loss,false,true)}</td><td>${money(a.net,true)}</td>`).join('')}</tr>`).join('')}</tbody></table>`;
+}
+
+/**
  * 機能: 部品対照をIDだけでなく短い日本語で区別する。
  * @param {object} c - 固定設定。
  * @returns {string} 対照の表示名。
@@ -32,3 +48,11 @@ const a=m.periods.全30[s],status=m.management[s];document.getElementById('manag
 // 保存数値と短い説明を組み立て、商品・期間・売買図の操作を接続する。
 document.getElementById('parts-overview').innerHTML=`<table><thead><tr><th>加えた部品</th><th>TOPIX収支差</th><th>日経収支差</th><th>判断</th></tr></thead><tbody>${D.partsOverview.map(x=>`<tr><td>${esc(x.label)}</td><td>${money(x.difference.TOPIX,true)}</td><td>${money(x.difference.NK225,true)}</td><td class="wrap">${esc(x.reason)}</td></tr>`).join('')}</tbody></table>`;document.getElementById('direction-groups').innerHTML=`<table><thead><tr><th>結果の分類</th><th>場数</th><th>TOPIX収支</th><th>日経収支</th></tr></thead><tbody>${D.directionRows.map(x=>`<tr><td>${esc(x.label)}</td><td>${x.sessions}</td><td>${money(x.net.TOPIX,true)}</td><td>${money(x.net.NK225,true)}</td></tr>`).join('')}</tbody></table>`;document.title=D.title;document.getElementById('title').textContent=D.title;document.getElementById('conclusion').innerHTML=D.conclusions.map(x=>`<p>${esc(x)}</p>`).join('');document.getElementById('comparison-period').innerHTML=D.periodNames.map(p=>`<option${p==='全30'?' selected':''}>${esc(p)}</option>`).join('');document.getElementById('history').innerHTML=`<table><thead><tr><th>系統</th><th>扱い</th><th>理由</th><th>当時の評価条件</th></tr></thead><tbody>${D.history.map(x=>`<tr><td><a href="${esc(x.url)}">${esc(x.name)}</a></td><td>${esc(x.status)}</td><td class="wrap">${esc(x.reason)}</td><td class="wrap small">${esc(x.assumption)}</td></tr>`).join('')}</tbody></table>`;document.getElementById('methods').innerHTML=METHODS.map(methodCard).join('');document.getElementById('detail-method').innerHTML=METHODS.map(m=>`<option value="${esc(m.id)}">${esc(m.title+'｜'+m.id)}</option>`).join('');document.getElementById('detail-session').innerHTML=D.sessions.map(s=>`<option value="${esc(s)}">${esc(sessionName(s))}</option>`).join('');document.getElementById('detail-session').value=D.sessions.at(-1);document.getElementById('notes').innerHTML=D.notes.map(n=>`<li>${esc(n)}</li>`).join('');document.getElementById('parts-summary').innerHTML=D.partNotes.map(n=>`<li>${esc(n)}</li>`).join('');document.getElementById('all-link').href=D.allUrl;for(const id of ['comparison-symbol','comparison-period'])document.getElementById(id).addEventListener('change',comparison);for(const id of ['detail-method','detail-symbol','detail-session'])document.getElementById(id).addEventListener('change',details);document.querySelectorAll('[data-select-method]').forEach(b=>b.addEventListener('click',()=>{document.getElementById('detail-method').value=b.dataset.selectMethod;details();document.getElementById('detail-method').scrollIntoView({block:'start',behavior:'smooth'});}));comparison();details();window.reportTest={D,METHODS,comparison,details,chart,history,table};
 
+
+// ----------------------------------------
+// 全場一覧は初期表示から開き、同じ四手法を両商品併記で切り替える。
+document.getElementById('session-method').innerHTML=METHODS.map(m=>`<option value="${esc(m.id)}">${esc(m.title+'｜'+m.id)}</option>`).join('');
+document.getElementById('session-method').value=D.benchmark.id;
+document.getElementById('session-method').addEventListener('change',allSessions);
+allSessions();
+window.reportTest.allSessions=allSessions;

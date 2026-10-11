@@ -3,6 +3,8 @@
 [コンポーネント概要]
 #conclusion は今回の判断と、毎場黒字・金額利益80%の達否を短く表示します。
 #comparison は前半固定の代表と従来J2を、商品別・期間別に比較します。
+#all-sessions-panel は折り畳まず全三十場の両商品損益を併記します。
+#session-method の変更で #all-session-results を手法ごとに更新します。
 #history は歴代十系統を当時の料金・価格・期間と一緒に再評価します。
 #methods は各代表の入口・途中・出口を、短い日本語で示します。
 #session-results は選択した方式の全三十場、#groups は週・日夜の集計です。
@@ -12,7 +14,9 @@
 -->
 <main><h1 id="title"></h1><div id="conclusion" class="intro"></div>
 <p class="small">TOPIXミニ10枚／日経225マイクロ20枚。各場内で全返済、手数料後。<strong>金額利益割合＝利益÷（利益＋損失）</strong>。80%は利益:損失4:1で、取引勝率とは別です。</p>
+<p><a href="#all-sessions-panel">全30セッションの損益一覧へ ↓</a></p>
 <section class="panel"><h2>従来J2と統合候補</h2><div class="controls"><label>商品 <select id="comparison-symbol"><option value="TOPIX">TOPIXミニ</option><option value="NK225">日経225マイクロ</option></select></label><label>期間 <select id="comparison-period"></select></label></div><div id="comparison"></div><p class="small">全30場は既知資料。代表は前16場だけで固定し、後14場で確認しました。今回は未見場の試験ではありません。</p></section>
+<section id="all-sessions-panel" class="panel"><h2>全30セッションの利益・損失・収支</h2><div class="controls"><label>手法 <select id="session-method"></select></label></div><p class="small">TOPIXミニ10枚と日経225マイクロ20枚を並べて掲載。手法を切り替えると各候補の全セッションを確認できます。手数料後、損失は正の額で表示し、収支＝利益−損失。取引のないセッションは0円です。</p><div id="all-session-results" class="table-wrap"></div></section>
 <section class="panel"><h2>部品を組み合わせた結果</h2><p class="small">J2の入口・0.4%幅・枚数を保ち、各部品だけを加えた全30場の収支差。プラスは改善、マイナスは悪化。</p><div id="parts-overview" class="table-wrap"></div></section>
 <details class="panel"><summary>上昇・下落・逆方向の場でどうだったか（従来J2・事後分類）</summary><p class="small">全30場を、保存五分足の最初の始値から最後の終値への符号で分類。終了後の説明専用で、入口・途中・出口・手法選択へ使用していません。</p><div id="direction-groups" class="table-wrap"></div><p class="small">微小変動も符号通りに分類し、横ばい閾値は設定していません。場の途中が一方向だった意味ではなく、公式始値・終値と一致する保証もありません。</p></details>
 <details class="panel"><summary>過去の手法から、何を残したか</summary><div id="history" class="table-wrap"></div><p class="small">古い円収支は期間・数量・費用・約定モデルが異なるため、今回の順位へ混ぜていません。</p></details>

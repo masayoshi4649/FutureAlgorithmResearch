@@ -15,7 +15,7 @@ function esc(value){return String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;'
  * @param {boolean} loss - 損失列か。
  * @returns {string} 金額のHTML。
  */
-function money(value,signed=false,loss=false){return value==null?'—':`<span class="money ${loss?'negative':value>0?'positive':value<0?'negative':''}">${signed&&value>0?'+':''}${NUMBER.format(value)}円</span>`;}
+function money(value,signed=false,loss=false){return value==null?'—':`<span class="money ${loss?'negative':value>0?'positive':value<0?'negative':''}">${signed&&value>0?'+':''}${NUMBER.format(value===0?0:value)}円</span>`;}
 
 /**
  * 機能: 比率を百分率へ変換する。

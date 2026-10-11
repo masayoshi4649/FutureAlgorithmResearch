@@ -1,9 +1,13 @@
 <!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>過去の知見を統合した手法</title><style>:root{color-scheme:dark;--bg:#0a111b;--panel:#142231;--line:#344a60;--text:#e8f1fb;--muted:#b0c3d8;--cyan:#79dfff;--green:#7ce0b1;--red:#ff99a7}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.7 system-ui,"Yu Gothic UI","Meiryo",sans-serif}main{max-width:1400px;margin:auto;padding:26px 22px 50px}h1{font-size:clamp(23px,3vw,32px);line-height:1.4;margin:0 0 14px}h2{font-size:22px;margin:0 0 10px}h3{font-size:17px;margin:15px 0 8px}p{margin:8px 0}a{color:var(--cyan)}.intro{padding:13px 18px;background:#1a2f43;border-left:4px solid var(--cyan)}.small,.muted,.id{font-size:13px;color:var(--muted)}.id{overflow-wrap:anywhere;font-family:ui-monospace,Consolas,monospace}.panel,.method{background:var(--panel);border:1px solid var(--line);border-radius:9px;margin:22px 0;padding:19px}.controls{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin:11px 0}select,button{font:inherit;color:var(--text);background:#203a52;border:1px solid #52748f;border-radius:6px;padding:6px 9px;max-width:100%}button{cursor:pointer}select:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var(--cyan);outline-offset:3px}.steps{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}.step{border:1px solid var(--line);border-radius:7px;padding:10px 12px}.step strong{color:var(--cyan)}.step p{font-size:14px;margin:5px 0}.table-wrap{overflow:auto;margin:11px 0;border:1px solid var(--line);border-radius:7px}table{border-collapse:collapse;width:100%;font-size:14px;font-variant-numeric:tabular-nums}th,td{padding:8px 10px;text-align:right;white-space:nowrap;border-bottom:1px solid #2a4258}th{background:#20364b;color:#d5e6f6}th:first-child,td:first-child{text-align:left}tbody tr:hover{background:#21384e}tr:last-child td{border-bottom:0}.total{background:#274457;font-weight:600}.wrap{white-space:normal;text-align:left;min-width:180px;max-width:470px}.positive{color:var(--green)}.negative,.sell{color:var(--red)}.buy{color:var(--cyan)}.money{white-space:nowrap}.legend{display:flex;gap:18px;flex-wrap:wrap;font-size:13px;color:var(--muted);margin:8px 0}.chart-box{background:#0a1623;border:1px solid var(--line);border-radius:7px;padding:7px}.chart-svg{display:block;width:100%;height:auto;background:#0a1623}.session-link{padding:0;border:0;background:transparent;color:var(--cyan);text-decoration:underline}.empty{padding:20px;text-align:center;color:var(--muted)}details{margin:15px 0}summary{font-weight:600;cursor:pointer;color:#d6e6f5}.method .finding{border-left:3px solid #496982;padding-left:10px}footer{margin-top:25px;padding-top:14px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}li{margin:6px 0}@media(max-width:760px){main{padding:17px 11px}.steps{grid-template-columns:1fr}.panel,.method{padding:14px 11px}h2{font-size:20px}}
+
+.session-profit-table thead th[colspan]{text-align:center}.session-profit-table tbody th{background:transparent;color:inherit;font-weight:400}.session-profit-table .total th{font-weight:600}
 </style></head><body>
 <!--
 [コンポーネント概要]
 #conclusion は今回の判断と、毎場黒字・金額利益80%の達否を短く表示します。
 #comparison は前半固定の代表と従来J2を、商品別・期間別に比較します。
+#all-sessions-panel は折り畳まず全三十場の両商品損益を併記します。
+#session-method の変更で #all-session-results を手法ごとに更新します。
 #history は歴代十系統を当時の料金・価格・期間と一緒に再評価します。
 #methods は各代表の入口・途中・出口を、短い日本語で示します。
 #session-results は選択した方式の全三十場、#groups は週・日夜の集計です。
@@ -13,7 +17,9 @@
 -->
 <main><h1 id="title"></h1><div id="conclusion" class="intro"></div>
 <p class="small">TOPIXミニ10枚／日経225マイクロ20枚。各場内で全返済、手数料後。<strong>金額利益割合＝利益÷（利益＋損失）</strong>。80%は利益:損失4:1で、取引勝率とは別です。</p>
+<p><a href="#all-sessions-panel">全30セッションの損益一覧へ ↓</a></p>
 <section class="panel"><h2>従来J2と統合候補</h2><div class="controls"><label>商品 <select id="comparison-symbol"><option value="TOPIX">TOPIXミニ</option><option value="NK225">日経225マイクロ</option></select></label><label>期間 <select id="comparison-period"></select></label></div><div id="comparison"></div><p class="small">全30場は既知資料。代表は前16場だけで固定し、後14場で確認しました。今回は未見場の試験ではありません。</p></section>
+<section id="all-sessions-panel" class="panel"><h2>全30セッションの利益・損失・収支</h2><div class="controls"><label>手法 <select id="session-method"></select></label></div><p class="small">TOPIXミニ10枚と日経225マイクロ20枚を並べて掲載。手法を切り替えると各候補の全セッションを確認できます。手数料後、損失は正の額で表示し、収支＝利益−損失。取引のないセッションは0円です。</p><div id="all-session-results" class="table-wrap"></div></section>
 <section class="panel"><h2>部品を組み合わせた結果</h2><p class="small">J2の入口・0.4%幅・枚数を保ち、各部品だけを加えた全30場の収支差。プラスは改善、マイナスは悪化。</p><div id="parts-overview" class="table-wrap"></div></section>
 <details class="panel"><summary>上昇・下落・逆方向の場でどうだったか（従来J2・事後分類）</summary><p class="small">全30場を、保存五分足の最初の始値から最後の終値への符号で分類。終了後の説明専用で、入口・途中・出口・手法選択へ使用していません。</p><div id="direction-groups" class="table-wrap"></div><p class="small">微小変動も符号通りに分類し、横ばい閾値は設定していません。場の途中が一方向だった意味ではなく、公式始値・終値と一致する保証もありません。</p></details>
 <details class="panel"><summary>過去の手法から、何を残したか</summary><div id="history" class="table-wrap"></div><p class="small">古い円収支は期間・数量・費用・約定モデルが異なるため、今回の順位へ混ぜていません。</p></details>
@@ -43,7 +49,7 @@ function esc(value){return String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;'
  * @param {boolean} loss - 損失列か。
  * @returns {string} 金額のHTML。
  */
-function money(value,signed=false,loss=false){return value==null?'—':`<span class="money ${loss?'negative':value>0?'positive':value<0?'negative':''}">${signed&&value>0?'+':''}${NUMBER.format(value)}円</span>`;}
+function money(value,signed=false,loss=false){return value==null?'—':`<span class="money ${loss?'negative':value>0?'positive':value<0?'negative':''}">${signed&&value>0?'+':''}${NUMBER.format(value===0?0:value)}円</span>`;}
 
 /**
  * 機能: 比率を百分率へ変換する。
@@ -94,6 +100,22 @@ function history(method,symbol,session){const orders=method.orders[session+'|'+s
 const METHODS=[D.benchmark,...D.methods],BYID=new Map(METHODS.map(m=>[m.id,m]));
 
 /**
+ * 機能: 選択した手法の全セッションを、両商品の利益・損失・収支で併記する。
+ * @param {void} なし - 画面の手法選択と保存済み会計を参照する。
+ * @returns {void} 返り値なし。折り畳みのない表を更新する。
+ */
+function allSessions(){
+    const method=BYID.get(document.getElementById('session-method').value);
+    const rows=D.sessions.map(session=>({
+        label:sessionName(session),
+        values:['TOPIX','NK225'].map(symbol=>method.rows.find(row=>row.session===session&&row.symbol===symbol)),
+        total:false
+    }));
+    rows.push({label:'全30セッション合計',values:['TOPIX','NK225'].map(symbol=>method.periods.全30[symbol]),total:true});
+    document.getElementById('all-session-results').innerHTML=`<table class="session-profit-table"><thead><tr><th rowspan="2" scope="col">セッション</th><th colspan="3" scope="colgroup">TOPIXミニ10枚</th><th colspan="3" scope="colgroup">日経225マイクロ20枚</th></tr><tr>${['TOPIX','NK225'].map(()=>'<th scope="col">利益</th><th scope="col">損失</th><th scope="col">収支</th>').join('')}</tr></thead><tbody>${rows.map(row=>`<tr${row.total?' class="total"':''}><th scope="row">${esc(row.label)}</th>${row.values.map(a=>`<td>${money(a.profit)}</td><td>${money(a.loss,false,true)}</td><td>${money(a.net,true)}</td>`).join('')}</tr>`).join('')}</tbody></table>`;
+}
+
+/**
  * 機能: 部品対照をIDだけでなく短い日本語で区別する。
  * @param {object} c - 固定設定。
  * @returns {string} 対照の表示名。
@@ -125,4 +147,12 @@ const a=m.periods.全30[s],status=m.management[s];document.getElementById('manag
 // 保存数値と短い説明を組み立て、商品・期間・売買図の操作を接続する。
 document.getElementById('parts-overview').innerHTML=`<table><thead><tr><th>加えた部品</th><th>TOPIX収支差</th><th>日経収支差</th><th>判断</th></tr></thead><tbody>${D.partsOverview.map(x=>`<tr><td>${esc(x.label)}</td><td>${money(x.difference.TOPIX,true)}</td><td>${money(x.difference.NK225,true)}</td><td class="wrap">${esc(x.reason)}</td></tr>`).join('')}</tbody></table>`;document.getElementById('direction-groups').innerHTML=`<table><thead><tr><th>結果の分類</th><th>場数</th><th>TOPIX収支</th><th>日経収支</th></tr></thead><tbody>${D.directionRows.map(x=>`<tr><td>${esc(x.label)}</td><td>${x.sessions}</td><td>${money(x.net.TOPIX,true)}</td><td>${money(x.net.NK225,true)}</td></tr>`).join('')}</tbody></table>`;document.title=D.title;document.getElementById('title').textContent=D.title;document.getElementById('conclusion').innerHTML=D.conclusions.map(x=>`<p>${esc(x)}</p>`).join('');document.getElementById('comparison-period').innerHTML=D.periodNames.map(p=>`<option${p==='全30'?' selected':''}>${esc(p)}</option>`).join('');document.getElementById('history').innerHTML=`<table><thead><tr><th>系統</th><th>扱い</th><th>理由</th><th>当時の評価条件</th></tr></thead><tbody>${D.history.map(x=>`<tr><td><a href="${esc(x.url)}">${esc(x.name)}</a></td><td>${esc(x.status)}</td><td class="wrap">${esc(x.reason)}</td><td class="wrap small">${esc(x.assumption)}</td></tr>`).join('')}</tbody></table>`;document.getElementById('methods').innerHTML=METHODS.map(methodCard).join('');document.getElementById('detail-method').innerHTML=METHODS.map(m=>`<option value="${esc(m.id)}">${esc(m.title+'｜'+m.id)}</option>`).join('');document.getElementById('detail-session').innerHTML=D.sessions.map(s=>`<option value="${esc(s)}">${esc(sessionName(s))}</option>`).join('');document.getElementById('detail-session').value=D.sessions.at(-1);document.getElementById('notes').innerHTML=D.notes.map(n=>`<li>${esc(n)}</li>`).join('');document.getElementById('parts-summary').innerHTML=D.partNotes.map(n=>`<li>${esc(n)}</li>`).join('');document.getElementById('all-link').href=D.allUrl;for(const id of ['comparison-symbol','comparison-period'])document.getElementById(id).addEventListener('change',comparison);for(const id of ['detail-method','detail-symbol','detail-session'])document.getElementById(id).addEventListener('change',details);document.querySelectorAll('[data-select-method]').forEach(b=>b.addEventListener('click',()=>{document.getElementById('detail-method').value=b.dataset.selectMethod;details();document.getElementById('detail-method').scrollIntoView({block:'start',behavior:'smooth'});}));comparison();details();window.reportTest={D,METHODS,comparison,details,chart,history,table};
 
+
+// ----------------------------------------
+// 全場一覧は初期表示から開き、同じ四手法を両商品併記で切り替える。
+document.getElementById('session-method').innerHTML=METHODS.map(m=>`<option value="${esc(m.id)}">${esc(m.title+'｜'+m.id)}</option>`).join('');
+document.getElementById('session-method').value=D.benchmark.id;
+document.getElementById('session-method').addEventListener('change',allSessions);
+allSessions();
+window.reportTest.allSessions=allSessions;
 </script></body></html>
