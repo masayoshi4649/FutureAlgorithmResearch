@@ -1,0 +1,20 @@
+{
+  "全合格": true,
+  "旧00082保持": {
+    "アルゴリズム調査\\00082_E01の狭幅トレールと再エントリー\\README.md": "c4c60e89768f2d8a3fba85f60378525594db28d875603ce834a91b2cb27695e0",
+    "アルゴリズム調査\\00082_E01の狭幅トレールと再エントリー\\公開会計.json": "a4c82b4735997253ff7591e6d8d2ea897ee464f38585bd4a26b3356835ded879",
+    "アルゴリズム調査\\00082_E01の狭幅トレールと再エントリー\\公開指紋.json": "22f3d260b054136a27e99575625c398d49d9d96b4522bb6469457f71ef24420d",
+    "アルゴリズム調査\\00082_E01の狭幅トレールと再エントリー\\検証条件.json": "dfa38db185ca816853c705413eb952430531588e5fb17e2b064175cb3cc742ba",
+    "アルゴリズム調査\\00082_E01の狭幅トレールと再エントリー\\狭いトレールと再エントリーの結果.html": "7ac2764c75e860ddcc943cc41f5ff94b3981a58b23fb8dc88718874ef2a4f4fb",
+    "アルゴリズム調査\\00082_E01の狭幅トレールと再エントリー\\追加検証条件.json": "dceadfef7451048d1948c145ec2e706ecd3704a387d9d4bf9ebb25a3a5b4d4a7"
+  },
+  "公開SHA256": {
+    "case_allocation_nk225_20260928.svg": "ca81a3380745d651e2ebb564f124a307277b0f08d7a464b4a81fb394ad500065",
+    "case_allocation_topix_20260928.svg": "13081a0b4106fe3529d39405cf037b1d4940035cde37f8fd4c7e702f284a5e6b",
+    "case_nk225_20260922.svg": "4b38fc43e351a896542390c85d6bcec549def0a9bfccc7569f4cedc7cfeca8de",
+    "case_topix_20260925.svg": "5efbbed6487114e233236850097715afa162f65f7b3cb0245d246261d8c7b6cc",
+    "README.md": "354900ff0a2a1bc080e11f2cad072c9e46caf0c8e652599040deb583ad2f5778",
+    "公開会計.json": "4e743ddaeaa90ff437daf9d8ceac30ab656e830b9fdce948acd6145a6a8e1aef",
+    "損失原因と改善の反復結果.html": "50a6256c346fbda8aef3d48fa1432d4bc3f4a1f89ba889f417c7169b732efd0a"
+  }
+}
