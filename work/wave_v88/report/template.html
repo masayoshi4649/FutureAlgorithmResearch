@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>異なる3手法の配分と全セッション損益</title><style>__STYLE__</style></head><body>
+<!--
+[コンポーネント概要]
+#conclusion は固定した主案と前半選定参考について、保存済みの結論を表示する。
+#comparison は主要配分の収支・金額利益割合・黒字場数・最大下落を商品別に示す。
+#method-select は全22配分を切替え、#session-results の全30場を更新する。
+#period-results は前16・後14・全30を分け、選定後の確認区間を明示する。
+#diversity-results は3源の相関と保有重複を事後説明として表示する。
+#failure-results は事前主案の赤字上位3場を商品別に、源ごとの収支へ分解する。
+.gain/.loss は数値の符号を色で示す。損失欄は絶対額を赤字で表示する。
+.scroll は表だけの横スクロール領域で、本文の横幅を広げない。
+-->
+<main>
+<header><p class="eyebrow">00084 · 固定配分の同時運転</p><h1>異なる3手法に分けると、安定するか</h1>
+<p class="muted">2026/09/21〜10/09の既知30セッション。手数料後。片方向の合計上限：TOPIXミニ10枚／日経225マイクロ20枚。</p></header>
+<section class="lead" aria-label="結論"><div id="conclusion"></div></section>
+<section><h2>主要な配分を比較</h2><p class="muted">配分はTOPIXの枚数を表示。日経は各枠の2倍。商品間の円額は順位に混ぜません。</p>
+<div class="scroll"><table id="comparison"><thead><tr><th rowspan="2">配分 GU / M3 / C03</th><th colspan="4">TOPIXミニ</th><th colspan="4">日経225マイクロ</th></tr><tr><th>収支</th><th>利益割合</th><th>黒字場</th><th>最大下落</th><th>収支</th><th>利益割合</th><th>黒字場</th><th>最大下落</th></tr></thead><tbody></tbody></table></div></section>
+<details><summary>全22条件の比較</summary><div class="scroll"><table><thead><tr><th rowspan="2">配分 GU / M3 / C03</th><th colspan="4">TOPIXミニ</th><th colspan="4">日経225マイクロ</th></tr><tr><th>収支</th><th>利益割合</th><th>黒字場</th><th>最大下落</th><th>収支</th><th>利益割合</th><th>黒字場</th><th>最大下落</th></tr></thead><tbody id="all-comparison"></tbody></table></div></details>
+<details><summary>3つの手法と実行条件</summary><div class="rules">
+<p><b>GU（E01_G_U）</b>：両市場の上昇・下落方向に同調し、追跡新規、広いトレールと途中減量で管理。米国寄付き前後は静観。</p>
+<p><b>M3逆・360分</b>：両市場のEMAが示す方向と逆に、0.25ATRの確認幅で入り、1ATR損切り・2ATRトレール・最長360分で返済。</p>
+<p><b>C03</b>：直前1分の大きな値動きを記憶し、5分以内に逆向きへ動いたら入り、0.5ATR損切り・利益追跡・最長5分で返済。</p>
+<p>各源の独立した紙上判断を、次の有効な共通価格観測で実行。旧研究の損益を単純に足さず、全30場を同じ観測約定と手数料で再生しています。指定の固定秒遅延は加えていません。</p>
+<p>GUの途中返済は「割当枚数×紙上残数÷紙上初回枚数」の切捨て。減った枠は同じ親で復元せず、空き枠も他源へ貸しません。全源ともセッション内で返済します。</p>
+<p>新規・返済の各注文にTOPIX41.8円／日経11円×枚数を課し、1円未満を切捨て。ラージの観測価格を用い、ミニ／マイクロの実板や約定待ち行列までは再現していません。</p>
+</div></details>
+<section id="sessions"><div class="section-title"><h2>各セッションの利益・損失・収支</h2><label>配分 <select id="method-select"></select></label></div>
+<p id="allocation" class="muted"></p>
+<p class="small">利益・損失は手数料後の<b>源別の親取引</b>で分類。同日の別手法の利益で負けを消していません。収支の下は新規／返済枚数です。</p>
+<div class="scroll"><table><thead><tr><th rowspan="2">セッション</th><th colspan="3">TOPIXミニ</th><th colspan="3">日経225マイクロ</th></tr><tr><th>利益</th><th>損失</th><th>収支</th><th>利益</th><th>損失</th><th>収支</th></tr></thead><tbody id="session-results"></tbody></table></div>
+</section>
+<details id="period-detail"><summary>前半・後半、費用、最大下落を確認</summary>
+<div class="scroll"><table><thead><tr><th>商品</th><th>期間</th><th>収支</th><th>利益割合</th><th>黒字／赤字／無取引</th><th>親取引</th><th>手数料</th><th>最大下落</th><th>最大勝ち3場を除外</th></tr></thead><tbody id="period-results"></tbody></table></div>
+<p class="small">利益割合＝総利益÷（総利益＋総損失）。決済勝率ではありません。無取引は勝ちに含めません。最大下落は、全原板行の現金＋残玉時価から既払料と見込返済料を引いた清算時価を、場を順に接続して測定しています。</p>
+<div class="scroll"><table><thead><tr><th>商品</th><th>源</th><th>利益</th><th>損失</th><th>収支</th><th>手数料</th><th>親取引</th></tr></thead><tbody id="source-results"></tbody></table></div>
+<p class="small">前16場で選んだ参考配分は後14場で変更しません。全30場は既知データであり、完全未知の評価ではありません。</p>
+</details>
+<details id="risk-detail"><summary>GUの枚数を減らした効果と、別手法を加えた効果</summary><p class="small">GUだけを同じ割当枚数で動かす対照との比較。別手法の追加で収支も下落も増える場合、分散だけで損失が減ったとは言えません。全30場の診断です。</p><div class="scroll"><table><thead><tr><th>配分</th><th>商品</th><th>GU枠だけの収支</th><th>組合せの収支</th><th>GU枠だけの下落</th><th>組合せの下落</th><th>収支÷下落<br>GU → 組合せ</th><th>黒字場<br>GU → 組合せ</th></tr></thead><tbody id="risk-results"></tbody></table></div></details>
+<details id="diversity-detail"><summary>異なる手法が実際に補い合ったか</summary><div class="scroll"><table><thead><tr><th>商品</th><th>組合せ</th><th>場収支相関</th><th>1分時価変化相関</th><th>同時保有中：逆方向</th><th>同時保有中：同方向</th><th>いずれか保有中：同時保有</th></tr></thead><tbody id="diversity-results"></tbody></table></div><p class="small">相関と保有重複は事後の診断です。同時保有率の分母は、少なくとも一方が保有した1分格子です。取引中の配分切替には使っていません。</p></details>
+<details id="failure-detail"><summary>3手法に分けても赤字になった場</summary><p class="small">事前主案A0622の赤字上位3場を商品別に表示。入り方が異なっても、別の時間で両方向に損切りすれば三源とも赤字になります。10/05デイは両商品で三源すべて赤字でした。</p><div class="scroll"><table><thead><tr><th>商品</th><th>セッション</th><th>GU収支</th><th>M3収支</th><th>C03収支</th><th>全体収支</th></tr></thead><tbody id="failure-results"></tbody></table></div><p class="small">結果を説明する事後診断です。この分類や将来の損益を、取引判断・配分選択には使っていません。</p></details>
+<footer>すべて保存データの仮想検証。現在API取得・実注文は0件。</footer>
+</main><script id="report-data" type="application/json">__DATA__</script><script>__SCRIPT__</script></body></html>

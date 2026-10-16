@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>待機基準と反対返済の改善と全セッション損益</title>
+<style>__STYLE__</style>
+</head>
+<body>
+<!--
+[コンポーネント概要]
+#conclusion は正式結果に基づく短い結論です。未完結果をゼロ利益へ代用しません。
+#fresh-results は条件と前16場の参考代表を固定後、一度確認した追加1場の損益です。
+#comparison は全31場と既知の旧30場を分けて、主・参考代表・同数量対照を比較します。
+#method-select は38条件の切替です。説明と全31場及び合計を更新します。
+#session-results は手数料後の利益・損失・収支と決済枚数を表示します。
+#period-detail と #source-detail は必要な時だけ期間・源別会計を開く詳細です。
+#cause-detail は同銘柄内の対照との差、一般的な失敗原因、補足結論を表示します。
+.money は元数値を属性に保持するセルです。損失は絶対額、収支は正負で表示します。
+.table-wrap 内だけを横スクロールさせ、本文が狭い画面ではみ出すことを防ぎます。
+-->
+<main>
+<header><p class="eyebrow">00087 · 保存済み31セッション · 手数料後</p><h1>待機基準と反対返済の改善</h1><div id="conclusion"></div></header>
+<section id="fresh-section"><h2>追加した10月12日デイ</h2><p class="note">条件と前16場の参考代表を固定してから、この1場を初めて確認しました。結果を見て代表を差し替えていません。</p><div class="table-wrap"><table><thead><tr><th rowspan="2">手法</th><th colspan="3">TOPIXミニ</th><th colspan="3">日経マイクロ</th></tr><tr><th>利益</th><th>損失</th><th>収支</th><th>利益</th><th>損失</th><th>収支</th></tr></thead><tbody id="fresh-results"></tbody></table></div></section>
+<section id="comparison-section"><h2>全体の比較</h2><p class="note">片方向上限はTOPIXミニ10枚・日経マイクロ20枚。金額利益割合＝総利益÷（総利益＋総損失）。商品の円額同士では順位を付けません。</p><div id="allocation-summary"></div><div class="table-wrap"><table id="comparison"><thead><tr><th rowspan="2">手法</th><th colspan="5">TOPIXミニ</th><th colspan="5">日経マイクロ</th></tr><tr><th>全31収支</th><th>旧30収支</th><th>全31利益割合</th><th>黒字場</th><th>最大下落</th><th>全31収支</th><th>旧30収支</th><th>全31利益割合</th><th>黒字場</th><th>最大下落</th></tr></thead><tbody></tbody></table></div></section>
+<section id="sessions"><div class="chooser"><h2>全セッションの損益</h2><label for="method-select">手法<select id="method-select"></select></label></div><h3 id="method-title"></h3><div id="method-rule"></div><p class="note">利益・損失は返済済み親ごとの手数料後金額。下段は利益玉／損失玉の決済枚数。「勝−負」はその差で、未決済枚数ではありません。</p><div class="table-wrap"><table><thead><tr><th rowspan="2">セッション</th><th colspan="3">TOPIXミニ</th><th colspan="3">日経マイクロ</th></tr><tr><th>利益</th><th>損失</th><th>収支</th><th>利益</th><th>損失</th><th>収支</th></tr></thead><tbody id="session-results"></tbody></table></div></section>
+<details id="period-detail"><summary>旧30・追加1・前半・後半と安定性</summary><div class="table-wrap"><table><thead><tr><th>期間</th><th>商品</th><th>収支</th><th>利益割合</th><th>黒字／赤字／無取引</th><th>決済親</th><th>手数料</th><th>最大下落</th><th>最大利益日を除く収支</th></tr></thead><tbody id="period-results"></tbody></table></div></details>
+<details id="source-detail"><summary>二つの戦略と売買方向の寄与</summary><div class="table-wrap"><table><thead><tr><th>商品</th><th>戦略</th><th>利益</th><th>損失</th><th>収支</th><th>手数料</th><th>決済親</th></tr></thead><tbody id="source-results"></tbody></table></div><div class="table-wrap"><table><thead><tr><th>商品</th><th>入口方向</th><th>利益</th><th>損失</th><th>収支</th><th>決済親</th></tr></thead><tbody id="direction-results"></tbody></table></div></details>
+<details id="cause-detail"><summary>失敗理由と対照に対する改善・悪化</summary><div id="cause-general"></div><div id="cause-text"></div><div class="table-wrap"><table><thead><tr><th>商品</th><th>比較対象</th><th>収支の差</th><th>利益の差</th><th>損失の差</th><th>手数料の差</th><th>決済親の差</th></tr></thead><tbody id="cause-results"></tbody></table></div><p class="note">差は選択手法−比較対象の全31場。損失差が負なら損失減少。状態・出口変更は後続注文も変えるため、同じ親の抜取りではありません。J8との併用比較は追従の枚数を合わせ、反発追加の影響も含みます。</p><div id="conclusion-detail"></div></details>
+<details id="rules-detail"><summary>機械的な条件と検証の範囲</summary>
+<p><b>入口：</b>追従は旧J2の二市場300秒進行・短期気配維持・強弱比・明確な逆OFIの除外を使います。統合では高ERの追加入口ゲートを外します。往復は低ER・過去180秒範囲内・共同進行なしを10秒確認して、その時の基準を準備します。</p>
+<p><b>途中：</b>準備した基準は分類不明で更新せず、二市場の明確な共同進行又は基準から3幅の逸脱で解除。予約済み指値は次有効気配で成立を先に扱い、未約定なら取消します。保有玉の返済は準備解除とは別です。</p>
+<p><b>出口：</b>統合では入口ERを要求せず、共同方向の反対を確認して返済。往復は返済気配の1幅順行で0.5幅追跡を始め、現在値で1幅の初期損切りも残します。追従の保険幅は始値0.4%。主は固定30分期限を外し、場末には全返済します。</p>
+<p><b>約定・評価：</b>ラージ板を代用し、成行は判断後の次有効買ask／売bid、指値は後続気配が指値内へ到達した時の買ask／売bidで全量約定する代理です。全有効入力行で返済気配と返済料を使って時価評価。保存価格の更新時刻を代理時計にしています。5秒内最悪約定は加えていません。真の受信時計、板待ち順位、実ミニ・マイクロ板での全量約定は未検証です。</p>
+<p><b>範囲：</b>旧30場は既知。追加1場だけ条件固定後の初回確認として別表示します。無取引は勝ちに含めず、源の反対玉も相殺して勝率を作りません。入口と出口を分ける思想は既検証であり、今回の部品統合が長期優位である証明ではありません。</p>
+</details>
+<footer>保存済みデータのみ。現在API取得0回、実注文0回。</footer>
+</main>
+<script id="report-data" type="application/json">__DATA__</script>
+<script>__SCRIPT__</script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>全330条件の前半比較</title><style>__STYLE__</style></head><body><main>
+<!--
+[コンポーネント概要]
+#stage-filter・#family-filter・#mode-filter・#query-filter は全330条件の絞り込みを行います。
+#sort-select は商品内収支又はIDで並べ替えます。両商品の金額を合算しません。
+#all-results は保存された前16場だけの会計を表示し、無取引条件も残します。
+.table-wrap の内部を横スクロールでき、狭幅でも本文全体がはみ出さない構成です。
+-->
+<div class="eyebrow">00076 · 初回288＋改修42 · 前16場のみ</div><h1>全330条件の前半比較</h1>
+<p><a href="__MAIN__">説明と全30場損益へ戻る</a></p>
+<p class="section-intro">注文待ち5秒、手数料後。全330条件を後半へ最適化した表ではありません。代表選択に使った前16場の全条件です。同じ相場の条件違いを独立した成功例とは数えません。</p>
+<section class="panel"><h2>全条件</h2><div class="controls">
+<div><label for="stage-filter">段階</label><select id="stage-filter"><option value="">すべて</option><option>初回</option><option>改修</option></select></div>
+<div><label for="family-filter">入口系統</label><select id="family-filter"><option value="">すべて</option></select></div>
+<div><label for="mode-filter">注文方式</label><select id="mode-filter"><option value="">すべて</option><option value="0">成行</option><option value="1">上限付き</option><option value="2">待機指値</option></select></div>
+<div><label for="query-filter">ID検索</label><input id="query-filter" type="search" placeholder="例：A6、P6"></div>
+<div><label for="sort-select">並び順</label><select id="sort-select"><option value="id">段階・ID順</option><option value="TOPIX">TOPIX収支順</option><option value="NK225">日経収支順</option></select></div>
+</div><p id="result-count" class="count"></p>
+<div class="table-wrap"><table><thead><tr><th scope="col">ID・入口</th><th scope="col">注文／管理</th><th scope="col">TOPIX 利益</th><th scope="col">TOPIX 損失</th><th scope="col">TOPIX 収支</th><th scope="col">TOPIX 金額割合／組数</th><th scope="col">日経 利益</th><th scope="col">日経 損失</th><th scope="col">日経 収支</th><th scope="col">日経 金額割合／組数</th></tr></thead><tbody id="all-results"></tbody></table></div>
+</section>
+<details><summary>管理条件と注文の意味</summary><div class="compact"><p>P1：利確1／損切2呼値／15秒。P2：2／2／30秒。P3：3／2／60秒。P4：2／3／60秒。P5：2呼値順行後に1呼値トレール／初期損切2／60秒。P6：4／3／120秒。</p><p>呼値はTOPIXラージ0.5pt、日経ラージ10円。枚数はTOPIXミニ10枚・日経マイクロ20枚。保有秒数は返済判断までの期限で、その後に発注待ちがあります。</p><p>上限付きは到着時の不利1呼値以内で約定。待機指値は自己側気配に指し、相手気配が1呼値貫通した時だけ当初指値で約定する保守モデル。気配接触だけで全量約定したとは扱いません。</p><p>Aは3秒持続確認を待たない入口、Vは共同進行の逆方向、Rは初回代表の管理改修。期間内に取引がない条件も掲載します。</p></div></details>
+<footer class="footer">前16：2026/09/21デイ～09/30ナイト。金額割合＝総利益÷（総利益＋総損失）。無取引は「—」。</footer>
+</main><script id="report-data" type="application/json">__DATA__</script><script>__COMMON__</script><script>__SCRIPT__</script></body></html>

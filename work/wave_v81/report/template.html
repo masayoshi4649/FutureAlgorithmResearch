@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>時間で区切らない方向追従と全セッション損益</title><style>__STYLE__</style></head><body><main>
+<!--
+[コンポーネント概要]
+#method-select と #delay-select で方法・注文待ちを選ぶと、条件説明・期間会計・全30場・保有分布が同期します。
+#session-results は全30場の両商品損益を常時表示する表です。
+#holding-results と #holding-bins は、保有時間を事前条件ではなく実績として表示します。
+.table-wrap は狭い画面で表の内部だけを横スクロールさせます。
+.gain と .loss は利益と損失を色分けし、負の金額はマイナス符号でも区別します。
+-->
+<div class="eyebrow">00077 · 方向の変化で売買 · 保有時間は結果</div><h1>方向が揃えば入り、変われば降りる</h1>
+<div id="conclusion" class="lead"></div>
+<div class="description-grid"><div><h3>入口</h3><p>日経とTOPIXの方向を更新し続け、同方向になった時点で新規を判断。</p></div><div><h3>途中</h3><p>時刻や小幅利益では切らず、選んだ方向の出口条件が成立するまで保有。</p></div><div><h3>出口</h3><p>支持消失・片方反対・双方反対の3方式を比較。場末は必ず返済。</p></div></div>
+<p class="section-intro">TOPIXミニ10枚／日経マイクロ20枚。新規・返済とも主条件は5秒の注文待ち。ラージ板を約定にも代用し、時計は最終約定時刻の代理です。実受信から5秒以内の成績を保証する再現ではありません。全30場は既知データです。</p>
+<nav class="links"><a href="#all-sessions">全セッション損益</a><a href="#holding">実際の保有時間</a><a href="#latency">発注待ちの比較</a><a href="__ALL__">全条件の前半比較</a></nav>
+
+<section class="panel"><h2>3つの考え方と、前半で選んだ代表</h2>
+<p class="section-intro">価格の方向転換、板フロー、価格と板の一致を比較。値幅やイベント数は「どの変化を方向転換とするか」の尺度で、利確目標や保有期限ではありません。</p>
+<div class="table-wrap"><table class="six-methods"><thead><tr><th scope="col">方法</th><th scope="col">TOPIX 全30収支／金額割合</th><th scope="col">日経 全30収支／金額割合</th><th scope="col">TOPIX 後14収支</th><th scope="col">日経 後14収支</th></tr></thead><tbody id="overview-results"></tbody></table></div>
+</section>
+
+<details><summary>赤字が減った理由と、まだ利益にならない理由</summary>
+<div class="compact"><p>細かな方向反転に毎回参加すると、気配差と手数料が積み上がります。粗い方向へ変えて回数は減りましたが、前16場の価格型D1は一組平均が両商品で悪化。価格＋板型D3の赤字縮小も、約8割は気配差と料金の減少でした。</p><p>板型D2では、入口の支持が消えても「双方が強く反対」まで待つ間に逆行が進む例がありました。一方、支持が消えたら即返済する完全再生は取引が増えて悪化。価格による出口を別にした改修も、日経の損失を減らす一方でTOPIXの利益を削りました。単純に早く降りれば解決する結果ではありません。</p><p>下は再選定D2・注文待ち5秒・全30場。同じ実約定時刻での中値進行はプラスですが、実際に売買する気配との差と料金に届きません。中値は約定可能な価格ではなく、費用を除いた新しい戦略の成績でもありません。</p></div>
+<div class="table-wrap"><table><thead><tr><th scope="col">商品</th><th scope="col">中値進行</th><th scope="col">気配差の負担</th><th scope="col">手数料</th><th scope="col">最終収支</th></tr></thead><tbody id="cost-results"></tbody></table></div>
+<p class="compact">二市場版は下の対応する単独版より赤字が少なくなりました。ただし、売買回数を減らした効果も含みます。二市場を見ることだけで、将来方向を正しく予測できると証明したわけではありません。</p>
+<div class="table-wrap"><table><thead><tr><th scope="col">再選定代表</th><th scope="col">TOPIX 二市場／単独</th><th scope="col">日経 二市場／単独</th></tr></thead><tbody id="solo-results"></tbody></table></div>
+</details>
+
+<section class="panel" id="all-sessions"><h2>全セッションの利益・損失・収支</h2>
+<div class="controls"><div><label for="method-select">手法（単独対照も掲載）</label><select id="method-select"></select></div><div><label for="delay-select">新規・返済の注文待ち</label><select id="delay-select"><option value="5">5秒（主条件）</option><option value="1">1秒</option><option value="0">0秒（理想側）</option></select></div></div>
+<div class="description-grid"><div><h3>入口</h3><p id="entry-text"></p></div><div><h3>途中</h3><p id="during-text"></p></div><div><h3>出口</h3><p id="exit-text"></p></div></div><p id="execution-text" class="compact muted"></p>
+<p class="table-key">呼値は観測するラージの値幅：TOPIX 0.5pt、日経10円。板フローの回数は秒数ではなく、非ゼロの注文フロー変化回数。方向を判断した時点から発注し、昔の天底まで売買時刻を戻しません。</p>
+<div class="table-wrap"><table><thead><tr><th scope="col">期間</th><th scope="col">商品</th><th scope="col">利益</th><th scope="col">損失</th><th scope="col">収支</th><th scope="col">金額利益割合</th><th scope="col">決済組数</th><th scope="col">平均勝ち／負け</th><th scope="col">黒字／赤字／休止場</th></tr></thead><tbody id="period-results"></tbody></table></div>
+<p class="table-key">手数料後。金額利益割合＝総利益÷（総利益＋総損失）。損失は負号で表示。無取引は勝ちに含めません。TOPIXと日経の円金額は合算して順位を付けません。</p>
+<div class="table-wrap"><table class="session-table"><caption id="session-caption"></caption><thead><tr><th scope="col" rowspan="2">セッション</th><th scope="colgroup" colspan="3">TOPIXミニ10枚</th><th scope="colgroup" colspan="3">日経マイクロ20枚</th></tr><tr><th scope="col">利益</th><th scope="col">損失</th><th scope="col">収支</th><th scope="col">利益</th><th scope="col">損失</th><th scope="col">収支</th></tr></thead><tbody id="session-results"></tbody></table></div>
+<details><summary>選択した方法の固定設定</summary><p id="exact-condition" class="compact"></p></details>
+</section>
+
+<section class="panel" id="holding"><h2>保有時間は、方向に従った結果</h2><p class="section-intro">上で選択した方法・発注待ちの全30場。短時間でも長時間でも、時間そのものを通常返済の理由にしていません。</p>
+<div class="table-wrap"><table><thead><tr><th scope="col">商品</th><th scope="col">平均</th><th scope="col">中央値</th><th scope="col">95%点</th><th scope="col">最長</th><th scope="col">決済組数</th></tr></thead><tbody id="holding-results"></tbody></table></div>
+<div class="table-wrap small-gap"><table><thead><tr><th scope="col">商品</th><th scope="col">5秒以下</th><th scope="col">5秒超～30秒</th><th scope="col">30秒超～1分</th><th scope="col">1分超～5分</th><th scope="col">5分超～30分</th><th scope="col">30分超</th></tr></thead><tbody id="holding-bins"></tbody></table></div>
+</section>
+
+<section class="panel"><h2>追加検証後、利益と損失はどう変わったか</h2><p class="section-intro">注文待ち5秒・全30場。同じ考え方の初回代表と前半で再選定した代表の比較です。初回が残れば同じ方法です。複数の条件を変えた場合、単一部品だけの効果とは扱いません。</p>
+<div class="table-wrap"><table><thead><tr><th scope="col">初回 → 再選定</th><th scope="col">商品</th><th scope="col">減った総損失</th><th scope="col">失った総利益</th><th scope="col">収支の変化</th><th scope="col">1組平均 前→後</th><th scope="col">組数 前→後</th></tr></thead><tbody id="change-results"></tbody></table></div>
+<p class="table-key">収支の変化＝減った総損失−失った総利益。合計赤字の減少と、取引1回の質の改善を分けます。負の「失った総利益」は利益が増えた意味です。</p>
+</section>
+
+<section class="panel" id="latency"><h2>同じ方法で注文待ちを変えた結果</h2><p class="section-intro">0・1・5秒の後、次の有効観測まで約定を待ちます。5秒は実際の待ち時間の上限ではありません。</p>
+<div class="table-wrap"><table><thead><tr><th scope="col">方法</th><th scope="col">商品</th><th scope="col">0秒 全30収支</th><th scope="col">1秒 全30収支</th><th scope="col">5秒 全30収支</th></tr></thead><tbody id="latency-results"></tbody></table></div></section>
+
+<details><summary>相手情報を3秒以内に限定した確認</summary><p class="compact">主条件は自己の現在観測と、厳密に過去にある相手情報（古さ10秒以内）。相手を3秒以内へ制限した同じ固定方法も比較します。欠測を中立又は反対方向に置き換えていません。D2・D3のTOPIXは黒字に変わりましたが、日経は赤字で、両商品共通の黒字ではありません。</p><div class="table-wrap"><table><thead><tr><th scope="col">方法</th><th scope="col">TOPIX収支／組数</th><th scope="col">日経収支／組数</th></tr></thead><tbody id="strict-results"></tbody></table></div></details>
+
+<details><summary>検証条件と、損益閲覧前の品質修正</summary><div class="compact"><p id="pdca-summary"></p><p>固定利確・固定損切り・保有期限・取引再開までの固定休止は設けません。セッション終了120秒前から新規を止め、60秒前に全返済を判断します。これは場またぎを防ぐ例外です。返済待ち中にも価格は動き、逆方向への新規は元玉を返済してから再判断します。</p><p id="quality-fix"></p><p>板時計は最終約定時刻の代理で、真の受信時刻ではありません。自己の既読行と厳密過去の相手を用いても、実際に同時受信できたことまでは証明しません。ミニ／マイクロの板深さ、待ち順位、部分約定も未再現です。</p><p>手数料はTOPIXミニ10枚の往復836円、日経マイクロ20枚の往復440円。売買気配差は約定値に含め、別に料金を引きます。全建玉を場内返済し、負け玉を残して利益だけ集計しません。</p><p>前16場で代表を固定してから後14場を確認。全30場は旧研究でも既知なので、未知将来の証明ではありません。後半の新しい再生結果から代表を選び直していない範囲の確認です。</p></div><ul id="research-sources" class="source-list"></ul><p><a href="__ALL__">全条件の前半比較</a></p></details>
+<footer class="footer">保存データだけを使用。現在API取得・実注文なし。<a href="../index.html">調査一覧へ</a></footer>
+</main><script id="report-data" type="application/json">__DATA__</script><script>__COMMON__</script><script>__SCRIPT__</script></body></html>

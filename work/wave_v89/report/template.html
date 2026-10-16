@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>仮想成績で停止再開する手法と全セッション損益</title><style>__STYLE__</style></head><body>
+<!--
+[コンポーネント概要]
+#conclusion は事前主案と前半選定参考の保存済み結論を短く表示する。
+#comparison は常時参加対照と主案・参考・両商品80割合候補を同じ指標で比較する。
+#method-select は全81条件を切替え、#session-results の全30場損益を更新する。
+#method-rule は選択条件の停止と再開を平易に説明する。
+#period-results と #source-results は期間別と源別の会計を折畳内へ示す。
+#gate-results は配分がある源の新規許可・見送り・準備中件数を示す。
+#difference-results は見送った損失と失った利益を、同配分の常時参加と比較する。
+#case-results は回復初動を見送り、その後に再開した具体4親を事後診断として示す。
+.gain/.loss は金額の符号を示す。損失の絶対額は赤字で表示する。
+.scroll は表だけを横スクロールさせ、本文の横幅を広げない。
+-->
+<main>
+<header><p class="eyebrow">00085 · 仮想成績で参加を停止・再開</p><h1>成績が悪い手法を、一時的に休ませる</h1>
+<p class="muted">既知30セッション。手数料後。片方向合計上限：TOPIXミニ10枚／日経225マイクロ20枚。</p></header>
+<section class="lead" aria-label="結論"><div id="conclusion"></div></section>
+<section><h2>常時参加と比べて改善したか</h2><p class="small">同じ固定配分で比較します。利益割合は総利益÷（総利益＋総損失）。決済勝率ではありません。80%達成の判定は表示の丸め前です。</p>
+<div class="scroll"><table id="comparison"><thead><tr><th rowspan="2">条件</th><th colspan="4">TOPIXミニ</th><th colspan="4">日経225マイクロ</th></tr><tr><th>収支</th><th>利益割合</th><th>黒字場</th><th>最大下落</th><th>収支</th><th>利益割合</th><th>黒字場</th><th>最大下落</th></tr></thead><tbody></tbody></table></div></section>
+<section id="sessions"><div class="section-title"><h2>各セッションの利益・損失・収支</h2><label>条件 <select id="method-select"></select></label></div>
+<p id="method-rule" class="rule"></p><p id="allocation" class="small"></p>
+<p class="small">利益・損失は手数料後の源別親取引で分類。収支の下は新規／返済枚数。無取引は勝ちに含めません。</p>
+<div class="scroll"><table><thead><tr><th rowspan="2">セッション</th><th colspan="3">TOPIXミニ</th><th colspan="3">日経225マイクロ</th></tr><tr><th>利益</th><th>損失</th><th>収支</th><th>利益</th><th>損失</th><th>収支</th></tr></thead><tbody id="session-results"></tbody></table></div></section>
+<details id="difference-detail"><summary>停止で避けた損失と、逃した利益</summary>
+<p class="small">同じ配分の常時参加に対する差。新規を見送った親の途中へは入りません。採用親の入口価格・途中管理・返済は対照と同じです。</p>
+<div class="scroll"><table><thead><tr><th>商品</th><th>常時参加の収支</th><th>停止再開の収支</th><th>見送った損失</th><th>逃した利益</th><th>収支差</th></tr></thead><tbody id="difference-results"></tbody></table></div></details>
+<details id="case-detail"><summary>回復の初動を逃し、その後の再開で負けた例</summary>
+<p class="small">事前主案のGU各1親。TOPIX 6枚／日経12枚。見送り親の収支は常時参加対照による事後診断で、セッション合計ではありません。</p>
+<div class="scroll"><table><thead><tr><th>商品</th><th>セッション</th><th>新規判断時刻</th><th>当時の過去16親割合</th><th>判断</th><th>対照親の収支</th></tr></thead><tbody id="case-results"></tbody></table></div>
+<p class="small">昼の大勝ちを仮想成績へ反映して60%を回復し、夜は参加を再開。その最初の親は赤字でした。将来の親収支を採否に使っていません。</p></details>
+<details id="period-detail"><summary>前半・後半、手数料、源別損益</summary>
+<div class="scroll"><table><thead><tr><th>商品</th><th>期間</th><th>収支</th><th>利益割合</th><th>黒字／赤字／無取引</th><th>親取引</th><th>手数料</th><th>最大下落</th><th>最大勝ち3場を除外</th></tr></thead><tbody id="period-results"></tbody></table></div>
+<div class="scroll secondary"><table><thead><tr><th>商品</th><th>源</th><th>利益</th><th>損失</th><th>収支</th><th>手数料</th><th>親取引</th></tr></thead><tbody id="source-results"></tbody></table></div>
+<div class="scroll secondary"><table><thead><tr><th>商品</th><th>期間</th><th>新規判断</th><th>許可</th><th>見送り</th><th>4親未満の許可</th><th>常時仮想の親数</th></tr></thead><tbody id="gate-results"></tbody></table></div>
+<p class="small">新規判断は配分がある源だけを集計。許可後に場末の新規予約が取消される場合もあり、許可数と実親数は一致しない場合があります。</p>
+<p class="small">前16で選ぶ参考は後14で選び直しません。全30場は過去の探索で既知であり、未知期間の成績ではありません。最大下落は場内の全原板行の清算時価を場順に接続して算出します。</p></details>
+<details><summary>停止と再開の仕組み</summary><div class="rules">
+<p>3手法の仮想口座は常時動かします。各商品の各手法ごとに、完了した仮想親取引の手数料後損益だけで次の新規を許可・見送りします。実取引を停止していても、仮想成績が回復すれば再開できます。</p>
+<p>金額比の方式は直近8／16親の利益割合を50／60／70／80%と比較。最初の4親未満と、利益・損失とも0の窓は許可します。逆対照は基準未満を採用。連敗方式は1／2／3連敗で停止し、仮想親が0以上なら連敗を解除します。</p>
+<p>新規判断より厳密に前の時計で公開された完了だけを参照。同じ時計の結果や、未返済の含み損益は使いません。途中返済の整数切捨てで仮想残数が先に0になっても、元の親が終わるまで成績を公開しません。</p>
+<p>持越すのは過去成績だけです。建玉は全源ともセッション内で全返済。配分枠は親の途中で増減せず、空いた枠も他源へ貸しません。</p>
+</div></details>
+<details><summary>3手法と約定・会計</summary><div class="rules">
+<p><b>GU（E01_G_U）</b>：両市場の方向へ追跡新規し、広いトレールと途中減量で管理。米国寄付き前後は静観。</p>
+<p><b>M3逆・360分</b>：両市場のEMAと逆方向へ確認幅で入り、損切りとトレールで返済する中期逆張り。</p>
+<p><b>C03</b>：直前1分の大きな値動きから、逆向きへの動きを確認して入る短期反転。</p>
+<p>停止判定以外の紙上判断と途中管理は元どおり。源の公開注文より後の最初の有効CurrentPriceで約定し、固定5秒遅延は加えません。価格はラージの観測値で、実ミニ／マイクロの板や待ち行列は再現していません。</p>
+<p>各実注文にTOPIX41.8円／日経11円×枚数の立会手数料を課し、1円未満を切捨て。異なる手法の親をまとめて損失を消さず、親別利益・損失と全体の清算時価を別に検算します。</p>
+</div></details>
+<details id="all-detail"><summary>全81条件の比較</summary><div class="scroll"><table><thead><tr><th rowspan="2">条件</th><th colspan="4">TOPIXミニ</th><th colspan="4">日経225マイクロ</th></tr><tr><th>収支</th><th>利益割合</th><th>黒字場</th><th>最大下落</th><th>収支</th><th>利益割合</th><th>黒字場</th><th>最大下落</th></tr></thead><tbody id="all-comparison"></tbody></table></div></details>
+<footer>保存データの仮想検証。現在API取得・実注文は0件。</footer>
+</main><script id="report-data" type="application/json">__DATA__</script><script>__SCRIPT__</script></body></html>

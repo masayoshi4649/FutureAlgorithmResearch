@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>独立価格と現在確認の説明と全セッション損益</title>
+<style>__STYLE__</style>
+</head>
+<body>
+<!--
+[コンポーネント概要]
+#conclusion は正式会計に基づく短い結論です。未完結果はゼロへ置換しません。
+#comparison は事前主・前16場参考・同執行対照の全31場成績を並べます。
+#method-select は53条件を切り替え、入口・途中・出口と全31場の損益を更新します。
+#session-results は手数料後の利益・損失・収支、利益玉・損失玉枚数を表示します。
+#period-detail と #source-detail は既知期間・戦略・売買方向の会計を確認する詳細です。
+#cause-detail は入口と再参加を分けた比較及び具体的な失敗理由を表示します。
+.money は正式な原数値を属性に持つ金額セルです。損失額は正の絶対額です。
+.table-wrap 内だけを横スクロールし、狭い画面でも本文の横溢れを防ぎます。
+-->
+<main>
+<header><p class="eyebrow">00090 · 保存済み31セッション · 手数料後</p><h1>各セッションの赤字を減らし、収支を安定させられたか</h1><div id="conclusion"></div><p class="note">全31場は既知です。事前主I3_G1_S0_T1を固定し、前16の参考は損失安定性で選定。無取引は勝ちに含めず、入力・未来検査の合格も収益の成功とは扱いません。</p></header>
+<section id="comparison-section"><h2>赤字セッションと安定性を優先した比較</h2><p class="note">平均赤字・最大赤字は、赤字セッションの手数料後収支の絶対額。黒字率は取引のあった場を母数にします。親別の金額利益割合の目標は80%。</p><p class="note">下方偏差は「共通上限10／20枚×商品倍率×当該場の最初の正常価格0.1%」で割った負の場収支の二乗和を、全評価場数で割った平方根。少枚数R2の円損失縮小は実運用リスク削減として見ますが、手法の優位とは区別します。</p><div class="table-wrap"><table id="comparison"><thead><tr><th rowspan="2">手法</th><th colspan="7">TOPIXミニ</th><th colspan="7">日経マイクロ</th></tr><tr><th>平均赤字</th><th>最大赤字</th><th>黒字／活動場</th><th>無取引</th><th>下方偏差</th><th>全31収支</th><th>利益割合</th><th>平均赤字</th><th>最大赤字</th><th>黒字／活動場</th><th>無取引</th><th>下方偏差</th><th>全31収支</th><th>利益割合</th></tr></thead><tbody></tbody></table></div></section>
+<section id="sessions"><div class="chooser"><h2>全セッションの損益</h2><label for="method-select">手法<select id="method-select"></select></label></div><h3 id="method-title"></h3><div id="method-rule"></div><p class="note">親ごとの手数料後金額。下段は利益玉／損失玉の決済枚数。「勝−負」は枚数の差です。無取引は勝ちに含めません。</p><div class="table-wrap"><table><thead><tr><th rowspan="2">セッション</th><th colspan="3">TOPIXミニ</th><th colspan="3">日経マイクロ</th></tr><tr><th>利益</th><th>損失</th><th>収支</th><th>利益</th><th>損失</th><th>収支</th></tr></thead><tbody id="session-results"></tbody></table></div></section>
+<details id="period-detail"><summary>前16・後15と安定性</summary><div class="table-wrap"><table><thead><tr><th>期間</th><th>商品</th><th>収支</th><th>利益割合</th><th>黒字／赤字／無取引</th><th>決済親</th><th>手数料</th><th>最大下落</th><th>最大利益日を除く収支</th></tr></thead><tbody id="period-results"></tbody></table></div></details>
+<details id="stability-detail"><summary>平均赤字・最大赤字・中央値と下位25%</summary><div class="table-wrap"><table><thead><tr><th>期間</th><th>商品</th><th>平均赤字</th><th>最大赤字</th><th>活動黒字率</th><th>下方偏差</th><th>活動RMS補助</th><th>活動収支中央値</th><th>活動収支下位25%</th><th>全場収支中央値</th><th>全場収支下位25%</th><th>最大場内下落</th></tr></thead><tbody id="stability-results"></tbody></table></div><p class="note">「比較単位」は売買幅や円額ではありません。主下方偏差は全場数を分母とし、活動RMS・活動収支分位は取引のあった場だけ。全場の円収支分位には無取引を含めます。無取引を勝ちには数えません。配分M82は追従8と反発2（日経16と4）。J8との差は追加、J10との差は同上限での置換です。</p></details>
+<details id="source-detail"><summary>戦略と売買方向の寄与</summary><div class="table-wrap"><table><thead><tr><th>商品</th><th>戦略</th><th>利益</th><th>損失</th><th>収支</th><th>手数料</th><th>決済親</th></tr></thead><tbody id="source-results"></tbody></table></div><div class="table-wrap"><table><thead><tr><th>商品</th><th>入口方向</th><th>利益</th><th>損失</th><th>収支</th><th>決済親</th></tr></thead><tbody id="direction-results"></tbody></table></div></details>
+<details id="cause-detail"><summary>失敗理由と部品の比較</summary><div id="cause-general"></div><div id="cause-text"></div><div class="table-wrap"><table><thead><tr><th>商品</th><th>比較対象</th><th>収支の差</th><th>利益の差</th><th>損失の差</th><th>手数料の差</th><th>決済親の差</th></tr></thead><tbody id="cause-results"></tbody></table></div><p class="note">差は選択手法−比較対象。損失差が負なら親別損失減少。価格入力・現在資格・停止・利確を単軸で比較し、最大利益だけで採用しません。</p><div id="conclusion-detail"></div></details>
+<details id="rules-detail"><summary>条件と検証の範囲</summary>
+<p><b>追従入口：</b>両指数が5分で各0.03%以上同方向に進み、自己の15秒買い・売り気配が各1呼値以上順行、相手の15秒価格は逆行しないことを確認。5分進行量の弱い側が強い側の25%以上で、明確な逆15秒注文増減がなければ新規。逆向きの証拠は有効窓・非ゼロ3イベント以上・入口方向の注文増減比−10%以下。不明や少数を逆向きの証拠にはしません。</p>
+<p><b>価格と板：</b>旧中値、深板資格を分離した中値、旧源点の約定価格、全原本の約定価格を比較。価格の観測源と、回復を見る旧mid・実約定の旧bid／askを別に保持します。正常な約定価格があっても不正板を約定可能へ変えません。</p>
+<p><b>入口：</b>既知始値の0.1%幅。旧の往復準備→1幅逸脱→双方の観測mid極値から0.25幅回復。現在の価格材料が観測可能か、現在往復の確認済みかを初回回復で別判定。不合格は同じ古い回復を再利用しません。</p>
+<p><b>出口：</b>LastPrice1幅停止、又は新規判断時のmid極値の1呼値外を清算bid／askが破る停止。利確は実新規からLastPrice3幅、又は当時の旧中心への帰還。中心が実新規の利益側になくても入口を暗黙除外せず、返済net負は損失です。</p>
+<p><b>計算範囲：</b>保存ラージ板を代理に、次有効買ask／売bidで全量仮想約定。TOPIXミニ41.8円／枚・日経マイクロ11円／枚の片道料金を注文ごとに切捨て。全建玉を場内返済、残玉も清算気配・返済料込みで評価。立会時間は<a href="https://www.jpx.co.jp/derivatives/rules/trading-hours/">JPXの仕様</a>を参照。5秒の追加悪化は含めません。</p>
+<p><b>未証明：</b>真の受信時計、実ミニ／マイクロ板、全数量の約定、未知セッション。双方帰還には返済後の新しい相手源と代理時計を要求しますが、真の受信時刻の保証ではありません。</p>
+</details>
+<footer>保存データのみ。現在API取得0回、実注文0回。</footer>
+</main>
+<script id="report-data" type="application/json">__DATA__</script>
+<script>__SCRIPT__</script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>E01原版と改修の説明と全セッション損益</title><style>__STYLE__</style></head>
+<body><main>
+<!--
+[コンポーネント概要]
+#model-select は約定仮定、#method-select は全25条件の表示対象を選択する。
+#primary-results は主3条件を親組会計で比べる。#period-results は選択条件の前半・後半・全体を表示する。
+#session-results は全30場と合計の部分決済損益・枚数を折り畳まず表示する。
+.table-wrap 内で横スクロールし、狭い画面でページ全体を横へ広げない。
+.loss は損失額、負の収支、費用と最大下落に使用し、＋記号は付けない。
+-->
+<div class="eyebrow">00081 · 原版と改修を同条件で比較</div>
+<h1>E01原版と改修の説明と全セッション損益</h1>
+<div class="lead"><strong id="headline"></strong><p id="conclusion-note"></p></div>
+<p class="section-intro">TOPIXミニ初回5枚・日経マイクロ初回10枚。片方向上限10枚／20枚、追加なし・場内全返済。手数料込み。主3条件を成績を見る前に固定し、4部品16通りと時間見送り9条件を比較しました。</p>
+<div class="controls"><div><label for="model-select">約定の仮定（全表に適用）</label><select id="model-select"><option value="observed">観測価格で全再生（主比較）</option><option value="specified">旧指定線で全再生</option></select></div></div>
+<div class="controls"><div><label for="account-select">利益・損失の集計単位（全表に適用）</label><select id="account-select"><option value="cycle">初回〜全返済の親組（主評価）</option><option value="leg">部分決済ごと・枚数を確認</option></select></div></div>
+<p id="model-note" class="section-intro"></p>
+
+<section class="panel"><h2>主3条件の全30場</h2>
+<p class="table-key"><span id="account-note"></span> 平均勝ち／負けは1件平均の比で、総利益／総損失の比とは別です。</p>
+<div class="table-wrap"><table><thead><tr><th>固定した条件</th><th>商品</th><th>利益</th><th>損失</th><th>収支</th><th>金額利益割合</th><th>平均勝ち／負け</th><th>黒字場／30</th><th class="count-label">親組数</th></tr></thead><tbody id="primary-results"></tbody></table></div>
+<p class="links"><a href="__ALL__">全25条件の比較</a><a href="#sessions">各セッションの金額・枚数</a></p>
+</section>
+
+<section class="panel"><h2>何を変えたか</h2>
+<div class="table-wrap"><table class="parts-table"><thead><tr><th>部品</th><th>追加する判断</th><th>狙いと代償</th></tr></thead><tbody>
+<tr><th>G · 入口再確認</th><td>新規待機中も両市場のEMA開始条件を要求。</td><td>古い方向への参加を減らすが、回復前の機会も逃す。</td></tr>
+<tr><th>P · 利益保護</th><td>実組が1.5Rに届いた後、最高利益の半分まで戻ったら返済。</td><td>十分伸びた利益を守るが、その後の再上昇・再下落を逃す。</td></tr>
+<tr><th>D · 早期半減</th><td>初期の逆行に両市場の短期悪化が重なれば、一度だけ半減。</td><td>失敗玉を小さくするが、回復した勝ち玉も小さくなる。</td></tr>
+<tr><th>C · 同方向の休止</th><td>同方向2連敗後、両市場のEMA条件が崩れて再成立するまで停止。</td><td>連続した失敗を抑えるが、休止中の本命の波も逃す。</td></tr>
+</tbody></table></div>
+<p class="compact">観測価格・全30場では、PとDは他の部品を揃えた各8対照すべてで、両商品の収支を悪化させました。勝ちの利益を削り過ぎ、Cの効果も商品・組合せで分かれました。</p>
+<p class="section-intro">R＝初回枚数×準備時ATR×円倍率。Pの組利益は実現済み利益＋残玉の現在値評価−既払料−見込返済料です。新しい返済判断は次の保存観測から有効で、利益下限を保証しません。</p>
+<div class="controls"><div><label for="method-select">詳しく見る手法</label><select id="method-select"></select></div></div>
+<div class="description-grid"><div><h3>入口</h3><p id="entry-description"></p></div><div><h3>途中判断</h3><p id="during-description"></p></div><div><h3>出口</h3><p id="exit-description"></p></div></div>
+<p id="restart-description" class="compact"></p>
+<p class="section-intro">ATRは確定5分足だけで計算します。原E01の最長360分と再参加待ちを維持し、機械学習や即ドテンは追加していません。</p>
+</section>
+
+<section class="panel"><h2>市場開始の前後を見送る比較</h2>
+<p class="section-intro">J＝日本の開始後30分（08:45〜09:15）。U＝米国現物開始の前後15分。JU＝両方。対象時間は新規を止め、持っている玉も返済して静観します。原3条件に同じ時間制御を加えました。</p>
+<p class="section-intro">米国の基準は<a href="https://www.nyse.com/trade/hours-calendars">NYSE公式の東部時間09:30</a>。日付ごとに America/New_York から換算し、夏時間は日本22:15〜22:45、標準時間は23:15〜23:45を見送ります。</p>
+<p class="section-intro">今回の09/21〜10/09はすべて夏時間。冬時間は時計変換だけの人工検査で、相場成績は未検証です。米国の休場日・週末には米国窓を設けません。</p>
+<p class="section-intro">静観が終わっても元の通常影が終わるまで待つため、再参加の見送りは指定した30分より長くなる場合があります。</p>
+<div class="table-wrap"><table><thead><tr><th>基準手法</th><th>見送り</th><th>TOPIX収支</th><th>元からの増減</th><th>利益割合</th><th>最大下落</th><th>日経収支</th><th>元からの増減</th><th>利益割合</th><th>最大下落</th></tr></thead><tbody id="time-results"></tbody></table></div>
+<p id="time-insight" class="compact"></p>
+<p class="table-key">全30場。損益が良かった時間を後から選んだ比較ではなく、ユーザー指定で計算前に固定した時間帯です。主3条件を差し替える選抜には使いません。</p>
+</section>
+
+<section class="panel"><h2>前半・後半・全体</h2>
+<div class="table-wrap"><table><thead><tr><th>期間</th><th>商品</th><th>利益</th><th>損失</th><th>収支</th><th>金額利益割合</th><th>黒字／取引した場</th><th>最大1場利益を除く収支</th><th>最大下落</th></tr></thead><tbody id="period-results"></tbody></table></div>
+<p class="table-key">集計単位は上部選択と同じ。最大1場利益の除外は1セッション単位で、昼夜合計の1日とは異なります。前16・後14の全データは既知です。</p>
+</section>
+
+<section class="panel" id="sessions"><h2>全30セッションの金額・枚数</h2>
+<p class="table-key"><span id="session-account-note"></span> 全場の残玉は0枚です。</p>
+<div class="table-wrap"><table class="session-table"><thead><tr><th rowspan="2">セッション</th><th colspan="3">TOPIXミニ · 初回5枚</th><th colspan="3">日経マイクロ · 初回10枚</th></tr><tr><th class="profit-label">利益</th><th class="loss-label">損失</th><th class="net-label">収支／新規・返済枚数</th><th class="profit-label">利益</th><th class="loss-label">損失</th><th class="net-label">収支／新規・返済枚数</th></tr></thead><tbody id="session-results"></tbody></table></div>
+<p id="quantity-note" class="table-key"></p>
+</section>
+
+<details><summary>改修で損失と利益がそれぞれどう変わったか</summary><p class="table-key">選択手法と原E01の差。集計単位は上部選択と同じ。損失を減らしても、それ以上に利益を失えば改善にはなりません。</p><div class="table-wrap"><table><thead><tr><th>期間</th><th>商品</th><th>利益の増減</th><th>損失の削減額</th><th>収支の増減</th><th class="delta-count-label">親組数の増減</th><th class="average-label">1組平均収支</th></tr></thead><tbody id="change-results"></tbody></table></div></details>
+<details><summary>旧28場との接続と、追加2場の影響</summary><p class="section-intro">00064の原E01・R01と今回の同じ28場を照合し、追加2場を別計上します。旧00044の23場・費用ゼロの数字とは比較条件が異なります。</p><div class="table-wrap"><table><thead><tr><th>条件</th><th>商品</th><th>以前の28場</th><th>今回の同じ28場</th><th>追加2場</th><th>今回の全30場</th></tr></thead><tbody id="old-results"></tbody></table></div></details>
+<details><summary>機械条件と検証上の限界</summary>
+<div class="compact"><p><strong>原E01：</strong>EMA15/60の差と長期線の傾きで主方向を定め、両市場が一致した場合に準備します。短期支持は板中値の30秒変化が0.05ATR超となった根拠を120秒有効とします。120秒連続の確認ではありません。</p>
+<p><strong>公開順：</strong>1分足は開始＋120秒、5分ATRは開始＋360秒、相手方向は追加60秒。前の観測で有効な注文の成立を、今の観測で分かった失効へ遡って取り消しません。</p>
+<p><strong>途中・出口：</strong>通常影・出口影・実玉を分けて元E01を再現します。影は判断用の仮想状態で、両建てではありません。元の悪化減量とDは同じ一回の減量枠を使います。Pは実組だけを保護し、通常影の時計を短縮しません。</p>
+<p><strong>時間帯の返済：</strong>事前に分かる開始時刻以降、最初の有効保存行の現在値で全返済します。指定線モデルでもこの返済は現在値です。窓内に有効観測がなく終了後まで飛んだ場合も初観測で返済し、窓内に清算できたとは扱いません。再開には窓後の新しい準備が必要で、通常影の時計は維持します。</p>
+<p><strong>約定：</strong>追加の固定時間遅延は0ですが、新設条件の同じ行へ遡った約定はしません。観測価格はラージのCurrentPriceで、実際のミニ／マイクロの売買気配や数量消化を再現した結果ではありません。時計はCurrentPriceTimeと保存順で、真の受信時刻ではありません。</p>
+<p><strong>手数料：</strong>TOPIXミニ41.8円／枚、日経マイクロ11円／枚を新規・返済に課し、注文合計を1円未満切捨て。部分返済へ新規料を按分しています。</p>
+<p><strong>評価：</strong>主3条件は成績で差し替えません。既知の全30場の時間順確認であり、未知の将来の安定性を証明するものではありません。App/E01は変更せず、現在API取得・実注文はありません。</p></div>
+</details>
+<p class="footer">結果の詳細は<a href="__ALL__">全25条件の比較</a>。原E01の説明と既往改修は00064・00065を参照しています。</p>
+</main><script id="report-data" type="application/json">__DATA__</script><script>__COMMON__
+__SCRIPT__</script></body></html>

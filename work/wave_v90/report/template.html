@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>二つの戦略への配分と全セッション損益</title>
+<style>__STYLE__</style>
+</head>
+<body>
+<!--
+[コンポーネント概要]
+#conclusion は保存済み会計に基づく短い結論です。
+#comparison は理論主・前半代表・固定併用・単独対照を同じ商品内で比較します。
+#method-select は42条件の切替です。選択に応じて説明と全30場の表を更新します。
+#session-results は手数料後の利益・損失・収支と決済枚数です。
+#period-detail と #source-detail は期間・源別会計を必要な時だけ開く詳細です。
+#cause-detail は単独対照又は固定併用との差を確認する領域です。
+.money は元数値を属性に保持するセルです。損失は絶対額、収支は正負で表示します。
+.table-wrap 内だけを横スクロールさせ、狭い画面で本文がはみ出すことを防ぎます。
+-->
+<main>
+<header><p class="eyebrow">00086 · 保存済み30セッション · 手数料後</p><h1>二つの戦略への配分と全セッション損益</h1><div id="conclusion"></div></header>
+<section id="comparison-section"><h2>どれが有望か</h2><p class="note">TOPIXミニ片方向10枚、日経マイクロ20枚が上限。金額利益割合＝総利益÷（総利益＋総損失）。銘柄同士の円額では順位を付けません。</p><div class="table-wrap"><table id="comparison"><thead><tr><th rowspan="2">手法</th><th colspan="4">TOPIXミニ</th><th colspan="4">日経マイクロ</th></tr><tr><th>収支</th><th>利益割合</th><th>黒字場</th><th>最大下落</th><th>収支</th><th>利益割合</th><th>黒字場</th><th>最大下落</th></tr></thead><tbody></tbody></table></div></section>
+<section id="sessions"><div class="chooser"><h2>全セッションの損益</h2><label for="method-select">手法<select id="method-select"></select></label></div><h3 id="method-title"></h3><p id="method-rule"></p><p class="note">利益・損失は、各源の返済済み親ごとに手数料後で分けて集計します。下段は利益玉／損失玉の決済枚数。「勝−負枚」は数量の差で、未決済枚数ではありません。</p><div class="table-wrap"><table><thead><tr><th rowspan="2">セッション</th><th colspan="3">TOPIXミニ</th><th colspan="3">日経マイクロ</th></tr><tr><th>利益</th><th>損失</th><th>収支</th><th>利益</th><th>損失</th><th>収支</th></tr></thead><tbody id="session-results"></tbody></table></div></section>
+<details id="period-detail"><summary>前半・後半・日中・夜間と安定性</summary><div class="table-wrap"><table><thead><tr><th>期間</th><th>商品</th><th>収支</th><th>利益割合</th><th>黒字／赤字／無取引</th><th>決済親</th><th>手数料</th><th>最大下落</th><th>最大利益日を除く収支</th></tr></thead><tbody id="period-results"></tbody></table></div></details>
+<details id="source-detail"><summary>追従と指値反発の寄与・売買方向</summary><p class="note">異なる源の利益と損失を相殺して勝率を作りません。配分の小さい源はその枚数の実会計です。</p><div class="table-wrap"><table><thead><tr><th>商品</th><th>戦略</th><th>利益</th><th>損失</th><th>収支</th><th>手数料</th><th>決済親</th></tr></thead><tbody id="source-results"></tbody></table></div><div class="table-wrap"><table><thead><tr><th>商品</th><th>入口方向</th><th>利益</th><th>損失</th><th>収支</th><th>決済親</th></tr></thead><tbody id="direction-results"></tbody></table></div></details>
+<details id="cause-detail"><summary>改善・悪化の内訳</summary><div id="cause-text"></div><div class="table-wrap"><table><thead><tr><th>商品</th><th>比較対象</th><th>収支の差</th><th>利益の差</th><th>損失の差</th><th>手数料の差</th><th>決済親の差</th></tr></thead><tbody id="cause-results"></tbody></table></div><p class="note">差は選択手法−比較対象。損失差が負なら損失が減少しています。状態選択は指値基準や後続注文も変えるため、「避けた損失−逃した利益」という単純な親の抜取りとは異なります。</p></details>
+<details id="rules-detail"><summary>入口・途中・出口と検証の範囲</summary><p><b>追従：</b>両市場の5分進行と短期維持、足並み、明確な逆の注文増減がないことを確認した旧J2入口。始値の0.4%幅で追尾し、30分を上限に返済します。</p><p><b>指値反発：</b>基準価格から8ラージ呼値下がれば買い、上がれば売りの指値を片側だけ予約。約定後は1幅の損切り、3幅の利確到達を判定し、成行返済します。上下二本の常設指値ではありません。</p><p><b>現在状態：</b>両市場の過去300秒の純変位÷総往復幅（ER）。高ERで旧J2の共通方向を満たせば追従、低ERで直前180秒範囲内かつ共通進行がなければ指値反発。間や欠測は不明。基本は双方更新を伴う10秒確認です。</p><p><b>取消：</b>未約定中に反発条件が失効したら、次の有効気配で指値成立を先に扱い、未約定なら取消。取消後の次原板価格から基準を再設定します。入口だけの旧比較では、不参加に都合よく基準を動かしません。追加Aは未予約・未保有のまま往復へ参加可能になった時だけ、当時価格に基準を更新します。</p><p><b>約定・限界：</b>ラージ板を代用し、成行は判断後の次有効買ask／売bid、追加Qの持続指値は後続気配が指値内へ到達した時の買ask／売bidで全量約定する代理です。旧27とAのみの対照は、価格改善を与えず元の指値で払う悲観模型です。状態格子は5秒ごとで、採用値は格子−1秒より古く、次格子まで旧状態を最大10秒使います。保存入力の全有効行で含み損・返済料を評価し、除外された異常気配行や未観測極値は補間しません。真の受信時計、板待ち順位、実ミニ・マイクロ板と全量約定は未検証です。</p><p><b>場末：</b>予約を取り消し、既知の終了前時刻で全返済します。セッションを跨ぎません。旧J2と場末の執行順が異なるため、旧損益との絶対一致を主張しません。</p><p><b>評価：</b>全30場は既知データです。前16場の参考選定と後14場の確認は未見検証ではありません。時間・価格の未来情報を売買判断へ使わず、無取引は勝ちに含めません。追従と反発では価格リスク幅が異なるため、枚数配分だけでリスクが均等になる訳ではありません。</p></details>
+<footer>保存済みデータのみ。現在API取得0回、実注文0回。</footer>
+</main>
+<script id="report-data" type="application/json">__DATA__</script>
+<script>__SCRIPT__</script>
+</body>
+</html>

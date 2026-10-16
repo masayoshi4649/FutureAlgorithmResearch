@@ -1,0 +1,45 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>安定して負ける手法の反転と全セッション損益</title><style>__STYLE__</style></head><body><main>
+<!--
+[コンポーネント概要]
+#pair-select と #delay-select が、元手法と反転手法の比較対象を切り替えます。
+#session-results は全30場について、両商品の元・反転の利益、損失、収支を常時表示します。
+#period-results は前半、後半、全体の会計を表示します。
+#regime-results は事後の相場分類であり、売買条件に使わない診断です。
+.table-wrap は狭い画面で表内だけを横スクロールさせます。
+-->
+<div class="eyebrow">00078 · 売買方向を反転して再生</div><h1>安定した赤字を反転すれば、黒字になるか</h1>
+<div id="conclusion" class="lead"></div>
+<p class="section-intro">TOPIXミニ10枚／日経マイクロ20枚。主条件は新規・返済とも発注待ち5秒、手数料込み。損益の符号を変えるだけでなく、売買の方向を反転して板を再生します。ラージ板を約定に代用し、時計は最終約定時刻の代理です。実受信から5秒以内の成績を保証するものではありません。</p>
+<nav class="links"><a href="#all-sessions">全セッション損益</a><a href="#latency">0・1・5秒比較</a><a href="#regimes">上昇・下落・横ばい</a><a href="__ALL__">全条件の前半比較</a></nav>
+
+<section class="panel"><h2>前半で固定した3候補の結果</h2><p class="section-intro" id="selection-description"></p>
+<div class="table-wrap"><table><thead><tr><th scope="col">元手法 → 反転</th><th scope="col">TOPIX 元収支</th><th scope="col">TOPIX 反転収支／金額割合</th><th scope="col">日経 元収支</th><th scope="col">日経 反転収支／金額割合</th><th scope="col">反転の黒字／赤字／休止場<br>TOPIX・日経</th></tr></thead><tbody id="overview-results"></tbody></table></div>
+<p class="compact" id="front-result-description"></p>
+</section>
+
+<details><summary>元が赤字でも、逆が黒字とは限らない理由</summary>
+<p class="compact">同じ時刻・同じ数量の成行なら、<strong>反転収支＝−元収支−2×（気配差＋手数料）</strong>。売買方向を変えても、買いは高い売気配、売りは低い買気配を使い、料金も再び払います。</p>
+<div class="table-wrap"><table><thead><tr><th scope="col">例</th><th scope="col">元方向の中値進行</th><th scope="col">気配差＋料金</th><th scope="col">元収支</th><th scope="col">反転収支</th></tr></thead><tbody><tr><th scope="row">方向を外す損失が費用より大きい</th><td class="loss">−2,000円</td><td>1,000円</td><td class="loss">−3,000円</td><td class="gain">1,000円</td></tr><tr><th scope="row">費用だけで負ける</th><td>0円</td><td>1,000円</td><td class="loss">−1,000円</td><td class="loss">−1,000円</td></tr></tbody></table></div>
+<p class="compact">上限付きの新規では、方向を変えると不成立や次回参加が変わり、同じ時刻の式は使えません。その場合も、反転した条件を最初から実行して会計します。元の損失総額だけでは、反転の利益を判定できません。</p>
+<p class="compact">実データの全30場・発注待ち5秒を同じ分解で表示します。中値進行は約定時刻の中値で測った説明用の値であり、中値で約定できた成績ではありません。Aは元と反転で約定経路が変わるため、中値進行も単純な正負の対になりません。</p>
+<div class="table-wrap"><table><thead><tr><th scope="col">組</th><th scope="col">商品</th><th scope="col">元の中値進行</th><th scope="col">元の気配差＋料金</th><th scope="col">元収支</th><th scope="col">反転の中値進行</th><th scope="col">反転の気配差＋料金</th><th scope="col">反転収支</th></tr></thead><tbody id="cost-results"></tbody></table></div>
+</details>
+
+<section class="panel" id="all-sessions"><h2>全セッションの利益・損失・収支</h2>
+<div class="controls"><div><label for="pair-select">元手法と反転手法の組</label><select id="pair-select"></select></div><div><label for="delay-select">新規・返済の発注待ち</label><select id="delay-select"><option value="5">5秒（主条件）</option><option value="1">1秒</option><option value="0">0秒（理想側）</option></select></div></div>
+<div class="description-grid"><div><h3>入口</h3><p id="entry-text"></p></div><div><h3>途中</h3><p id="during-text"></p></div><div><h3>出口</h3><p id="exit-text"></p></div></div><p id="execution-text" class="section-intro"></p>
+<p class="table-key">呼値は観測するラージの単位：TOPIX 0.5pt、日経10円。価格方向の幅であり、固定利確・損切り幅ではありません。板フローの回数は秒数ではありません。</p>
+<div class="table-wrap"><table><thead><tr><th scope="col">期間</th><th scope="col">商品</th><th scope="col">向き</th><th scope="col">利益</th><th scope="col">損失</th><th scope="col">収支</th><th scope="col">金額利益割合</th><th scope="col">組数</th><th scope="col">黒字／赤字／休止場</th></tr></thead><tbody id="period-results"></tbody></table></div>
+<p class="table-key">手数料後。金額利益割合＝利益÷（利益＋損失額）。損失は赤い負号表示。無取引は勝ちに数えません。夜間は開始日に帰属。商品間の円金額を合算して順位を付けません。</p>
+<div class="table-wrap"><table class="session-table inverse-table"><caption id="session-caption"></caption><thead><tr><th scope="col" rowspan="3">セッション</th><th scope="colgroup" colspan="6">TOPIXミニ10枚</th><th scope="colgroup" colspan="6">日経マイクロ20枚</th></tr><tr><th scope="colgroup" colspan="3">元の方向</th><th scope="colgroup" colspan="3">反転</th><th scope="colgroup" colspan="3">元の方向</th><th scope="colgroup" colspan="3">反転</th></tr><tr><th scope="col">利益</th><th scope="col">損失</th><th scope="col">収支</th><th scope="col">利益</th><th scope="col">損失</th><th scope="col">収支</th><th scope="col">利益</th><th scope="col">損失</th><th scope="col">収支</th><th scope="col">利益</th><th scope="col">損失</th><th scope="col">収支</th></tr></thead><tbody id="session-results"></tbody></table></div>
+</section>
+
+<section class="panel" id="latency"><h2>発注待ちを変えても残るか</h2><p class="section-intro">反転手法の全30場。指定秒の後、次の有効観測まで待つため、5秒は実待ち時間の上限ではありません。</p><div class="table-wrap"><table><thead><tr><th scope="col">反転手法</th><th scope="col">商品</th><th scope="col">0秒収支</th><th scope="col">1秒収支</th><th scope="col">5秒収支</th></tr></thead><tbody id="latency-results"></tbody></table></div></section>
+
+<section class="panel" id="regimes"><h2>上昇・下落・横ばいで分けた結果</h2><p class="section-intro" id="regime-description"></p><p class="table-key">上で選択した組の発注待ち5秒だけの事後診断。各商品の収録区間の始終を比べた分類で、日中ずっと同方向だった意味でも、横ばい中の値幅が小さい意味でもありません。取引や候補選択へ使っていません。</p><div class="table-wrap"><table><thead><tr><th scope="col">分類</th><th scope="col">商品</th><th scope="col">場数</th><th scope="col">元収支</th><th scope="col">反転収支</th><th scope="col">反転 黒字／赤字／休止場</th></tr></thead><tbody id="regime-results"></tbody></table></div></section>
+
+<details><summary>最良の1場を除いた収支と、相手情報を3秒以内に絞った比較</summary><p class="compact">固定代表の反転・全30場・発注待ち5秒。最良場は収支最大の場（全赤字なら損失最小の場）。主条件の相手情報は厳密過去10秒以内。鮮度3秒でも方法を選び直していません。</p><div class="table-wrap"><table><thead><tr><th scope="col">反転手法</th><th scope="col">商品</th><th scope="col">主条件の収支</th><th scope="col">最良の1場を除く</th><th scope="col">最悪場</th><th scope="col">鮮度3秒の収支／組数</th></tr></thead><tbody id="stability-results"></tbody></table></div></details>
+
+<details><summary>選び方・会計・検証の限界</summary><div class="compact"><p id="audit-description"></p><p>新規と返済の売買気配をそれぞれ使い、TOPIXミニ10枚の往復836円、日経マイクロ20枚の往復440円を引きます。全建玉を場内返済し、負け玉を残して利益だけ集計しません。</p><p>全30場は旧研究でも既知です。前半で候補を固定し、後半の新しい再生結果で選び直さなかった範囲の確認であり、未知将来の証明ではありません。ミニ／マイクロ実板、真の受信時刻、待ち順位、部分約定は未再現です。</p><p id="limitations"></p></div></details>
+<footer class="footer">保存データだけを使用。現在API取得・実注文なし。板の深さと約定費用の参考：<a href="https://www.cmegroup.com/education/articles-and-reports/understanding-the-cme-liquidity-tool-methodology" target="_blank" rel="noopener">CMEの流動性計測方法</a>。この調査は最良気配だけを代用し、注文数量に応じた次の価格水準までの約定は再現していません。反転の式は今回の再生仮定から導いた関係です。<a href="../index.html">調査一覧へ</a></footer>
+</main><script id="report-data" type="application/json">__DATA__</script><script>__COMMON__</script><script>__SCRIPT__</script></body></html>

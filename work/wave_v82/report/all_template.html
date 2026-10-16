@@ -1,0 +1,12 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>売買反転・全188条件の前半比較</title><style>__STYLE__</style></head><body><main>
+<!--
+[コンポーネント概要]
+#family-filter・#mode-filter・#query-filter で全188条件の表示を絞り込みます。
+#all-results は前16場の元と反転について、両商品の利益・損失・収支を対比します。
+#sort-select は元又は反転の一商品だけの収支で並べ替えます。
+-->
+<div class="eyebrow">00078 · 元と反転の対比 · 前16場</div><h1>全188条件の前半比較</h1><p><a href="__MAIN__">固定代表と全セッション損益へ戻る</a></p><p class="section-intro">発注待ち5秒、手数料後。二市場共通の180条件から、A・Bは前半の赤字の性質、Cは同時刻の反転余地を重視して代表を固定しました。Cは前半の反転利益の余地を使った探索です。全条件の反転再生や後半確認で代表を選び直していません。単独対照8条件も省略せず掲載します。</p>
+<section class="panel"><h2>元の方向 → 売買反転</h2><div class="controls"><div><label for="family-filter">方向の考え方</label><select id="family-filter"><option value="">すべて</option><option value="D1">価格方向</option><option value="D2">板フロー</option><option value="D3">両者一致</option><option value="solo">単独対照</option></select></div><div><label for="mode-filter">新規注文</label><select id="mode-filter"><option value="">すべて</option><option value="0">成行</option><option value="1">上限付き</option></select></div><div><label for="query-filter">元のID検索</label><input id="query-filter" type="search" placeholder="例：D1、K08"></div><div><label for="sort-select">並び順</label><select id="sort-select"><option value="id">元のID順</option><option value="original|TOPIX">元のTOPIX収支順</option><option value="reverse|TOPIX">反転TOPIX収支順</option><option value="original|NK225">元の日経収支順</option><option value="reverse|NK225">反転日経収支順</option></select></div></div><p id="result-count" class="count"></p>
+<div class="table-wrap"><table class="inverse-table"><thead><tr><th scope="col" rowspan="2">元ID・選定対象</th><th scope="colgroup" colspan="3">TOPIX 元</th><th scope="colgroup" colspan="3">TOPIX 反転</th><th scope="colgroup" colspan="3">日経 元</th><th scope="colgroup" colspan="3">日経 反転</th></tr><tr><th scope="col">利益</th><th scope="col">損失</th><th scope="col">収支</th><th scope="col">利益</th><th scope="col">損失</th><th scope="col">収支</th><th scope="col">利益</th><th scope="col">損失</th><th scope="col">収支</th><th scope="col">利益</th><th scope="col">損失</th><th scope="col">収支</th></tr></thead><tbody id="all-results"></tbody></table></div></section>
+<p class="table-key">全て前16場のみ。無取引は勝ちに含めず、選定対象外の単独対照は区別します。反転の約定は新規・返済とも再生し直しており、元の損益の符号を変えた表ではありません。</p><footer class="footer">条件の入口・出口の定義は前回00077と同じです。反転に伴う不成立・参加経路の変化も含みます。</footer>
+</main><script id="report-data" type="application/json">__DATA__</script><script>__COMMON__</script><script>__SCRIPT__</script></body></html>

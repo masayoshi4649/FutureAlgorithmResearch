@@ -1,0 +1,37 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>__TITLE__</title><style>__STYLE__</style></head><body><main>
+<!--
+[コンポーネント概要]
+#method-select と #unit-select が、手法と会計単位を切り替えます。
+#entry-text・#during-text・#exit-text は、売買方向の予測器ではなく注文と在庫の管理方法を説明します。
+#session-results は全30場の両商品について、全建玉を返済した利益・損失・収支を常時表示します。
+#period-results は前半、後半、全体の会計です。
+#inventory-results は在庫上限と、利益脚だけを見ないための全玉会計を表示します。
+.table-wrap は狭い画面で表内だけを横スクロールさせます。
+-->
+<div class="eyebrow">00079 · 方向の予測器を使わない注文管理</div><h1>__HEADING__</h1>
+<div id="conclusion" class="lead"></div>
+<p class="section-intro">TOPIXミニは片方向上限10枚、日経マイクロは片方向上限20枚。初回・追加・分割返済の枚数は手法ごとに異なります。主条件は追加発注遅延0・判断行の有効気配で約定、手数料込み、場内全返済。気配欠落時は次の有効気配を待ちます。現在値は注文の発動とトレール更新に使い、板の強弱予測・分足・ATR・機械学習は使いません。</p>
+<p class="section-intro">主条件の指値型は、条件成立時の気配が指値の範囲内なら即時約定、範囲外なら取消です。利確条件も成行相当で、指定利益を保証しません。行末の即時新規約定は、通常返済を次の原本観測から監視します。後述の指値保持改修は、待機後の実約定から返済条件を有効にします。</p>
+<nav class="links"><a href="#all-sessions">全セッション損益</a><a href="#inventory">全建玉と費用</a><a href="#randomness">無作為20種</a><a href="__SIBLING__">__SIBLING_LABEL__</a><a href="__ALL__">全条件の前半比較</a></nav>
+
+<section class="panel"><h2>注文管理の種類と、前半で固定した代表</h2><p class="section-intro" id="selection-description"></p><div class="table-wrap"><table><thead><tr><th scope="col">手法</th><th scope="col">簡単な説明</th><th scope="col">TOPIX 全30収支／金額割合</th><th scope="col">日経 全30収支／金額割合</th><th scope="col">TOPIX 後半収支</th><th scope="col">日経 後半収支</th></tr></thead><tbody id="overview-results"></tbody></table></div></section>
+
+<details><summary>注文手法だけで何が変わり、何は保証されないか</summary><div class="compact"><p>利確2・損切り1でも、ドリフトのない連続価格がどちらかへ先に着く理想条件では、利確の確率は1/3。期待損益は2×1/3−1×2/3＝0です。これは無費用・無遅延の数学的対照で、実市場の勝率を1/3と決めつけるものではありません。場末が先に来れば途中価格での清算も加わります。</p><p>同量の両建てを続ける間は、中値変化による両脚損益が相殺されます。片脚を閉じれば、残った脚の方向リスクを取ります。利益脚を決済した金額だけでなく、残りの損失も含めて評価します。</p><p>トレール・追加玉・分割返済は、どの価格経路で何枚残すかを変える仕組みです。板に両側指値を置く研究には値差を受け取る余地もありますが、不利な側だけが約定するリスクがあります。今回の指値型はローカル条件発動後の執行なので、市場の板で待つ流動性提供の成否は別に残ります。</p></div><ul id="research-sources" class="source-list"></ul></details>
+
+<section class="panel" id="all-sessions"><h2>全セッションの利益・損失・収支</h2><div class="controls"><div><label for="method-select">手法</label><select id="method-select"></select></div><div><label for="unit-select">利益・損失をまとめる単位</label><select id="unit-select"><option value="cycle">全玉が返済されるまでの親組</option><option value="leg">個々の決済脚</option></select></div></div>
+<div class="description-grid"><div><h3>入口</h3><p id="entry-text"></p></div><div><h3>途中</h3><p id="during-text"></p></div><div><h3>出口</h3><p id="exit-text"></p></div></div><p id="execution-text" class="section-intro"></p><p id="size-description" class="table-key"></p>
+<div class="table-wrap"><table><thead><tr><th scope="col">期間</th><th scope="col">商品</th><th scope="col">利益</th><th scope="col">損失</th><th scope="col">収支</th><th scope="col">金額利益割合</th><th scope="col">黒字／赤字／休止場</th></tr></thead><tbody id="period-results"></tbody></table></div><p class="table-key" id="accounting-description"></p>
+<div class="table-wrap"><table class="session-table"><caption id="session-caption"></caption><thead><tr><th scope="col" rowspan="2">セッション</th><th scope="colgroup" colspan="3">TOPIXミニ</th><th scope="colgroup" colspan="3">日経マイクロ</th></tr><tr><th scope="col">利益</th><th scope="col">損失</th><th scope="col">収支</th><th scope="col">利益</th><th scope="col">損失</th><th scope="col">収支</th></tr></thead><tbody id="session-results"></tbody></table></div></section>
+
+<section class="panel" id="inventory"><h2>全建玉と費用も含めた確認</h2><p class="section-intro">利益玉だけの評価を避け、両建て・分割返済・残玉を同じ会計へ含めます。片方向上限と総玉上限は同じ数字ではありません。最大資産減少は、残玉を売買気配で全清算し返済手数料も払う時価で計算します。</p><div class="table-wrap"><table><thead><tr><th scope="col">商品</th><th scope="col">手数料前収支</th><th scope="col">手数料</th><th scope="col">最終収支</th><th scope="col">最大買い／売り枚数</th><th scope="col">最大総玉／差引玉</th><th scope="col">最大資産減少</th><th scope="col">最悪場</th><th scope="col">最良1場除外</th></tr></thead><tbody id="inventory-results"></tbody></table></div><p id="trade-unit-description" class="table-key"></p>
+<div class="table-wrap"><table><thead><tr><th scope="col">商品</th><th scope="col">集計単位</th><th scope="col">利益</th><th scope="col">損失</th><th scope="col">収支</th><th scope="col">金額利益割合</th><th scope="col">件数</th></tr></thead><tbody id="group-results"></tbody></table></div></section>
+
+<details id="logical-comparison"><summary>値動きと注文管理だけならどうなるか／損失の構造</summary><p class="section-intro">選択した同じ手法を、現在値で必ず即時約定する仮想市場へ置き直した全30場です。手数料ゼロと実手数料の2段階を比べます。どちらも実行可能な成績ではありません。注文状態も変わるため、主結果への費用の足し戻しや損益の上界ではありません。</p><div class="table-wrap"><table><thead><tr><th scope="col">商品</th><th scope="col">無費用・現在値必約定</th><th scope="col">実手数料・現在値必約定</th><th scope="col">主結果の中値進行損益</th><th scope="col">主結果の気配差負担</th><th scope="col">主結果の手数料</th><th scope="col">主結果の最終収支</th></tr></thead><tbody id="logical-results"></tbody></table></div><p class="table-key">右4列は同じ実際の注文経路の分解で、中値進行損益−気配差負担−手数料＝最終収支です。</p><div id="loss-explanation" class="compact"></div></details>
+
+<section class="panel" id="order-retention"><h2>改修：不成立の指値を残せば変わるか</h2><p class="section-intro" id="persistent-description"></p><div class="table-wrap"><table><thead><tr><th scope="col">固定条件</th><th scope="col">商品</th><th scope="col">元の利益</th><th scope="col">元の損失</th><th scope="col">元の収支</th><th scope="col">改修の利益</th><th scope="col">改修の損失</th><th scope="col">改修の収支</th></tr></thead><tbody id="persistent-comparison"></tbody></table></div><details><summary>改修3条件の全セッション損益</summary><div class="controls"><div><label for="persistent-select">改修条件</label><select id="persistent-select"></select></div></div><p class="table-key">全玉が返済されるまでの親組単位。元の代表を選び直さず、後半閲覧後の仮説確認として分けて示します。</p><div class="table-wrap"><table class="session-table"><caption id="persistent-caption"></caption><thead><tr><th scope="col" rowspan="2">セッション</th><th scope="colgroup" colspan="3">TOPIXミニ</th><th scope="colgroup" colspan="3">日経マイクロ</th></tr><tr><th scope="col">利益</th><th scope="col">損失</th><th scope="col">収支</th><th scope="col">利益</th><th scope="col">損失</th><th scope="col">収支</th></tr></thead><tbody id="persistent-results"></tbody></table></div></details></section>
+
+<section class="panel" id="randomness"><h2>無作為な入口を20種類で確かめる</h2><p class="section-intro" id="randomness-description"></p><div class="table-wrap"><table><thead><tr><th scope="col">商品</th><th scope="col">平均収支</th><th scope="col">中央収支</th><th scope="col">最悪収支</th><th scope="col">最良収支</th><th scope="col">黒字だった種</th></tr></thead><tbody id="randomness-results"></tbody></table></div><details><summary>全20種類の収支</summary><div class="table-wrap"><table><thead><tr><th scope="col">乱数種</th><th scope="col">TOPIX収支</th><th scope="col">日経収支</th></tr></thead><tbody id="seed-results"></tbody></table></div></details></section>
+
+<details><summary>約定モデル・前半選択・検証の限界</summary><div class="compact"><p id="execution-assumptions"></p><p>時計は最終約定時刻の代理で、真の受信時刻ではありません。ラージ板をミニ／マイクロ約定にも代用します。価格の接触だけでは待ち順位や全量約定が確認できず、実際の板深さ・注文到着・部分約定は未再現です。</p><p id="split-description"></p><p>無取引を勝ちに数えず、商品間の円金額を合算して順位を付けません。コイントスを使う場合は、良かった乱数種だけを選ばない対照として扱います。</p><p>同時両建ての損切り1・利確2では、先に一脚を−1で切り、そのまま伸びて残りが＋2なら組は＋1。反転して残りも損切りなら組は−2です。費用・滑りなしの例であり、両建てだけでは損失を防げません。</p><p id="remaining-limitations"></p></div></details>
+<footer class="footer">保存データだけを使用。現在API取得・実注文なし。<a href="../index.html">調査一覧へ</a></footer>
+</main><script id="report-data" type="application/json">__DATA__</script><script>__COMMON__</script><script>__SCRIPT__</script></body></html>

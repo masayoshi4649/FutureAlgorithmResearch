@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>秒スキャルピングの改善と全セッション損益</title><style>__STYLE__</style></head>
+<body><main>
+<!--
+[コンポーネント概要]
+#conclusion は固定代表の確認結果を先に示します。
+#method-select と #delay-select は全30場の表・説明・期間合計を同期して切り替えます。
+#session-results は両商品の全セッション利益・損失・収支を常時表示します。
+#period-results は前16・後14・全30を独立して集計した保存値を表示します。
+.table-wrap は狭い画面で表内だけを横スクロールさせます。
+.gain は利益、.loss は損失を表し、符号も併記して色だけに依存しません。
+-->
+<div class="eyebrow">00076 · 保存板による検証 · 手数料後</div>
+<h1>秒スキャルピングは、5秒の発注待ちに耐えられるか</h1>
+<div id="conclusion" class="lead"></div>
+<p class="section-intro">TOPIXミニ10枚／日経225マイクロ20枚。ラージ板で判断し、同じラージ気配を仮想約定にも代用。場内で全返済します。時計は最終約定時刻の代用で、実際の受信から5秒以内の成績を再現したものではありません。全30場は既知データで、後14場も未知将来のテストではありません。</p>
+<nav class="links"><a href="#all-sessions">全セッション損益</a><a href="#latency">0・1・5秒の比較</a><a href="#sparse">少数取引の黒字</a><a href="__ALL__">全330条件の前半比較</a></nav>
+
+<section class="panel" aria-labelledby="overview-heading">
+<h2 id="overview-heading">前半で選び、固定して確認した6方法</h2>
+<p class="section-intro">成行・上限付き・待機指値から各1つ。初回288条件を診断し、改修42条件を前16場だけで比較しました。下表は注文待ち5秒。金額利益割合＝総利益÷（総利益＋総損失）。</p>
+<div class="table-wrap"><table class="six-methods"><thead><tr><th scope="col">方法・短い説明</th><th scope="col">TOPIX 全30収支<br>金額利益割合</th><th scope="col">日経 全30収支<br>金額利益割合</th><th scope="col">TOPIX 後14収支</th><th scope="col">日経 後14収支</th></tr></thead><tbody id="overview-results"></tbody></table></div>
+</section>
+
+<section class="panel" id="all-sessions" aria-labelledby="sessions-heading">
+<h2 id="sessions-heading">全セッションの利益・損失・収支</h2>
+<div class="controls"><div><label for="method-select">手法（少数黒字と無方向対照も含む11方法）</label><select id="method-select"></select></div><div><label for="delay-select">新規・返済の注文待ち</label><select id="delay-select"><option value="5">5秒（主条件）</option><option value="1">1秒</option><option value="0">0秒（理想側）</option></select></div></div>
+<div class="description-grid"><div><h3>入口</h3><p id="entry-text"></p></div><div><h3>途中</h3><p id="during-text"></p></div><div><h3>出口</h3><p id="exit-text"></p></div></div>
+<p id="execution-text" class="compact muted"></p>
+<p class="table-key">主6方法の4呼値利確／3呼値損切りは、TOPIX 2.0／1.5pt、日経40／30円。判定後の注文待ち中も値動きするため、この幅での約定を保証しません。保有120秒も返済判断の期限です。「10秒・30秒」は窓の指定値で、原本時計では実窓長がずれます（下の検証条件を参照）。</p>
+<div class="table-wrap"><table><thead><tr><th scope="col">期間</th><th scope="col">商品</th><th scope="col">利益</th><th scope="col">損失</th><th scope="col">収支</th><th scope="col">金額利益割合</th><th scope="col">決済組数</th><th scope="col">平均勝ち／平均負け</th><th scope="col">黒字／赤字／休止場</th></tr></thead><tbody id="period-results"></tbody></table></div>
+<p class="table-key">利益・損失は各決済の手数料後金額。損失はマイナス表示。無取引は利益にも勝ちにも数えません。前半：9/21デイ～9/30ナイト、後半：10/1デイ以降。</p>
+<div class="table-wrap"><table class="session-table"><caption id="session-caption"></caption><thead><tr><th scope="col" rowspan="2">セッション</th><th scope="colgroup" colspan="3">TOPIXミニ10枚</th><th scope="colgroup" colspan="3">日経マイクロ20枚</th></tr><tr><th scope="col">利益</th><th scope="col">損失</th><th scope="col">収支</th><th scope="col">利益</th><th scope="col">損失</th><th scope="col">収支</th></tr></thead><tbody id="session-results"></tbody></table></div>
+</section>
+
+<section class="panel" aria-labelledby="change-heading">
+<h2 id="change-heading">改修で、損失と利益はどう変わったか</h2>
+<p class="section-intro">初回代表→改修代表の全30場、注文待ち5秒。同じ発注方式の選定代表同士です。成行・上限付きでは入口そのものも変更しており、単一部品の因果効果ではありません。</p>
+<p class="negative-note compact">成行・上限付きは総赤字を減らしましたが、取引数も減り、両商品の1組平均収支は悪化しました。利益を生む確度が改善したとは確認できません。</p>
+<div class="table-wrap"><table class="comparison"><thead><tr><th scope="col">代表の変更</th><th scope="col">商品</th><th scope="col">減った総損失</th><th scope="col">失った総利益</th><th scope="col">収支の改善額</th><th scope="col">決済組数 前→後</th><th scope="col">1組平均収支 前→後</th></tr></thead><tbody id="change-results"></tbody></table></div>
+<p class="table-key">収支の改善額＝減った総損失−失った総利益。赤字縮小と黒字化は区別します。負の「失った総利益」は利益が増えた意味です。</p>
+<p id="confirmation-comparison" class="compact"></p>
+</section>
+
+<section class="panel" id="latency" aria-labelledby="latency-heading">
+<h2 id="latency-heading">注文待ちを0・1・5秒に変えると</h2>
+<p class="section-intro">入口の情報条件は同一。新規・返済とも指定秒の後に現れた次の有効原本気配で処理するため、約定待ちは指定秒より長くなる場合があります。0秒も同じ行の即時約定にはしません。</p>
+<div class="table-wrap"><table><thead><tr><th scope="col">手法</th><th scope="col">商品</th><th scope="col">0秒 全30収支</th><th scope="col">1秒 全30収支</th><th scope="col">5秒 全30収支</th></tr></thead><tbody id="latency-results"></tbody></table></div>
+</section>
+
+<section class="panel" id="sparse" aria-labelledby="sparse-heading">
+<h2 id="sparse-heading">少数取引だけ黒字だった4条件</h2>
+<p class="negative-note compact">初回の両商品黒字4条件は、前16場のTOPIX1組・日経2組という同じ3取引でした。4つの独立した成功例ではありません。3秒の持続確認を待つ失速反転型で、上の改修版とは異なります。</p>
+<div class="table-wrap"><table><thead><tr><th scope="col">手法</th><th scope="col">商品</th><th scope="col">前16収支／組数</th><th scope="col">後14収支／組数</th><th scope="col">全30収支／組数</th></tr></thead><tbody id="sparse-results"></tbody></table></div>
+<p id="control-result" class="control-result"></p>
+</section>
+
+<details><summary>損失の原因：5秒の遅れだけではない</summary>
+<p class="compact">初回成行代表の前16場を、実際の約定行を固定して分解しました。「中値進行」は実行できる利益ではなく、価格の進行と約定負担を区別する説明用差額です。</p>
+<div class="table-wrap"><table><thead><tr><th scope="col">商品</th><th scope="col">同一経路の中値進行</th><th scope="col">中値からの約定差</th><th scope="col">手数料</th><th scope="col">実収支</th></tr></thead><tbody id="cost-results"></tbody></table></div>
+<ul class="reason-list compact"><li>小さな順行を取れても、往復の気配差と料金を超えられない。初回成行代表では損切りがTOPIX 138/211組、日経106/160組でした。</li><li>同経路の判断時気配→約定ではTOPIXは計14万円有利、日経は1.4万円不利。遅れの間に損切り価格が回復する例もあり、「遅れだけ取り除けば解決」とはいえません。</li><li>待機指値は、相手気配が1呼値貫通してから当初指値で約定させます。約定時点の市場気配より既に不利になりうる保守モデルで、指値全般が無効という証明ではありません。</li><li>負けた方向を反転しても気配差と料金は残ります。改修には、逆方向へ入る6条件も注文から再生した対照として含めました。</li></ul>
+<h3>最大損失の具体例：短期の急変＋返済待ち</h3>
+<div id="loss-case" class="compact"></div>
+<p class="compact">この建玉の保有中、原本の代理時計の最大間隔は1秒で、長い価格観測の空白としては現れていません。発動直前の4102→4100は同じ代理時計の別原本行なので、真の経過時間は不明です。参照鮮度3秒の厳格条件ではこの入口は除外されますが、全体の赤字は残りました。入口の見送りと、損切り約定幅の問題は分けて考えます。</p>
+<p id="actual-waits" class="compact"></p>
+<p class="compact"><a href="__ALL__">全330条件の前半比較</a>で、無取引・赤字・改修失敗も確認できます。</p>
+</details>
+
+<details><summary>情報を3秒以内に限定した補助確認</summary>
+<p class="compact">同じ固定11方法を、現在参照と過去窓始点の古さを3秒以内に制限して再生しました（注文待ち5秒・全30場）。両商品黒字の方法はなく、観測が疎になり取引数も減ります。少数黒字の失速反転4条件は両商品とも取引0でした。</p>
+<div class="table-wrap"><table><thead><tr><th scope="col">手法</th><th scope="col">TOPIX収支</th><th scope="col">TOPIX組数</th><th scope="col">日経収支</th><th scope="col">日経組数</th></tr></thead><tbody id="strict-results"></tbody></table></div>
+</details>
+
+<details><summary>検証条件・研究資料</summary>
+<div class="compact"><p>初回は8入口×6出口×3注文方式×2休止＝288条件。単独／二市場の板フロー、共同進行、先行追随、押し戻し、失速反転、同価格の表示数量回復、無方向を比較。利確1～4呼値・損切り2～3呼値・保有15～120秒を試しました。改修42条件は追いかけ抑制、反対返済、連敗休止、一方向一度、3秒確認を待たない入口、逆方向対照です。</p><p>板フローを表すOFIは、表示数量と価格変化から計算した過去窓の指標です。補充・取消・成行約定・参加者の意図を一意に特定したものではありません。</p><p>情報は判断格子の1秒前より厳密に過去の原本を使います。現在参照の古さは10秒以内、過去窓始点は15秒以内。指定10秒窓の実長は1～24秒、30秒窓は21～44秒へずれる例があり、厳密な時計秒の勢いとは区別します。これと注文待ち5秒は別です。原本時計は最終約定時刻の代理で、真の受信時刻・同時計内の順序には限界があります。</p><p>ミニ／マイクロの板がなく、ラージ気配で全量約定を仮定しています。実商品との気配差、キュー順位、部分約定は未再現。料金はユーザー指定の立会手数料で、TOPIXミニ10枚の往復836円、日経マイクロ20枚の往復440円です。</p><p>前16場で代表を固定してから後14場を確認しましたが、30場とも過去研究では既知です。後半の新しい再生結果では代表を選び直していない、という範囲の確認です。未知の将来での安定性を証明しません。</p></div>
+<ul id="research-sources" class="source-list"></ul>
+</details>
+<footer class="footer">保存済み板による仮想再生。現在API取得・実注文なし。<a href="../index.html">調査一覧へ</a></footer>
+</main><script id="report-data" type="application/json">__DATA__</script><script>__COMMON__</script><script>__SCRIPT__</script></body></html>

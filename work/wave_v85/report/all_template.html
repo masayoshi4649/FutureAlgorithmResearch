@@ -1,0 +1,15 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>E01全25条件の比較</title><style>__STYLE__</style></head><body><main>
+<!--
+[コンポーネント概要]
+#model-select と #period-select は保存済み会計の表示範囲を変更する。
+#all-results は4部品16通りと時間見送り9条件を固定順で掲載し、損益で主3条件を選び直さない。
+各行リンクは主HTMLの同じ条件と約定仮定を選択する。
+-->
+<div class="eyebrow">00081 · 全条件を掲載</div><h1>E01 全25条件の比較</h1><p><a href="__MAIN__">説明と全30セッション損益へ戻る</a></p>
+<p>G＝入口再確認、P＝十分伸びた実組利益の保護、D＝両市場悪化で早期半減、C＝同方向連敗後の再成立待ち。主比較は原E01・Gだけ・全統合の3条件で固定。各々に日本開始後J、米国開始前後U、両方JUの見送りを加えた9条件も掲載します。</p>
+<div class="controls"><div><label for="model-select">約定の仮定</label><select id="model-select"><option value="observed">観測価格で全再生</option><option value="specified">旧指定線で全再生</option></select></div><div><label for="period-select">期間</label><select id="period-select"><option value="全30">全30場</option><option value="前16">前16場</option><option value="後14">後14場</option></select></div></div>
+<p id="all-count" class="count"></p><p class="table-key">利益と損失は初回〜全返済の親組単位。金額利益割合は利益÷（利益＋損失）です。</p>
+<div class="table-wrap"><table class="comparison"><thead><tr><th rowspan="2">条件</th><th colspan="6">TOPIXミニ · 初回5枚</th><th colspan="6">日経マイクロ · 初回10枚</th></tr><tr><th>利益</th><th>損失</th><th>収支</th><th>金額利益割合</th><th>黒字場</th><th>組数</th><th>利益</th><th>損失</th><th>収支</th><th>金額利益割合</th><th>黒字場</th><th>組数</th></tr></thead><tbody id="all-results"></tbody></table></div>
+<p class="footer">全30場は既知。追加固定遅延0・手数料込み・場内完済。ラージ現在値でミニ／マイクロを換算する仮定です。最高収支を将来の推奨条件へ読み替えません。</p>
+</main><script id="report-data" type="application/json">__DATA__</script><script>__COMMON__
+__SCRIPT__</script></body></html>
