@@ -1,0 +1,15 @@
+:root{color-scheme:dark;font-family:"Yu Gothic UI",Meiryo,sans-serif;background:#0e1521;color:#e2ebf6}
+*{box-sizing:border-box}body{margin:0;line-height:1.7}main{max-width:1100px;margin:auto;padding:32px 22px 60px}
+h1{font-size:30px;margin:12px 0 4px}h2{font-size:19px;line-height:1.5;margin:8px 0 12px}p{margin:8px 0 12px}
+a{color:#93c7ff;text-underline-offset:3px;overflow-wrap:anywhere}.lead,.muted,footer{color:#afc0d5}
+.notice{background:#18263a;border-left:4px solid #75b7ee;padding:12px 16px;font-size:14px}
+nav{display:flex;gap:8px;flex-wrap:wrap;margin:24px 0 18px}button,input,select{font:inherit;color:inherit;background:#182436;border:1px solid #41526a;border-radius:7px;padding:9px 13px}
+button{cursor:pointer}button[aria-pressed="true"]{background:#255684;border-color:#80bfff}button:hover{background:#2a405a}
+input:focus-visible,select:focus-visible,button:focus-visible,a:focus-visible{outline:3px solid #e3b064;outline-offset:3px}
+form{display:grid;grid-template-columns:1fr minmax(160px,240px);gap:16px}label{font-size:14px;color:#b5c7dd}input,select{display:block;width:100%;margin-top:5px}#count{font-size:14px;color:#b5c7dd}
+.record{background:#151f2e;border:1px solid #33435a;border-radius:10px;padding:18px 22px;margin:14px 0}.record p{overflow-wrap:anywhere}.meta{display:flex;gap:10px;flex-wrap:wrap;align-items:center;font-size:13px;color:#b7c8dc}
+.badge{background:#243a53;border:1px solid #466485;border-radius:5px;padding:1px 8px}.badge.pending{background:#463e24;border-color:#85713e;color:#ffdfa1}
+dl{display:grid;grid-template-columns:104px 1fr;gap:9px 16px;margin:12px 0;font-size:14px}dt{color:#a9bdd5}dd{margin:0;white-space:pre-wrap;overflow-wrap:anywhere}
+details{margin-top:12px;border-top:1px solid #314157;padding-top:10px}summary{cursor:pointer;color:#a9cdff;font-size:14px}.sources{font-size:13px;display:flex;gap:12px;flex-wrap:wrap}pre{white-space:pre-wrap;overflow-wrap:anywhere;font-size:12px;background:#0c1421;padding:12px;border-radius:5px;max-height:320px;overflow:auto}
+footer{margin-top:32px;font-size:13px;border-top:1px solid #33435a;padding-top:20px}.empty{padding:30px;border:1px dashed #4c6078;border-radius:8px}
+@media(max-width:600px){main{padding:20px 14px}h1{font-size:25px}form{grid-template-columns:1fr}nav{gap:6px}nav button{padding:8px 10px}.record{padding:15px}dl{grid-template-columns:1fr;gap:2px}dd{margin-bottom:10px}}

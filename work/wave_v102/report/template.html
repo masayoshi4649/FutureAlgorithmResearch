@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>増玉の停止余裕を残す手法と全セッション損益</title>
+<style>__STYLE__</style>
+</head>
+<body>
+<!--
+[コンポーネント概要]
+#conclusion は正式検算後の短い結論を三つ表示します。
+#comparison-TOPIX と #comparison-NK225 は赤字頻度・赤字額・活動を優先して比較します。
+#method-select は20条件、#method-rule は入口・増玉・出口の短い説明です。
+#session-results は全31場と合計の実玉群相殺前損益を主行、親合算損益を補助行に表示します。
+#period-results と #direction-results は期間と売買方向の内訳です。
+#hidden-loss-results は黒字親内の負け玉、#budget-results は実損失予算超過を表示します。
+派生資料のない値は未掲載とし、未知をゼロ損失へ置換しません。
+.parent-row は同じ実損益の別集計であり、主行へ加算しません。
+.money は円額の原数値、.table-wrap は横スクロールを保持します。
+-->
+<main>
+<header><p class="eyebrow">00098 · 既知31セッション＋追加ナイト1 · 手数料後</p><h1>増玉した後にも、値幅の余裕を残す</h1><div id="conclusion"></div><p class="note">赤字の頻度と額を優先。無取引は勝ちに含めません。</p></header>
+
+<section id="comparison-section"><h2>既知31セッションの安定性</h2><p id="selection-note" class="note"></p><p class="note">赤字率は活動場に対する割合。少枚数による損失額の縮小と、売買判断の改善を区別します。追加ナイトと全32合計は下の別表に掲載。</p>
+<h3>TOPIXミニ</h3><div class="table-wrap"><table id="comparison-TOPIX"><thead><tr><th>手法</th><th>赤字／活動場</th><th>平均赤字</th><th>最大赤字</th><th>無取引</th><th>下方偏差</th><th>全31収支</th><th>金額利益割合</th></tr></thead><tbody></tbody></table></div>
+<h3>日経マイクロ</h3><div class="table-wrap"><table id="comparison-NK225"><thead><tr><th>手法</th><th>赤字／活動場</th><th>平均赤字</th><th>最大赤字</th><th>無取引</th><th>下方偏差</th><th>全31収支</th><th>金額利益割合</th></tr></thead><tbody></tbody></table></div></section>
+
+<section id="sessions"><div class="chooser"><h2>全セッションの損益</h2><label for="method-select">手法<select id="method-select"></select></label></div><h3 id="method-title"></h3><div id="method-rule"></div><p class="note">主行は初回・各追加新規の玉ごとの手数料後損益。親の黒字で負け玉を隠しません。補助行は同じ玉を一括返済した親の合算で、収支は同じです。枚数は累計決済枚数です。</p>
+<div class="table-wrap"><table id="session-table"><thead><tr><th rowspan="2">セッション</th><th rowspan="2">集計</th><th colspan="3">TOPIXミニ</th><th colspan="3">日経マイクロ</th></tr><tr><th>利益・勝玉</th><th>損失・負玉</th><th>収支・枚数</th><th>利益・勝玉</th><th>損失・負玉</th><th>収支・枚数</th></tr></thead><tbody id="session-results"></tbody></table></div></section>
+
+<!--
+[コンポーネント概要]
+#additional-section は元31場の結果を確定した後、同じ20条件で確認した追加ナイトと全32合計です。
+#additional-results は追加1場と全32合計を、実玉群と親合算の4行で表示します。
+#additional-summary は全32の黒字・赤字・無取引と、実玉群の金額利益割合です。
+手法選択は元31の表と共通です。追加結果から参考手法又は条件を選び直しません。
+-->
+<section id="additional-section"><h2>追加ナイトと32セッション合計</h2><p class="note">2026-10-12 ナイトは、既知31の参考を選定した後に、条件を変えずに確認しました。</p><p id="additional-summary"></p><div class="table-wrap"><table id="additional-table"><thead><tr><th rowspan="2">対象</th><th rowspan="2">集計</th><th colspan="3">TOPIXミニ</th><th colspan="3">日経マイクロ</th></tr><tr><th>利益・勝玉</th><th>損失・負玉</th><th>収支・枚数</th><th>利益・勝玉</th><th>損失・負玉</th><th>収支・枚数</th></tr></thead><tbody id="additional-results"></tbody></table></div></section>
+
+<details id="period-detail"><summary>前後・昼夜・買い売りの内訳</summary><div class="table-wrap"><table><thead><tr><th>期間</th><th>商品</th><th>実玉群利益</th><th>実玉群損失</th><th>収支</th><th>利益割合：玉／親</th><th>黒字／赤字／無取引</th><th>最大下落</th><th>最大利益日除外</th></tr></thead><tbody id="period-results"></tbody></table></div><div class="table-wrap"><table><thead><tr><th>商品</th><th>方向</th><th>実玉群利益</th><th>実玉群損失</th><th>収支</th><th>玉群数</th></tr></thead><tbody id="direction-results"></tbody></table></div></details>
+
+<details id="stability-detail"><summary>収支の中央値・下位25%と数量の比較単位</summary><div class="table-wrap"><table><thead><tr><th>期間</th><th>商品</th><th>活動黒字率</th><th>全場収支中央値</th><th>全場収支下位25%</th><th>活動収支中央値</th><th>活動収支下位25%</th><th>最大場内下落</th></tr></thead><tbody id="stability-results"></tbody></table></div><p>比較単位は全条件共通の上限TOPIX10枚・日経20枚×倍率×各場最初の正常価格0.1%。下方偏差は負の場収支だけを単位で割り、二乗和を全評価場数で割った平方根です。設定枠や一瞬の増玉で分母を増やしません。</p></details>
+
+<details id="cohort-detail"><summary>黒字親の中の負け玉と、損失予算の実超過</summary><div class="table-wrap"><table><thead><tr><th>商品</th><th>黒字親内の負け玉群</th><th>負け玉枚数</th><th>その損失額</th></tr></thead><tbody id="hidden-loss-results"></tbody></table></div><div class="table-wrap"><table><thead><tr><th>商品</th><th>予算超過親数</th><th>実超過の合計</th><th>実超過の最大</th><th>観測超過の最大</th></tr></thead><tbody id="budget-results"></tbody></table></div><p>親は一括返済単位、玉群は初回・各追加の実新規単位。実新規ごとの費用と全量返済費用を配分した損益です。R0は停止線を計算する予算で、成行約定の最大損失を保証しません。</p></details>
+
+<details id="cause-detail"><summary>同じ初回枚数・旧全量との比較と原因</summary><div id="cause-general"></div><div id="cause-text"></div><div class="table-wrap"><table><thead><tr><th>商品</th><th>比較対象</th><th>収支差</th><th>実玉群利益差</th><th>実玉群損失差</th><th>手数料差</th><th>決済親差</th></tr></thead><tbody id="cause-results"></tbody></table></div><p>選択手法−比較対象。同Qの増玉なし対照で単純な数量縮小効果を分離します。親・玉群の両方の金額利益割合80%、活動、赤字頻度を別々に評価します。</p><div id="conclusion-detail"></div></details>
+
+<details id="rules-detail"><summary>詳しい入口・増玉・出口条件と検証範囲</summary>
+<p><b>入口：</b>旧候補の二市場5分同方向を保持。現在は独立した300秒取引価格の方向と、両市場の買売気配各1呼値の進行を確認。元候補から不利側1W以内で判断します。Wは保存始値0.1%。新12条件は両商品とも初回1枚。旧全量対照はTOPIX8枚・日経16枚です。</p>
+<p><b>途中：</b>新B05／B1／B2は、倍増後の清算気配と全玉停止線の間に、初回の損切り幅0.5／1／2倍を残せる時だけ追加します。T1は当該原行の通常追尾更新後の停止線を追加でも保全。T0は固定損失予算のための短縮を許します。旧G0は追加なし、旧G1／G2は1／2呼値余裕です。現在支持、正常両気配、両源と各気配の進行、現在と追加後の費用後利益も必要です。</p>
+<p><b>固定予算：</b>初回実約定の初期停止損失と往復費用をR0に固定。実数量・加重建値・注文別手数料から全玉の予算線を再計算し、初回価格の停止線、継続した価格ピークの追尾線、起動済み費用床と合成します。線は不利へ戻しません。仮の追加建値を実保有へ先取りしません。</p>
+<p><b>出口：</b>初期幅は保存始値0.1%、常時追尾は0.4%。X1の通常期限は初回実約定から30分で、追加しても延長しません。X3は通常期限なし。実保有玉の現在利益が初回枚数×初期幅2倍分に達すれば費用床を起動し、追加で解除しません。返済は全玉、次の正常自己気配で行います。</p>
+<p><b>予約と場末：</b>追加判断は保存運用区切り300秒前まで。判断済み追加は後の支持悪化だけでは取消せず、次正常自己気配で実約定します。既存返済判断、初回期限、運用区切り60秒前では未約定追加の取消を優先。悪い追加約定を事後に取り消しません。実約定行で新たに停止すれば全量返済を予約します。運用区切りと実立会末は別です。<a href="https://www.jpx.co.jp/derivatives/rules/trading-hours/">JPXの立会時間</a>。</p>
+<p><b>未知源：</b>相手不明からの最初の正常両源は基準作成だけ。その行で追加せず、更なる源と気配の進行を待ちます。相手は厳密過去の同時計先頭行。価格時計は受信時計ではなく、二市場共通の受信順は未証明です。<a href="https://kabucom.github.io/kabusapi/ptal/push.html">公式PUSH配信仕様</a>。</p>
+<p><b>費用・会計：</b>保存ラージ気配で判断し、次正常気配の買ask／売bidで仮想約定。TOPIXミニ片道41.8円、日経マイクロ11円、注文別に1円未満切捨て。全量返済費用は玉群の数量で最大剰余配分し、同率は実約定順。親内相殺前の勝玉と負玉を主表示します。損益ゼロ枚数は勝負のどちらにも数えません。</p>
+<p><b>限界：</b>全31場は既知の再探索。追加5秒悪化は含めず、実ミニ／マイクロ板・配信順・未知期間の安定性は未測定です。実約定は判断上限や停止線、R0予算を超える場合があります。未来不変検査の合格を収益成功とは呼びません。</p>
+</details>
+<footer>保存データのみ。現在API取得0回、実注文0回。</footer>
+</main>
+<script id="report-data" type="application/json">__DATA__</script>
+<script>__SCRIPT__</script>
+</body>
+</html>

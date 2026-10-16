@@ -1,0 +1,80 @@
+<!doctype html><html lang="ja"><head><base href="file:///S:/GitHub/masayoshi4649/FutureAlgorithmResearch/%E3%82%A2%E3%83%AB%E3%82%B4%E3%83%AA%E3%82%BA%E3%83%A0%E8%AA%BF%E6%9F%BB/00103_%E5%BE%80%E5%BE%A9%E5%B8%AF%E3%81%AE%E5%9B%9E%E9%81%BF%E3%81%A8%E6%90%8D%E5%A4%B1%E5%BE%8C%E5%86%8D%E5%8F%82%E5%8A%A0%E3%81%AE%E7%B5%B1%E5%90%88%E6%A4%9C%E8%A8%BC/"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>今回の結論と残す候補</title><style>body{margin:0;background:#0b1120;color:#e5edf9;font:16px/1.7 system-ui,sans-serif}main{max-width:1260px;margin:auto;padding:30px 22px}h1{font-size:26px}h2{font-size:20px;margin-top:28px}p{max-width:1000px}a{color:#85bdff}strong{color:#f6d383}.table-wrap{overflow-x:auto;max-width:100%;border:1px solid #344154;border-radius:10px}table{border-collapse:collapse;width:100%;white-space:nowrap}th,td{padding:10px 12px;text-align:right;border-bottom:1px solid #344154}th{background:#182337;color:#b7c9df}th:first-child,td:first-child{text-align:left}small{color:#a9b9ce}code{overflow-wrap:anywhere;white-space:normal}li{margin:8px 0}.note{background:#182337;padding:14px 18px;border-radius:10px}@media(max-width:600px){main{padding:18px 12px}h1{font-size:23px}body{font-size:15px}}</style></head><body>
+<!--
+[コンポーネント概要]
+main は結論と保存根拠の表示領域です。金融処理・外部通信は行いません。
+.table-wrap は表だけの横スクロール領域です。狭い画面で本文が横へ溢れることを防ぎます。
+#summary は既知33場の商品別比較基準、#current は現在取得の入力検査を表示します。
+未知の損益は未測定と記し、利益0又は無取引へ置き換えません。
+--><main><h1>今回の結論と残す候補</h1><p><strong>両銘柄で毎セッション利益を積み重ね、金額利益80%を満たす手法は未発見です。</strong>今回の比較では、次の2条件を今後の比較基準として残します。</p>
+<p><small>既知33場：9月21日デイ～10月13日デイ。初回TOPIXミニ5枚・日経マイクロ10枚、上限10枚・20枚。手数料とラージ気配差込み、場内返済。利益・損失は決済取引の相殺前合計、黒字場数はセッション単位です。</small></p>
+<div class="table-wrap"><table id="summary"><thead><tr><th>候補</th><th>利益（円）</th><th>損失（円）</th><th>収支（円）</th><th>黒字/赤字/無取引場</th><th>金額利益割合</th><th>上位3利益場を除外</th><th>最悪場</th></tr></thead><tbody><tr><td>TOPIX・逆票見送り</td><td>138,961</td><td>92,090</td><td>+46,871</td><td>29/4/0</td><td>60.1%</td><td>+30,625</td><td>-20,418</td></tr><tr><td>日経・肯定票要求</td><td>39,940</td><td>16,660</td><td>+23,280</td><td>23/2/8</td><td>70.6%</td><td>+17,940</td><td>-8,440</td></tr></tbody></table></div>
+<p>大勝ち3場を除いても黒字なのは残す理由です。ただし商品ごとに入口が異なり、同じ33場から選んだ結果です。日経の8無取引場を勝ちには数えていません。</p>
+<h2>手法を簡単に言うと</h2><p>E01の方向・押し戻り条件が成立したら、直近60秒の出来高と現在値の更新を直前の売買気配に照らします。TOPIXは強い逆方向の更新があれば見送り、日経は同方向の更新を確認できた場合だけ入ります。入口2条件を除く処理は共通です。</p>
+<p>場内の手数料後清算利益が初回枚数×観測1呼値、又は損失が8呼値分に達したら、次の正常気配で残玉を返済してその場を終えます。それ以外は元E01の途中判断と追跡返済を維持します。観測1呼値はTOPIX0.5pt・日経10円です。</p>
+<h2>損失を潰しきれなかった理由</h2><ol><li><b>損切りを狭めると、回復した取引まで切る。</b>8→4呼値にすると元の勝ちがTOPIX6取引・日経7取引で負けに変わり、両代表が赤字になりました。逆方向の更新を追加しても解消しませんでした。</li><li><b>早い利確は、負けだけでなく利益幅も削る。</b>日経代表は+23,280円→+280円。減少23,000円のうち、利確判断後の気配悪化は3,000円で、これだけが原因ではありません。</li><li><b>勝率が高くても、1敗が重い。</b>常設利確の別条件は日経24勝1敗でも、利益18,720円・損失16,220円。10月8日11:37の買いを12:16に損切りした1敗が約21勝分を消しました。</li></ol>
+<p class="note">現在ナイトは一回だけ取得しましたが、価格時刻の日付が逆行して固定入力検査が停止しました。<strong>未知セッションの成績は未測定です。</strong>原板の並べ替え・日付補完・再取得はしていません。</p>
+<p><a href="E01の取引更新と損失幅の改善及び全セッション損益.html">全33セッションの利益・損失・収支と枚数</a>　<a href="E01で残った損失と改善の具体例.md">何時のどの値動きで損失を生んだか</a>　<a href="現在ナイト一回照合の入力検査.html">現在ナイトの入力検査</a></p>
+<p><a href="README.md">各比較の読む順序</a>　<a href="../共通/知見台帳/README.md">法則ごとの知見</a></p></main><script>
+/**
+ * 機能: 保存根拠の二行全セルと未測定の扱いを広狭画面で確認する。
+ * @returns {object} 照合数・画面・表示品質。金融と通信は行わない。
+ */
+function verifyDisplay(){
+ const payload={"ground": {"rows": [{"symbol": "TOPIX", "id": "E01_TRADE_W60_VETO_D0_P1L8", "label": "TOPIX・逆票見送り", "profit": 138961.0, "loss": 92090.0, "net": 46871.0, "profit_share": 0.601429987318817, "pf": 1.5089694863720273, "median": 4582.0, "active": 33, "positive": 29, "negative": 4, "no_trade": 0, "top3_excluded": 30625.0, "best_excluded": 39789.0, "worst": -20418.0, "winning_lots": 150, "losing_lots": 25, "campaigns": 35, "average_win": 4632.033333333334, "average_loss": 18418.0, "active_median": 4582.0, "active_positive_rate": 0.8787878787878788, "average_payoff": 0.25149491439533794}, {"symbol": "NK225", "id": "E01_TRADE_W60_CONFIRM_D0_P1L8", "label": "日経・肯定票要求", "profit": 39940.0, "loss": 16660.0, "net": 23280.0, "profit_share": 0.7056537102473498, "pf": 2.397358943577431, "median": 1780.0, "active": 25, "positive": 23, "negative": 2, "no_trade": 8, "top3_excluded": 17940.0, "best_excluded": 21500.0, "worst": -8440.0, "winning_lots": 230, "losing_lots": 30, "campaigns": 26, "average_win": 1736.5217391304348, "average_loss": 5553.333333333333, "active_median": 1780.0, "active_positive_rate": 0.92, "average_payoff": 0.31269899264053447}], "current": [{"symbol": "TOPIX", "count": 133076, "reversals": 7, "older": 81, "missing": 565, "as_of": "2026-10-14T05:22:49.7128173+09:00", "first": {"直前": {"原連番0起点": 124772, "価格時刻": "2026-10-14T04:00:12+09:00", "現在値": 4134.0, "買気配": {"Price": 4133.5, "Qty": 11.0, "Sign": "0101"}, "売気配": {"Price": 4134.0, "Qty": 8.0, "Sign": "0101"}}, "逆行行": {"原連番0起点": 124773, "価格時刻": "2026-10-13T04:01:11+09:00", "現在値": 4133.5, "買気配": {"Price": 4133.5, "Qty": 11.0, "Sign": "0101"}, "売気配": {"Price": 4134.0, "Qty": 8.0, "Sign": "0101"}}, "逆行秒": 86341.0}}, {"symbol": "NK225", "count": 132737, "reversals": 2, "older": 11, "missing": 445, "as_of": "2026-10-14T05:22:50.584203+09:00", "first": {"直前": {"原連番0起点": 124925, "価格時刻": "2026-10-14T03:59:56+09:00", "現在値": 68210.0, "買気配": {"Price": 68200.0, "Qty": 1.0, "Sign": "0101"}, "売気配": {"Price": 68210.0, "Qty": 5.0, "Sign": "0101"}}, "逆行行": {"原連番0起点": 124926, "価格時刻": "2026-10-13T04:01:37+09:00", "現在値": 68200.0, "買気配": {"Price": 68200.0, "Qty": 1.0, "Sign": "0101"}, "売気配": {"Price": 68210.0, "Qty": 7.0, "Sign": "0101"}}, "逆行秒": 86299.0}}], "既知場数": 33, "現在金融": "未測定", "新金融再生": 0, "API取得": 0, "sources": {"アルゴリズム調査/00103_往復帯の回避と損失後再参加の統合検証/E01取引更新と損失予算の公開会計.json": "7d3c93e01ff402fa3845a58980c749b74256f162027bbb0390eaf835d6f39083", "work/wave_v106/current_capture/取得完了.json": "de2b259b29f923917fae9c94accad58324c620d5296ff36c44434d0cbc40e187", "work/wave_v106/current_capture/価格時計逆行による入力停止の非金融診断.json": "5e09c3802c2d4abcd48a6ee3480763dc9d6ae691cc430a90b7601746afea35e3"}}, "kind": "既知"},data=payload.ground,kind=payload.kind;
+ let cells=0,numbers=0,asof=0,sequences=0;
+ /**
+  * 機能: セルの整数又は割合を表示桁の丸め以内で照合する。
+  * @param {HTMLTableCellElement} cell - 表示セル。
+  * @param {number} value - 保存有限値。
+  * @param {number} precision - 表示小数桁。
+  * @returns {undefined} 照合件数を加算する。不一致は例外。
+  */
+ function numeric(cell,value,precision=0){
+  if(!Number.isFinite(value))throw Error('保存根拠未定義');
+  const actual=Number(cell.textContent.trim().replaceAll(',','').replace('%',''));
+  if(!Number.isFinite(actual)||Math.abs(actual-value)>.500001*10**(-precision))throw Error('数値差:'+actual+'/'+value);
+  numbers++;cells++;
+ }
+ /**
+  * 機能: セルの文字列を完全一致で確認する。
+  * @param {HTMLTableCellElement} cell - 表示セル。
+  * @param {string} value - 保存文字。
+  * @returns {undefined} 照合件数を加算する。
+  */
+ function exact(cell,value){if(cell.textContent.trim()!==value)throw Error('文字差:'+cell.textContent+'/'+value);cells++;}
+ const body=document.body.innerText;
+ if(kind==='既知'){
+  const rows=document.querySelector('#summary tbody').rows;
+  if(rows.length!==2||data.rows.length!==2)throw Error('既知二行');
+  for(let i=0;i<2;i++){
+   const r=rows[i],v=data.rows[i];if(r.cells.length!==8)throw Error('既知八列');
+   exact(r.cells[0],v.label);numeric(r.cells[1],v.profit);numeric(r.cells[2],v.loss);numeric(r.cells[3],v.net);
+   exact(r.cells[4],v.positive+'/'+v.negative+'/'+v.no_trade);numeric(r.cells[5],v.profit_share*100,1);
+   numeric(r.cells[6],v.top3_excluded);numeric(r.cells[7],v.worst);
+   if(v.positive+v.negative+v.no_trade!==33||Math.abs(v.profit-v.loss-v.net)>1e-5)throw Error('根拠金額/場分母');
+  }
+  for(const text of ['金額利益80%を満たす手法は未発見','日経の8無取引場を勝ちには数えていません','未知セッションの成績は未測定'])if(!body.includes(text))throw Error('結論制約:'+text);
+ }else{
+  const rows=document.querySelector('#current tbody').rows;
+  if(rows.length!==2||data.current.length!==2)throw Error('現在二行');
+  for(let i=0;i<2;i++){
+   const r=rows[i],v=data.current[i];if(r.cells.length!==6)throw Error('現在六列');
+   exact(r.cells[0],v.symbol);
+   for(let j=0;j<4;j++)numeric(r.cells[j+1],[v.count,v.reversals,v.older,v.missing][j]);
+   exact(r.cells[5],v.as_of);asof++;
+   const before=v.first['直前'],after=v.first['逆行行'];
+   const expected=v.symbol+'：原連番'+before['原連番0起点'].toLocaleString('en-US')+'の'+before['価格時刻']+'から、次行'+after['原連番0起点'].toLocaleString('en-US')+'では'+after['価格時刻']+'へ戻りました。';
+   if(!body.includes(expected))throw Error('原seqと具体価格時計');sequences+=2;
+  }
+  for(const text of ['取得は成功、損益は未測定','無取引、利益0、赤字という結果ではありません','E01新候補の未知成績も未測定','未測定を成功例へ置き換えない'])if(!body.includes(text))throw Error('未測定制約:'+text);
+ }
+ if(data['現在金融']!=='未測定'||data['新金融再生']!==0||data['API取得']!==0)throw Error('保存境界');
+ if(/undefined|NaN|Infinity|__DATA__/.test(body))throw Error('未定義表示');
+ if(document.documentElement.scrollWidth>innerWidth+2)throw Error('画面横溢れ');
+ const background=getComputedStyle(document.body).backgroundColor;
+ if(background!=='rgb(11, 17, 32)')throw Error('ダーク背景');
+ return {全合格:true,対象:kind,全セル照合:cells,表数値照合:numbers,AsOf文字一致:asof,具体例原seq照合:sequences,
+  未測定と勝ち扱い禁止確認:true,画面幅:innerWidth,文書幅:document.documentElement.scrollWidth,背景:background};
+}
+try{document.body.dataset.check=JSON.stringify(verifyDisplay());}catch(error){document.body.dataset.check=JSON.stringify({全合格:false,理由:String(error),stack:error.stack});}
+</script></body></html>

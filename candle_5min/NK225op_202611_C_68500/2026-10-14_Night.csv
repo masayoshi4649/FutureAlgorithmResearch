@@ -1,0 +1,4 @@
+time,open,high,low,close,volume,volume_complete,closed
+2026-10-14T21:50:00+09:00,1565,1565,1565,1565,0,false,true
+2026-10-14T21:55:00+09:00,1520,1520,1520,1520,1,true,true
+2026-10-14T22:35:00+09:00,1600,1600,1600,1600,1,true,true

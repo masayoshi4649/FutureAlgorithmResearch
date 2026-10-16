@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>共通知見台帳｜アルゴリズム調査</title>
+  <link rel="stylesheet" href="view/style.css">
+  <script defer src="data/view-data.js"></script>
+  <script defer src="view/app.js"></script>
+</head>
+<body>
+<!--
+[コンポーネント概要]
+#ledger は全調査に共通する知見と試行の閲覧画面です。研究の数値や結論をHTMLへ埋め込みません。
+#coverage は登録範囲と未整理部分を示し、全履歴を監査済みと誤認させません。
+#query と #state は表示中の資料を検索・絞込みます。空欄は全件です。
+#tabs は知見、試行、重複点検、過去資料を切り替えます。
+#records はデータから作る閲覧領域です。根拠は相対リンクで開き、外部通信や売買はしません。
+#load-error はデータ読込失敗を知らせます。空の台帳を検証済みの結果として表示しません。
+-->
+<main id="ledger">
+  <header>
+    <a href="../../index.html">← 調査一覧</a>
+    <h1>共通知見台帳</h1>
+    <p class="lead">何を試したか、何が分かったか、なぜもう一度試すか。</p>
+    <p id="coverage" class="notice">データを読み込んでいます。</p>
+  </header>
+  <nav id="tabs" aria-label="資料の種類">
+    <button type="button" data-tab="findings" aria-pressed="true">知見</button>
+    <button type="button" data-tab="trials" aria-pressed="false">試行</button>
+    <button type="button" data-tab="repetition" aria-pressed="false">重複点検</button>
+    <button type="button" data-tab="studies" aria-pressed="false">過去資料</button>
+  </nav>
+  <form id="search-form" role="search">
+    <label for="query">検索<input id="query" type="search" placeholder="例：再参加、E01、トレーリング"></label>
+    <label for="state">状態<select id="state"><option value="">すべて</option></select></label>
+  </form>
+  <p id="count" role="status" aria-live="polite"></p>
+  <section id="records" aria-label="検索結果"></section>
+  <p id="load-error" hidden>台帳を読み込めません。READMEの更新手順を確認してください。</p>
+  <noscript><p>閲覧にはJavaScriptを有効にしてください。正本のJSONは下のリンクから読めます。</p></noscript>
+  <footer>
+    <a href="README.md">更新・重複確認の手順</a> ·
+    <a href="data/knowledge.json">知見データ</a> ·
+    <a href="data/trials.json">試行データ</a> ·
+    <a href="data/studies.json">過去資料の索引</a>
+    <p id="updated"></p>
+  </footer>
+</main>
+</body>
+</html>

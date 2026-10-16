@@ -1,0 +1,188 @@
+"""数量測定の五sourceと実読取前guard及び窓終了の排他分母を接続する。"""
+
+import ast
+import copy
+import hashlib
+import json
+from pathlib import Path
+from types import SimpleNamespace
+import traceback
+
+import numpy as np
+
+
+HERE = Path(__file__).resolve().parent
+BASE = HERE.parents[1]
+ROOT = BASE.parents[1]
+PROOF = HERE / '完成五sourceと実読取前guard及び窓終了分母の独立接続.json'
+NAMES = ('plan.py', 'run.py', 'engine.py', 'artificial_engine.py', 'artificial_run.py')
+checks = 0
+
+
+def check(value: bool, detail: object) -> None:
+    """
+    機能: 条件の成立を数え、不一致なら根拠とともに止める。
+    引数: value(bool)は成立判定、detail(object)は根拠。
+    返り値: None。
+    """
+    global checks
+    checks += 1
+    assert value, detail
+
+
+def sha(path: Path) -> str:
+    """
+    機能: source又は小証跡の現在指紋を計算する。
+    引数: path(Path)はsource又は小資料。
+    返り値: strはSHA256。実数量本体を対象にしない。
+    """
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def run() -> dict:
+    """
+    機能: 現五sourceと人工への結合、実guard、JSON、窓末分母を純合成で検査する。
+    引数: なし。
+    返り値: dictはSOURCE_ONLY接続。正式登録やNPZ実読取ではない。
+    """
+    sources = {(BASE / name).relative_to(ROOT).as_posix(): sha(BASE / name) for name in NAMES}
+    core_path = HERE / '完成数量coreと独立episode及び価格先着のSOURCE_ONLY接続_v2.json'
+    core = json.loads(core_path.read_bytes())
+    check(core['全合格'] and core['source_SHA256']['engine.py'] == sources[(BASE / 'engine.py').relative_to(ROOT).as_posix()], '独立core同値')
+    owner_path = BASE / '固定BBO数量と公表活動及び価格先着の人工検査.json'
+    owner = json.loads(owner_path.read_bytes())
+    check(owner['全合格'] and all(sources[(BASE / name).relative_to(ROOT).as_posix()] == digest for name, digest in owner['source_SHA256'].items()), 'owner二源束縛')
+    root_path = BASE / '根の分母と対応及び原始型保存の純人工.json'
+    root = json.loads(root_path.read_bytes())
+    check(root['全合格'] and root['source_SHA256'] == sources and root['測定NPZ'] == 0, 'root130五源束縛')
+    code = (BASE / 'run.py').read_text(encoding='utf-8')
+    tree = ast.parse(code)
+    functions = [node for node in tree.body if isinstance(node, ast.FunctionDef)]
+    namespace = dict(np=np, Path=Path)
+    helpers = [node for node in functions if node.name in ('primitive', 'group', 'summarize', 'aggregate', 'validate')]
+    exec(compile(ast.fix_missing_locations(ast.Module(body=helpers, type_ignores=[])), '私有の表示集計と資格だけ', 'exec'), namespace)
+    # ----------------------------------------
+    execute = next(node for node in functions if node.name == 'execute')
+    guard = []
+    for node in execute.body:
+        if isinstance(node, ast.Expr) and isinstance(node.value, ast.Call) and isinstance(node.value.func, ast.Attribute) and node.value.func.attr == 'mkdir':
+            break
+        guard.append(node)
+    check(bool(guard) and isinstance(guard[-1], ast.Assert), 'mkdirより前のguardだけ抽出')
+    guard_func = ast.FunctionDef(name='guard_only', args=copy.deepcopy(execute.args), body=guard, decorator_list=[], returns=None, type_comment=None)
+    exec(compile(ast.fix_missing_locations(ast.Module(body=[guard_func], type_ignores=[])), '実本文より前のguard純合成', 'exec'), namespace)
+    sessions = [f'人工{index:02d}' for index in range(33)]
+    inputs = [dict(session=session, symbol=symbol) for session in sessions for symbol in ('TOPIX', 'NK225')]
+    values = dict(fixed=dict(sessions=sessions, inputs=inputs),
+        proposal=dict(spec=dict(implementation=dict(sources=sources), data=dict(inputs=inputs, sessions=sessions))),
+        frozen=dict(全合格=True, 金融=False, source_SHA256=sources, input_fixed_SHA256='fixed', proposal_SHA256='proposal', audit_SHA256='audit'),
+        audit=dict(全合格=True, 入力本文=0, source_SHA256=sources, evidence=[dict(path='合成のみ', SHA256='evidence')]))
+
+    def guard_call(selected: dict) -> None:
+        """
+        機能: 実guardへ合成read/digestだけを与え、実登録と入力を一切開かず評価する。
+        引数: selected(dict)は合成の正式固定・計画・監査。
+        返り値: None。guard以後のmkdir/実測は抽出していない。
+        """
+        mapping = {'実測前の正式固定.json': selected['frozen'], '入力と観測の小固定.json': selected['fixed'],
+            '試行計画.json': selected['proposal'], '本体初読前の人工と独立監査.json': selected['audit'],
+            'registry': dict(trials=[dict(id='合成ID', spec=selected['proposal']['spec'])])}
+        digests = {'入力と観測の小固定.json': 'fixed', '試行計画.json': 'proposal', '本体初読前の人工と独立監査.json': 'audit', '合成のみ': 'evidence'}
+        namespace.update(plan=SimpleNamespace(read=lambda path: mapping[path.name], sources=lambda: sources,
+            digest=lambda path: digests[path.name], TRIAL='合成ID'), HERE=HERE, ROOT=HERE,
+            REGISTRY=Path('registry'), OUT=HERE / '実測しない未作成出力')
+        namespace['guard_only']()
+
+    guard_call(copy.deepcopy(values))
+    check(True, '実guard正常系接続')
+    for name, mutate in (
+        ('登録source違い', lambda x: x['proposal']['spec']['implementation']['sources'].update(偽='x')),
+        ('固定source違い', lambda x: x['frozen']['source_SHA256'].update(偽='x')),
+        ('監査本文未読資格なし', lambda x: x['audit'].update(入力本文=1)),
+        ('入力重複', lambda x: x['fixed']['inputs'].__setitem__(1, copy.deepcopy(x['fixed']['inputs'][0]))),
+        ('商品集合違い', lambda x: x['fixed']['inputs'][0].update(symbol='その他')),
+        ('場数違い', lambda x: x['fixed']['sessions'].append('追加')),
+        ('登録データ不一致', lambda x: x['proposal']['spec']['data'].update(inputs=[]))):
+        bad = copy.deepcopy(values)
+        # deepcopyは共有source dictも共有を保つので、比較対象を別dictへ明示分離する。
+        bad['proposal']['spec']['implementation']['sources'] = copy.deepcopy(sources)
+        bad['frozen']['source_SHA256'] = copy.deepcopy(sources)
+        bad['audit']['source_SHA256'] = copy.deepcopy(sources)
+        mutate(bad)
+        rejected = False
+        try:
+            guard_call(bad)
+        except AssertionError:
+            rejected = True
+        check(rejected, name)
+    # ----------------------------------------
+    fields = ['type', 'episode', 'd', 'bid', 'ask', 'opposite_q0', 'quantity_ratio', 'minimum_quantity_ratio', 'total_volume', 'npositive']
+    events, outcomes = [], []
+    settings = [(1, 1., 1., 1), (-1, .5, .5, -1), (1, 1.5, .75, 3), (-1, 2., 1.5, 0), (1, .75, .5, 2)]
+    for episode, (side, ratio, minimum, code_) in enumerate(settings):
+        for type_ in ((0,) if episode == 4 else (0, 1)):
+            events.append([type_, episode, side, 100, 101, 10, ratio, minimum, 10, 1])
+            outcomes.append([code_, 30 + episode])
+    events, outcomes = np.array(events, float), np.array(outcomes, float)
+    summary = namespace['summarize'](events, outcomes, fields, 1)
+    for name, indices in dict(type0_all=[0, 2, 4, 6, 8], type0_reached=[0, 2, 4, 6], type1_all=[1, 3, 5, 7],
+                              type1_decreased=[3], type1_maintained=[1, 5, 7], type1_never_below=[1, 7], type1_recovered=[5]).items():
+        codes = [outcomes[index, 0] for index in indices]
+        group = summary[name]
+        check(group['n'] == len(indices), (name, '全分母'))
+        for key, code_ in (('plus', 1), ('minus', -1), ('unknown', 0), ('eof', 2), ('window_end', 3)):
+            check(group[key] == codes.count(code_), (name, key))
+        denom = codes.count(1) + codes.count(-1)
+        check(group['rate'] == (codes.count(1) / denom if denom else None), (name, '先着だけ分母'))
+    primitive = namespace['primitive'](dict(型=[np.bool_(True), np.int64(1), np.float64(.5), None, np.array([1, 2])]))
+    check(json.loads(json.dumps(primitive, allow_nan=False)) == {'型': [True, 1, .5, None, [1, 2]]}, '全payload保存型')
+    for nonfinite in (float('nan'), np.float64(float('inf'))):
+        rejected = False
+        try:
+            namespace['primitive'](dict(値=nonfinite))
+        except AssertionError:
+            rejected = True
+        check(rejected, '非有限原始型を拒否')
+    # ----------------------------------------
+    before_load = code.index('raw = source.read_bytes()')
+    for phrase in ("proposal['spec']['implementation']['sources'] == frozen['source_SHA256']", "len(fixed['sessions']) == 33", "(session, symbol) for session in fixed['sessions'] for symbol in ('TOPIX', 'NK225')"):
+        check(code.index(phrase) < before_load, ('実読取より前のguard', phrase))
+    for phrase in ('analysis_outcomes = outcomes.copy()', 'analysis_outcomes[scope_end, 0] = 3',
+        'outcomes=outcomes, analysis_outcomes=analysis_outcomes', "terminal_price_reason=result['price_reason_mask'][terminal]",
+        "他原因が併存し得る。3と残り0は排他的内訳。", "item['bounds'][1] - 1 <= final_clock < item['bounds'][1]"):
+        check(phrase in code, ('窓末内訳と元code保存', phrase))
+    plan_code = (BASE / 'plan.py').read_text(encoding='utf-8')
+    for phrase in ("'engine.py', 'artificial_engine.py', 'artificial_run.py'", "audit['入力本文'] == 0", "audit['source_SHA256'] == sources()", "digest(ROOT / evidence['path']) == evidence['SHA256']"):
+        check(phrase in plan_code, ('formal前監査指紋guard', phrase))
+    check({(BASE / name).relative_to(ROOT).as_posix(): sha(BASE / name) for name in NAMES} == sources, '現五source不変更')
+    return dict(全合格=True, 検査数=checks, source_SHA256=sources,
+        evidence=[dict(path=core_path.relative_to(ROOT).as_posix(), SHA256=sha(core_path)),
+                  dict(path=owner_path.relative_to(ROOT).as_posix(), SHA256=sha(owner_path)),
+                  dict(path=root_path.relative_to(ROOT).as_posix(), SHA256=sha(root_path))],
+        scope='SOURCE_ONLY最終接続。rootの正式freeze/実登録/66NPZ本文初読はまだ次の操作。',
+        留保=['観測窓末は取引場末完備ではない。code3は元code0の排他的な窓終了を含む内訳で他理由が併存し得る。',
+              '条件付き純価格先着だけ。1T順行は約定可能利益や心理、真の補充を証明しない。',
+              'type1達成集合のtype0/type1同値は同BBOの数学的対照であり二重の独立成功標本ではない。'],
+        入力本文=0, NPZ=0, cache=0, 原板=0, 元金融=0, API=0, 新金融=0,
+        監査sourceSHA256=sha(Path(__file__)))
+
+
+def main() -> None:
+    """
+    機能: source最終接続を保存し、Falseがあれば上書きしない。
+    引数: なし。
+    返り値: None。
+    """
+    assert not PROOF.exists()
+    try:
+        result = run()
+    except Exception as error:
+        result = dict(全合格=False, 検査数=checks, 理由=str(error), traceback=traceback.format_exc(), 入力本文=0, NPZ=0, API=0, 新金融=0)
+        PROOF.write_text(json.dumps(result, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+        raise
+    PROOF.write_text(json.dumps(result, ensure_ascii=False, indent=2, allow_nan=False) + '\n', encoding='utf-8')
+    print(json.dumps(dict(全合格=True, 検査数=checks, SHA256=sha(PROOF)), ensure_ascii=False))
+
+
+if __name__ == '__main__':
+    main()
