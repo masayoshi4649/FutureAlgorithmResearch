@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>待機入口の説明と全セッション損益</title>
+<style>__STYLE__</style>
+</head>
+<body>
+<!--
+[コンポーネント概要]
+#conclusion は毎セッションの安定性を優先した結論です。
+#comparison は赤字額・活動場黒字数と金額利益割合を比べます。
+#method-select は正式36条件を切り替えます。
+#session-results は全31場の費用後利益・損失・収支と決済枚数です。
+#period-detail と #stability-detail は前後・昼夜及び赤字の深さを確認する詳細です。
+#source-detail は戦略と買い・売りの会計です。
+#cause-detail は部品の変更による利益減少も含めた比較です。
+.money は正式金額の原数値を保持し、損失を正の絶対額で表示します。
+.table-wrap は表だけを横スクロールさせます。
+-->
+<main>
+<header><p class="eyebrow">00093 · 保存済み31セッション · 手数料後</p><h1>押し・戻りと再確認で、毎セッションの損失を減らせたか</h1><div id="conclusion"></div><p class="note">全31場は既知です。無取引を勝ちに含めません。最大収益より、赤字場数・平均赤字・最大赤字を重視します。</p></header>
+<section id="comparison-section"><h2>安定性の比較</h2><p class="note">黒字／活動場は取引した場だけ。平均赤字・最大赤字はセッション収支の絶対額。金額利益割合は総利益÷（総利益＋総損失）、目標80%。</p><div class="table-wrap"><table id="comparison"><thead><tr><th rowspan="2">手法</th><th colspan="7">TOPIXミニ</th><th colspan="7">日経マイクロ</th></tr><tr><th>平均赤字</th><th>最大赤字</th><th>黒字／活動場</th><th>無取引</th><th>下方偏差</th><th>全31収支</th><th>利益割合</th><th>平均赤字</th><th>最大赤字</th><th>黒字／活動場</th><th>無取引</th><th>下方偏差</th><th>全31収支</th><th>利益割合</th></tr></thead><tbody></tbody></table></div></section>
+<section id="sessions"><div class="chooser"><h2>全セッションの損益</h2><label for="method-select">手法<select id="method-select"></select></label></div><h3 id="method-title"></h3><div id="method-rule"></div><p class="note">親取引ごとの手数料後金額。下段は利益玉・損失玉の決済枚数。「勝−負」は枚数差です。</p><div class="table-wrap"><table><thead><tr><th rowspan="2">セッション</th><th colspan="3">TOPIXミニ</th><th colspan="3">日経マイクロ</th></tr><tr><th>利益</th><th>損失</th><th>収支</th><th>利益</th><th>損失</th><th>収支</th></tr></thead><tbody id="session-results"></tbody></table></div></section>
+<details id="period-detail"><summary>前後・昼夜の成績と最大利益日を除いた収支</summary><div class="table-wrap"><table><thead><tr><th>期間</th><th>商品</th><th>収支</th><th>利益割合</th><th>黒字／赤字／無取引</th><th>決済親</th><th>手数料</th><th>最大下落</th><th>最大利益日を除く収支</th></tr></thead><tbody id="period-results"></tbody></table></div></details>
+<details id="stability-detail"><summary>赤字額・中央値・下位25%と比較単位</summary><div class="table-wrap"><table><thead><tr><th>期間</th><th>商品</th><th>平均赤字</th><th>最大赤字</th><th>活動黒字率</th><th>下方偏差</th><th>活動RMS補助</th><th>活動収支中央値</th><th>活動収支下位25%</th><th>全場収支中央値</th><th>全場収支下位25%</th><th>最大場内下落</th></tr></thead><tbody id="stability-results"></tbody></table></div><p class="note">比較単位は全条件共通の上限10／20枚×商品倍率×場の最初の正常価格0.1%。下方偏差は負の場収支だけをこの単位で割り、二乗和を全評価場数で割った平方根。少枚数による円リスク縮小と、判断精度の改善を分けます。</p></details>
+<details id="source-detail"><summary>買い・売りと戦略の内訳</summary><div class="table-wrap"><table><thead><tr><th>商品</th><th>戦略</th><th>利益</th><th>損失</th><th>収支</th><th>手数料</th><th>決済親</th></tr></thead><tbody id="source-results"></tbody></table></div><div class="table-wrap"><table><thead><tr><th>商品</th><th>入口方向</th><th>利益</th><th>損失</th><th>収支</th><th>決済親</th></tr></thead><tbody id="direction-results"></tbody></table></div></details>
+<details id="cause-detail"><summary>改善と悪化の理由・部品ごとの比較</summary><div id="cause-general"></div><div id="cause-text"></div><div class="table-wrap"><table><thead><tr><th>商品</th><th>比較対象</th><th>収支の差</th><th>利益の差</th><th>損失の差</th><th>手数料の差</th><th>決済親の差</th></tr></thead><tbody id="cause-results"></tbody></table></div><p class="note">選択手法−比較対象。損失差が負なら損失が減少。同じ出口で入口だけを変え、消えた利益と活動減少も評価します。</p><div id="conclusion-detail"></div></details>
+<details id="rules-detail"><summary>細かな条件と検証範囲</summary>
+<p><b>入口：</b>両市場が5分で各0.03%以上同方向。自己の15秒買い・売り気配が各1呼値以上順行、相手の15秒価格は非逆行。弱い側の5分進行量は強い側の25%以上。十分観測された15秒注文増減が明確に逆なら見送る。不明な板フローを支持には変えない。</p>
+<p><b>候補：</b>全36で元の旧J8候補を固定。15秒格子の候補は初回以降、有効中立60秒と発火間隔600秒を要求。待機・保有・市場予約中の候補は消費して復活させない。場開始5分後から場末5分前まで新規。</p>
+<p><b>待機：</b>最大300秒。幅Wは既知始値0.1%を呼値切上げ、最低2呼値。気配再進行、1〜2W順行、半W追尾新規、半〜1W押し後の半〜1W回復を比較。Wは出口の初期幅Sとは独立で、副幅も呼値へ切上げ。押しは候補以後の局所有利極値から測り、初回押し成立行で回復用の不利極値を新しく設定する。候補価格より有利な新規は保証しない。</p>
+<p><b>発注と取消：</b>A0は候補から即時で追加の再確認なし。待機A1〜8の発注時に旧J2の現在同方向支持と正常な相手気配を要求。A2は相手が最初に正常になった行も発注可。A1とA3〜8は双方の新しい原行と厳密な時計更新・両買売気配各1呼値の進行を確認。相手基準が未知なら、最初の正常ペアは基準作成だけとし、その行には発注しない。片市場の弱化は待機維持・発注停止。双方の既知5分方向が元候補と反対へ各3bp以上、自己価格経路の断裂、期限、場末で取消。</p>
+<p><b>初期停止：</b>当該場の原行0から既知の保存始値を使用。0.1／0.2／0.4%幅を呼値切上げ・最低2呼値で実建値から逆行側へ置く。常時の利益追尾は始値0.4%幅のまま。以前の停止線より不利に戻さない。</p>
+<p><b>利益床：</b>最大順行が初期停止幅の2倍になった後だけ追加する。費用込み建値床は往復手数料の価格幅を呼値切上げして1呼値を足す。半利益床は最大順行の50%を方向付き幅として呼値切捨し、費用床より弱くしない。停止判定後にピークと床を更新し、同じ原行へ遡らない。</p>
+<p><b>期限・数量：</b>通常30分と通常期限なしを比較。どちらも保存上の運用区切り60秒前から返済判断し、全玉を場内返済。運用区切りは実立会終了とは別。<a href="https://www.jpx.co.jp/derivatives/rules/trading-hours/">JPXの立会時間</a>。全条件でTOPIX8枚・日経16枚、片方向上限10／20枚。実返済後30秒休止し、次の候補で再参加。損失後の反対方向禁止は追加しない。</p>
+<p><b>費用・約定：</b>保存ラージ板で判断後の次有効買ask／売bidに全量仮想約定。TOPIXミニ41.8円、日経マイクロ11円の片道料金を注文ごとに切捨て。含み損も清算気配・返済費用込みで評価。追加5秒悪化なし。実ミニ／マイクロ板・全量約定・真受信時計・未知セッションの安定性は未証明。</p>
+</details>
+<footer>保存データのみ。現在API取得0回、実注文0回。</footer>
+</main>
+<script id="report-data" type="application/json">__DATA__</script>
+<script>__SCRIPT__</script>
+</body>
+</html>
