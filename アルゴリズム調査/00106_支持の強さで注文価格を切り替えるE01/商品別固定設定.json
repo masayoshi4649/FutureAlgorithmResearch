@@ -1,0 +1,95 @@
+{
+  "名称": "二市場支持確認・公開価格切替E01",
+  "金融結果SHA256": "13f534a10b081db94944d723171214a2132829b66b70f177e0d3055b27116944",
+  "商品別の固定条件": {
+    "TOPIX": {
+      "id": "E01_ADAPT_G50_ADAPT75_P1",
+      "entry_id": "G50",
+      "execution_id": "ADAPT75",
+      "target_id": "P1",
+      "min_votes": 2,
+      "balance_threshold": 0.5,
+      "strong_balance_threshold": 0.75,
+      "weak_adverse_ticks": 0,
+      "strong_adverse_ticks": 1,
+      "allowance_selection": "新規公開当行のみ。実試行行で再選択しない。",
+      "exit_kind": "fixed",
+      "target_basis": "P1",
+      "target_multiple": 0.25,
+      "hard_basis": "BUDGET",
+      "floor_yen": 0.0,
+      "quantity": {
+        "TOPIX": 5,
+        "NK225": 10
+      },
+      "cap": {
+        "TOPIX": 10,
+        "NK225": 20
+      },
+      "window_seconds": 60,
+      "risk_atr_multiple": 1.0,
+      "offset_atr": 0.0,
+      "quantity_selection_budget_yen": {
+        "TOPIX": 5000.0,
+        "NK225": 2000.0
+      },
+      "baseline_id": "E01_FAK_G50_FAK0_P1",
+      "comparison_ids": [
+        "E01_FAK_G50_FAK0_P1",
+        "E01_FAK_G50_FAK1_P1"
+      ],
+      "anchor": "最初受理q/ATR/spreadで場線を一回固定。FAK未約定取消でも保持。",
+      "title": "G50 強支持0.75 P1"
+    },
+    "NK225": {
+      "id": "E01_ADAPT_G25_ADAPT100_P1",
+      "entry_id": "G25",
+      "execution_id": "ADAPT100",
+      "target_id": "P1",
+      "min_votes": 2,
+      "balance_threshold": 0.25,
+      "strong_balance_threshold": 1.0,
+      "weak_adverse_ticks": 0,
+      "strong_adverse_ticks": 1,
+      "allowance_selection": "新規公開当行のみ。実試行行で再選択しない。",
+      "exit_kind": "fixed",
+      "target_basis": "P1",
+      "target_multiple": 0.25,
+      "hard_basis": "BUDGET",
+      "floor_yen": 0.0,
+      "quantity": {
+        "TOPIX": 5,
+        "NK225": 10
+      },
+      "cap": {
+        "TOPIX": 10,
+        "NK225": 20
+      },
+      "window_seconds": 60,
+      "risk_atr_multiple": 1.0,
+      "offset_atr": 0.0,
+      "quantity_selection_budget_yen": {
+        "TOPIX": 5000.0,
+        "NK225": 2000.0
+      },
+      "baseline_id": "E01_FAK_G25_FAK0_P1",
+      "comparison_ids": [
+        "E01_FAK_G25_FAK0_P1",
+        "E01_FAK_G25_FAK1_P1"
+      ],
+      "anchor": "最初受理q/ATR/spreadで場線を一回固定。FAK未約定取消でも保持。",
+      "title": "G25 強支持1.0 P1"
+    }
+  },
+  "実商品": {
+    "TOPIX": "TOPIXmini",
+    "NK225": "NK225micro"
+  },
+  "同時片方向保有上限": {
+    "TOPIX": 10,
+    "NK225": 20
+  },
+  "場毎の設定変更": false,
+  "選定範囲": "同じ既知33場内の探索。新しい未見入力での確認ではない。",
+  "実装と入力の所在": "work/e01_adaptive_price_20261014/engine/試行計画.jsonを参照。元E01の候補feedと所定の入力構造を使用。ライブAppを変更又は実発注する設定ではない。"
+}

@@ -1,0 +1,14 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>現在ナイト一回照合の入力検査</title><style>body{margin:0;background:#0b1120;color:#e5edf9;font:16px/1.7 system-ui,sans-serif}main{max-width:1260px;margin:auto;padding:30px 22px}h1{font-size:26px}h2{font-size:20px;margin-top:28px}p{max-width:1000px}a{color:#85bdff}strong{color:#f6d383}.table-wrap{overflow-x:auto;max-width:100%;border:1px solid #344154;border-radius:10px}table{border-collapse:collapse;width:100%;white-space:nowrap}th,td{padding:10px 12px;text-align:right;border-bottom:1px solid #344154}th{background:#182337;color:#b7c9df}th:first-child,td:first-child{text-align:left}small{color:#a9b9ce}code{overflow-wrap:anywhere;white-space:normal}li{margin:8px 0}.note{background:#182337;padding:14px 18px;border-radius:10px}@media(max-width:600px){main{padding:18px 12px}h1{font-size:23px}body{font-size:15px}}</style></head><body>
+<!--
+[コンポーネント概要]
+main は結論と保存根拠の表示領域です。金融処理・外部通信は行いません。
+.table-wrap は表だけの横スクロール領域です。狭い画面で本文が横へ溢れることを防ぎます。
+#summary は既知33場の商品別比較基準、#current は現在取得の入力検査を表示します。
+未知の損益は未測定と記し、利益0又は無取引へ置き換えません。
+--><main><h1>現在ナイト一回照合の入力検査</h1><p><strong>取得は成功、損益は未測定です。</strong>2026-10-13ナイトの板を、10月14日05:22～05:23に両銘柄各一回だけ取得しました。現在セッションの再取得・実注文はありません。</p>
+<div class="table-wrap"><table id="current"><thead><tr><th>銘柄</th><th>保存行数</th><th>直前時計への逆行</th><th>過去最大時計より古い行</th><th>時計欠測</th><th>取得固定上限</th></tr></thead><tbody><tr><td>TOPIX</td><td>133,076</td><td>7</td><td>81</td><td>565</td><td>2026-10-14T05:22:49.7128173+09:00</td></tr><tr><td>NK225</td><td>132,737</td><td>2</td><td>11</td><td>445</td><td>2026-10-14T05:22:50.584203+09:00</td></tr></tbody></table></div>
+<h2>停止した具体箇所</h2><ul><li>TOPIX：原連番124,772の2026-10-14T04:00:12+09:00から、次行124,773では2026-10-13T04:01:11+09:00へ戻りました。</li><li>NK225：原連番124,925の2026-10-14T03:59:56+09:00から、次行124,926では2026-10-13T04:01:37+09:00へ戻りました。</li></ul>
+<p>保存原行は進んでいる一方、午前4時の一部現在値時計が前日の日付になります。受信時計は保存されておらず、現在値時計を板の受信時計として扱うこともできません。</p>
+<p>事前固定した往復単独・追従単独・自動選択の3条件は、単調な価格時計を要求する入力検査で停止しました。<b>無取引、利益0、赤字という結果ではありません。</b>E01新候補の未知成績も未測定です。並べ替え、日付の推定補完、エラー後の条件変更は行っていません。</p>
+<p class="note">取得時点では場が未完了でした。将来この板を検証に使う場合も、価格時計の扱いと受信順を先に定義し、今回の未測定を成功例へ置き換えないようにします。</p>
+<p><a href="../../work/wave_v106/current_capture/取得完了.json">一回取得の証跡</a>　<a href="../../work/wave_v106/current_capture/価格時計逆行による入力停止の非金融診断.json">具体的な逆行行と原本指紋</a>　<a href="../../work/wave_v106/current_session/現ナイト入力準備False.json">入力停止</a>　<a href="今回の結論と残す候補.html">過去33場の結論</a></p></main></body></html>
