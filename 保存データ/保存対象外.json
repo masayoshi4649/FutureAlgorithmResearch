@@ -2,6 +2,312 @@
   "説明": "元ファイルはローカルに保持し、Git送信だけ対象外とする。",
   "items": [
     {
+      "path": "work/direction_review_20261016/public_view/visual/profile_PC1450",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/direction_review_20261016/public_view/visual/profile_モバイル520",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/direction_review_20261016/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/e01_adaptive_price_20261014/audit/owned/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/e01_adaptive_price_20261014/engine/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/e01_adaptive_price_20261014/report_review/visual/profile_固定設定の基準と候補不足",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/e01_adaptive_price_20261014/report_review/visual/profile_支持強度E011450",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/e01_adaptive_price_20261014/report_review/visual/profile_支持強度E01520",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/e01_cross_market_20261014/audit/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/e01_cross_market_20261014/engine/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/e01_cross_market_20261014/report_review/visual/profile_B03上位三除外と期間及び買売",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/e01_cross_market_20261014/report_review/visual/profile_E01銘柄差1450",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/e01_cross_market_20261014/report_review/visual/profile_E01銘柄差520",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/e01_cross_market_20261014/report_review_v2/visual/profile_B03上位三除外と期間及び買売",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/e01_cross_market_20261014/report_review_v2/visual/profile_E01銘柄差1450",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/e01_cross_market_20261014/report_review_v2/visual/profile_E01銘柄差520",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/e01_cross_market_20261014/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/e01_current_reassessment_20261015/engine/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/e01_current_reassessment_20261015/technical_audit/report_audit/visual/profile_PC全33場",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/e01_current_reassessment_20261015/technical_audit/report_audit/visual_v2/profile_mobile全33場",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/e01_current_reassessment_20261015/technical_audit/report_audit/visual_v2/profile_PC全33場",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/e01_current_reassessment_20261015/technical_audit/report_audit/visual_v2/profile_PC比較一覧",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/e01_current_reassessment_20261015/technical_audit/完成signal接続の私有十四源/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/e01_economic_scale_20261014/audit/owned/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/e01_economic_scale_20261014/diagnosis/packet_20261002/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/e01_economic_scale_20261014/diagnosis/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/e01_economic_scale_20261014/engine/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/e01_economic_scale_20261014/report_review/visual/profile_全場平均と容量及び上位三除外",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/e01_economic_scale_20261014/report_review/visual/profile_容量E011450",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/e01_economic_scale_20261014/report_review/visual/profile_容量E01520",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/e01_entry_information_20261014/audit/owned/private_entry_information/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/e01_entry_information_20261014/report_check/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/e01_entry_information_20261014/report_review/screens/visual/profile_入口情報比較1450",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/e01_entry_information_20261014/report_review/screens/visual/profile_入口情報比較520",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/e01_entry_information_20261014/report_review/screens/visual/profile_全場平均と容量及び上位三除外",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/e01_fak_evidence_20261014/audit/owned/private_fak_evidence/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/e01_fak_evidence_20261014/report_review/screens/visual/profile_入口情報比較1450",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/e01_fak_evidence_20261014/report_review/screens/visual/profile_入口情報比較520",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/e01_fak_evidence_20261014/report_review/screens/visual/profile_全場平均と容量及び上位三除外",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/e01_improve_20261014/audit/owned/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/e01_improve_20261014/report_review/visual/profile_公開価格E011450",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/e01_improve_20261014/report_review/visual/profile_公開価格E01520",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/e01_improve_20261014/report_review/visual/profile_固定設定の基準と候補不足",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/e01_price_exit_ablation_20261014/report_review/visual/profile_全場平均と容量及び上位三除外",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/e01_price_exit_ablation_20261014/report_review/visual/profile_逆票返済OFF1450",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/e01_price_exit_ablation_20261014/report_review/visual/profile_逆票返済OFF520",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/e01_protect_reentry_20261014/diagnosis/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/e01_protect_reentry_20261014/engine/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/e01_protect_reentry_20261014/report_review/visual/profile_全場平均と容量及び上位三除外",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/e01_protect_reentry_20261014/report_review/visual/profile_利益保護E011450",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/e01_protect_reentry_20261014/report_review/visual/profile_利益保護E01520",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
       "path": "work/e01_worst15/visual_28b9e0d3",
       "reason": "ブラウザのCookie・履歴・実行用プロファイル",
       "files": 0,
@@ -44,6 +350,168 @@
       "bytes": 0
     },
     {
+      "path": "work/knowledge_parts_00102/visual/profile",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/knowledge_parts_00102/visual/profile_1791889421095360400",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/knowledge_parts_00102/visual/profile_1791889633620196000",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/quantity_execution_20261015/diagnosis/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/quantity_execution_20261015/metrics/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/quantity_execution_20261015/public_finish/visual/profile_PC1450",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/quantity_execution_20261015/public_finish/visual/profile_モバイル520",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/quantity_response_corrected_20261015/public_finish/screens/profile_PC_1450",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/quantity_response_corrected_20261015/public_finish/screens_v2/profile_PC_1450",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/quantity_response_corrected_20261015/public_finish/screens_v3/profile_PC_1450",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/quantity_response_corrected_20261015/public_finish/screens_v3/profile_モバイル_520",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/quantity_response_corrected_20261015/public_finish/screens_v3/profile_詳細_1450",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/quantity_response_corrected_20261015/public_finish/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/quantity_reverse_20261015/diagnosis/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/quantity_reverse_20261015/mirror/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/quantity_reverse_20261015/public_finish/visual/profile_PC1450",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/quantity_reverse_20261015/public_finish/visual/profile_モバイル520",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/topix10pt_20261016/public_view/revision4/render_v2/visual/profile_PC1450",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/topix10pt_20261016/public_view/revision4/render_v2/visual/profile_モバイル520",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/topix10pt_20261016/public_view/revision4/visual/profile_PC1450",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/topix10pt_20261016/public_view/visual/profile_PC1450",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/topix10pt_20261016/public_view/visual/profile_PC1450_S03",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/topix10pt_20261016/public_view/visual/profile_モバイル520",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/topix10pt_20261016/public_view/visual/profile_モバイル520_S03",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/topix10pt_20261016/s03_context/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/topix10pt_20261016/s03_review/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/topix10pt_20261016/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
       "path": "work/wave_research/__pycache__",
       "reason": "再生成できるコンパイル済みキャッシュ",
       "files": 0,
@@ -51,6 +519,702 @@
     },
     {
       "path": "work/wave_v10/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v100/audit/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v100/report/visual/profile_主と対照の広幅",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v100/report/visual/profile_主と対照の狭幅",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v100/report/visual/profile_全31損益",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v100/report/visual/profile_安定性と前後及び源別寄与",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v100/report/visual/profile_改善悪化と条件",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v100/root_preflight/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v100/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v101/analysis/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v101/report/visual/profile_全31実玉群と親",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v101/report/visual/profile_前後と親内損失及び予算",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v101/report/visual/profile_安定性の広幅",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v101/report/visual/profile_安定性の狭幅",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v101/report/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v101/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v102/analysis/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v102/audit/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v102/engine_review/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v102/report/visual/profile_全31実玉群と親",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v102/report/visual/profile_安定性の広幅",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v102/report/visual/profile_安定性の狭幅",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v102/report/visual/profile_追加1と全32合計",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v102/report/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v102/root_preflight/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v102/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v103/activity/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v103/engine/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v103/report/visual/profile_C_VOLUMEの全場表",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v103/report/visual/profile_U_C1R1の全場表",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v103/report/visual/profile_比較表の広幅",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v103/report/visual/profile_比較表の狭幅",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v103/report/visual_final/profile_C_VOLUMEの全場表",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v103/report/visual_final/profile_U_C1R1の全場表",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v103/report/visual_final/profile_比較表の広幅",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v103/report/visual_final/profile_比較表の狭幅",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v104/report/visual/profile_P50_P10_T2の全場表",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v104/report/visual/profile_U_P10_T2の全場表",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v104/report/visual/profile_比較表の広幅",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v104/report/visual/profile_比較表の狭幅",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v104/report/旧visual_内部理由列挙/profile_P50_P10_T2の全場表",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v104/report/旧visual_内部理由列挙/profile_U_P10_T2の全場表",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v104/report/旧visual_内部理由列挙/profile_比較表の広幅",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v104/report/旧visual_内部理由列挙/profile_比較表の狭幅",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v104/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v105/engine/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v105/knowledge_audit/visual/profile",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v105/knowledge_audit/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v105/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v106/e01_anchor/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v106/e01_known_veto/diagnosis/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v106/e01_known_veto/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v106/e01_reference/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v106/e01_resting_takeprofit/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v106/e01_risk_sizing/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v106/e01_size_goal_anchor/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v106/e01_size_loss_anchor/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v106/e01_trade_exit/diagnosis/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v106/e01_trade_exit/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v106/e01_trade_gate/diagnosis/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v106/e01_trade_gate/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v106/goal_anchor_review/visual/profile_利確目標四比較1450",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v106/goal_anchor_review/visual/profile_利確目標四比較520",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v106/goal_anchor_review/visual/profile_受理q目標と旧比較",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v106/input/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v106/local_phase/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v106/loss_anchor_review/visual/profile_両停止線と不変B及び旧勝ち喪失",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v106/loss_anchor_review/visual/profile_損失停止四比較1450",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v106/loss_anchor_review/visual/profile_損失停止四比較520",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v106/loss_stop_diagnosis/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v106/new_goal/review/visual/profile_新三基準1450",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v106/new_goal/review/visual/profile_新三基準520",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v106/portfolio/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v106/price_review/final_pages_visual/profile_今回の結論と残す候補1450",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v106/price_review/final_pages_visual/profile_今回の結論と残す候補520",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v106/price_review/final_pages_visual/profile_現在ナイト一回照合の入力検査1450",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v106/price_review/final_pages_visual/profile_現在ナイト一回照合の入力検査520",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v106/price_review/final_pages_visual_v2/profile_今回の結論と残す候補1450_v2",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v106/price_review/final_pages_visual_v2/profile_今回の結論と残す候補520_v2",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v106/price_review/final_pages_visual_v2/profile_現在ナイト一回照合の入力検査1450_v2",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v106/price_review/final_pages_visual_v2/profile_現在ナイト一回照合の入力検査520_v2",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v106/price_review/final_pages_visual_v3/profile_今回の結論と残す候補1450_v3",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v106/price_review/final_pages_visual_v3/profile_今回の結論と残す候補520_v3",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v106/price_review/new_goal_independent/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v106/price_review/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v106/range_price/diagnosis_engine/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v106/range_price/engine/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v106/range_price/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v106/regime/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v106/regime_price/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v106/regime_sample/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v106/review/e01_exit/visual/profile_途中退出六条件1450",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v106/review/e01_exit/visual/profile_途中退出六条件520",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v106/review/e01_trade/visual/profile_E01取引更新1450",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v106/review/e01_trade/visual/profile_E01取引更新520",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v106/review/known_veto/visual/profile_情報資格四比較1450",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v106/review/known_veto/visual/profile_情報資格四比較520",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v106/review/net_goal/visual/profile_一呼値小利益六条件1450",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v106/review/net_goal/visual/profile_一呼値小利益六条件520",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v106/review/resting/visual/profile_常設利確十二条件1450",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v106/review/resting/visual/profile_常設利確十二条件520",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v106/review/visual/profile_E011450",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v106/review/visual/profile_E01520",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v106/review/visual/profile_価格往復1450",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v106/review/visual/profile_価格往復520",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v106/review/visual/profile_取引更新1450",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v106/review/visual/profile_取引更新520",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v106/review/visual/profile_板入口1450",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v106/review/visual/profile_板入口520",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v106/review/visual/profile_直近位相1450",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v106/review/visual/profile_直近位相520",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v106/risk_sizing_review/visual/profile_数量四比較1450",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v106/risk_sizing_review/visual/profile_数量四比較520",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v106/risk_sizing_review/visual/profile_数量縮小による損失二例",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v106/size_availability/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v106/time_guard/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v106/__pycache__",
       "reason": "再生成できるコンパイル済みキャッシュ",
       "files": 0,
       "bytes": 0
@@ -2160,6 +3324,18 @@
       "bytes": 0
     },
     {
+      "path": "work/wave_v78/report/visual_sessions/profile_全セッション表_広幅",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v78/report/visual_sessions/profile_全セッション表_狭幅",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
       "path": "work/wave_v78/report/__pycache__",
       "reason": "再生成できるコンパイル済みキャッシュ",
       "files": 0,
@@ -2172,7 +3348,667 @@
       "bytes": 0
     },
     {
+      "path": "work/wave_v79/audit/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v79/report/visual/profile_全セッション損益",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v79/report/visual/profile_全体広幅",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v79/report/visual/profile_全体狭幅",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v79/report/visual/profile_板詳細",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v79/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
       "path": "work/wave_v8/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v80/audit/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v80/report/visual/profile_主全体広幅",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v80/report/visual/profile_主全体狭幅",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v80/report/visual/profile_全330広幅",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v80/report/visual/profile_全330狭幅",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v80/report/visual/profile_全セッション損益",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v80/report/visual/profile_損失原因と待ち時間",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v80/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v81/audit/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v81/report/visual/profile_主全体広幅",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v81/report/visual/profile_主全体狭幅",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v81/report/visual/profile_全188広幅",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v81/report/visual/profile_全188狭幅",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v81/report/visual/profile_全セッション損益",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v81/report/visual/profile_実保有と損失原因",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v81/report/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v81/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v82/audit/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v82/diagnosis/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v82/report/visual/profile_主全体広幅",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v82/report/visual/profile_主全体狭幅",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v82/report/visual/profile_全188広幅",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v82/report/visual/profile_全188狭幅",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v82/report/visual/profile_全セッション損益",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v82/report/visual/profile_費用分解と相場分類",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v82/report/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v82/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v83/audit/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v83/report/visual/profile_主全体広幅",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v83/report/visual/profile_主全体狭幅",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v83/report/visual/profile_全288広幅",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v83/report/visual/profile_全288狭幅",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v83/report/visual/profile_全セッション損益",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v83/report/visual/profile_在庫と費用分解",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v83/report/visual/profile_家族別広幅",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v83/report/visual/profile_家族別狭幅",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v83/report/visual/profile_指値保持と全場",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v83/report/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v83/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v84/audit/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v84/report/visual/profile_主全体広幅",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v84/report/visual/profile_主全体狭幅",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v84/report/visual/profile_全108広幅",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v84/report/visual/profile_全108狭幅",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v84/report/visual/profile_全セッション損益",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v84/report/visual/profile_参考条件の主結果",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v84/report/visual/profile_参考条件の理論対照",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v84/report/visual/profile_同幅比較と費用",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v84/report/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v84/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v85/audit/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v85/report/brief_visual/profile_全30損益",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v85/report/brief_visual/profile_簡潔版広幅",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v85/report/brief_visual/profile_簡潔版狭幅",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v85/report/visual/profile_主全体広幅",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v85/report/visual/profile_主全体狭幅",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v85/report/visual/profile_全25比較広幅",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v85/report/visual/profile_全25比較狭幅",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v85/report/visual/profile_全30場の決済枚数",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v85/report/visual/profile_全30場の親組損益",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v85/report/visual/profile_改修差と旧結果接続",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v85/report/visual/profile_時間帯見送りの比較",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v85/report/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v85/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v86/audit/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v86/report/visual/profile_全セッション",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v86/report/visual/profile_狭い画面",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v86/report/visual/profile_結論と比較",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v86/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v87/audit/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v87/report/visual/profile_全セッション表",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v87/report/visual/profile_原因と改修比較",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v87/report/visual/profile_狭い画面",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v87/report/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v87/round10/audit/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v87/round10/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v87/round11/audit/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v87/round11/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v87/round12/audit/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v87/round12/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v87/round5/audit/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v87/round7/audit/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v87/round7/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v87/round8/audit/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v87/round8/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v87/round9/audit/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v87/round9/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v87/theory/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v88/analysis/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v88/audit/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v88/report/visual/profile_主全体広幅",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v88/report/visual/profile_主全体狭幅",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v88/report/visual/profile_全30損益",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v88/report/visual/profile_期間と費用",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v88/report/visual/profile_赤字場の源別収支",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v88/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v89/audit/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v89/report/visual/profile_主全体広幅",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v89/report/visual/profile_主全体狭幅",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v89/report/visual/profile_全30損益",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v89/report/visual/profile_回復を見送った4親",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v89/report/visual/profile_期間と見送り効果",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v89/report/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v89/__pycache__",
       "reason": "再生成できるコンパイル済みキャッシュ",
       "files": 0,
       "bytes": 0
@@ -2184,10 +4020,460 @@
       "bytes": 0
     },
     {
+      "path": "work/wave_v90/audit/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v90/report/visual/profile_主全体広幅",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v90/report/visual/profile_主全体狭幅",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v90/report/visual/profile_全30損益",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v90/report/visual/profile_改善悪化と条件",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v90/report/visual/profile_期間と源別寄与",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v90/review/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v90/round2/audit/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v90/round2/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v90/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v91/audit/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v91/inputs/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v91/report/visual/profile_主と追加場の広幅",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v91/report/visual/profile_主と追加場の狭幅",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v91/report/visual/profile_全31損益",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v91/report/visual/profile_改善悪化と条件",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v91/report/visual/profile_旧30追加1と源別寄与",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v91/report/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v91/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v92/audit/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v92/report/visual/profile_主と対照の広幅",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v92/report/visual/profile_主と対照の狭幅",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v92/report/visual/profile_全31損益",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v92/report/visual/profile_前後と源別寄与",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v92/report/visual/profile_改善悪化と条件",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v92/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v93/audit/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v93/report/visual/profile_主と対照の広幅",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v93/report/visual/profile_主と対照の狭幅",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v93/report/visual/profile_全31損益",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v93/report/visual/profile_前後と源別寄与",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v93/report/visual/profile_改善悪化と条件",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v93/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v94/report/visual/profile_主と対照の広幅",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v94/report/visual/profile_主と対照の狭幅",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v94/report/visual/profile_全31損益",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v94/report/visual/profile_安定性と前後及び源別寄与",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v94/report/visual/profile_改善悪化と条件",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v94/review/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v94/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v95/audit/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v95/report/visual/profile_主と対照の広幅",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v95/report/visual/profile_主と対照の狭幅",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v95/report/visual/profile_全31損益",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v95/report/visual/profile_安定性と前後及び源別寄与",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v95/report/visual/profile_改善悪化と条件",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v95/review/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v95/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v96/report/visual/profile_主と対照の広幅",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v96/report/visual/profile_主と対照の狭幅",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v96/report/visual/profile_全31損益",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v96/report/visual/profile_安定性と前後及び源別寄与",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v96/report/visual/profile_改善悪化と条件",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v96/review/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v96/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v97/report/visual/profile_主と対照の広幅",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v97/report/visual/profile_主と対照の狭幅",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v97/report/visual/profile_全31損益",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v97/report/visual/profile_安定性と前後及び源別寄与",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v97/report/visual/profile_改善悪化と条件",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v97/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v98/report/visual/profile_主と対照の広幅",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v98/report/visual/profile_主と対照の狭幅",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v98/report/visual/profile_全31損益",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v98/report/visual/profile_安定性と前後及び源別寄与",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v98/report/visual/profile_改善悪化と条件",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v98/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v99/audit/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v99/report/visual/profile_主と対照の広幅",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v99/report/visual/profile_主と対照の狭幅",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v99/report/visual/profile_全31損益",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v99/report/visual/profile_安定性と前後及び源別寄与",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v99/report/visual/profile_改善悪化と条件",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v99/root_preflight/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/wave_v99/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
       "path": "コンパイル済みキャッシュ・実行ファイル・環境設定",
       "reason": "ローカルの実行用ファイル",
-      "files": 415,
-      "bytes": 45609616
+      "files": 2499,
+      "bytes": 380585248
     }
   ]
 }
