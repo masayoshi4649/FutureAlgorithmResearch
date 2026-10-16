@@ -1,0 +1,13 @@
+{
+  "全合格": true,
+  "人工専用": true,
+  "検査件数": 18,
+  "SHA256": {
+    "duplicate_check.py": "fa9a0b2809d4c3ceebf5a92dd2a7b7d96643c10d8bdef0d407f1314f02a8df6c",
+    "test_duplicate_check.py": "1fa8b43842f908c7cbfb4b3d4b64658e61baa428d12c99ecf2c442681ef071b2"
+  },
+  "金融再生": 0,
+  "原本読取": 0,
+  "API取得": 0,
+  "範囲": "ID変更・辞書順・配列順・数量・費用・時刻・ルール・データ・実装・型・欠落・NaN等の境界"
+}

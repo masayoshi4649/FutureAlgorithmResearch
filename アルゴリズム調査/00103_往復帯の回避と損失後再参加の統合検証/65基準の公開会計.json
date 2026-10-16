@@ -1,0 +1,4740 @@
+{
+  "全合格": true,
+  "pairs": {
+    "代表": {
+      "label": "従来の銘柄別代表",
+      "ids": {
+        "TOPIX": "E01_TRADE_W60_VETO_D0_P1L8",
+        "NK225": "E01_TRADE_W60_CONFIRM_D0_P1L8"
+      }
+    },
+    "共通VETO": {
+      "label": "両銘柄共通：逆票を見送る",
+      "ids": {
+        "TOPIX": "E01_TRADE_W60_VETO_D0_P1L8",
+        "NK225": "E01_TRADE_W60_VETO_D0_P1L8"
+      }
+    },
+    "共通CONFIRM": {
+      "label": "両銘柄共通：同方向票を要求する",
+      "ids": {
+        "TOPIX": "E01_TRADE_W60_CONFIRM_D0_P1L8",
+        "NK225": "E01_TRADE_W60_CONFIRM_D0_P1L8"
+      }
+    },
+    "共通KNOWN": {
+      "label": "両銘柄共通：観測不足と逆票を見送る",
+      "ids": {
+        "TOPIX": "E01_TRADE_W60_KNOWN_VETO_D0_P1L8",
+        "NK225": "E01_TRADE_W60_KNOWN_VETO_D0_P1L8"
+      }
+    }
+  },
+  "cases": {
+    "E01_TRADE_W60_VETO_D0_P1L8": {
+      "id": "E01_TRADE_W60_VETO_D0_P1L8",
+      "config": {
+        "id": "E01_TRADE_W60_VETO_D0_P1L8",
+        "window_seconds": 60,
+        "mode": "VETO",
+        "exit": "P1L8",
+        "execution": "D0",
+        "quantity": {
+          "TOPIX": 5,
+          "NK225": 10
+        },
+        "cap": {
+          "TOPIX": 10,
+          "NK225": 20
+        },
+        "offset_atr": 0.0
+      },
+      "rows": [
+        {
+          "session": "2026-09-21_Day",
+          "symbol": "NK225",
+          "profit": 1780.0,
+          "loss": -0.0,
+          "net": 1780.0,
+          "campaigns": 1,
+          "fees": 220.0
+        },
+        {
+          "session": "2026-09-21_Night",
+          "symbol": "NK225",
+          "profit": 1780.0,
+          "loss": -0.0,
+          "net": 1780.0,
+          "campaigns": 1,
+          "fees": 220.0
+        },
+        {
+          "session": "2026-09-22_Day",
+          "symbol": "NK225",
+          "profit": 1780.0,
+          "loss": -0.0,
+          "net": 1780.0,
+          "campaigns": 1,
+          "fees": 220.0
+        },
+        {
+          "session": "2026-09-22_Night",
+          "symbol": "NK225",
+          "profit": 780.0,
+          "loss": -0.0,
+          "net": 780.0,
+          "campaigns": 1,
+          "fees": 220.0
+        },
+        {
+          "session": "2026-09-23_Day",
+          "symbol": "NK225",
+          "profit": 0.0,
+          "loss": -0.0,
+          "net": 0.0,
+          "campaigns": 0,
+          "fees": 0.0
+        },
+        {
+          "session": "2026-09-23_Night",
+          "symbol": "NK225",
+          "profit": 1780.0,
+          "loss": -0.0,
+          "net": 1780.0,
+          "campaigns": 1,
+          "fees": 220.0
+        },
+        {
+          "session": "2026-09-24_Day",
+          "symbol": "NK225",
+          "profit": 1780.0,
+          "loss": -0.0,
+          "net": 1780.0,
+          "campaigns": 1,
+          "fees": 220.0
+        },
+        {
+          "session": "2026-09-24_Night",
+          "symbol": "NK225",
+          "profit": 1780.0,
+          "loss": -0.0,
+          "net": 1780.0,
+          "campaigns": 1,
+          "fees": 220.0
+        },
+        {
+          "session": "2026-09-25_Day",
+          "symbol": "NK225",
+          "profit": 0.0,
+          "loss": 8220.0,
+          "net": -8220.0,
+          "campaigns": 1,
+          "fees": 220.0
+        },
+        {
+          "session": "2026-09-25_Night",
+          "symbol": "NK225",
+          "profit": 0.0,
+          "loss": 8220.0,
+          "net": -8220.0,
+          "campaigns": 1,
+          "fees": 220.0
+        },
+        {
+          "session": "2026-09-28_Day",
+          "symbol": "NK225",
+          "profit": 1780.0,
+          "loss": -0.0,
+          "net": 1780.0,
+          "campaigns": 1,
+          "fees": 220.0
+        },
+        {
+          "session": "2026-09-28_Night",
+          "symbol": "NK225",
+          "profit": 1780.0,
+          "loss": -0.0,
+          "net": 1780.0,
+          "campaigns": 1,
+          "fees": 220.0
+        },
+        {
+          "session": "2026-09-29_Day",
+          "symbol": "NK225",
+          "profit": 780.0,
+          "loss": -0.0,
+          "net": 780.0,
+          "campaigns": 1,
+          "fees": 220.0
+        },
+        {
+          "session": "2026-09-29_Night",
+          "symbol": "NK225",
+          "profit": 0.0,
+          "loss": 8440.0,
+          "net": -8440.0,
+          "campaigns": 2,
+          "fees": 440.0
+        },
+        {
+          "session": "2026-09-30_Day",
+          "symbol": "NK225",
+          "profit": 1780.0,
+          "loss": -0.0,
+          "net": 1780.0,
+          "campaigns": 1,
+          "fees": 220.0
+        },
+        {
+          "session": "2026-09-30_Night",
+          "symbol": "NK225",
+          "profit": 0.0,
+          "loss": 8220.0,
+          "net": -8220.0,
+          "campaigns": 1,
+          "fees": 220.0
+        },
+        {
+          "session": "2026-10-01_Day",
+          "symbol": "NK225",
+          "profit": 1780.0,
+          "loss": -0.0,
+          "net": 1780.0,
+          "campaigns": 1,
+          "fees": 220.0
+        },
+        {
+          "session": "2026-10-01_Night",
+          "symbol": "NK225",
+          "profit": 1780.0,
+          "loss": -0.0,
+          "net": 1780.0,
+          "campaigns": 1,
+          "fees": 220.0
+        },
+        {
+          "session": "2026-10-02_Day",
+          "symbol": "NK225",
+          "profit": 1780.0,
+          "loss": -0.0,
+          "net": 1780.0,
+          "campaigns": 1,
+          "fees": 220.0
+        },
+        {
+          "session": "2026-10-02_Night",
+          "symbol": "NK225",
+          "profit": 1780.0,
+          "loss": -0.0,
+          "net": 1780.0,
+          "campaigns": 1,
+          "fees": 220.0
+        },
+        {
+          "session": "2026-10-05_Day",
+          "symbol": "NK225",
+          "profit": 2780.0,
+          "loss": -0.0,
+          "net": 2780.0,
+          "campaigns": 1,
+          "fees": 220.0
+        },
+        {
+          "session": "2026-10-05_Night",
+          "symbol": "NK225",
+          "profit": 0.0,
+          "loss": 8220.0,
+          "net": -8220.0,
+          "campaigns": 1,
+          "fees": 220.0
+        },
+        {
+          "session": "2026-10-06_Day",
+          "symbol": "NK225",
+          "profit": 1780.0,
+          "loss": -0.0,
+          "net": 1780.0,
+          "campaigns": 1,
+          "fees": 220.0
+        },
+        {
+          "session": "2026-10-06_Night",
+          "symbol": "NK225",
+          "profit": 1780.0,
+          "loss": -0.0,
+          "net": 1780.0,
+          "campaigns": 1,
+          "fees": 220.0
+        },
+        {
+          "session": "2026-10-07_Day",
+          "symbol": "NK225",
+          "profit": 1780.0,
+          "loss": -0.0,
+          "net": 1780.0,
+          "campaigns": 1,
+          "fees": 220.0
+        },
+        {
+          "session": "2026-10-07_Night",
+          "symbol": "NK225",
+          "profit": 1780.0,
+          "loss": -0.0,
+          "net": 1780.0,
+          "campaigns": 1,
+          "fees": 220.0
+        },
+        {
+          "session": "2026-10-08_Day",
+          "symbol": "NK225",
+          "profit": 1780.0,
+          "loss": -0.0,
+          "net": 1780.0,
+          "campaigns": 1,
+          "fees": 220.0
+        },
+        {
+          "session": "2026-10-08_Night",
+          "symbol": "NK225",
+          "profit": 1780.0,
+          "loss": -0.0,
+          "net": 1780.0,
+          "campaigns": 1,
+          "fees": 220.0
+        },
+        {
+          "session": "2026-10-09_Day",
+          "symbol": "NK225",
+          "profit": 0.0,
+          "loss": 8220.0,
+          "net": -8220.0,
+          "campaigns": 1,
+          "fees": 220.0
+        },
+        {
+          "session": "2026-10-09_Night",
+          "symbol": "NK225",
+          "profit": 1780.0,
+          "loss": -0.0,
+          "net": 1780.0,
+          "campaigns": 1,
+          "fees": 220.0
+        },
+        {
+          "session": "2026-10-12_Day",
+          "symbol": "NK225",
+          "profit": 1780.0,
+          "loss": -0.0,
+          "net": 1780.0,
+          "campaigns": 1,
+          "fees": 220.0
+        },
+        {
+          "session": "2026-10-12_Night",
+          "symbol": "NK225",
+          "profit": 0.0,
+          "loss": 8440.0,
+          "net": -8440.0,
+          "campaigns": 2,
+          "fees": 440.0
+        },
+        {
+          "session": "2026-10-13_Day",
+          "symbol": "NK225",
+          "profit": 1780.0,
+          "loss": -0.0,
+          "net": 1780.0,
+          "campaigns": 1,
+          "fees": 220.0
+        },
+        {
+          "session": "2026-09-21_Day",
+          "symbol": "TOPIX",
+          "profit": 4582.0,
+          "loss": -0.0,
+          "net": 4582.0,
+          "campaigns": 1,
+          "fees": 418.0
+        },
+        {
+          "session": "2026-09-21_Night",
+          "symbol": "TOPIX",
+          "profit": 16083.0,
+          "loss": 12918.0,
+          "net": 3165.0,
+          "campaigns": 2,
+          "fees": 835.0
+        },
+        {
+          "session": "2026-09-22_Day",
+          "symbol": "TOPIX",
+          "profit": 4582.0,
+          "loss": -0.0,
+          "net": 4582.0,
+          "campaigns": 1,
+          "fees": 418.0
+        },
+        {
+          "session": "2026-09-22_Night",
+          "symbol": "TOPIX",
+          "profit": 2082.0,
+          "loss": -0.0,
+          "net": 2082.0,
+          "campaigns": 1,
+          "fees": 418.0
+        },
+        {
+          "session": "2026-09-23_Day",
+          "symbol": "TOPIX",
+          "profit": 4582.0,
+          "loss": -0.0,
+          "net": 4582.0,
+          "campaigns": 1,
+          "fees": 418.0
+        },
+        {
+          "session": "2026-09-23_Night",
+          "symbol": "TOPIX",
+          "profit": 7082.0,
+          "loss": -0.0,
+          "net": 7082.0,
+          "campaigns": 1,
+          "fees": 418.0
+        },
+        {
+          "session": "2026-09-24_Day",
+          "symbol": "TOPIX",
+          "profit": 4582.0,
+          "loss": -0.0,
+          "net": 4582.0,
+          "campaigns": 1,
+          "fees": 418.0
+        },
+        {
+          "session": "2026-09-24_Night",
+          "symbol": "TOPIX",
+          "profit": 0.0,
+          "loss": 20418.0,
+          "net": -20418.0,
+          "campaigns": 1,
+          "fees": 418.0
+        },
+        {
+          "session": "2026-09-25_Day",
+          "symbol": "TOPIX",
+          "profit": 4582.0,
+          "loss": -0.0,
+          "net": 4582.0,
+          "campaigns": 1,
+          "fees": 418.0
+        },
+        {
+          "session": "2026-09-25_Night",
+          "symbol": "TOPIX",
+          "profit": 4582.0,
+          "loss": -0.0,
+          "net": 4582.0,
+          "campaigns": 1,
+          "fees": 418.0
+        },
+        {
+          "session": "2026-09-28_Day",
+          "symbol": "TOPIX",
+          "profit": 0.0,
+          "loss": 17918.0,
+          "net": -17918.0,
+          "campaigns": 1,
+          "fees": 418.0
+        },
+        {
+          "session": "2026-09-28_Night",
+          "symbol": "TOPIX",
+          "profit": 4582.0,
+          "loss": -0.0,
+          "net": 4582.0,
+          "campaigns": 1,
+          "fees": 418.0
+        },
+        {
+          "session": "2026-09-29_Day",
+          "symbol": "TOPIX",
+          "profit": 4582.0,
+          "loss": -0.0,
+          "net": 4582.0,
+          "campaigns": 1,
+          "fees": 418.0
+        },
+        {
+          "session": "2026-09-29_Night",
+          "symbol": "TOPIX",
+          "profit": 4582.0,
+          "loss": -0.0,
+          "net": 4582.0,
+          "campaigns": 1,
+          "fees": 418.0
+        },
+        {
+          "session": "2026-09-30_Day",
+          "symbol": "TOPIX",
+          "profit": 4582.0,
+          "loss": -0.0,
+          "net": 4582.0,
+          "campaigns": 1,
+          "fees": 418.0
+        },
+        {
+          "session": "2026-09-30_Night",
+          "symbol": "TOPIX",
+          "profit": 4582.0,
+          "loss": -0.0,
+          "net": 4582.0,
+          "campaigns": 1,
+          "fees": 418.0
+        },
+        {
+          "session": "2026-10-01_Day",
+          "symbol": "TOPIX",
+          "profit": 4582.0,
+          "loss": -0.0,
+          "net": 4582.0,
+          "campaigns": 1,
+          "fees": 418.0
+        },
+        {
+          "session": "2026-10-01_Night",
+          "symbol": "TOPIX",
+          "profit": 4582.0,
+          "loss": -0.0,
+          "net": 4582.0,
+          "campaigns": 1,
+          "fees": 418.0
+        },
+        {
+          "session": "2026-10-02_Day",
+          "symbol": "TOPIX",
+          "profit": 4582.0,
+          "loss": -0.0,
+          "net": 4582.0,
+          "campaigns": 1,
+          "fees": 418.0
+        },
+        {
+          "session": "2026-10-02_Night",
+          "symbol": "TOPIX",
+          "profit": 2082.0,
+          "loss": -0.0,
+          "net": 2082.0,
+          "campaigns": 1,
+          "fees": 418.0
+        },
+        {
+          "session": "2026-10-05_Day",
+          "symbol": "TOPIX",
+          "profit": 4582.0,
+          "loss": -0.0,
+          "net": 4582.0,
+          "campaigns": 1,
+          "fees": 418.0
+        },
+        {
+          "session": "2026-10-05_Night",
+          "symbol": "TOPIX",
+          "profit": 0.0,
+          "loss": 20418.0,
+          "net": -20418.0,
+          "campaigns": 1,
+          "fees": 418.0
+        },
+        {
+          "session": "2026-10-06_Day",
+          "symbol": "TOPIX",
+          "profit": 4582.0,
+          "loss": -0.0,
+          "net": 4582.0,
+          "campaigns": 1,
+          "fees": 418.0
+        },
+        {
+          "session": "2026-10-06_Night",
+          "symbol": "TOPIX",
+          "profit": 4582.0,
+          "loss": -0.0,
+          "net": 4582.0,
+          "campaigns": 1,
+          "fees": 418.0
+        },
+        {
+          "session": "2026-10-07_Day",
+          "symbol": "TOPIX",
+          "profit": 4582.0,
+          "loss": -0.0,
+          "net": 4582.0,
+          "campaigns": 1,
+          "fees": 418.0
+        },
+        {
+          "session": "2026-10-07_Night",
+          "symbol": "TOPIX",
+          "profit": 0.0,
+          "loss": 20418.0,
+          "net": -20418.0,
+          "campaigns": 1,
+          "fees": 418.0
+        },
+        {
+          "session": "2026-10-08_Day",
+          "symbol": "TOPIX",
+          "profit": 4582.0,
+          "loss": -0.0,
+          "net": 4582.0,
+          "campaigns": 1,
+          "fees": 418.0
+        },
+        {
+          "session": "2026-10-08_Night",
+          "symbol": "TOPIX",
+          "profit": 2082.0,
+          "loss": -0.0,
+          "net": 2082.0,
+          "campaigns": 1,
+          "fees": 418.0
+        },
+        {
+          "session": "2026-10-09_Day",
+          "symbol": "TOPIX",
+          "profit": 4582.0,
+          "loss": -0.0,
+          "net": 4582.0,
+          "campaigns": 1,
+          "fees": 418.0
+        },
+        {
+          "session": "2026-10-09_Night",
+          "symbol": "TOPIX",
+          "profit": 4164.0,
+          "loss": -0.0,
+          "net": 4164.0,
+          "campaigns": 2,
+          "fees": 836.0
+        },
+        {
+          "session": "2026-10-12_Day",
+          "symbol": "TOPIX",
+          "profit": 4582.0,
+          "loss": -0.0,
+          "net": 4582.0,
+          "campaigns": 1,
+          "fees": 418.0
+        },
+        {
+          "session": "2026-10-12_Night",
+          "symbol": "TOPIX",
+          "profit": 4582.0,
+          "loss": -0.0,
+          "net": 4582.0,
+          "campaigns": 1,
+          "fees": 418.0
+        },
+        {
+          "session": "2026-10-13_Day",
+          "symbol": "TOPIX",
+          "profit": 4582.0,
+          "loss": -0.0,
+          "net": 4582.0,
+          "campaigns": 1,
+          "fees": 418.0
+        }
+      ],
+      "sources": [
+        "E01取引更新と損失予算の公開会計.json",
+        "情報不足見送りの公開会計.json"
+      ],
+      "ideal_reference": false,
+      "saved_alias": false,
+      "alias_source_id": null,
+      "derived": false,
+      "monetary_row_hash": "9a78963630b50b95763ea6c3af75ff9ae2d923ab5c283d244b55a939e614587a",
+      "symbols": {
+        "TOPIX": {
+          "full": {
+            "profit": 138961.0,
+            "loss": 92090.0,
+            "net": 46871.0,
+            "profit_share": 0.601429987318817,
+            "profit_factor": 1.5089694863720273,
+            "sessions": 33,
+            "active": 33,
+            "no_trade": 0,
+            "green": 29,
+            "red": 4,
+            "flat_active": 0,
+            "red_all": 0.12121212121212122,
+            "red_active": 0.12121212121212122,
+            "mean_green": 4346.310344827586,
+            "median_green": 4582.0,
+            "worst_red": 20418.0,
+            "mean_red": 19793.0,
+            "loss_recovery_ratio": 4.697777742516443,
+            "median_net": 4582.0,
+            "active_median_net": 4582.0,
+            "session_share_mean": 0.8652899116331412,
+            "session_share_mean_samples": 33,
+            "tests": {
+              "金額利益65以上": false,
+              "赤字全場20以下": true,
+              "最大赤字は平均黒字以下": false
+            },
+            "pass_all": false,
+            "active_red_test": true,
+            "pass_active": false
+          },
+          "without_top3": {
+            "profit": 122715.0,
+            "loss": 92090.0,
+            "net": 30625.0,
+            "profit_share": 0.571285584599986,
+            "profit_factor": 1.3325551091323704,
+            "sessions": 30,
+            "active": 30,
+            "no_trade": 0,
+            "green": 26,
+            "red": 4,
+            "flat_active": 0,
+            "red_all": 0.13333333333333333,
+            "red_active": 0.13333333333333333,
+            "mean_green": 4222.961538461538,
+            "median_green": 4582.0,
+            "worst_red": 20418.0,
+            "mean_red": 19793.0,
+            "loss_recovery_ratio": 4.834995491680101,
+            "median_net": 4582.0,
+            "active_median_net": 4582.0,
+            "session_share_mean": 0.8518189027964553,
+            "session_share_mean_samples": 30,
+            "tests": {
+              "金額利益65以上": false,
+              "赤字全場20以下": true,
+              "最大赤字は平均黒字以下": false
+            },
+            "pass_all": false,
+            "active_red_test": true,
+            "pass_active": false
+          },
+          "removed": [
+            {
+              "session": "2026-09-23_Night",
+              "net": 7082.0
+            },
+            {
+              "session": "2026-09-21_Day",
+              "net": 4582.0
+            },
+            {
+              "session": "2026-09-22_Day",
+              "net": 4582.0
+            }
+          ],
+          "first16": {
+            "profit": 75649.0,
+            "loss": 51254.0,
+            "net": 24395.0,
+            "profit_share": 0.5961167190688952,
+            "profit_factor": 1.4759628516798688,
+            "sessions": 16,
+            "active": 16,
+            "no_trade": 0,
+            "green": 14,
+            "red": 2,
+            "flat_active": 0,
+            "red_all": 0.125,
+            "red_active": 0.125,
+            "mean_green": 4480.785714285715,
+            "median_green": 4582.0,
+            "worst_red": 20418.0,
+            "mean_red": 19168.0,
+            "loss_recovery_ratio": 4.556790103776442,
+            "median_net": 4582.0,
+            "active_median_net": 4582.0,
+            "session_share_mean": 0.8471604427433537,
+            "session_share_mean_samples": 16,
+            "tests": {
+              "金額利益65以上": false,
+              "赤字全場20以下": true,
+              "最大赤字は平均黒字以下": false
+            },
+            "pass_all": false,
+            "active_red_test": true,
+            "pass_active": false
+          },
+          "last17": {
+            "profit": 63312.0,
+            "loss": 40836.0,
+            "net": 22476.0,
+            "profit_share": 0.6079041364212466,
+            "profit_factor": 1.550396708786365,
+            "sessions": 17,
+            "active": 17,
+            "no_trade": 0,
+            "green": 15,
+            "red": 2,
+            "flat_active": 0,
+            "red_all": 0.11764705882352941,
+            "red_active": 0.11764705882352941,
+            "mean_green": 4220.8,
+            "median_green": 4582.0,
+            "worst_red": 20418.0,
+            "mean_red": 20418.0,
+            "loss_recovery_ratio": 4.837471569370735,
+            "median_net": 4582.0,
+            "active_median_net": 4582.0,
+            "session_share_mean": 0.8823529411764706,
+            "session_share_mean_samples": 17,
+            "tests": {
+              "金額利益65以上": false,
+              "赤字全場20以下": true,
+              "最大赤字は平均黒字以下": false
+            },
+            "pass_all": false,
+            "active_red_test": true,
+            "pass_active": false
+          },
+          "robust_pass": false,
+          "robust_active_pass": false,
+          "rows": [
+            {
+              "session": "2026-09-21_Day",
+              "symbol": "TOPIX",
+              "profit": 4582.0,
+              "loss": -0.0,
+              "net": 4582.0,
+              "campaigns": 1,
+              "fees": 418.0
+            },
+            {
+              "session": "2026-09-21_Night",
+              "symbol": "TOPIX",
+              "profit": 16083.0,
+              "loss": 12918.0,
+              "net": 3165.0,
+              "campaigns": 2,
+              "fees": 835.0
+            },
+            {
+              "session": "2026-09-22_Day",
+              "symbol": "TOPIX",
+              "profit": 4582.0,
+              "loss": -0.0,
+              "net": 4582.0,
+              "campaigns": 1,
+              "fees": 418.0
+            },
+            {
+              "session": "2026-09-22_Night",
+              "symbol": "TOPIX",
+              "profit": 2082.0,
+              "loss": -0.0,
+              "net": 2082.0,
+              "campaigns": 1,
+              "fees": 418.0
+            },
+            {
+              "session": "2026-09-23_Day",
+              "symbol": "TOPIX",
+              "profit": 4582.0,
+              "loss": -0.0,
+              "net": 4582.0,
+              "campaigns": 1,
+              "fees": 418.0
+            },
+            {
+              "session": "2026-09-23_Night",
+              "symbol": "TOPIX",
+              "profit": 7082.0,
+              "loss": -0.0,
+              "net": 7082.0,
+              "campaigns": 1,
+              "fees": 418.0
+            },
+            {
+              "session": "2026-09-24_Day",
+              "symbol": "TOPIX",
+              "profit": 4582.0,
+              "loss": -0.0,
+              "net": 4582.0,
+              "campaigns": 1,
+              "fees": 418.0
+            },
+            {
+              "session": "2026-09-24_Night",
+              "symbol": "TOPIX",
+              "profit": 0.0,
+              "loss": 20418.0,
+              "net": -20418.0,
+              "campaigns": 1,
+              "fees": 418.0
+            },
+            {
+              "session": "2026-09-25_Day",
+              "symbol": "TOPIX",
+              "profit": 4582.0,
+              "loss": -0.0,
+              "net": 4582.0,
+              "campaigns": 1,
+              "fees": 418.0
+            },
+            {
+              "session": "2026-09-25_Night",
+              "symbol": "TOPIX",
+              "profit": 4582.0,
+              "loss": -0.0,
+              "net": 4582.0,
+              "campaigns": 1,
+              "fees": 418.0
+            },
+            {
+              "session": "2026-09-28_Day",
+              "symbol": "TOPIX",
+              "profit": 0.0,
+              "loss": 17918.0,
+              "net": -17918.0,
+              "campaigns": 1,
+              "fees": 418.0
+            },
+            {
+              "session": "2026-09-28_Night",
+              "symbol": "TOPIX",
+              "profit": 4582.0,
+              "loss": -0.0,
+              "net": 4582.0,
+              "campaigns": 1,
+              "fees": 418.0
+            },
+            {
+              "session": "2026-09-29_Day",
+              "symbol": "TOPIX",
+              "profit": 4582.0,
+              "loss": -0.0,
+              "net": 4582.0,
+              "campaigns": 1,
+              "fees": 418.0
+            },
+            {
+              "session": "2026-09-29_Night",
+              "symbol": "TOPIX",
+              "profit": 4582.0,
+              "loss": -0.0,
+              "net": 4582.0,
+              "campaigns": 1,
+              "fees": 418.0
+            },
+            {
+              "session": "2026-09-30_Day",
+              "symbol": "TOPIX",
+              "profit": 4582.0,
+              "loss": -0.0,
+              "net": 4582.0,
+              "campaigns": 1,
+              "fees": 418.0
+            },
+            {
+              "session": "2026-09-30_Night",
+              "symbol": "TOPIX",
+              "profit": 4582.0,
+              "loss": -0.0,
+              "net": 4582.0,
+              "campaigns": 1,
+              "fees": 418.0
+            },
+            {
+              "session": "2026-10-01_Day",
+              "symbol": "TOPIX",
+              "profit": 4582.0,
+              "loss": -0.0,
+              "net": 4582.0,
+              "campaigns": 1,
+              "fees": 418.0
+            },
+            {
+              "session": "2026-10-01_Night",
+              "symbol": "TOPIX",
+              "profit": 4582.0,
+              "loss": -0.0,
+              "net": 4582.0,
+              "campaigns": 1,
+              "fees": 418.0
+            },
+            {
+              "session": "2026-10-02_Day",
+              "symbol": "TOPIX",
+              "profit": 4582.0,
+              "loss": -0.0,
+              "net": 4582.0,
+              "campaigns": 1,
+              "fees": 418.0
+            },
+            {
+              "session": "2026-10-02_Night",
+              "symbol": "TOPIX",
+              "profit": 2082.0,
+              "loss": -0.0,
+              "net": 2082.0,
+              "campaigns": 1,
+              "fees": 418.0
+            },
+            {
+              "session": "2026-10-05_Day",
+              "symbol": "TOPIX",
+              "profit": 4582.0,
+              "loss": -0.0,
+              "net": 4582.0,
+              "campaigns": 1,
+              "fees": 418.0
+            },
+            {
+              "session": "2026-10-05_Night",
+              "symbol": "TOPIX",
+              "profit": 0.0,
+              "loss": 20418.0,
+              "net": -20418.0,
+              "campaigns": 1,
+              "fees": 418.0
+            },
+            {
+              "session": "2026-10-06_Day",
+              "symbol": "TOPIX",
+              "profit": 4582.0,
+              "loss": -0.0,
+              "net": 4582.0,
+              "campaigns": 1,
+              "fees": 418.0
+            },
+            {
+              "session": "2026-10-06_Night",
+              "symbol": "TOPIX",
+              "profit": 4582.0,
+              "loss": -0.0,
+              "net": 4582.0,
+              "campaigns": 1,
+              "fees": 418.0
+            },
+            {
+              "session": "2026-10-07_Day",
+              "symbol": "TOPIX",
+              "profit": 4582.0,
+              "loss": -0.0,
+              "net": 4582.0,
+              "campaigns": 1,
+              "fees": 418.0
+            },
+            {
+              "session": "2026-10-07_Night",
+              "symbol": "TOPIX",
+              "profit": 0.0,
+              "loss": 20418.0,
+              "net": -20418.0,
+              "campaigns": 1,
+              "fees": 418.0
+            },
+            {
+              "session": "2026-10-08_Day",
+              "symbol": "TOPIX",
+              "profit": 4582.0,
+              "loss": -0.0,
+              "net": 4582.0,
+              "campaigns": 1,
+              "fees": 418.0
+            },
+            {
+              "session": "2026-10-08_Night",
+              "symbol": "TOPIX",
+              "profit": 2082.0,
+              "loss": -0.0,
+              "net": 2082.0,
+              "campaigns": 1,
+              "fees": 418.0
+            },
+            {
+              "session": "2026-10-09_Day",
+              "symbol": "TOPIX",
+              "profit": 4582.0,
+              "loss": -0.0,
+              "net": 4582.0,
+              "campaigns": 1,
+              "fees": 418.0
+            },
+            {
+              "session": "2026-10-09_Night",
+              "symbol": "TOPIX",
+              "profit": 4164.0,
+              "loss": -0.0,
+              "net": 4164.0,
+              "campaigns": 2,
+              "fees": 836.0
+            },
+            {
+              "session": "2026-10-12_Day",
+              "symbol": "TOPIX",
+              "profit": 4582.0,
+              "loss": -0.0,
+              "net": 4582.0,
+              "campaigns": 1,
+              "fees": 418.0
+            },
+            {
+              "session": "2026-10-12_Night",
+              "symbol": "TOPIX",
+              "profit": 4582.0,
+              "loss": -0.0,
+              "net": 4582.0,
+              "campaigns": 1,
+              "fees": 418.0
+            },
+            {
+              "session": "2026-10-13_Day",
+              "symbol": "TOPIX",
+              "profit": 4582.0,
+              "loss": -0.0,
+              "net": 4582.0,
+              "campaigns": 1,
+              "fees": 418.0
+            }
+          ]
+        },
+        "NK225": {
+          "full": {
+            "profit": 43500.0,
+            "loss": 57980.0,
+            "net": -14480.0,
+            "profit_share": 0.42865589278675603,
+            "profit_factor": 0.7502587098999655,
+            "sessions": 33,
+            "active": 32,
+            "no_trade": 1,
+            "green": 25,
+            "red": 7,
+            "flat_active": 0,
+            "red_all": 0.21212121212121213,
+            "red_active": 0.21875,
+            "mean_green": 1740.0,
+            "median_green": 1780.0,
+            "worst_red": 8440.0,
+            "mean_red": 8282.857142857143,
+            "loss_recovery_ratio": 4.850574712643678,
+            "median_net": 1780.0,
+            "active_median_net": 1780.0,
+            "session_share_mean": 0.78125,
+            "session_share_mean_samples": 32,
+            "tests": {
+              "金額利益65以上": false,
+              "赤字全場20以下": false,
+              "最大赤字は平均黒字以下": false
+            },
+            "pass_all": false,
+            "active_red_test": false,
+            "pass_active": false
+          },
+          "without_top3": {
+            "profit": 37160.0,
+            "loss": 57980.0,
+            "net": -20820.0,
+            "profit_share": 0.3905822997687618,
+            "profit_factor": 0.6409106588478786,
+            "sessions": 30,
+            "active": 29,
+            "no_trade": 1,
+            "green": 22,
+            "red": 7,
+            "flat_active": 0,
+            "red_all": 0.23333333333333334,
+            "red_active": 0.2413793103448276,
+            "mean_green": 1689.090909090909,
+            "median_green": 1780.0,
+            "worst_red": 8440.0,
+            "mean_red": 8282.857142857143,
+            "loss_recovery_ratio": 4.996770721205598,
+            "median_net": 1780.0,
+            "active_median_net": 1780.0,
+            "session_share_mean": 0.7586206896551724,
+            "session_share_mean_samples": 29,
+            "tests": {
+              "金額利益65以上": false,
+              "赤字全場20以下": false,
+              "最大赤字は平均黒字以下": false
+            },
+            "pass_all": false,
+            "active_red_test": false,
+            "pass_active": false
+          },
+          "removed": [
+            {
+              "session": "2026-10-05_Day",
+              "net": 2780.0
+            },
+            {
+              "session": "2026-09-21_Day",
+              "net": 1780.0
+            },
+            {
+              "session": "2026-09-21_Night",
+              "net": 1780.0
+            }
+          ],
+          "first16": {
+            "profit": 17580.0,
+            "loss": 33100.0,
+            "net": -15520.0,
+            "profit_share": 0.3468823993685872,
+            "profit_factor": 0.5311178247734138,
+            "sessions": 16,
+            "active": 15,
+            "no_trade": 1,
+            "green": 11,
+            "red": 4,
+            "flat_active": 0,
+            "red_all": 0.25,
+            "red_active": 0.26666666666666666,
+            "mean_green": 1598.1818181818182,
+            "median_green": 1780.0,
+            "worst_red": 8440.0,
+            "mean_red": 8275.0,
+            "loss_recovery_ratio": 5.281001137656427,
+            "median_net": 1780.0,
+            "active_median_net": 1780.0,
+            "session_share_mean": 0.7333333333333333,
+            "session_share_mean_samples": 15,
+            "tests": {
+              "金額利益65以上": false,
+              "赤字全場20以下": false,
+              "最大赤字は平均黒字以下": false
+            },
+            "pass_all": false,
+            "active_red_test": false,
+            "pass_active": false
+          },
+          "last17": {
+            "profit": 25920.0,
+            "loss": 24880.0,
+            "net": 1040.0,
+            "profit_share": 0.510236220472441,
+            "profit_factor": 1.0418006430868167,
+            "sessions": 17,
+            "active": 17,
+            "no_trade": 0,
+            "green": 14,
+            "red": 3,
+            "flat_active": 0,
+            "red_all": 0.17647058823529413,
+            "red_active": 0.17647058823529413,
+            "mean_green": 1851.4285714285713,
+            "median_green": 1780.0,
+            "worst_red": 8440.0,
+            "mean_red": 8293.333333333334,
+            "loss_recovery_ratio": 4.5586419753086425,
+            "median_net": 1780.0,
+            "active_median_net": 1780.0,
+            "session_share_mean": 0.8235294117647058,
+            "session_share_mean_samples": 17,
+            "tests": {
+              "金額利益65以上": false,
+              "赤字全場20以下": true,
+              "最大赤字は平均黒字以下": false
+            },
+            "pass_all": false,
+            "active_red_test": true,
+            "pass_active": false
+          },
+          "robust_pass": false,
+          "robust_active_pass": false,
+          "rows": [
+            {
+              "session": "2026-09-21_Day",
+              "symbol": "NK225",
+              "profit": 1780.0,
+              "loss": -0.0,
+              "net": 1780.0,
+              "campaigns": 1,
+              "fees": 220.0
+            },
+            {
+              "session": "2026-09-21_Night",
+              "symbol": "NK225",
+              "profit": 1780.0,
+              "loss": -0.0,
+              "net": 1780.0,
+              "campaigns": 1,
+              "fees": 220.0
+            },
+            {
+              "session": "2026-09-22_Day",
+              "symbol": "NK225",
+              "profit": 1780.0,
+              "loss": -0.0,
+              "net": 1780.0,
+              "campaigns": 1,
+              "fees": 220.0
+            },
+            {
+              "session": "2026-09-22_Night",
+              "symbol": "NK225",
+              "profit": 780.0,
+              "loss": -0.0,
+              "net": 780.0,
+              "campaigns": 1,
+              "fees": 220.0
+            },
+            {
+              "session": "2026-09-23_Day",
+              "symbol": "NK225",
+              "profit": 0.0,
+              "loss": -0.0,
+              "net": 0.0,
+              "campaigns": 0,
+              "fees": 0.0
+            },
+            {
+              "session": "2026-09-23_Night",
+              "symbol": "NK225",
+              "profit": 1780.0,
+              "loss": -0.0,
+              "net": 1780.0,
+              "campaigns": 1,
+              "fees": 220.0
+            },
+            {
+              "session": "2026-09-24_Day",
+              "symbol": "NK225",
+              "profit": 1780.0,
+              "loss": -0.0,
+              "net": 1780.0,
+              "campaigns": 1,
+              "fees": 220.0
+            },
+            {
+              "session": "2026-09-24_Night",
+              "symbol": "NK225",
+              "profit": 1780.0,
+              "loss": -0.0,
+              "net": 1780.0,
+              "campaigns": 1,
+              "fees": 220.0
+            },
+            {
+              "session": "2026-09-25_Day",
+              "symbol": "NK225",
+              "profit": 0.0,
+              "loss": 8220.0,
+              "net": -8220.0,
+              "campaigns": 1,
+              "fees": 220.0
+            },
+            {
+              "session": "2026-09-25_Night",
+              "symbol": "NK225",
+              "profit": 0.0,
+              "loss": 8220.0,
+              "net": -8220.0,
+              "campaigns": 1,
+              "fees": 220.0
+            },
+            {
+              "session": "2026-09-28_Day",
+              "symbol": "NK225",
+              "profit": 1780.0,
+              "loss": -0.0,
+              "net": 1780.0,
+              "campaigns": 1,
+              "fees": 220.0
+            },
+            {
+              "session": "2026-09-28_Night",
+              "symbol": "NK225",
+              "profit": 1780.0,
+              "loss": -0.0,
+              "net": 1780.0,
+              "campaigns": 1,
+              "fees": 220.0
+            },
+            {
+              "session": "2026-09-29_Day",
+              "symbol": "NK225",
+              "profit": 780.0,
+              "loss": -0.0,
+              "net": 780.0,
+              "campaigns": 1,
+              "fees": 220.0
+            },
+            {
+              "session": "2026-09-29_Night",
+              "symbol": "NK225",
+              "profit": 0.0,
+              "loss": 8440.0,
+              "net": -8440.0,
+              "campaigns": 2,
+              "fees": 440.0
+            },
+            {
+              "session": "2026-09-30_Day",
+              "symbol": "NK225",
+              "profit": 1780.0,
+              "loss": -0.0,
+              "net": 1780.0,
+              "campaigns": 1,
+              "fees": 220.0
+            },
+            {
+              "session": "2026-09-30_Night",
+              "symbol": "NK225",
+              "profit": 0.0,
+              "loss": 8220.0,
+              "net": -8220.0,
+              "campaigns": 1,
+              "fees": 220.0
+            },
+            {
+              "session": "2026-10-01_Day",
+              "symbol": "NK225",
+              "profit": 1780.0,
+              "loss": -0.0,
+              "net": 1780.0,
+              "campaigns": 1,
+              "fees": 220.0
+            },
+            {
+              "session": "2026-10-01_Night",
+              "symbol": "NK225",
+              "profit": 1780.0,
+              "loss": -0.0,
+              "net": 1780.0,
+              "campaigns": 1,
+              "fees": 220.0
+            },
+            {
+              "session": "2026-10-02_Day",
+              "symbol": "NK225",
+              "profit": 1780.0,
+              "loss": -0.0,
+              "net": 1780.0,
+              "campaigns": 1,
+              "fees": 220.0
+            },
+            {
+              "session": "2026-10-02_Night",
+              "symbol": "NK225",
+              "profit": 1780.0,
+              "loss": -0.0,
+              "net": 1780.0,
+              "campaigns": 1,
+              "fees": 220.0
+            },
+            {
+              "session": "2026-10-05_Day",
+              "symbol": "NK225",
+              "profit": 2780.0,
+              "loss": -0.0,
+              "net": 2780.0,
+              "campaigns": 1,
+              "fees": 220.0
+            },
+            {
+              "session": "2026-10-05_Night",
+              "symbol": "NK225",
+              "profit": 0.0,
+              "loss": 8220.0,
+              "net": -8220.0,
+              "campaigns": 1,
+              "fees": 220.0
+            },
+            {
+              "session": "2026-10-06_Day",
+              "symbol": "NK225",
+              "profit": 1780.0,
+              "loss": -0.0,
+              "net": 1780.0,
+              "campaigns": 1,
+              "fees": 220.0
+            },
+            {
+              "session": "2026-10-06_Night",
+              "symbol": "NK225",
+              "profit": 1780.0,
+              "loss": -0.0,
+              "net": 1780.0,
+              "campaigns": 1,
+              "fees": 220.0
+            },
+            {
+              "session": "2026-10-07_Day",
+              "symbol": "NK225",
+              "profit": 1780.0,
+              "loss": -0.0,
+              "net": 1780.0,
+              "campaigns": 1,
+              "fees": 220.0
+            },
+            {
+              "session": "2026-10-07_Night",
+              "symbol": "NK225",
+              "profit": 1780.0,
+              "loss": -0.0,
+              "net": 1780.0,
+              "campaigns": 1,
+              "fees": 220.0
+            },
+            {
+              "session": "2026-10-08_Day",
+              "symbol": "NK225",
+              "profit": 1780.0,
+              "loss": -0.0,
+              "net": 1780.0,
+              "campaigns": 1,
+              "fees": 220.0
+            },
+            {
+              "session": "2026-10-08_Night",
+              "symbol": "NK225",
+              "profit": 1780.0,
+              "loss": -0.0,
+              "net": 1780.0,
+              "campaigns": 1,
+              "fees": 220.0
+            },
+            {
+              "session": "2026-10-09_Day",
+              "symbol": "NK225",
+              "profit": 0.0,
+              "loss": 8220.0,
+              "net": -8220.0,
+              "campaigns": 1,
+              "fees": 220.0
+            },
+            {
+              "session": "2026-10-09_Night",
+              "symbol": "NK225",
+              "profit": 1780.0,
+              "loss": -0.0,
+              "net": 1780.0,
+              "campaigns": 1,
+              "fees": 220.0
+            },
+            {
+              "session": "2026-10-12_Day",
+              "symbol": "NK225",
+              "profit": 1780.0,
+              "loss": -0.0,
+              "net": 1780.0,
+              "campaigns": 1,
+              "fees": 220.0
+            },
+            {
+              "session": "2026-10-12_Night",
+              "symbol": "NK225",
+              "profit": 0.0,
+              "loss": 8440.0,
+              "net": -8440.0,
+              "campaigns": 2,
+              "fees": 440.0
+            },
+            {
+              "session": "2026-10-13_Day",
+              "symbol": "NK225",
+              "profit": 1780.0,
+              "loss": -0.0,
+              "net": 1780.0,
+              "campaigns": 1,
+              "fees": 220.0
+            }
+          ]
+        }
+      },
+      "both_full_pass": false,
+      "both_robust_pass": false,
+      "both_active_pass": false,
+      "both_robust_active_pass": false
+    },
+    "E01_TRADE_W60_CONFIRM_D0_P1L8": {
+      "id": "E01_TRADE_W60_CONFIRM_D0_P1L8",
+      "config": {
+        "id": "E01_TRADE_W60_CONFIRM_D0_P1L8",
+        "window_seconds": 60,
+        "mode": "CONFIRM",
+        "exit": "P1L8",
+        "execution": "D0",
+        "quantity": {
+          "TOPIX": 5,
+          "NK225": 10
+        },
+        "cap": {
+          "TOPIX": 10,
+          "NK225": 20
+        },
+        "offset_atr": 0.0
+      },
+      "rows": [
+        {
+          "session": "2026-09-21_Day",
+          "symbol": "NK225",
+          "profit": 0.0,
+          "loss": -0.0,
+          "net": 0.0,
+          "campaigns": 0,
+          "fees": 0.0
+        },
+        {
+          "session": "2026-09-21_Night",
+          "symbol": "NK225",
+          "profit": 1780.0,
+          "loss": -0.0,
+          "net": 1780.0,
+          "campaigns": 1,
+          "fees": 220.0
+        },
+        {
+          "session": "2026-09-22_Day",
+          "symbol": "NK225",
+          "profit": 1780.0,
+          "loss": -0.0,
+          "net": 1780.0,
+          "campaigns": 1,
+          "fees": 220.0
+        },
+        {
+          "session": "2026-09-22_Night",
+          "symbol": "NK225",
+          "profit": 780.0,
+          "loss": -0.0,
+          "net": 780.0,
+          "campaigns": 1,
+          "fees": 220.0
+        },
+        {
+          "session": "2026-09-23_Day",
+          "symbol": "NK225",
+          "profit": 0.0,
+          "loss": -0.0,
+          "net": 0.0,
+          "campaigns": 0,
+          "fees": 0.0
+        },
+        {
+          "session": "2026-09-23_Night",
+          "symbol": "NK225",
+          "profit": 1780.0,
+          "loss": -0.0,
+          "net": 1780.0,
+          "campaigns": 1,
+          "fees": 220.0
+        },
+        {
+          "session": "2026-09-24_Day",
+          "symbol": "NK225",
+          "profit": 1780.0,
+          "loss": -0.0,
+          "net": 1780.0,
+          "campaigns": 1,
+          "fees": 220.0
+        },
+        {
+          "session": "2026-09-24_Night",
+          "symbol": "NK225",
+          "profit": 1780.0,
+          "loss": -0.0,
+          "net": 1780.0,
+          "campaigns": 1,
+          "fees": 220.0
+        },
+        {
+          "session": "2026-09-25_Day",
+          "symbol": "NK225",
+          "profit": 0.0,
+          "loss": -0.0,
+          "net": 0.0,
+          "campaigns": 0,
+          "fees": 0.0
+        },
+        {
+          "session": "2026-09-25_Night",
+          "symbol": "NK225",
+          "profit": 1780.0,
+          "loss": -0.0,
+          "net": 1780.0,
+          "campaigns": 1,
+          "fees": 220.0
+        },
+        {
+          "session": "2026-09-28_Day",
+          "symbol": "NK225",
+          "profit": 1780.0,
+          "loss": -0.0,
+          "net": 1780.0,
+          "campaigns": 1,
+          "fees": 220.0
+        },
+        {
+          "session": "2026-09-28_Night",
+          "symbol": "NK225",
+          "profit": 1780.0,
+          "loss": -0.0,
+          "net": 1780.0,
+          "campaigns": 1,
+          "fees": 220.0
+        },
+        {
+          "session": "2026-09-29_Day",
+          "symbol": "NK225",
+          "profit": 0.0,
+          "loss": -0.0,
+          "net": 0.0,
+          "campaigns": 0,
+          "fees": 0.0
+        },
+        {
+          "session": "2026-09-29_Night",
+          "symbol": "NK225",
+          "profit": 0.0,
+          "loss": 8440.0,
+          "net": -8440.0,
+          "campaigns": 2,
+          "fees": 440.0
+        },
+        {
+          "session": "2026-09-30_Day",
+          "symbol": "NK225",
+          "profit": 0.0,
+          "loss": -0.0,
+          "net": 0.0,
+          "campaigns": 0,
+          "fees": 0.0
+        },
+        {
+          "session": "2026-09-30_Night",
+          "symbol": "NK225",
+          "profit": 1780.0,
+          "loss": -0.0,
+          "net": 1780.0,
+          "campaigns": 1,
+          "fees": 220.0
+        },
+        {
+          "session": "2026-10-01_Day",
+          "symbol": "NK225",
+          "profit": 1780.0,
+          "loss": -0.0,
+          "net": 1780.0,
+          "campaigns": 1,
+          "fees": 220.0
+        },
+        {
+          "session": "2026-10-01_Night",
+          "symbol": "NK225",
+          "profit": 1780.0,
+          "loss": -0.0,
+          "net": 1780.0,
+          "campaigns": 1,
+          "fees": 220.0
+        },
+        {
+          "session": "2026-10-02_Day",
+          "symbol": "NK225",
+          "profit": 1780.0,
+          "loss": -0.0,
+          "net": 1780.0,
+          "campaigns": 1,
+          "fees": 220.0
+        },
+        {
+          "session": "2026-10-02_Night",
+          "symbol": "NK225",
+          "profit": 1780.0,
+          "loss": -0.0,
+          "net": 1780.0,
+          "campaigns": 1,
+          "fees": 220.0
+        },
+        {
+          "session": "2026-10-05_Day",
+          "symbol": "NK225",
+          "profit": 1780.0,
+          "loss": -0.0,
+          "net": 1780.0,
+          "campaigns": 1,
+          "fees": 220.0
+        },
+        {
+          "session": "2026-10-05_Night",
+          "symbol": "NK225",
+          "profit": 0.0,
+          "loss": -0.0,
+          "net": 0.0,
+          "campaigns": 0,
+          "fees": 0.0
+        },
+        {
+          "session": "2026-10-06_Day",
+          "symbol": "NK225",
+          "profit": 1780.0,
+          "loss": -0.0,
+          "net": 1780.0,
+          "campaigns": 1,
+          "fees": 220.0
+        },
+        {
+          "session": "2026-10-06_Night",
+          "symbol": "NK225",
+          "profit": 1780.0,
+          "loss": -0.0,
+          "net": 1780.0,
+          "campaigns": 1,
+          "fees": 220.0
+        },
+        {
+          "session": "2026-10-07_Day",
+          "symbol": "NK225",
+          "profit": 1780.0,
+          "loss": -0.0,
+          "net": 1780.0,
+          "campaigns": 1,
+          "fees": 220.0
+        },
+        {
+          "session": "2026-10-07_Night",
+          "symbol": "NK225",
+          "profit": 1780.0,
+          "loss": -0.0,
+          "net": 1780.0,
+          "campaigns": 1,
+          "fees": 220.0
+        },
+        {
+          "session": "2026-10-08_Day",
+          "symbol": "NK225",
+          "profit": 0.0,
+          "loss": 8220.0,
+          "net": -8220.0,
+          "campaigns": 1,
+          "fees": 220.0
+        },
+        {
+          "session": "2026-10-08_Night",
+          "symbol": "NK225",
+          "profit": 1780.0,
+          "loss": -0.0,
+          "net": 1780.0,
+          "campaigns": 1,
+          "fees": 220.0
+        },
+        {
+          "session": "2026-10-09_Day",
+          "symbol": "NK225",
+          "profit": 0.0,
+          "loss": -0.0,
+          "net": 0.0,
+          "campaigns": 0,
+          "fees": 0.0
+        },
+        {
+          "session": "2026-10-09_Night",
+          "symbol": "NK225",
+          "profit": 1780.0,
+          "loss": -0.0,
+          "net": 1780.0,
+          "campaigns": 1,
+          "fees": 220.0
+        },
+        {
+          "session": "2026-10-12_Day",
+          "symbol": "NK225",
+          "profit": 1780.0,
+          "loss": -0.0,
+          "net": 1780.0,
+          "campaigns": 1,
+          "fees": 220.0
+        },
+        {
+          "session": "2026-10-12_Night",
+          "symbol": "NK225",
+          "profit": 0.0,
+          "loss": -0.0,
+          "net": 0.0,
+          "campaigns": 0,
+          "fees": 0.0
+        },
+        {
+          "session": "2026-10-13_Day",
+          "symbol": "NK225",
+          "profit": 1780.0,
+          "loss": -0.0,
+          "net": 1780.0,
+          "campaigns": 1,
+          "fees": 220.0
+        },
+        {
+          "session": "2026-09-21_Day",
+          "symbol": "TOPIX",
+          "profit": 0.0,
+          "loss": -0.0,
+          "net": 0.0,
+          "campaigns": 0,
+          "fees": 0.0
+        },
+        {
+          "session": "2026-09-21_Night",
+          "symbol": "TOPIX",
+          "profit": 0.0,
+          "loss": 12918.0,
+          "net": -12918.0,
+          "campaigns": 1,
+          "fees": 418.0
+        },
+        {
+          "session": "2026-09-22_Day",
+          "symbol": "TOPIX",
+          "profit": 0.0,
+          "loss": 20418.0,
+          "net": -20418.0,
+          "campaigns": 1,
+          "fees": 418.0
+        },
+        {
+          "session": "2026-09-22_Night",
+          "symbol": "TOPIX",
+          "profit": 2082.0,
+          "loss": -0.0,
+          "net": 2082.0,
+          "campaigns": 1,
+          "fees": 418.0
+        },
+        {
+          "session": "2026-09-23_Day",
+          "symbol": "TOPIX",
+          "profit": 4582.0,
+          "loss": -0.0,
+          "net": 4582.0,
+          "campaigns": 1,
+          "fees": 418.0
+        },
+        {
+          "session": "2026-09-23_Night",
+          "symbol": "TOPIX",
+          "profit": 7082.0,
+          "loss": -0.0,
+          "net": 7082.0,
+          "campaigns": 1,
+          "fees": 418.0
+        },
+        {
+          "session": "2026-09-24_Day",
+          "symbol": "TOPIX",
+          "profit": 4582.0,
+          "loss": -0.0,
+          "net": 4582.0,
+          "campaigns": 1,
+          "fees": 418.0
+        },
+        {
+          "session": "2026-09-24_Night",
+          "symbol": "TOPIX",
+          "profit": 0.0,
+          "loss": -0.0,
+          "net": 0.0,
+          "campaigns": 0,
+          "fees": 0.0
+        },
+        {
+          "session": "2026-09-25_Day",
+          "symbol": "TOPIX",
+          "profit": 0.0,
+          "loss": -0.0,
+          "net": 0.0,
+          "campaigns": 0,
+          "fees": 0.0
+        },
+        {
+          "session": "2026-09-25_Night",
+          "symbol": "TOPIX",
+          "profit": 9582.0,
+          "loss": 418.0,
+          "net": 9164.0,
+          "campaigns": 2,
+          "fees": 836.0
+        },
+        {
+          "session": "2026-09-28_Day",
+          "symbol": "TOPIX",
+          "profit": 0.0,
+          "loss": -0.0,
+          "net": 0.0,
+          "campaigns": 0,
+          "fees": 0.0
+        },
+        {
+          "session": "2026-09-28_Night",
+          "symbol": "TOPIX",
+          "profit": 4582.0,
+          "loss": -0.0,
+          "net": 4582.0,
+          "campaigns": 1,
+          "fees": 418.0
+        },
+        {
+          "session": "2026-09-29_Day",
+          "symbol": "TOPIX",
+          "profit": 0.0,
+          "loss": -0.0,
+          "net": 0.0,
+          "campaigns": 0,
+          "fees": 0.0
+        },
+        {
+          "session": "2026-09-29_Night",
+          "symbol": "TOPIX",
+          "profit": 4582.0,
+          "loss": -0.0,
+          "net": 4582.0,
+          "campaigns": 1,
+          "fees": 418.0
+        },
+        {
+          "session": "2026-09-30_Day",
+          "symbol": "TOPIX",
+          "profit": 4582.0,
+          "loss": -0.0,
+          "net": 4582.0,
+          "campaigns": 1,
+          "fees": 418.0
+        },
+        {
+          "session": "2026-09-30_Night",
+          "symbol": "TOPIX",
+          "profit": 0.0,
+          "loss": 17918.0,
+          "net": -17918.0,
+          "campaigns": 1,
+          "fees": 418.0
+        },
+        {
+          "session": "2026-10-01_Day",
+          "symbol": "TOPIX",
+          "profit": 4582.0,
+          "loss": -0.0,
+          "net": 4582.0,
+          "campaigns": 1,
+          "fees": 418.0
+        },
+        {
+          "session": "2026-10-01_Night",
+          "symbol": "TOPIX",
+          "profit": 2082.0,
+          "loss": -0.0,
+          "net": 2082.0,
+          "campaigns": 1,
+          "fees": 418.0
+        },
+        {
+          "session": "2026-10-02_Day",
+          "symbol": "TOPIX",
+          "profit": 4582.0,
+          "loss": -0.0,
+          "net": 4582.0,
+          "campaigns": 1,
+          "fees": 418.0
+        },
+        {
+          "session": "2026-10-02_Night",
+          "symbol": "TOPIX",
+          "profit": 2082.0,
+          "loss": -0.0,
+          "net": 2082.0,
+          "campaigns": 1,
+          "fees": 418.0
+        },
+        {
+          "session": "2026-10-05_Day",
+          "symbol": "TOPIX",
+          "profit": 0.0,
+          "loss": 20836.0,
+          "net": -20836.0,
+          "campaigns": 2,
+          "fees": 836.0
+        },
+        {
+          "session": "2026-10-05_Night",
+          "symbol": "TOPIX",
+          "profit": 0.0,
+          "loss": 20418.0,
+          "net": -20418.0,
+          "campaigns": 1,
+          "fees": 418.0
+        },
+        {
+          "session": "2026-10-06_Day",
+          "symbol": "TOPIX",
+          "profit": 0.0,
+          "loss": -0.0,
+          "net": 0.0,
+          "campaigns": 0,
+          "fees": 0.0
+        },
+        {
+          "session": "2026-10-06_Night",
+          "symbol": "TOPIX",
+          "profit": 4582.0,
+          "loss": -0.0,
+          "net": 4582.0,
+          "campaigns": 1,
+          "fees": 418.0
+        },
+        {
+          "session": "2026-10-07_Day",
+          "symbol": "TOPIX",
+          "profit": 0.0,
+          "loss": -0.0,
+          "net": 0.0,
+          "campaigns": 0,
+          "fees": 0.0
+        },
+        {
+          "session": "2026-10-07_Night",
+          "symbol": "TOPIX",
+          "profit": 2082.0,
+          "loss": -0.0,
+          "net": 2082.0,
+          "campaigns": 1,
+          "fees": 418.0
+        },
+        {
+          "session": "2026-10-08_Day",
+          "symbol": "TOPIX",
+          "profit": 0.0,
+          "loss": 20418.0,
+          "net": -20418.0,
+          "campaigns": 1,
+          "fees": 418.0
+        },
+        {
+          "session": "2026-10-08_Night",
+          "symbol": "TOPIX",
+          "profit": 2082.0,
+          "loss": -0.0,
+          "net": 2082.0,
+          "campaigns": 1,
+          "fees": 418.0
+        },
+        {
+          "session": "2026-10-09_Day",
+          "symbol": "TOPIX",
+          "profit": 0.0,
+          "loss": -0.0,
+          "net": 0.0,
+          "campaigns": 0,
+          "fees": 0.0
+        },
+        {
+          "session": "2026-10-09_Night",
+          "symbol": "TOPIX",
+          "profit": 2082.0,
+          "loss": -0.0,
+          "net": 2082.0,
+          "campaigns": 1,
+          "fees": 418.0
+        },
+        {
+          "session": "2026-10-12_Day",
+          "symbol": "TOPIX",
+          "profit": 2082.0,
+          "loss": -0.0,
+          "net": 2082.0,
+          "campaigns": 1,
+          "fees": 418.0
+        },
+        {
+          "session": "2026-10-12_Night",
+          "symbol": "TOPIX",
+          "profit": 4582.0,
+          "loss": -0.0,
+          "net": 4582.0,
+          "campaigns": 1,
+          "fees": 418.0
+        },
+        {
+          "session": "2026-10-13_Day",
+          "symbol": "TOPIX",
+          "profit": 2082.0,
+          "loss": -0.0,
+          "net": 2082.0,
+          "campaigns": 1,
+          "fees": 418.0
+        }
+      ],
+      "sources": [
+        "E01取引更新と損失予算の公開会計.json"
+      ],
+      "ideal_reference": false,
+      "saved_alias": false,
+      "alias_source_id": null,
+      "derived": false,
+      "monetary_row_hash": "d05817fba41521822f8dc23a71a837e6c566f81f0f82c8007a5fc0ed350443f0",
+      "symbols": {
+        "TOPIX": {
+          "full": {
+            "profit": 74558.0,
+            "loss": 113344.0,
+            "net": -38786.0,
+            "profit_share": 0.39679194473715024,
+            "profit_factor": 0.6578027950310559,
+            "sessions": 33,
+            "active": 25,
+            "no_trade": 8,
+            "green": 19,
+            "red": 6,
+            "flat_active": 0,
+            "red_all": 0.18181818181818182,
+            "red_active": 0.24,
+            "mean_green": 3902.1052631578946,
+            "median_green": 4582.0,
+            "worst_red": 20836.0,
+            "mean_red": 18821.0,
+            "loss_recovery_ratio": 5.339681683301862,
+            "median_net": 2082.0,
+            "active_median_net": 2082.0,
+            "session_share_mean": 0.758328,
+            "session_share_mean_samples": 25,
+            "tests": {
+              "金額利益65以上": false,
+              "赤字全場20以下": true,
+              "最大赤字は平均黒字以下": false
+            },
+            "pass_all": false,
+            "active_red_test": false,
+            "pass_active": false
+          },
+          "without_top3": {
+            "profit": 53312.0,
+            "loss": 112926.0,
+            "net": -59614.0,
+            "profit_share": 0.3206968322525536,
+            "profit_factor": 0.47209677133698175,
+            "sessions": 30,
+            "active": 22,
+            "no_trade": 8,
+            "green": 16,
+            "red": 6,
+            "flat_active": 0,
+            "red_all": 0.2,
+            "red_active": 0.2727272727272727,
+            "mean_green": 3332.0,
+            "median_green": 3332.0,
+            "worst_red": 20836.0,
+            "mean_red": 18821.0,
+            "loss_recovery_ratio": 6.2533013205282115,
+            "median_net": 2082.0,
+            "active_median_net": 2082.0,
+            "session_share_mean": 0.7272727272727273,
+            "session_share_mean_samples": 22,
+            "tests": {
+              "金額利益65以上": false,
+              "赤字全場20以下": true,
+              "最大赤字は平均黒字以下": false
+            },
+            "pass_all": false,
+            "active_red_test": false,
+            "pass_active": false
+          },
+          "removed": [
+            {
+              "session": "2026-09-25_Night",
+              "net": 9164.0
+            },
+            {
+              "session": "2026-09-23_Night",
+              "net": 7082.0
+            },
+            {
+              "session": "2026-09-23_Day",
+              "net": 4582.0
+            }
+          ],
+          "first16": {
+            "profit": 41656.0,
+            "loss": 51672.0,
+            "net": -10016.0,
+            "profit_share": 0.44633979084519115,
+            "profit_factor": 0.8061619445734634,
+            "sessions": 16,
+            "active": 11,
+            "no_trade": 5,
+            "green": 8,
+            "red": 3,
+            "flat_active": 0,
+            "red_all": 0.1875,
+            "red_active": 0.2727272727272727,
+            "mean_green": 5154.75,
+            "median_green": 4582.0,
+            "worst_red": 20418.0,
+            "mean_red": 17084.666666666668,
+            "loss_recovery_ratio": 3.9610068383529753,
+            "median_net": 1041.0,
+            "active_median_net": 4582.0,
+            "session_share_mean": 0.7234727272727273,
+            "session_share_mean_samples": 11,
+            "tests": {
+              "金額利益65以上": false,
+              "赤字全場20以下": true,
+              "最大赤字は平均黒字以下": false
+            },
+            "pass_all": false,
+            "active_red_test": false,
+            "pass_active": false
+          },
+          "last17": {
+            "profit": 32902.0,
+            "loss": 61672.0,
+            "net": -28770.0,
+            "profit_share": 0.34789688497895827,
+            "profit_factor": 0.5334998054222337,
+            "sessions": 17,
+            "active": 14,
+            "no_trade": 3,
+            "green": 11,
+            "red": 3,
+            "flat_active": 0,
+            "red_all": 0.17647058823529413,
+            "red_active": 0.21428571428571427,
+            "mean_green": 2991.090909090909,
+            "median_green": 2082.0,
+            "worst_red": 20836.0,
+            "mean_red": 20557.333333333332,
+            "loss_recovery_ratio": 6.96602030271716,
+            "median_net": 2082.0,
+            "active_median_net": 2082.0,
+            "session_share_mean": 0.7857142857142857,
+            "session_share_mean_samples": 14,
+            "tests": {
+              "金額利益65以上": false,
+              "赤字全場20以下": true,
+              "最大赤字は平均黒字以下": false
+            },
+            "pass_all": false,
+            "active_red_test": false,
+            "pass_active": false
+          },
+          "robust_pass": false,
+          "robust_active_pass": false,
+          "rows": [
+            {
+              "session": "2026-09-21_Day",
+              "symbol": "TOPIX",
+              "profit": 0.0,
+              "loss": -0.0,
+              "net": 0.0,
+              "campaigns": 0,
+              "fees": 0.0
+            },
+            {
+              "session": "2026-09-21_Night",
+              "symbol": "TOPIX",
+              "profit": 0.0,
+              "loss": 12918.0,
+              "net": -12918.0,
+              "campaigns": 1,
+              "fees": 418.0
+            },
+            {
+              "session": "2026-09-22_Day",
+              "symbol": "TOPIX",
+              "profit": 0.0,
+              "loss": 20418.0,
+              "net": -20418.0,
+              "campaigns": 1,
+              "fees": 418.0
+            },
+            {
+              "session": "2026-09-22_Night",
+              "symbol": "TOPIX",
+              "profit": 2082.0,
+              "loss": -0.0,
+              "net": 2082.0,
+              "campaigns": 1,
+              "fees": 418.0
+            },
+            {
+              "session": "2026-09-23_Day",
+              "symbol": "TOPIX",
+              "profit": 4582.0,
+              "loss": -0.0,
+              "net": 4582.0,
+              "campaigns": 1,
+              "fees": 418.0
+            },
+            {
+              "session": "2026-09-23_Night",
+              "symbol": "TOPIX",
+              "profit": 7082.0,
+              "loss": -0.0,
+              "net": 7082.0,
+              "campaigns": 1,
+              "fees": 418.0
+            },
+            {
+              "session": "2026-09-24_Day",
+              "symbol": "TOPIX",
+              "profit": 4582.0,
+              "loss": -0.0,
+              "net": 4582.0,
+              "campaigns": 1,
+              "fees": 418.0
+            },
+            {
+              "session": "2026-09-24_Night",
+              "symbol": "TOPIX",
+              "profit": 0.0,
+              "loss": -0.0,
+              "net": 0.0,
+              "campaigns": 0,
+              "fees": 0.0
+            },
+            {
+              "session": "2026-09-25_Day",
+              "symbol": "TOPIX",
+              "profit": 0.0,
+              "loss": -0.0,
+              "net": 0.0,
+              "campaigns": 0,
+              "fees": 0.0
+            },
+            {
+              "session": "2026-09-25_Night",
+              "symbol": "TOPIX",
+              "profit": 9582.0,
+              "loss": 418.0,
+              "net": 9164.0,
+              "campaigns": 2,
+              "fees": 836.0
+            },
+            {
+              "session": "2026-09-28_Day",
+              "symbol": "TOPIX",
+              "profit": 0.0,
+              "loss": -0.0,
+              "net": 0.0,
+              "campaigns": 0,
+              "fees": 0.0
+            },
+            {
+              "session": "2026-09-28_Night",
+              "symbol": "TOPIX",
+              "profit": 4582.0,
+              "loss": -0.0,
+              "net": 4582.0,
+              "campaigns": 1,
+              "fees": 418.0
+            },
+            {
+              "session": "2026-09-29_Day",
+              "symbol": "TOPIX",
+              "profit": 0.0,
+              "loss": -0.0,
+              "net": 0.0,
+              "campaigns": 0,
+              "fees": 0.0
+            },
+            {
+              "session": "2026-09-29_Night",
+              "symbol": "TOPIX",
+              "profit": 4582.0,
+              "loss": -0.0,
+              "net": 4582.0,
+              "campaigns": 1,
+              "fees": 418.0
+            },
+            {
+              "session": "2026-09-30_Day",
+              "symbol": "TOPIX",
+              "profit": 4582.0,
+              "loss": -0.0,
+              "net": 4582.0,
+              "campaigns": 1,
+              "fees": 418.0
+            },
+            {
+              "session": "2026-09-30_Night",
+              "symbol": "TOPIX",
+              "profit": 0.0,
+              "loss": 17918.0,
+              "net": -17918.0,
+              "campaigns": 1,
+              "fees": 418.0
+            },
+            {
+              "session": "2026-10-01_Day",
+              "symbol": "TOPIX",
+              "profit": 4582.0,
+              "loss": -0.0,
+              "net": 4582.0,
+              "campaigns": 1,
+              "fees": 418.0
+            },
+            {
+              "session": "2026-10-01_Night",
+              "symbol": "TOPIX",
+              "profit": 2082.0,
+              "loss": -0.0,
+              "net": 2082.0,
+              "campaigns": 1,
+              "fees": 418.0
+            },
+            {
+              "session": "2026-10-02_Day",
+              "symbol": "TOPIX",
+              "profit": 4582.0,
+              "loss": -0.0,
+              "net": 4582.0,
+              "campaigns": 1,
+              "fees": 418.0
+            },
+            {
+              "session": "2026-10-02_Night",
+              "symbol": "TOPIX",
+              "profit": 2082.0,
+              "loss": -0.0,
+              "net": 2082.0,
+              "campaigns": 1,
+              "fees": 418.0
+            },
+            {
+              "session": "2026-10-05_Day",
+              "symbol": "TOPIX",
+              "profit": 0.0,
+              "loss": 20836.0,
+              "net": -20836.0,
+              "campaigns": 2,
+              "fees": 836.0
+            },
+            {
+              "session": "2026-10-05_Night",
+              "symbol": "TOPIX",
+              "profit": 0.0,
+              "loss": 20418.0,
+              "net": -20418.0,
+              "campaigns": 1,
+              "fees": 418.0
+            },
+            {
+              "session": "2026-10-06_Day",
+              "symbol": "TOPIX",
+              "profit": 0.0,
+              "loss": -0.0,
+              "net": 0.0,
+              "campaigns": 0,
+              "fees": 0.0
+            },
+            {
+              "session": "2026-10-06_Night",
+              "symbol": "TOPIX",
+              "profit": 4582.0,
+              "loss": -0.0,
+              "net": 4582.0,
+              "campaigns": 1,
+              "fees": 418.0
+            },
+            {
+              "session": "2026-10-07_Day",
+              "symbol": "TOPIX",
+              "profit": 0.0,
+              "loss": -0.0,
+              "net": 0.0,
+              "campaigns": 0,
+              "fees": 0.0
+            },
+            {
+              "session": "2026-10-07_Night",
+              "symbol": "TOPIX",
+              "profit": 2082.0,
+              "loss": -0.0,
+              "net": 2082.0,
+              "campaigns": 1,
+              "fees": 418.0
+            },
+            {
+              "session": "2026-10-08_Day",
+              "symbol": "TOPIX",
+              "profit": 0.0,
+              "loss": 20418.0,
+              "net": -20418.0,
+              "campaigns": 1,
+              "fees": 418.0
+            },
+            {
+              "session": "2026-10-08_Night",
+              "symbol": "TOPIX",
+              "profit": 2082.0,
+              "loss": -0.0,
+              "net": 2082.0,
+              "campaigns": 1,
+              "fees": 418.0
+            },
+            {
+              "session": "2026-10-09_Day",
+              "symbol": "TOPIX",
+              "profit": 0.0,
+              "loss": -0.0,
+              "net": 0.0,
+              "campaigns": 0,
+              "fees": 0.0
+            },
+            {
+              "session": "2026-10-09_Night",
+              "symbol": "TOPIX",
+              "profit": 2082.0,
+              "loss": -0.0,
+              "net": 2082.0,
+              "campaigns": 1,
+              "fees": 418.0
+            },
+            {
+              "session": "2026-10-12_Day",
+              "symbol": "TOPIX",
+              "profit": 2082.0,
+              "loss": -0.0,
+              "net": 2082.0,
+              "campaigns": 1,
+              "fees": 418.0
+            },
+            {
+              "session": "2026-10-12_Night",
+              "symbol": "TOPIX",
+              "profit": 4582.0,
+              "loss": -0.0,
+              "net": 4582.0,
+              "campaigns": 1,
+              "fees": 418.0
+            },
+            {
+              "session": "2026-10-13_Day",
+              "symbol": "TOPIX",
+              "profit": 2082.0,
+              "loss": -0.0,
+              "net": 2082.0,
+              "campaigns": 1,
+              "fees": 418.0
+            }
+          ]
+        },
+        "NK225": {
+          "full": {
+            "profit": 39940.0,
+            "loss": 16660.0,
+            "net": 23280.0,
+            "profit_share": 0.7056537102473498,
+            "profit_factor": 2.397358943577431,
+            "sessions": 33,
+            "active": 25,
+            "no_trade": 8,
+            "green": 23,
+            "red": 2,
+            "flat_active": 0,
+            "red_all": 0.06060606060606061,
+            "red_active": 0.08,
+            "mean_green": 1736.5217391304348,
+            "median_green": 1780.0,
+            "worst_red": 8440.0,
+            "mean_red": 8330.0,
+            "loss_recovery_ratio": 4.86029043565348,
+            "median_net": 1780.0,
+            "active_median_net": 1780.0,
+            "session_share_mean": 0.92,
+            "session_share_mean_samples": 25,
+            "tests": {
+              "金額利益65以上": true,
+              "赤字全場20以下": true,
+              "最大赤字は平均黒字以下": false
+            },
+            "pass_all": false,
+            "active_red_test": true,
+            "pass_active": false
+          },
+          "without_top3": {
+            "profit": 34600.0,
+            "loss": 16660.0,
+            "net": 17940.0,
+            "profit_share": 0.6749902458056964,
+            "profit_factor": 2.076830732292917,
+            "sessions": 30,
+            "active": 22,
+            "no_trade": 8,
+            "green": 20,
+            "red": 2,
+            "flat_active": 0,
+            "red_all": 0.06666666666666667,
+            "red_active": 0.09090909090909091,
+            "mean_green": 1730.0,
+            "median_green": 1780.0,
+            "worst_red": 8440.0,
+            "mean_red": 8330.0,
+            "loss_recovery_ratio": 4.878612716763006,
+            "median_net": 1780.0,
+            "active_median_net": 1780.0,
+            "session_share_mean": 0.9090909090909091,
+            "session_share_mean_samples": 22,
+            "tests": {
+              "金額利益65以上": true,
+              "赤字全場20以下": true,
+              "最大赤字は平均黒字以下": false
+            },
+            "pass_all": false,
+            "active_red_test": true,
+            "pass_active": false
+          },
+          "removed": [
+            {
+              "session": "2026-09-21_Night",
+              "net": 1780.0
+            },
+            {
+              "session": "2026-09-22_Day",
+              "net": 1780.0
+            },
+            {
+              "session": "2026-09-23_Night",
+              "net": 1780.0
+            }
+          ],
+          "first16": {
+            "profit": 16800.0,
+            "loss": 8440.0,
+            "net": 8360.0,
+            "profit_share": 0.6656101426307448,
+            "profit_factor": 1.990521327014218,
+            "sessions": 16,
+            "active": 11,
+            "no_trade": 5,
+            "green": 10,
+            "red": 1,
+            "flat_active": 0,
+            "red_all": 0.0625,
+            "red_active": 0.09090909090909091,
+            "mean_green": 1680.0,
+            "median_green": 1780.0,
+            "worst_red": 8440.0,
+            "mean_red": 8440.0,
+            "loss_recovery_ratio": 5.023809523809524,
+            "median_net": 1780.0,
+            "active_median_net": 1780.0,
+            "session_share_mean": 0.9090909090909091,
+            "session_share_mean_samples": 11,
+            "tests": {
+              "金額利益65以上": true,
+              "赤字全場20以下": true,
+              "最大赤字は平均黒字以下": false
+            },
+            "pass_all": false,
+            "active_red_test": true,
+            "pass_active": false
+          },
+          "last17": {
+            "profit": 23140.0,
+            "loss": 8220.0,
+            "net": 14920.0,
+            "profit_share": 0.7378826530612245,
+            "profit_factor": 2.8150851581508514,
+            "sessions": 17,
+            "active": 14,
+            "no_trade": 3,
+            "green": 13,
+            "red": 1,
+            "flat_active": 0,
+            "red_all": 0.058823529411764705,
+            "red_active": 0.07142857142857142,
+            "mean_green": 1780.0,
+            "median_green": 1780.0,
+            "worst_red": 8220.0,
+            "mean_red": 8220.0,
+            "loss_recovery_ratio": 4.617977528089888,
+            "median_net": 1780.0,
+            "active_median_net": 1780.0,
+            "session_share_mean": 0.9285714285714286,
+            "session_share_mean_samples": 14,
+            "tests": {
+              "金額利益65以上": true,
+              "赤字全場20以下": true,
+              "最大赤字は平均黒字以下": false
+            },
+            "pass_all": false,
+            "active_red_test": true,
+            "pass_active": false
+          },
+          "robust_pass": false,
+          "robust_active_pass": false,
+          "rows": [
+            {
+              "session": "2026-09-21_Day",
+              "symbol": "NK225",
+              "profit": 0.0,
+              "loss": -0.0,
+              "net": 0.0,
+              "campaigns": 0,
+              "fees": 0.0
+            },
+            {
+              "session": "2026-09-21_Night",
+              "symbol": "NK225",
+              "profit": 1780.0,
+              "loss": -0.0,
+              "net": 1780.0,
+              "campaigns": 1,
+              "fees": 220.0
+            },
+            {
+              "session": "2026-09-22_Day",
+              "symbol": "NK225",
+              "profit": 1780.0,
+              "loss": -0.0,
+              "net": 1780.0,
+              "campaigns": 1,
+              "fees": 220.0
+            },
+            {
+              "session": "2026-09-22_Night",
+              "symbol": "NK225",
+              "profit": 780.0,
+              "loss": -0.0,
+              "net": 780.0,
+              "campaigns": 1,
+              "fees": 220.0
+            },
+            {
+              "session": "2026-09-23_Day",
+              "symbol": "NK225",
+              "profit": 0.0,
+              "loss": -0.0,
+              "net": 0.0,
+              "campaigns": 0,
+              "fees": 0.0
+            },
+            {
+              "session": "2026-09-23_Night",
+              "symbol": "NK225",
+              "profit": 1780.0,
+              "loss": -0.0,
+              "net": 1780.0,
+              "campaigns": 1,
+              "fees": 220.0
+            },
+            {
+              "session": "2026-09-24_Day",
+              "symbol": "NK225",
+              "profit": 1780.0,
+              "loss": -0.0,
+              "net": 1780.0,
+              "campaigns": 1,
+              "fees": 220.0
+            },
+            {
+              "session": "2026-09-24_Night",
+              "symbol": "NK225",
+              "profit": 1780.0,
+              "loss": -0.0,
+              "net": 1780.0,
+              "campaigns": 1,
+              "fees": 220.0
+            },
+            {
+              "session": "2026-09-25_Day",
+              "symbol": "NK225",
+              "profit": 0.0,
+              "loss": -0.0,
+              "net": 0.0,
+              "campaigns": 0,
+              "fees": 0.0
+            },
+            {
+              "session": "2026-09-25_Night",
+              "symbol": "NK225",
+              "profit": 1780.0,
+              "loss": -0.0,
+              "net": 1780.0,
+              "campaigns": 1,
+              "fees": 220.0
+            },
+            {
+              "session": "2026-09-28_Day",
+              "symbol": "NK225",
+              "profit": 1780.0,
+              "loss": -0.0,
+              "net": 1780.0,
+              "campaigns": 1,
+              "fees": 220.0
+            },
+            {
+              "session": "2026-09-28_Night",
+              "symbol": "NK225",
+              "profit": 1780.0,
+              "loss": -0.0,
+              "net": 1780.0,
+              "campaigns": 1,
+              "fees": 220.0
+            },
+            {
+              "session": "2026-09-29_Day",
+              "symbol": "NK225",
+              "profit": 0.0,
+              "loss": -0.0,
+              "net": 0.0,
+              "campaigns": 0,
+              "fees": 0.0
+            },
+            {
+              "session": "2026-09-29_Night",
+              "symbol": "NK225",
+              "profit": 0.0,
+              "loss": 8440.0,
+              "net": -8440.0,
+              "campaigns": 2,
+              "fees": 440.0
+            },
+            {
+              "session": "2026-09-30_Day",
+              "symbol": "NK225",
+              "profit": 0.0,
+              "loss": -0.0,
+              "net": 0.0,
+              "campaigns": 0,
+              "fees": 0.0
+            },
+            {
+              "session": "2026-09-30_Night",
+              "symbol": "NK225",
+              "profit": 1780.0,
+              "loss": -0.0,
+              "net": 1780.0,
+              "campaigns": 1,
+              "fees": 220.0
+            },
+            {
+              "session": "2026-10-01_Day",
+              "symbol": "NK225",
+              "profit": 1780.0,
+              "loss": -0.0,
+              "net": 1780.0,
+              "campaigns": 1,
+              "fees": 220.0
+            },
+            {
+              "session": "2026-10-01_Night",
+              "symbol": "NK225",
+              "profit": 1780.0,
+              "loss": -0.0,
+              "net": 1780.0,
+              "campaigns": 1,
+              "fees": 220.0
+            },
+            {
+              "session": "2026-10-02_Day",
+              "symbol": "NK225",
+              "profit": 1780.0,
+              "loss": -0.0,
+              "net": 1780.0,
+              "campaigns": 1,
+              "fees": 220.0
+            },
+            {
+              "session": "2026-10-02_Night",
+              "symbol": "NK225",
+              "profit": 1780.0,
+              "loss": -0.0,
+              "net": 1780.0,
+              "campaigns": 1,
+              "fees": 220.0
+            },
+            {
+              "session": "2026-10-05_Day",
+              "symbol": "NK225",
+              "profit": 1780.0,
+              "loss": -0.0,
+              "net": 1780.0,
+              "campaigns": 1,
+              "fees": 220.0
+            },
+            {
+              "session": "2026-10-05_Night",
+              "symbol": "NK225",
+              "profit": 0.0,
+              "loss": -0.0,
+              "net": 0.0,
+              "campaigns": 0,
+              "fees": 0.0
+            },
+            {
+              "session": "2026-10-06_Day",
+              "symbol": "NK225",
+              "profit": 1780.0,
+              "loss": -0.0,
+              "net": 1780.0,
+              "campaigns": 1,
+              "fees": 220.0
+            },
+            {
+              "session": "2026-10-06_Night",
+              "symbol": "NK225",
+              "profit": 1780.0,
+              "loss": -0.0,
+              "net": 1780.0,
+              "campaigns": 1,
+              "fees": 220.0
+            },
+            {
+              "session": "2026-10-07_Day",
+              "symbol": "NK225",
+              "profit": 1780.0,
+              "loss": -0.0,
+              "net": 1780.0,
+              "campaigns": 1,
+              "fees": 220.0
+            },
+            {
+              "session": "2026-10-07_Night",
+              "symbol": "NK225",
+              "profit": 1780.0,
+              "loss": -0.0,
+              "net": 1780.0,
+              "campaigns": 1,
+              "fees": 220.0
+            },
+            {
+              "session": "2026-10-08_Day",
+              "symbol": "NK225",
+              "profit": 0.0,
+              "loss": 8220.0,
+              "net": -8220.0,
+              "campaigns": 1,
+              "fees": 220.0
+            },
+            {
+              "session": "2026-10-08_Night",
+              "symbol": "NK225",
+              "profit": 1780.0,
+              "loss": -0.0,
+              "net": 1780.0,
+              "campaigns": 1,
+              "fees": 220.0
+            },
+            {
+              "session": "2026-10-09_Day",
+              "symbol": "NK225",
+              "profit": 0.0,
+              "loss": -0.0,
+              "net": 0.0,
+              "campaigns": 0,
+              "fees": 0.0
+            },
+            {
+              "session": "2026-10-09_Night",
+              "symbol": "NK225",
+              "profit": 1780.0,
+              "loss": -0.0,
+              "net": 1780.0,
+              "campaigns": 1,
+              "fees": 220.0
+            },
+            {
+              "session": "2026-10-12_Day",
+              "symbol": "NK225",
+              "profit": 1780.0,
+              "loss": -0.0,
+              "net": 1780.0,
+              "campaigns": 1,
+              "fees": 220.0
+            },
+            {
+              "session": "2026-10-12_Night",
+              "symbol": "NK225",
+              "profit": 0.0,
+              "loss": -0.0,
+              "net": 0.0,
+              "campaigns": 0,
+              "fees": 0.0
+            },
+            {
+              "session": "2026-10-13_Day",
+              "symbol": "NK225",
+              "profit": 1780.0,
+              "loss": -0.0,
+              "net": 1780.0,
+              "campaigns": 1,
+              "fees": 220.0
+            }
+          ]
+        }
+      },
+      "both_full_pass": false,
+      "both_robust_pass": false,
+      "both_active_pass": false,
+      "both_robust_active_pass": false
+    },
+    "E01_TRADE_W60_KNOWN_VETO_D0_P1L8": {
+      "id": "E01_TRADE_W60_KNOWN_VETO_D0_P1L8",
+      "config": {
+        "id": "E01_TRADE_W60_KNOWN_VETO_D0_P1L8",
+        "window_seconds": 60,
+        "mode": "KNOWN_VETO",
+        "exit": "P1L8",
+        "execution": "D0",
+        "quantity": {
+          "TOPIX": 5,
+          "NK225": 10
+        },
+        "cap": {
+          "TOPIX": 10,
+          "NK225": 20
+        },
+        "offset_atr": 0.0,
+        "baseline_id": "E01_TRADE_W60_VETO_D0_P1L8"
+      },
+      "rows": [
+        {
+          "session": "2026-09-21_Day",
+          "symbol": "NK225",
+          "profit": 0.0,
+          "loss": -0.0,
+          "net": 0.0,
+          "campaigns": 0,
+          "fees": 0.0
+        },
+        {
+          "session": "2026-09-21_Night",
+          "symbol": "NK225",
+          "profit": 1780.0,
+          "loss": -0.0,
+          "net": 1780.0,
+          "campaigns": 1,
+          "fees": 220.0
+        },
+        {
+          "session": "2026-09-22_Day",
+          "symbol": "NK225",
+          "profit": 1780.0,
+          "loss": -0.0,
+          "net": 1780.0,
+          "campaigns": 1,
+          "fees": 220.0
+        },
+        {
+          "session": "2026-09-22_Night",
+          "symbol": "NK225",
+          "profit": 780.0,
+          "loss": -0.0,
+          "net": 780.0,
+          "campaigns": 1,
+          "fees": 220.0
+        },
+        {
+          "session": "2026-09-23_Day",
+          "symbol": "NK225",
+          "profit": 0.0,
+          "loss": -0.0,
+          "net": 0.0,
+          "campaigns": 0,
+          "fees": 0.0
+        },
+        {
+          "session": "2026-09-23_Night",
+          "symbol": "NK225",
+          "profit": 1780.0,
+          "loss": -0.0,
+          "net": 1780.0,
+          "campaigns": 1,
+          "fees": 220.0
+        },
+        {
+          "session": "2026-09-24_Day",
+          "symbol": "NK225",
+          "profit": 1780.0,
+          "loss": -0.0,
+          "net": 1780.0,
+          "campaigns": 1,
+          "fees": 220.0
+        },
+        {
+          "session": "2026-09-24_Night",
+          "symbol": "NK225",
+          "profit": 1780.0,
+          "loss": -0.0,
+          "net": 1780.0,
+          "campaigns": 1,
+          "fees": 220.0
+        },
+        {
+          "session": "2026-09-25_Day",
+          "symbol": "NK225",
+          "profit": 0.0,
+          "loss": 8220.0,
+          "net": -8220.0,
+          "campaigns": 1,
+          "fees": 220.0
+        },
+        {
+          "session": "2026-09-25_Night",
+          "symbol": "NK225",
+          "profit": 0.0,
+          "loss": 8220.0,
+          "net": -8220.0,
+          "campaigns": 1,
+          "fees": 220.0
+        },
+        {
+          "session": "2026-09-28_Day",
+          "symbol": "NK225",
+          "profit": 1780.0,
+          "loss": -0.0,
+          "net": 1780.0,
+          "campaigns": 1,
+          "fees": 220.0
+        },
+        {
+          "session": "2026-09-28_Night",
+          "symbol": "NK225",
+          "profit": 1780.0,
+          "loss": -0.0,
+          "net": 1780.0,
+          "campaigns": 1,
+          "fees": 220.0
+        },
+        {
+          "session": "2026-09-29_Day",
+          "symbol": "NK225",
+          "profit": 780.0,
+          "loss": -0.0,
+          "net": 780.0,
+          "campaigns": 1,
+          "fees": 220.0
+        },
+        {
+          "session": "2026-09-29_Night",
+          "symbol": "NK225",
+          "profit": 0.0,
+          "loss": 8440.0,
+          "net": -8440.0,
+          "campaigns": 2,
+          "fees": 440.0
+        },
+        {
+          "session": "2026-09-30_Day",
+          "symbol": "NK225",
+          "profit": 1780.0,
+          "loss": -0.0,
+          "net": 1780.0,
+          "campaigns": 1,
+          "fees": 220.0
+        },
+        {
+          "session": "2026-09-30_Night",
+          "symbol": "NK225",
+          "profit": 0.0,
+          "loss": 8220.0,
+          "net": -8220.0,
+          "campaigns": 1,
+          "fees": 220.0
+        },
+        {
+          "session": "2026-10-01_Day",
+          "symbol": "NK225",
+          "profit": 1780.0,
+          "loss": -0.0,
+          "net": 1780.0,
+          "campaigns": 1,
+          "fees": 220.0
+        },
+        {
+          "session": "2026-10-01_Night",
+          "symbol": "NK225",
+          "profit": 1780.0,
+          "loss": -0.0,
+          "net": 1780.0,
+          "campaigns": 1,
+          "fees": 220.0
+        },
+        {
+          "session": "2026-10-02_Day",
+          "symbol": "NK225",
+          "profit": 1780.0,
+          "loss": -0.0,
+          "net": 1780.0,
+          "campaigns": 1,
+          "fees": 220.0
+        },
+        {
+          "session": "2026-10-02_Night",
+          "symbol": "NK225",
+          "profit": 1780.0,
+          "loss": -0.0,
+          "net": 1780.0,
+          "campaigns": 1,
+          "fees": 220.0
+        },
+        {
+          "session": "2026-10-05_Day",
+          "symbol": "NK225",
+          "profit": 2780.0,
+          "loss": -0.0,
+          "net": 2780.0,
+          "campaigns": 1,
+          "fees": 220.0
+        },
+        {
+          "session": "2026-10-05_Night",
+          "symbol": "NK225",
+          "profit": 0.0,
+          "loss": 8220.0,
+          "net": -8220.0,
+          "campaigns": 1,
+          "fees": 220.0
+        },
+        {
+          "session": "2026-10-06_Day",
+          "symbol": "NK225",
+          "profit": 1780.0,
+          "loss": -0.0,
+          "net": 1780.0,
+          "campaigns": 1,
+          "fees": 220.0
+        },
+        {
+          "session": "2026-10-06_Night",
+          "symbol": "NK225",
+          "profit": 1780.0,
+          "loss": -0.0,
+          "net": 1780.0,
+          "campaigns": 1,
+          "fees": 220.0
+        },
+        {
+          "session": "2026-10-07_Day",
+          "symbol": "NK225",
+          "profit": 1780.0,
+          "loss": -0.0,
+          "net": 1780.0,
+          "campaigns": 1,
+          "fees": 220.0
+        },
+        {
+          "session": "2026-10-07_Night",
+          "symbol": "NK225",
+          "profit": 1780.0,
+          "loss": -0.0,
+          "net": 1780.0,
+          "campaigns": 1,
+          "fees": 220.0
+        },
+        {
+          "session": "2026-10-08_Day",
+          "symbol": "NK225",
+          "profit": 1780.0,
+          "loss": -0.0,
+          "net": 1780.0,
+          "campaigns": 1,
+          "fees": 220.0
+        },
+        {
+          "session": "2026-10-08_Night",
+          "symbol": "NK225",
+          "profit": 1780.0,
+          "loss": -0.0,
+          "net": 1780.0,
+          "campaigns": 1,
+          "fees": 220.0
+        },
+        {
+          "session": "2026-10-09_Day",
+          "symbol": "NK225",
+          "profit": 0.0,
+          "loss": 8220.0,
+          "net": -8220.0,
+          "campaigns": 1,
+          "fees": 220.0
+        },
+        {
+          "session": "2026-10-09_Night",
+          "symbol": "NK225",
+          "profit": 1780.0,
+          "loss": -0.0,
+          "net": 1780.0,
+          "campaigns": 1,
+          "fees": 220.0
+        },
+        {
+          "session": "2026-10-12_Day",
+          "symbol": "NK225",
+          "profit": 1780.0,
+          "loss": -0.0,
+          "net": 1780.0,
+          "campaigns": 1,
+          "fees": 220.0
+        },
+        {
+          "session": "2026-10-12_Night",
+          "symbol": "NK225",
+          "profit": 0.0,
+          "loss": 8440.0,
+          "net": -8440.0,
+          "campaigns": 2,
+          "fees": 440.0
+        },
+        {
+          "session": "2026-10-13_Day",
+          "symbol": "NK225",
+          "profit": 1780.0,
+          "loss": -0.0,
+          "net": 1780.0,
+          "campaigns": 1,
+          "fees": 220.0
+        },
+        {
+          "session": "2026-09-21_Day",
+          "symbol": "TOPIX",
+          "profit": 4582.0,
+          "loss": -0.0,
+          "net": 4582.0,
+          "campaigns": 1,
+          "fees": 418.0
+        },
+        {
+          "session": "2026-09-21_Night",
+          "symbol": "TOPIX",
+          "profit": 0.0,
+          "loss": 20836.0,
+          "net": -20836.0,
+          "campaigns": 2,
+          "fees": 836.0
+        },
+        {
+          "session": "2026-09-22_Day",
+          "symbol": "TOPIX",
+          "profit": 4582.0,
+          "loss": -0.0,
+          "net": 4582.0,
+          "campaigns": 1,
+          "fees": 418.0
+        },
+        {
+          "session": "2026-09-22_Night",
+          "symbol": "TOPIX",
+          "profit": 2082.0,
+          "loss": -0.0,
+          "net": 2082.0,
+          "campaigns": 1,
+          "fees": 418.0
+        },
+        {
+          "session": "2026-09-23_Day",
+          "symbol": "TOPIX",
+          "profit": 4582.0,
+          "loss": -0.0,
+          "net": 4582.0,
+          "campaigns": 1,
+          "fees": 418.0
+        },
+        {
+          "session": "2026-09-23_Night",
+          "symbol": "TOPIX",
+          "profit": 7082.0,
+          "loss": -0.0,
+          "net": 7082.0,
+          "campaigns": 1,
+          "fees": 418.0
+        },
+        {
+          "session": "2026-09-24_Day",
+          "symbol": "TOPIX",
+          "profit": 4582.0,
+          "loss": -0.0,
+          "net": 4582.0,
+          "campaigns": 1,
+          "fees": 418.0
+        },
+        {
+          "session": "2026-09-24_Night",
+          "symbol": "TOPIX",
+          "profit": 0.0,
+          "loss": 20418.0,
+          "net": -20418.0,
+          "campaigns": 1,
+          "fees": 418.0
+        },
+        {
+          "session": "2026-09-25_Day",
+          "symbol": "TOPIX",
+          "profit": 4582.0,
+          "loss": -0.0,
+          "net": 4582.0,
+          "campaigns": 1,
+          "fees": 418.0
+        },
+        {
+          "session": "2026-09-25_Night",
+          "symbol": "TOPIX",
+          "profit": 4582.0,
+          "loss": -0.0,
+          "net": 4582.0,
+          "campaigns": 1,
+          "fees": 418.0
+        },
+        {
+          "session": "2026-09-28_Day",
+          "symbol": "TOPIX",
+          "profit": 0.0,
+          "loss": 17918.0,
+          "net": -17918.0,
+          "campaigns": 1,
+          "fees": 418.0
+        },
+        {
+          "session": "2026-09-28_Night",
+          "symbol": "TOPIX",
+          "profit": 4582.0,
+          "loss": -0.0,
+          "net": 4582.0,
+          "campaigns": 1,
+          "fees": 418.0
+        },
+        {
+          "session": "2026-09-29_Day",
+          "symbol": "TOPIX",
+          "profit": 4582.0,
+          "loss": -0.0,
+          "net": 4582.0,
+          "campaigns": 1,
+          "fees": 418.0
+        },
+        {
+          "session": "2026-09-29_Night",
+          "symbol": "TOPIX",
+          "profit": 4582.0,
+          "loss": -0.0,
+          "net": 4582.0,
+          "campaigns": 1,
+          "fees": 418.0
+        },
+        {
+          "session": "2026-09-30_Day",
+          "symbol": "TOPIX",
+          "profit": 4582.0,
+          "loss": -0.0,
+          "net": 4582.0,
+          "campaigns": 1,
+          "fees": 418.0
+        },
+        {
+          "session": "2026-09-30_Night",
+          "symbol": "TOPIX",
+          "profit": 4582.0,
+          "loss": -0.0,
+          "net": 4582.0,
+          "campaigns": 1,
+          "fees": 418.0
+        },
+        {
+          "session": "2026-10-01_Day",
+          "symbol": "TOPIX",
+          "profit": 4582.0,
+          "loss": -0.0,
+          "net": 4582.0,
+          "campaigns": 1,
+          "fees": 418.0
+        },
+        {
+          "session": "2026-10-01_Night",
+          "symbol": "TOPIX",
+          "profit": 4582.0,
+          "loss": -0.0,
+          "net": 4582.0,
+          "campaigns": 1,
+          "fees": 418.0
+        },
+        {
+          "session": "2026-10-02_Day",
+          "symbol": "TOPIX",
+          "profit": 4582.0,
+          "loss": -0.0,
+          "net": 4582.0,
+          "campaigns": 1,
+          "fees": 418.0
+        },
+        {
+          "session": "2026-10-02_Night",
+          "symbol": "TOPIX",
+          "profit": 2082.0,
+          "loss": -0.0,
+          "net": 2082.0,
+          "campaigns": 1,
+          "fees": 418.0
+        },
+        {
+          "session": "2026-10-05_Day",
+          "symbol": "TOPIX",
+          "profit": 4582.0,
+          "loss": -0.0,
+          "net": 4582.0,
+          "campaigns": 1,
+          "fees": 418.0
+        },
+        {
+          "session": "2026-10-05_Night",
+          "symbol": "TOPIX",
+          "profit": 0.0,
+          "loss": 20418.0,
+          "net": -20418.0,
+          "campaigns": 1,
+          "fees": 418.0
+        },
+        {
+          "session": "2026-10-06_Day",
+          "symbol": "TOPIX",
+          "profit": 4582.0,
+          "loss": -0.0,
+          "net": 4582.0,
+          "campaigns": 1,
+          "fees": 418.0
+        },
+        {
+          "session": "2026-10-06_Night",
+          "symbol": "TOPIX",
+          "profit": 4582.0,
+          "loss": -0.0,
+          "net": 4582.0,
+          "campaigns": 1,
+          "fees": 418.0
+        },
+        {
+          "session": "2026-10-07_Day",
+          "symbol": "TOPIX",
+          "profit": 4582.0,
+          "loss": -0.0,
+          "net": 4582.0,
+          "campaigns": 1,
+          "fees": 418.0
+        },
+        {
+          "session": "2026-10-07_Night",
+          "symbol": "TOPIX",
+          "profit": 4582.0,
+          "loss": -0.0,
+          "net": 4582.0,
+          "campaigns": 1,
+          "fees": 418.0
+        },
+        {
+          "session": "2026-10-08_Day",
+          "symbol": "TOPIX",
+          "profit": 4582.0,
+          "loss": -0.0,
+          "net": 4582.0,
+          "campaigns": 1,
+          "fees": 418.0
+        },
+        {
+          "session": "2026-10-08_Night",
+          "symbol": "TOPIX",
+          "profit": 2082.0,
+          "loss": -0.0,
+          "net": 2082.0,
+          "campaigns": 1,
+          "fees": 418.0
+        },
+        {
+          "session": "2026-10-09_Day",
+          "symbol": "TOPIX",
+          "profit": 4582.0,
+          "loss": -0.0,
+          "net": 4582.0,
+          "campaigns": 1,
+          "fees": 418.0
+        },
+        {
+          "session": "2026-10-09_Night",
+          "symbol": "TOPIX",
+          "profit": 4164.0,
+          "loss": -0.0,
+          "net": 4164.0,
+          "campaigns": 2,
+          "fees": 836.0
+        },
+        {
+          "session": "2026-10-12_Day",
+          "symbol": "TOPIX",
+          "profit": 4582.0,
+          "loss": -0.0,
+          "net": 4582.0,
+          "campaigns": 1,
+          "fees": 418.0
+        },
+        {
+          "session": "2026-10-12_Night",
+          "symbol": "TOPIX",
+          "profit": 4582.0,
+          "loss": -0.0,
+          "net": 4582.0,
+          "campaigns": 1,
+          "fees": 418.0
+        },
+        {
+          "session": "2026-10-13_Day",
+          "symbol": "TOPIX",
+          "profit": 4582.0,
+          "loss": -0.0,
+          "net": 4582.0,
+          "campaigns": 1,
+          "fees": 418.0
+        }
+      ],
+      "sources": [
+        "情報不足見送りの公開会計.json"
+      ],
+      "ideal_reference": false,
+      "saved_alias": false,
+      "alias_source_id": null,
+      "derived": false,
+      "monetary_row_hash": "c336db4378702d7e367f40eb861a260322f13e5a0c2b43b4d722e3ebf83fdf2a",
+      "symbols": {
+        "TOPIX": {
+          "full": {
+            "profit": 127460.0,
+            "loss": 79590.0,
+            "net": 47870.0,
+            "profit_share": 0.6156000965950253,
+            "profit_factor": 1.6014574695313482,
+            "sessions": 33,
+            "active": 33,
+            "no_trade": 0,
+            "green": 29,
+            "red": 4,
+            "flat_active": 0,
+            "red_all": 0.12121212121212122,
+            "red_active": 0.12121212121212122,
+            "mean_green": 4395.172413793103,
+            "median_green": 4582.0,
+            "worst_red": 20836.0,
+            "mean_red": 19897.5,
+            "loss_recovery_ratio": 4.740655892044563,
+            "median_net": 4582.0,
+            "active_median_net": 4582.0,
+            "session_share_mean": 0.8787878787878788,
+            "session_share_mean_samples": 33,
+            "tests": {
+              "金額利益65以上": false,
+              "赤字全場20以下": true,
+              "最大赤字は平均黒字以下": false
+            },
+            "pass_all": false,
+            "active_red_test": true,
+            "pass_active": false
+          },
+          "without_top3": {
+            "profit": 111214.0,
+            "loss": 79590.0,
+            "net": 31624.0,
+            "profit_share": 0.5828703800758894,
+            "profit_factor": 1.397336348787536,
+            "sessions": 30,
+            "active": 30,
+            "no_trade": 0,
+            "green": 26,
+            "red": 4,
+            "flat_active": 0,
+            "red_all": 0.13333333333333333,
+            "red_active": 0.13333333333333333,
+            "mean_green": 4277.461538461538,
+            "median_green": 4582.0,
+            "worst_red": 20836.0,
+            "mean_red": 19897.5,
+            "loss_recovery_ratio": 4.87111334903879,
+            "median_net": 4582.0,
+            "active_median_net": 4582.0,
+            "session_share_mean": 0.8666666666666667,
+            "session_share_mean_samples": 30,
+            "tests": {
+              "金額利益65以上": false,
+              "赤字全場20以下": true,
+              "最大赤字は平均黒字以下": false
+            },
+            "pass_all": false,
+            "active_red_test": true,
+            "pass_active": false
+          },
+          "removed": [
+            {
+              "session": "2026-09-23_Night",
+              "net": 7082.0
+            },
+            {
+              "session": "2026-09-21_Day",
+              "net": 4582.0
+            },
+            {
+              "session": "2026-09-22_Day",
+              "net": 4582.0
+            }
+          ],
+          "first16": {
+            "profit": 59566.0,
+            "loss": 59172.0,
+            "net": 394.0,
+            "profit_share": 0.5016591150263605,
+            "profit_factor": 1.0066585547218279,
+            "sessions": 16,
+            "active": 16,
+            "no_trade": 0,
+            "green": 13,
+            "red": 3,
+            "flat_active": 0,
+            "red_all": 0.1875,
+            "red_active": 0.1875,
+            "mean_green": 4582.0,
+            "median_green": 4582.0,
+            "worst_red": 20836.0,
+            "mean_red": 19724.0,
+            "loss_recovery_ratio": 4.547359231776517,
+            "median_net": 4582.0,
+            "active_median_net": 4582.0,
+            "session_share_mean": 0.8125,
+            "session_share_mean_samples": 16,
+            "tests": {
+              "金額利益65以上": false,
+              "赤字全場20以下": true,
+              "最大赤字は平均黒字以下": false
+            },
+            "pass_all": false,
+            "active_red_test": true,
+            "pass_active": false
+          },
+          "last17": {
+            "profit": 67894.0,
+            "loss": 20418.0,
+            "net": 47476.0,
+            "profit_share": 0.768796992481203,
+            "profit_factor": 3.3252032520325203,
+            "sessions": 17,
+            "active": 17,
+            "no_trade": 0,
+            "green": 16,
+            "red": 1,
+            "flat_active": 0,
+            "red_all": 0.058823529411764705,
+            "red_active": 0.058823529411764705,
+            "mean_green": 4243.375,
+            "median_green": 4582.0,
+            "worst_red": 20418.0,
+            "mean_red": 20418.0,
+            "loss_recovery_ratio": 4.811735941320293,
+            "median_net": 4582.0,
+            "active_median_net": 4582.0,
+            "session_share_mean": 0.9411764705882353,
+            "session_share_mean_samples": 17,
+            "tests": {
+              "金額利益65以上": true,
+              "赤字全場20以下": true,
+              "最大赤字は平均黒字以下": false
+            },
+            "pass_all": false,
+            "active_red_test": true,
+            "pass_active": false
+          },
+          "robust_pass": false,
+          "robust_active_pass": false,
+          "rows": [
+            {
+              "session": "2026-09-21_Day",
+              "symbol": "TOPIX",
+              "profit": 4582.0,
+              "loss": -0.0,
+              "net": 4582.0,
+              "campaigns": 1,
+              "fees": 418.0
+            },
+            {
+              "session": "2026-09-21_Night",
+              "symbol": "TOPIX",
+              "profit": 0.0,
+              "loss": 20836.0,
+              "net": -20836.0,
+              "campaigns": 2,
+              "fees": 836.0
+            },
+            {
+              "session": "2026-09-22_Day",
+              "symbol": "TOPIX",
+              "profit": 4582.0,
+              "loss": -0.0,
+              "net": 4582.0,
+              "campaigns": 1,
+              "fees": 418.0
+            },
+            {
+              "session": "2026-09-22_Night",
+              "symbol": "TOPIX",
+              "profit": 2082.0,
+              "loss": -0.0,
+              "net": 2082.0,
+              "campaigns": 1,
+              "fees": 418.0
+            },
+            {
+              "session": "2026-09-23_Day",
+              "symbol": "TOPIX",
+              "profit": 4582.0,
+              "loss": -0.0,
+              "net": 4582.0,
+              "campaigns": 1,
+              "fees": 418.0
+            },
+            {
+              "session": "2026-09-23_Night",
+              "symbol": "TOPIX",
+              "profit": 7082.0,
+              "loss": -0.0,
+              "net": 7082.0,
+              "campaigns": 1,
+              "fees": 418.0
+            },
+            {
+              "session": "2026-09-24_Day",
+              "symbol": "TOPIX",
+              "profit": 4582.0,
+              "loss": -0.0,
+              "net": 4582.0,
+              "campaigns": 1,
+              "fees": 418.0
+            },
+            {
+              "session": "2026-09-24_Night",
+              "symbol": "TOPIX",
+              "profit": 0.0,
+              "loss": 20418.0,
+              "net": -20418.0,
+              "campaigns": 1,
+              "fees": 418.0
+            },
+            {
+              "session": "2026-09-25_Day",
+              "symbol": "TOPIX",
+              "profit": 4582.0,
+              "loss": -0.0,
+              "net": 4582.0,
+              "campaigns": 1,
+              "fees": 418.0
+            },
+            {
+              "session": "2026-09-25_Night",
+              "symbol": "TOPIX",
+              "profit": 4582.0,
+              "loss": -0.0,
+              "net": 4582.0,
+              "campaigns": 1,
+              "fees": 418.0
+            },
+            {
+              "session": "2026-09-28_Day",
+              "symbol": "TOPIX",
+              "profit": 0.0,
+              "loss": 17918.0,
+              "net": -17918.0,
+              "campaigns": 1,
+              "fees": 418.0
+            },
+            {
+              "session": "2026-09-28_Night",
+              "symbol": "TOPIX",
+              "profit": 4582.0,
+              "loss": -0.0,
+              "net": 4582.0,
+              "campaigns": 1,
+              "fees": 418.0
+            },
+            {
+              "session": "2026-09-29_Day",
+              "symbol": "TOPIX",
+              "profit": 4582.0,
+              "loss": -0.0,
+              "net": 4582.0,
+              "campaigns": 1,
+              "fees": 418.0
+            },
+            {
+              "session": "2026-09-29_Night",
+              "symbol": "TOPIX",
+              "profit": 4582.0,
+              "loss": -0.0,
+              "net": 4582.0,
+              "campaigns": 1,
+              "fees": 418.0
+            },
+            {
+              "session": "2026-09-30_Day",
+              "symbol": "TOPIX",
+              "profit": 4582.0,
+              "loss": -0.0,
+              "net": 4582.0,
+              "campaigns": 1,
+              "fees": 418.0
+            },
+            {
+              "session": "2026-09-30_Night",
+              "symbol": "TOPIX",
+              "profit": 4582.0,
+              "loss": -0.0,
+              "net": 4582.0,
+              "campaigns": 1,
+              "fees": 418.0
+            },
+            {
+              "session": "2026-10-01_Day",
+              "symbol": "TOPIX",
+              "profit": 4582.0,
+              "loss": -0.0,
+              "net": 4582.0,
+              "campaigns": 1,
+              "fees": 418.0
+            },
+            {
+              "session": "2026-10-01_Night",
+              "symbol": "TOPIX",
+              "profit": 4582.0,
+              "loss": -0.0,
+              "net": 4582.0,
+              "campaigns": 1,
+              "fees": 418.0
+            },
+            {
+              "session": "2026-10-02_Day",
+              "symbol": "TOPIX",
+              "profit": 4582.0,
+              "loss": -0.0,
+              "net": 4582.0,
+              "campaigns": 1,
+              "fees": 418.0
+            },
+            {
+              "session": "2026-10-02_Night",
+              "symbol": "TOPIX",
+              "profit": 2082.0,
+              "loss": -0.0,
+              "net": 2082.0,
+              "campaigns": 1,
+              "fees": 418.0
+            },
+            {
+              "session": "2026-10-05_Day",
+              "symbol": "TOPIX",
+              "profit": 4582.0,
+              "loss": -0.0,
+              "net": 4582.0,
+              "campaigns": 1,
+              "fees": 418.0
+            },
+            {
+              "session": "2026-10-05_Night",
+              "symbol": "TOPIX",
+              "profit": 0.0,
+              "loss": 20418.0,
+              "net": -20418.0,
+              "campaigns": 1,
+              "fees": 418.0
+            },
+            {
+              "session": "2026-10-06_Day",
+              "symbol": "TOPIX",
+              "profit": 4582.0,
+              "loss": -0.0,
+              "net": 4582.0,
+              "campaigns": 1,
+              "fees": 418.0
+            },
+            {
+              "session": "2026-10-06_Night",
+              "symbol": "TOPIX",
+              "profit": 4582.0,
+              "loss": -0.0,
+              "net": 4582.0,
+              "campaigns": 1,
+              "fees": 418.0
+            },
+            {
+              "session": "2026-10-07_Day",
+              "symbol": "TOPIX",
+              "profit": 4582.0,
+              "loss": -0.0,
+              "net": 4582.0,
+              "campaigns": 1,
+              "fees": 418.0
+            },
+            {
+              "session": "2026-10-07_Night",
+              "symbol": "TOPIX",
+              "profit": 4582.0,
+              "loss": -0.0,
+              "net": 4582.0,
+              "campaigns": 1,
+              "fees": 418.0
+            },
+            {
+              "session": "2026-10-08_Day",
+              "symbol": "TOPIX",
+              "profit": 4582.0,
+              "loss": -0.0,
+              "net": 4582.0,
+              "campaigns": 1,
+              "fees": 418.0
+            },
+            {
+              "session": "2026-10-08_Night",
+              "symbol": "TOPIX",
+              "profit": 2082.0,
+              "loss": -0.0,
+              "net": 2082.0,
+              "campaigns": 1,
+              "fees": 418.0
+            },
+            {
+              "session": "2026-10-09_Day",
+              "symbol": "TOPIX",
+              "profit": 4582.0,
+              "loss": -0.0,
+              "net": 4582.0,
+              "campaigns": 1,
+              "fees": 418.0
+            },
+            {
+              "session": "2026-10-09_Night",
+              "symbol": "TOPIX",
+              "profit": 4164.0,
+              "loss": -0.0,
+              "net": 4164.0,
+              "campaigns": 2,
+              "fees": 836.0
+            },
+            {
+              "session": "2026-10-12_Day",
+              "symbol": "TOPIX",
+              "profit": 4582.0,
+              "loss": -0.0,
+              "net": 4582.0,
+              "campaigns": 1,
+              "fees": 418.0
+            },
+            {
+              "session": "2026-10-12_Night",
+              "symbol": "TOPIX",
+              "profit": 4582.0,
+              "loss": -0.0,
+              "net": 4582.0,
+              "campaigns": 1,
+              "fees": 418.0
+            },
+            {
+              "session": "2026-10-13_Day",
+              "symbol": "TOPIX",
+              "profit": 4582.0,
+              "loss": -0.0,
+              "net": 4582.0,
+              "campaigns": 1,
+              "fees": 418.0
+            }
+          ]
+        },
+        "NK225": {
+          "full": {
+            "profit": 41720.0,
+            "loss": 57980.0,
+            "net": -16260.0,
+            "profit_share": 0.41845536609829487,
+            "profit_factor": 0.7195584684373922,
+            "sessions": 33,
+            "active": 31,
+            "no_trade": 2,
+            "green": 24,
+            "red": 7,
+            "flat_active": 0,
+            "red_all": 0.21212121212121213,
+            "red_active": 0.22580645161290322,
+            "mean_green": 1738.3333333333333,
+            "median_green": 1780.0,
+            "worst_red": 8440.0,
+            "mean_red": 8282.857142857143,
+            "loss_recovery_ratio": 4.855225311601151,
+            "median_net": 1780.0,
+            "active_median_net": 1780.0,
+            "session_share_mean": 0.7741935483870968,
+            "session_share_mean_samples": 31,
+            "tests": {
+              "金額利益65以上": false,
+              "赤字全場20以下": false,
+              "最大赤字は平均黒字以下": false
+            },
+            "pass_all": false,
+            "active_red_test": false,
+            "pass_active": false
+          },
+          "without_top3": {
+            "profit": 35380.0,
+            "loss": 57980.0,
+            "net": -22600.0,
+            "profit_share": 0.37896315338474723,
+            "profit_factor": 0.6102104173853052,
+            "sessions": 30,
+            "active": 28,
+            "no_trade": 2,
+            "green": 21,
+            "red": 7,
+            "flat_active": 0,
+            "red_all": 0.23333333333333334,
+            "red_active": 0.25,
+            "mean_green": 1684.7619047619048,
+            "median_green": 1780.0,
+            "worst_red": 8440.0,
+            "mean_red": 8282.857142857143,
+            "loss_recovery_ratio": 5.009609949123798,
+            "median_net": 1780.0,
+            "active_median_net": 1780.0,
+            "session_share_mean": 0.75,
+            "session_share_mean_samples": 28,
+            "tests": {
+              "金額利益65以上": false,
+              "赤字全場20以下": false,
+              "最大赤字は平均黒字以下": false
+            },
+            "pass_all": false,
+            "active_red_test": false,
+            "pass_active": false
+          },
+          "removed": [
+            {
+              "session": "2026-10-05_Day",
+              "net": 2780.0
+            },
+            {
+              "session": "2026-09-21_Night",
+              "net": 1780.0
+            },
+            {
+              "session": "2026-09-22_Day",
+              "net": 1780.0
+            }
+          ],
+          "first16": {
+            "profit": 15800.0,
+            "loss": 33100.0,
+            "net": -17300.0,
+            "profit_share": 0.3231083844580777,
+            "profit_factor": 0.4773413897280967,
+            "sessions": 16,
+            "active": 14,
+            "no_trade": 2,
+            "green": 10,
+            "red": 4,
+            "flat_active": 0,
+            "red_all": 0.25,
+            "red_active": 0.2857142857142857,
+            "mean_green": 1580.0,
+            "median_green": 1780.0,
+            "worst_red": 8440.0,
+            "mean_red": 8275.0,
+            "loss_recovery_ratio": 5.341772151898734,
+            "median_net": 1280.0,
+            "active_median_net": 1780.0,
+            "session_share_mean": 0.7142857142857143,
+            "session_share_mean_samples": 14,
+            "tests": {
+              "金額利益65以上": false,
+              "赤字全場20以下": false,
+              "最大赤字は平均黒字以下": false
+            },
+            "pass_all": false,
+            "active_red_test": false,
+            "pass_active": false
+          },
+          "last17": {
+            "profit": 25920.0,
+            "loss": 24880.0,
+            "net": 1040.0,
+            "profit_share": 0.510236220472441,
+            "profit_factor": 1.0418006430868167,
+            "sessions": 17,
+            "active": 17,
+            "no_trade": 0,
+            "green": 14,
+            "red": 3,
+            "flat_active": 0,
+            "red_all": 0.17647058823529413,
+            "red_active": 0.17647058823529413,
+            "mean_green": 1851.4285714285713,
+            "median_green": 1780.0,
+            "worst_red": 8440.0,
+            "mean_red": 8293.333333333334,
+            "loss_recovery_ratio": 4.5586419753086425,
+            "median_net": 1780.0,
+            "active_median_net": 1780.0,
+            "session_share_mean": 0.8235294117647058,
+            "session_share_mean_samples": 17,
+            "tests": {
+              "金額利益65以上": false,
+              "赤字全場20以下": true,
+              "最大赤字は平均黒字以下": false
+            },
+            "pass_all": false,
+            "active_red_test": true,
+            "pass_active": false
+          },
+          "robust_pass": false,
+          "robust_active_pass": false,
+          "rows": [
+            {
+              "session": "2026-09-21_Day",
+              "symbol": "NK225",
+              "profit": 0.0,
+              "loss": -0.0,
+              "net": 0.0,
+              "campaigns": 0,
+              "fees": 0.0
+            },
+            {
+              "session": "2026-09-21_Night",
+              "symbol": "NK225",
+              "profit": 1780.0,
+              "loss": -0.0,
+              "net": 1780.0,
+              "campaigns": 1,
+              "fees": 220.0
+            },
+            {
+              "session": "2026-09-22_Day",
+              "symbol": "NK225",
+              "profit": 1780.0,
+              "loss": -0.0,
+              "net": 1780.0,
+              "campaigns": 1,
+              "fees": 220.0
+            },
+            {
+              "session": "2026-09-22_Night",
+              "symbol": "NK225",
+              "profit": 780.0,
+              "loss": -0.0,
+              "net": 780.0,
+              "campaigns": 1,
+              "fees": 220.0
+            },
+            {
+              "session": "2026-09-23_Day",
+              "symbol": "NK225",
+              "profit": 0.0,
+              "loss": -0.0,
+              "net": 0.0,
+              "campaigns": 0,
+              "fees": 0.0
+            },
+            {
+              "session": "2026-09-23_Night",
+              "symbol": "NK225",
+              "profit": 1780.0,
+              "loss": -0.0,
+              "net": 1780.0,
+              "campaigns": 1,
+              "fees": 220.0
+            },
+            {
+              "session": "2026-09-24_Day",
+              "symbol": "NK225",
+              "profit": 1780.0,
+              "loss": -0.0,
+              "net": 1780.0,
+              "campaigns": 1,
+              "fees": 220.0
+            },
+            {
+              "session": "2026-09-24_Night",
+              "symbol": "NK225",
+              "profit": 1780.0,
+              "loss": -0.0,
+              "net": 1780.0,
+              "campaigns": 1,
+              "fees": 220.0
+            },
+            {
+              "session": "2026-09-25_Day",
+              "symbol": "NK225",
+              "profit": 0.0,
+              "loss": 8220.0,
+              "net": -8220.0,
+              "campaigns": 1,
+              "fees": 220.0
+            },
+            {
+              "session": "2026-09-25_Night",
+              "symbol": "NK225",
+              "profit": 0.0,
+              "loss": 8220.0,
+              "net": -8220.0,
+              "campaigns": 1,
+              "fees": 220.0
+            },
+            {
+              "session": "2026-09-28_Day",
+              "symbol": "NK225",
+              "profit": 1780.0,
+              "loss": -0.0,
+              "net": 1780.0,
+              "campaigns": 1,
+              "fees": 220.0
+            },
+            {
+              "session": "2026-09-28_Night",
+              "symbol": "NK225",
+              "profit": 1780.0,
+              "loss": -0.0,
+              "net": 1780.0,
+              "campaigns": 1,
+              "fees": 220.0
+            },
+            {
+              "session": "2026-09-29_Day",
+              "symbol": "NK225",
+              "profit": 780.0,
+              "loss": -0.0,
+              "net": 780.0,
+              "campaigns": 1,
+              "fees": 220.0
+            },
+            {
+              "session": "2026-09-29_Night",
+              "symbol": "NK225",
+              "profit": 0.0,
+              "loss": 8440.0,
+              "net": -8440.0,
+              "campaigns": 2,
+              "fees": 440.0
+            },
+            {
+              "session": "2026-09-30_Day",
+              "symbol": "NK225",
+              "profit": 1780.0,
+              "loss": -0.0,
+              "net": 1780.0,
+              "campaigns": 1,
+              "fees": 220.0
+            },
+            {
+              "session": "2026-09-30_Night",
+              "symbol": "NK225",
+              "profit": 0.0,
+              "loss": 8220.0,
+              "net": -8220.0,
+              "campaigns": 1,
+              "fees": 220.0
+            },
+            {
+              "session": "2026-10-01_Day",
+              "symbol": "NK225",
+              "profit": 1780.0,
+              "loss": -0.0,
+              "net": 1780.0,
+              "campaigns": 1,
+              "fees": 220.0
+            },
+            {
+              "session": "2026-10-01_Night",
+              "symbol": "NK225",
+              "profit": 1780.0,
+              "loss": -0.0,
+              "net": 1780.0,
+              "campaigns": 1,
+              "fees": 220.0
+            },
+            {
+              "session": "2026-10-02_Day",
+              "symbol": "NK225",
+              "profit": 1780.0,
+              "loss": -0.0,
+              "net": 1780.0,
+              "campaigns": 1,
+              "fees": 220.0
+            },
+            {
+              "session": "2026-10-02_Night",
+              "symbol": "NK225",
+              "profit": 1780.0,
+              "loss": -0.0,
+              "net": 1780.0,
+              "campaigns": 1,
+              "fees": 220.0
+            },
+            {
+              "session": "2026-10-05_Day",
+              "symbol": "NK225",
+              "profit": 2780.0,
+              "loss": -0.0,
+              "net": 2780.0,
+              "campaigns": 1,
+              "fees": 220.0
+            },
+            {
+              "session": "2026-10-05_Night",
+              "symbol": "NK225",
+              "profit": 0.0,
+              "loss": 8220.0,
+              "net": -8220.0,
+              "campaigns": 1,
+              "fees": 220.0
+            },
+            {
+              "session": "2026-10-06_Day",
+              "symbol": "NK225",
+              "profit": 1780.0,
+              "loss": -0.0,
+              "net": 1780.0,
+              "campaigns": 1,
+              "fees": 220.0
+            },
+            {
+              "session": "2026-10-06_Night",
+              "symbol": "NK225",
+              "profit": 1780.0,
+              "loss": -0.0,
+              "net": 1780.0,
+              "campaigns": 1,
+              "fees": 220.0
+            },
+            {
+              "session": "2026-10-07_Day",
+              "symbol": "NK225",
+              "profit": 1780.0,
+              "loss": -0.0,
+              "net": 1780.0,
+              "campaigns": 1,
+              "fees": 220.0
+            },
+            {
+              "session": "2026-10-07_Night",
+              "symbol": "NK225",
+              "profit": 1780.0,
+              "loss": -0.0,
+              "net": 1780.0,
+              "campaigns": 1,
+              "fees": 220.0
+            },
+            {
+              "session": "2026-10-08_Day",
+              "symbol": "NK225",
+              "profit": 1780.0,
+              "loss": -0.0,
+              "net": 1780.0,
+              "campaigns": 1,
+              "fees": 220.0
+            },
+            {
+              "session": "2026-10-08_Night",
+              "symbol": "NK225",
+              "profit": 1780.0,
+              "loss": -0.0,
+              "net": 1780.0,
+              "campaigns": 1,
+              "fees": 220.0
+            },
+            {
+              "session": "2026-10-09_Day",
+              "symbol": "NK225",
+              "profit": 0.0,
+              "loss": 8220.0,
+              "net": -8220.0,
+              "campaigns": 1,
+              "fees": 220.0
+            },
+            {
+              "session": "2026-10-09_Night",
+              "symbol": "NK225",
+              "profit": 1780.0,
+              "loss": -0.0,
+              "net": 1780.0,
+              "campaigns": 1,
+              "fees": 220.0
+            },
+            {
+              "session": "2026-10-12_Day",
+              "symbol": "NK225",
+              "profit": 1780.0,
+              "loss": -0.0,
+              "net": 1780.0,
+              "campaigns": 1,
+              "fees": 220.0
+            },
+            {
+              "session": "2026-10-12_Night",
+              "symbol": "NK225",
+              "profit": 0.0,
+              "loss": 8440.0,
+              "net": -8440.0,
+              "campaigns": 2,
+              "fees": 440.0
+            },
+            {
+              "session": "2026-10-13_Day",
+              "symbol": "NK225",
+              "profit": 1780.0,
+              "loss": -0.0,
+              "net": 1780.0,
+              "campaigns": 1,
+              "fees": 220.0
+            }
+          ]
+        }
+      },
+      "both_full_pass": false,
+      "both_robust_pass": false,
+      "both_active_pass": false,
+      "both_robust_active_pass": false
+    }
+  },
+  "全候補判定": {
+    "display_cases": 360,
+    "distinct_ids": 358,
+    "eligible_ids": 357,
+    "ideal_reference_ids": [
+      "L_D20_PRICE"
+    ],
+    "economic_same_account_groups": [
+      [
+        "C_OWN_B4_E30",
+        "C_OWN_B4_EN30"
+      ],
+      [
+        "C_OWN_B4_EP30",
+        "C_N30_B4_EP30",
+        "U_P10_B4_EP30"
+      ],
+      [
+        "C_OWN_R21_EN30_ZONE",
+        "C_OWN_R21_EN30_ZONE_STOP"
+      ],
+      [
+        "C_N30_B4_E30",
+        "C_N30_B4_EN30"
+      ],
+      [
+        "C_N30_R21_EN30_ZONE",
+        "C_N30_R21_EN30_ZONE_STOP"
+      ],
+      [
+        "U_P10_B4_E30",
+        "U_P10_B4_EN30"
+      ],
+      [
+        "U_P10_R21_EN30_ZONE",
+        "U_P10_R21_EN30_ZONE_STOP"
+      ],
+      [
+        "C_ONLY_B2_ER20_B4",
+        "AUTO_B2_ER20_B4"
+      ],
+      [
+        "C_ONLY_B2_ER20_R21",
+        "AUTO_B2_ER20_R21"
+      ],
+      [
+        "C_ONLY_B2_ER40_B4",
+        "AUTO_B2_ER40_B4"
+      ],
+      [
+        "C_ONLY_B2_ER40_R21",
+        "AUTO_B2_ER40_R21"
+      ],
+      [
+        "C_ONLY_B3_ER20_B4",
+        "AUTO_B3_ER20_B4"
+      ],
+      [
+        "C_ONLY_B3_ER20_R21",
+        "AUTO_B3_ER20_R21"
+      ],
+      [
+        "C_ONLY_B3_ER40_B4",
+        "AUTO_B3_ER40_B4"
+      ],
+      [
+        "C_ONLY_B3_ER40_R21",
+        "AUTO_B3_ER40_R21"
+      ],
+      [
+        "C_ONLY_B5_ER20_B4",
+        "AUTO_B5_ER20_B4"
+      ],
+      [
+        "C_ONLY_B5_ER20_R21",
+        "AUTO_B5_ER20_R21"
+      ],
+      [
+        "C_ONLY_B5_ER40_B4",
+        "AUTO_B5_ER40_B4"
+      ],
+      [
+        "C_ONLY_B5_ER40_R21",
+        "AUTO_B5_ER40_R21"
+      ],
+      [
+        "R_ONLY_B2_ER20_B4",
+        "R_ONLY_B2_ER40_B4"
+      ],
+      [
+        "E01_TRADE_W60_CONFIRM_D0_P1L8",
+        "E01_BUDGET_W60_CONFIRM_D0_P1_L8"
+      ],
+      [
+        "E01_TRADE_W60_VETO_D0_P1L8",
+        "E01_BUDGET_W60_VETO_D0_P1_L8"
+      ],
+      [
+        "C_ONLY_B2_ER40_B4_半量派生",
+        "AUTO_ER40_M1_MARKET_ALIGNED",
+        "AUTO_ER40_M1_LIMIT_ALIGNED",
+        "AUTO_ER40_M2_MARKET_ALIGNED",
+        "AUTO_ER40_M2_LIMIT_ALIGNED",
+        "AUTO_ER40_M4_MARKET_ALIGNED",
+        "AUTO_ER40_M4_LIMIT_ALIGNED"
+      ]
+    ],
+    "per_symbol": {
+      "TOPIX": {
+        "full_pass": [
+          "U_P10_B4_E30",
+          "U_P10_B4_EN30"
+        ],
+        "robust_pass": [],
+        "active_pass": []
+      },
+      "NK225": {
+        "full_pass": [
+          "C_OWN_R21_EN30",
+          "C_OWN_R21_EN30_ZONE",
+          "C_OWN_R21_EN30_ZONE_STOP",
+          "C_N30_R21_EN30",
+          "C_N30_R21_EN30_ZONE",
+          "C_N30_R21_EN30_ZONE_STOP",
+          "C_N30_R21_EN10_ZONE_STOP"
+        ],
+        "robust_pass": [],
+        "active_pass": [
+          "C_OWN_R21_EN30",
+          "C_OWN_R21_EN30_ZONE",
+          "C_OWN_R21_EN30_ZONE_STOP",
+          "C_N30_R21_EN30",
+          "C_N30_R21_EN30_ZONE",
+          "C_N30_R21_EN30_ZONE_STOP"
+        ]
+      }
+    },
+    "both_full_pass": [],
+    "both_robust_pass": [],
+    "both_active_pass": [],
+    "both_robust_active_pass": []
+  },
+  "集計元": "work/wave_v106/new_goal/保存全候補の65比率と赤字頻度及び平均黒字補填力.json",
+  "集計元SHA256": "aa959f77dc0b576a882a675ae3dfa05b8853a4810be8f11d86e72cbdfc0211a8",
+  "新金融再生": 0,
+  "HTML生成sourceSHA256": "8456bb34d4c417e828a46e56ddc608530de0bcf9eae369f47539c78f0f3c1e73"
+}

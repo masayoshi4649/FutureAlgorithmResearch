@@ -1,0 +1,20 @@
+{
+  "id": "新しい試行IDへ変更",
+  "name": "新しい試行の短い名称へ変更",
+  "purpose": "条件比較",
+  "question": "何を確かめるか記入",
+  "change": "比較元から変える部品と数値を記入",
+  "repeat_reason": "既存の結果だけでは答えられない理由を記入",
+  "compares_to": [],
+  "evidence": [],
+  "spec": {
+    "entry": null,
+    "management": null,
+    "exit": null,
+    "allocation": null,
+    "costs": null,
+    "execution": null,
+    "data": null,
+    "implementation": null
+  }
+}

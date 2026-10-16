@@ -1,0 +1,36 @@
+{
+  "完了": true,
+  "知見": 14,
+  "試行記録": 188,
+  "内訳": {
+    "研究概要": 16,
+    "104検証済条件": 121,
+    "105金融未実行": 51
+  },
+  "過去資料索引": 100,
+  "完全仕様照合可能": 95,
+  "未整理仕様": 93,
+  "重複点検": 8,
+  "新金融再生": 0,
+  "原本変更": 0,
+  "現在API": 0,
+  "旧レポート変更": 0,
+  "目視": "根担当が広幅1400px・狭幅430pxのダーク画面を確認。",
+  "備考": "独立結合後のビュー差分はフッター更新時刻を三正本の最新日時にする変更のみ。数値・登録・検索処理は不変。",
+  "検査根拠": {
+    "work/wave_v105/knowledge_audit/common_integration_artificial.json": "90f9009a5aab390e46c5a5345db6a4bbf68de6a8733202c87653bc56f6e8f4e0",
+    "work/wave_v105/knowledge_audit/共通知見ビューの動作検査.json": "db9a0bbcb5226704ddb9c6c4052f7356164a679eb513c88d800675d875bf03ac",
+    "work/wave_v105/knowledge_audit/repetition_audit.json": "562d84441b94c2e4010a4e71a4bda7eb8952925294999b26d6751265f0a3a88b"
+  },
+  "公開SHA256": {
+    "アルゴリズム調査/共通/知見台帳/data/knowledge.json": "a691dadac5bb806e7174da2d0d4198836973ec3462ab04114b482d0f033e9fbe",
+    "アルゴリズム調査/共通/知見台帳/data/trials.json": "77c8e72e3959c7c9c23b10093f3e97bf6da2efe65b4fb83d31979347342e2f7b",
+    "アルゴリズム調査/共通/知見台帳/data/studies.json": "4d491596d6003884620a1e240e17dec941c44598d34ced3d30bfe05a191c02c1",
+    "アルゴリズム調査/共通/知見台帳/data/view-data.js": "33e9d3a694eebb7524a136cf2e947a452b3105393a5480220e9d5a1b482e58a9",
+    "アルゴリズム調査/共通/知見台帳/index.html": "b6d8954dcbbec7e90c289dcea6a0c2ebb5c8d7889dd7609e0df224b1477810ad",
+    "アルゴリズム調査/共通/知見台帳/manage.py": "8b71cea8262536ebe10dbd6bea3982ef6589ca4ac6b8eb8ede18068ed1e170ab",
+    "アルゴリズム調査/共通/知見台帳/duplicate_check.py": "fa9a0b2809d4c3ceebf5a92dd2a7b7d96643c10d8bdef0d407f1314f02a8df6c",
+    "アルゴリズム調査/共通/知見台帳/view/app.js": "234c856583bcb3760273da828e66c42d1f2092a0d080e6dd88ebce7c004d4227",
+    "アルゴリズム調査/共通/知見台帳/view/style.css": "304ab8b071372929ae845a9780108a02e8ca09e1255faad4a444e07450e29881"
+  }
+}
