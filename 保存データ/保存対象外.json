@@ -2,6 +2,60 @@
   "説明": "元ファイルはローカルに保持し、Git送信だけ対象外とする。",
   "items": [
     {
+      "path": "work/daynight127_20261020/visual/profile",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/daynight128_20261020/audit/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/daynight128_20261020/visual/profile_夜間",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/daynight128_20261020/visual/profile_日中",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/daynight128_20261020/visual/profile_狭幅",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/daynight128_20261020/visual_final/profile_夜間",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/daynight128_20261020/visual_final/profile_日中",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/daynight128_20261020/visual_final/profile_狭幅",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/daynight128_20261020/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
       "path": "work/direction_review_20261016/public_view/visual/profile_PC1450",
       "reason": "ブラウザのCookie・履歴・実行用プロファイル",
       "files": 0,
@@ -368,6 +422,30 @@
       "bytes": 0
     },
     {
+      "path": "work/night_why130_20261020/audit/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/night_why130_20261020/exit_diagnosis/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/night_why130_20261020/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/night_why130_20261020/表示確認/profile_1792497683604256300",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
       "path": "work/quantity_execution_20261015/diagnosis/__pycache__",
       "reason": "再生成できるコンパイル済みキャッシュ",
       "files": 0,
@@ -452,6 +530,378 @@
       "bytes": 0
     },
     {
+      "path": "work/regime131_20261020/audit/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/regime131_20261020/day_diagnosis/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/regime131_20261020/reportwork/chrome-preview",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/regime131_20261020/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/stability119_20261017/v9/report_fixture/実表示_広幅/profile",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/stability119_20261017/v9/report_fixture/実表示_狭幅/profile",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/stability119_20261017/visual/final_desktop/profile",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/stability119_20261017/visual/final_mobile/profile",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/stability119_20261017/visual/h_real_desktop/profile",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/stability119_20261017/visual/h_real_mobile/profile",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/stability119_20261017/visual/v4_desktop_completed/profile",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/stability119_20261017/visual/v4_mobile_completed/profile",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/stability119_20261017/visual/v4_real_desktop/profile",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/stability119_20261017/visual/v4_real_mobile/profile",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/stability119_20261017/visual/v5_real_desktop/profile",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/stability119_20261017/visual/v5_real_mobile/profile",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/stability119_20261017/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/stability120_20261017/chart_1min_20260924/visualqa/desktop/profile",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/stability120_20261017/chart_1min_20260924/visualqa/mobile/profile",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/stability120_20261017/chart_1min_20260924/visualqa/mobile_cdp440/profile",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/stability120_20261017/diagnosis/formal_b/dark_render_profile",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/stability120_20261017/diagnosis/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/stability120_20261017/report_artificial/正式48政策切替/profile",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/stability120_20261017/report_artificial/正式mobile/profile",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/stability120_20261017/report_artificial/正式PC/profile",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/stability120_20261017/report_artificial/狭幅と全政策切替/profile",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/stability120_20261017/report_artificial_c/正式24政策切替/profile",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/stability120_20261017/report_artificial_c/正式mobile/profile",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/stability120_20261017/report_artificial_c/正式PC/profile",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/stability120_20261017/report_artificial_c/狭幅と全政策切替/profile",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/stability120_20261017/report_artificial_d/正式24政策切替/profile",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/stability120_20261017/report_artificial_d/正式mobile/profile",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/stability120_20261017/report_artificial_d/正式PC/profile",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/stability120_20261017/report_artificial_d/狭幅と全政策切替/profile",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/stability120_20261017/report_artificial_e/合成PCモバイル/PC/profile",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/stability120_20261017/report_artificial_e/合成PCモバイル/モバイル/profile",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/stability120_20261017/report_artificial_e/正式十八政策PCモバイル/PC/profile",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/stability120_20261017/report_artificial_e/正式十八政策PCモバイル/モバイル/profile",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/stability120_20261017/report_artificial_e/狭幅と全政策切替/profile",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/stability120_20261017/report_design/合成_四十二条件/profile",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/stability120_20261017/report_design/合成_狭幅/profile",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/stability120_20261017/report_design/合成_狭幅最終/profile",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/stability120_20261017/session_20260924_day/visual/desktop/profile",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/stability120_20261017/session_20260924_day/visual/mobile/profile",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/stability120_20261017/visual/desktop/profile",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/stability120_20261017/visual/mobile/profile",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/stability121_20261017/visual/chart/profile",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/stability121_20261017/visual/report/profile",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/stability122_20261017/visual/profile",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/stability123_20261017/visual/profile",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/stability124_20261019/publisher/artificial/profile",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/stability124_20261019/publisher/artificial/profile2",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/stability124_20261019/visual/profile",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/stability124_20261019/visual_closed_details_attempt/profile",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/stability125_20261019/visual/profile",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/stability126_20261019/engine/bbo_next/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/stability126_20261019/relative_visual/profile",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/stability126_20261019/update_20261020/engine/bbo_next/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/stability126_20261019/update_20261020/visual/profile",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/stability126_20261019/visual/profile",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/stability126_20261019/visual_final/profile",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/staged137_20261022/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
       "path": "work/topix10pt_20261016/public_view/revision4/render_v2/visual/profile_PC1450",
       "reason": "ブラウザのCookie・履歴・実行用プロファイル",
       "files": 0,
@@ -508,6 +958,108 @@
     {
       "path": "work/topix10pt_20261016/__pycache__",
       "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/trailing138_20261022/browser_profile",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/trailing138_20261022/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/tranche139_20261022/browser_profile",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/tranche139_20261022/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/update132_20261021/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/update134_20261022/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/visual_pdca129_20261020/audit/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/visual_pdca129_20261020/day_diagnosis/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/visual_pdca129_20261020/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/visual_pdca129_20261020/表示確認/profile_全体_1792493673924490400",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/visual_pdca129_20261020/表示確認/profile_損益表_1792493677339658200",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/visual_pdca129_20261020/表示確認/profile_狭幅_1792493680768025800",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/visual_pdca129_20261020/表示確認/精密画面profile_1792493786716408800",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/visual_pdca129_20261020/表示確認_最終/profile_全体_1792493956045852700",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/visual_pdca129_20261020/表示確認_最終/profile_損益表_1792493959029943800",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/visual_pdca129_20261020/表示確認_最終/profile_狭幅_1792493962024163400",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/visual_pdca129_20261020/表示確認_最終/精密画面profile_1792493965232706900",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
       "files": 0,
       "bytes": 0
     },
@@ -4472,8 +5024,8 @@
     {
       "path": "コンパイル済みキャッシュ・実行ファイル・環境設定",
       "reason": "ローカルの実行用ファイル",
-      "files": 2499,
-      "bytes": 380585248
+      "files": 3498,
+      "bytes": 754951758
     }
   ]
 }
