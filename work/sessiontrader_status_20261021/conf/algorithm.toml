@@ -1,0 +1,13 @@
+# 空欄なら 00131 選定候補の銘柄別・昼夜別設定を使用します。
+# 変更すると研究時の成績と同じ条件ではなくなります。
+# キーは引用符で囲んだ「部門.変数」です。値は数値、真偽値は 0/1 です。
+# 下記の行を有効にすると、全市場・全セッションの該当部門へ共通に上書きします。
+[algorithm]
+# "day.risk_floor" = 0.75
+# "day.persistence_seconds" = 120
+# "night.trail_start_r" = 1.0
+# "night.trail_width_r" = 0.75
+# "extra.stop_r" = 1.0
+# "extra.trail_start_r" = 1.0
+# "extra.trail_width_r" = 0.5
+# "features.atr_period" = 12

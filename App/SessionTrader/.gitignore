@@ -1,0 +1,7 @@
+data/
+log/
+dist/
+/sessiontrader
+/sessiontrader.exe
+*.test
+*.test.exe

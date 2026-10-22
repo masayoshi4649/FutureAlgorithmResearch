@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>2026-09-24 デイ｜1分足と売買</title>
+<style>
+:root{color-scheme:dark;background:#0b1320;color:#e6edf7;font-family:system-ui,sans-serif}*{box-sizing:border-box}body{margin:0}main{max-width:1560px;margin:auto;padding:20px}h1{font-size:24px;margin:0 0 12px}p{margin:9px 0;line-height:1.6}a{color:#9bceff}.controls,.legend,.toolbar{display:flex;flex-wrap:wrap;gap:9px;align-items:center;margin:12px 0}button,select{font:inherit;background:#17263b;color:#e6edf7;border:1px solid #40536e;border-radius:6px;padding:7px 11px}button{cursor:pointer}button.active{border-color:#93caff;background:#264265}select{max-width:100%;min-width:0}#lot{flex:1;min-width:180px;width:65%}.muted{color:#adbed3;font-size:13px}.summary{font-size:15px;color:#f3d697}#selected{background:#16243a;border-left:3px solid #f2d287;padding:10px 13px;min-height:48px;font-size:14px}#chart-box{position:relative;border:1px solid #2c3b50;border-radius:8px;overflow:hidden}canvas{display:block;width:100%;touch-action:none}#price{height:490px}#inventory{height:130px;border-top:1px solid #2c3b50}#tooltip{position:absolute;display:none;pointer-events:none;max-width:min(430px,88%);background:#17263bf5;border:1px solid #71849e;border-radius:7px;padding:9px 12px;white-space:pre-line;font-size:13px;line-height:1.55;z-index:3}.legend label{font-size:13px;cursor:pointer}.legend input{accent-color:#9bceff}.readout{min-height:23px;font-size:13px;color:#b9cce3}.foot{margin-top:14px;font-size:12px;color:#adbed3}@media(max-width:600px){main{padding:12px}h1{font-size:20px}#price{height:360px}#inventory{height:115px}.controls label{width:100%}#lot{width:100%;min-width:0}.toolbar{gap:6px}.toolbar button{font-size:13px;padding:7px 9px}}
+</style>
+</head>
+<body>
+<!--
+[コンポーネント概要]
+#symbolはTOPIXと日経の一分足及び対応する保存済み約定を切り替えます。
+#lotは同時刻同価格の完結玉を選び、新規と返済を実秒・実価格で結びます。
+#priceはLastの一分足と売買気配による代理約定を描き、拡大・横移動に対応します。
+#inventoryは同じ原行順の約定から再集計した買い・売りの実保有枚数です。
+#tooltipは指した約定の値幅・枚数・手数料込み損益、又は足の四本値を示します。
+データは全て本HTMLに埋め込み、外部通信と新たな売買判断を行いません。
+-->
+<main>
+<h1>2026-09-24 デイ｜1分足と売買</h1>
+<div class="controls"><label>銘柄 <select id="symbol"><option value="TOPIX">TOPIX</option><option value="NK225">日経225</option></select></label><span class="muted">手法：ROTATE_S2_T1</span></div>
+<p id="summary" class="summary"></p>
+<div class="controls"><label for="lot">確認する玉</label><select id="lot" aria-label="新規と返済を結ぶ玉"></select></div>
+<p id="selected"></p>
+<div class="toolbar"><button data-view="all">全体</button><button data-view="open">寄り30分</button><button data-view="morning">前場</button><button data-view="afternoon">後場</button><button data-view="selected">選択玉の範囲</button><span class="muted">ホイールで拡大、ドラッグで横移動。約定をクリックすると玉を選択。</span></div>
+<div class="legend"><label style="color:#4bd3aa"><input type="checkbox" data-kind="entry-long" checked> ▲ 買い新規</label><label style="color:#ff7d89"><input type="checkbox" data-kind="entry-short" checked> ▼ 売り新規</label><label style="color:#8bc8ff"><input type="checkbox" data-kind="exit-long" checked> ● 買い玉返済</label><label style="color:#f0c97e"><input type="checkbox" data-kind="exit-short" checked> ● 売り玉返済</label><span class="muted">黄色破線＝選択玉の新規→返済</span></div>
+<div id="readout" class="readout"></div>
+<div id="chart-box"><canvas id="price" aria-label="一分足と新規返済位置"></canvas><canvas id="inventory" aria-label="買い売りの保有枚数"></canvas><div id="tooltip"></div></div>
+<p class="foot">日本時間。足はラージの約定値（Last）、売買位置は保存済みのラージ売買気配によるミニ／マイクロの代理約定です。足の高安の外に約定マーカーが出る場合があります。同条件の一枚注文はまとめて表示し、枚数・手数料は元注文の合計です。下段の保有枚数は原行順の約定から表示しています。同秒の縦線には複数の約定を含みます。</p>
+<p class="foot"><a href="2026-09-24_Dayの売買と利確明細.html">全売買の表</a> ／ <a href="段階トレーリングの結論と全セッション損益.html">全セッションの結果</a></p>
+</main>
+<script id="chart-data" type="application/json">__CHART_DATA__</script>
+<script>
+'use strict';
+const DATA=JSON.parse(document.getElementById('chart-data').textContent);
+const $=id=>document.getElementById(id);
+const colors={'entry-long':'#4bd3aa','entry-short':'#ff7d89','exit-long':'#8bc8ff','exit-short':'#f0c97e'};
+let current,groups,selected=0,start=0,end=0,lo=0,hi=0,width=0,height=0,points=[],drag=null,moved=false;
+
+/**
+ * 機能: 数値を日本語表示に整える。
+ * @param {number} value - 金額又は価格。
+ * @param {boolean} signed - 正数へ符号を付けるか。
+ * @returns {string} 桁区切り済み文字列。
+ */
+function num(value,signed=false){return (signed&&value>0?'+':'')+value.toLocaleString('ja-JP',{maximumFractionDigits:3});}
+/**
+ * 機能: UNIX秒を日本時間の時分秒へ変換する。
+ * @param {number} t - UNIX秒。
+ * @param {boolean} seconds - 秒も表示するか。
+ * @returns {string} 日本時間の表示。
+ */
+function time(t,seconds=false){return new Date((t+32400)*1000).toISOString().slice(11,seconds?19:16);}
+/**
+ * 機能: 表示する銘柄と保存済み玉を準備する。
+ * @returns {undefined} 返り値はなく画面を更新する。
+ */
+function load(){
+ current=DATA.symbols[$('symbol').value];groups=current.groups;
+ $('summary').textContent=current.label+'（ラージ）の1分足／売買：'+current.product+'　収支 '+num(current.summary.net,true)+'円　完結 '+current.lot_count+'枚・'+(current.lot_count*2)+'約定';
+ const sorted=groups.map((r,i)=>[r,i]).sort((a,b)=>a[0].entry_row-b[0].entry_row);
+ $('lot').replaceChildren(...sorted.map(([r,i])=>{const o=document.createElement('option');o.value=i;o.textContent=(r.side===1?'買':'売')+' '+r.entry_time+' '+num(r.entry_price)+' → '+r.exit_time+' '+num(r.exit_price)+'／'+r.quantity+'枚／'+num(r.net,true)+'円';return o;}));
+ selected=$('symbol').value==='TOPIX'?groups.findIndex(r=>r.uids.includes(1)):groups.reduce((best,r,i)=>r.net<groups[best].net?i:best,0);
+ $('lot').value=selected;setSelection();setView('all');
+}
+/**
+ * 機能: 選択玉の実時刻・値幅・枚数と円損益を表示する。
+ * @returns {undefined} 返り値はなく説明欄を更新する。
+ */
+function setSelection(){
+ const r=groups[selected];$('lot').value=selected;
+ $('selected').textContent=(r.side===1?'買い':'売り')+' '+r.entry_time+' @'+num(r.entry_price)+' → '+(r.side===1?'売り返済':'買い返済')+' '+r.exit_time+' @'+num(r.exit_price)+' ｜ '+num(r.points,true)+current.unit+' × '+r.quantity+'枚 ｜ 粗損益 '+num(r.gross,true)+'円 − 手数料 '+num(r.fees)+'円 ＝ '+num(r.net,true)+'円';
+}
+/**
+ * 機能: 事前の表示範囲又は選択玉の前後へ移動する。
+ * @param {string} mode - 全体・寄り・前場・後場・選択玉。
+ * @returns {undefined} 返り値はなく再描画する。
+ */
+function setView(mode){
+ const first=current.candles[0][0],last=current.candles.at(-1)[0]+60,r=groups[selected];
+ [start,end]=mode==='open'?[first,first+1800]:mode==='morning'?[first,first+9900]:mode==='afternoon'?[first+13500,last]:mode==='selected'?[r.entry_epoch-300,r.exit_epoch+300]:[first,last];
+ start=Math.max(first,start);end=Math.min(last,end);if(end-start<600){end=Math.min(last,start+600);start=Math.max(first,end-600);}
+ document.querySelectorAll('[data-view]').forEach(b=>b.classList.toggle('active',b.dataset.view===mode));draw();
+}
+/**
+ * 機能: 高解像度の暗色Canvasを表示サイズに合わせる。
+ * @param {HTMLCanvasElement} canvas - 描画先。
+ * @returns {CanvasRenderingContext2D} 座標をCSSピクセルへ整えた描画文脈。
+ */
+function context(canvas){
+ const ratio=window.devicePixelRatio||1,w=canvas.clientWidth,h=canvas.clientHeight;
+ canvas.width=Math.round(w*ratio);canvas.height=Math.round(h*ratio);
+ const ctx=canvas.getContext('2d');ctx.scale(ratio,ratio);ctx.fillStyle='#0e1a2b';ctx.fillRect(0,0,w,h);ctx.font='12px system-ui';return ctx;
+}
+/**
+ * 機能: 時刻を価格図の横座標へ写す。
+ * @param {number} t - UNIX秒。
+ * @returns {number} CSSピクセル座標。
+ */
+function x(t){return 60+(t-start)/(end-start)*(width-80);}
+/**
+ * 機能: 実価格を価格図の縦座標へ写す。
+ * @param {number} price - 実価格。
+ * @returns {number} CSSピクセル座標。
+ */
+function y(price){return 20+(hi-price)/(hi-lo)*(height-52);}
+/**
+ * 機能: 一分足・実約定・選択玉・保有枚数を同一時間軸へ描く。
+ * @returns {undefined} 返り値はなくCanvasと描画証跡を更新する。
+ */
+function draw(){
+ const canvas=$('price'),ctx=context(canvas);width=canvas.clientWidth;height=canvas.clientHeight;
+ const visible=current.candles.filter(c=>c[0]+60>=start&&c[0]<=end);
+ let values=visible.flatMap(c=>[c[2],c[3]]);
+ groups.forEach(r=>{if(r.entry_epoch>=start&&r.entry_epoch<=end)values.push(r.entry_price);if(r.exit_epoch>=start&&r.exit_epoch<=end)values.push(r.exit_price);});
+ lo=Math.min(...values);hi=Math.max(...values);const pad=Math.max((hi-lo)*0.09,current.unit==='pt'?1:10);lo-=pad;hi+=pad;
+ ctx.strokeStyle='#2b394e';ctx.fillStyle='#aabdd5';ctx.textAlign='right';
+ for(let k=0;k<=5;k++){const p=lo+(hi-lo)*k/5,yy=y(p);ctx.beginPath();ctx.moveTo(60,yy);ctx.lineTo(width-20,yy);ctx.stroke();ctx.fillText(num(p),54,yy+4);}
+ const tick=end-start>12000?3600:end-start>3600?1800:end-start>1200?600:300;
+ ctx.textAlign='center';for(let t=Math.ceil(start/tick)*tick;t<end;t+=tick){const xx=x(t);ctx.beginPath();ctx.moveTo(xx,20);ctx.lineTo(xx,height-32);ctx.stroke();ctx.fillText(time(t),xx,height-11);}
+ ctx.save();ctx.beginPath();ctx.rect(59,14,width-78,height-45);ctx.clip();
+ const body=Math.max(1,Math.min(15,(width-80)*60/(end-start)*0.68));
+ for(const c of visible){const xx=x(c[0]+30);ctx.strokeStyle=ctx.fillStyle=c[4]>=c[1]?'#4bd3aa':'#ff7d89';ctx.beginPath();ctx.moveTo(xx,y(c[2]));ctx.lineTo(xx,y(c[3]));ctx.stroke();ctx.fillRect(xx-body/2,Math.min(y(c[1]),y(c[4])),body,Math.max(1,Math.abs(y(c[1])-y(c[4]))));}
+ const chosen=groups[selected];ctx.setLineDash([6,4]);ctx.lineWidth=1.7;ctx.strokeStyle='#f4d38a';ctx.beginPath();ctx.moveTo(x(chosen.entry_epoch),y(chosen.entry_price));ctx.lineTo(x(chosen.exit_epoch),y(chosen.exit_price));ctx.stroke();ctx.setLineDash([]);ctx.lineWidth=1;
+ points=[];
+ groups.forEach((r,index)=>{for(const entry of [true,false]){
+  const t=entry?r.entry_epoch:r.exit_epoch,p=entry?r.entry_price:r.exit_price,kind=(entry?'entry-':'exit-')+(r.side===1?'long':'short');
+  if(t<start||t>end||!document.querySelector('[data-kind="'+kind+'"]').checked)continue;
+  const xx=x(t),yy=y(p),size=index===selected?7:4.5;ctx.fillStyle=colors[kind];ctx.strokeStyle='#0e1a2b';ctx.beginPath();
+  if(entry){const sign=r.side===1?-1:1;ctx.moveTo(xx,yy+sign*size);ctx.lineTo(xx-size,yy-sign*size);ctx.lineTo(xx+size,yy-sign*size);ctx.closePath();}else{ctx.arc(xx,yy,size,0,Math.PI*2);}
+  ctx.fill();ctx.stroke();if(index===selected){ctx.strokeStyle='#ffedb9';ctx.lineWidth=2;ctx.beginPath();ctx.arc(xx,yy,10,0,Math.PI*2);ctx.stroke();ctx.lineWidth=1;}
+  points.push({x:xx,y:yy,index,entry,t,kind});
+ }});ctx.restore();
+ drawInventory();window.chartViewReady=true;window.chartRenderedKey=$('symbol').value;window.chartShownCandles=visible.length;window.chartShownMarkers=points.length;
+}
+/**
+ * 機能: 実約定順に再集計した買いと売りの保有枚数を階段線で表示する。
+ * @returns {undefined} 返り値はなく下段のCanvasを更新する。
+ */
+function drawInventory(){
+ const canvas=$('inventory'),ctx=context(canvas),h=canvas.clientHeight,cap=Math.max(current.summary.max_long,current.summary.max_short,1);
+ ctx.fillStyle='#b7c9e0';ctx.fillText('保有枚数　買い（緑）／売り（赤）',65,17);ctx.textAlign='right';
+ for(const n of [0,Math.ceil(cap/2),cap]){const yy=h-22-n/cap*(h-52);ctx.fillText(n+'枚',52,yy+4);ctx.strokeStyle='#2b394e';ctx.beginPath();ctx.moveTo(60,yy);ctx.lineTo(width-20,yy);ctx.stroke();}
+ ctx.save();ctx.beginPath();ctx.rect(60,25,width-80,h-44);ctx.clip();
+ for(const side of [1,2]){let previous=0;ctx.strokeStyle=side===1?'#4bd3aa':'#ff7d89';ctx.lineWidth=1.8;ctx.beginPath();for(const r of current.inventory){const xx=x(r[0]),yy=h-22-r[side]/cap*(h-52);ctx.lineTo(xx,h-22-previous/cap*(h-52));ctx.lineTo(xx,yy);previous=r[side];}ctx.lineTo(x(current.candles.at(-1)[0]+60),h-22-previous/cap*(h-52));ctx.stroke();}ctx.restore();
+}
+/**
+ * 機能: カーソル近傍の約定を選び、実秒と玉別損益を表示する。
+ * @param {PointerEvent} event - マウス又はタッチの座標。
+ * @returns {Object|null} 最寄りの約定。近傍に無ければnull。
+ */
+function inspect(event){
+ const box=$('price').getBoundingClientRect(),px=event.clientX-box.left,py=event.clientY-box.top;
+ let nearest=null,distance=100;
+ for(const p of points){const dd=(p.x-px)**2+(p.y-py)**2;if(dd<distance){distance=dd;nearest=p;}}
+ const tip=$('tooltip');if(nearest){const r=groups[nearest.index];tip.textContent=(nearest.entry?'新規 ':'返済 ')+time(nearest.t,true)+'／'+r.quantity+'枚\n'+(r.side===1?'買い':'売り')+' '+r.entry_time+' @'+num(r.entry_price)+' → '+r.exit_time+' @'+num(r.exit_price)+'\n'+num(r.points,true)+current.unit+' × '+r.quantity+'枚／手数料後 '+num(r.net,true)+'円\n玉ID '+r.uids.join(',');tip.style.display='block';tip.style.left=Math.max(4,Math.min(width-310,px+12))+'px';tip.style.top=Math.max(4,Math.min(height-120,py+12))+'px';}else{tip.style.display='none';}
+ const t=start+(px-60)/(width-80)*(end-start),minute=Math.floor(t/60)*60,c=current.candles.find(r=>r[0]===minute);
+ $('readout').textContent=c?time(c[0])+'　始 '+num(c[1])+'／高 '+num(c[2])+'／安 '+num(c[3])+'／終 '+num(c[4]):'';return nearest;
+}
+/**
+ * 機能: 横軸をデータ範囲内へ制限して描画する。
+ * @returns {undefined} 返り値はなく表示範囲を更新する。
+ */
+function clamp(){const first=current.candles[0][0],last=current.candles.at(-1)[0]+60,span=Math.min(last-first,Math.max(600,end-start));start=Math.max(first,Math.min(last-span,start));end=start+span;draw();}
+
+// ----------------------------------------
+// 保存済み表示だけを変更する操作を接続する。
+$('symbol').addEventListener('change',load);
+$('lot').addEventListener('change',()=>{selected=Number($('lot').value);setSelection();draw();});
+document.querySelectorAll('[data-view]').forEach(b=>b.addEventListener('click',()=>setView(b.dataset.view)));
+document.querySelectorAll('[data-kind]').forEach(b=>b.addEventListener('change',draw));
+$('price').addEventListener('pointerdown',e=>{drag={x:e.clientX,start,end};moved=false;$('price').setPointerCapture(e.pointerId);});
+$('price').addEventListener('pointermove',e=>{if(drag){const dx=e.clientX-drag.x;if(Math.abs(dx)>4)moved=true;const shift=dx/(width-80)*(drag.end-drag.start);start=drag.start-shift;end=drag.end-shift;clamp();}else{inspect(e);}});
+$('price').addEventListener('pointerup',e=>{if(!moved){const p=inspect(e);if(p){selected=p.index;setSelection();draw();}}drag=null;});
+$('price').addEventListener('pointercancel',()=>{drag=null;});
+$('price').addEventListener('pointerleave',()=>{$('tooltip').style.display='none';});
+$('price').addEventListener('wheel',e=>{e.preventDefault();const rect=$('price').getBoundingClientRect(),fraction=Math.max(0,Math.min(1,(e.clientX-rect.left-60)/(width-80))),old=end-start,span=Math.max(600,Math.min(current.candles.at(-1)[0]+60-current.candles[0][0],old*(e.deltaY>0?1.25:0.8))),center=start+old*fraction;start=center-span*fraction;end=start+span;clamp();},{passive:false});
+window.addEventListener('resize',draw);
+load();
+</script>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>日中改修と夜間新造の損益</title>
+<style>
+:root{color-scheme:dark;font-family:"Yu Gothic UI",Meiryo,sans-serif;background:#101620;color:#e7edf6}*{box-sizing:border-box}body{max-width:1320px;margin:auto;padding:26px 24px 70px;font-size:14px;line-height:1.75}h1{font-size:26px;line-height:1.45}h2{font-size:21px;margin:0 0 12px}h3{font-size:16px}p{margin:10px 0;color:#c2cede}a{color:#94c8ff}section{margin:26px 0;border:1px solid #34445b;border-radius:12px;padding:22px;background:#141e2c}.lead{font-size:16px;color:#eff4fc}.note{font-size:12px;color:#a9b8cb}.scroll{overflow-x:auto;margin:14px 0;border:1px solid #34445b;border-radius:6px}table{border-collapse:collapse;width:100%;white-space:nowrap;font-variant-numeric:tabular-nums;font-size:13px}th,td{padding:9px 11px;border-bottom:1px solid #2b394d;text-align:right}th{background:#213047;color:#dbe7f8}td:first-child,th:first-child{text-align:left}tbody tr:nth-child(even){background:#182437}tfoot{font-weight:bold;background:#213047}.positive{color:#74dfb3}.negative{color:#ffa2af}.muted{color:#9aaabe}select{max-width:100%;padding:8px;background:#213047;border:1px solid #536784;border-radius:5px;color:#f2f6fc;font:inherit}label{display:block;margin-bottom:6px}details{margin:18px 0;padding:12px 16px;background:#172231;border:1px solid #34445b;border-radius:7px}summary{cursor:pointer;font-weight:bold}details p{font-size:13px}.verdict{border-left:4px solid #7abaff;padding:8px 16px;background:#1a2a40}.badge{font-size:12px;color:#afcdf1}.summary th{white-space:normal;min-width:88px}.sessions .gap{border-left:2px solid #536784}@media(max-width:700px){body{padding:18px 10px}section{padding:14px}h1{font-size:22px}th,td{padding:8px}table{font-size:12px}}
+</style>
+</head>
+<body>
+<!--
+[コンポーネント概要]
+#conclusion は保存会計から判断した到達点です。将来の利益を保証しません。
+#Day と #Night は昼夜別の手法選択、会計要約、全セッション表です。
+手法選択は保存済み結果の表示切替だけで、売買判断を再実行しません。
+#review は具体的な損失箇所を修正した五巡の経過と前後半の点検です。
+利益・損失は部分返済を合算した一組の手数料後正負です。
+-->
+<h1>日中改修と夜間新造の損益</h1>
+<p class="lead">__LEAD__</p>
+<p id="conclusion" class="verdict">__CONCLUSION__</p>
+<p class="note">2026年9月21日〜10月20日の保存43場（日中22・夜間21）。TOPIXミニ最大5枚／日経マイクロ最大10枚で今回の売買を比較。手数料込み・場内返済。過去に調査済みのデータ内で改良した結果です。</p>
+<section id="Day"></section>
+<section id="Night"></section>
+<details id="review">
+<summary>何を直したか・どこまで確かめたか</summary>
+<div class="scroll"><table><thead><tr><th>巡</th><th>実際の問題</th><th>修正と結果</th></tr></thead><tbody>
+<tr><td>第一巡</td><td>日中の値幅縮小後も、朝の広い損切りを維持</td><td>損切りを縮小。改善はあるが短期の押しで利益を守る案は大勝ちも消した</td></tr>
+<tr><td>第二巡</td><td>夜間は30秒の支持で入り、既に逆行中の120秒判定ですぐ返済</td><td>入口と出口の矛盾を修正。両銘柄で累計黒字のN16ができた</td></tr>
+<tr><td>第三巡</td><td>日中は相手の横ばいを拒否。夜間は1幅順行しても保護が未起動</td><td>中立を許す入口、弱支持の枚数調整、1幅からの追尾を比較</td></tr>
+<tr><td>第四巡</td><td>夜間は準備から発注までに中期の支持が失効し得る</td><td>出口を固定し、発注時の5分・20分方向の再確認だけを比較</td></tr>
+<tr><td>第五巡</td><td>自分側の中期一致を足すと、日経の有利な押し戻りも消える</td><td>相手市場の支持だけを発注時に再確認する単独条件を比較</td></tr>
+</tbody></table></div>
+<p>夜間の具体例：9月24日19:29の売りは、30秒の売り支持で入った直後に120秒の買い優勢で返済し、両商品とも価格の流れを取れず気配差と料金を失いました。9月30日夜間の日経23:02買いは140円順行後も追尾が起動せず、最終 −12,220円。これらの原因を別々に修正しました。</p>
+<p>日中の具体例：9月28日のTOPIX売りは、相手の短期変化が横ばいのため厳格な一致条件では拒否されましたが、従来は＋129,083円。横ばいと明確な逆行を区別しています。10月16日の大きな買い損失など、短期支持が揃っていても負ける例は残ります。</p>
+<div id="temporal"></div>
+<p>全場で条件を比較した上位候補と、前半だけで選んだ候補は区別しています。前後半の確認も既知データ内であり、未知データによる外部検証ではありません。</p>
+<p>次の正常な原板行で買いは売気配、売りは買気配へ約定させます。ラージ板をミニ／マイクロの代理価格として使用。実商品の注文待ち順位や、保存されていない二市場共通の受信時刻は再現していません。</p>
+<p><a href="手法と検証仕様.md">手法・枚数・時刻の仕様</a> ／ <a href="README.md">検証資料と出典</a></p>
+</details>
+<p class="note">利益はプラスの完結取引組の合計、損失はマイナスの組の絶対額、収支＝利益−損失。新規・返済にTOPIXミニ41.8円／枚、日経マイクロ11円／枚を課金し、各注文で円未満切捨て。表は円表示。無取引を黒字場に含めません。</p>
+<script id="saved-data" type="application/json">__DATA__</script>
+<script>
+const saved=JSON.parse(document.getElementById("saved-data").textContent);
+/**
+ * 金額の表示文字列を作る。
+ * @param {number} value - 円額。
+ * @param {boolean} signed - 正の符号を付ける指定。
+ * @returns {string} 桁区切り金額。
+ */
+function money(value,signed=true){return (signed&&value>0?"+":"")+Math.round(value).toLocaleString("ja-JP");}
+/**
+ * 損益色を付けた表セルを作る。
+ * @param {number} value - 円額。
+ * @param {string} extra - 追加の表示クラス。
+ * @returns {string} セル要素。
+ */
+function cell(value,extra=""){return `<td class="${value>0?"positive":value<0?"negative":"muted"} ${extra}">${money(value)}</td>`;}
+/**
+ * 選択手法の保存済み全セッションを描画する。
+ * @param {string} kind - Day又はNight。
+ * @param {string} method - 保存手法ID。
+ * @returns {void} 表示だけを更新する。
+ */
+function render(kind,method){
+ const root=document.getElementById(kind), choice=saved.methods[method];
+ const pair=saved.summary.filter(s=>s.method===method);
+ const rows=saved.rows.filter(r=>r.method===method);
+ const labels={TOPIX:"TOPIXミニ",NK225:"日経マイクロ"};
+ const summary=pair.map(s=>`<tr><td>${labels[s.symbol]}</td>${cell(s.profit)}${cell(-s.loss)}${cell(s.net)}<td>${s.black}／${s.red}／${s.flat}</td>${cell(s.worst)}${cell(s.mean_black)}${cell(s.without_top3)}</tr>`).join("");
+ const dates=[...new Set(rows.map(r=>r.session))].sort();
+ const running={TOPIX:0,NK225:0};
+ const body=dates.map(scene=>{
+  let out=`<tr><td>${scene.slice(0,10)}</td>`;
+  for(const symbol of ["TOPIX","NK225"]){
+   const r=rows.find(x=>x.session===scene&&x.symbol===symbol);running[symbol]+=r.net;
+   out+=cell(r.profit,"gap")+cell(-r.loss)+cell(r.net)+cell(running[symbol]);
+  }return out+"</tr>";
+ }).join("");
+ const total=pair.map(s=>cell(s.profit,"gap")+cell(-s.loss)+cell(s.net)+cell(s.net)).join("");
+ const options=Object.entries(saved.methods).filter(([id,c])=>c.kind===kind).map(([id,c])=>`<option value="${id}" ${id===method?"selected":""}>${id}　${c.name}</option>`).join("");
+ root.innerHTML=`<span class="badge">${kind==="Day"?"日中22セッション":"夜間21セッション"}</span><h2>${kind==="Day"?"日中":"夜間"}：${method}</h2>
+ <p>${choice.description}</p><p class="note">${choice.quantity}</p>
+ <label for="${kind}-method">表示する手法</label><select id="${kind}-method">${options}</select>
+ ${kind==="Night"?'<p class="note">両銘柄共通の比較上位はN27（採用保留）。TOPIXで黒字場が最も多いN36も選択できます。N36の日経は赤字12場です。</p>':''}
+ <div class="scroll"><table class="summary"><thead><tr><th>商品</th><th>利益</th><th>損失</th><th>累計収支</th><th>黒字／赤字／ゼロ場</th><th>最大赤字場</th><th>平均黒字場</th><th>上位3黒字場を除く収支</th></tr></thead><tbody>${summary}</tbody></table></div>
+ <p class="note">上昇場／下落場／同値場の収支：${pair.map(s=>`${labels[s.symbol]} ${money((s.regimes["上昇"]||{}).net||0)}／${money((s.regimes["下落"]||{}).net||0)}／${money((s.regimes["同値"]||{}).net||0)}円`).join("、")}。場の方向は終了後の採点だけに使います。</p>
+ <div class="scroll"><table class="sessions"><thead><tr><th rowspan="2">セッション日付</th><th colspan="4">TOPIXミニ</th><th colspan="4" class="gap">日経マイクロ</th></tr><tr>${["利益","損失","収支","累計収支","利益","損失","収支","累計収支"].map(s=>`<th>${s}</th>`).join("")}</tr></thead><tbody>${body}</tbody><tfoot><tr><td>合計</td>${total}</tr></tfoot></table></div>`;
+ root.querySelector("select").addEventListener("change",e=>render(kind,e.target.value));
+}
+// ----------------------------------------
+// 表示時は固定保存済みの比較を並べる。選択や金融計算を実施しない。
+render("Day",saved.defaults.Day);
+render("Night",saved.defaults.Night);
+document.getElementById("temporal").innerHTML='<h3>前半で選び、後半へ固定した場合</h3><div class="scroll"><table><thead><tr><th>区分・候補</th><th>商品</th><th>前半収支</th><th>後半収支</th><th>後半の黒字／赤字／ゼロ</th></tr></thead><tbody>'+["Day","Night"].flatMap(kind=>{
+ const id=saved.selected[kind].frozen_on_first_half;
+ return saved.summary.filter(s=>s.method===id).map(s=>`<tr><td>${kind==="Day"?"日中":"夜間"} ${id}</td><td>${s.symbol==="TOPIX"?"TOPIXミニ":"日経マイクロ"}</td>${cell(s.halves["前半"].net)}${cell(s.halves["後半"].net)}<td>${s.halves["後半"].black}／${s.halves["後半"].red}／${s.halves["後半"].flat}</td></tr>`);
+}).join("")+"</tbody></table></div>";
+</script>
+</body>
+</html>

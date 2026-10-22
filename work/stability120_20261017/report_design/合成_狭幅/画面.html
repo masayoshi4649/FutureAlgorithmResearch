@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="ja">
+<head><base href="file:///S:/GitHub/masayoshi4649/FutureAlgorithmResearch/work/stability120_20261017/report_design/">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>00120表示案・完全合成</title>
+<style>
+body{margin:0;background:#0b1120;color:#e6edf8;font:16px/1.65 system-ui,sans-serif}main{max-width:1320px;margin:auto;padding:24px 18px}h1{font-size:26px}h2{font-size:21px;margin-top:28px}a{color:#91c9ff}.note{padding:14px 16px;background:#283149;border-left:4px solid #e5bc61}strong{color:#ffdb8b}.muted{color:#b2bfd2;font-size:14px}.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.card{background:#152137;border:1px solid #35445b;border-radius:8px;padding:13px}.card h3{margin:0 0 8px;font-size:17px}.card p{margin:5px 0}select{background:#17253b;color:#e6edf8;border:1px solid #526580;border-radius:5px;padding:9px;font-size:15px;max-width:100%}.wrap{max-width:100%;overflow-x:auto;border:1px solid #35445b;border-radius:7px}table{width:100%;border-collapse:collapse;white-space:nowrap;font-size:14px}th,td{padding:8px 10px;text-align:right;border-bottom:1px solid #35445b}th:first-child{text-align:left}thead,tfoot{background:#1a2b44}.loss{color:#ff9f9f}.gain{color:#94ddbc}code{overflow-wrap:anywhere}summary{color:#a7cfff;cursor:pointer}@media(max-width:720px){main{padding:15px 10px}.cards{grid-template-columns:1fr}h1{font-size:23px}}
+</style>
+</head>
+<body>
+<!--
+[コンポーネント概要]
+mainは実測前の完全合成表示案です。実在の場名や金融結果は使いません。
+#policyは全30条件を選択し、説明・商品別集計・40場表だけを切り替えます。
+#summaryは確定収支と残玉込み時価を区別した商品別の要約です。
+#sessionsは利益・損失を1枚玉の完結netで示します。未返済玉を勝ちに数えません。
+.wrapは表だけ横スクロールさせ、本文の横はみ出しを防ぎます。
+-->
+<main>
+<h1>トレーリング新規と玉整理の比較</h1>
+<p class="note"><strong>表示設計専用・全て架空です。</strong> 金融結果はまだ読んでいません。以下の数値を手法の有望性と解釈しないでください。</p>
+<p>値が上がり始めたら買い、下がり始めたら売りを段階的に置きます。利益玉の追尾と、反対玉・損失玉の整理方法を5系統で比較します。</p>
+<h2>共通の上位候補欄（合成の配置例）</h2>
+<div class="cards">
+<article class="card"><h3>候補1：HEDGE</h3><p><b>入口：</b>安値から反発・高値から反落した段階で各1枚。</p><p><b>保有：</b>買いと売りを独立に保有。</p><p><b>出口：</b>利益玉を追尾し、残玉は場末返済。</p><p class="muted">実際の順位・適格性は未判定。</p></article>
+<article class="card"><h3>候補2：NET</h3><p><b>入口：</b>同じ段階条件を使用。</p><p><b>保有：</b>反対の新規より損失側1枚の整理を優先。</p><p><b>出口：</b>残る利益玉を追尾して返済。</p><p class="muted">実際の順位・適格性は未判定。</p></article>
+<article class="card"><h3>候補3：FLIP</h3><p><b>入口：</b>同じ段階条件を使用。</p><p><b>保有：</b>逆側の発動で旧方向を全返済。</p><p><b>出口：</b>新方向へ参加し直し、利益玉を追尾。</p><p class="muted">実際の順位・適格性は未判定。</p></article>
+</div>
+<h2>全30政策と全40場</h2>
+<label for="policy">政策を選択：</label> <select id="policy"></select>
+<p id="description"></p>
+<p class="muted">利益・損失は1枚玉ごとの手数料後netの総正負です。費用は内数。確定収支＝利益−損失で、残玉込みの清算時価とは別です。表示中の場名・数値は全て架空です。</p>
+<div class="wrap"><table id="summary"><thead><tr><th>商品</th><th>黒／赤／無取引</th><th>確定収支円</th><th>清算時価円</th><th>中央値円</th><th>最悪円</th><th>上位3黒字除外円</th><th>手数料円</th><th>末尾未返済</th></tr></thead><tbody></tbody></table></div>
+<p class="muted">上限はTOPIXミニ片方向10枚・日経マイクロ片方向20枚。未返済がある政策を成功扱いせず、未測定は「—」とします。</p>
+<div class="wrap"><table id="sessions"><thead><tr><th rowspan="2">架空セッション</th><th colspan="6">TOPIXミニ</th><th colspan="6">日経マイクロ</th></tr><tr><th>利益円</th><th>損失円</th><th>確定円</th><th>時価円</th><th>返済枚数</th><th>残枚数</th><th>利益円</th><th>損失円</th><th>確定円</th><th>時価円</th><th>返済枚数</th><th>残枚数</th></tr></thead><tbody></tbody><tfoot></tfoot></table></div>
+<details><summary>判定と約定の留意点</summary><p>利益追尾は純利peakが追尾幅＋1unitへ進んでから起動します。純利が残る時点で返済を判断しても、次正常BBOで損失になれば実損失へ計上します。観測ラージ板の刻みと実商品の最小刻みは同義ではありません。</p><p>HEDGE／NET／FLIP／RECYCLE／HARDの30条件は同じ既知40場での開発比較。商品別選択と両商品共通条件を分離します。待ち順位や実ミニ・マイクロ板の約定を証明した結果ではありません。</p></details>
+<p class="muted">実測版では会計JSON・README・指定原結果のpath／SHAへの案内をここへ置きます。この私有モックは公開しません。</p>
+</main>
+<script>
+/**
+ * 機能: 表示配置だけを検査する完全合成の30条件を用意する。
+ * 引数: なし。
+ * 返り値: なし。市場・保存結果・外部APIを読み込まない。
+ */
+const families=['HEDGE','NET','FLIP','RECYCLE','HARD'];
+const descriptions={HEDGE:'買いと売りを独立に保有し利益玉だけ追尾。',NET:'逆側の発動は損失側1枚の返済に充てる。',FLIP:'逆側の発動で旧方向を全返済し新方向へ。',RECYCLE:'確保した利益準備金の範囲で最悪損失玉を整理。',HARD:'個別玉の初期3unit損切りを併用。'};
+const specs=[];
+for(const family of families)for(const pct of [0.0125,0.025,0.05])for(const trail of [1,3])specs.push({id:family+'_'+pct+'_'+trail,family,pct,trail});
+const policy=document.querySelector('#policy');
+policy.innerHTML=specs.map(s=>'<option value="'+s.id+'">'+s.family+'｜unit '+s.pct+'%｜追尾 '+s.trail+'unit</option>').join('');
+// ----------------------------------------
+/**
+ * 機能: 実在しない場名と架空の玉会計を生成する。
+ * 引数: index(number)は選択条件の添字、symbol(number)は商品添字。
+ * 返り値: Array<object>は架空40場。未返済例も隠さない。
+ */
+function syntheticRows(index,symbol){
+  return Array.from({length:40},(_,i)=>{
+    const active=i%7!==0;const loss=active&&i%9===0?180+index:0;const profit=active&&i%9!==0?70+symbol*10+index:0;
+    const unclosed=index===29&&i===39?1:0;return {scene:'合成場'+String(i+1).padStart(2,'0'),profit,loss,realized:profit-loss,net:profit-loss-unclosed*250,closed:active?1:0,unclosed,fees:active?22+symbol*60:0};
+  });
+}
+/**
+ * 機能: 合成値を円表記にする。
+ * 引数: value(number|null)は表示値。
+ * 返り値: string。未評価nullを零へ置き換えない。
+ */
+function yen(value){return value===null?'—':value.toLocaleString('ja-JP');}
+/**
+ * 機能: 30政策の選択に応じて架空集計と全40場を切り替える。
+ * 引数: なし。現在の選択値だけを使用する。
+ * 返り値: なし。売買判定・金融再生・データ取得はしない。
+ */
+function update(){
+  const index=specs.findIndex(s=>s.id===policy.value),s=specs[index],groups=[syntheticRows(index,0),syntheticRows(index,1)];
+  document.querySelector('#description').textContent=s.family+'：'+descriptions[s.family]+' 始値mid比'+s.pct+'%を観測刻みへ切上、追尾'+s.trail+'unit。';
+  const heads=groups.map((rows,j)=>{
+    const sorted=rows.map(r=>r.net).sort((a,b)=>a-b),positive=rows.filter(r=>r.closed&&r.net>0),negative=rows.filter(r=>r.closed&&r.net<0),none=rows.filter(r=>!r.closed&&!r.unclosed),unclosed=rows.reduce((a,r)=>a+r.unclosed,0),sum=k=>rows.reduce((a,r)=>a+r[k],0);
+    const top=positive.map(r=>r.net).sort((a,b)=>b-a).slice(0,3).reduce((a,v)=>a+v,0);
+    return '<tr><th>'+['TOPIX','NK225'][j]+'</th>'+[positive.length+'/'+negative.length+'/'+none.length,sum('realized'),sum('net'),(sorted[19]+sorted[20])/2,sorted[0],unclosed?null:sum('net')-top,sum('fees'),unclosed].map(v=>'<td>'+yen(v)+'</td>').join('')+'</tr>';
+  });document.querySelector('#summary tbody').innerHTML=heads.join('');
+  document.querySelector('#sessions tbody').innerHTML=groups[0].map((r,i)=>'<tr data-session="'+r.scene+'"><th>'+r.scene+'</th>'+groups.map(rows=>[rows[i].profit,rows[i].loss,rows[i].realized,rows[i].net,rows[i].closed,rows[i].unclosed].map(v=>'<td>'+yen(v)+'</td>').join('')).join('')+'</tr>').join('');
+  document.querySelector('#sessions tfoot').innerHTML='<tr><th>合計（合成）</th>'+groups.map(rows=>['profit','loss','realized','net','closed','unclosed'].map(k=>'<td>'+yen(rows.reduce((a,r)=>a+r[k],0))+'</td>').join('')).join('')+'</tr>';
+}
+policy.addEventListener('change',update);update();
+</script>
+<script>
+    /**
+     * 機能: 完成した表と暗色表示を検査する。
+     * 引数: なし。
+     * 返り値: なし。結果をbodyの属性へ保存する。
+     */
+    window.addEventListener('load', () => {
+      const bg = getComputedStyle(document.body).backgroundColor;
+      const parts = bg.match(/[0-9.]+/g).map(Number);
+      const result = {
+        title: document.querySelector('h1')?.textContent,
+        tables: document.querySelectorAll('table').length,
+        rows: document.querySelectorAll('tr[data-session]').length,
+        dark: parts.slice(0,3).reduce((a,b)=>a+b,0) < 180,
+        viewport: innerWidth,
+        documentWidth: document.documentElement.scrollWidth,
+        horizontalOverflow: document.documentElement.scrollWidth > innerWidth + 1
+      };
+      document.body.dataset.visual = JSON.stringify(result);
+    });
+    </script></body>
+</html>

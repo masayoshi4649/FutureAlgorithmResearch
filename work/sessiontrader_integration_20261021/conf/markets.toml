@@ -1,0 +1,33 @@
+# 両担当の合計を片方向上限に制限します。返済後の再新規は可能です。
+# 判断には常にTOPIX・NK225のラージを使用します。
+[markets.TOPIX]
+enabled = true
+product = "TOPIXmini"
+max_per_side = 10
+core_quantity = 5
+extra_quantity = 5
+
+[markets.NK225]
+enabled = true
+product = "NK225micro"
+max_per_side = 20
+core_quantity = 10
+extra_quantity = 10
+
+# APIのTradingUnitは円換算倍率ではありません。
+# 下記はAPI未提供の商品規格。銘柄ID・限月は登録APIから取得します。
+[products.TOPIX]
+tick = 0.5
+point_value = 10000
+[products.TOPIXmini]
+tick = 0.25
+point_value = 1000
+[products.NK225]
+tick = 10
+point_value = 1000
+[products.NK225mini]
+tick = 5
+point_value = 100
+[products.NK225micro]
+tick = 5
+point_value = 10
