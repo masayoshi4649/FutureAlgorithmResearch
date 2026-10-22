@@ -1,0 +1,146 @@
+{
+  "root_checked": true,
+  "phases": [
+    {
+      "source": "private/public",
+      "directory": "01_提案型と八つの管理",
+      "title": "提案型と八つの管理",
+      "policies": 48,
+      "result_sha256": "c99743d739c9d24a08088f1b5ebdc78af8285b19e9704773965ea05f13890ce1",
+      "audits": [
+        {
+          "path": "work/stability120_20261017/audit_result120b/保存全四十八政策八十入力の注文玉時価の独立会計監査.json",
+          "sha256": "e97699fc505ebf0ff4e533abf8d3d11d08aef41b5185445580adf3db1d2d6bb2"
+        },
+        {
+          "path": "work/stability120_20261017/audit_result120b/登録実体と八十入力参照及び源人工の独立拘束.json",
+          "sha256": "f73dd677993ff29b381baeb55ea4b981967a98b4a1dc9a3196b81e482ff0e401"
+        },
+        {
+          "path": "work/stability120_20261017/report_artificial/正式120b表示の完成.json",
+          "sha256": "a529e930617acd07be430edf58fde65d48f3b610a485a465cfec5ee964ec750a"
+        }
+      ],
+      "report": "段階トレーリングと利益玉返済の説明と全セッション損益.html",
+      "files": {
+        "段階トレーリングと利益玉返済の説明と全セッション損益.html": "4b436b1baf30018c20cadf8ceaad499e52f22d00af9b2fdbebf9d144844949dd",
+        "data.json": "f1dc518ea08350735cf9b78452df97dbc55f96d96d8695a398b6d7a24343b0f1",
+        "README.md": "4c3f8d16618377fb655a3616616858f4e54f5c9ea56d139fc528b459224897d4",
+        "生成証跡.json": "f66855d7f1bec97a2a253409534033e70856397a774149e052fa27dfa61fe63c"
+      }
+    },
+    {
+      "source": "private_c/public",
+      "directory": "02_小試行と方向別停止",
+      "title": "小試行と方向別停止",
+      "policies": 24,
+      "result_sha256": "1071dc7f296d8ffbf3483e26b863d79cde48b82bcca986a7b5810c8e18f9ee9f",
+      "audits": [
+        {
+          "path": "work/stability120_20261017/audit_result120c/新四管理二十四政策の全千九百二十口座独立会計監査.json",
+          "sha256": "dee04e4bbfcaa64d876d3c699e35b1c829261e702dbf37e2f47462ed7395c53a"
+        },
+        {
+          "path": "work/stability120_20261017/audit_result120c/登録実体と八十入力参照及び実行時人工の独立拘束.json",
+          "sha256": "5bdb724b5c787154179508681364d168a338c38c1516360ca23a9a8c8664a082"
+        },
+        {
+          "path": "work/stability120_20261017/report_artificial_c/正式120c表示の完成.json",
+          "sha256": "4bb204b21cc97c705f2a2c541c5e42bcd0104ac2d655d4e1401291d50000aeed"
+        }
+      ],
+      "report": "利益条件付き段階追加の説明と全セッション損益.html",
+      "files": {
+        "利益条件付き段階追加の説明と全セッション損益.html": "23cd4d02692a825e2b0d070d9c7b7fe4b917f88bfef486c868da08f1033b4954",
+        "data.json": "a39bec61878a50ae838e839c10ecc7cc58a8ece8abcea285d265593088c44124",
+        "README.md": "e832a9a234c7adfc23e09eb55b4d3c8367b50cb6989b47f06a2e1b44ef77b677",
+        "生成証跡.json": "ef6b66e5713801fa4581358f6b5c037f90577e5eb5aedd41e127b0bc4db3dcdb"
+      }
+    },
+    {
+      "source": "private_d/public",
+      "directory": "03_最終約定値による追尾",
+      "title": "最終約定値による追尾",
+      "policies": 24,
+      "result_sha256": "665cc66e7f5f1788393082a80b2f8dc19468f9b5987f49025f4c813468166c59",
+      "audits": [
+        {
+          "path": "work/stability120_20261017/audit_result120d/Last参照二十四政策の全千九百二十口座独立会計監査.json",
+          "sha256": "27907298da0d3a838caf2f8d5d374f7dd90b1666fc2d21801ab66cd35d84e1e4"
+        },
+        {
+          "path": "work/stability120_20261017/audit_result120d/登録実体と八十入力参照及び実行時人工の独立拘束.json",
+          "sha256": "1451be1c4ab41fc18009e31b307a8ea4e3615769061cb1f752e74a61dda008f1"
+        },
+        {
+          "path": "work/stability120_20261017/report_artificial_d/正式120d表示の完成.json",
+          "sha256": "d081384431a1073af3a57e26479eac3c212acd3c9c58e9dcfc7c8372d6ef8a51"
+        }
+      ],
+      "report": "Last基準の利益条件付き追加の説明と全セッション損益.html",
+      "files": {
+        "Last基準の利益条件付き追加の説明と全セッション損益.html": "1b3f4581df90e28e27866b7bb90a6554b4a7586fe9908b5afda662dd7bb453f7",
+        "data.json": "d905487c600c3827f88dc49582123f546c26713728479f5ad2c9b2a3436310fb",
+        "README.md": "e03f0dcc91461687cddce2b6dd6b15e244a759bf5aac23877ac45a781bae3871",
+        "生成証跡.json": "c669db80bdb7598fcfc0b57e604266b7c33d36bb61425944cda6acd277c17ef2"
+      }
+    },
+    {
+      "source": "private_e/public",
+      "directory": "04_上下対称回転とカバー保持",
+      "title": "上下対称回転とカバー保持",
+      "policies": 18,
+      "result_sha256": "63766637c69f8572465b1ec3cc3c735e8eef234c1657b3ca0542bd3b6fa9f2ba",
+      "audits": [
+        {
+          "path": "work/stability120_20261017/audit_result120e1/カバー保持上下回転十八政策の全千四百四十口座独立会計監査.json",
+          "sha256": "31cb44424289394f2a131c85b5e87203c27e2e9af52cdb71ba58d59f05ac3da2"
+        },
+        {
+          "path": "work/stability120_20261017/audit_result120e1/登録実体と八十入力参照及び実行時人工の独立拘束.json",
+          "sha256": "1939787c9f7ebf23be5cd32fd102882f83d939ff88420446f268301bb8467f83"
+        },
+        {
+          "path": "work/stability120_20261017/report_artificial_e/正式120e1表示の完成.json",
+          "sha256": "a3973342613982e5c5387110e7290814f94e5a9ee51f8fbca19e3f1039aa6cef"
+        }
+      ],
+      "report": "上下対称の利益回転とカバー保持の全セッション損益.html",
+      "files": {
+        "上下対称の利益回転とカバー保持の全セッション損益.html": "19f44cd4ccc2e650b7ccc6ac86e5b21a907bb9377406cc098fddd979823499b8",
+        "data.json": "525e4182c4d14d4aec41a2a2c340aabe30b52c9bfe6abce29d30abeb43864308",
+        "README.md": "7cd6e9c67b7aff114aa02634b446b1a9d218dd6094ab94863668f93144070e74",
+        "生成証跡.json": "25c2e605cda43c0bdaefc850baf29d9fa6af5b93a89de5b9245ceb0f8f9e26a5"
+      }
+    }
+  ],
+  "loss_diagnoses": [
+    {
+      "path": "work/stability120_20261017/diagnosis/formal_cd/改善後に残った損失.md",
+      "sha256": "6acd1bd1b4c73f4359f828f043380b0d8b57a977fff739bd72d42ad633c166f0",
+      "destination": "改善後に残った損失.md",
+      "published_sha256": "6acd1bd1b4c73f4359f828f043380b0d8b57a977fff739bd72d42ad633c166f0"
+    },
+    {
+      "path": "work/stability120_20261017/diagnosis/formal_e/逆側カバーと上下回転の診断.md",
+      "sha256": "c6405c2fabe831ebfb78ad8ecee3b41bb60afacea603c6910841fe0d3fa6f66c",
+      "destination": "逆側カバーと上下回転の診断.md",
+      "link_rewrites": {
+        "(実保有の逆側追越と利確後の残在庫.json)": "(../../work/stability120_20261017/diagnosis/formal_e/実保有の逆側追越と利確後の残在庫.json)",
+        "(epoch時刻の表示訂正と非時刻全項目不変の確認.json)": "(../../work/stability120_20261017/diagnosis/formal_e/epoch時刻の表示訂正と非時刻全項目不変の確認.json)",
+        "(../../root_owned_e/全条件の場内安定指標.json)": "(../../work/stability120_20261017/root_owned_e/全条件の場内安定指標.json)"
+      },
+      "published_sha256": "c04230fac203d2e7afdc76f42cc6eb0ca686e528147f33b068cce92f07ddc1d6"
+    }
+  ],
+  "conclusion": "提案型と修正型の114条件では、日経・TOPIXの両方で合計黒字になる手法は見つかりませんでした。",
+  "qualification_count": 0,
+  "both_net_positive": 0,
+  "all40_positive": 0,
+  "featured": {
+    "id": "ONCE_S1_T1",
+    "phase": "01_提案型と八つの管理"
+  },
+  "public": "アルゴリズム調査/00120_段階トレーリング新規と利益玉の部分回転",
+  "main_sha256": "1430f2db3c513a42a42828534b66fdbddb6ce93cfa23423653765f9e6b91a0b8"
+}

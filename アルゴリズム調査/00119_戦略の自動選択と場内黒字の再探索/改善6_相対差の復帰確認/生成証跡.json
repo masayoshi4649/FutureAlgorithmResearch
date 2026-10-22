@@ -1,0 +1,30 @@
+{
+  "passed": true,
+  "fixture": false,
+  "result_path": "work/stability119_20261017/v8/measurement/相対乖離の実際の復帰確認と全四十場.json",
+  "result_sha256": "2f7c15e27d7c0e20b6b14de8ab682ac62d49a55b6ba35d2079b6245d9699dcf4",
+  "report_sha256": "fde486d7c90e652994ade989c41a57be18db7e1da4385d4fb63c759840d5173c",
+  "artifacts": {
+    "相対乖離の復帰確認と残差追尾の全セッション損益.html": "dfd91aae99ee65274eeb9899299ae6acd534eee0f96fa293825d62c8d78cdcfb",
+    "data.json": "e74b0241236e94b20cff2357e0c1cbb358b512f911767524b64bb7b67384ebea",
+    "README.md": "854d6eab0ec9e12b652ad37896df334aebe1344d3ec628f9732b8ec4f9ffd3fd"
+  },
+  "policies": 8,
+  "common_ranking": 8,
+  "baseline_controls": 0,
+  "sessions": 40,
+  "pair_sessions": 320,
+  "main_ids": [
+    "OLS_MR_CONF_L60_X0",
+    "RATIO_MR_CONF_L60_X0",
+    "RATIO_MR_CONF_L60_X1",
+    "OLS_MR_CONF_L30_X0",
+    "OLS_MR_CONF_L30_X1",
+    "RATIO_MR_CONF_L30_X1",
+    "RATIO_MR_CONF_L30_X0",
+    "OLS_MR_CONF_L60_X1"
+  ],
+  "market_reads": 0,
+  "financial_replay": 0,
+  "API": 0
+}

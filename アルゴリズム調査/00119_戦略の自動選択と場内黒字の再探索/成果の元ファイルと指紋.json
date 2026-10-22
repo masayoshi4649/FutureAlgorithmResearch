@@ -1,0 +1,234 @@
+{
+  "root_checked": true,
+  "phases": [
+    {
+      "directory": "初回_戦略選択",
+      "source": "work/stability119_20261017/public00119_戦略の自動選択と場内黒字の再探索",
+      "report": "戦略の自動選択と全セッション損益.html",
+      "data": "公開会計.json",
+      "title": "戦略の自動選択と三枠配分",
+      "description": "252政策と固定三枠。設定選択後の13場と、全40場を分離。",
+      "result": "work/stability119_20261017/recovery119/戦略自動選択と全四十場の復元結果.json",
+      "expected": "13bdd30ecf5ad8dd12ce4d8f0aec96a025e7bd1bb36e33fa8b30bc02de0d2c15",
+      "files": [
+        {
+          "name": "戦略の自動選択と全セッション損益.html",
+          "sha256": "6027f98b0d40271d4425e0eb0889a87f9b284a7e41f9f409a000bd32ad0aea3b"
+        },
+        {
+          "name": "公開会計.json",
+          "sha256": "53c0eb7158240f69fc6e5d5bad9cbf262502905cd8227622acec0bed182b246b"
+        },
+        {
+          "name": "生成証跡.json",
+          "sha256": "35c86c1173f5e1b07bff213bc361b1170fbd0df5a1e193e36e99af53697f9533"
+        }
+      ]
+    },
+    {
+      "directory": "改善1_復帰と価格保護",
+      "source": "work/stability119_20261017/privatev2/public",
+      "report": "安定黒字の再探索と全セッション損益.html",
+      "data": "data.json",
+      "title": "停止・復帰の確認と注文価格保護",
+      "description": "36政策。反対への実際の戻りを確認し、不利な約定を制限。",
+      "result": "work/stability119_20261017/v2/measurement/復帰確認と執行保護の全四十場.json",
+      "expected": "7c56485d4b168928bd432cdb9644037ad2c4d733c19b3fc0168786a928b0586f",
+      "files": [
+        {
+          "name": "安定黒字の再探索と全セッション損益.html",
+          "sha256": "a73abc49956706a8fb93f716fd4cfe9bae66f71e7af4c144ada58f754f20f27d"
+        },
+        {
+          "name": "data.json",
+          "sha256": "164da124bd8ae8f6f55047b73b46a90bd500a8d425499d8dc36ac53ccbe318c5"
+        },
+        {
+          "name": "生成証跡.json",
+          "sha256": "e277f7534b88b4b168e3a1f76764f224f9fe298315e8fdab933111f9e2b3e5bb"
+        }
+      ]
+    },
+    {
+      "directory": "改善2_張り方と増玉",
+      "source": "work/stability119_20261017/privatev3/public",
+      "report": "小枚数と順行増加の比較と全セッション損益.html",
+      "data": "data.json",
+      "title": "小枚数固定・全枚数固定・順行追加",
+      "description": "36政策。同じ入口で数量と追尾幅を変え、実追加・平均建値・価格飛びを比較。",
+      "result": "work/stability119_20261017/v3/measurement/小試行と順行追加の全四十場.json",
+      "expected": "0e027e11a03e4f6a8c0bf9f1166e9f7487505ab91be5ea12b0d76eb9a88b0ca5",
+      "files": [
+        {
+          "name": "小枚数と順行増加の比較と全セッション損益.html",
+          "sha256": "ad980f5c9e4b93ca416fa145105bbbf16bb4511cadbc0625ec2a343782c65ca7"
+        },
+        {
+          "name": "data.json",
+          "sha256": "9c57dbb626b27ce8f498df48e0048172499df3072b1de4d779b757a1a595da49"
+        },
+        {
+          "name": "生成証跡.json",
+          "sha256": "0f99d90a01d3b82bbe24f6c17af16521544c32e1a352b7d7d1334cc5b5f442e1"
+        }
+      ]
+    },
+    {
+      "directory": "改善3_順逆と時間回避",
+      "source": "work/stability119_20261017/privatev4/public",
+      "report": "順逆売買と時間回避の比較と全セッション損益.html",
+      "data": "data.json",
+      "title": "広い進行条件の順逆売買と時刻回避",
+      "description": "48政策。新しい建玉で逆方向の損益と後続参加を再計算。米国時刻はDST対応。",
+      "result": "work/stability119_20261017/v4/measurement/広い進行条件の順逆比較と全四十場.json",
+      "expected": "9da66161eeab6557dfca24070dcb32c38d6a23311dc1eb46d68465c4003c406a",
+      "files": [
+        {
+          "name": "順逆売買と時間回避の比較と全セッション損益.html",
+          "sha256": "5de2f2832d39e7bf605dc6283f63c8e5047ee63b0a94d132f859ce4c6cfba76f"
+        },
+        {
+          "name": "data.json",
+          "sha256": "273b242a8e0dfd93155df8770872b473e2b733fa64a8f384e270c9834af9a9f5"
+        },
+        {
+          "name": "生成証跡.json",
+          "sha256": "eaf197542bdb9326070ff218d217f8c9c3067363b0dc017326b95ad1dd80522b"
+        }
+      ]
+    },
+    {
+      "directory": "改善4_二脚相対回帰",
+      "source": "work/stability119_20261017/privatev5/public",
+      "title": "二脚の相対回帰",
+      "description": "4政策。共通元本差・単脚・両側気配・費用を含む組会計。",
+      "result": "work/stability119_20261017/v5/measurement/二脚相対回帰四条件と全四十場.json",
+      "expected": "f4147e05de741ec1e3681237209d7ea9892170adbabe77ac5225cb9431bd22c9",
+      "report": "二脚相対回帰の比較と全セッション損益.html",
+      "data": "data.json",
+      "files": [
+        {
+          "name": "二脚相対回帰の比較と全セッション損益.html",
+          "sha256": "39939b4b03e2d56cfc478f446259e78505adc925a75bafd31a235de619322c27"
+        },
+        {
+          "name": "data.json",
+          "sha256": "df36e9556b401e1240582491a00c7bf798b09302fc9e99894b8d02028170e21e"
+        },
+        {
+          "name": "生成証跡.json",
+          "sha256": "e932faf50fff438047b4e2e9915de71f8af1db2d6d2ea74fa210c4ec2f2b9561"
+        }
+      ]
+    },
+    {
+      "directory": "改善5_相対強さの継続",
+      "source": "work/stability119_20261017/privatev7/public",
+      "title": "相対的な強さの継続と残差追尾",
+      "description": "8政策。強い側を買う対照。回帰型の負けを改善して失った利益も記録。",
+      "result": "work/stability119_20261017/v7/measurement/相対的な強さの継続と残差追尾の全四十場.json",
+      "expected": "6920051e4b9217284cf89f9afb4652f9ac7ec560a17b25928a66135f876fcb14",
+      "report": "相対的な強さの継続と残差追尾の全セッション損益.html",
+      "data": "data.json",
+      "files": [
+        {
+          "name": "相対的な強さの継続と残差追尾の全セッション損益.html",
+          "sha256": "c112250b095a759071f5b975e2e6dc84a7d4595f920f08687cd108829de4cafb"
+        },
+        {
+          "name": "data.json",
+          "sha256": "44bdfe9f7345609ec5b55b69c649c5371faff4a1b4cad05af7c4c02f61401bdf"
+        },
+        {
+          "name": "生成証跡.json",
+          "sha256": "69c095044e197b9431d53822967088cb783b716ceb074fdfc082cfb48ab972f3"
+        }
+      ]
+    },
+    {
+      "directory": "改善6_相対差の復帰確認",
+      "source": "work/stability119_20261017/privatev8/public",
+      "title": "実際の復帰を二度確認する相対回帰",
+      "description": "8政策。準備時に中心を固定し、別価格時計の二確認から参加。初期気配差と停止予算の欠点も診断。",
+      "result": "work/stability119_20261017/v8/measurement/相対乖離の実際の復帰確認と全四十場.json",
+      "expected": "2f7c15e27d7c0e20b6b14de8ab682ac62d49a55b6ba35d2079b6245d9699dcf4",
+      "report": "相対乖離の復帰確認と残差追尾の全セッション損益.html",
+      "data": "data.json",
+      "files": [
+        {
+          "name": "相対乖離の復帰確認と残差追尾の全セッション損益.html",
+          "sha256": "dfd91aae99ee65274eeb9899299ae6acd534eee0f96fa293825d62c8d78cdcfb"
+        },
+        {
+          "name": "data.json",
+          "sha256": "e74b0241236e94b20cff2357e0c1cbb358b512f911767524b64bb7b67384ebea"
+        },
+        {
+          "name": "生成証跡.json",
+          "sha256": "19cd9f087d5c3abed45f41df7070cce04a09ee1145c18a22cff5905d20979e30"
+        }
+      ]
+    },
+    {
+      "directory": "改善7_気配差を含む停止予算",
+      "source": "work/stability119_20261017/privatev9/public",
+      "title": "初期気配差を清算予算へ含めた対照",
+      "description": "新8政策。予算1部品だけを変更。極値撤回線・約定・実費用は維持し、旧8会計は保存引用。",
+      "result": "work/stability119_20261017/v9/measurement/相対復帰の初期気配差込み予算と全四十場.json",
+      "expected": "80bab7ec7f540e09bdfd31c9aa59318bcb448c24635086239dc98e4c3b47d814",
+      "report": "相対復帰の初期気配差込み予算と残差追尾の全セッション損益.html",
+      "data": "data.json",
+      "files": [
+        {
+          "name": "相対復帰の初期気配差込み予算と残差追尾の全セッション損益.html",
+          "sha256": "f1a3d77e00ddb105729a98076da85b994ca5966ca6e4ae290977a831b54e2d27"
+        },
+        {
+          "name": "data.json",
+          "sha256": "fe22676ae0ae4ea8f6a487103ef8c4bf896bb0b2916d2ec4baaf9367a2e54747"
+        },
+        {
+          "name": "生成証跡.json",
+          "sha256": "b6ffe565d433de40392a6c9d3f0afd7ef0ad379a32492cb000168aa16af24a62"
+        }
+      ]
+    },
+    {
+      "directory": "再確認_少額E01追加",
+      "source": "work/stability119_20261017/privatev6/public",
+      "title": "少額E01の固定設定と追加7場",
+      "description": "商品別の旧設定を固定。旧33場66行は保存引用、追加7場14行のみ新測定。入力資格変更と初回停止も明記。",
+      "result": "work/stability119_20261017/v6_resume/measurement/少額E01固定二設定の追加七場と全四十場.json",
+      "expected": "d0f1f86cb955a2da7016f0a33f6ff097eb64edb14068e8d0a0b4278aebca963b",
+      "report": "少額E01固定設定と追加七場を含む全セッション損益.html",
+      "data": "data.json",
+      "files": [
+        {
+          "name": "少額E01固定設定と追加七場を含む全セッション損益.html",
+          "sha256": "fa17908b06bb9aefae1e83ff20b25d42f89250bb6c01972626b5963b7e22b6b4"
+        },
+        {
+          "name": "data.json",
+          "sha256": "e245fb86bdf6acdf34530d9c920812b995f8f6dae77d7d93808b0b5f605c65ea"
+        },
+        {
+          "name": "生成証跡.json",
+          "sha256": "6689e7480495aa50841c47fbac599567d6a4ebccd3072955d489107bb7d63350"
+        }
+      ]
+    }
+  ],
+  "注意": "人工fixtureを含めない。金融結果の再生は0、同じ保存成果の指紋検査と公開だけ。",
+  "overview_directory": "再確認_少額E01追加",
+  "overview_heading": "基礎となる商品別の少額E01",
+  "conclusion": "現時点の暫定候補は、少額E01の二口座並行運転です。全40場で26黒字・1赤字・13無取引。毎場の安定黒字や損小利大を確立したものではありません。",
+  "dual": {
+    "path": "work/stability119_20261017/v6_resume/root_owned/少額E01二口座の場末収支合算.json",
+    "sha256": "db9e9376d3b055d0ebe3393a7ce514928d18b1ad6ee8e24323ca30d3041735d0"
+  },
+  "overview_rules": {
+    "入口": "元E01の二市場方向判定に、直近60秒の出来高増更新の方向支持を要求。TOPIXは偏り0.5以上、日経は0.25以上、既知票2以上。最初の後続正常気配が指値許容内なら新規。",
+    "数量": "公開時点のATR・気配差・料金から予定リスクを計算し、TOPIX5,000円／日経2,000円の予算内へ縮小。比較上限はミニ10枚／マイクロ20枚ですが、追加7場の実取引は各1枚です。",
+    "出口": "元E01の損切り・追尾・部分返済と時刻回避を保持。最初の受理予定枚数×観測1呼値の円利益が成立したら全返済を予約し、その場は終了。場末も返済します。停止線での約定保証はありません。"
+  }
+}

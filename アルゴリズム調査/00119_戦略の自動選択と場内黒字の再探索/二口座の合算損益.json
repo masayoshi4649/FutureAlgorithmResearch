@@ -1,0 +1,460 @@
+{
+  "全合格": true,
+  "method": "E01_006_DUAL_FIXED",
+  "source_SHA256": "d0f1f86cb955a2da7016f0a33f6ff097eb64edb14068e8d0a0b4278aebca963b",
+  "source_path": "work/stability119_20261017/v6_resume/root_owned/少額E01固定二設定の追加七場と全四十場.json",
+  "rows": [
+    {
+      "session": "2026-09-21_Day",
+      "profit": 0.0,
+      "loss": 0.0,
+      "net": 0.0,
+      "fees": 0.0,
+      "campaigns": 0,
+      "active": false,
+      "origin": "旧33保存会計の合算"
+    },
+    {
+      "session": "2026-09-21_Night",
+      "profit": 534.0,
+      "loss": 0.0,
+      "net": 534.0,
+      "fees": 66.0,
+      "campaigns": 1,
+      "active": true,
+      "origin": "旧33保存会計の合算"
+    },
+    {
+      "session": "2026-09-22_Day",
+      "profit": 178.0,
+      "loss": 0.0,
+      "net": 178.0,
+      "fees": 22.0,
+      "campaigns": 1,
+      "active": true,
+      "origin": "旧33保存会計の合算"
+    },
+    {
+      "session": "2026-09-22_Night",
+      "profit": 78.0,
+      "loss": 0.0,
+      "net": 78.0,
+      "fees": 22.0,
+      "campaigns": 1,
+      "active": true,
+      "origin": "旧33保存会計の合算"
+    },
+    {
+      "session": "2026-09-23_Day",
+      "profit": 0.0,
+      "loss": 0.0,
+      "net": 0.0,
+      "fees": 0.0,
+      "campaigns": 0,
+      "active": false,
+      "origin": "旧33保存会計の合算"
+    },
+    {
+      "session": "2026-09-23_Night",
+      "profit": 1952.0,
+      "loss": 0.0,
+      "net": 1952.0,
+      "fees": 148.0,
+      "campaigns": 2,
+      "active": true,
+      "origin": "旧33保存会計の合算"
+    },
+    {
+      "session": "2026-09-24_Day",
+      "profit": 356.0,
+      "loss": 0.0,
+      "net": 356.0,
+      "fees": 44.0,
+      "campaigns": 1,
+      "active": true,
+      "origin": "旧33保存会計の合算"
+    },
+    {
+      "session": "2026-09-24_Night",
+      "profit": 234.0,
+      "loss": 0.0,
+      "net": 234.0,
+      "fees": 66.0,
+      "campaigns": 1,
+      "active": true,
+      "origin": "旧33保存会計の合算"
+    },
+    {
+      "session": "2026-09-25_Day",
+      "profit": 0.0,
+      "loss": 0.0,
+      "net": 0.0,
+      "fees": 0.0,
+      "campaigns": 0,
+      "active": false,
+      "origin": "旧33保存会計の合算"
+    },
+    {
+      "session": "2026-09-25_Night",
+      "profit": 2274.0,
+      "loss": 0.0,
+      "net": 2274.0,
+      "fees": 126.0,
+      "campaigns": 2,
+      "active": true,
+      "origin": "旧33保存会計の合算"
+    },
+    {
+      "session": "2026-09-28_Day",
+      "profit": 0.0,
+      "loss": 0.0,
+      "net": 0.0,
+      "fees": 0.0,
+      "campaigns": 0,
+      "active": false,
+      "origin": "旧33保存会計の合算"
+    },
+    {
+      "session": "2026-09-28_Night",
+      "profit": 1096.0,
+      "loss": 0.0,
+      "net": 1096.0,
+      "fees": 104.0,
+      "campaigns": 2,
+      "active": true,
+      "origin": "旧33保存会計の合算"
+    },
+    {
+      "session": "2026-09-29_Day",
+      "profit": 0.0,
+      "loss": 0.0,
+      "net": 0.0,
+      "fees": 0.0,
+      "campaigns": 0,
+      "active": false,
+      "origin": "旧33保存会計の合算"
+    },
+    {
+      "session": "2026-09-29_Night",
+      "profit": 278.0,
+      "loss": 0.0,
+      "net": 278.0,
+      "fees": 22.0,
+      "campaigns": 1,
+      "active": true,
+      "origin": "旧33保存会計の合算"
+    },
+    {
+      "session": "2026-09-30_Day",
+      "profit": 0.0,
+      "loss": 0.0,
+      "net": 0.0,
+      "fees": 0.0,
+      "campaigns": 0,
+      "active": false,
+      "origin": "旧33保存会計の合算"
+    },
+    {
+      "session": "2026-09-30_Night",
+      "profit": 178.0,
+      "loss": 0.0,
+      "net": 178.0,
+      "fees": 22.0,
+      "campaigns": 1,
+      "active": true,
+      "origin": "旧33保存会計の合算"
+    },
+    {
+      "session": "2026-10-01_Day",
+      "profit": 0.0,
+      "loss": 0.0,
+      "net": 0.0,
+      "fees": 0.0,
+      "campaigns": 0,
+      "active": false,
+      "origin": "旧33保存会計の合算"
+    },
+    {
+      "session": "2026-10-01_Night",
+      "profit": 178.0,
+      "loss": 0.0,
+      "net": 178.0,
+      "fees": 22.0,
+      "campaigns": 1,
+      "active": true,
+      "origin": "旧33保存会計の合算"
+    },
+    {
+      "session": "2026-10-02_Day",
+      "profit": 178.0,
+      "loss": 0.0,
+      "net": 178.0,
+      "fees": 22.0,
+      "campaigns": 1,
+      "active": true,
+      "origin": "旧33保存会計の合算"
+    },
+    {
+      "session": "2026-10-02_Night",
+      "profit": 596.0,
+      "loss": 0.0,
+      "net": 596.0,
+      "fees": 104.0,
+      "campaigns": 2,
+      "active": true,
+      "origin": "旧33保存会計の合算"
+    },
+    {
+      "session": "2026-10-05_Day",
+      "profit": 178.0,
+      "loss": 0.0,
+      "net": 178.0,
+      "fees": 22.0,
+      "campaigns": 1,
+      "active": true,
+      "origin": "旧33保存会計の合算"
+    },
+    {
+      "session": "2026-10-05_Night",
+      "profit": 918.0,
+      "loss": 0.0,
+      "net": 918.0,
+      "fees": 82.0,
+      "campaigns": 1,
+      "active": true,
+      "origin": "旧33保存会計の合算"
+    },
+    {
+      "session": "2026-10-06_Day",
+      "profit": 178.0,
+      "loss": 0.0,
+      "net": 178.0,
+      "fees": 22.0,
+      "campaigns": 1,
+      "active": true,
+      "origin": "旧33保存会計の合算"
+    },
+    {
+      "session": "2026-10-06_Night",
+      "profit": 1452.0,
+      "loss": 0.0,
+      "net": 1452.0,
+      "fees": 148.0,
+      "campaigns": 2,
+      "active": true,
+      "origin": "旧33保存会計の合算"
+    },
+    {
+      "session": "2026-10-07_Day",
+      "profit": 178.0,
+      "loss": 0.0,
+      "net": 178.0,
+      "fees": 22.0,
+      "campaigns": 1,
+      "active": true,
+      "origin": "旧33保存会計の合算"
+    },
+    {
+      "session": "2026-10-07_Night",
+      "profit": 356.0,
+      "loss": 0.0,
+      "net": 356.0,
+      "fees": 44.0,
+      "campaigns": 1,
+      "active": true,
+      "origin": "旧33保存会計の合算"
+    },
+    {
+      "session": "2026-10-08_Day",
+      "profit": 156.0,
+      "loss": 0.0,
+      "net": 156.0,
+      "fees": 44.0,
+      "campaigns": 1,
+      "active": true,
+      "origin": "旧33保存会計の合算"
+    },
+    {
+      "session": "2026-10-08_Night",
+      "profit": 1096.0,
+      "loss": 0.0,
+      "net": 1096.0,
+      "fees": 104.0,
+      "campaigns": 2,
+      "active": true,
+      "origin": "旧33保存会計の合算"
+    },
+    {
+      "session": "2026-10-09_Day",
+      "profit": 0.0,
+      "loss": 0.0,
+      "net": 0.0,
+      "fees": 0.0,
+      "campaigns": 0,
+      "active": false,
+      "origin": "旧33保存会計の合算"
+    },
+    {
+      "session": "2026-10-09_Night",
+      "profit": 0.0,
+      "loss": 0.0,
+      "net": 0.0,
+      "fees": 0.0,
+      "campaigns": 0,
+      "active": false,
+      "origin": "旧33保存会計の合算"
+    },
+    {
+      "session": "2026-10-12_Day",
+      "profit": 1012.0,
+      "loss": 0.0,
+      "net": 1012.0,
+      "fees": 188.0,
+      "campaigns": 2,
+      "active": true,
+      "origin": "旧33保存会計の合算"
+    },
+    {
+      "session": "2026-10-12_Night",
+      "profit": 0.0,
+      "loss": 0.0,
+      "net": 0.0,
+      "fees": 0.0,
+      "campaigns": 0,
+      "active": false,
+      "origin": "旧33保存会計の合算"
+    },
+    {
+      "session": "2026-10-13_Day",
+      "profit": 178.0,
+      "loss": 0.0,
+      "net": 178.0,
+      "fees": 22.0,
+      "campaigns": 1,
+      "active": true,
+      "origin": "旧33保存会計の合算"
+    },
+    {
+      "session": "2026-10-13_Night",
+      "profit": 918.0,
+      "loss": 0.0,
+      "net": 918.0,
+      "fees": 82,
+      "campaigns": 1,
+      "active": true,
+      "origin": "新7会計の合算"
+    },
+    {
+      "session": "2026-10-14_Day",
+      "profit": 0.0,
+      "loss": 0.0,
+      "net": 0.0,
+      "fees": 0,
+      "campaigns": 0,
+      "active": false,
+      "origin": "新7会計の合算"
+    },
+    {
+      "session": "2026-10-14_Night",
+      "profit": 796.0,
+      "loss": 0.0,
+      "net": 796.0,
+      "fees": 104,
+      "campaigns": 2,
+      "active": true,
+      "origin": "新7会計の合算"
+    },
+    {
+      "session": "2026-10-15_Day",
+      "profit": 0.0,
+      "loss": 0.0,
+      "net": 0.0,
+      "fees": 0,
+      "campaigns": 0,
+      "active": false,
+      "origin": "新7会計の合算"
+    },
+    {
+      "session": "2026-10-15_Night",
+      "profit": 178.0,
+      "loss": 0.0,
+      "net": 178.0,
+      "fees": 22,
+      "campaigns": 1,
+      "active": true,
+      "origin": "新7会計の合算"
+    },
+    {
+      "session": "2026-10-16_Day",
+      "profit": 0.0,
+      "loss": 0.0,
+      "net": 0.0,
+      "fees": 0,
+      "campaigns": 0,
+      "active": false,
+      "origin": "新7会計の合算"
+    },
+    {
+      "session": "2026-10-16_Night",
+      "profit": 0.0,
+      "loss": 822.0,
+      "net": -822.0,
+      "fees": 22,
+      "campaigns": 1,
+      "active": true,
+      "origin": "新7会計の合算"
+    }
+  ],
+  "metrics": {
+    "全40": {
+      "sessions": 40,
+      "black": 26,
+      "red": 1,
+      "inactive": 13,
+      "net": 14882.0,
+      "profit": 15704.0,
+      "loss": 822.0,
+      "fees": 1718.0,
+      "median": 178.0,
+      "mean": 372.05,
+      "worst": -822.0,
+      "mean_positive": 604.0,
+      "top3_removed": 9204.0
+    },
+    "旧33": {
+      "sessions": 33,
+      "black": 23,
+      "red": 0,
+      "inactive": 10,
+      "net": 13812.0,
+      "profit": 13812.0,
+      "loss": 0.0,
+      "fees": 1488.0,
+      "median": 178.0,
+      "mean": 418.54545454545456,
+      "worst": 0.0,
+      "mean_positive": 600.5217391304348,
+      "top3_removed": 8134.0
+    },
+    "追加7": {
+      "sessions": 7,
+      "black": 3,
+      "red": 1,
+      "inactive": 3,
+      "net": 1070.0,
+      "profit": 1892.0,
+      "loss": 822.0,
+      "fees": 230,
+      "median": 0.0,
+      "mean": 152.85714285714286,
+      "worst": -822.0,
+      "mean_positive": 630.6666666666666,
+      "top3_removed": -822.0
+    }
+  },
+  "new_financial_replay": 0,
+  "new_independent_evidence": false,
+  "raw_reads": 0,
+  "flat_basis": "各口座の新14終端直接検査と旧66の既存finish保証へ委譲。旧終端枚数nullを0へ補完しない。",
+  "limitation": "独立二口座を同時に動かした場合の場末収支の算術合算。共通の資金上限・共同場内停止・保有中の合成MTM/DDは検証していない。別銘柄だから分散されたとも主張しない。"
+}

@@ -1,0 +1,64 @@
+{
+  "results": [
+    {
+      "path": "work/tranche139_20261022/results/結果.json",
+      "sha256": "344e289e065b99866389e337d3bb7f90e78aa2eeff25e7dad9d897beb0d48e84"
+    },
+    {
+      "path": "work/tranche139_20261022/extra_results/結果.json",
+      "sha256": "a472667ac9f56c5ae54c62d2901478a49c35f4dbe770825c3da3af91f17dba28"
+    },
+    {
+      "path": "work/tranche139_20261022/early_results/結果.json",
+      "sha256": "ebae5b17532c9c9085e510bf28d740c0349b1c7790864245638c0f5ea11219b9"
+    },
+    {
+      "path": "work/tranche139_20261022/recycle_results/結果.json",
+      "sha256": "a97953cf0e8e5ed7666a9607c5511057346b74539b8f98f21ad38105eda748ff"
+    },
+    {
+      "path": "work/tranche139_20261022/protect_results/結果.json",
+      "sha256": "730c427268c11e3ee9d37fe17a304830a96e826db569c680dc9877681426b7f6"
+    },
+    {
+      "path": "work/tranche139_20261022/guard_results/結果.json",
+      "sha256": "8099841c316e08fe3792fef8f85d063a805cb39deab4d531e9f0ea27cbcaac74"
+    }
+  ],
+  "audits": [
+    {
+      "path": "work/tranche139_20261022/金融独立監査.json",
+      "sha256": "412bf2e22297619ee12629e20c5d6c7af54de5749bfe91bdbcceab94d19675ac"
+    },
+    {
+      "path": "work/tranche139_20261022/金融独立監査_追加.json",
+      "sha256": "f98a91d75056e8d1b4aa64f943b38ac38280bb8e7119386c817fc435a990c9cd"
+    },
+    {
+      "path": "work/tranche139_20261022/金融独立監査_早期_v2.json",
+      "sha256": "dc5ec8d69395fc2a59d6ffb270b0b4a9f9379d65086a406c8af78e8c2a7821ed"
+    },
+    {
+      "path": "work/tranche139_20261022/recycle_financial_audit139.json",
+      "sha256": "1dfa913309e2885bf54116dac96a0c30c12105960d193dd28ae7242abd378c6f"
+    },
+    {
+      "path": "work/tranche139_20261022/金融独立監査_追撃保護.json",
+      "sha256": "6820ab9b9a40d091b4c20441fed79d3a7c613ceebeeaf666767c495fd7e2295b"
+    },
+    {
+      "path": "work/tranche139_20261022/guard_financial_audit139.json",
+      "sha256": "373902388e91148279acddcad2705b61444508ca56d763a644753023033b969e"
+    }
+  ],
+  "report": {
+    "path": "アルゴリズム調査/00139_複数追撃と早期参加の全体検証/段階投入と早期参加の全セッション損益.html",
+    "sha256": "2946dd006e068ab3e1b09217728f1d593b48f6749dcd3c25aacd7d7cc7daec27"
+  },
+  "account_count": 13724,
+  "conditions": 146,
+  "sessions": 47,
+  "API": 0,
+  "real_orders": 0,
+  "limit": "既知探索。ラージ気配代理、元通知と新造早期入口の数量出口層。実mini全期間とGo本体の全面再現・未知期間は未確認。"
+}

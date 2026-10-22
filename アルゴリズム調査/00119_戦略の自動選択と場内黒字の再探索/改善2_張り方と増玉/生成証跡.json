@@ -1,0 +1,25 @@
+{
+  "passed": true,
+  "fixture": false,
+  "result_path": "work/stability119_20261017/v3/measurement/小試行と順行追加の全四十場.json",
+  "result_sha256": "0e027e11a03e4f6a8c0bf9f1166e9f7487505ab91be5ea12b0d76eb9a88b0ca5",
+  "report_sha256": "f6e97deea09b9a5578f8bcea6886c3e7cfef05936de2bbbb2774fbdfc07b5e65",
+  "artifacts": {
+    "小枚数と順行増加の比較と全セッション損益.html": "ad980f5c9e4b93ca416fa145105bbbf16bb4511cadbc0625ec2a343782c65ca7",
+    "data.json": "9c57dbb626b27ce8f498df48e0048172499df3072b1de4d779b757a1a595da49",
+    "README.md": "f67739bdc7d2442528c0e15e373efd508bfcba5dfb9d5bbdf55c5af84c9f3197"
+  },
+  "policies": 36,
+  "common_ranking": 36,
+  "baseline_controls": 0,
+  "sessions": 40,
+  "symbol_sessions": 2880,
+  "main_ids": [
+    "FAIL20_SCOUT_T05",
+    "D20_SCOUT_T05",
+    "CENTER20_SCOUT_T05"
+  ],
+  "market_reads": 0,
+  "financial_replay": 0,
+  "API": 0
+}

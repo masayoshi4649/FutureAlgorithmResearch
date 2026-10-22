@@ -1,0 +1,25 @@
+{
+  "passed": true,
+  "fixture": false,
+  "result_path": "work/stability119_20261017/v4/measurement/広い進行条件の順逆比較と全四十場.json",
+  "result_sha256": "9da66161eeab6557dfca24070dcb32c38d6a23311dc1eb46d68465c4003c406a",
+  "report_sha256": "1dd63130c598644727e73d48ecb65591e33f5555d07ac665d52a05accfd5f5ff",
+  "artifacts": {
+    "順逆売買と時間回避の比較と全セッション損益.html": "5de2f2832d39e7bf605dc6283f63c8e5047ee63b0a94d132f859ce4c6cfba76f",
+    "data.json": "273b242a8e0dfd93155df8770872b473e2b733fa64a8f384e270c9834af9a9f5",
+    "README.md": "14b150dc4c18a0fa450ae3d707eeafa977d003cc67cf567422ae2bfeb6004384"
+  },
+  "policies": 48,
+  "common_ranking": 48,
+  "baseline_controls": 0,
+  "sessions": 40,
+  "symbol_sessions": 3840,
+  "main_ids": [
+    "COMMON20_DIR_X5_P3_T0",
+    "LAG20_REV_X5_P3_T0",
+    "OPEN20_DIR_X4_P0_T1"
+  ],
+  "market_reads": 0,
+  "financial_replay": 0,
+  "API": 0
+}

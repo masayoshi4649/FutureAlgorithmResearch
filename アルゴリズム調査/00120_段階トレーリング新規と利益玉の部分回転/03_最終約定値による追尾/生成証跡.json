@@ -1,0 +1,23 @@
+{
+  "passed": true,
+  "fixture": false,
+  "result_path": "work/stability120_20261017/recovery_d/measurement/約定値基準の利益条件付き段階追加と全四十場.json",
+  "result_sha256": "665cc66e7f5f1788393082a80b2f8dc19468f9b5987f49025f4c813468166c59",
+  "report_sha256": "77701beed758ac00f920d90d3fcee26194f1eefa98abe8945259fd7afa5c2153",
+  "artifacts": {
+    "Last基準の利益条件付き追加の説明と全セッション損益.html": "1b3f4581df90e28e27866b7bb90a6554b4a7586fe9908b5afda662dd7bb453f7",
+    "data.json": "d905487c600c3827f88dc49582123f546c26713728479f5ad2c9b2a3436310fb",
+    "README.md": "e03f0dcc91461687cddce2b6dd6b15e244a759bf5aac23877ac45a781bae3871"
+  },
+  "policies": 24,
+  "sessions": 40,
+  "symbol_sessions": 1920,
+  "main_ids": [
+    "ONE_LAST_S3_T3",
+    "CREDIT_LAST_S3_T1",
+    "LIMIT_LAST_S3_T1"
+  ],
+  "market_reads": 0,
+  "financial_replay": 0,
+  "API": 0
+}

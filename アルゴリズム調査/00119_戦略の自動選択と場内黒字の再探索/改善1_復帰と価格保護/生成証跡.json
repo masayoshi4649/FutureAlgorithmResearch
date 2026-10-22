@@ -1,0 +1,25 @@
+{
+  "passed": true,
+  "fixture": false,
+  "result_path": "work/stability119_20261017/v2/measurement/復帰確認と執行保護の全四十場.json",
+  "result_sha256": "7c56485d4b168928bd432cdb9644037ad2c4d733c19b3fc0168786a928b0586f",
+  "report_sha256": "13e729ca084b166832479b90dd13376b0d880f73659fa36b88d6d44b358d16f1",
+  "artifacts": {
+    "安定黒字の再探索と全セッション損益.html": "a73abc49956706a8fb93f716fd4cfe9bae66f71e7af4c144ada58f754f20f27d",
+    "data.json": "164da124bd8ae8f6f55047b73b46a90bd500a8d425499d8dc36ac53ccbe318c5",
+    "README.md": "132f68b3099cd3c562630fa408c8c86b22b306908dd727df9c61045f89afd991"
+  },
+  "policies": 36,
+  "common_ranking": 32,
+  "baseline_controls": 4,
+  "sessions": 40,
+  "symbol_sessions": 2880,
+  "main_ids": [
+    "D_L20_X5_P0",
+    "C_L20_X5_P0",
+    "A_L20_X4_P0"
+  ],
+  "market_reads": 0,
+  "financial_replay": 0,
+  "API": 0
+}

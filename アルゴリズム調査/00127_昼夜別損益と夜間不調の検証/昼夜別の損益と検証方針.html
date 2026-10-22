@@ -1,0 +1,21 @@
+<!doctype html><html lang="ja"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>昼夜別の損益と検証方針</title><style>
+:root{color-scheme:dark;font-family:"Yu Gothic UI",Meiryo,sans-serif;background:#10151e;color:#e5eaf2}*{box-sizing:border-box}body{max-width:1150px;margin:auto;padding:30px 22px 50px}h1{font-size:24px}h2{font-size:18px;margin-top:28px}p{line-height:1.8;font-size:14px;color:#c3cede}strong{color:#eef4ff}.scroll{overflow:auto;border:1px solid #38485d;border-radius:7px;margin:16px 0}table{width:100%;border-collapse:collapse;font-size:14px;white-space:nowrap;font-variant-numeric:tabular-nums}th,td{padding:13px 12px;border-bottom:1px solid #2c394d;text-align:right}th{background:#1d2b40}td:first-child,th:first-child{text-align:left}tbody tr:nth-child(even){background:#172133}.positive{color:#6ee0b2}.negative{color:#ff9eaa}a{color:#9ac7ff}.note{font-size:12px;color:#a9b8cc}
+</style>
+<!--
+[コンポーネント概要]
+#summary は同じ保存売買を昼夜に分けた手数料後会計です。
+#direction は日中の上昇・下落別成績です。分類は採点専用で入口には使いません。
+表示時に売買判断や条件選択はせず、確定した再集計だけを表示します。
+-->
+<h1>日中は黒字、夜間は赤字</h1>
+<p>GU_Q・全43場。提示された立会手数料を新規・返済の双方から差し引いた収支です。実保有はTOPIXミニ5枚・日経マイクロ10枚。条件変更・売買再生なし。</p>
+<div class="scroll"><table id="summary"><thead><tr><th>商品・数量</th><th>区分</th><th>累計収支</th><th>1場平均</th><th>黒字／赤字場</th><th>中央値</th><th>平均黒字÷平均赤字</th></tr></thead><tbody><tr><td>TOPIXミニ5枚</td><td>日中 22場</td><td class="positive">+445,287</td><td>+20,240</td><td>13／9</td><td>+10,415</td><td>1.63倍</td></tr><tr><td>TOPIXミニ5枚</td><td>夜間 21場</td><td class="negative">-290,701</td><td>-13,843</td><td>10／11</td><td>-16,422</td><td>0.55倍</td></tr><tr><td>日経マイクロ10枚</td><td>日中 22場</td><td class="positive">+162,180</td><td>+7,372</td><td>14／8</td><td>+5,200</td><td>1.13倍</td></tr><tr><td>日経マイクロ10枚</td><td>夜間 21場</td><td class="negative">-138,000</td><td>-6,571</td><td>10／11</td><td>-4,520</td><td>0.58倍</td></tr></tbody></table></div>
+<p class="note">金額は円。「平均黒字÷平均赤字」は、黒字セッションの平均収支を赤字セッションの平均損失額で割った値です。</p>
+<p><strong>昼夜を分けて研究する判断は妥当です。</strong> 夜間は手数料前でもTOPIX −231,000円・日経 −107,200円。米国寄付き前後の静観を外したG_Qでは、夜間の手数料後損失が −394,960円・−148,060円へ増えます。日中のGU_QとG_Qは同じ売買・同じ成績です。</p>
+<h2>日中にも残る弱点</h2>
+<div class="scroll"><table id="direction"><thead><tr><th>商品・数量</th><th>上昇した日中</th><th>下落した日中</th></tr></thead><tbody><tr><td>TOPIXミニ5枚</td><td>+25,720（12場）</td><td>+419,567（10場）</td></tr><tr><td>日経マイクロ10枚</td><td>-1,300（11場）</td><td>+163,480（11場）</td></tr></tbody></table></div>
+<p>日中の黒字上位3場を除いても、TOPIX ＋138,125円・日経 ＋5,800円。ただし利益は下落日に偏ります。TOPIXの日中後半11場は5勝6敗・中央値 −2,334円でした。</p>
+<p><strong>次の検証は「日中の既存型」と「夜間の別設定・別手法」を分離します。</strong> 夜間用の有効な別手法は今回まだ検証していません。昼夜の区分は既知データを見て選んだため、今後はこの区分を固定して追加場で確認します。</p>
+<p class="note">上昇・下落は旧観測窓の最初と最後のLastによる事後分類。取引の方向選択に将来情報を使用しません。ラージBBO代理の成績です。</p>
+<p><a href="README.md">出典と読む順序</a> ／ <a href="../00126_E01の損失抑制と方向偏りの再検証/E01改修のセッション損益.html">元の全43セッション損益（手数料なし）</a></p></html>

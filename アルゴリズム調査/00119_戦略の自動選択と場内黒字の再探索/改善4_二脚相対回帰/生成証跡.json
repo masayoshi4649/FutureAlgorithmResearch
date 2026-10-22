@@ -1,0 +1,26 @@
+{
+  "passed": true,
+  "fixture": false,
+  "result_path": "work/stability119_20261017/v5/measurement/二脚相対回帰四条件と全四十場.json",
+  "result_sha256": "f4147e05de741ec1e3681237209d7ea9892170adbabe77ac5225cb9431bd22c9",
+  "report_sha256": "961c95e93fcd3c2b15cccc979ce204056308883fd65e09827cede7637676d15e",
+  "artifacts": {
+    "二脚相対回帰の比較と全セッション損益.html": "39939b4b03e2d56cfc478f446259e78505adc925a75bafd31a235de619322c27",
+    "data.json": "df36e9556b401e1240582491a00c7bf798b09302fc9e99894b8d02028170e21e",
+    "README.md": "fd1626a6f0c561908218bc4da7783b934da3a011bb34882b52c2b5ae70bc15a2"
+  },
+  "policies": 4,
+  "common_ranking": 4,
+  "baseline_controls": 0,
+  "sessions": 40,
+  "pair_sessions": 160,
+  "main_ids": [
+    "OLS_MR_L60",
+    "RATIO_MR_L30",
+    "OLS_MR_L30",
+    "RATIO_MR_L60"
+  ],
+  "market_reads": 0,
+  "financial_replay": 0,
+  "API": 0
+}

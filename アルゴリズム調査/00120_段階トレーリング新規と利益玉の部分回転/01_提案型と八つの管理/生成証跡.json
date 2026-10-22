@@ -1,0 +1,23 @@
+{
+  "passed": true,
+  "fixture": false,
+  "result_path": "work/stability120_20261017/recovery_b/measurement/段階トレーリングと利益玉部分返済の全四十場.json",
+  "result_sha256": "c99743d739c9d24a08088f1b5ebdc78af8285b19e9704773965ea05f13890ce1",
+  "report_sha256": "f67434d162c467106feb707ecd0ef733b5b55b3dd00328fef1b9e24305354a28",
+  "artifacts": {
+    "段階トレーリングと利益玉返済の説明と全セッション損益.html": "4b436b1baf30018c20cadf8ceaad499e52f22d00af9b2fdbebf9d144844949dd",
+    "data.json": "f1dc518ea08350735cf9b78452df97dbc55f96d96d8695a398b6d7a24343b0f1",
+    "README.md": "4c3f8d16618377fb655a3616616858f4e54f5c9ea56d139fc528b459224897d4"
+  },
+  "policies": 48,
+  "sessions": 40,
+  "symbol_sessions": 3840,
+  "main_ids": [
+    "ONCE_S1_T1",
+    "FIXED_S3_T3",
+    "HEDGE_S3_T3"
+  ],
+  "market_reads": 0,
+  "financial_replay": 0,
+  "API": 0
+}

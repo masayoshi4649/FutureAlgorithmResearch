@@ -1,0 +1,30 @@
+{
+  "passed": true,
+  "fixture": false,
+  "result_path": "work/stability119_20261017/v7/measurement/相対的な強さの継続と残差追尾の全四十場.json",
+  "result_sha256": "6920051e4b9217284cf89f9afb4652f9ac7ec560a17b25928a66135f876fcb14",
+  "report_sha256": "e1706be65fe4dce5c100433849c411b206369501b1b6c29e3b190f4c474e1a3b",
+  "artifacts": {
+    "相対的な強さの継続と残差追尾の全セッション損益.html": "c112250b095a759071f5b975e2e6dc84a7d4595f920f08687cd108829de4cafb",
+    "data.json": "44bdfe9f7345609ec5b55b69c649c5371faff4a1b4cad05af7c4c02f61401bdf",
+    "README.md": "5d9d10f43c46c9bca27ca012b7f8934600834327e74d451069d59770fe06cd5d"
+  },
+  "policies": 8,
+  "common_ranking": 8,
+  "baseline_controls": 0,
+  "sessions": 40,
+  "pair_sessions": 320,
+  "main_ids": [
+    "RATIO_MOM_L60_X0",
+    "RATIO_MOM_L30_X0",
+    "OLS_MOM_L60_X0",
+    "OLS_MOM_L30_X0",
+    "OLS_MOM_L30_X1",
+    "RATIO_MOM_L30_X1",
+    "OLS_MOM_L60_X1",
+    "RATIO_MOM_L60_X1"
+  ],
+  "market_reads": 0,
+  "financial_replay": 0,
+  "API": 0
+}

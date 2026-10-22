@@ -1,0 +1,25 @@
+{
+  "passed": true,
+  "fixture": false,
+  "result_path": "work/stability119_20261017/v6_resume/measurement/少額E01固定二設定の追加七場と全四十場.json",
+  "result_sha256": "d0f1f86cb955a2da7016f0a33f6ff097eb64edb14068e8d0a0b4278aebca963b",
+  "report_sha256": "7547e572674c34fa3d070fb5395feb3a47230b63e06e530465285ae87028ce78",
+  "artifacts": {
+    "少額E01固定設定と追加七場を含む全セッション損益.html": "fa17908b06bb9aefae1e83ff20b25d42f89250bb6c01972626b5963b7e22b6b4",
+    "data.json": "e245fb86bdf6acdf34530d9c920812b995f8f6dae77d7d93808b0b5f605c65ea",
+    "README.md": "0f7c98f60b17a1b47677d983425b38beccc81586414918e2b4a8c58fa03c1ca8"
+  },
+  "policies": 1,
+  "common_ranking": 1,
+  "baseline_controls": 0,
+  "sessions": 40,
+  "account_rows": 80,
+  "reused_account_rows": 66,
+  "new_accounts": 14,
+  "main_ids": [
+    "E01_006_FIXED"
+  ],
+  "market_reads": 0,
+  "financial_replay": 0,
+  "API": 0
+}

@@ -1,0 +1,23 @@
+{
+  "passed": true,
+  "fixture": false,
+  "result_path": "work/stability120_20261017/recovery_c/measurement/利益条件付き段階追加と全四十場.json",
+  "result_sha256": "1071dc7f296d8ffbf3483e26b863d79cde48b82bcca986a7b5810c8e18f9ee9f",
+  "report_sha256": "213ec012413f012b7e1b69b5cf0cfa94cd6ef84d17945affd0a2576d16363874",
+  "artifacts": {
+    "利益条件付き段階追加の説明と全セッション損益.html": "23cd4d02692a825e2b0d070d9c7b7fe4b917f88bfef486c868da08f1033b4954",
+    "data.json": "a39bec61878a50ae838e839c10ecc7cc58a8ece8abcea285d265593088c44124",
+    "README.md": "e832a9a234c7adfc23e09eb55b4d3c8367b50cb6989b47f06a2e1b44ef77b677"
+  },
+  "policies": 24,
+  "sessions": 40,
+  "symbol_sessions": 1920,
+  "main_ids": [
+    "ONE_S3_T3",
+    "LIMIT_S3_T3",
+    "COST_S3_T3"
+  ],
+  "market_reads": 0,
+  "financial_replay": 0,
+  "API": 0
+}

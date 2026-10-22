@@ -1,0 +1,31 @@
+{
+  "passed": true,
+  "fixture": false,
+  "result_path": "work/stability119_20261017/v9/measurement/相対復帰の初期気配差込み予算と全四十場.json",
+  "result_sha256": "80bab7ec7f540e09bdfd31c9aa59318bcb448c24635086239dc98e4c3b47d814",
+  "report_sha256": "c80acc9c3b2871dbd594732fdb4f0eb436741ca1954ec62c322290ff92dac17b",
+  "artifacts": {
+    "相対復帰の初期気配差込み予算と残差追尾の全セッション損益.html": "f1a3d77e00ddb105729a98076da85b994ca5966ca6e4ae290977a831b54e2d27",
+    "data.json": "fe22676ae0ae4ea8f6a487103ef8c4bf896bb0b2916d2ec4baaf9367a2e54747",
+    "README.md": "065fa602ae6452774e104bf5eb4de732ba1196364bcf83b2a99a945bb162b7bc"
+  },
+  "policies": 8,
+  "common_ranking": 8,
+  "baseline_controls": 8,
+  "reused_baseline_rows": 320,
+  "sessions": 40,
+  "pair_sessions": 320,
+  "main_ids": [
+    "OLS_MR_CONF_L60_X0_CB",
+    "RATIO_MR_CONF_L60_X0_CB",
+    "RATIO_MR_CONF_L60_X1_CB",
+    "RATIO_MR_CONF_L30_X0_CB",
+    "OLS_MR_CONF_L30_X0_CB",
+    "OLS_MR_CONF_L60_X1_CB",
+    "OLS_MR_CONF_L30_X1_CB",
+    "RATIO_MR_CONF_L30_X1_CB"
+  ],
+  "market_reads": 0,
+  "financial_replay": 0,
+  "API": 0
+}

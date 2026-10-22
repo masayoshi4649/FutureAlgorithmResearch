@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>10月22日デイのTOPIX損益</title>
+<style>:root{color-scheme:dark;font-family:"Yu Gothic UI",Meiryo,sans-serif;background:#0c121d;color:#e5edf7}body{max-width:1000px;margin:auto;padding:28px 20px;line-height:1.8}h1{font-size:1.8rem}table{width:100%;border-collapse:collapse;margin:20px 0}th,td{padding:10px;border-bottom:1px solid #34445d;text-align:right;white-space:nowrap}th:first-child,td:first-child{text-align:left}th{background:#182438}strong{color:#8ed7ef}a{color:#96cfff}.scroll{overflow-x:auto}.note{color:#bdc9da;font-size:.92rem}</style></head><body>
+<!--
+[コンポーネント概要]
+#summaryは独立会計検算後の一セッションの利益・損失・収支を示します。
+#executionsは全約定の日本時刻・方向・枚数・価格・返済粗損益・手数料を表示します。
+.scrollは狭い画面で表を横スクロールして読む領域です。
+-->
+<h1>10月22日デイのTOPIX損益</h1><p>T06 ／ TOPIXミニ片方向上限10枚</p>
+<div class="scroll"><table id="summary"><thead><tr><th>セッション</th><th>利益・手数料後</th><th>損失・手数料後</th><th>収支</th></tr></thead><tbody><tr><td>2026-10-22 デイ</td><td>+77,583円</td><td>-30,418円</td><td><strong>+47,165円</strong></td></tr></tbody></table></div>
+<p>手数料前収支は+48,000円、手数料は835円。片道41.8円×枚数を注文ごとに円未満切捨て。</p><p>新規2回、累計新規10枚。実際の最大同時保有は買い0枚・売り5枚。主担当+47,165円、補完0円。全玉場内返済済み。</p>
+<p class="note">T06（主担当DV07＋未参加時の一回補完）。TOPIXミニ片方向上限10枚、主担当5枚・補完最大5枚。判定にはTOPIX・日経のラージ板を使用。各時点までの情報で再生し、追加データで条件を変更していません。 利益・損失は親取引単位で集計しています。</p>
+<h2>売買の明細</h2><div class="scroll"><table id="executions"><thead><tr><th>日本時刻</th><th>売買</th><th>枚数</th><th>約定価格</th><th>返済損益・手数料前</th><th>注文手数料</th></tr></thead><tbody><tr><td>10:04:46</td><td>新規売り</td><td>5</td><td>4,054.50</td><td>—</td><td>209円</td></tr><tr><td>10:16:05</td><td>返済買い</td><td>5</td><td>4,060.50</td><td>-30,000円</td><td>209円</td></tr><tr><td>10:38:22</td><td>新規売り</td><td>5</td><td>4,051.00</td><td>—</td><td>209円</td></tr><tr><td>11:24:01</td><td>返済買い</td><td>2</td><td>4,042.00</td><td>+18,000円</td><td>83円</td></tr><tr><td>12:41:07</td><td>返済買い</td><td>3</td><td>4,031.00</td><td>+60,000円</td><td>125円</td></tr></tbody></table></div>
+<p class="note">従来研究と同じラージの次正常原行気配による代理約定です。実アプリのミニ板での約定損益や通信遅延を再現した結果ではありません。</p><p><a href="README.md">条件と再現資料</a> ／ <a href="損益.json">集計データ</a></p></body></html>

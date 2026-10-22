@@ -1,0 +1,23 @@
+{
+  "passed": true,
+  "fixture": false,
+  "result_path": "work/stability120_20261017/recovery_e1/measurement/カバーを維持する組全体追尾と全四十場.json",
+  "result_sha256": "63766637c69f8572465b1ec3cc3c735e8eef234c1657b3ca0542bd3b6fa9f2ba",
+  "report_sha256": "653a67a8bcb7d2ae1d54f1b999e593b351735f9369ad6edd00361dcf46cc0d66",
+  "artifacts": {
+    "上下対称の利益回転とカバー保持の全セッション損益.html": "19f44cd4ccc2e650b7ccc6ac86e5b21a907bb9377406cc098fddd979823499b8",
+    "data.json": "525e4182c4d14d4aec41a2a2c340aabe30b52c9bfe6abce29d30abeb43864308",
+    "README.md": "7cd6e9c67b7aff114aa02634b446b1a9d218dd6094ab94863668f93144070e74"
+  },
+  "policies": 18,
+  "sessions": 40,
+  "symbol_sessions": 1440,
+  "main_ids": [
+    "RESCUE_S3_T1",
+    "KEEP_S3_T1",
+    "ROTATE_S3_T3"
+  ],
+  "market_reads": 0,
+  "financial_replay": 0,
+  "API": 0
+}

@@ -1,0 +1,28 @@
+{
+  "全合格": true,
+  "合成fixture": false,
+  "掲載候補": 4,
+  "候補ID": [
+    "S119_H020_distinct_family_consensus_X0_E0_G1",
+    "COMMON_L20_X0_E0_G1",
+    "S119_H060_single_X0_E0_G1",
+    "PORT"
+  ],
+  "全セッション": 40,
+  "商品場行": 320,
+  "元全条件商品場行": 20160,
+  "PORT商品場行": 80,
+  "元結果SHA256": "13bdd30ecf5ad8dd12ce4d8f0aec96a025e7bd1bb36e33fa8b30bc02de0d2c15",
+  "生成物SHA256": {
+    "戦略の自動選択と全セッション損益.html": "6027f98b0d40271d4425e0eb0889a87f9b284a7e41f9f409a000bd32ad0aea3b",
+    "公開会計.json": "53c0eb7158240f69fc6e5d5bad9cbf262502905cd8227622acec0bed182b246b",
+    "README.md": "0068aaf60f1ab3f2d96b117a491e325f55f9eae1f083056a629b7d9d0184ac74"
+  },
+  "report_source_SHA256": "53ad3eb0e99c9efbde46ad604b8ed17c28d54d7b6a06f49fa4508ed890ced9ee",
+  "選定規則": "選択6の先頭と自動選択先頭を商品別に合併しPORT追加。確認期による再選択なし。",
+  "市場読取": 0,
+  "金融再生": 0,
+  "原入力": 0,
+  "大型台帳": 0,
+  "API": 0
+}
