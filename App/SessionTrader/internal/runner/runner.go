@@ -32,8 +32,9 @@ type queuedSignal struct {
 type savedRuntime struct {
 	Version              int `json:"version"`
 	Algorithm, Signature string
-	Namespace            string `json:"namespace"`
-	LegacyDataDirectory  string `json:"legacy_data_directory,omitempty"`
+	Namespace            string          `json:"namespace"`
+	Methods              *config.Methods `json:"methods,omitempty"`
+	LegacyDataDirectory  string          `json:"legacy_data_directory,omitempty"`
 	Plan                 schedule.Plan
 	Contract             controller.Future
 	Portfolio            json.RawMessage
@@ -217,7 +218,12 @@ func Run(parent context.Context, cfg config.Config) error {
 				return fmt.Errorf("%s 復元: %w", ref, err)
 			}
 			if r.Saved.Version != 1 || r.Saved.Algorithm != algorithmVersion || r.Saved.Signature != cfg.Signature() {
-				return fmt.Errorf("%s 保存状態と戦略・設定が異なります。未返済を確認し、設定を戻すか別の保存先を指定してください", ref)
+				if err := resetChangedStrategy(r, cfg, raw); err != nil {
+					return err
+				}
+			}
+			if r.Saved.Methods != nil && *r.Saved.Methods != resolvedMethods(cfg) {
+				return fmt.Errorf("%s 保存した昼夜の手法と設定指紋が一致しません", ref)
 			}
 			if rawPortfolio := bytes.TrimSpace(r.Saved.Portfolio); len(rawPortfolio) > 0 && !bytes.Equal(rawPortfolio, []byte("null")) {
 				r.Portfolio, err = strategy.Restore(r.Saved.Portfolio)
@@ -494,6 +500,16 @@ func (a *app) activate(p *prepared) error {
 				return err
 			}
 			m.Saved.Plan = p.Plan
+			// 研究手法の候補生成は過去から進め、過去の新規は実注文・仮想実玉にしません。
+			if m.Portfolio.Research != nil {
+				for _, o := range p.Rows {
+					if o.Reference == ref {
+						if err := m.Portfolio.Advance(o); err != nil {
+							return err
+						}
+					}
+				}
+			}
 			m.Saved.Contract = contract
 			m.Saved.Queue = nil
 			m.Saved.IndexOffset = 0
@@ -646,8 +662,7 @@ func (a *app) processReference(ctx context.Context, e feedEvent, id int64) error
 		a.ignoreReference(code, "価格時計が逆行")
 		return nil
 	}
-	o, err := a.features.OnBoard(strategy.Board{Reference: code, Time: t, Received: seconds(e.At), Last: e.Board.CurrentPrice,
-		Bid: e.Board.Buy1.Price, Ask: e.Board.Sell1.Price, BidQuantity: e.Board.Buy1.Qty, AskQuantity: e.Board.Sell1.Qty})
+	o, err := a.features.OnBoard(referenceBoard(code, t, seconds(e.At), e.Board))
 	if err != nil {
 		return err
 	}
@@ -799,7 +814,11 @@ func (a *app) applyFills(m *marketRuntime) error {
 		return errors.New("未反映約定に対応する戦略状態がありません")
 	}
 	for _, f := range fills {
-		if err := m.Portfolio.OnFill(strategy.Fill{SignalID: f.IntentID, ExecutionID: f.ID, Quantity: f.Quantity, Price: f.Price, Time: seconds(f.At)}); err != nil {
+		closed := make([]strategy.LotTarget, 0, len(f.Closed))
+		for _, target := range f.Closed {
+			closed = append(closed, strategy.LotTarget{ID: target.HoldID, Quantity: target.Quantity})
+		}
+		if err := m.Portfolio.OnFill(strategy.Fill{SignalID: f.IntentID, ExecutionID: f.ID, Quantity: f.Quantity, Price: f.Price, Time: seconds(f.At), Fee: f.Fee, HoldID: f.HoldID, Closed: closed}); err != nil {
 			return err
 		}
 		m.Dirty = true
@@ -829,7 +848,7 @@ func (a *app) applyFills(m *marketRuntime) error {
 			}
 			expected[p.Owner+":"+side] += p.Quantity
 		}
-		for _, owner := range []string{"core", "extra"} {
+		for _, owner := range []string{"core", "extra", "addon", "episode"} {
 			for _, side := range []string{"buy", "sell"} {
 				if expected[owner+":"+side] != m.Manager.Quantity(owner, side) {
 					return fmt.Errorf("%s %s %s 戦略と約定台帳の枚数が異なります", m.Reference, owner, side)
@@ -837,7 +856,7 @@ func (a *app) applyFills(m *marketRuntime) error {
 			}
 		}
 		for _, h := range m.Manager.Positions() {
-			if h.Owner != "core" && h.Owner != "extra" {
+			if h.Owner != "core" && h.Owner != "extra" && h.Owner != "addon" && h.Owner != "episode" {
 				return errors.New("未知担当の所有玉があります")
 			}
 		}
@@ -852,6 +871,13 @@ func (a *app) applyFills(m *marketRuntime) error {
 //
 // 引数: m(*marketRuntime)。返り値: errorは保存失敗です。
 func (a *app) checkpoint(m *marketRuntime) error {
+	if m.Saved.Signature == a.cfg.Signature() {
+		methods := resolvedMethods(a.cfg)
+		if m.Saved.Methods != nil && *m.Saved.Methods != methods {
+			return fmt.Errorf("%s 保存した昼夜の手法と設定指紋が一致しません", m.Reference)
+		}
+		m.Saved.Methods = &methods
+	}
 	if m.Portfolio != nil {
 		data, err := m.Portfolio.Dump()
 		if err != nil {
@@ -897,7 +923,7 @@ func (a *app) dispatch(ctx context.Context, m *marketRuntime, now time.Time) err
 	item := m.Saved.Queue[0]
 	s := item.Signal
 	quiet := a.quiet(m, now)
-	if s.Action == "new" && (a.stopping || !now.Before(m.Saved.Plan.ForceClose) || quiet && s.Owner == "core" ||
+	if s.Action == "new" && (a.stopping || !now.Before(m.Saved.Plan.ForceClose) || quiet && quietOwner(m, s.Owner) ||
 		now.Sub(item.Created) > duration(a.cfg.Runtime.EntryOrderTimeoutSeconds)) {
 		if err := m.Portfolio.OnOrderRejected(s.ID); err != nil {
 			return err
@@ -954,6 +980,9 @@ func (a *app) dispatch(ctx context.Context, m *marketRuntime, now time.Time) err
 	intent := execution.Intent{ID: s.ID, Owner: s.Owner, Product: product, Evidence: evidence,
 		Session: m.Saved.Plan.ID, ContractSymbol: m.Saved.Contract.Symbol, Side: side, TradeType: s.Action, Reason: s.Reason,
 		Quantity: s.Quantity, Price: price, At: now, ExpiresAt: expiry}
+	for _, target := range s.Targets {
+		intent.ClosePositions = append(intent.ClosePositions, controller.ClosePosition{HoldID: target.ID, Quantity: target.Quantity})
+	}
 	_, sendErr := m.Manager.Submit(ctx, a.client, intent, a.view)
 	known := false
 	for _, o := range m.Manager.Orders() {
@@ -1013,7 +1042,7 @@ func (a *app) tick(ctx context.Context, now time.Time) error {
 		if terminal || quiet {
 			kept := m.Saved.Queue[:0]
 			for _, item := range m.Saved.Queue {
-				if item.Signal.Action == "new" && (terminal || item.Signal.Owner == "core") {
+				if item.Signal.Action == "new" && (terminal || quietOwner(m, item.Signal.Owner)) {
 					// 送信済みか不明な依頼をローカル取消してはいけません。
 					sent := false
 					for _, o := range m.Manager.Orders() {
@@ -1037,7 +1066,7 @@ func (a *app) tick(ctx context.Context, now time.Time) error {
 		cancel := terminal
 		if quiet {
 			for _, o := range m.Manager.Orders() {
-				if !o.Done && o.Owner == "core" && o.TradeType == "new" {
+				if !o.Done && quietOwner(m, o.Owner) && o.TradeType == "new" {
 					cancel = true
 				}
 			}
@@ -1055,7 +1084,11 @@ func (a *app) tick(ctx context.Context, now time.Time) error {
 		} else if a.staleBeyondGrace(now) {
 			signals = m.Portfolio.Flatten(seconds(now), "データ受信中断が猶予時間を超過")
 		} else if quiet {
-			signals = m.Portfolio.FlattenOwner("core", seconds(now), "米国現物開始の静観")
+			if m.Portfolio.Research != nil {
+				signals = m.Portfolio.Flatten(seconds(now), "米国現物開始の静観")
+			} else {
+				signals = m.Portfolio.FlattenOwner("core", seconds(now), "米国現物開始の静観")
+			}
 		}
 		if err := a.enqueue(m, signals, 0, now); err != nil {
 			return err

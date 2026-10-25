@@ -1,4 +1,4 @@
-// Package strategy は 00131 の日中・夜間担当と未参加補完を実約定から管理します。
+// Package strategy は00131の昼夜手法と00143の独立担当を実約定から管理します。
 package strategy
 
 import (
@@ -24,6 +24,7 @@ type Session struct {
 
 // Parameters は研究既定値を変更できる設定です。商品規格は含みません。
 type Parameters struct {
+	Method   string            `json:"method,omitempty" toml:"-"`
 	Features e01.FeatureConfig `json:"features" toml:"features"`
 	Day      DayParameters     `json:"day" toml:"day"`
 	Night    NightParameters   `json:"night" toml:"night"`
@@ -227,6 +228,35 @@ type Observation struct {
 	GateDirection                    int
 	DayMarket, LastMarket, MidMarket Market
 	LastHistory, MidHistory          History
+	Research                         ResearchFeatures
+}
+
+// ResearchBand は公開済みの価格帯です。未知値をゼロの観測と混同しません。
+type ResearchBand struct {
+	Values [9]float64
+	Known  bool
+}
+
+// ResearchFeatures は00143の当時特徴と公開20分・40分帯です。
+type ResearchFeatures struct {
+	MA20           float64
+	MA20Known      bool
+	Values         [30]float64
+	Known          [30]bool
+	Band20, Band40 ResearchBand
+}
+
+// ResearchEvent は独立した仮想候補から当時届く発注通知です。
+type ResearchEvent struct {
+	Action                                   string
+	Side, Quantity, Reason, Campaign, Ticket int
+	Risk, Boundary                           float64
+}
+
+// LotTarget は返済する所有建玉IDと数量です。
+type LotTarget struct {
+	ID       string `json:"id"`
+	Quantity int    `json:"quantity"`
 }
 
 // Signal は発注依頼です。Quantity は注文枚数、Side は買い 1 / 売り -1 です。
@@ -244,6 +274,8 @@ type Signal struct {
 	Boundary    float64         `json:"boundary"`
 	Campaign    int             `json:"campaign"`
 	Evidence    json.RawMessage `json:"evidence"`
+	Ticket      int             `json:"ticket,omitempty"`
+	Targets     []LotTarget     `json:"targets,omitempty"`
 }
 
 // Fill はブローカーが確認した約定です。ExecutionID は再通知の二重反映を防ぎます。
@@ -251,6 +283,8 @@ type Fill struct {
 	SignalID, ExecutionID string
 	Quantity              int
 	Price, Time, Fee      float64
+	HoldID                string
+	Closed                []LotTarget
 }
 
 // Position は担当ごとの実約定残玉です。

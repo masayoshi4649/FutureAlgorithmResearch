@@ -29,19 +29,20 @@ type CancelAPI interface {
 
 // Intent は、条件成立後の一度限りの発注意思です。
 type Intent struct {
-	Owner          string          `json:"owner"`
-	Product        string          `json:"product"`
-	Evidence       json.RawMessage `json:"evidence,omitempty"`
-	ID             string          `json:"id"`
-	Session        string          `json:"session"`
-	ContractSymbol string          `json:"contract_symbol"`
-	Side           string          `json:"side"`
-	TradeType      string          `json:"trade_type"`
-	Reason         string          `json:"reason"`
-	Quantity       int             `json:"quantity"`
-	Price          float64         `json:"price"`
-	At             time.Time       `json:"at"`
-	ExpiresAt      time.Time       `json:"expires_at"`
+	Owner          string                     `json:"owner"`
+	Product        string                     `json:"product"`
+	Evidence       json.RawMessage            `json:"evidence,omitempty"`
+	ID             string                     `json:"id"`
+	Session        string                     `json:"session"`
+	ContractSymbol string                     `json:"contract_symbol"`
+	Side           string                     `json:"side"`
+	TradeType      string                     `json:"trade_type"`
+	Reason         string                     `json:"reason"`
+	Quantity       int                        `json:"quantity"`
+	Price          float64                    `json:"price"`
+	At             time.Time                  `json:"at"`
+	ExpiresAt      time.Time                  `json:"expires_at"`
+	ClosePositions []controller.ClosePosition `json:"close_positions,omitempty"`
 }
 
 // Holding は、当プログラムの新規約定から証明できる建玉だけを保持します。
@@ -56,22 +57,27 @@ type Holding struct {
 	Price          float64         `json:"price"`
 	OpenedAt       time.Time       `json:"opened_at"`
 	Session        string          `json:"session"`
+	EntryIntentID  string          `json:"entry_intent_id,omitempty"`
 }
 
 // Fill は、戦略へ確認済み数量と単価を通知する約定です。
 type Fill struct {
-	Owner     string
-	Product   string
-	Evidence  json.RawMessage
-	ID        string
-	IntentID  string
-	TradeType string
-	Side      string
-	Quantity  int
-	Price     float64
-	PnL       float64
-	At        time.Time
-	Reason    string
+	Owner       string
+	Product     string
+	Evidence    json.RawMessage
+	ID          string
+	IntentID    string
+	TradeType   string
+	Side        string
+	Quantity    int
+	Price       float64
+	PnL         float64
+	Fee         float64
+	HoldID      string
+	Closed      []controller.ClosePosition
+	ClosedBasis string
+	At          time.Time
+	Reason      string
 }
 
 // pending は、発注前に永続化する本文と照合済み数量です。
@@ -160,7 +166,7 @@ func Open(logDir, statePath string, dryRun bool, symbol string, multiplier float
 		return nil, fmt.Errorf("約定反映位置が不正です")
 	}
 	for _, p := range m.state.Orders {
-		if p.Intent.Owner != "core" && p.Intent.Owner != "extra" {
+		if !validOwner(p.Intent.Owner) {
 			return nil, fmt.Errorf("保存注文の担当が不明です。旧アプリの台帳は流用できません")
 		}
 		if p.Status != "prepared" {
@@ -211,7 +217,11 @@ func (m *Manager) Checkpoint(state json.RawMessage) error {
 func (m *Manager) OutstandingFills() []Fill {
 	var out []Fill
 	for _, t := range m.trades[m.state.AckCount:] {
-		out = append(out, Fill{Owner: t.Owner, Product: t.Product, Evidence: append(json.RawMessage(nil), t.Evidence...), ID: t.ID, IntentID: t.ClientOrderID, TradeType: t.TradeType, Side: t.Side, Quantity: t.Quantity, Price: t.Price, PnL: t.PnL, At: t.At, Reason: t.Reason})
+		holdID := t.HoldID
+		if holdID == "" && t.TradeType == "new" {
+			holdID = t.ExecutionID
+		}
+		out = append(out, Fill{Owner: t.Owner, Product: t.Product, Evidence: append(json.RawMessage(nil), t.Evidence...), ID: t.ID, IntentID: t.ClientOrderID, TradeType: t.TradeType, Side: t.Side, Quantity: t.Quantity, Price: t.Price, PnL: t.PnL, Fee: t.Fee, HoldID: holdID, Closed: append([]controller.ClosePosition(nil), t.Closed...), ClosedBasis: t.ClosedBasis, At: t.At, Reason: t.Reason})
 	}
 	return out
 }
@@ -263,7 +273,14 @@ func (m *Manager) Positions() []Holding {
 //
 // 引数: なし。
 // 返り値: []journal.Trade はこれまでの実約定または仮想約定です。
-func (m *Manager) Records() []journal.Trade { return append([]journal.Trade(nil), m.trades...) }
+func (m *Manager) Records() []journal.Trade {
+	result := append([]journal.Trade(nil), m.trades...)
+	for i := range result {
+		result[i].Evidence = append(json.RawMessage(nil), result[i].Evidence...)
+		result[i].Closed = append([]controller.ClosePosition(nil), result[i].Closed...)
+	}
+	return result
+}
 
 // EnsureSession は、セッション別約定CSVを見出し付きで準備します。
 //
@@ -332,8 +349,8 @@ func (m *Manager) CancelPending(ctx context.Context, api CancelAPI, now time.Tim
 // 引数: ctx context.Context は通信期限、api API はcontroller、intent Intent は判断、view controller.OrdersView は新鮮な照会です。
 // 返り値: []Fill は未反映約定、error は拒否・保存・通信失敗です。通信失敗で新しいIDを作って再送してはいけません。
 func (m *Manager) Submit(ctx context.Context, api API, intent Intent, view controller.OrdersView) ([]Fill, error) {
-	if intent.Owner != "core" && intent.Owner != "extra" {
-		return nil, fmt.Errorf("注文の担当は core または extra が必要です")
+	if !validOwner(intent.Owner) {
+		return nil, fmt.Errorf("注文の担当は core / extra / addon / episode が必要です")
 	}
 	if intent.Product == "" {
 		intent.Product = m.state.Symbol
@@ -341,10 +358,14 @@ func (m *Manager) Submit(ctx context.Context, api API, intent Intent, view contr
 	if intent.Product != m.state.Symbol {
 		return nil, fmt.Errorf("注文の商品と台帳の商品が異なります")
 	}
+	if _, err := standardOrderFee(intent.Product, 0); err != nil {
+		return nil, err
+	}
 	if len(intent.Evidence) > 0 && !json.Valid(intent.Evidence) {
 		return nil, fmt.Errorf("判断根拠が JSON ではありません")
 	}
 	intent.Evidence = append(json.RawMessage(nil), intent.Evidence...)
+	intent.ClosePositions = append([]controller.ClosePosition(nil), intent.ClosePositions...)
 	for _, p := range m.state.Orders {
 		if intent.ID != "" && p.Intent.ID == intent.ID {
 			old, _ := json.Marshal(p.Intent)
@@ -375,6 +396,9 @@ func (m *Manager) Submit(ctx context.Context, api API, intent Intent, view contr
 		return nil, fmt.Errorf("発注意図の必須項目が不正です")
 	}
 	if intent.TradeType == "new" {
+		if len(intent.ClosePositions) != 0 {
+			return nil, fmt.Errorf("新規注文に返済建玉を指定できません")
+		}
 		if !m.state.DryRun {
 			for _, order := range view.BrokerOrders {
 				if order.Symbol != intent.ContractSymbol || order.Finished || order.State == 5 {
@@ -706,12 +730,15 @@ func (m *Manager) Reconcile(view controller.OrdersView) (fills []Fill, err error
 // 引数: intent Intent は返済意図、view controller.OrdersView は照会です。
 // 返り値: []controller.ClosePosition は返済対象、error は数量不足です。
 func (m *Manager) closeTargets(intent Intent, view controller.OrdersView) ([]controller.ClosePosition, error) {
+	if len(intent.ClosePositions) > 0 {
+		return m.explicitCloseTargets(intent, view)
+	}
 	holdings := m.Positions()
-	sort.Slice(holdings, func(i, j int) bool { return holdings[i].OpenedAt.Before(holdings[j].OpenedAt) })
+	sort.SliceStable(holdings, func(i, j int) bool { return holdings[i].OpenedAt.Before(holdings[j].OpenedAt) })
 	remaining := intent.Quantity
 	targets := []controller.ClosePosition{}
 	for _, h := range holdings {
-		if h.Owner != intent.Owner || h.Side == intent.Side || h.ContractSymbol != intent.ContractSymbol {
+		if h.Owner != intent.Owner || h.Side == intent.Side || h.ContractSymbol != intent.ContractSymbol || (h.Product != "" && h.Product != intent.Product) {
 			continue
 		}
 		available := h.Quantity
@@ -753,51 +780,61 @@ func (m *Manager) closeTargets(intent Intent, view controller.OrdersView) ([]con
 // 引数: p *pending は注文、executionID string は約定ID、qty int は差分数量、price float64 は実単価、at time.Time は確認時刻、confirmed ...[]controller.ClosePosition は実残数量から確認した返済内訳です。
 // 返り値: error は所有関係・返済数量の不一致です。
 func (m *Manager) applyFill(p *pending, executionID string, qty int, price float64, at time.Time, confirmed ...[]controller.ClosePosition) error {
-	pnl := float64(0)
+	if executionID == "" || qty < 1 || !positive(price) || at.IsZero() {
+		return fmt.Errorf("確認済み約定の識別・数量・価格・時刻が不正です")
+	}
+	prior := 0
+	for _, trade := range m.trades {
+		if trade.ClientOrderID == p.Intent.ID {
+			if trade.ExecutionID == executionID {
+				return fmt.Errorf("同じ注文の約定IDが重複しています")
+			}
+			prior += trade.Quantity
+		}
+	}
+	if qty > p.Intent.Quantity || prior > p.Intent.Quantity-qty {
+		return fmt.Errorf("約定数量が注文枚数を超えています")
+	}
+	feeBefore, err := standardOrderFee(m.state.Symbol, prior)
+	if err != nil {
+		return err
+	}
+	feeAfter, err := standardOrderFee(m.state.Symbol, prior+qty)
+	if err != nil {
+		return err
+	}
+	pnl, holdID, closedBasis := float64(0), "", ""
+	var closed []controller.ClosePosition
 	if p.Intent.TradeType == "new" {
 		if _, exists := m.state.Holdings[executionID]; exists {
 			return fmt.Errorf("約定IDを重複して建玉に追加しようとしました")
 		}
-		m.state.Holdings[executionID] = &Holding{Owner: p.Intent.Owner, Product: p.Intent.Product, Evidence: append(json.RawMessage(nil), p.Intent.Evidence...), HoldID: executionID, ContractSymbol: p.Intent.ContractSymbol, Side: p.Intent.Side, Quantity: qty, Price: price, OpenedAt: at, Session: p.Intent.Session}
+		holdID = executionID
+		m.state.Holdings[executionID] = &Holding{Owner: p.Intent.Owner, Product: p.Intent.Product, Evidence: append(json.RawMessage(nil), p.Intent.Evidence...), HoldID: executionID, ContractSymbol: p.Intent.ContractSymbol, Side: p.Intent.Side, Quantity: qty, Price: price, OpenedAt: at, Session: p.Intent.Session, EntryIntentID: p.Intent.ID}
 	} else {
-		remaining := qty
-		targets := p.Request.ClosePositions
-		actualTargets := len(confirmed) > 0 && confirmed[0] != nil
-		if actualTargets {
-			targets = confirmed[0]
+		closed, err = m.fillCloseTargets(p, qty, confirmed...)
+		if err != nil {
+			return err
 		}
-		for _, target := range targets {
-			available := target.Quantity - p.CloseConsumed[target.HoldID]
-			if actualTargets {
-				available = target.Quantity
-			}
-			if available > remaining {
-				available = remaining
-			}
-			if available == 0 {
-				continue
-			}
+		closedBasis = "仮想約定の指定順配賦"
+		if len(confirmed) > 0 && confirmed[0] != nil {
+			closedBasis = "口座残数照合による配賦"
+		}
+		if p.CloseConsumed == nil {
+			p.CloseConsumed = map[string]int{}
+		}
+		for _, target := range closed {
 			h := m.state.Holdings[target.HoldID]
-			if h == nil || h.Quantity < available || h.Owner != p.Intent.Owner {
-				return fmt.Errorf("返済対象の所有数量が不足しています")
-			}
 			direction := float64(1)
 			if h.Side == "sell" {
 				direction = -1
 			}
-			pnl += (price - h.Price) * direction * float64(available) * m.state.Multiplier
-			h.Quantity -= available
-			p.CloseConsumed[target.HoldID] += available
-			remaining -= available
-			if remaining == 0 {
-				break
-			}
-		}
-		if remaining != 0 {
-			return fmt.Errorf("返済約定が指定数量を超えています")
+			pnl += (price - h.Price) * direction * float64(target.Quantity) * m.state.Multiplier
+			h.Quantity -= target.Quantity
+			p.CloseConsumed[target.HoldID] += target.Quantity
 		}
 	}
-	m.trades = append(m.trades, journal.Trade{Owner: p.Intent.Owner, Product: p.Intent.Product, Evidence: append(json.RawMessage(nil), p.Intent.Evidence...), ID: p.Intent.ID + ":" + executionID, At: at, Session: p.Intent.Session, Symbol: m.state.Symbol, TradeType: p.Intent.TradeType, Side: p.Intent.Side, Quantity: qty, Price: price, PnL: pnl, Reason: p.Intent.Reason, ClientOrderID: p.Intent.ID, ReservationID: p.ReservationID, BrokerOrderID: p.BrokerOrderID, ExecutionID: executionID, DryRun: m.state.DryRun})
+	m.trades = append(m.trades, journal.Trade{Owner: p.Intent.Owner, Product: p.Intent.Product, Evidence: append(json.RawMessage(nil), p.Intent.Evidence...), ID: p.Intent.ID + ":" + executionID, At: at, Session: p.Intent.Session, Symbol: m.state.Symbol, TradeType: p.Intent.TradeType, Side: p.Intent.Side, Quantity: qty, Price: price, PnL: pnl, Fee: feeAfter - feeBefore, HoldID: holdID, Closed: closed, ClosedBasis: closedBasis, Reason: p.Intent.Reason, ClientOrderID: p.Intent.ID, ReservationID: p.ReservationID, BrokerOrderID: p.BrokerOrderID, ExecutionID: executionID, DryRun: m.state.DryRun})
 	return nil
 }
 

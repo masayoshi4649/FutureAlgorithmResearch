@@ -50,7 +50,7 @@ func (m *Manager) Orders() []OrderState {
 
 // Quantity は担当と保有方向を限定した実約定済み数量を返します。
 //
-// 引数: owner string は core または extra、side string は buy または sell です。
+// 引数: owner string は core / extra / addon / episode、side string は buy または sell です。
 // 返り値: int は残建玉枚数です。所有不明の実口座玉は含めません。
 func (m *Manager) Quantity(owner, side string) int {
 	quantity := 0

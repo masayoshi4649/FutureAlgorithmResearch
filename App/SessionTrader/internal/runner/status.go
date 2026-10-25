@@ -209,6 +209,10 @@ func (a *app) statusFor(m *marketRuntime, now time.Time) marketStatus {
 		return s
 	}
 	p := m.Portfolio
+	if p.Research != nil {
+		s.State = p.Research.Method + "：独立担当ごとの新規・継続・利益予算を監視中"
+		return s
+	}
 	if m.Saved.Plan.Kind == "Day" {
 		cfg := p.Config.Parameters.Features
 		peer := "NK225"

@@ -16,22 +16,30 @@ type Candle = e01.Candle
 type Board struct {
 	Reference                                                string
 	Time, Received, Last, Bid, Ask, BidQuantity, AskQuantity float64
+	BidLevels, AskLevels                                     [10]ResearchLevel
 }
 
 type rawRow struct {
-	Time, Last, Mid, ATR float64
-	ValidLast, ValidMid  bool
+	Time, Last, Mid, ATR                                   float64
+	ValidLast, ValidMid                                    bool
+	Bid, Ask, BidQuantity, AskQuantity                     float64
+	ShortATR                                               float64
+	ShortATRKnown, BookQuantityKnown, OFIKnown, DepthKnown bool
+	OFI, Depth, OFISum, DepthSum                           float64
+	OFICount, DepthCount                                   int64
 }
 
 // Features は確定足系と厳密な原行窓を別々に保持します。
 type Features struct {
-	Version     int                 `json:"version"`
-	Session     Session             `json:"session"`
-	E01         *e01.Features       `json:"e01"`
-	Rows        map[string][]rawRow `json:"rows"`
-	Counts      map[string]int64    `json:"counts"`
-	OpeningLast map[string]float64  `json:"opening_last"`
-	OpeningMid  map[string]float64  `json:"opening_mid"`
+	Version         int                       `json:"version"`
+	Session         Session                   `json:"session"`
+	E01             *e01.Features             `json:"e01"`
+	Rows            map[string][]rawRow       `json:"rows"`
+	Counts          map[string]int64          `json:"counts"`
+	OpeningLast     map[string]float64        `json:"opening_last"`
+	OpeningMid      map[string]float64        `json:"opening_mid"`
+	ResearchEnabled bool                      `json:"research_enabled"`
+	ResearchState   map[string]*researchState `json:"research_state,omitempty"`
 }
 
 // NewFeatures は二市場の因果的な特徴量器を作ります。
@@ -83,12 +91,19 @@ func (f *Features) OnBoard(b Board) (Observation, error) {
 			f.OpeningMid[b.Reference] = r.Mid
 		}
 	}
+	if f.ResearchEnabled {
+		f.updateResearchRow(b, &r, rows)
+	}
 	f.Rows[b.Reference] = append(rows, r)
 	o := Observation{Reference: b.Reference, Time: b.Time, Received: b.Received, Index: f.Counts[b.Reference], Last: r.Last, Bid: b.Bid, Ask: b.Ask, ATR: base.ATR, QuoteOK: good, E01: base, GateDirection: f.E01.RearmDirection(b.Reference, b.Received)}
 	f.Counts[b.Reference]++
 	// ----------------------------------------
-	// 最古の 21 分境界・公開待機・90 秒欠測判定を含む 25 分だけを保存します。
-	keep := sort.Search(len(f.Rows[b.Reference]), func(i int) bool { return f.Rows[b.Reference][i].Time >= b.Time-1500 })
+	// 旧手法は25分、00143は40分帯・公開待機・欠測猶予を含む45分を保存します。
+	retention := 1500.0
+	if f.ResearchEnabled {
+		retention = 2700
+	}
+	keep := sort.Search(len(f.Rows[b.Reference]), func(i int) bool { return f.Rows[b.Reference][i].Time >= b.Time-retention })
 	if keep > 0 {
 		f.Rows[b.Reference] = f.Rows[b.Reference][keep:]
 	}
@@ -103,6 +118,9 @@ func (f *Features) OnBoard(b Board) (Observation, error) {
 	o.MidMarket = f.market(b.Reference, true, true)
 	o.LastHistory = f.history(b.Reference, b.Time, false)
 	o.MidHistory = f.history(b.Reference, b.Time, true)
+	if f.ResearchEnabled {
+		o.Research = f.researchFeatures(b.Reference)
+	}
 	return o, nil
 }
 

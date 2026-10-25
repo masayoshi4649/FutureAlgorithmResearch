@@ -42,7 +42,7 @@ max_per_side = 10
 [methods]
 # 日中手法の説明。
 day = "T06"
-# 夜間手法の説明。TOPIXはT04、日経はU06。
+# 夜間手法の説明。TOPIXはT04、日経の新規配布はTG04。
 night = "T04"
 `
 
@@ -70,15 +70,15 @@ func TestSingleProductConfigurations(t *testing.T) {
 	}
 	for _, target := range []string{"windows-amd64", "linux-amd64"} {
 		for _, example := range []struct {
-			folder, product, id, night string
-			cap                        int
-			tick, pointValue           float64
+			folder, product, id, day, night string
+			cap                             int
+			tick, pointValue                float64
 		}{
-			{"TOPIX", "TOPIX", "topix", "T04", 2, .5, 10000},
-			{"TOPIXmini", "TOPIXmini", "topix-mini", "T04", 10, .25, 1000},
-			{"NK225", "NK225", "nk225", "U06", 2, 10, 1000},
-			{"NK225mini", "NK225mini", "nk225mini", "U06", 2, 5, 100},
-			{"NK225micro", "NK225micro", "nk-micro", "U06", 20, 5, 10},
+			{"TOPIX", "TOPIX", "topix", "T06", "T04", 2, .5, 10000},
+			{"TOPIXmini", "TOPIXmini", "topix-mini", "T06", "T04", 10, .25, 1000},
+			{"NK225", "NK225", "nk225", "TG04", "TG04", 2, 10, 1000},
+			{"NK225mini", "NK225mini", "nk225mini", "TG04", "TG04", 10, 5, 100},
+			{"NK225micro", "NK225micro", "nk-micro", "TG04", "TG04", 20, 5, 10},
 		} {
 			path := filepath.Join(root, "dist", target, example.folder)
 			cfg, err := config.Load(filepath.Join(path, "conf"))
@@ -89,7 +89,7 @@ func TestSingleProductConfigurations(t *testing.T) {
 			if len(cfg.Markets) != 1 || market.Product != example.product || market.MaxPerSide != example.cap || cfg.InstanceID() != example.id || !cfg.Trading.DryRun {
 				t.Fatalf("単一商品の設定例が不正です: %+v", cfg)
 			}
-			if cfg.MethodID("Day") != "T06" || cfg.MethodID("Night") != example.night ||
+			if cfg.MethodID("Day") != example.day || cfg.MethodID("Night") != example.night ||
 				cfg.Products[example.product].Tick != example.tick || cfg.Products[example.product].PointValue != example.pointValue {
 				t.Fatalf("商品の手法または呼値・円換算規格が不正です: %s %+v", example.product, cfg)
 			}

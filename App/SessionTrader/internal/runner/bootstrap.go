@@ -101,6 +101,9 @@ func prepareHistory(ctx context.Context, cfg config.Config, bundle candleBundle,
 	}
 	result := &prepared{Features: features, Plan: plan, Generation: base.Generation, Cutoff: cutoff,
 		Last: make(map[string]strategy.Observation), SourceHashes: make(map[string][]string)}
+	if parameters.Method != "" {
+		features.EnableResearch()
+	}
 	if err = store.Event("履歴準備開始", plan.ID, "", base.Generation, received, map[string]any{
 		"cutoff": cutoff, "received_at": received, "snapshots": snapshots,
 		"features": parameters.Features, "candles": bundle,
@@ -204,9 +207,7 @@ func prepareHistory(ctx context.Context, cfg config.Config, bundle candleBundle,
 		}
 		clock := bootstrapSeconds(row.at)
 		board := row.board
-		observation, observeErr := features.OnBoard(strategy.Board{Reference: row.reference, Time: clock,
-			Received: clock, Last: board.CurrentPrice, Bid: board.Buy1.Price, Ask: board.Sell1.Price,
-			BidQuantity: board.Buy1.Qty, AskQuantity: board.Sell1.Qty})
+		observation, observeErr := features.OnBoard(referenceBoard(row.reference, clock, clock, board))
 		if observeErr != nil {
 			return nil, observeErr
 		}

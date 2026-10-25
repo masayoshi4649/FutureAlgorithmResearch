@@ -7,6 +7,11 @@ import "fmt"
 // 引数: reference(string) はラージ参照市場、kind(string) は Day/Night、id(string) は研究手法IDです。
 // 返り値: Parameters は主担当と未参加補完を含む設定一式、error は未実装または用途が異なるIDです。
 func ParametersForMethod(reference, kind, id string) (Parameters, error) {
+	if reference == "NK225" && (kind == "Day" || kind == "Night") && (id == "TG04" || id == "PG04") {
+		p := DefaultParameters(reference, kind)
+		p.Method = id
+		return p, nil
+	}
 	switch reference + "/" + kind + "/" + id {
 	case "TOPIX/Day/T06", "NK225/Day/T06":
 		// 00131: TOPIX は DV07、日経は DV05 の主担当に T06 の未参加補完を組み合わせます。
@@ -18,6 +23,6 @@ func ParametersForMethod(reference, kind, id string) (Parameters, error) {
 		// 00131: NV25 の主担当と、枚数予算を持つ U06 の未参加補完です。
 		return DefaultParameters(reference, kind), nil
 	default:
-		return Parameters{}, fmt.Errorf("手法ID %q は %s/%s では使用できません。対応は日中T06、TOPIX夜間T04、日経夜間U06です", id, reference, kind)
+		return Parameters{}, fmt.Errorf("手法ID %q は %s/%s では使用できません。対応は日中T06、TOPIX夜間T04、日経夜間U06、日経の昼夜TG04/PG04です", id, reference, kind)
 	}
 }

@@ -6,6 +6,7 @@ import (
 	"strings"
 	"testing"
 
+	"futurealgorithm/sessiontrader/internal/cli"
 	"futurealgorithm/sessiontrader/internal/config"
 	"github.com/BurntSushi/toml"
 )
@@ -46,12 +47,12 @@ func TestProductSamplesKeepExplanations(t *testing.T) {
 			if len(decoded) != 6 || count != 13 {
 				t.Fatalf("最小設定へ不要な既定値が出力されました: %dテーブル/%d項目", len(decoded), count)
 			}
-			night := "T04"
+			day, night := "T06", "T04"
 			if strings.HasPrefix(product, "NK225") {
-				night = "U06"
+				day, night = "TG04", "TG04"
 			}
 			cfg, err := config.Load(directory)
-			if err != nil || cfg.MethodID("Day") != "T06" || cfg.MethodID("Night") != night {
+			if err != nil || cfg.MethodID("Day") != day || cfg.MethodID("Night") != night {
 				t.Fatalf("商品別の昼夜手法が違います: %+v %v", cfg.Methods, err)
 			}
 		}
@@ -112,25 +113,78 @@ func TestUndocumentedKeyStopsBeforeBuild(t *testing.T) {
 	}
 }
 
-// TestQuotedAlgorithmOverrideKeepsValueAndExamples は引用符付きの実キーと無効化例を区別します。
+// TestQuotedAlgorithmOverrideKeepsValueAndExamples は旧手法の引用符付き実キーと無効化例を継承します。
 //
 // 引数: t(*testing.T) は試験です。返り値: なし。
 func TestQuotedAlgorithmOverrideKeepsValueAndExamples(t *testing.T) {
 	root := fixture(t)
 	sample := sampleConfiguration + "\n[algorithm]\n# 共通上書きとして有効な損失幅の説明。\n\"day.risk_floor\" = 0.8\n# 幅の意味を説明した無効化例。\n# \"night.trail_width_r\" = 0.75\n"
 	write(t, filepath.Join(root, "conf", "setting.toml.sample"), sample)
-	if err := buildDistribution(root, fakeBuild); err != nil {
+	stage := t.TempDir()
+	if err := copyConfiguration(filepath.Join(root, "conf"), filepath.Join(stage, "conf")); err != nil {
 		t.Fatal(err)
 	}
-	directory := filepath.Join(root, "dist", "linux-amd64", "NK225micro", "conf")
+	template, err := readSampleTemplate(filepath.Join(stage, "conf"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	// 旧T06/U06の継承を検査します。新配布のTG04へ上書きを混ぜる場合は別試験で拒否します。
+	annotated, err := replaceSampleScalars(template, []sampleReplacement{
+		{"trading", "instance_id", "nk-micro"}, {"market", "product", "NK225micro"},
+		{"market", "max_per_side", 20}, {"methods", "day", "T06"}, {"methods", "night", "U06"},
+	})
+	if err != nil {
+		t.Fatal(err)
+	}
+	directory := filepath.Join(stage, "legacy", "conf")
+	write(t, filepath.Join(directory, "settings.toml"), string(annotated))
+	write(t, filepath.Join(directory, "settings.toml.sample"), string(annotated))
 	cfg, err := config.Load(directory)
-	if err != nil || len(cfg.Algorithm) != 1 || cfg.Algorithm["day.risk_floor"] != .8 {
+	if err != nil || cfg.MethodID("Day") != "T06" || cfg.MethodID("Night") != "U06" || len(cfg.Algorithm) != 1 || cfg.Algorithm["day.risk_floor"] != .8 {
 		t.Fatalf("有効な上書き値を変更しました: %+v %v", cfg.Algorithm, err)
+	}
+	if err = cli.ValidateAlgorithms(cfg); err != nil {
+		t.Fatalf("旧手法の有効な上書きが拒否されました: %v", err)
 	}
 	data, err := os.ReadFile(filepath.Join(directory, "settings.toml.sample"))
 	if err != nil || !strings.Contains(string(data), "# \"night.trail_width_r\" = 0.75") ||
 		!strings.Contains(string(data), "# 共通上書きとして有効な損失幅の説明。") {
 		t.Fatal("上書きの説明または無効化例が失われました", err)
+	}
+}
+
+// TestFixedResearchMethodsRejectOverridesBeforeBuild は固定手法への上書き混入を配布前に拒否します。
+//
+// 引数: t(*testing.T) は試験です。返り値: なし。
+// 旧TOPIX設定から商品別TG04を生成する経路と、TG04/PG04を直接指定する経路を検査します。
+func TestFixedResearchMethodsRejectOverridesBeforeBuild(t *testing.T) {
+	for _, tc := range []struct{ product, day, night string }{
+		{"TOPIXmini", "T06", "T04"},
+		{"NK225mini", "TG04", "TG04"}, {"NK225mini", "PG04", "PG04"},
+		{"NK225mini", "TG04", "U06"}, {"NK225mini", "T06", "PG04"},
+	} {
+		t.Run(tc.product+"_"+tc.day+"_"+tc.night, func(t *testing.T) {
+			root := fixture(t)
+			sample, err := replaceSampleScalars([]byte(sampleConfiguration), []sampleReplacement{
+				{"market", "product", tc.product}, {"methods", "day", tc.day}, {"methods", "night", tc.night},
+			})
+			if err != nil {
+				t.Fatal(err)
+			}
+			write(t, filepath.Join(root, "conf", "setting.toml.sample"), string(sample)+"\n[algorithm]\n# 旧手法専用の損失幅上書きです。固定研究手法との併用は拒否します。\n\"day.risk_floor\" = 0.8\n")
+			retainedPath := filepath.Join(root, "dist", "windows-amd64", "NK225mini", "conf", "settings.toml")
+			retained := "# 利用者の既存実設定。\n[trading]\ndryrun = false\n"
+			write(t, retainedPath, retained)
+			calls := 0
+			err = buildDistribution(root, func(string, string, string) error { calls++; return nil })
+			if err == nil || calls != 0 || (!strings.Contains(err.Error(), "TG04") && !strings.Contains(err.Error(), "PG04")) {
+				t.Fatalf("固定手法への上書き混入をビルド前に拒否できません: calls=%d err=%v", calls, err)
+			}
+			data, readErr := os.ReadFile(retainedPath)
+			if readErr != nil || string(data) != retained {
+				t.Fatal("拒否した配布処理が利用者の実設定を変更しました", readErr)
+			}
+		})
 	}
 }
 

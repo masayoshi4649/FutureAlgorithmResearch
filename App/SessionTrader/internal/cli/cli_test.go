@@ -85,6 +85,26 @@ func TestCheckAndProbeDoNotTrade(t *testing.T) {
 	}
 }
 
+// TestResearchCheckShowsRealAllocation は旧半分配分でなく新手法の実配分を表示することを検査します。
+//
+// 引数: t(*testing.T)。返り値: なし。
+func TestResearchCheckShowsRealAllocation(t *testing.T) {
+	body := "[trading]\ndryrun=false\n[market]\nproduct='NK225mini'\nmax_per_side=11\n[methods]\nday='TG04'\nnight='PG04'\n[startup]\naction='check'\n"
+	var out bytes.Buffer
+	calls := 0
+	ops := Operations{
+		Run:   func(context.Context, config.Config) error { calls++; return nil },
+		Probe: func(context.Context, config.Config) error { calls++; return nil },
+	}
+	if err := Run(context.Background(), configuration(t, body), nil, &out, &out, ops); err != nil {
+		t.Fatal(err)
+	}
+	if calls != 0 || !strings.Contains(out.String(), "Day TG04 / 基本最大6枚・追加最大3枚・別入口最大2枚") ||
+		!strings.Contains(out.String(), "Night PG04 / 基本最大6枚・追加最大0枚・別入口最大5枚") {
+		t.Fatalf("設定検査の接続回数%d、表示%s", calls, out.String())
+	}
+}
+
 // TestDurationOnlyDryRun は設定による運転秒数が仮想運転にだけ適用されることを確認します。
 //
 // 引数: t *testing.T は試験です。

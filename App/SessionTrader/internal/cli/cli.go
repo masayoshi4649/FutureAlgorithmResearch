@@ -51,8 +51,16 @@ func Run(ctx context.Context, executablePath string, args []string, out, errOut 
 	if cfg.Startup.Action == "check" {
 		fmt.Fprintf(out, "設定正常: dryrun=%t / 実行ID=%s\n", cfg.Trading.DryRun, cfg.InstanceID())
 		reference, market := cfg.Selected()
-		fmt.Fprintf(out, "%s / %s / 基準 %d 枚・初回追加最大 %d 枚 / 片方向上限 %d 枚\n",
-			reference, market.Product, market.CoreQuantity, market.ExtraQuantity, market.MaxPerSide)
+		fmt.Fprintf(out, "%s / %s / 片方向上限 %d 枚\n", reference, market.Product, market.MaxPerSide)
+		for _, kind := range []string{"Day", "Night"} {
+			method := cfg.MethodID(kind)
+			if method == "TG04" || method == "PG04" {
+				allocation := strategy.ResearchAllocation(method, market.MaxPerSide)
+				fmt.Fprintf(out, "%s %s / 基本最大%d枚・追加最大%d枚・別入口最大%d枚\n", kind, method, allocation["core"], allocation["addon"], allocation["episode"])
+			} else {
+				fmt.Fprintf(out, "%s %s / 基準 %d 枚・未参加補完最大 %d 枚\n", kind, method, market.CoreQuantity, market.ExtraQuantity)
+			}
+		}
 		fmt.Fprintf(out, "手法: 昼=%s / 夜=%s\n", cfg.MethodID("Day"), cfg.MethodID("Night"))
 		fmt.Fprintln(out, "観測は二市場のラージ、売買は上記一商品のみです。")
 		return nil
@@ -99,6 +107,9 @@ func ValidateAlgorithms(cfg config.Config) error {
 			parameters, err := strategy.ParametersForMethod(reference, kind, cfg.MethodID(kind))
 			if err != nil {
 				return err
+			}
+			if parameters.Method != "" && len(cfg.Algorithm) > 0 {
+				return fmt.Errorf("%sは固定仕様です。旧algorithm係数の上書きは外してください", parameters.Method)
 			}
 			parameters.Extra.EntryCutoffSeconds = cfg.Schedule.ExtraCutoffSeconds
 			if err := strategy.ApplyOverrides(&parameters, cfg.Algorithm); err != nil {

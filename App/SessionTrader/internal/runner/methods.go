@@ -1,6 +1,7 @@
 package runner
 
 import (
+	"fmt"
 	"futurealgorithm/sessiontrader/internal/config"
 	"futurealgorithm/sessiontrader/internal/strategy"
 )
@@ -13,6 +14,9 @@ func methodParameters(cfg config.Config, reference, kind string) (strategy.Param
 	parameters, err := strategy.ParametersForMethod(reference, kind, cfg.MethodID(kind))
 	if err != nil {
 		return strategy.Parameters{}, err
+	}
+	if parameters.Method != "" && len(cfg.Algorithm) > 0 {
+		return strategy.Parameters{}, fmt.Errorf("%sは固定仕様です。旧algorithm係数の上書きは外してください", parameters.Method)
 	}
 	parameters.Extra.EntryCutoffSeconds = cfg.Schedule.ExtraCutoffSeconds
 	if err := strategy.ApplyOverrides(&parameters, cfg.Algorithm); err != nil {

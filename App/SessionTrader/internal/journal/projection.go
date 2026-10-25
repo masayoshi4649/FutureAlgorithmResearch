@@ -72,7 +72,7 @@ func (s *Store) projectTrades() (err error) {
 	for _, name := range names {
 		var table, lines bytes.Buffer
 		w := csv.NewWriter(&table)
-		if err = w.Write([]string{"記録ID", "約定確認時刻", "セッション", "銘柄", "区分", "売買", "枚数", "約定価格", "実現損益円", "理由", "発注意図ID", "予約ID", "上流注文ID", "約定ID", "仮想実行", "担当", "商品", "判断根拠JSON"}); err != nil {
+		if err = w.Write([]string{"記録ID", "約定確認時刻", "セッション", "銘柄", "区分", "売買", "枚数", "約定価格", "実現損益円", "理由", "発注意図ID", "予約ID", "上流注文ID", "約定ID", "仮想実行", "担当", "商品", "判断根拠JSON", "標準手数料円", "新規建玉ID", "返済建玉内訳JSON", "返済内訳の根拠"}); err != nil {
 			return err
 		}
 		encoder := json.NewEncoder(&lines)
@@ -85,11 +85,19 @@ func (s *Store) projectTrades() (err error) {
 			if trade.Side == "sell" {
 				side = "売り"
 			}
+			closed := ""
+			if len(trade.Closed) > 0 {
+				encoded, encodeErr := json.Marshal(trade.Closed)
+				if encodeErr != nil {
+					return encodeErr
+				}
+				closed = string(encoded)
+			}
 			if err = w.Write([]string{trade.ID, trade.At.Format(time.RFC3339Nano), trade.Session, trade.Symbol,
 				kind, side, strconv.Itoa(trade.Quantity), strconv.FormatFloat(trade.Price, 'f', -1, 64),
 				strconv.FormatFloat(trade.PnL, 'f', -1, 64), trade.Reason, trade.ClientOrderID,
 				trade.ReservationID, trade.BrokerOrderID, trade.ExecutionID, strconv.FormatBool(trade.DryRun),
-				trade.Owner, trade.Product, string(trade.Evidence)}); err != nil {
+				trade.Owner, trade.Product, string(trade.Evidence), strconv.FormatFloat(trade.Fee, 'f', -1, 64), trade.HoldID, closed, trade.ClosedBasis}); err != nil {
 				return err
 			}
 			if err = encoder.Encode(trade); err != nil {

@@ -5,14 +5,16 @@ import (
 	"errors"
 	"fmt"
 	"math"
+	"reflect"
 
 	"futurealgorithm/sessiontrader/internal/e01"
 )
 
 type orderState struct {
-	Signal Signal
-	Filled int
-	Done   bool
+	Signal        Signal
+	Filled        int
+	Done          bool
+	CloseConsumed map[string]int `json:",omitempty"`
 }
 type armState struct {
 	Side, Stage                    int
@@ -37,6 +39,7 @@ type legState struct {
 
 // Portfolio は主担当・追加担当の実建玉と注文予約を独立管理します。
 type Portfolio struct {
+	Research                    *ResearchPortfolio `json:",omitempty"`
 	Version                     int
 	Config                      Config
 	Session                     Session
@@ -66,6 +69,11 @@ func New(cfg Config, session Session) (*Portfolio, error) {
 	p := &Portfolio{Version: 1, Config: cfg, Session: session, Orders: map[string]*orderState{}, Executions: map[string]Fill{}, LastIndex: -1, PaperInputOrigin: -1, PaperRows: map[int64]int64{}}
 	p.Core = legState{Position: Position{Owner: "core"}, CloseTarget: -1, PaperCampaign: -1}
 	p.Extra = legState{Position: Position{Owner: "extra"}, CloseTarget: -1, PaperCampaign: -1}
+	if cfg.Parameters.Method != "" {
+		var err error
+		p.Research, err = newResearchPortfolio(cfg, session)
+		return p, err
+	}
 	if session.Kind == "Day" {
 		d := cfg.Parameters.Day
 		c := e01.DefaultConfig(cfg.Reference, cfg.CoreQuantity, cfg.Cap, cfg.LargeTick, cfg.PointValue)
@@ -194,6 +202,9 @@ func (p *Portfolio) observe(o Observation, allowEntry, emitOrders bool) ([]Signa
 	}
 	p.LastTime = o.Time
 	p.LastIndex = o.Index
+	if p.Research != nil {
+		return p.observeResearch(o, allowEntry, emitOrders)
+	}
 	out := []Signal{}
 	terminal := o.Time >= p.Session.ForceClose
 	if p.Session.Kind == "Day" {
@@ -226,7 +237,7 @@ func (p *Portfolio) OnFill(f Fill) error {
 		return errors.New("約定情報が不正です")
 	}
 	if prior, ok := p.Executions[f.ExecutionID]; ok {
-		if prior != f {
+		if !reflect.DeepEqual(prior, f) {
 			return errors.New("同じ約定 ID の内容が変わりました")
 		}
 		return nil
@@ -239,6 +250,9 @@ func (p *Portfolio) OnFill(f Fill) error {
 		return errors.New("約定枚数が注文枚数を超えました")
 	}
 	s := order.Signal
+	if p.Research != nil {
+		return p.fillResearch(f, order)
+	}
 	l := p.leg(s.Owner)
 	pos := &l.Position
 	if s.Action == "new" {
@@ -290,6 +304,15 @@ func (p *Portfolio) OnOrderDone(signalID string) error {
 		return errors.New("終了した注文 ID が不明です")
 	}
 	o.Done = true
+	if p.Research != nil {
+		if o.Signal.Action == "new" && o.Filled == 0 {
+			s := p.sleeve(o.Signal.Owner)
+			if s != nil && s.Campaign == o.Signal.Campaign && s.held() == 0 {
+				s.Accepted[s.Campaign] = false
+			}
+		}
+		return nil
+	}
 	l := p.leg(o.Signal.Owner)
 	if l.Pending == signalID {
 		l.Pending = ""
@@ -328,6 +351,9 @@ func (p *Portfolio) Advance(o Observation) error {
 // 引数: at(float64) は現在時計、reason(string) は運用上の理由。
 // 返り値: []Signal は返済依頼です。既に注文中なら終了通知後に再判断します。
 func (p *Portfolio) Flatten(at float64, reason string) []Signal {
+	if p.Research != nil {
+		return p.flattenResearch("", at, reason)
+	}
 	o := Observation{Reference: p.Config.Reference, Time: at, Index: p.LastIndex}
 	out := []Signal{}
 	for _, l := range []*legState{&p.Core, &p.Extra} {
@@ -346,6 +372,9 @@ func (p *Portfolio) Flatten(at float64, reason string) []Signal {
 // 引数: owner(string) は core/extra、at(float64)、reason(string)。
 // 返り値: []Signal は現在発注できる返済依頼です。
 func (p *Portfolio) FlattenOwner(owner string, at float64, reason string) []Signal {
+	if p.Research != nil {
+		return p.flattenResearch(owner, at, reason)
+	}
 	l := p.leg(owner)
 	if l == nil {
 		return nil
@@ -364,6 +393,9 @@ func (p *Portfolio) FlattenOwner(owner string, at float64, reason string) []Sign
 //
 // 引数: なし。返り値: Status は表示・照合用状態です。
 func (p *Portfolio) Status() Status {
+	if p.Research != nil {
+		return p.researchStatus()
+	}
 	s := Status{Positions: []Position{p.Core.Position, p.Extra.Position}, CoreEntered: p.CoreEntered, ExtraAttempted: p.ExtraAttempted}
 	for _, id := range []string{p.Core.Pending, p.Extra.Pending} {
 		if id != "" {
@@ -394,6 +426,15 @@ func Restore(data []byte) (*Portfolio, error) {
 	}
 	if err := p.Config.Validate(); err != nil {
 		return nil, err
+	}
+	if (p.Config.Parameters.Method != "") != (p.Research != nil) {
+		return nil, errors.New("研究手法IDと保存された戦略本体が一致しません")
+	}
+	if p.Research != nil {
+		if err := p.restoreResearch(); err != nil {
+			return nil, err
+		}
+		return &p, nil
 	}
 	if p.Session.Kind == "Day" {
 		if p.Paper == nil {

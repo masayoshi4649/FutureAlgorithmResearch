@@ -15,29 +15,35 @@ import (
 	"sync"
 	"time"
 
+	"futurealgorithm/sessiontrader/internal/controller"
+
 	_ "modernc.org/sqlite"
 )
 
 // Trade は、受付とは区別した確認済みの実約定または仮想約定です。
 type Trade struct {
-	ID            string          `json:"id"`
-	At            time.Time       `json:"at"`
-	Session       string          `json:"session"`
-	Symbol        string          `json:"symbol"`
-	Product       string          `json:"product"`
-	Owner         string          `json:"owner"`
-	Evidence      json.RawMessage `json:"evidence,omitempty"`
-	TradeType     string          `json:"trade_type"`
-	Side          string          `json:"side"`
-	Quantity      int             `json:"quantity"`
-	Price         float64         `json:"price"`
-	PnL           float64         `json:"pnl"`
-	Reason        string          `json:"reason"`
-	ClientOrderID string          `json:"client_order_id"`
-	ReservationID string          `json:"reservation_id"`
-	BrokerOrderID string          `json:"broker_order_id"`
-	ExecutionID   string          `json:"execution_id"`
-	DryRun        bool            `json:"dryrun"`
+	ID            string                     `json:"id"`
+	At            time.Time                  `json:"at"`
+	Session       string                     `json:"session"`
+	Symbol        string                     `json:"symbol"`
+	Product       string                     `json:"product"`
+	Owner         string                     `json:"owner"`
+	Evidence      json.RawMessage            `json:"evidence,omitempty"`
+	TradeType     string                     `json:"trade_type"`
+	Side          string                     `json:"side"`
+	Quantity      int                        `json:"quantity"`
+	Price         float64                    `json:"price"`
+	PnL           float64                    `json:"pnl"`
+	Fee           float64                    `json:"fee,omitempty"`
+	HoldID        string                     `json:"hold_id,omitempty"`
+	Closed        []controller.ClosePosition `json:"closed,omitempty"`
+	ClosedBasis   string                     `json:"closed_basis,omitempty"`
+	Reason        string                     `json:"reason"`
+	ClientOrderID string                     `json:"client_order_id"`
+	ReservationID string                     `json:"reservation_id"`
+	BrokerOrderID string                     `json:"broker_order_id"`
+	ExecutionID   string                     `json:"execution_id"`
+	DryRun        bool                       `json:"dryrun"`
 }
 
 // BookRecord は、同値受信も省略せず保存する一件の入力原文です。

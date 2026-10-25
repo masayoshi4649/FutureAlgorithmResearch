@@ -55,7 +55,7 @@ func observe(t *testing.T, p *Portfolio, o Observation, allow bool) []Signal {
 // 引数: t(*testing.T)、p(*Portfolio)、s(Signal)、price/at(float64)。返り値: なし。
 func fillAll(t *testing.T, p *Portfolio, s Signal, price, at float64) {
 	t.Helper()
-	if err := p.OnFill(Fill{s.ID, s.ID + "-約定", s.Quantity, price, at, 0}); err != nil {
+	if err := p.OnFill(Fill{SignalID: s.ID, ExecutionID: s.ID + "-約定", Quantity: s.Quantity, Price: price, Time: at}); err != nil {
 		t.Fatal(err)
 	}
 	if err := p.OnOrderDone(s.ID); err != nil {
@@ -203,7 +203,7 @@ func TestPartialFillsRestoreAndRetries(t *testing.T) {
 	p := testPortfolio(t, "TOPIX", "Night")
 	observe(t, p, observation(p, 0, 1400, 101), true)
 	s := observe(t, p, observation(p, 1, 1461, 103), true)[0]
-	f := Fill{s.ID, "実約定1", 2, 104, 1462, 83}
+	f := Fill{SignalID: s.ID, ExecutionID: "実約定1", Quantity: 2, Price: 104, Time: 1462, Fee: 83}
 	if err := p.OnFill(f); err != nil {
 		t.Fatal(err)
 	}
@@ -219,7 +219,7 @@ func TestPartialFillsRestoreAndRetries(t *testing.T) {
 		t.Fatal(err)
 	}
 	for _, q := range []*Portfolio{p, copyP} {
-		if err := q.OnFill(Fill{s.ID, "実約定2", 1, 105, 1463, 42}); err != nil {
+		if err := q.OnFill(Fill{SignalID: s.ID, ExecutionID: "実約定2", Quantity: 1, Price: 105, Time: 1463, Fee: 42}); err != nil {
 			t.Fatal(err)
 		}
 		if err := q.OnOrderDone(s.ID); err != nil {
@@ -433,7 +433,7 @@ func TestPartialNewCancellationRebasesPaperExit(t *testing.T) {
 	s := p.emit(&p.Core, o, "new", 1, 5, 20, 10, 0, 0)
 	p.Core.PaperCampaign = 0
 	p.Core.PaperRemaining = 3
-	if err := p.OnFill(Fill{s.ID, "部分約定", 2, 100, 1201, 0}); err != nil {
+	if err := p.OnFill(Fill{SignalID: s.ID, ExecutionID: "部分約定", Quantity: 2, Price: 100, Time: 1201}); err != nil {
 		t.Fatal(err)
 	}
 	requestClose(&p.Core, 3, 7)

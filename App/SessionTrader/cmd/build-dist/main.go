@@ -152,14 +152,14 @@ func prepareSingleConfigurations(stage string, settings config.Config) ([]string
 	}
 	names := []string{}
 	for _, example := range []struct {
-		folder, product, id, night string
-		cap                        int
+		folder, product, id, day, night string
+		cap                             int
 	}{
-		{"TOPIX", "TOPIX", "topix", "T04", 2},
-		{"TOPIXmini", "TOPIXmini", "topix-mini", "T04", 10},
-		{"NK225", "NK225", "nk225", "U06", 2},
-		{"NK225mini", "NK225mini", "nk225mini", "U06", 2},
-		{"NK225micro", "NK225micro", "nk-micro", "U06", 20},
+		{"TOPIX", "TOPIX", "topix", "T06", "T04", 2},
+		{"TOPIXmini", "TOPIXmini", "topix-mini", "T06", "T04", 10},
+		{"NK225", "NK225", "nk225", "TG04", "TG04", 2},
+		{"NK225mini", "NK225mini", "nk225mini", "TG04", "TG04", 10},
+		{"NK225micro", "NK225micro", "nk-micro", "TG04", "TG04", 20},
 	} {
 		if _, exists := settings.Products[example.product]; !exists {
 			return nil, fmt.Errorf("配布用設定に商品の規格がありません: %s", example.product)
@@ -168,6 +168,7 @@ func prepareSingleConfigurations(stage string, settings config.Config) ([]string
 			{"trading", "instance_id", example.id},
 			{"market", "product", example.product},
 			{"market", "max_per_side", example.cap},
+			{"methods", "day", example.day},
 			{"methods", "night", example.night},
 		})
 		if err != nil {

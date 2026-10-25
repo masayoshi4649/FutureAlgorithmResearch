@@ -6,13 +6,15 @@
 |---|---|---|---:|---|---|
 | [TOPIX](./TOPIX/README.md) | [設定](./TOPIX/conf/settings.toml) | `topix` | 2枚 | T06 | T04 |
 | [TOPIXmini](./TOPIXmini/README.md) | [設定](./TOPIXmini/conf/settings.toml) | `topix-mini` | 10枚 | T06 | T04 |
-| [NK225](./NK225/README.md) | [設定](./NK225/conf/settings.toml) | `nk225` | 2枚 | T06 | U06 |
-| [NK225mini](./NK225mini/README.md) | [設定](./NK225mini/conf/settings.toml) | `nk225mini` | 2枚 | T06 | U06 |
-| [NK225micro](./NK225micro/README.md) | [設定](./NK225micro/conf/settings.toml) | `nk-micro` | 20枚 | T06 | U06 |
+| [NK225](./NK225/README.md) | [設定](./NK225/conf/settings.toml) | `nk225` | 2枚 | TG04 | TG04 |
+| [NK225mini](./NK225mini/README.md) | [設定](./NK225mini/conf/settings.toml) | `nk225mini` | 10枚 | TG04 | TG04 |
+| [NK225micro](./NK225micro/README.md) | [設定](./NK225micro/conf/settings.toml) | `nk-micro` | 20枚 | TG04 | TG04 |
 
-表は新規配布の設定です。全商品 `dryrun=true` から始めます。TOPIXラージ・日経ラージ・日経ミニの上限2枚は、主担当1枚・未参加補完1枚の準備値であり、実運用の推奨枚数ではありません。既存の実設定・`data`・`log` は更新時も保持するため、運転前に各商品の設定を確認してください。
+表は新規配布の設定です。全商品 `dryrun=true` から始めます。上限枚数は準備値であり、実運用の推奨枚数ではありません。通常の再ビルドは既存の実設定・`data`・`log` を保持します。手法だけを更新する場合も、利用者が指定した枚数とdryrunは変更しません。
 
-主担当1枚では日中の部分利確・悪化時の半減が行われないため、研究時の初回5枚・10枚から損益を単純に倍率換算したものではありません。
+日経のTG04は上限を主担当・追加担当・独立担当へ5:3:2で配分します。PG04へ変更する場合は主担当・独立担当へ5:5で配分します。端数は余りの大きい担当から、同率は記載順で配ります。0枚の担当は停止します。TG04は上限2枚で1/1/0、10枚で5/3/2、11枚で6/3/2です。少枚数は部分返済や担当停止が変わるため、研究10枚の単純な損益縮小ではありません。
+
+同じTG04/PG04でも昼夜で内部の手法が切り替わります。手法IDを省略した旧設定は日経T06/U06、TOPIX T06/T04のままで、新手法へ自動変更しません。
 
 Windowsは商品フォルダ内の `sessiontrader.exe`、Linuxは同じ場所の `./sessiontrader` を引数なしで起動します。複数商品を動かす場合は、それぞれのフォルダから起動します。実行ファイル隣の `conf/*.toml` だけを読みます。
 
