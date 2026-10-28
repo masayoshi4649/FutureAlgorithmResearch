@@ -1,0 +1,94 @@
+{
+  "financial_replays": 0,
+  "methods": 20,
+  "complete_nights": 25,
+  "method_nights": 500,
+  "event_rows": 5930,
+  "evidence_rows": 5930,
+  "partial_method_nights": 20,
+  "s02_s04_post_exact_nights": 25,
+  "r02_s01_s02_s03_pre_exact_nights": 25,
+  "side_results": {
+    "C00": {
+      "buy_net": 318000,
+      "sell_net": 835000
+    },
+    "C01": {
+      "buy_net": 119000,
+      "sell_net": 701000
+    },
+    "C02": {
+      "buy_net": 154000,
+      "sell_net": 712000
+    },
+    "C03": {
+      "buy_net": 318000,
+      "sell_net": 815000
+    },
+    "C04": {
+      "buy_net": -48000,
+      "sell_net": 703000
+    },
+    "C05": {
+      "buy_net": -174000,
+      "sell_net": 627000
+    },
+    "C06": {
+      "buy_net": -387000,
+      "sell_net": 452000
+    },
+    "C07": {
+      "buy_net": 184000,
+      "sell_net": 54000
+    },
+    "C08": {
+      "buy_net": 29000,
+      "sell_net": 121000
+    },
+    "R01": {
+      "buy_net": -353000,
+      "sell_net": -3000
+    },
+    "R02": {
+      "buy_net": -353000,
+      "sell_net": -3000
+    },
+    "R03": {
+      "buy_net": -265000,
+      "sell_net": 255000
+    },
+    "R04": {
+      "buy_net": -355000,
+      "sell_net": -3000
+    },
+    "R05": {
+      "buy_net": -362000,
+      "sell_net": 10000
+    },
+    "R06": {
+      "buy_net": -347000,
+      "sell_net": -7000
+    },
+    "R07": {
+      "buy_net": -48000,
+      "sell_net": 124000
+    },
+    "S01": {
+      "buy_net": -319000,
+      "sell_net": 469000
+    },
+    "S02": {
+      "buy_net": 13000,
+      "sell_net": 696000
+    },
+    "S03": {
+      "buy_net": -265000,
+      "sell_net": 255000
+    },
+    "S04": {
+      "buy_net": 318000,
+      "sell_net": 823000
+    }
+  },
+  "all_checks_passed": true
+}
