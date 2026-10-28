@@ -1,0 +1,60 @@
+# 単一商品用の設定例。実設定は配布更新時に上書きしません。
+[controller]
+  base_url = "http://10.10.100.1:8080"
+  request_timeout_seconds = 15.0
+  history_timeout_seconds = 180.0
+  account_poll_seconds = 2.0
+  candle_poll_seconds = 10.0
+  reconnect_seconds = 3.0
+
+[trading]
+  dryrun = true
+  instance_id = "nk-micro"
+
+[runtime]
+  data_directory = "data"
+  log_directory = "log"
+  quote_max_age_seconds = 30.0
+  account_max_age_seconds = 15.0
+  reconnect_grace_seconds = 180.0
+  checkpoint_seconds = 5.0
+  status_seconds = 30.0
+  shutdown_seconds = 30.0
+  entry_order_timeout_seconds = 15.0
+
+[schedule]
+  force_close_before_seconds = 600.0
+  extra_cutoff_seconds = 600.0
+  day_extra = "12:30"
+  us_open = "09:30"
+  us_extra_delay_minutes = 30
+  london_extra = "16:30"
+
+[market]
+  product = "NK225micro"
+  max_per_side = 20
+  core_quantity = 0
+  extra_quantity = 0
+
+[products]
+  [products.NK225]
+    tick = 10.0
+    point_value = 1000.0
+  [products.NK225micro]
+    tick = 5.0
+    point_value = 10.0
+  [products.NK225mini]
+    tick = 5.0
+    point_value = 100.0
+  [products.TOPIX]
+    tick = 0.5
+    point_value = 10000.0
+  [products.TOPIXmini]
+    tick = 0.25
+    point_value = 1000.0
+
+[algorithm]
+
+[startup]
+action = "diagnostics"
+diagnostic_session = "2026-10-21_Day"

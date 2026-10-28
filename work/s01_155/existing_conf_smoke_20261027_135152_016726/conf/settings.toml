@@ -1,0 +1,100 @@
+# このファイルはWeb版の設定見本です。実行ファイル隣のconf/settings.tomlにコピーして使用します。
+# 画面から商品・共通設定を変更できます。画面の保存内容はconf/web-ui.tomlに記録します。
+
+[startup]
+# run: Web画面 / check: 全商品の設定検査 / probe: 読取接続検査 / diagnostics: 診断ZIP出力。
+action = "run"
+
+
+duration_seconds = 10
+[web]
+# 画面の待受IP。0.0.0.0で全インターフェースからの接続を受け付けます。
+# 別PCからは起動PCのIPアドレス又はホスト名で開きます。同じPC限定なら127.0.0.1。
+host = "127.0.0.1"
+# Web画面のポート番号（1〜65535）。controllerの8080とは別の番号にします。
+port = 63477
+
+[controller]
+# kabus-controllerの接続先。APIパスやAPIキーは付けません。
+base_url = "http://127.0.0.1:63448"
+
+[schedule]
+# 立会終了の何秒前に全玉の返済を要求するか。600は10分前。立会時刻はAPIから取得します。
+force_close_before_seconds = 600
+# 米国現物開始の基準（冬の日本時間）。米国夏時間は自動で1時間早め、22:30になります。
+us_open_jst = "23:30"
+
+# 全5商品を一つずつ記載します。モード・枚数・昼夜手法を画面で変更できます。
+# OFFは注文取消・照合後に停止し、保有玉は返済せず管理対象から外します。画面保存のconf/web-ui.tomlを優先適用します。
+# 判断板は日経225とTOPIXのラージを使用し、発注・約定・建玉IDは商品ごとに分離します。
+[[instruments]]
+# 発注する商品名。日経225ラージです。
+product = "NK225"
+# 商品別モード。off=停止、dryrun=仮想売買、live=実取引。画面から変更・保存できます。
+mode = "off"
+# 今回の運転が所有する買い・売りそれぞれの上限枚数。未約定新規も含み、旧玉・手動玉は除きます。
+max_per_side = 2
+# 日中の手法ID。日経系はTG04/PG04/従来T06に対応します。
+day = "NK225_D07"
+# 夜間の手法ID。日経系はTG04/PG04/従来U06に対応します。
+night = "NK225_D07"
+
+[[instruments]]
+# 発注する商品名。日経225miniです。
+product = "NK225mini"
+# 商品別モード。off=停止、dryrun=仮想売買、live=実取引。画面から変更・保存できます。
+mode = "off"
+# この商品の片方向上限。TG04は10枚を基本5・追加3・別入口2へ配分します。
+max_per_side = 10
+# 日中の手法ID。
+day = "NK225_D07"
+# 夜間の手法ID。同じIDでも昼夜で内部条件が切り替わります。
+night = "NK225_D07"
+
+[[instruments]]
+# 発注する商品名。日経225microです。
+product = "NK225micro"
+# 商品別モード。off=停止、dryrun=仮想売買、live=実取引。画面から変更・保存できます。
+mode = "off"
+# この商品の片方向上限。ラージ・miniの上限とは別に管理します。
+max_per_side = 20
+# 日中の手法ID。
+day = "NK225_D07"
+# 夜間の手法ID。
+night = "NK225_D07"
+
+[[instruments]]
+# 発注する商品名。TOPIXラージです。
+product = "TOPIX"
+# 商品別モード。off=停止、dryrun=仮想売買、live=実取引。画面から変更・保存できます。
+mode = "off"
+# この商品の片方向上限。返済した枚数は同じ運転内の新規に再利用できます。
+max_per_side = 2
+# 日中の手法ID。TOPIX系はT06です。
+day = "TOPIX_T06"
+# 夜間の手法ID。TOPIX系はT04です。
+night = "TOPIX_T04"
+
+[[instruments]]
+# 発注する商品名。TOPIXminiです。
+product = "TOPIXmini"
+# 商品別モード。off=停止、dryrun=仮想売買、live=実取引。画面から変更・保存できます。
+mode = "off"
+# この商品の片方向上限。
+max_per_side = 10
+# 日中の手法ID。
+day = "TOPIX_T06"
+# 夜間の手法ID。
+night = "TOPIX_T04"
+
+[rule_engine]
+# 手法別の条件ファイルがあるフォルダ。実行ファイル隣を基準にします。読込失敗時は起動しません。
+directory = "conf/rules"
+
+[runtime]
+data_directory = "data"
+
+log_directory = "log"
+
+[trading]
+dryrun = true

@@ -1,0 +1,152 @@
+# Web画面から保存した設定です。conf内の他のTOMLより後に、この公開範囲へ適用します。
+# 元の設定・コメント・非公開設定は他ファイルに保持します。変更後は画面で再読み込み、又は再起動します。
+[web]
+# 画面の待受IP。0.0.0.0は全IPv4、127.0.0.1は同じPCのみ。変更は再起動で反映します。
+  host = "127.0.0.1"
+# 画面のポート番号（1〜65535）。controllerと別の番号を指定し、変更は再起動で反映します。
+  port = 18098
+
+[controller]
+# kabus-controllerの接続先。APIパス・キーは付けません。
+  base_url = "http://127.0.0.1:1"
+# 通常API要求の通信期限（秒）。
+  request_timeout_seconds = 15.0
+# 過去板履歴の取得期限（秒）。
+  history_timeout_seconds = 180.0
+# 注文・建玉の照合間隔（秒）。
+  account_poll_seconds = 2.0
+# 確定足の取得間隔（秒）。
+  candle_poll_seconds = 10.0
+# 通信切断後の再接続待ち（秒）。
+  reconnect_seconds = 3.0
+
+[schedule]
+# 立会終了の何秒前に所有玉の返済を要求するか。
+  force_close_before_seconds = 600.0
+# 補完入口を立会終了の何秒前まで許可するか。
+  extra_cutoff_seconds = 600.0
+# 日中の未参加補完を許可する日本時間（HH:MM）。
+  day_extra_jst = "12:30"
+# 米国現物開始の基準となる冬の日本時間。米国夏時間は自動で1時間早めます。
+  us_open_jst = "23:30"
+# TOPIX夜間補完の冬の日本時間。英国夏時間は自動で1時間早めます。
+  london_extra_jst = "01:30"
+# 日経夜間補完を米国開始から何分後に許可するか（0〜240）。
+  us_extra_delay_minutes = 30
+
+[runtime]
+# SQLite保存先。相対パスは実行ファイルのフォルダが基準です。
+  data_directory = "data"
+# 約定・診断ログ保存先。相対パスは実行ファイルのフォルダが基準です。
+  log_directory = "log"
+# 新規判断に使う価格・気配の鮮度上限（秒）。
+  quote_max_age_seconds = 30.0
+# 注文・建玉照会の鮮度上限（秒）。
+  account_max_age_seconds = 15.0
+# 受信中断時、返済判断へ移るまでの猶予（秒）。気配鮮度以上を指定します。
+  reconnect_grace_seconds = 180.0
+# 戦略状態を保存する間隔（秒）。約定は別途即時保存します。
+  checkpoint_seconds = 5.0
+# 端末へ稼働状況を表示する間隔（秒）。
+  status_seconds = 30.0
+# 運転終了時の取消・返済・照合を試みる猶予（秒）。
+  shutdown_seconds = 30.0
+# 新規判断・新規注文の有効期限（秒）。
+  entry_order_timeout_seconds = 15.0
+
+[[instruments]]
+# 発注商品。判断には対応するラージ市場を使用します。
+  product = "NK225"
+# この運転の買い・売りそれぞれの保有上限枚数。自分の未約定新規を含みます。
+  max_per_side = 2
+# offは予約取消後に停止し、保有玉を管理外として返済しません。dryrunは仮想売買、liveは実注文。この希望状態を次回起動にも適用します。
+  mode = "off"
+# 日中の手法名。銘柄付きのルールファイル名から拡張子を除いた値です。
+  day = "NK225_D07"
+# 夜間の手法名。銘柄付きのルールファイル名から拡張子を除いた値です。
+  night = "NK225_D07"
+
+[[instruments]]
+# 発注商品。判断には対応するラージ市場を使用します。
+  product = "NK225mini"
+# この運転の買い・売りそれぞれの保有上限枚数。自分の未約定新規を含みます。
+  max_per_side = 10
+# offは予約取消後に停止し、保有玉を管理外として返済しません。dryrunは仮想売買、liveは実注文。この希望状態を次回起動にも適用します。
+  mode = "off"
+# 日中の手法名。銘柄付きのルールファイル名から拡張子を除いた値です。
+  day = "NK225_D07"
+# 夜間の手法名。銘柄付きのルールファイル名から拡張子を除いた値です。
+  night = "NK225_D07"
+
+  [[instruments.windows]]
+# 時間帯の識別名。商品内で重複しない英数・_・-を指定します。
+    id = "Day"
+# 立会区分。Dayは日中、Nightは夜間。時間帯ごとに手法を選べます。
+    session = "Day"
+# 開始を含む時計。日本時間HH:MM、SESSION_START又はUS_OPEN±HH:MM。夜間の午前時計は翌日です。
+    start = "SESSION_START"
+# 終了を含まない時計。日本時間HH:MM、SESSION_END又はUS_OPEN±HH:MM。米国相対は夏時間へ自動追従します。
+    end = "SESSION_END"
+# この時間帯の銘柄付き手法ID。空文字は静観です。枠間の空白も静観し、境界では当運転の所有玉を返済・照合します。
+    method = "NK225_D07"
+
+  [[instruments.windows]]
+# 時間帯の識別名。商品内で重複しない英数・_・-を指定します。
+    id = "Night"
+# 立会区分。Dayは日中、Nightは夜間。時間帯ごとに手法を選べます。
+    session = "Night"
+# 開始を含む時計。日本時間HH:MM、SESSION_START又はUS_OPEN±HH:MM。夜間の午前時計は翌日です。
+    start = "SESSION_START"
+# 終了を含まない時計。日本時間HH:MM、SESSION_END又はUS_OPEN±HH:MM。米国相対は夏時間へ自動追従します。
+    end = "US_OPEN-00:15"
+# この時間帯の銘柄付き手法ID。空文字は静観です。枠間の空白も静観し、境界では当運転の所有玉を返済・照合します。
+    method = "NK225_D07"
+
+  [[instruments.windows]]
+# 時間帯の識別名。商品内で重複しない英数・_・-を指定します。
+    id = "window1"
+# 立会区分。Dayは日中、Nightは夜間。時間帯ごとに手法を選べます。
+    session = "Night"
+# 開始を含む時計。日本時間HH:MM、SESSION_START又はUS_OPEN±HH:MM。夜間の午前時計は翌日です。
+    start = "US_OPEN+00:15"
+# 終了を含まない時計。日本時間HH:MM、SESSION_END又はUS_OPEN±HH:MM。米国相対は夏時間へ自動追従します。
+    end = "SESSION_END"
+# この時間帯の銘柄付き手法ID。空文字は静観です。枠間の空白も静観し、境界では当運転の所有玉を返済・照合します。
+    method = "NK225_PG04"
+
+[[instruments]]
+# 発注商品。判断には対応するラージ市場を使用します。
+  product = "NK225micro"
+# この運転の買い・売りそれぞれの保有上限枚数。自分の未約定新規を含みます。
+  max_per_side = 20
+# offは予約取消後に停止し、保有玉を管理外として返済しません。dryrunは仮想売買、liveは実注文。この希望状態を次回起動にも適用します。
+  mode = "off"
+# 日中の手法名。銘柄付きのルールファイル名から拡張子を除いた値です。
+  day = "NK225_D07"
+# 夜間の手法名。銘柄付きのルールファイル名から拡張子を除いた値です。
+  night = "NK225_D07"
+
+[[instruments]]
+# 発注商品。判断には対応するラージ市場を使用します。
+  product = "TOPIX"
+# この運転の買い・売りそれぞれの保有上限枚数。自分の未約定新規を含みます。
+  max_per_side = 2
+# offは予約取消後に停止し、保有玉を管理外として返済しません。dryrunは仮想売買、liveは実注文。この希望状態を次回起動にも適用します。
+  mode = "off"
+# 日中の手法名。銘柄付きのルールファイル名から拡張子を除いた値です。
+  day = "TOPIX_T06"
+# 夜間の手法名。銘柄付きのルールファイル名から拡張子を除いた値です。
+  night = "TOPIX_T04"
+
+[[instruments]]
+# 発注商品。判断には対応するラージ市場を使用します。
+  product = "TOPIXmini"
+# この運転の買い・売りそれぞれの保有上限枚数。自分の未約定新規を含みます。
+  max_per_side = 10
+# offは予約取消後に停止し、保有玉を管理外として返済しません。dryrunは仮想売買、liveは実注文。この希望状態を次回起動にも適用します。
+  mode = "off"
+# 日中の手法名。銘柄付きのルールファイル名から拡張子を除いた値です。
+  day = "TOPIX_T06"
+# 夜間の手法名。銘柄付きのルールファイル名から拡張子を除いた値です。
+  night = "TOPIX_T04"
+
