@@ -1,0 +1,2595 @@
+{
+  "financial_replays": 0,
+  "new_raw_market_reads": 0,
+  "frozen_references_checked": 12,
+  "all_fingerprints_match": true,
+  "new_cases": 468,
+  "complete_new_cases": 450,
+  "partial_new_cases": 18,
+  "saved_control_cases": 52,
+  "post_exact_cases": 286,
+  "prefix_cases": 182,
+  "events": 5900,
+  "lots": 2953,
+  "snapshots": 323105,
+  "total_complete_display_cases": 500,
+  "total_partial_display_cases": 20,
+  "methods": {
+    "C00": {
+      "profit": 2278000.0,
+      "loss": 1125000.0,
+      "net": 1153000.0,
+      "losses": 9,
+      "wins": 16,
+      "maxloss": 53000.0,
+      "avgloss": 28000.0,
+      "medianloss": 24000.0,
+      "ex3": 430000.0,
+      "entries": 150
+    },
+    "B04": {
+      "profit": 2622000.0,
+      "loss": 1592000.0,
+      "net": 1030000.0,
+      "losses": 8,
+      "wins": 17,
+      "maxloss": 93000.0,
+      "avgloss": 43000.0,
+      "medianloss": 40500.0,
+      "ex3": 307000.0,
+      "entries": 172
+    },
+    "P01": {
+      "profit": 2579000.0,
+      "loss": 1131000.0,
+      "net": 1448000.0,
+      "losses": 7,
+      "wins": 18,
+      "maxloss": 45000.0,
+      "avgloss": 28428.571428571428,
+      "medianloss": 35000.0,
+      "ex3": 710000.0,
+      "entries": 172,
+      "target": {
+        "profit": 382000.0,
+        "loss": 77000.0,
+        "net": 305000.0,
+        "losses": 3,
+        "wins": 13,
+        "maxloss": 20000.0,
+        "avgloss": 11666.666666666666,
+        "medianloss": 13000.0,
+        "ex3": 125000.0,
+        "entries": 38
+      },
+      "trail": {
+        "profit": 367000,
+        "loss": 0,
+        "net": 367000,
+        "count": 34
+      },
+      "boundary": {
+        "profit": 15000,
+        "loss": 77000,
+        "net": -62000,
+        "count": 4
+      },
+      "positive_decision_negative_fill": 0
+    },
+    "P02": {
+      "profit": 2771000.0,
+      "loss": 1772000.0,
+      "net": 999000.0,
+      "losses": 9,
+      "wins": 16,
+      "maxloss": 249000.0,
+      "avgloss": 74555.55555555556,
+      "medianloss": 42000.0,
+      "ex3": 231000.0,
+      "entries": 172,
+      "target": {
+        "profit": 574000.0,
+        "loss": 718000.0,
+        "net": -144000.0,
+        "losses": 7,
+        "wins": 9,
+        "maxloss": 225000.0,
+        "avgloss": 77571.42857142857,
+        "medianloss": 31000.0,
+        "ex3": -394000.0,
+        "entries": 38
+      },
+      "trail": {
+        "profit": 494000,
+        "loss": 0,
+        "net": 494000,
+        "count": 23
+      },
+      "boundary": {
+        "profit": 80000,
+        "loss": 718000,
+        "net": -638000,
+        "count": 15
+      },
+      "positive_decision_negative_fill": 0
+    },
+    "P03": {
+      "profit": 3070000.0,
+      "loss": 2348000.0,
+      "net": 722000.0,
+      "losses": 11,
+      "wins": 14,
+      "maxloss": 249000.0,
+      "avgloss": 76909.09090909091,
+      "medianloss": 45000.0,
+      "ex3": -95000.0,
+      "entries": 172,
+      "target": {
+        "profit": 873000.0,
+        "loss": 1294000.0,
+        "net": -421000.0,
+        "losses": 9,
+        "wins": 7,
+        "maxloss": 225000.0,
+        "avgloss": 92555.55555555556,
+        "medianloss": 94000.0,
+        "ex3": -688000.0,
+        "entries": 38
+      },
+      "trail": {
+        "profit": 719000,
+        "loss": 0,
+        "net": 719000,
+        "count": 16
+      },
+      "boundary": {
+        "profit": 154000,
+        "loss": 1294000,
+        "net": -1140000,
+        "count": 22
+      },
+      "positive_decision_negative_fill": 0
+    },
+    "P04": {
+      "profit": 2858000.0,
+      "loss": 1772000.0,
+      "net": 1086000.0,
+      "losses": 8,
+      "wins": 17,
+      "maxloss": 249000.0,
+      "avgloss": 80625.0,
+      "medianloss": 40500.0,
+      "ex3": 333000.0,
+      "entries": 172,
+      "target": {
+        "profit": 661000.0,
+        "loss": 718000.0,
+        "net": -57000.0,
+        "losses": 7,
+        "wins": 9,
+        "maxloss": 225000.0,
+        "avgloss": 71714.28571428571,
+        "medianloss": 20000.0,
+        "ex3": -307000.0,
+        "entries": 38
+      },
+      "trail": {
+        "profit": 581000,
+        "loss": 0,
+        "net": 581000,
+        "count": 23
+      },
+      "boundary": {
+        "profit": 80000,
+        "loss": 718000,
+        "net": -638000,
+        "count": 15
+      },
+      "positive_decision_negative_fill": 0
+    },
+    "P05": {
+      "profit": 2628000.0,
+      "loss": 1131000.0,
+      "net": 1497000.0,
+      "losses": 7,
+      "wins": 18,
+      "maxloss": 45000.0,
+      "avgloss": 26714.285714285714,
+      "medianloss": 25000.0,
+      "ex3": 756000.0,
+      "entries": 172,
+      "target": {
+        "profit": 431000.0,
+        "loss": 77000.0,
+        "net": 354000.0,
+        "losses": 3,
+        "wins": 13,
+        "maxloss": 20000.0,
+        "avgloss": 9333.333333333334,
+        "medianloss": 6000.0,
+        "ex3": 164000.0,
+        "entries": 38
+      },
+      "trail": {
+        "profit": 416000,
+        "loss": 0,
+        "net": 416000,
+        "count": 34
+      },
+      "boundary": {
+        "profit": 15000,
+        "loss": 77000,
+        "net": -62000,
+        "count": 4
+      },
+      "positive_decision_negative_fill": 0
+    },
+    "P06": {
+      "profit": 2371000.0,
+      "loss": 1296000.0,
+      "net": 1075000.0,
+      "losses": 9,
+      "wins": 16,
+      "maxloss": 83000.0,
+      "avgloss": 39888.88888888889,
+      "medianloss": 36000.0,
+      "ex3": 339000.0,
+      "entries": 172,
+      "target": {
+        "profit": 174000.0,
+        "loss": 242000.0,
+        "net": -68000.0,
+        "losses": 6,
+        "wins": 10,
+        "maxloss": 50000.0,
+        "avgloss": 30666.666666666668,
+        "medianloss": 35000.0,
+        "ex3": -131000.0,
+        "entries": 38
+      },
+      "trail": {
+        "profit": 158000,
+        "loss": 0,
+        "net": 158000,
+        "count": 23
+      },
+      "boundary": {
+        "profit": 16000,
+        "loss": 242000,
+        "net": -226000,
+        "count": 15
+      },
+      "positive_decision_negative_fill": 0
+    },
+    "P07": {
+      "profit": 2483000.0,
+      "loss": 1415000.0,
+      "net": 1068000.0,
+      "losses": 9,
+      "wins": 16,
+      "maxloss": 114000.0,
+      "avgloss": 48555.555555555555,
+      "medianloss": 36000.0,
+      "ex3": 332000.0,
+      "entries": 172,
+      "target": {
+        "profit": 286000.0,
+        "loss": 361000.0,
+        "net": -75000.0,
+        "losses": 6,
+        "wins": 10,
+        "maxloss": 90000.0,
+        "avgloss": 44333.333333333336,
+        "medianloss": 39000.0,
+        "ex3": -177000.0,
+        "entries": 38
+      },
+      "trail": {
+        "profit": 254000,
+        "loss": 0,
+        "net": 254000,
+        "count": 23
+      },
+      "boundary": {
+        "profit": 32000,
+        "loss": 361000,
+        "net": -329000,
+        "count": 15
+      },
+      "positive_decision_negative_fill": 0
+    },
+    "P08": {
+      "profit": 2771000.0,
+      "loss": 1667000.0,
+      "net": 1104000.0,
+      "losses": 9,
+      "wins": 16,
+      "maxloss": 249000.0,
+      "avgloss": 74555.55555555556,
+      "medianloss": 42000.0,
+      "ex3": 336000.0,
+      "entries": 171,
+      "target": {
+        "profit": 574000.0,
+        "loss": 613000.0,
+        "net": -39000.0,
+        "losses": 6,
+        "wins": 10,
+        "maxloss": 225000.0,
+        "avgloss": 85333.33333333333,
+        "medianloss": 48500.0,
+        "ex3": -313000.0,
+        "entries": 37
+      },
+      "trail": {
+        "profit": 494000,
+        "loss": 0,
+        "net": 494000,
+        "count": 23
+      },
+      "boundary": {
+        "profit": 80000,
+        "loss": 613000,
+        "net": -533000,
+        "count": 14
+      },
+      "positive_decision_negative_fill": 0
+    },
+    "P09": {
+      "profit": 2771000.0,
+      "loss": 1772000.0,
+      "net": 999000.0,
+      "losses": 9,
+      "wins": 16,
+      "maxloss": 249000.0,
+      "avgloss": 74555.55555555556,
+      "medianloss": 42000.0,
+      "ex3": 231000.0,
+      "entries": 172,
+      "target": {
+        "profit": 574000.0,
+        "loss": 718000.0,
+        "net": -144000.0,
+        "losses": 7,
+        "wins": 9,
+        "maxloss": 225000.0,
+        "avgloss": 77571.42857142857,
+        "medianloss": 31000.0,
+        "ex3": -394000.0,
+        "entries": 38
+      },
+      "trail": {
+        "profit": 494000,
+        "loss": 0,
+        "net": 494000,
+        "count": 23
+      },
+      "boundary": {
+        "profit": 80000,
+        "loss": 718000,
+        "net": -638000,
+        "count": 15
+      },
+      "positive_decision_negative_fill": 0
+    },
+    "P10": {
+      "profit": 3738000.0,
+      "loss": 3091000.0,
+      "net": 647000.0,
+      "losses": 11,
+      "wins": 14,
+      "maxloss": 249000.0,
+      "avgloss": 86636.36363636363,
+      "medianloss": 47000.0,
+      "ex3": -123000.0,
+      "entries": 232,
+      "target": {
+        "profit": 1541000.0,
+        "loss": 2037000.0,
+        "net": -496000.0,
+        "losses": 10,
+        "wins": 6,
+        "maxloss": 225000.0,
+        "avgloss": 107500.0,
+        "medianloss": 114000.0,
+        "ex3": -894000.0,
+        "entries": 98
+      },
+      "trail": {
+        "profit": 1433000,
+        "loss": 0,
+        "net": 1433000,
+        "count": 61
+      },
+      "boundary": {
+        "profit": 108000,
+        "loss": 2037000,
+        "net": -1929000,
+        "count": 37
+      },
+      "positive_decision_negative_fill": 0
+    },
+    "P11": {
+      "profit": 2643000.0,
+      "loss": 1646000.0,
+      "net": 997000.0,
+      "losses": 9,
+      "wins": 16,
+      "maxloss": 83000.0,
+      "avgloss": 34111.11111111111,
+      "medianloss": 23000.0,
+      "ex3": 302000.0,
+      "entries": 232,
+      "target": {
+        "profit": 446000.0,
+        "loss": 592000.0,
+        "net": -146000.0,
+        "losses": 10,
+        "wins": 6,
+        "maxloss": 45000.0,
+        "avgloss": 23000.0,
+        "medianloss": 23000.0,
+        "ex3": -212000.0,
+        "entries": 98
+      },
+      "trail": {
+        "profit": 421000,
+        "loss": 0,
+        "net": 421000,
+        "count": 61
+      },
+      "boundary": {
+        "profit": 25000,
+        "loss": 592000,
+        "net": -567000,
+        "count": 37
+      },
+      "positive_decision_negative_fill": 0
+    },
+    "N01": {
+      "profit": 1360000.0,
+      "loss": 740000.0,
+      "net": 620000.0,
+      "losses": 5,
+      "wins": 20,
+      "maxloss": 182000.0,
+      "avgloss": 65800.0,
+      "medianloss": 17000.0,
+      "ex3": 310000.0,
+      "entries": 172,
+      "target": {
+        "profit": 1360000.0,
+        "loss": 740000.0,
+        "net": 620000.0,
+        "losses": 5,
+        "wins": 20,
+        "maxloss": 182000.0,
+        "avgloss": 65800.0,
+        "medianloss": 17000.0,
+        "ex3": 310000.0,
+        "entries": 172
+      },
+      "trail": {
+        "profit": 1360000,
+        "loss": 0,
+        "net": 1360000,
+        "count": 160
+      },
+      "boundary": {
+        "profit": 0,
+        "loss": 740000,
+        "net": -740000,
+        "count": 12
+      },
+      "positive_decision_negative_fill": 0
+    },
+    "N02": {
+      "profit": 2762000.0,
+      "loss": 1314000.0,
+      "net": 1448000.0,
+      "losses": 4,
+      "wins": 20,
+      "maxloss": 164000.0,
+      "avgloss": 71500.0,
+      "medianloss": 53500.0,
+      "ex3": 964000.0,
+      "entries": 172,
+      "target": {
+        "profit": 2762000.0,
+        "loss": 1314000.0,
+        "net": 1448000.0,
+        "losses": 4,
+        "wins": 20,
+        "maxloss": 164000.0,
+        "avgloss": 71500.0,
+        "medianloss": 53500.0,
+        "ex3": 964000.0,
+        "entries": 172
+      },
+      "trail": {
+        "profit": 2747000,
+        "loss": 0,
+        "net": 2747000,
+        "count": 148
+      },
+      "boundary": {
+        "profit": 15000,
+        "loss": 1314000,
+        "net": -1299000,
+        "count": 24
+      },
+      "positive_decision_negative_fill": 0
+    },
+    "N03": {
+      "profit": 4735000.0,
+      "loss": 2250000.0,
+      "net": 2485000.0,
+      "losses": 3,
+      "wins": 22,
+      "maxloss": 350000.0,
+      "avgloss": 190333.33333333334,
+      "medianloss": 111000.0,
+      "ex3": 1613000.0,
+      "entries": 166,
+      "target": {
+        "profit": 4735000.0,
+        "loss": 2250000.0,
+        "net": 2485000.0,
+        "losses": 3,
+        "wins": 22,
+        "maxloss": 350000.0,
+        "avgloss": 190333.33333333334,
+        "medianloss": 111000.0,
+        "ex3": 1613000.0,
+        "entries": 166
+      },
+      "trail": {
+        "profit": 4655000,
+        "loss": 0,
+        "net": 4655000,
+        "count": 128
+      },
+      "boundary": {
+        "profit": 80000,
+        "loss": 2250000,
+        "net": -2170000,
+        "count": 38
+      },
+      "positive_decision_negative_fill": 0
+    },
+    "N04": {
+      "profit": 1143000.0,
+      "loss": 847000.0,
+      "net": 296000.0,
+      "losses": 6,
+      "wins": 19,
+      "maxloss": 117000.0,
+      "avgloss": 41166.666666666664,
+      "medianloss": 29000.0,
+      "ex3": 95000.0,
+      "entries": 172,
+      "target": {
+        "profit": 1143000.0,
+        "loss": 847000.0,
+        "net": 296000.0,
+        "losses": 6,
+        "wins": 19,
+        "maxloss": 117000.0,
+        "avgloss": 41166.666666666664,
+        "medianloss": 29000.0,
+        "ex3": 95000.0,
+        "entries": 172
+      },
+      "trail": {
+        "profit": 1130000,
+        "loss": 0,
+        "net": 1130000,
+        "count": 148
+      },
+      "boundary": {
+        "profit": 13000,
+        "loss": 847000,
+        "net": -834000,
+        "count": 24
+      },
+      "positive_decision_negative_fill": 0
+    },
+    "N05": {
+      "profit": 2762000.0,
+      "loss": 1314000.0,
+      "net": 1448000.0,
+      "losses": 4,
+      "wins": 20,
+      "maxloss": 164000.0,
+      "avgloss": 71500.0,
+      "medianloss": 53500.0,
+      "ex3": 964000.0,
+      "entries": 172,
+      "target": {
+        "profit": 2762000.0,
+        "loss": 1314000.0,
+        "net": 1448000.0,
+        "losses": 4,
+        "wins": 20,
+        "maxloss": 164000.0,
+        "avgloss": 71500.0,
+        "medianloss": 53500.0,
+        "ex3": 964000.0,
+        "entries": 172
+      },
+      "trail": {
+        "profit": 2747000,
+        "loss": 0,
+        "net": 2747000,
+        "count": 148
+      },
+      "boundary": {
+        "profit": 15000,
+        "loss": 1314000,
+        "net": -1299000,
+        "count": 24
+      },
+      "positive_decision_negative_fill": 0
+    },
+    "N06": {
+      "profit": 10704000.0,
+      "loss": 9096000.0,
+      "net": 1608000.0,
+      "losses": 12,
+      "wins": 13,
+      "maxloss": 430000.0,
+      "avgloss": 140250.0,
+      "medianloss": 111000.0,
+      "ex3": -498000.0,
+      "entries": 696,
+      "target": {
+        "profit": 10704000.0,
+        "loss": 9096000.0,
+        "net": 1608000.0,
+        "losses": 12,
+        "wins": 13,
+        "maxloss": 430000.0,
+        "avgloss": 140250.0,
+        "medianloss": 111000.0,
+        "ex3": -498000.0,
+        "entries": 696
+      },
+      "trail": {
+        "profit": 10557000,
+        "loss": 0,
+        "net": 10557000,
+        "count": 560
+      },
+      "boundary": {
+        "profit": 147000,
+        "loss": 9096000,
+        "net": -8949000,
+        "count": 136
+      },
+      "positive_decision_negative_fill": 0
+    },
+    "N07": {
+      "profit": 5201000.0,
+      "loss": 5007000.0,
+      "net": 194000.0,
+      "losses": 12,
+      "wins": 13,
+      "maxloss": 245000.0,
+      "avgloss": 67333.33333333333,
+      "medianloss": 40500.0,
+      "ex3": -349000.0,
+      "entries": 844,
+      "target": {
+        "profit": 5201000.0,
+        "loss": 5007000.0,
+        "net": 194000.0,
+        "losses": 12,
+        "wins": 13,
+        "maxloss": 245000.0,
+        "avgloss": 67333.33333333333,
+        "medianloss": 40500.0,
+        "ex3": -349000.0,
+        "entries": 844
+      },
+      "trail": {
+        "profit": 5092000,
+        "loss": 0,
+        "net": 5092000,
+        "count": 674
+      },
+      "boundary": {
+        "profit": 109000,
+        "loss": 5007000,
+        "net": -4898000,
+        "count": 170
+      },
+      "positive_decision_negative_fill": 0
+    }
+  },
+  "partial": {
+    "C00": {
+      "profit": 0,
+      "loss": 0,
+      "net": 0,
+      "entries": 0,
+      "unrealized": 0,
+      "session": "2026-10-26_Night"
+    },
+    "B04": {
+      "profit": 0,
+      "loss": 0,
+      "net": 20000.0,
+      "entries": 1,
+      "unrealized": 10000,
+      "session": "2026-10-26_Night"
+    },
+    "P01": {
+      "profit": 10000.0,
+      "loss": 0,
+      "net": 10000.0,
+      "entries": 1,
+      "unrealized": 0.0,
+      "remaining_lots": 0,
+      "open_lot_realized": 0,
+      "session": "2026-10-26_Night",
+      "target": {
+        "profit": 10000.0,
+        "loss": 0,
+        "net": 10000.0,
+        "entries": 1,
+        "unrealized": 0.0,
+        "remaining_lots": 0,
+        "open_lot_realized": 0
+      },
+      "trail": {
+        "profit": 10000,
+        "loss": 0,
+        "net": 10000,
+        "count": 1
+      },
+      "boundary": {
+        "profit": 0,
+        "loss": 0,
+        "net": 0,
+        "count": 0
+      },
+      "positive_decision_negative_fill": 0,
+      "maximum": {
+        "long": 5,
+        "short": 0,
+        "reserved_long": 5,
+        "reserved_short": 0
+      },
+      "held_seconds": 443.0,
+      "hedged_seconds": 0.0,
+      "long_cap_seconds": 0.0,
+      "short_cap_seconds": 0.0
+    },
+    "P02": {
+      "profit": 25000.0,
+      "loss": 0,
+      "net": 25000.0,
+      "entries": 1,
+      "unrealized": 0.0,
+      "remaining_lots": 0,
+      "open_lot_realized": 0,
+      "session": "2026-10-26_Night",
+      "target": {
+        "profit": 25000.0,
+        "loss": 0,
+        "net": 25000.0,
+        "entries": 1,
+        "unrealized": 0.0,
+        "remaining_lots": 0,
+        "open_lot_realized": 0
+      },
+      "trail": {
+        "profit": 25000,
+        "loss": 0,
+        "net": 25000,
+        "count": 1
+      },
+      "boundary": {
+        "profit": 0,
+        "loss": 0,
+        "net": 0,
+        "count": 0
+      },
+      "positive_decision_negative_fill": 0,
+      "maximum": {
+        "long": 5,
+        "short": 0,
+        "reserved_long": 5,
+        "reserved_short": 0
+      },
+      "held_seconds": 496.0,
+      "hedged_seconds": 0.0,
+      "long_cap_seconds": 0.0,
+      "short_cap_seconds": 0.0
+    },
+    "P03": {
+      "profit": 0,
+      "loss": 0,
+      "net": 0.0,
+      "entries": 1,
+      "unrealized": 50000.0,
+      "remaining_lots": 1,
+      "open_lot_realized": 0.0,
+      "session": "2026-10-26_Night",
+      "target": {
+        "profit": 0,
+        "loss": 0,
+        "net": 0.0,
+        "entries": 1,
+        "unrealized": 50000.0,
+        "remaining_lots": 1,
+        "open_lot_realized": 0.0
+      },
+      "trail": {
+        "profit": 0,
+        "loss": 0,
+        "net": 0,
+        "count": 0
+      },
+      "boundary": {
+        "profit": 0,
+        "loss": 0,
+        "net": 0,
+        "count": 0
+      },
+      "positive_decision_negative_fill": 0,
+      "maximum": {
+        "long": 5,
+        "short": 0,
+        "reserved_long": 5,
+        "reserved_short": 0
+      },
+      "held_seconds": 1821.0,
+      "hedged_seconds": 0.0,
+      "long_cap_seconds": 0.0,
+      "short_cap_seconds": 0.0
+    },
+    "P04": {
+      "profit": 35000.0,
+      "loss": 0,
+      "net": 35000.0,
+      "entries": 1,
+      "unrealized": 0.0,
+      "remaining_lots": 0,
+      "open_lot_realized": 0,
+      "session": "2026-10-26_Night",
+      "target": {
+        "profit": 35000.0,
+        "loss": 0,
+        "net": 35000.0,
+        "entries": 1,
+        "unrealized": 0.0,
+        "remaining_lots": 0,
+        "open_lot_realized": 0
+      },
+      "trail": {
+        "profit": 35000,
+        "loss": 0,
+        "net": 35000,
+        "count": 1
+      },
+      "boundary": {
+        "profit": 0,
+        "loss": 0,
+        "net": 0,
+        "count": 0
+      },
+      "positive_decision_negative_fill": 0,
+      "maximum": {
+        "long": 5,
+        "short": 0,
+        "reserved_long": 5,
+        "reserved_short": 0
+      },
+      "held_seconds": 488.0,
+      "hedged_seconds": 0.0,
+      "long_cap_seconds": 0.0,
+      "short_cap_seconds": 0.0
+    },
+    "P05": {
+      "profit": 15000.0,
+      "loss": 0,
+      "net": 15000.0,
+      "entries": 1,
+      "unrealized": 0.0,
+      "remaining_lots": 0,
+      "open_lot_realized": 0,
+      "session": "2026-10-26_Night",
+      "target": {
+        "profit": 15000.0,
+        "loss": 0,
+        "net": 15000.0,
+        "entries": 1,
+        "unrealized": 0.0,
+        "remaining_lots": 0,
+        "open_lot_realized": 0
+      },
+      "trail": {
+        "profit": 15000,
+        "loss": 0,
+        "net": 15000,
+        "count": 1
+      },
+      "boundary": {
+        "profit": 0,
+        "loss": 0,
+        "net": 0,
+        "count": 0
+      },
+      "positive_decision_negative_fill": 0,
+      "maximum": {
+        "long": 5,
+        "short": 0,
+        "reserved_long": 5,
+        "reserved_short": 0
+      },
+      "held_seconds": 437.0,
+      "hedged_seconds": 0.0,
+      "long_cap_seconds": 0.0,
+      "short_cap_seconds": 0.0
+    },
+    "P06": {
+      "profit": 5000.0,
+      "loss": 0,
+      "net": 5000.0,
+      "entries": 1,
+      "unrealized": 0.0,
+      "remaining_lots": 0,
+      "open_lot_realized": 0,
+      "session": "2026-10-26_Night",
+      "target": {
+        "profit": 5000.0,
+        "loss": 0,
+        "net": 5000.0,
+        "entries": 1,
+        "unrealized": 0.0,
+        "remaining_lots": 0,
+        "open_lot_realized": 0
+      },
+      "trail": {
+        "profit": 5000,
+        "loss": 0,
+        "net": 5000,
+        "count": 1
+      },
+      "boundary": {
+        "profit": 0,
+        "loss": 0,
+        "net": 0,
+        "count": 0
+      },
+      "positive_decision_negative_fill": 0,
+      "maximum": {
+        "long": 1,
+        "short": 0,
+        "reserved_long": 1,
+        "reserved_short": 0
+      },
+      "held_seconds": 496.0,
+      "hedged_seconds": 0.0,
+      "long_cap_seconds": 0.0,
+      "short_cap_seconds": 0.0
+    },
+    "P07": {
+      "profit": 10000.0,
+      "loss": 0,
+      "net": 10000.0,
+      "entries": 1,
+      "unrealized": 0.0,
+      "remaining_lots": 0,
+      "open_lot_realized": 0,
+      "session": "2026-10-26_Night",
+      "target": {
+        "profit": 10000.0,
+        "loss": 0,
+        "net": 10000.0,
+        "entries": 1,
+        "unrealized": 0.0,
+        "remaining_lots": 0,
+        "open_lot_realized": 0
+      },
+      "trail": {
+        "profit": 10000,
+        "loss": 0,
+        "net": 10000,
+        "count": 1
+      },
+      "boundary": {
+        "profit": 0,
+        "loss": 0,
+        "net": 0,
+        "count": 0
+      },
+      "positive_decision_negative_fill": 0,
+      "maximum": {
+        "long": 2,
+        "short": 0,
+        "reserved_long": 2,
+        "reserved_short": 0
+      },
+      "held_seconds": 496.0,
+      "hedged_seconds": 0.0,
+      "long_cap_seconds": 0.0,
+      "short_cap_seconds": 0.0
+    },
+    "P08": {
+      "profit": 25000.0,
+      "loss": 0,
+      "net": 25000.0,
+      "entries": 1,
+      "unrealized": 0.0,
+      "remaining_lots": 0,
+      "open_lot_realized": 0,
+      "session": "2026-10-26_Night",
+      "target": {
+        "profit": 25000.0,
+        "loss": 0,
+        "net": 25000.0,
+        "entries": 1,
+        "unrealized": 0.0,
+        "remaining_lots": 0,
+        "open_lot_realized": 0
+      },
+      "trail": {
+        "profit": 25000,
+        "loss": 0,
+        "net": 25000,
+        "count": 1
+      },
+      "boundary": {
+        "profit": 0,
+        "loss": 0,
+        "net": 0,
+        "count": 0
+      },
+      "positive_decision_negative_fill": 0,
+      "maximum": {
+        "long": 5,
+        "short": 0,
+        "reserved_long": 5,
+        "reserved_short": 0
+      },
+      "held_seconds": 496.0,
+      "hedged_seconds": 0.0,
+      "long_cap_seconds": 0.0,
+      "short_cap_seconds": 0.0
+    },
+    "P09": {
+      "profit": 25000.0,
+      "loss": 0,
+      "net": 25000.0,
+      "entries": 1,
+      "unrealized": 0.0,
+      "remaining_lots": 0,
+      "open_lot_realized": 0,
+      "session": "2026-10-26_Night",
+      "target": {
+        "profit": 25000.0,
+        "loss": 0,
+        "net": 25000.0,
+        "entries": 1,
+        "unrealized": 0.0,
+        "remaining_lots": 0,
+        "open_lot_realized": 0
+      },
+      "trail": {
+        "profit": 25000,
+        "loss": 0,
+        "net": 25000,
+        "count": 1
+      },
+      "boundary": {
+        "profit": 0,
+        "loss": 0,
+        "net": 0,
+        "count": 0
+      },
+      "positive_decision_negative_fill": 0,
+      "maximum": {
+        "long": 5,
+        "short": 0,
+        "reserved_long": 5,
+        "reserved_short": 0
+      },
+      "held_seconds": 496.0,
+      "hedged_seconds": 0.0,
+      "long_cap_seconds": 0.0,
+      "short_cap_seconds": 0.0
+    },
+    "P10": {
+      "profit": 25000.0,
+      "loss": 0,
+      "net": 25000.0,
+      "entries": 2,
+      "unrealized": 10000.0,
+      "remaining_lots": 1,
+      "open_lot_realized": 0.0,
+      "session": "2026-10-26_Night",
+      "target": {
+        "profit": 25000.0,
+        "loss": 0,
+        "net": 25000.0,
+        "entries": 2,
+        "unrealized": 10000.0,
+        "remaining_lots": 1,
+        "open_lot_realized": 0.0
+      },
+      "trail": {
+        "profit": 25000,
+        "loss": 0,
+        "net": 25000,
+        "count": 1
+      },
+      "boundary": {
+        "profit": 0,
+        "loss": 0,
+        "net": 0,
+        "count": 0
+      },
+      "positive_decision_negative_fill": 0,
+      "maximum": {
+        "long": 5,
+        "short": 0,
+        "reserved_long": 5,
+        "reserved_short": 0
+      },
+      "held_seconds": 1757.0,
+      "hedged_seconds": 0.0,
+      "long_cap_seconds": 0.0,
+      "short_cap_seconds": 0.0
+    },
+    "P11": {
+      "profit": 5000.0,
+      "loss": 0,
+      "net": 5000.0,
+      "entries": 2,
+      "unrealized": 2000.0,
+      "remaining_lots": 1,
+      "open_lot_realized": 0.0,
+      "session": "2026-10-26_Night",
+      "target": {
+        "profit": 5000.0,
+        "loss": 0,
+        "net": 5000.0,
+        "entries": 2,
+        "unrealized": 2000.0,
+        "remaining_lots": 1,
+        "open_lot_realized": 0.0
+      },
+      "trail": {
+        "profit": 5000,
+        "loss": 0,
+        "net": 5000,
+        "count": 1
+      },
+      "boundary": {
+        "profit": 0,
+        "loss": 0,
+        "net": 0,
+        "count": 0
+      },
+      "positive_decision_negative_fill": 0,
+      "maximum": {
+        "long": 1,
+        "short": 0,
+        "reserved_long": 1,
+        "reserved_short": 0
+      },
+      "held_seconds": 1757.0,
+      "hedged_seconds": 0.0,
+      "long_cap_seconds": 0.0,
+      "short_cap_seconds": 0.0
+    },
+    "N01": {
+      "profit": 10000.0,
+      "loss": 0,
+      "net": 10000.0,
+      "entries": 1,
+      "unrealized": 0.0,
+      "remaining_lots": 0,
+      "open_lot_realized": 0,
+      "session": "2026-10-26_Night",
+      "target": {
+        "profit": 10000.0,
+        "loss": 0,
+        "net": 10000.0,
+        "entries": 1,
+        "unrealized": 0.0,
+        "remaining_lots": 0,
+        "open_lot_realized": 0
+      },
+      "trail": {
+        "profit": 10000,
+        "loss": 0,
+        "net": 10000,
+        "count": 1
+      },
+      "boundary": {
+        "profit": 0,
+        "loss": 0,
+        "net": 0,
+        "count": 0
+      },
+      "positive_decision_negative_fill": 0,
+      "maximum": {
+        "long": 5,
+        "short": 0,
+        "reserved_long": 5,
+        "reserved_short": 0
+      },
+      "held_seconds": 443.0,
+      "hedged_seconds": 0.0,
+      "long_cap_seconds": 0.0,
+      "short_cap_seconds": 0.0
+    },
+    "N02": {
+      "profit": 25000.0,
+      "loss": 0,
+      "net": 25000.0,
+      "entries": 1,
+      "unrealized": 0.0,
+      "remaining_lots": 0,
+      "open_lot_realized": 0,
+      "session": "2026-10-26_Night",
+      "target": {
+        "profit": 25000.0,
+        "loss": 0,
+        "net": 25000.0,
+        "entries": 1,
+        "unrealized": 0.0,
+        "remaining_lots": 0,
+        "open_lot_realized": 0
+      },
+      "trail": {
+        "profit": 25000,
+        "loss": 0,
+        "net": 25000,
+        "count": 1
+      },
+      "boundary": {
+        "profit": 0,
+        "loss": 0,
+        "net": 0,
+        "count": 0
+      },
+      "positive_decision_negative_fill": 0,
+      "maximum": {
+        "long": 5,
+        "short": 0,
+        "reserved_long": 5,
+        "reserved_short": 0
+      },
+      "held_seconds": 496.0,
+      "hedged_seconds": 0.0,
+      "long_cap_seconds": 0.0,
+      "short_cap_seconds": 0.0
+    },
+    "N03": {
+      "profit": 0,
+      "loss": 0,
+      "net": 0.0,
+      "entries": 1,
+      "unrealized": 50000.0,
+      "remaining_lots": 1,
+      "open_lot_realized": 0.0,
+      "session": "2026-10-26_Night",
+      "target": {
+        "profit": 0,
+        "loss": 0,
+        "net": 0.0,
+        "entries": 1,
+        "unrealized": 50000.0,
+        "remaining_lots": 1,
+        "open_lot_realized": 0.0
+      },
+      "trail": {
+        "profit": 0,
+        "loss": 0,
+        "net": 0,
+        "count": 0
+      },
+      "boundary": {
+        "profit": 0,
+        "loss": 0,
+        "net": 0,
+        "count": 0
+      },
+      "positive_decision_negative_fill": 0,
+      "maximum": {
+        "long": 5,
+        "short": 0,
+        "reserved_long": 5,
+        "reserved_short": 0
+      },
+      "held_seconds": 1821.0,
+      "hedged_seconds": 0.0,
+      "long_cap_seconds": 0.0,
+      "short_cap_seconds": 0.0
+    },
+    "N04": {
+      "profit": 5000.0,
+      "loss": 0,
+      "net": 5000.0,
+      "entries": 1,
+      "unrealized": 0.0,
+      "remaining_lots": 0,
+      "open_lot_realized": 0,
+      "session": "2026-10-26_Night",
+      "target": {
+        "profit": 5000.0,
+        "loss": 0,
+        "net": 5000.0,
+        "entries": 1,
+        "unrealized": 0.0,
+        "remaining_lots": 0,
+        "open_lot_realized": 0
+      },
+      "trail": {
+        "profit": 5000,
+        "loss": 0,
+        "net": 5000,
+        "count": 1
+      },
+      "boundary": {
+        "profit": 0,
+        "loss": 0,
+        "net": 0,
+        "count": 0
+      },
+      "positive_decision_negative_fill": 0,
+      "maximum": {
+        "long": 1,
+        "short": 0,
+        "reserved_long": 1,
+        "reserved_short": 0
+      },
+      "held_seconds": 496.0,
+      "hedged_seconds": 0.0,
+      "long_cap_seconds": 0.0,
+      "short_cap_seconds": 0.0
+    },
+    "N05": {
+      "profit": 25000.0,
+      "loss": 0,
+      "net": 25000.0,
+      "entries": 1,
+      "unrealized": 0.0,
+      "remaining_lots": 0,
+      "open_lot_realized": 0,
+      "session": "2026-10-26_Night",
+      "target": {
+        "profit": 25000.0,
+        "loss": 0,
+        "net": 25000.0,
+        "entries": 1,
+        "unrealized": 0.0,
+        "remaining_lots": 0,
+        "open_lot_realized": 0
+      },
+      "trail": {
+        "profit": 25000,
+        "loss": 0,
+        "net": 25000,
+        "count": 1
+      },
+      "boundary": {
+        "profit": 0,
+        "loss": 0,
+        "net": 0,
+        "count": 0
+      },
+      "positive_decision_negative_fill": 0,
+      "maximum": {
+        "long": 5,
+        "short": 0,
+        "reserved_long": 5,
+        "reserved_short": 0
+      },
+      "held_seconds": 496.0,
+      "hedged_seconds": 0.0,
+      "long_cap_seconds": 0.0,
+      "short_cap_seconds": 0.0
+    },
+    "N06": {
+      "profit": 25000.0,
+      "loss": 0,
+      "net": 25000.0,
+      "entries": 2,
+      "unrealized": 10000.0,
+      "remaining_lots": 1,
+      "open_lot_realized": 0.0,
+      "session": "2026-10-26_Night",
+      "target": {
+        "profit": 25000.0,
+        "loss": 0,
+        "net": 25000.0,
+        "entries": 2,
+        "unrealized": 10000.0,
+        "remaining_lots": 1,
+        "open_lot_realized": 0.0
+      },
+      "trail": {
+        "profit": 25000,
+        "loss": 0,
+        "net": 25000,
+        "count": 1
+      },
+      "boundary": {
+        "profit": 0,
+        "loss": 0,
+        "net": 0,
+        "count": 0
+      },
+      "positive_decision_negative_fill": 0,
+      "maximum": {
+        "long": 5,
+        "short": 0,
+        "reserved_long": 5,
+        "reserved_short": 0
+      },
+      "held_seconds": 1757.0,
+      "hedged_seconds": 0.0,
+      "long_cap_seconds": 0.0,
+      "short_cap_seconds": 0.0
+    },
+    "N07": {
+      "profit": 5000.0,
+      "loss": 0,
+      "net": 5000.0,
+      "entries": 2,
+      "unrealized": 2000.0,
+      "remaining_lots": 1,
+      "open_lot_realized": 0.0,
+      "session": "2026-10-26_Night",
+      "target": {
+        "profit": 5000.0,
+        "loss": 0,
+        "net": 5000.0,
+        "entries": 2,
+        "unrealized": 2000.0,
+        "remaining_lots": 1,
+        "open_lot_realized": 0.0
+      },
+      "trail": {
+        "profit": 5000,
+        "loss": 0,
+        "net": 5000,
+        "count": 1
+      },
+      "boundary": {
+        "profit": 0,
+        "loss": 0,
+        "net": 0,
+        "count": 0
+      },
+      "positive_decision_negative_fill": 0,
+      "maximum": {
+        "long": 1,
+        "short": 0,
+        "reserved_long": 1,
+        "reserved_short": 0
+      },
+      "held_seconds": 1757.0,
+      "hedged_seconds": 0.0,
+      "long_cap_seconds": 0.0,
+      "short_cap_seconds": 0.0
+    }
+  },
+  "contrasts": [
+    {
+      "base": "P02",
+      "changed": "P08",
+      "delta": 105000.0,
+      "better": 1,
+      "worse": 0,
+      "same": 24,
+      "delta_ex3": 0.0,
+      "by_session": [
+        {
+          "session": "2026-09-21_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-09-22_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-09-23_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-09-24_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-09-25_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-09-28_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-09-29_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-09-30_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-10-01_Night",
+          "delta": 105000.0
+        },
+        {
+          "session": "2026-10-02_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-10-05_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-10-06_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-10-07_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-10-08_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-10-09_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-10-12_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-10-13_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-10-14_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-10-15_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-10-16_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-10-19_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-10-20_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-10-21_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-10-22_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-10-23_Night",
+          "delta": 0.0
+        }
+      ]
+    },
+    {
+      "base": "P02",
+      "changed": "P06",
+      "delta": 76000.0,
+      "better": 5,
+      "worse": 9,
+      "same": 11,
+      "delta_ex3": -284000.0,
+      "by_session": [
+        {
+          "session": "2026-09-21_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-09-22_Night",
+          "delta": -28000.0
+        },
+        {
+          "session": "2026-09-23_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-09-24_Night",
+          "delta": -40000.0
+        },
+        {
+          "session": "2026-09-25_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-09-28_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-09-29_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-09-30_Night",
+          "delta": -116000.0
+        },
+        {
+          "session": "2026-10-01_Night",
+          "delta": 36000.0
+        },
+        {
+          "session": "2026-10-02_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-10-05_Night",
+          "delta": -20000.0
+        },
+        {
+          "session": "2026-10-06_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-10-07_Night",
+          "delta": -20000.0
+        },
+        {
+          "session": "2026-10-08_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-10-09_Night",
+          "delta": 60000.0
+        },
+        {
+          "session": "2026-10-12_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-10-13_Night",
+          "delta": 120000.0
+        },
+        {
+          "session": "2026-10-14_Night",
+          "delta": -16000.0
+        },
+        {
+          "session": "2026-10-15_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-10-16_Night",
+          "delta": 16000.0
+        },
+        {
+          "session": "2026-10-19_Night",
+          "delta": -44000.0
+        },
+        {
+          "session": "2026-10-20_Night",
+          "delta": -24000.0
+        },
+        {
+          "session": "2026-10-21_Night",
+          "delta": 180000.0
+        },
+        {
+          "session": "2026-10-22_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-10-23_Night",
+          "delta": -28000.0
+        }
+      ]
+    },
+    {
+      "base": "P02",
+      "changed": "P07",
+      "delta": 69000.0,
+      "better": 5,
+      "worse": 9,
+      "same": 11,
+      "delta_ex3": -201000.0,
+      "by_session": [
+        {
+          "session": "2026-09-21_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-09-22_Night",
+          "delta": -21000.0
+        },
+        {
+          "session": "2026-09-23_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-09-24_Night",
+          "delta": -30000.0
+        },
+        {
+          "session": "2026-09-25_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-09-28_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-09-29_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-09-30_Night",
+          "delta": -87000.0
+        },
+        {
+          "session": "2026-10-01_Night",
+          "delta": 39000.0
+        },
+        {
+          "session": "2026-10-02_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-10-05_Night",
+          "delta": -15000.0
+        },
+        {
+          "session": "2026-10-06_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-10-07_Night",
+          "delta": -15000.0
+        },
+        {
+          "session": "2026-10-08_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-10-09_Night",
+          "delta": 45000.0
+        },
+        {
+          "session": "2026-10-12_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-10-13_Night",
+          "delta": 90000.0
+        },
+        {
+          "session": "2026-10-14_Night",
+          "delta": -12000.0
+        },
+        {
+          "session": "2026-10-15_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-10-16_Night",
+          "delta": 12000.0
+        },
+        {
+          "session": "2026-10-19_Night",
+          "delta": -33000.0
+        },
+        {
+          "session": "2026-10-20_Night",
+          "delta": -18000.0
+        },
+        {
+          "session": "2026-10-21_Night",
+          "delta": 135000.0
+        },
+        {
+          "session": "2026-10-22_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-10-23_Night",
+          "delta": -21000.0
+        }
+      ]
+    },
+    {
+      "base": "P02",
+      "changed": "P09",
+      "delta": 0.0,
+      "better": 0,
+      "worse": 0,
+      "same": 25,
+      "delta_ex3": 0.0,
+      "by_session": [
+        {
+          "session": "2026-09-21_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-09-22_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-09-23_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-09-24_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-09-25_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-09-28_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-09-29_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-09-30_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-10-01_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-10-02_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-10-05_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-10-06_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-10-07_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-10-08_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-10-09_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-10-12_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-10-13_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-10-14_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-10-15_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-10-16_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-10-19_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-10-20_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-10-21_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-10-22_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-10-23_Night",
+          "delta": 0.0
+        }
+      ]
+    },
+    {
+      "base": "N02",
+      "changed": "N05",
+      "delta": 0.0,
+      "better": 0,
+      "worse": 0,
+      "same": 25,
+      "delta_ex3": 0.0,
+      "by_session": [
+        {
+          "session": "2026-09-21_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-09-22_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-09-23_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-09-24_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-09-25_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-09-28_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-09-29_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-09-30_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-10-01_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-10-02_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-10-05_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-10-06_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-10-07_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-10-08_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-10-09_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-10-12_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-10-13_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-10-14_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-10-15_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-10-16_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-10-19_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-10-20_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-10-21_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-10-22_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-10-23_Night",
+          "delta": 0.0
+        }
+      ]
+    },
+    {
+      "base": "P02",
+      "changed": "P10",
+      "delta": -352000.0,
+      "better": 6,
+      "worse": 7,
+      "same": 12,
+      "delta_ex3": -772000.0,
+      "by_session": [
+        {
+          "session": "2026-09-21_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-09-22_Night",
+          "delta": 35000.0
+        },
+        {
+          "session": "2026-09-23_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-09-24_Night",
+          "delta": 30000.0
+        },
+        {
+          "session": "2026-09-25_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-09-28_Night",
+          "delta": 20000.0
+        },
+        {
+          "session": "2026-09-29_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-09-30_Night",
+          "delta": -285000.0
+        },
+        {
+          "session": "2026-10-01_Night",
+          "delta": -108000.0
+        },
+        {
+          "session": "2026-10-02_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-10-05_Night",
+          "delta": -100000.0
+        },
+        {
+          "session": "2026-10-06_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-10-07_Night",
+          "delta": 205000.0
+        },
+        {
+          "session": "2026-10-08_Night",
+          "delta": -41000.0
+        },
+        {
+          "session": "2026-10-09_Night",
+          "delta": -40000.0
+        },
+        {
+          "session": "2026-10-12_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-10-13_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-10-14_Night",
+          "delta": 75000.0
+        },
+        {
+          "session": "2026-10-15_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-10-16_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-10-19_Night",
+          "delta": -130000.0
+        },
+        {
+          "session": "2026-10-20_Night",
+          "delta": -153000.0
+        },
+        {
+          "session": "2026-10-21_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-10-22_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-10-23_Night",
+          "delta": 140000.0
+        }
+      ]
+    },
+    {
+      "base": "P06",
+      "changed": "P11",
+      "delta": -78000.0,
+      "better": 6,
+      "worse": 7,
+      "same": 12,
+      "delta_ex3": -163000.0,
+      "by_session": [
+        {
+          "session": "2026-09-21_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-09-22_Night",
+          "delta": 7000.0
+        },
+        {
+          "session": "2026-09-23_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-09-24_Night",
+          "delta": 6000.0
+        },
+        {
+          "session": "2026-09-25_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-09-28_Night",
+          "delta": 20000.0
+        },
+        {
+          "session": "2026-09-29_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-09-30_Night",
+          "delta": -57000.0
+        },
+        {
+          "session": "2026-10-01_Night",
+          "delta": -26000.0
+        },
+        {
+          "session": "2026-10-02_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-10-05_Night",
+          "delta": -20000.0
+        },
+        {
+          "session": "2026-10-06_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-10-07_Night",
+          "delta": 41000.0
+        },
+        {
+          "session": "2026-10-08_Night",
+          "delta": -41000.0
+        },
+        {
+          "session": "2026-10-09_Night",
+          "delta": -8000.0
+        },
+        {
+          "session": "2026-10-12_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-10-13_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-10-14_Night",
+          "delta": 15000.0
+        },
+        {
+          "session": "2026-10-15_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-10-16_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-10-19_Night",
+          "delta": -26000.0
+        },
+        {
+          "session": "2026-10-20_Night",
+          "delta": -13000.0
+        },
+        {
+          "session": "2026-10-21_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-10-22_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-10-23_Night",
+          "delta": 24000.0
+        }
+      ]
+    },
+    {
+      "base": "N02",
+      "changed": "N06",
+      "delta": 160000.0,
+      "better": 12,
+      "worse": 13,
+      "same": 0,
+      "delta_ex3": -1793000.0,
+      "by_session": [
+        {
+          "session": "2026-09-21_Night",
+          "delta": 130000.0
+        },
+        {
+          "session": "2026-09-22_Night",
+          "delta": 130000.0
+        },
+        {
+          "session": "2026-09-23_Night",
+          "delta": -76000.0
+        },
+        {
+          "session": "2026-09-24_Night",
+          "delta": 6000.0
+        },
+        {
+          "session": "2026-09-25_Night",
+          "delta": -236000.0
+        },
+        {
+          "session": "2026-09-28_Night",
+          "delta": -194000.0
+        },
+        {
+          "session": "2026-09-29_Night",
+          "delta": -115000.0
+        },
+        {
+          "session": "2026-09-30_Night",
+          "delta": -620000.0
+        },
+        {
+          "session": "2026-10-01_Night",
+          "delta": -332000.0
+        },
+        {
+          "session": "2026-10-02_Night",
+          "delta": -227000.0
+        },
+        {
+          "session": "2026-10-05_Night",
+          "delta": -132000.0
+        },
+        {
+          "session": "2026-10-06_Night",
+          "delta": 52000.0
+        },
+        {
+          "session": "2026-10-07_Night",
+          "delta": 20000.0
+        },
+        {
+          "session": "2026-10-08_Night",
+          "delta": 225000.0
+        },
+        {
+          "session": "2026-10-09_Night",
+          "delta": -25000.0
+        },
+        {
+          "session": "2026-10-12_Night",
+          "delta": 30000.0
+        },
+        {
+          "session": "2026-10-13_Night",
+          "delta": -152000.0
+        },
+        {
+          "session": "2026-10-14_Night",
+          "delta": 694000.0
+        },
+        {
+          "session": "2026-10-15_Night",
+          "delta": 262000.0
+        },
+        {
+          "session": "2026-10-16_Night",
+          "delta": 866000.0
+        },
+        {
+          "session": "2026-10-19_Night",
+          "delta": -339000.0
+        },
+        {
+          "session": "2026-10-20_Night",
+          "delta": -64000.0
+        },
+        {
+          "session": "2026-10-21_Night",
+          "delta": -143000.0
+        },
+        {
+          "session": "2026-10-22_Night",
+          "delta": 393000.0
+        },
+        {
+          "session": "2026-10-23_Night",
+          "delta": 7000.0
+        }
+      ]
+    },
+    {
+      "base": "N04",
+      "changed": "N07",
+      "delta": -102000.0,
+      "better": 10,
+      "worse": 14,
+      "same": 1,
+      "delta_ex3": -727000.0,
+      "by_session": [
+        {
+          "session": "2026-09-21_Night",
+          "delta": 26000.0
+        },
+        {
+          "session": "2026-09-22_Night",
+          "delta": 26000.0
+        },
+        {
+          "session": "2026-09-23_Night",
+          "delta": -56000.0
+        },
+        {
+          "session": "2026-09-24_Night",
+          "delta": -14000.0
+        },
+        {
+          "session": "2026-09-25_Night",
+          "delta": -48000.0
+        },
+        {
+          "session": "2026-09-28_Night",
+          "delta": -133000.0
+        },
+        {
+          "session": "2026-09-29_Night",
+          "delta": -67000.0
+        },
+        {
+          "session": "2026-09-30_Night",
+          "delta": -291000.0
+        },
+        {
+          "session": "2026-10-01_Night",
+          "delta": -37000.0
+        },
+        {
+          "session": "2026-10-02_Night",
+          "delta": -51000.0
+        },
+        {
+          "session": "2026-10-05_Night",
+          "delta": -12000.0
+        },
+        {
+          "session": "2026-10-06_Night",
+          "delta": 28000.0
+        },
+        {
+          "session": "2026-10-07_Night",
+          "delta": 0.0
+        },
+        {
+          "session": "2026-10-08_Night",
+          "delta": -131000.0
+        },
+        {
+          "session": "2026-10-09_Night",
+          "delta": -7000.0
+        },
+        {
+          "session": "2026-10-12_Night",
+          "delta": 6000.0
+        },
+        {
+          "session": "2026-10-13_Night",
+          "delta": -32000.0
+        },
+        {
+          "session": "2026-10-14_Night",
+          "delta": 96000.0
+        },
+        {
+          "session": "2026-10-15_Night",
+          "delta": 262000.0
+        },
+        {
+          "session": "2026-10-16_Night",
+          "delta": 174000.0
+        },
+        {
+          "session": "2026-10-19_Night",
+          "delta": -166000.0
+        },
+        {
+          "session": "2026-10-20_Night",
+          "delta": 95000.0
+        },
+        {
+          "session": "2026-10-21_Night",
+          "delta": -21000.0
+        },
+        {
+          "session": "2026-10-22_Night",
+          "delta": 189000.0
+        },
+        {
+          "session": "2026-10-23_Night",
+          "delta": 62000.0
+        }
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "session": "2026-09-21_Night",
+      "result_sha256": "e33d84dc47c2d737a403436c5f50452249f1b300afdf9b20e223384218f1d035"
+    },
+    {
+      "session": "2026-09-22_Night",
+      "result_sha256": "0afd493ac2b98e4dc5511dcb57dc2260e6497efe708a8e9413e5164eca23e010"
+    },
+    {
+      "session": "2026-09-23_Night",
+      "result_sha256": "1662c416f0ab3a9510665e19bd348f90d73709db99455f305e77407541aa035f"
+    },
+    {
+      "session": "2026-09-24_Night",
+      "result_sha256": "be64fec33a0effdc504d1e307c98822e35aacf13197d24a8dad7bf70bec66320"
+    },
+    {
+      "session": "2026-09-25_Night",
+      "result_sha256": "7ac63ff008af5c25b20153bf4a63186995d13c17ff91e056fcead992d7a27517"
+    },
+    {
+      "session": "2026-09-28_Night",
+      "result_sha256": "30a19dd7eb214f72a363b441bb1243b3b24ef35b5f7b8e90e38f78663b016fda"
+    },
+    {
+      "session": "2026-09-29_Night",
+      "result_sha256": "504d5156c080a8e8578b45d81ccb16910ece3379e909796553d6a1980d359d5f"
+    },
+    {
+      "session": "2026-09-30_Night",
+      "result_sha256": "130c02d46be80a9dd51999b01220e5084864c32a464b6aa9c07258ebe16ddfb9"
+    },
+    {
+      "session": "2026-10-01_Night",
+      "result_sha256": "26089c6ebe4182885e4cceb468e3b60edd22453f28ab6afa2c4367e2675a973f"
+    },
+    {
+      "session": "2026-10-02_Night",
+      "result_sha256": "ee17184291d77fc2f7e4dfe683b1ab905f862b5bbc87669509dbd628299feb39"
+    },
+    {
+      "session": "2026-10-05_Night",
+      "result_sha256": "24e0f673a826e0506f153d2eb37047373861457642650eba93bfea6edec4e522"
+    },
+    {
+      "session": "2026-10-06_Night",
+      "result_sha256": "5356b5f6830428b108725304de60007451c9e95c18d53b03c752a1d136654eba"
+    },
+    {
+      "session": "2026-10-07_Night",
+      "result_sha256": "0fe8bd5555f29b177ec7071e8b9721de352ed6c64914aa9484b3af4c9e4c2c1b"
+    },
+    {
+      "session": "2026-10-08_Night",
+      "result_sha256": "b8c6596bab26aa1d9726db6d6f9e004c81452cabcad60bb1f1d9ee6ec147d3be"
+    },
+    {
+      "session": "2026-10-09_Night",
+      "result_sha256": "21b8392291b39778ed72f9b5b92975ad9623e4daab07bc98db047f01733cb286"
+    },
+    {
+      "session": "2026-10-12_Night",
+      "result_sha256": "187f320cf31b3ec9d3771cd22e22c99a6aa070dc77ed5b78e007a063828958b4"
+    },
+    {
+      "session": "2026-10-13_Night",
+      "result_sha256": "bf059fc14305acfb6fd0b32f6cf612009a016b44f6757400a4af5d76465943ab"
+    },
+    {
+      "session": "2026-10-14_Night",
+      "result_sha256": "8ea4c594585667d83c65b80964aa5c8ee09570796bcf7a4097c34dc9874c2b0e"
+    },
+    {
+      "session": "2026-10-15_Night",
+      "result_sha256": "f02fcdfb7392f0c4b1b78a91cdcf75e8b8cc3158c8bc9b4904b27054ee0e7294"
+    },
+    {
+      "session": "2026-10-16_Night",
+      "result_sha256": "5e37efc7bcf35aa39e12bc8b885be5a56c346ff8ea7d53478221fdf17cc2d07e"
+    },
+    {
+      "session": "2026-10-19_Night",
+      "result_sha256": "5b34a980423aba49e2e17c73804137d0ea8253f54144dc9620949acffc291f99"
+    },
+    {
+      "session": "2026-10-20_Night",
+      "result_sha256": "c65c723b1b5b8850c134d79c770c622c533646c35c64c08ddae1498a1cea3012"
+    },
+    {
+      "session": "2026-10-21_Night",
+      "result_sha256": "fd4f4d0fe112d5a21c72f815d613508a1f9e0c52214dcc89ca9ce4489dea93d6"
+    },
+    {
+      "session": "2026-10-22_Night",
+      "result_sha256": "5620597f059edf45488fa87c8cccbb2236c90664c68955faef3db1a5e77201de"
+    },
+    {
+      "session": "2026-10-23_Night",
+      "result_sha256": "2afff79106b1897aab2c111df16afd2d5042765bb393cdbe5998bbcefb2ab427"
+    },
+    {
+      "session": "2026-10-26_Night",
+      "result_sha256": "22daf2c3bdc3b98551958c269deca65557c06f8158e93792255c927ed0cbb5de"
+    }
+  ],
+  "all_checks_passed": true,
+  "limits": [
+    "保存した極値時点の数量・時価は再計算したが、全原板を独立に読み直して他の極値がないことを再証明したものではない。",
+    "独立比較は同じ既知25夜であり未見成績ではない。"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "verified_cells": 12496,
+  "sheets": 22,
+  "tables": 22,
+  "report_sha256": "4689f747abf93501ad1c5c9d843fb46760216fd26ef1a69b6126e0ad69d2a327",
+  "complete_sessions": 25,
+  "partial_excluded": true,
+  "unmeasured_remains_blank": true,
+  "input_change_propagated": true,
+  "restored": true
+}

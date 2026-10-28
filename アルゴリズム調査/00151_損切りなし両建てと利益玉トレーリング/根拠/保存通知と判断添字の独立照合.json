@@ -1,0 +1,423 @@
+{
+  "financial_replays": 0,
+  "technical_raw_files_scanned": 1,
+  "saved_cases_checked": 26,
+  "events_checked": 381,
+  "entry_notifications_checked": 173,
+  "code_sources": {
+    "main.go": "ce363a2381959c7592a0249d10a481119a58294aaeaac0393eb426830363c578",
+    "internal/strategy/features.go": "575338c0c4130eb787acd9c4dd642d960b33dc12f6955d899d298a9f60199fed",
+    "internal/strategy/research143.go": "122c26bbc6cfd2723ea258c64c9a2d9aecf248d8372e711ffe317b24e670dd0d",
+    "internal/strategy/portfolio.go": "163bc3849583c2160a0b74428880b5192bf707c6909cae39019433af0ae7c158"
+  },
+  "saved_cases": [
+    {
+      "session": "2026-09-21_Night",
+      "source_sha256": "5bc808ac484fe863cb61f057a89c0cbe763bc0f4aeef4ae420a352a35ca55c8a",
+      "events": 2,
+      "entries": 1,
+      "all_phase_sequences_contiguous_from_1": true,
+      "final_pending_empty": true,
+      "new_by_owner": {
+        "後半/core": 1
+      }
+    },
+    {
+      "session": "2026-09-22_Night",
+      "source_sha256": "160885fdc9d08c19a39a302bd9b2113092829d864d032cc261c393f8a32097a0",
+      "events": 6,
+      "entries": 2,
+      "all_phase_sequences_contiguous_from_1": true,
+      "final_pending_empty": true,
+      "new_by_owner": {
+        "前半/core": 1,
+        "後半/core": 1
+      }
+    },
+    {
+      "session": "2026-09-23_Night",
+      "source_sha256": "2c6b5324a0391e563428e170fce2234b7a900b3e659a80c4a1a3793049dbeeca",
+      "events": 6,
+      "entries": 3,
+      "all_phase_sequences_contiguous_from_1": true,
+      "final_pending_empty": true,
+      "new_by_owner": {
+        "後半/core": 1,
+        "後半/episode": 2
+      }
+    },
+    {
+      "session": "2026-09-24_Night",
+      "source_sha256": "8f95b6b29d141f115738c6b6d67752d236e58b2bf24dae5cbfcfdf6d3ef47e04",
+      "events": 8,
+      "entries": 4,
+      "all_phase_sequences_contiguous_from_1": true,
+      "final_pending_empty": true,
+      "new_by_owner": {
+        "前半/core": 2,
+        "後半/episode": 2
+      }
+    },
+    {
+      "session": "2026-09-25_Night",
+      "source_sha256": "9178fbc1b2f2206360fe6a8cbd2b8be344d7ef4ccb0a27ce48d09a6da78de351",
+      "events": 5,
+      "entries": 2,
+      "all_phase_sequences_contiguous_from_1": true,
+      "final_pending_empty": true,
+      "new_by_owner": {
+        "後半/episode": 1,
+        "後半/core": 1
+      }
+    },
+    {
+      "session": "2026-09-28_Night",
+      "source_sha256": "57a9ab928532495a3fb2ad5355b1d388ad6660691cd47653a04f803c36b73289",
+      "events": 10,
+      "entries": 5,
+      "all_phase_sequences_contiguous_from_1": true,
+      "final_pending_empty": true,
+      "new_by_owner": {
+        "前半/episode": 1,
+        "後半/addon": 3,
+        "後半/episode": 1
+      }
+    },
+    {
+      "session": "2026-09-29_Night",
+      "source_sha256": "01489a79618ea475bf4a1ebcadd20c813df0176ba6e9878ae3ec316f9da040ce",
+      "events": 14,
+      "entries": 6,
+      "all_phase_sequences_contiguous_from_1": true,
+      "final_pending_empty": true,
+      "new_by_owner": {
+        "後半/episode": 4,
+        "後半/core": 2
+      }
+    },
+    {
+      "session": "2026-09-30_Night",
+      "source_sha256": "3674f3774f5f2c54f09c9fcb345f4189a55f78185b1341076539cd6bd9989d06",
+      "events": 15,
+      "entries": 6,
+      "all_phase_sequences_contiguous_from_1": true,
+      "final_pending_empty": true,
+      "new_by_owner": {
+        "前半/core": 3,
+        "後半/episode": 2,
+        "後半/core": 1
+      }
+    },
+    {
+      "session": "2026-10-01_Night",
+      "source_sha256": "597f2041997f736d22d5cb71d1722bd1869c3ce7d04b17a8a84ea62ade33aedf",
+      "events": 34,
+      "entries": 16,
+      "all_phase_sequences_contiguous_from_1": true,
+      "final_pending_empty": true,
+      "new_by_owner": {
+        "前半/core": 3,
+        "前半/episode": 2,
+        "前半/addon": 3,
+        "後半/core": 1,
+        "後半/addon": 3,
+        "後半/episode": 4
+      }
+    },
+    {
+      "session": "2026-10-02_Night",
+      "source_sha256": "a48cd9c57a7656225ec74c81071969fca876cf536c60974e7f7a5538993adc09",
+      "events": 33,
+      "entries": 15,
+      "all_phase_sequences_contiguous_from_1": true,
+      "final_pending_empty": true,
+      "new_by_owner": {
+        "後半/addon": 9,
+        "後半/episode": 4,
+        "後半/core": 2
+      }
+    },
+    {
+      "session": "2026-10-05_Night",
+      "source_sha256": "6b75fdfcaa7e1880b940b09c1b3120d1fe44a08125f6e1eee3db10b01ed18328",
+      "events": 16,
+      "entries": 8,
+      "all_phase_sequences_contiguous_from_1": true,
+      "final_pending_empty": true,
+      "new_by_owner": {
+        "前半/core": 1,
+        "後半/episode": 2,
+        "後半/addon": 4,
+        "後半/core": 1
+      }
+    },
+    {
+      "session": "2026-10-06_Night",
+      "source_sha256": "5fa220e17dfe1083761da028c8f9ebda2f690192ec58c0f3e139c39b001bf665",
+      "events": 8,
+      "entries": 4,
+      "all_phase_sequences_contiguous_from_1": true,
+      "final_pending_empty": true,
+      "new_by_owner": {
+        "後半/episode": 3,
+        "後半/core": 1
+      }
+    },
+    {
+      "session": "2026-10-07_Night",
+      "source_sha256": "cf8e1c3bfa807c6899800f4c150c50ca8ae95d1dc6fbd121e25d4a8fa8657305",
+      "events": 11,
+      "entries": 5,
+      "all_phase_sequences_contiguous_from_1": true,
+      "final_pending_empty": true,
+      "new_by_owner": {
+        "前半/core": 1,
+        "前半/episode": 2,
+        "後半/episode": 2
+      }
+    },
+    {
+      "session": "2026-10-08_Night",
+      "source_sha256": "36dfcb2364834056515051acc7ff2030caf901da7a6085613537e857ef4fa68e",
+      "events": 36,
+      "entries": 17,
+      "all_phase_sequences_contiguous_from_1": true,
+      "final_pending_empty": true,
+      "new_by_owner": {
+        "前半/episode": 2,
+        "後半/addon": 11,
+        "後半/episode": 2,
+        "後半/core": 2
+      }
+    },
+    {
+      "session": "2026-10-09_Night",
+      "source_sha256": "ebbb4667de9b81f8dda32ccf32f0366c3d76f73415f70c7ade77c3851ff58a04",
+      "events": 8,
+      "entries": 3,
+      "all_phase_sequences_contiguous_from_1": true,
+      "final_pending_empty": true,
+      "new_by_owner": {
+        "前半/core": 2,
+        "後半/core": 1
+      }
+    },
+    {
+      "session": "2026-10-12_Night",
+      "source_sha256": "b3814526b1f9c82d3c1c71ce6b7900d594f071e5b33ccd2c07bc40a34a0c9535",
+      "events": 3,
+      "entries": 1,
+      "all_phase_sequences_contiguous_from_1": true,
+      "final_pending_empty": true,
+      "new_by_owner": {
+        "後半/core": 1
+      }
+    },
+    {
+      "session": "2026-10-13_Night",
+      "source_sha256": "4fc3a5636c1f0fdf8336ec1fbeaabe0e5cf64fbdf59dc787c17c83cb6ad038ac",
+      "events": 6,
+      "entries": 3,
+      "all_phase_sequences_contiguous_from_1": true,
+      "final_pending_empty": true,
+      "new_by_owner": {
+        "前半/core": 1,
+        "後半/core": 1,
+        "後半/episode": 1
+      }
+    },
+    {
+      "session": "2026-10-14_Night",
+      "source_sha256": "e51d85be98d0d02e92c89a51e157c6ebf7a842e6e261405f8a18f2948cc99892",
+      "events": 11,
+      "entries": 5,
+      "all_phase_sequences_contiguous_from_1": true,
+      "final_pending_empty": true,
+      "new_by_owner": {
+        "前半/core": 1,
+        "後半/core": 2,
+        "後半/episode": 2
+      }
+    },
+    {
+      "session": "2026-10-15_Night",
+      "source_sha256": "7eac5d5b6bad9165d92a6ac8bb6e4e5aa6b781c67c057bbd0d130ef312c65e05",
+      "events": 15,
+      "entries": 7,
+      "all_phase_sequences_contiguous_from_1": true,
+      "final_pending_empty": true,
+      "new_by_owner": {
+        "後半/episode": 5,
+        "後半/addon": 2
+      }
+    },
+    {
+      "session": "2026-10-16_Night",
+      "source_sha256": "86157c823a7293bd01e48fe6f47a59e22ae633ac630e1a2f6789418361ae8c29",
+      "events": 31,
+      "entries": 14,
+      "all_phase_sequences_contiguous_from_1": true,
+      "final_pending_empty": true,
+      "new_by_owner": {
+        "前半/core": 1,
+        "後半/core": 3,
+        "後半/episode": 5,
+        "後半/addon": 5
+      }
+    },
+    {
+      "session": "2026-10-19_Night",
+      "source_sha256": "28091f139da6fef6f0b22a8c9a0ab30e2f6887cc18288726dd4988d827dee370",
+      "events": 31,
+      "entries": 14,
+      "all_phase_sequences_contiguous_from_1": true,
+      "final_pending_empty": true,
+      "new_by_owner": {
+        "前半/core": 2,
+        "後半/episode": 3,
+        "後半/addon": 8,
+        "後半/core": 1
+      }
+    },
+    {
+      "session": "2026-10-20_Night",
+      "source_sha256": "d5b29594a3bac1abfc2da46d5ef5d35e3de251f07f0b8bccf6fe831cddf58740",
+      "events": 25,
+      "entries": 11,
+      "all_phase_sequences_contiguous_from_1": true,
+      "final_pending_empty": true,
+      "new_by_owner": {
+        "前半/core": 2,
+        "前半/episode": 2,
+        "後半/core": 1,
+        "後半/episode": 3,
+        "後半/addon": 3
+      }
+    },
+    {
+      "session": "2026-10-21_Night",
+      "source_sha256": "bb662a42aad07c110f48d49ee9a8df7d1509875159d336299909cd9fe7173c75",
+      "events": 13,
+      "entries": 6,
+      "all_phase_sequences_contiguous_from_1": true,
+      "final_pending_empty": true,
+      "new_by_owner": {
+        "前半/core": 1,
+        "後半/core": 3,
+        "後半/episode": 2
+      }
+    },
+    {
+      "session": "2026-10-22_Night",
+      "source_sha256": "061e0ad23f31488a2cafaf8a1e8210d423c0ffa204b7176eade6c41d02bbcbd9",
+      "events": 7,
+      "entries": 3,
+      "all_phase_sequences_contiguous_from_1": true,
+      "final_pending_empty": true,
+      "new_by_owner": {
+        "後半/episode": 2,
+        "後半/core": 1
+      }
+    },
+    {
+      "session": "2026-10-23_Night",
+      "source_sha256": "ff2dcc14e7399655657be07e6adade5a902fb30e41e26eeb0f4557309ddbc138",
+      "events": 25,
+      "entries": 11,
+      "all_phase_sequences_contiguous_from_1": true,
+      "final_pending_empty": true,
+      "new_by_owner": {
+        "前半/core": 1,
+        "前半/episode": 4,
+        "後半/core": 1,
+        "後半/episode": 4,
+        "後半/addon": 1
+      }
+    },
+    {
+      "session": "2026-10-26_Night",
+      "source_sha256": "74aab2987f56a8cc7c49ddd6c4a2657f3795e165bdc7217a14dc6f0d469675bc",
+      "events": 2,
+      "entries": 1,
+      "all_phase_sequences_contiguous_from_1": true,
+      "final_pending_empty": true,
+      "new_by_owner": {
+        "前半/core": 1
+      }
+    }
+  ],
+  "source_index_check": {
+    "session": "2026-10-21_Night",
+    "raw_sha256": "b6f1951b161fac9929f33609bc10706196e11b32c49fdc399a6a7258c7702b05",
+    "counts": {
+      "NK225_原行": 181379,
+      "NK225_範囲外": 11,
+      "NK225_時計欠測": 360,
+      "NK225_採用": 181008
+    },
+    "all_new_decisions_matched": [
+      {
+        "id": "2026-10-21_Night-NK225mini-core-000001",
+        "physical_row_1based": 31184,
+        "source_index_0based": 30812,
+        "time": "2026-10-21T19:13:19+09:00",
+        "last": 64610.0,
+        "bid": 64610,
+        "ask": 64620
+      },
+      {
+        "id": "2026-10-21_Night-NK225mini-core-000001",
+        "physical_row_1based": 85600,
+        "source_index_0based": 85228,
+        "time": "2026-10-21T23:00:00+09:00",
+        "last": 64830.0,
+        "bid": 64830,
+        "ask": 64840
+      },
+      {
+        "id": "2026-10-21_Night-NK225mini-episode-000003",
+        "physical_row_1based": 91435,
+        "source_index_0based": 91063,
+        "time": "2026-10-21T23:13:23+09:00",
+        "last": 64730.0,
+        "bid": 64730,
+        "ask": 64740
+      },
+      {
+        "id": "2026-10-21_Night-NK225mini-core-000005",
+        "physical_row_1based": 101088,
+        "source_index_0based": 100716,
+        "time": "2026-10-21T23:38:06+09:00",
+        "last": 64910.0,
+        "bid": 64920,
+        "ask": 64930
+      },
+      {
+        "id": "2026-10-21_Night-NK225mini-episode-000007",
+        "physical_row_1based": 115640,
+        "source_index_0based": 115268,
+        "time": "2026-10-22T00:23:10+09:00",
+        "last": 65040.0,
+        "bid": 65040,
+        "ask": 65050
+      },
+      {
+        "id": "2026-10-21_Night-NK225mini-core-000008",
+        "physical_row_1based": 117061,
+        "source_index_0based": 116689,
+        "time": "2026-10-22T00:27:28+09:00",
+        "last": 65070.0,
+        "bid": 65080,
+        "ask": 65090
+      }
+    ],
+    "independent_market_counter": true,
+    "invalid_bbo_not_removed_before_index": true
+  },
+  "all_checks_passed": true,
+  "limits": [
+    "注文連番・末尾予約なしだけで網羅性を独立証明するのではなく、旧コードの全通知保留・全件約定・予約なしの場合のみ位相変更という経路と合わせた確認。",
+    "特徴量やD07を再計算していない。二市場結合でも市場別カウンタが独立である点をソース確認し、原板添字の実測照合は日経1場だけ。",
+    "採番済み新規はB04が実際に発注を判断した機会であり、B04内部で保有制限等により発注しなかった候補まで再生する方式ではない。"
+  ]
+}

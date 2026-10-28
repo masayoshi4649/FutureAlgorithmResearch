@@ -1,0 +1,12 @@
+{
+  "all_checks_passed": true,
+  "numeric_cells_checked": 12496,
+  "unmeasured_blank_cells_checked": 1084,
+  "formula_cells": 3920,
+  "formula_errors": 0,
+  "sheets": 22,
+  "formal_tables": 22,
+  "public_copy_identical": true,
+  "report_sha256": "4689f747abf93501ad1c5c9d843fb46760216fd26ef1a69b6126e0ad69d2a327",
+  "xlsx_sha256": "6793f1310056bfeeb11e829ae84d16dbf98efa5a20cb598c9c9ace712c677936"
+}

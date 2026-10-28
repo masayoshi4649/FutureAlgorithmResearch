@@ -1,0 +1,1177 @@
+{
+  "financial_replays": 0,
+  "counts": {
+    "その他": 21,
+    "元返済後の回復で利益回収": 4,
+    "元返済より前に利益回収": 13
+  },
+  "delta": 467000.0,
+  "items": [
+    {
+      "session": "2026-09-22_Night",
+      "source_id": "2026-09-22_Night-NK225mini-core-000001",
+      "kind": "その他",
+      "old_net": 34000.0,
+      "new_net": 15000.0,
+      "change": -19000.0,
+      "entry": 1790068268,
+      "old_exits": [
+        {
+          "qty": 4,
+          "price": 66430,
+          "index": 25711,
+          "time": 1790070781,
+          "net": 32000,
+          "reason": "利益保護の戻り"
+        },
+        {
+          "qty": 1,
+          "price": 66370,
+          "index": 26814,
+          "time": 1790070968,
+          "net": 2000,
+          "reason": "残り1枚の追尾幅上限"
+        }
+      ],
+      "new_exits": [
+        {
+          "qty": 5,
+          "price": 66380,
+          "index": 25133,
+          "time": 1790070719,
+          "net": 15000,
+          "reason": "利益追尾"
+        }
+      ]
+    },
+    {
+      "session": "2026-09-24_Night",
+      "source_id": "2026-09-24_Night-NK225mini-core-000001",
+      "kind": "元返済後の回復で利益回収",
+      "old_net": -40000.0,
+      "new_net": 15000.0,
+      "change": 55000.0,
+      "entry": 1790247067,
+      "old_exits": [
+        {
+          "qty": 5,
+          "price": 65270,
+          "index": 44269,
+          "time": 1790247295,
+          "net": -40000,
+          "reason": "損失幅へ到達"
+        }
+      ],
+      "new_exits": [
+        {
+          "qty": 5,
+          "price": 65380,
+          "index": 59467,
+          "time": 1790252252,
+          "net": 15000,
+          "reason": "利益追尾"
+        }
+      ]
+    },
+    {
+      "session": "2026-09-24_Night",
+      "source_id": "2026-09-24_Night-NK225mini-core-000003",
+      "kind": "その他",
+      "old_net": 25000.0,
+      "new_net": 15000.0,
+      "change": -10000.0,
+      "entry": 1790254628,
+      "old_exits": [
+        {
+          "qty": 5,
+          "price": 65470,
+          "index": 71319,
+          "time": 1790255711,
+          "net": 25000,
+          "reason": "セッション内返済"
+        }
+      ],
+      "new_exits": [
+        {
+          "qty": 5,
+          "price": 65450,
+          "index": 69235,
+          "time": 1790254956,
+          "net": 15000,
+          "reason": "利益追尾"
+        }
+      ]
+    },
+    {
+      "session": "2026-09-28_Night",
+      "source_id": "2026-09-28_Night-NK225mini-episode-000001",
+      "kind": "その他",
+      "old_net": 9000.0,
+      "new_net": 4000.0,
+      "change": -5000.0,
+      "entry": 1790590528,
+      "old_exits": [
+        {
+          "qty": 1,
+          "price": 65560,
+          "index": 38930,
+          "time": 1790592901,
+          "net": 9000,
+          "reason": "利益保護の戻り"
+        }
+      ],
+      "new_exits": [
+        {
+          "qty": 1,
+          "price": 65510,
+          "index": 35603,
+          "time": 1790591707,
+          "net": 4000,
+          "reason": "利益追尾"
+        }
+      ]
+    },
+    {
+      "session": "2026-09-30_Night",
+      "source_id": "2026-09-30_Night-NK225mini-core-000001",
+      "kind": "その他",
+      "old_net": 11000.0,
+      "new_net": 15000.0,
+      "change": 4000.0,
+      "entry": 1790766580,
+      "old_exits": [
+        {
+          "qty": 4,
+          "price": 67090,
+          "index": 38634,
+          "time": 1790766701,
+          "net": 16000,
+          "reason": "利益保護の戻り"
+        },
+        {
+          "qty": 1,
+          "price": 67180,
+          "index": 41528,
+          "time": 1790767517,
+          "net": -5000,
+          "reason": "残り1枚の追尾幅上限"
+        }
+      ],
+      "new_exits": [
+        {
+          "qty": 5,
+          "price": 67100,
+          "index": 38266,
+          "time": 1790766627,
+          "net": 15000,
+          "reason": "利益追尾"
+        }
+      ]
+    },
+    {
+      "session": "2026-09-30_Night",
+      "source_id": "2026-09-30_Night-NK225mini-core-000004",
+      "kind": "元返済後の回復で利益回収",
+      "old_net": -40000.0,
+      "new_net": 20000.0,
+      "change": 60000.0,
+      "entry": 1790768317,
+      "old_exits": [
+        {
+          "qty": 5,
+          "price": 67160,
+          "index": 45295,
+          "time": 1790768677,
+          "net": -40000,
+          "reason": "損失幅へ到達"
+        }
+      ],
+      "new_exits": [
+        {
+          "qty": 5,
+          "price": 67280,
+          "index": 54545,
+          "time": 1790771344,
+          "net": 20000,
+          "reason": "利益追尾"
+        }
+      ]
+    },
+    {
+      "session": "2026-09-30_Night",
+      "source_id": "2026-09-30_Night-NK225mini-core-000006",
+      "kind": "その他",
+      "old_net": 73000.0,
+      "new_net": 25000.0,
+      "change": -48000.0,
+      "entry": 1790771416,
+      "old_exits": [
+        {
+          "qty": 4,
+          "price": 67650,
+          "index": 55779,
+          "time": 1790771535,
+          "net": 64000,
+          "reason": "利益保護の戻り"
+        },
+        {
+          "qty": 1,
+          "price": 67580,
+          "index": 57732,
+          "time": 1790771817,
+          "net": 9000,
+          "reason": "残り1枚の追尾幅上限"
+        }
+      ],
+      "new_exits": [
+        {
+          "qty": 5,
+          "price": 67540,
+          "index": 55209,
+          "time": 1790771468,
+          "net": 25000,
+          "reason": "利益追尾"
+        }
+      ]
+    },
+    {
+      "session": "2026-10-01_Night",
+      "source_id": "2026-10-01_Night-NK225mini-core-000001",
+      "kind": "元返済より前に利益回収",
+      "old_net": -55000.0,
+      "new_net": 20000.0,
+      "change": 75000.0,
+      "entry": 1790846282,
+      "old_exits": [
+        {
+          "qty": 5,
+          "price": 68370,
+          "index": 36189,
+          "time": 1790848924,
+          "net": -55000,
+          "reason": "損失幅へ到達"
+        }
+      ],
+      "new_exits": [
+        {
+          "qty": 5,
+          "price": 68520,
+          "index": 27011,
+          "time": 1790846500,
+          "net": 20000,
+          "reason": "利益追尾"
+        }
+      ]
+    },
+    {
+      "session": "2026-10-01_Night",
+      "source_id": "2026-10-01_Night-NK225mini-episode-000002",
+      "kind": "元返済より前に利益回収",
+      "old_net": -9000.0,
+      "new_net": 3000.0,
+      "change": 12000.0,
+      "entry": 1790848180,
+      "old_exits": [
+        {
+          "qty": 1,
+          "price": 68610,
+          "index": 42827,
+          "time": 1790850514,
+          "net": -9000,
+          "reason": "残り1枚の広い利益追尾"
+        }
+      ],
+      "new_exits": [
+        {
+          "qty": 1,
+          "price": 68490,
+          "index": 34069,
+          "time": 1790848414,
+          "net": 3000,
+          "reason": "利益追尾"
+        }
+      ]
+    },
+    {
+      "session": "2026-10-01_Night",
+      "source_id": "2026-10-01_Night-NK225mini-episode-000003",
+      "kind": "その他",
+      "old_net": 9000.0,
+      "new_net": 3000.0,
+      "change": -6000.0,
+      "entry": 1790848430,
+      "old_exits": [
+        {
+          "qty": 1,
+          "price": 68370,
+          "index": 37465,
+          "time": 1790849233,
+          "net": 9000,
+          "reason": "利益保護の戻り"
+        }
+      ],
+      "new_exits": [
+        {
+          "qty": 1,
+          "price": 68430,
+          "index": 35700,
+          "time": 1790848825,
+          "net": 3000,
+          "reason": "利益追尾"
+        }
+      ]
+    },
+    {
+      "session": "2026-10-01_Night",
+      "source_id": "2026-10-01_Night-NK225mini-addon-000004",
+      "kind": "その他",
+      "old_net": 18000.0,
+      "new_net": 6000.0,
+      "change": -12000.0,
+      "entry": 1790848463,
+      "old_exits": [
+        {
+          "qty": 2,
+          "price": 68370,
+          "index": 37465,
+          "time": 1790849233,
+          "net": 18000,
+          "reason": "利益保護の戻り"
+        }
+      ],
+      "new_exits": [
+        {
+          "qty": 2,
+          "price": 68430,
+          "index": 35700,
+          "time": 1790848825,
+          "net": 6000,
+          "reason": "利益追尾"
+        }
+      ]
+    },
+    {
+      "session": "2026-10-01_Night",
+      "source_id": "2026-10-01_Night-NK225mini-addon-000006",
+      "kind": "元返済より前に利益回収",
+      "old_net": -1000.0,
+      "new_net": 3000.0,
+      "change": 4000.0,
+      "entry": 1790848942,
+      "old_exits": [
+        {
+          "qty": 1,
+          "price": 68370,
+          "index": 37465,
+          "time": 1790849233,
+          "net": -1000,
+          "reason": "利益保護の戻り"
+        }
+      ],
+      "new_exits": [
+        {
+          "qty": 1,
+          "price": 68330,
+          "index": 36926,
+          "time": 1790849090,
+          "net": 3000,
+          "reason": "利益追尾"
+        }
+      ]
+    },
+    {
+      "session": "2026-10-01_Night",
+      "source_id": "2026-10-01_Night-NK225mini-addon-000011",
+      "kind": "元返済より前に利益回収",
+      "old_net": -18000.0,
+      "new_net": 8000.0,
+      "change": 26000.0,
+      "entry": 1790853282,
+      "old_exits": [
+        {
+          "qty": 2,
+          "price": 68670,
+          "index": 59768,
+          "time": 1790854656,
+          "net": -18000,
+          "reason": "損失幅へ到達"
+        }
+      ],
+      "new_exits": [
+        {
+          "qty": 2,
+          "price": 68540,
+          "index": 56528,
+          "time": 1790853857,
+          "net": 8000,
+          "reason": "利益追尾"
+        }
+      ]
+    },
+    {
+      "session": "2026-10-01_Night",
+      "source_id": "2026-10-01_Night-NK225mini-core-000013",
+      "kind": "元返済後の回復で利益回収",
+      "old_net": -40000.0,
+      "new_net": 15000.0,
+      "change": 55000.0,
+      "entry": 1790856069,
+      "old_exits": [
+        {
+          "qty": 5,
+          "price": 68630,
+          "index": 68395,
+          "time": 1790856826,
+          "net": -40000,
+          "reason": "損失幅へ到達"
+        }
+      ],
+      "new_exits": [
+        {
+          "qty": 5,
+          "price": 68740,
+          "index": 72620,
+          "time": 1790857927,
+          "net": 15000,
+          "reason": "利益追尾"
+        }
+      ]
+    },
+    {
+      "session": "2026-10-01_Night",
+      "source_id": "2026-10-01_Night-NK225mini-core-000015",
+      "kind": "その他",
+      "old_net": 15000.0,
+      "new_net": 15000.0,
+      "change": 0.0,
+      "entry": 1790860170,
+      "old_exits": [
+        {
+          "qty": 5,
+          "price": 68510,
+          "index": 82524,
+          "time": 1790860500,
+          "net": 15000,
+          "reason": "セッション内返済"
+        }
+      ],
+      "new_exits": [
+        {
+          "qty": 5,
+          "price": 68510,
+          "index": 82524,
+          "time": 1790860500,
+          "net": 15000,
+          "reason": "境界全返済"
+        }
+      ]
+    },
+    {
+      "session": "2026-10-05_Night",
+      "source_id": "2026-10-05_Night-NK225mini-core-000001",
+      "kind": "元返済より前に利益回収",
+      "old_net": -80000.0,
+      "new_net": 15000.0,
+      "change": 95000.0,
+      "entry": 1791189919,
+      "old_exits": [
+        {
+          "qty": 5,
+          "price": 70010,
+          "index": 36301,
+          "time": 1791197716,
+          "net": -80000,
+          "reason": "損失幅へ到達"
+        }
+      ],
+      "new_exits": [
+        {
+          "qty": 5,
+          "price": 69820,
+          "index": 13308,
+          "time": 1791189962,
+          "net": 15000,
+          "reason": "利益追尾"
+        }
+      ]
+    },
+    {
+      "session": "2026-10-07_Night",
+      "source_id": "2026-10-07_Night-NK225mini-core-000001",
+      "kind": "その他",
+      "old_net": 57000.0,
+      "new_net": 20000.0,
+      "change": -37000.0,
+      "entry": 1791364307,
+      "old_exits": [
+        {
+          "qty": 4,
+          "price": 70050,
+          "index": 23261,
+          "time": 1791367041,
+          "net": 20000,
+          "reason": "利益保護の戻り"
+        },
+        {
+          "qty": 1,
+          "price": 69730,
+          "index": 54819,
+          "time": 1791376622,
+          "net": 37000,
+          "reason": "残り1枚の追尾幅上限"
+        }
+      ],
+      "new_exits": [
+        {
+          "qty": 5,
+          "price": 70060,
+          "index": 17080,
+          "time": 1791364860,
+          "net": 20000,
+          "reason": "利益追尾"
+        }
+      ]
+    },
+    {
+      "session": "2026-10-07_Night",
+      "source_id": "2026-10-07_Night-NK225mini-episode-000003",
+      "kind": "元返済より前に利益回収",
+      "old_net": -8000.0,
+      "new_net": 3000.0,
+      "change": 11000.0,
+      "entry": 1791374103,
+      "old_exits": [
+        {
+          "qty": 1,
+          "price": 69710,
+          "index": 49902,
+          "time": 1791375457,
+          "net": -8000,
+          "reason": "損失幅へ到達"
+        }
+      ],
+      "new_exits": [
+        {
+          "qty": 1,
+          "price": 69820,
+          "index": 46229,
+          "time": 1791374345,
+          "net": 3000,
+          "reason": "利益追尾"
+        }
+      ]
+    },
+    {
+      "session": "2026-10-07_Night",
+      "source_id": "2026-10-07_Night-NK225mini-episode-000004",
+      "kind": "その他",
+      "old_net": -13000.0,
+      "new_net": -25000.0,
+      "change": -12000.0,
+      "entry": 1791374334,
+      "old_exits": [
+        {
+          "qty": 1,
+          "price": 69710,
+          "index": 49902,
+          "time": 1791375457,
+          "net": -13000,
+          "reason": "損失幅へ到達"
+        }
+      ],
+      "new_exits": [
+        {
+          "qty": 1,
+          "price": 69590,
+          "index": 62493,
+          "time": 1791378900,
+          "net": -25000,
+          "reason": "境界全返済"
+        }
+      ]
+    },
+    {
+      "session": "2026-10-08_Night",
+      "source_id": "2026-10-08_Night-NK225mini-episode-000001",
+      "kind": "元返済より前に利益回収",
+      "old_net": -2000.0,
+      "new_net": 3000.0,
+      "change": 5000.0,
+      "entry": 1791452639,
+      "old_exits": [
+        {
+          "qty": 1,
+          "price": 69140,
+          "index": 67381,
+          "time": 1791464761,
+          "net": -2000,
+          "reason": "残り1枚の広い利益追尾"
+        }
+      ],
+      "new_exits": [
+        {
+          "qty": 1,
+          "price": 69090,
+          "index": 25193,
+          "time": 1791452973,
+          "net": 3000,
+          "reason": "利益追尾"
+        }
+      ]
+    },
+    {
+      "session": "2026-10-08_Night",
+      "source_id": "2026-10-08_Night-NK225mini-episode-000002",
+      "kind": "その他",
+      "old_net": 7000.0,
+      "new_net": 5000.0,
+      "change": -2000.0,
+      "entry": 1791454715,
+      "old_exits": [
+        {
+          "qty": 1,
+          "price": 68970,
+          "index": 32498,
+          "time": 1791455273,
+          "net": 7000,
+          "reason": "利益保護の戻り"
+        }
+      ],
+      "new_exits": [
+        {
+          "qty": 1,
+          "price": 68990,
+          "index": 31335,
+          "time": 1791455063,
+          "net": 5000,
+          "reason": "利益追尾"
+        }
+      ]
+    },
+    {
+      "session": "2026-10-09_Night",
+      "source_id": "2026-10-09_Night-NK225mini-core-000001",
+      "kind": "その他",
+      "old_net": 60000.0,
+      "new_net": 20000.0,
+      "change": -40000.0,
+      "entry": 1791536959,
+      "old_exits": [
+        {
+          "qty": 4,
+          "price": 69170,
+          "index": 26021,
+          "time": 1791543399,
+          "net": 48000,
+          "reason": "利益保護の戻り"
+        },
+        {
+          "qty": 1,
+          "price": 69170,
+          "index": 31156,
+          "time": 1791544804,
+          "net": 12000,
+          "reason": "残り1枚の追尾幅上限"
+        }
+      ],
+      "new_exits": [
+        {
+          "qty": 5,
+          "price": 69250,
+          "index": 14036,
+          "time": 1791537409,
+          "net": 20000,
+          "reason": "利益追尾"
+        }
+      ]
+    },
+    {
+      "session": "2026-10-09_Night",
+      "source_id": "2026-10-09_Night-NK225mini-core-000004",
+      "kind": "元返済より前に利益回収",
+      "old_net": -30000.0,
+      "new_net": 20000.0,
+      "change": 50000.0,
+      "entry": 1791550041,
+      "old_exits": [
+        {
+          "qty": 5,
+          "price": 69110,
+          "index": 47684,
+          "time": 1791550649,
+          "net": -30000,
+          "reason": "損失幅へ到達"
+        }
+      ],
+      "new_exits": [
+        {
+          "qty": 5,
+          "price": 69010,
+          "index": 46754,
+          "time": 1791550395,
+          "net": 20000,
+          "reason": "利益追尾"
+        }
+      ]
+    },
+    {
+      "session": "2026-10-13_Night",
+      "source_id": "2026-10-13_Night-NK225mini-core-000001",
+      "kind": "元返済より前に利益回収",
+      "old_net": -40000.0,
+      "new_net": 15000.0,
+      "change": 55000.0,
+      "entry": 1791883192,
+      "old_exits": [
+        {
+          "qty": 5,
+          "price": 68030,
+          "index": 24193,
+          "time": 1791887782,
+          "net": -40000,
+          "reason": "境界破綻と相手逆行"
+        }
+      ],
+      "new_exits": [
+        {
+          "qty": 5,
+          "price": 68140,
+          "index": 19134,
+          "time": 1791885384,
+          "net": 15000,
+          "reason": "利益追尾"
+        }
+      ]
+    },
+    {
+      "session": "2026-10-14_Night",
+      "source_id": "2026-10-14_Night-NK225mini-core-000001",
+      "kind": "元返済より前に利益回収",
+      "old_net": -30000.0,
+      "new_net": 15000.0,
+      "change": 45000.0,
+      "entry": 1791967552,
+      "old_exits": [
+        {
+          "qty": 5,
+          "price": 68360,
+          "index": 10805,
+          "time": 1791968598,
+          "net": -30000,
+          "reason": "損失幅へ到達"
+        }
+      ],
+      "new_exits": [
+        {
+          "qty": 5,
+          "price": 68270,
+          "index": 8593,
+          "time": 1791967704,
+          "net": 15000,
+          "reason": "利益追尾"
+        }
+      ]
+    },
+    {
+      "session": "2026-10-16_Night",
+      "source_id": "2026-10-16_Night-NK225mini-core-000001",
+      "kind": "その他",
+      "old_net": -30000.0,
+      "new_net": -20000.0,
+      "change": 10000.0,
+      "entry": 1792155601,
+      "old_exits": [
+        {
+          "qty": 5,
+          "price": 65450,
+          "index": 65621,
+          "time": 1792156272,
+          "net": -30000,
+          "reason": "境界破綻と相手逆行"
+        }
+      ],
+      "new_exits": [
+        {
+          "qty": 5,
+          "price": 65430,
+          "index": 66391,
+          "time": 1792156508,
+          "net": -20000,
+          "reason": "境界全返済"
+        }
+      ]
+    },
+    {
+      "session": "2026-10-19_Night",
+      "source_id": "2026-10-19_Night-NK225mini-core-000001",
+      "kind": "その他",
+      "old_net": 8000.0,
+      "new_net": 15000.0,
+      "change": 7000.0,
+      "entry": 1792408113,
+      "old_exits": [
+        {
+          "qty": 4,
+          "price": 64730,
+          "index": 51667,
+          "time": 1792409915,
+          "net": 12000,
+          "reason": "利益保護の戻り"
+        },
+        {
+          "qty": 1,
+          "price": 64800,
+          "index": 60443,
+          "time": 1792412095,
+          "net": -4000,
+          "reason": "残り1枚の追尾幅上限"
+        }
+      ],
+      "new_exits": [
+        {
+          "qty": 5,
+          "price": 64730,
+          "index": 49794,
+          "time": 1792409430,
+          "net": 15000,
+          "reason": "利益追尾"
+        }
+      ]
+    },
+    {
+      "session": "2026-10-19_Night",
+      "source_id": "2026-10-19_Night-NK225mini-core-000004",
+      "kind": "元返済後の回復で利益回収",
+      "old_net": -30000.0,
+      "new_net": 20000.0,
+      "change": 50000.0,
+      "entry": 1792413280,
+      "old_exits": [
+        {
+          "qty": 5,
+          "price": 64790,
+          "index": 66530,
+          "time": 1792413584,
+          "net": -30000,
+          "reason": "損失幅へ到達"
+        }
+      ],
+      "new_exits": [
+        {
+          "qty": 5,
+          "price": 64890,
+          "index": 73761,
+          "time": 1792415410,
+          "net": 20000,
+          "reason": "利益追尾"
+        }
+      ]
+    },
+    {
+      "session": "2026-10-20_Night",
+      "source_id": "2026-10-20_Night-NK225mini-core-000001",
+      "kind": "その他",
+      "old_net": 0.0,
+      "new_net": 35000.0,
+      "change": 35000.0,
+      "entry": 1792487225,
+      "old_exits": [
+        {
+          "qty": 4,
+          "price": 63950,
+          "index": 24974,
+          "time": 1792487846,
+          "net": 12000,
+          "reason": "利益保護の戻り"
+        },
+        {
+          "qty": 1,
+          "price": 64100,
+          "index": 26692,
+          "time": 1792488159,
+          "net": -12000,
+          "reason": "実現利益の損失予算に到達"
+        }
+      ],
+      "new_exits": [
+        {
+          "qty": 5,
+          "price": 63910,
+          "index": 21918,
+          "time": 1792487298,
+          "net": 35000,
+          "reason": "利益追尾"
+        }
+      ]
+    },
+    {
+      "session": "2026-10-20_Night",
+      "source_id": "2026-10-20_Night-NK225mini-episode-000004",
+      "kind": "その他",
+      "old_net": 26000.0,
+      "new_net": 4000.0,
+      "change": -22000.0,
+      "entry": 1792499540,
+      "old_exits": [
+        {
+          "qty": 1,
+          "price": 64230,
+          "index": 87651,
+          "time": 1792502140,
+          "net": 26000,
+          "reason": "セッション内返済"
+        }
+      ],
+      "new_exits": [
+        {
+          "qty": 1,
+          "price": 64010,
+          "index": 74295,
+          "time": 1792499583,
+          "net": 4000,
+          "reason": "利益追尾"
+        }
+      ]
+    },
+    {
+      "session": "2026-10-20_Night",
+      "source_id": "2026-10-20_Night-NK225mini-episode-000005",
+      "kind": "その他",
+      "old_net": 8000.0,
+      "new_net": 3000.0,
+      "change": -5000.0,
+      "entry": 1792499758,
+      "old_exits": [
+        {
+          "qty": 1,
+          "price": 64110,
+          "index": 76950,
+          "time": 1792500038,
+          "net": 8000,
+          "reason": "利益保護の戻り"
+        }
+      ],
+      "new_exits": [
+        {
+          "qty": 1,
+          "price": 64060,
+          "index": 76197,
+          "time": 1792499928,
+          "net": 3000,
+          "reason": "利益追尾"
+        }
+      ]
+    },
+    {
+      "session": "2026-10-20_Night",
+      "source_id": "2026-10-20_Night-NK225mini-core-000007",
+      "kind": "その他",
+      "old_net": 10000.0,
+      "new_net": 15000.0,
+      "change": 5000.0,
+      "entry": 1792500403,
+      "old_exits": [
+        {
+          "qty": 5,
+          "price": 64230,
+          "index": 87651,
+          "time": 1792502140,
+          "net": 10000,
+          "reason": "セッション内返済"
+        }
+      ],
+      "new_exits": [
+        {
+          "qty": 5,
+          "price": 64240,
+          "index": 81353,
+          "time": 1792500750,
+          "net": 15000,
+          "reason": "利益追尾"
+        }
+      ]
+    },
+    {
+      "session": "2026-10-21_Night",
+      "source_id": "2026-10-21_Night-NK225mini-core-000001",
+      "kind": "元返済より前に利益回収",
+      "old_net": -40000.0,
+      "new_net": 15000.0,
+      "change": 55000.0,
+      "entry": 1792577599,
+      "old_exits": [
+        {
+          "qty": 5,
+          "price": 64690,
+          "index": 33186,
+          "time": 1792578217,
+          "net": -40000,
+          "reason": "損失幅へ到達"
+        }
+      ],
+      "new_exits": [
+        {
+          "qty": 5,
+          "price": 64580,
+          "index": 31225,
+          "time": 1792577706,
+          "net": 15000,
+          "reason": "利益追尾"
+        }
+      ]
+    },
+    {
+      "session": "2026-10-23_Night",
+      "source_id": "2026-10-23_Night-NK225mini-core-000001",
+      "kind": "その他",
+      "old_net": 51000.0,
+      "new_net": 15000.0,
+      "change": -36000.0,
+      "entry": 1792745962,
+      "old_exits": [
+        {
+          "qty": 4,
+          "price": 62460,
+          "index": 25136,
+          "time": 1792747807,
+          "net": 40000,
+          "reason": "利益保護の戻り"
+        },
+        {
+          "qty": 1,
+          "price": 62450,
+          "index": 37763,
+          "time": 1792750592,
+          "net": 11000,
+          "reason": "残り1枚の追尾幅上限"
+        }
+      ],
+      "new_exits": [
+        {
+          "qty": 5,
+          "price": 62530,
+          "index": 19863,
+          "time": 1792746675,
+          "net": 15000,
+          "reason": "利益追尾"
+        }
+      ]
+    },
+    {
+      "session": "2026-10-23_Night",
+      "source_id": "2026-10-23_Night-NK225mini-episode-000003",
+      "kind": "元返済より前に利益回収",
+      "old_net": -12000.0,
+      "new_net": 3000.0,
+      "change": 15000.0,
+      "entry": 1792748611,
+      "old_exits": [
+        {
+          "qty": 1,
+          "price": 62260,
+          "index": 64863,
+          "time": 1792756900,
+          "net": -12000,
+          "reason": "損失幅へ到達"
+        }
+      ],
+      "new_exits": [
+        {
+          "qty": 1,
+          "price": 62410,
+          "index": 35313,
+          "time": 1792750006,
+          "net": 3000,
+          "reason": "利益追尾"
+        }
+      ]
+    },
+    {
+      "session": "2026-10-23_Night",
+      "source_id": "2026-10-23_Night-NK225mini-episode-000005",
+      "kind": "その他",
+      "old_net": -19000.0,
+      "new_net": -32000.0,
+      "change": -13000.0,
+      "entry": 1792750592,
+      "old_exits": [
+        {
+          "qty": 1,
+          "price": 62260,
+          "index": 64863,
+          "time": 1792756900,
+          "net": -19000,
+          "reason": "損失幅へ到達"
+        }
+      ],
+      "new_exits": [
+        {
+          "qty": 1,
+          "price": 62130,
+          "index": 86221,
+          "time": 1792761302,
+          "net": -32000,
+          "reason": "境界全返済"
+        }
+      ]
+    },
+    {
+      "session": "2026-10-23_Night",
+      "source_id": "2026-10-23_Night-NK225mini-episode-000008",
+      "kind": "その他",
+      "old_net": 4000.0,
+      "new_net": 4000.0,
+      "change": 0.0,
+      "entry": 1792760193,
+      "old_exits": [
+        {
+          "qty": 1,
+          "price": 62180,
+          "index": 83503,
+          "time": 1792760728,
+          "net": 4000,
+          "reason": "利益保護の戻り"
+        }
+      ],
+      "new_exits": [
+        {
+          "qty": 1,
+          "price": 62180,
+          "index": 82325,
+          "time": 1792760509,
+          "net": 4000,
+          "reason": "利益追尾"
+        }
+      ]
+    },
+    {
+      "session": "2026-10-23_Night",
+      "source_id": "2026-10-23_Night-NK225mini-episode-000009",
+      "kind": "元返済より前に利益回収",
+      "old_net": -1000.0,
+      "new_net": 4000.0,
+      "change": 5000.0,
+      "entry": 1792760509,
+      "old_exits": [
+        {
+          "qty": 1,
+          "price": 62180,
+          "index": 83503,
+          "time": 1792760728,
+          "net": -1000,
+          "reason": "利益保護の戻り"
+        }
+      ],
+      "new_exits": [
+        {
+          "qty": 1,
+          "price": 62230,
+          "index": 82564,
+          "time": 1792760543,
+          "net": 4000,
+          "reason": "利益追尾"
+        }
+      ]
+    }
+  ]
+}

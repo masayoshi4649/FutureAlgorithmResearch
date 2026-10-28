@@ -1,0 +1,46 @@
+{
+  "financial_replays": 0,
+  "original_tests_passed": 17,
+  "independent_synthetic_tests_passed": 7,
+  "technical_loader_tests_passed": 1,
+  "technical_raw_distinct_files": 1,
+  "technical_raw_scans": 2,
+  "source_files_checked": [
+    {
+      "name": "configs.go",
+      "sha256": "31ac951d4689e504bf13d6eead665f9580b264b0d529e20a831bfde09cf26358",
+      "unchanged": true
+    },
+    {
+      "name": "engine_test.go",
+      "sha256": "8ffa8d1653be46a8adfd61e77ed0db12200f80c84324f732722789625a7ce0b5",
+      "unchanged": true
+    },
+    {
+      "name": "engine.go",
+      "sha256": "eb2d6c80a12739d643e2f5542da63d94560de920dcd1543d264b8809c7877740",
+      "unchanged": true
+    },
+    {
+      "name": "go.mod",
+      "sha256": "34c51f820efa3b484462bc20760cd78df1569b04f80c8b83494150793af78157",
+      "unchanged": true
+    },
+    {
+      "name": "input.go",
+      "sha256": "490542d03a5220e918f9e9ab156f2b4f06ad634bcb7680b9514d6d1f6d8b584d",
+      "unchanged": true
+    },
+    {
+      "name": "main.go",
+      "sha256": "f0d470d1a897b9485f27d779c9980d5b53488f37488e3c8b3ddadfb429904f8a",
+      "unchanged": true
+    },
+    {
+      "name": "types.go",
+      "sha256": "a684b3e4e4087c28f9b455e364367be41f3d7d1d404ac4bac7c9b83fa7dac93c",
+      "unchanged": true
+    }
+  ],
+  "all_checks_passed": true
+}
