@@ -1,0 +1,1272 @@
+[
+  {
+    "method": "P06",
+    "session": "2026-09-28_Night",
+    "net": -100000.0,
+    "entries": 2,
+    "parents": 2,
+    "exit_reasons": {
+      "初期100pt損切り": 2
+    },
+    "tickets": [
+      {
+        "parent": 1,
+        "ticket": 1,
+        "side": "売り",
+        "qty": 5,
+        "entry": "2026-09-28T17:40:16+09:00",
+        "entry_price": 65380.0,
+        "exit": "2026-09-28T17:50:07+09:00",
+        "exit_price": 65480.0,
+        "holding_seconds": 591.0,
+        "net": -50000.0,
+        "exit_reason": "初期100pt損切り",
+        "entry_reason": "方向一致の新規",
+        "entry_fast_pt_per_min": -17.999999999999275,
+        "entry_slow_pt_per_min": -21.212121212120778,
+        "entry_acceleration": 4.0,
+        "signed_move_before_entry": {
+          "30": -20.0,
+          "60": -20.0,
+          "120": -0.0,
+          "300": 70.0
+        },
+        "mfe_pt": -0.0,
+        "mae_pt": -100.0,
+        "mfe_time": "2026-09-28T17:45:14+09:00",
+        "mae_time": "2026-09-28T17:50:07+09:00",
+        "entry_fill_slippage_pt": 10.0,
+        "raw_seq": {
+          "entry_decision": 11854,
+          "entry_fill": 11855,
+          "mfe": 13317,
+          "mae": 14234,
+          "exit_decision": 14234,
+          "exit_fill": 14235
+        },
+        "future_60s": {
+          "best_pt": -10.0,
+          "worst_pt": -60.0
+        },
+        "future_300s": {
+          "best_pt": -0.0,
+          "worst_pt": -90.0
+        }
+      },
+      {
+        "parent": 2,
+        "ticket": 1,
+        "side": "売り",
+        "qty": 5,
+        "entry": "2026-09-28T20:00:26+09:00",
+        "entry_price": 65610.0,
+        "exit": "2026-09-28T21:04:09+09:00",
+        "exit_price": 65710.0,
+        "holding_seconds": 3823.0,
+        "net": -50000.0,
+        "exit_reason": "初期100pt損切り",
+        "entry_reason": "方向一致の新規",
+        "entry_fast_pt_per_min": -8.999999999999272,
+        "entry_slow_pt_per_min": -4.93939393939454,
+        "entry_acceleration": -4.499999999999999,
+        "signed_move_before_entry": {
+          "30": -85.0,
+          "60": -60.0,
+          "120": -50.0,
+          "300": -50.0
+        },
+        "mfe_pt": 90.0,
+        "mae_pt": -100.0,
+        "mfe_time": "2026-09-28T20:20:11+09:00",
+        "mae_time": "2026-09-28T21:04:09+09:00",
+        "entry_fill_slippage_pt": -10.0,
+        "raw_seq": {
+          "entry_decision": 40540,
+          "entry_fill": 40541,
+          "mfe": 44989,
+          "mae": 52360,
+          "exit_decision": 52360,
+          "exit_fill": 52361
+        },
+        "future_60s": {
+          "best_pt": 30.0,
+          "worst_pt": -20.0
+        },
+        "future_300s": {
+          "best_pt": 70.0,
+          "worst_pt": -20.0
+        }
+      }
+    ],
+    "raw_evidence_file": "raw_2026-09-28_Night.json"
+  },
+  {
+    "method": "P06",
+    "session": "2026-10-05_Night",
+    "net": -105000.0,
+    "entries": 2,
+    "parents": 2,
+    "exit_reasons": {
+      "初期100pt損切り": 2
+    },
+    "tickets": [
+      {
+        "parent": 1,
+        "ticket": 1,
+        "side": "買い",
+        "qty": 5,
+        "entry": "2026-10-05T17:34:28+09:00",
+        "entry_price": 70040.0,
+        "exit": "2026-10-05T17:37:11+09:00",
+        "exit_price": 69940.0,
+        "holding_seconds": 163.0,
+        "net": -50000.0,
+        "exit_reason": "初期100pt損切り",
+        "entry_reason": "方向一致の新規",
+        "entry_fast_pt_per_min": 6.000000000000778,
+        "entry_slow_pt_per_min": 4.000000000001096,
+        "entry_acceleration": -9.0,
+        "signed_move_before_entry": {
+          "30": -70.0,
+          "60": -100.0,
+          "120": -100.0,
+          "300": -60.0
+        },
+        "mfe_pt": 30.0,
+        "mae_pt": -100.0,
+        "mfe_time": "2026-10-05T17:35:17+09:00",
+        "mae_time": "2026-10-05T17:37:11+09:00",
+        "entry_fill_slippage_pt": 0.0,
+        "raw_seq": {
+          "entry_decision": 10561,
+          "entry_fill": 10562,
+          "mfe": 10865,
+          "mae": 11500,
+          "exit_decision": 11500,
+          "exit_fill": 11501
+        },
+        "future_60s": {
+          "best_pt": 30.0,
+          "worst_pt": -30.0
+        },
+        "future_300s": {
+          "best_pt": 30.0,
+          "worst_pt": -100.0
+        }
+      },
+      {
+        "parent": 2,
+        "ticket": 1,
+        "side": "売り",
+        "qty": 5,
+        "entry": "2026-10-05T17:46:22+09:00",
+        "entry_price": 69820.0,
+        "exit": "2026-10-05T17:49:30+09:00",
+        "exit_price": 69930.0,
+        "holding_seconds": 188.0,
+        "net": -55000.0,
+        "exit_reason": "初期100pt損切り",
+        "entry_reason": "方向一致の新規",
+        "entry_fast_pt_per_min": -30.999999999999226,
+        "entry_slow_pt_per_min": -14.909090909092004,
+        "entry_acceleration": -14.0,
+        "signed_move_before_entry": {
+          "30": 20.0,
+          "60": 30.0,
+          "120": 105.0,
+          "300": 160.0
+        },
+        "mfe_pt": 60.0,
+        "mae_pt": -110.0,
+        "mfe_time": "2026-10-05T17:47:57+09:00",
+        "mae_time": "2026-10-05T17:49:30+09:00",
+        "entry_fill_slippage_pt": -10.0,
+        "raw_seq": {
+          "entry_decision": 13965,
+          "entry_fill": 13967,
+          "mfe": 14374,
+          "mae": 14915,
+          "exit_decision": 14915,
+          "exit_fill": 14916
+        },
+        "future_60s": {
+          "best_pt": 50.0,
+          "worst_pt": -10.0
+        },
+        "future_300s": {
+          "best_pt": 60.0,
+          "worst_pt": -160.0
+        }
+      }
+    ],
+    "raw_evidence_file": "raw_2026-10-05_Night.json"
+  },
+  {
+    "method": "P01",
+    "session": "2026-10-14_Night",
+    "net": -325000.0,
+    "entries": 7,
+    "parents": 6,
+    "exit_reasons": {
+      "初期100pt損切り": 5,
+      "利益到達後トレール": 2
+    },
+    "tickets": [
+      {
+        "parent": 1,
+        "ticket": 1,
+        "side": "買い",
+        "qty": 5,
+        "entry": "2026-10-14T21:28:10+09:00",
+        "entry_price": 68340.0,
+        "exit": "2026-10-14T21:30:01+09:00",
+        "exit_price": 68030.0,
+        "holding_seconds": 111.0,
+        "net": -155000.0,
+        "exit_reason": "初期100pt損切り",
+        "entry_reason": "方向一致の新規",
+        "entry_fast_pt_per_min": 9.000000000000759,
+        "entry_slow_pt_per_min": 4.999999999999241,
+        "entry_acceleration": 2.0,
+        "signed_move_before_entry": {
+          "30": 10.0,
+          "60": 25.0,
+          "120": 20.0,
+          "300": 55.0
+        },
+        "mfe_pt": 0.0,
+        "mae_pt": -310.0,
+        "mfe_time": "2026-10-14T21:29:34+09:00",
+        "mae_time": "2026-10-14T21:30:01+09:00",
+        "entry_fill_slippage_pt": 0.0,
+        "raw_seq": {
+          "entry_decision": 45549,
+          "entry_fill": 45550,
+          "mfe": 45775,
+          "mae": 45845,
+          "exit_decision": 45845,
+          "exit_fill": 45846
+        },
+        "future_60s": {
+          "best_pt": -10.0,
+          "worst_pt": -30.0
+        },
+        "future_300s": {
+          "best_pt": 0.0,
+          "worst_pt": -610.0
+        }
+      },
+      {
+        "parent": 2,
+        "ticket": 1,
+        "side": "売り",
+        "qty": 5,
+        "entry": "2026-10-14T21:31:15+09:00",
+        "entry_price": 67830.0,
+        "exit": "2026-10-14T21:32:04+09:00",
+        "exit_price": 67920.0,
+        "holding_seconds": 49.0,
+        "net": -45000.0,
+        "exit_reason": "初期100pt損切り",
+        "entry_reason": "方向一致の新規",
+        "entry_fast_pt_per_min": -83.49999999999925,
+        "entry_slow_pt_per_min": -17.030303030301035,
+        "entry_acceleration": -90.0,
+        "signed_move_before_entry": {
+          "30": 95.0,
+          "60": 235.0,
+          "120": 495.0,
+          "300": 480.0
+        },
+        "mfe_pt": 10.0,
+        "mae_pt": -100.0,
+        "mfe_time": "2026-10-14T21:31:18+09:00",
+        "mae_time": "2026-10-14T21:32:04+09:00",
+        "entry_fill_slippage_pt": -0.0,
+        "raw_seq": {
+          "entry_decision": 46559,
+          "entry_fill": 46560,
+          "mfe": 46589,
+          "mae": 46979,
+          "exit_decision": 46979,
+          "exit_fill": 46980
+        },
+        "future_60s": {
+          "best_pt": 10.0,
+          "worst_pt": -100.0
+        },
+        "future_300s": {
+          "best_pt": 120.0,
+          "worst_pt": -100.0
+        }
+      },
+      {
+        "parent": 3,
+        "ticket": 1,
+        "side": "売り",
+        "qty": 5,
+        "entry": "2026-10-14T21:33:23+09:00",
+        "entry_price": 67740.0,
+        "exit": "2026-10-14T21:40:04+09:00",
+        "exit_price": 67840.0,
+        "holding_seconds": 401.0,
+        "net": -50000.0,
+        "exit_reason": "初期100pt損切り",
+        "entry_reason": "方向一致の新規",
+        "entry_fast_pt_per_min": -153.99999999999926,
+        "entry_slow_pt_per_min": -58.18181818181832,
+        "entry_acceleration": -18.00000000000003,
+        "signed_move_before_entry": {
+          "30": 45.0,
+          "60": 95.0,
+          "120": 75.0,
+          "300": 575.0
+        },
+        "mfe_pt": 30.0,
+        "mae_pt": -100.0,
+        "mfe_time": "2026-10-14T21:36:01+09:00",
+        "mae_time": "2026-10-14T21:40:04+09:00",
+        "entry_fill_slippage_pt": 10.0,
+        "raw_seq": {
+          "entry_decision": 47604,
+          "entry_fill": 47605,
+          "mfe": 48832,
+          "mae": 50582,
+          "exit_decision": 50582,
+          "exit_fill": 50583
+        },
+        "future_60s": {
+          "best_pt": 10.0,
+          "worst_pt": -90.0
+        },
+        "future_300s": {
+          "best_pt": 30.0,
+          "worst_pt": -90.0
+        }
+      },
+      {
+        "parent": 4,
+        "ticket": 1,
+        "side": "売り",
+        "qty": 5,
+        "entry": "2026-10-14T21:42:59+09:00",
+        "entry_price": 67700.0,
+        "exit": "2026-10-14T21:46:20+09:00",
+        "exit_price": 67800.0,
+        "holding_seconds": 201.0,
+        "net": -50000.0,
+        "exit_reason": "初期100pt損切り",
+        "entry_reason": "方向一致の新規",
+        "entry_fast_pt_per_min": -13.499999999999249,
+        "entry_slow_pt_per_min": -5.878787878788293,
+        "entry_acceleration": -25.0,
+        "signed_move_before_entry": {
+          "30": -15.0,
+          "60": -35.0,
+          "120": 60.0,
+          "300": 40.0
+        },
+        "mfe_pt": 20.0,
+        "mae_pt": -100.0,
+        "mfe_time": "2026-10-14T21:43:29+09:00",
+        "mae_time": "2026-10-14T21:46:20+09:00",
+        "entry_fill_slippage_pt": -0.0,
+        "raw_seq": {
+          "entry_decision": 51778,
+          "entry_fill": 51779,
+          "mfe": 51970,
+          "mae": 53108,
+          "exit_decision": 53108,
+          "exit_fill": 53109
+        },
+        "future_60s": {
+          "best_pt": 20.0,
+          "worst_pt": -30.0
+        },
+        "future_300s": {
+          "best_pt": 20.0,
+          "worst_pt": -140.0
+        }
+      },
+      {
+        "parent": 5,
+        "ticket": 1,
+        "side": "買い",
+        "qty": 5,
+        "entry": "2026-10-14T21:50:57+09:00",
+        "entry_price": 67910.0,
+        "exit": "2026-10-14T21:52:50+09:00",
+        "exit_price": 67810.0,
+        "holding_seconds": 113.0,
+        "net": -50000.0,
+        "exit_reason": "初期100pt損切り",
+        "entry_reason": "方向一致の新規",
+        "entry_fast_pt_per_min": 33.00000000000075,
+        "entry_slow_pt_per_min": 17.87878787878719,
+        "entry_acceleration": 8.5,
+        "signed_move_before_entry": {
+          "30": 30.0,
+          "60": 20.0,
+          "120": 60.0,
+          "300": 155.0
+        },
+        "mfe_pt": 10.0,
+        "mae_pt": -100.0,
+        "mfe_time": "2026-10-14T21:51:48+09:00",
+        "mae_time": "2026-10-14T21:52:50+09:00",
+        "entry_fill_slippage_pt": 0.0,
+        "raw_seq": {
+          "entry_decision": 54764,
+          "entry_fill": 54765,
+          "mfe": 55171,
+          "mae": 55431,
+          "exit_decision": 55431,
+          "exit_fill": 55432
+        },
+        "future_60s": {
+          "best_pt": 10.0,
+          "worst_pt": -20.0
+        },
+        "future_300s": {
+          "best_pt": 10.0,
+          "worst_pt": -150.0
+        }
+      },
+      {
+        "parent": 6,
+        "ticket": 1,
+        "side": "売り",
+        "qty": 5,
+        "entry": "2026-10-14T21:56:56+09:00",
+        "entry_price": 67790.0,
+        "exit": "2026-10-14T22:01:33+09:00",
+        "exit_price": 67760.0,
+        "holding_seconds": 277.0,
+        "net": 15000.0,
+        "exit_reason": "利益到達後トレール",
+        "entry_reason": "方向一致の新規",
+        "entry_fast_pt_per_min": -12.999999999999247,
+        "entry_slow_pt_per_min": -1.1515151515143252,
+        "entry_acceleration": 10.0,
+        "signed_move_before_entry": {
+          "30": 10.0,
+          "60": 10.0,
+          "120": 50.0,
+          "300": 110.0
+        },
+        "mfe_pt": 110.0,
+        "mae_pt": -20.0,
+        "mfe_time": "2026-10-14T21:59:57+09:00",
+        "mae_time": "2026-10-14T21:56:56+09:00",
+        "entry_fill_slippage_pt": -0.0,
+        "raw_seq": {
+          "entry_decision": 56820,
+          "entry_fill": 56821,
+          "mfe": 57867,
+          "mae": 56823,
+          "exit_decision": 58529,
+          "exit_fill": 58530
+        },
+        "future_60s": {
+          "best_pt": 30.0,
+          "worst_pt": -20.0
+        },
+        "future_300s": {
+          "best_pt": 110.0,
+          "worst_pt": -20.0
+        }
+      },
+      {
+        "parent": 6,
+        "ticket": 2,
+        "side": "売り",
+        "qty": 5,
+        "entry": "2026-10-14T21:59:00+09:00",
+        "entry_price": 67730.0,
+        "exit": "2026-10-14T22:07:48+09:00",
+        "exit_price": 67710.0,
+        "holding_seconds": 528.0,
+        "net": 10000.0,
+        "exit_reason": "利益到達後トレール",
+        "entry_reason": "順行後の追加",
+        "entry_fast_pt_per_min": -25.499999999999247,
+        "entry_slow_pt_per_min": -16.393939393940002,
+        "entry_acceleration": -15.5,
+        "signed_move_before_entry": {
+          "30": 10.0,
+          "60": 35.0,
+          "120": 60.0,
+          "300": 60.0
+        },
+        "mfe_pt": 100.0,
+        "mae_pt": -40.0,
+        "mfe_time": "2026-10-14T22:07:27+09:00",
+        "mae_time": "2026-10-14T22:01:42+09:00",
+        "entry_fill_slippage_pt": -0.0,
+        "raw_seq": {
+          "entry_decision": 57480,
+          "entry_fill": 57481,
+          "mfe": 60595,
+          "mae": 58564,
+          "exit_decision": 60830,
+          "exit_fill": 60831
+        },
+        "future_60s": {
+          "best_pt": 50.0,
+          "worst_pt": -10.0
+        },
+        "future_300s": {
+          "best_pt": 50.0,
+          "worst_pt": -40.0
+        }
+      }
+    ],
+    "raw_evidence_file": "raw_2026-10-14_Night.json"
+  },
+  {
+    "method": "P06",
+    "session": "2026-10-14_Night",
+    "net": -100000.0,
+    "entries": 3,
+    "parents": 2,
+    "exit_reasons": {
+      "初期100pt損切り": 1,
+      "利益到達後トレール": 2
+    },
+    "tickets": [
+      {
+        "parent": 1,
+        "ticket": 1,
+        "side": "買い",
+        "qty": 5,
+        "entry": "2026-10-14T21:29:45+09:00",
+        "entry_price": 68350.0,
+        "exit": "2026-10-14T21:30:01+09:00",
+        "exit_price": 68030.0,
+        "holding_seconds": 16.0,
+        "net": -160000.0,
+        "exit_reason": "初期100pt損切り",
+        "entry_reason": "方向一致の新規",
+        "entry_fast_pt_per_min": 8.000000000000759,
+        "entry_slow_pt_per_min": 6.696969696968262,
+        "entry_acceleration": -1.0,
+        "signed_move_before_entry": {
+          "30": 15.0,
+          "60": 15.0,
+          "120": 20.0,
+          "300": 50.0
+        },
+        "mfe_pt": -10.0,
+        "mae_pt": -320.0,
+        "mfe_time": "2026-10-14T21:29:45+09:00",
+        "mae_time": "2026-10-14T21:30:01+09:00",
+        "entry_fill_slippage_pt": 0.0,
+        "raw_seq": {
+          "entry_decision": 45804,
+          "entry_fill": 45805,
+          "mfe": 45805,
+          "mae": 45845,
+          "exit_decision": 45845,
+          "exit_fill": 45846
+        },
+        "future_60s": {
+          "best_pt": -10.0,
+          "worst_pt": -540.0
+        },
+        "future_300s": {
+          "best_pt": -10.0,
+          "worst_pt": -640.0
+        }
+      },
+      {
+        "parent": 2,
+        "ticket": 1,
+        "side": "売り",
+        "qty": 5,
+        "entry": "2026-10-14T21:31:30+09:00",
+        "entry_price": 67850.0,
+        "exit": "2026-10-14T21:33:44+09:00",
+        "exit_price": 67800.0,
+        "holding_seconds": 134.0,
+        "net": 25000.0,
+        "exit_reason": "利益到達後トレール",
+        "entry_reason": "方向一致の新規",
+        "entry_fast_pt_per_min": -83.49999999999925,
+        "entry_slow_pt_per_min": -17.030303030301035,
+        "entry_acceleration": -90.0,
+        "signed_move_before_entry": {
+          "30": 50.0,
+          "60": 140.0,
+          "120": 475.0,
+          "300": 455.0
+        },
+        "mfe_pt": 120.0,
+        "mae_pt": -80.0,
+        "mfe_time": "2026-10-14T21:33:26+09:00",
+        "mae_time": "2026-10-14T21:32:04+09:00",
+        "entry_fill_slippage_pt": -0.0,
+        "raw_seq": {
+          "entry_decision": 46707,
+          "entry_fill": 46708,
+          "mfe": 47656,
+          "mae": 46979,
+          "exit_decision": 47813,
+          "exit_fill": 47814
+        },
+        "future_60s": {
+          "best_pt": 20.0,
+          "worst_pt": -80.0
+        },
+        "future_300s": {
+          "best_pt": 140.0,
+          "worst_pt": -80.0
+        }
+      },
+      {
+        "parent": 2,
+        "ticket": 2,
+        "side": "売り",
+        "qty": 5,
+        "entry": "2026-10-14T21:32:53+09:00",
+        "entry_price": 67800.0,
+        "exit": "2026-10-14T21:42:48+09:00",
+        "exit_price": 67730.0,
+        "holding_seconds": 595.0,
+        "net": 35000.0,
+        "exit_reason": "利益到達後トレール",
+        "entry_reason": "順行後の追加",
+        "entry_fast_pt_per_min": -135.99999999999923,
+        "entry_slow_pt_per_min": -37.909090909087986,
+        "entry_acceleration": -52.499999999999986,
+        "signed_move_before_entry": {
+          "30": 50.0,
+          "60": 70.0,
+          "120": 115.0,
+          "300": 520.0
+        },
+        "mfe_pt": 140.0,
+        "mae_pt": -40.0,
+        "mfe_time": "2026-10-14T21:41:35+09:00",
+        "mae_time": "2026-10-14T21:40:04+09:00",
+        "entry_fill_slippage_pt": -0.0,
+        "raw_seq": {
+          "entry_decision": 47357,
+          "entry_fill": 47358,
+          "mfe": 51227,
+          "mae": 50582,
+          "exit_decision": 51710,
+          "exit_fill": 51711
+        },
+        "future_60s": {
+          "best_pt": 70.0,
+          "worst_pt": -20.0
+        },
+        "future_300s": {
+          "best_pt": 90.0,
+          "worst_pt": -30.0
+        }
+      }
+    ],
+    "raw_evidence_file": "raw_2026-10-14_Night.json"
+  },
+  {
+    "method": "P01",
+    "session": "2026-10-19_Night",
+    "net": -225000.0,
+    "entries": 6,
+    "parents": 6,
+    "exit_reasons": {
+      "初期100pt損切り": 5,
+      "利益到達後トレール": 1
+    },
+    "tickets": [
+      {
+        "parent": 1,
+        "ticket": 1,
+        "side": "買い",
+        "qty": 5,
+        "entry": "2026-10-19T17:13:19+09:00",
+        "entry_price": 64700.0,
+        "exit": "2026-10-19T17:16:02+09:00",
+        "exit_price": 64600.0,
+        "holding_seconds": 163.0,
+        "net": -50000.0,
+        "exit_reason": "初期100pt損切り",
+        "entry_reason": "方向一致の新規",
+        "entry_fast_pt_per_min": 10.500000000000718,
+        "entry_slow_pt_per_min": 1.606060606058395,
+        "entry_acceleration": 8.5,
+        "signed_move_before_entry": {
+          "30": -10.0,
+          "60": -15.0,
+          "120": 30.0,
+          "300": 25.0
+        },
+        "mfe_pt": -10.0,
+        "mae_pt": -100.0,
+        "mfe_time": "2026-10-19T17:13:19+09:00",
+        "mae_time": "2026-10-19T17:16:02+09:00",
+        "entry_fill_slippage_pt": 0.0,
+        "raw_seq": {
+          "entry_decision": 4635,
+          "entry_fill": 4636,
+          "mfe": 4636,
+          "mae": 5372,
+          "exit_decision": 5372,
+          "exit_fill": 5373
+        },
+        "future_60s": {
+          "best_pt": -10.0,
+          "worst_pt": -40.0
+        },
+        "future_300s": {
+          "best_pt": -10.0,
+          "worst_pt": -110.0
+        }
+      },
+      {
+        "parent": 2,
+        "ticket": 1,
+        "side": "売り",
+        "qty": 5,
+        "entry": "2026-10-19T17:19:34+09:00",
+        "entry_price": 64640.0,
+        "exit": "2026-10-19T17:24:57+09:00",
+        "exit_price": 64740.0,
+        "holding_seconds": 323.0,
+        "net": -50000.0,
+        "exit_reason": "初期100pt損切り",
+        "entry_reason": "方向一致の新規",
+        "entry_fast_pt_per_min": -8.999999999999282,
+        "entry_slow_pt_per_min": -8.757575757574578,
+        "entry_acceleration": 9.5,
+        "signed_move_before_entry": {
+          "30": -25.0,
+          "60": -30.0,
+          "120": -40.0,
+          "300": 20.0
+        },
+        "mfe_pt": -0.0,
+        "mae_pt": -100.0,
+        "mfe_time": "2026-10-19T17:19:57+09:00",
+        "mae_time": "2026-10-19T17:24:57+09:00",
+        "entry_fill_slippage_pt": -0.0,
+        "raw_seq": {
+          "entry_decision": 6286,
+          "entry_fill": 6287,
+          "mfe": 6392,
+          "mae": 7654,
+          "exit_decision": 7654,
+          "exit_fill": 7655
+        },
+        "future_60s": {
+          "best_pt": -0.0,
+          "worst_pt": -20.0
+        },
+        "future_300s": {
+          "best_pt": -0.0,
+          "worst_pt": -80.0
+        }
+      },
+      {
+        "parent": 3,
+        "ticket": 1,
+        "side": "売り",
+        "qty": 5,
+        "entry": "2026-10-19T18:01:14+09:00",
+        "entry_price": 64590.0,
+        "exit": "2026-10-19T18:04:24+09:00",
+        "exit_price": 64690.0,
+        "holding_seconds": 190.0,
+        "net": -50000.0,
+        "exit_reason": "初期100pt損切り",
+        "entry_reason": "方向一致の新規",
+        "entry_fast_pt_per_min": -20.999999999999282,
+        "entry_slow_pt_per_min": -9.57575757575925,
+        "entry_acceleration": -1.0,
+        "signed_move_before_entry": {
+          "30": -50.0,
+          "60": 10.0,
+          "120": 30.0,
+          "300": 80.0
+        },
+        "mfe_pt": -10.0,
+        "mae_pt": -100.0,
+        "mfe_time": "2026-10-19T18:01:14+09:00",
+        "mae_time": "2026-10-19T18:04:24+09:00",
+        "entry_fill_slippage_pt": -0.0,
+        "raw_seq": {
+          "entry_decision": 16107,
+          "entry_fill": 16108,
+          "mfe": 16108,
+          "mae": 17062,
+          "exit_decision": 17062,
+          "exit_fill": 17063
+        },
+        "future_60s": {
+          "best_pt": -10.0,
+          "worst_pt": -50.0
+        },
+        "future_300s": {
+          "best_pt": -10.0,
+          "worst_pt": -110.0
+        }
+      },
+      {
+        "parent": 4,
+        "ticket": 1,
+        "side": "買い",
+        "qty": 5,
+        "entry": "2026-10-19T19:39:31+09:00",
+        "entry_price": 64950.0,
+        "exit": "2026-10-19T19:40:02+09:00",
+        "exit_price": 64850.0,
+        "holding_seconds": 31.0,
+        "net": -50000.0,
+        "exit_reason": "初期100pt損切り",
+        "entry_reason": "方向一致の新規",
+        "entry_fast_pt_per_min": 29.00000000000072,
+        "entry_slow_pt_per_min": 14.12121212121159,
+        "entry_acceleration": 38.0,
+        "signed_move_before_entry": {
+          "30": -5.0,
+          "60": 55.0,
+          "120": 160.0,
+          "300": 150.0
+        },
+        "mfe_pt": 0.0,
+        "mae_pt": -100.0,
+        "mfe_time": "2026-10-19T19:39:31+09:00",
+        "mae_time": "2026-10-19T19:40:02+09:00",
+        "entry_fill_slippage_pt": 0.0,
+        "raw_seq": {
+          "entry_decision": 37440,
+          "entry_fill": 37441,
+          "mfe": 37445,
+          "mae": 37672,
+          "exit_decision": 37672,
+          "exit_fill": 37673
+        },
+        "future_60s": {
+          "best_pt": 0.0,
+          "worst_pt": -140.0
+        },
+        "future_300s": {
+          "best_pt": 30.0,
+          "worst_pt": -150.0
+        }
+      },
+      {
+        "parent": 5,
+        "ticket": 1,
+        "side": "買い",
+        "qty": 5,
+        "entry": "2026-10-19T19:41:43+09:00",
+        "entry_price": 64850.0,
+        "exit": "2026-10-19T19:44:40+09:00",
+        "exit_price": 64900.0,
+        "holding_seconds": 177.0,
+        "net": 25000.0,
+        "exit_reason": "利益到達後トレール",
+        "entry_reason": "方向一致の新規",
+        "entry_fast_pt_per_min": 15.00000000000072,
+        "entry_slow_pt_per_min": 10.727272727271316,
+        "entry_acceleration": -15.500000000000002,
+        "signed_move_before_entry": {
+          "30": 25.0,
+          "60": 15.0,
+          "120": -40.0,
+          "300": 55.0
+        },
+        "mfe_pt": 130.0,
+        "mae_pt": -50.0,
+        "mfe_time": "2026-10-19T19:42:51+09:00",
+        "mae_time": "2026-10-19T19:41:49+09:00",
+        "entry_fill_slippage_pt": 0.0,
+        "raw_seq": {
+          "entry_decision": 38283,
+          "entry_fill": 38284,
+          "mfe": 38753,
+          "mae": 38366,
+          "exit_decision": 39363,
+          "exit_fill": 39364
+        },
+        "future_60s": {
+          "best_pt": 100.0,
+          "worst_pt": -50.0
+        },
+        "future_300s": {
+          "best_pt": 130.0,
+          "worst_pt": -50.0
+        }
+      },
+      {
+        "parent": 6,
+        "ticket": 1,
+        "side": "買い",
+        "qty": 5,
+        "entry": "2026-10-19T19:53:46+09:00",
+        "entry_price": 65010.0,
+        "exit": "2026-10-19T20:00:01+09:00",
+        "exit_price": 64910.0,
+        "holding_seconds": 375.0,
+        "net": -50000.0,
+        "exit_reason": "初期100pt損切り",
+        "entry_reason": "方向一致の新規",
+        "entry_fast_pt_per_min": 14.000000000000721,
+        "entry_slow_pt_per_min": 5.606060606061371,
+        "entry_acceleration": 6.0,
+        "signed_move_before_entry": {
+          "30": 15.0,
+          "60": 40.0,
+          "120": 45.0,
+          "300": 45.0
+        },
+        "mfe_pt": 0.0,
+        "mae_pt": -100.0,
+        "mfe_time": "2026-10-19T19:54:27+09:00",
+        "mae_time": "2026-10-19T20:00:01+09:00",
+        "entry_fill_slippage_pt": 0.0,
+        "raw_seq": {
+          "entry_decision": 41923,
+          "entry_fill": 41924,
+          "mfe": 42202,
+          "mae": 43269,
+          "exit_decision": 43269,
+          "exit_fill": 43270
+        },
+        "future_60s": {
+          "best_pt": 0.0,
+          "worst_pt": -30.0
+        },
+        "future_300s": {
+          "best_pt": 0.0,
+          "worst_pt": -90.0
+        }
+      }
+    ],
+    "raw_evidence_file": "raw_2026-10-19_Night.json"
+  },
+  {
+    "method": "P01",
+    "session": "2026-10-22_Night",
+    "net": -285000.0,
+    "entries": 7,
+    "parents": 5,
+    "exit_reasons": {
+      "初期100pt損切り": 6,
+      "利益到達後トレール": 1
+    },
+    "tickets": [
+      {
+        "parent": 1,
+        "ticket": 1,
+        "side": "売り",
+        "qty": 5,
+        "entry": "2026-10-22T17:10:16+09:00",
+        "entry_price": 62950.0,
+        "exit": "2026-10-22T17:11:46+09:00",
+        "exit_price": 63040.0,
+        "holding_seconds": 90.0,
+        "net": -45000.0,
+        "exit_reason": "初期100pt損切り",
+        "entry_reason": "方向一致の新規",
+        "entry_fast_pt_per_min": -13.999999999999302,
+        "entry_slow_pt_per_min": -3.0909090909088444,
+        "entry_acceleration": -4.5,
+        "signed_move_before_entry": {
+          "30": -5.0,
+          "60": -20.0,
+          "120": 30.0,
+          "300": 30.0
+        },
+        "mfe_pt": -10.0,
+        "mae_pt": -100.0,
+        "mfe_time": "2026-10-22T17:10:16+09:00",
+        "mae_time": "2026-10-22T17:11:46+09:00",
+        "entry_fill_slippage_pt": -0.0,
+        "raw_seq": {
+          "entry_decision": 4708,
+          "entry_fill": 4709,
+          "mfe": 4710,
+          "mae": 5234,
+          "exit_decision": 5234,
+          "exit_fill": 5235
+        },
+        "future_60s": {
+          "best_pt": -10.0,
+          "worst_pt": -60.0
+        },
+        "future_300s": {
+          "best_pt": -10.0,
+          "worst_pt": -150.0
+        }
+      },
+      {
+        "parent": 2,
+        "ticket": 1,
+        "side": "買い",
+        "qty": 5,
+        "entry": "2026-10-22T17:12:46+09:00",
+        "entry_price": 63040.0,
+        "exit": "2026-10-22T17:29:11+09:00",
+        "exit_price": 63060.0,
+        "holding_seconds": 985.0,
+        "net": 10000.0,
+        "exit_reason": "利益到達後トレール",
+        "entry_reason": "方向一致の新規",
+        "entry_fast_pt_per_min": 16.0000000000007,
+        "entry_slow_pt_per_min": 1.7272727272740898,
+        "entry_acceleration": 23.5,
+        "signed_move_before_entry": {
+          "30": -30.0,
+          "60": -20.0,
+          "120": 40.0,
+          "300": 30.0
+        },
+        "mfe_pt": 100.0,
+        "mae_pt": -40.0,
+        "mfe_time": "2026-10-22T17:27:08+09:00",
+        "mae_time": "2026-10-22T17:12:48+09:00",
+        "entry_fill_slippage_pt": 10.0,
+        "raw_seq": {
+          "entry_decision": 5615,
+          "entry_fill": 5616,
+          "mfe": 10253,
+          "mae": 5652,
+          "exit_decision": 10895,
+          "exit_fill": 10896
+        },
+        "future_60s": {
+          "best_pt": 40.0,
+          "worst_pt": -40.0
+        },
+        "future_300s": {
+          "best_pt": 60.0,
+          "worst_pt": -40.0
+        }
+      },
+      {
+        "parent": 2,
+        "ticket": 2,
+        "side": "買い",
+        "qty": 5,
+        "entry": "2026-10-22T17:13:44+09:00",
+        "entry_price": 63090.0,
+        "exit": "2026-10-22T17:52:40+09:00",
+        "exit_price": 62990.0,
+        "holding_seconds": 2336.0,
+        "net": -50000.0,
+        "exit_reason": "初期100pt損切り",
+        "entry_reason": "順行後の追加",
+        "entry_fast_pt_per_min": 26.0000000000007,
+        "entry_slow_pt_per_min": 3.787878787878111,
+        "entry_acceleration": 10.0,
+        "signed_move_before_entry": {
+          "30": 80.0,
+          "60": 60.0,
+          "120": 50.0,
+          "300": 100.0
+        },
+        "mfe_pt": 70.0,
+        "mae_pt": -100.0,
+        "mfe_time": "2026-10-22T17:43:13+09:00",
+        "mae_time": "2026-10-22T17:52:40+09:00",
+        "entry_fill_slippage_pt": 0.0,
+        "raw_seq": {
+          "entry_decision": 6010,
+          "entry_fill": 6011,
+          "mfe": 15228,
+          "mae": 17764,
+          "exit_decision": 17764,
+          "exit_fill": 17765
+        },
+        "future_60s": {
+          "best_pt": -10.0,
+          "worst_pt": -70.0
+        },
+        "future_300s": {
+          "best_pt": 10.0,
+          "worst_pt": -70.0
+        }
+      },
+      {
+        "parent": 3,
+        "ticket": 1,
+        "side": "売り",
+        "qty": 5,
+        "entry": "2026-10-22T17:56:13+09:00",
+        "entry_price": 62920.0,
+        "exit": "2026-10-22T18:10:23+09:00",
+        "exit_price": 63020.0,
+        "holding_seconds": 850.0,
+        "net": -50000.0,
+        "exit_reason": "初期100pt損切り",
+        "entry_reason": "方向一致の新規",
+        "entry_fast_pt_per_min": -16.9999999999993,
+        "entry_slow_pt_per_min": -23.60606060606146,
+        "entry_acceleration": 9.0,
+        "signed_move_before_entry": {
+          "30": 20.0,
+          "60": 25.0,
+          "120": 35.0,
+          "300": 125.0
+        },
+        "mfe_pt": 20.0,
+        "mae_pt": -100.0,
+        "mfe_time": "2026-10-22T17:58:30+09:00",
+        "mae_time": "2026-10-22T18:10:23+09:00",
+        "entry_fill_slippage_pt": -0.0,
+        "raw_seq": {
+          "entry_decision": 18836,
+          "entry_fill": 18837,
+          "mfe": 19443,
+          "mae": 22834,
+          "exit_decision": 22834,
+          "exit_fill": 22835
+        },
+        "future_60s": {
+          "best_pt": -0.0,
+          "worst_pt": -50.0
+        },
+        "future_300s": {
+          "best_pt": 20.0,
+          "worst_pt": -50.0
+        }
+      },
+      {
+        "parent": 4,
+        "ticket": 1,
+        "side": "買い",
+        "qty": 5,
+        "entry": "2026-10-22T18:11:42+09:00",
+        "entry_price": 63090.0,
+        "exit": "2026-10-22T18:40:26+09:00",
+        "exit_price": 62990.0,
+        "holding_seconds": 1724.0,
+        "net": -50000.0,
+        "exit_reason": "初期100pt損切り",
+        "entry_reason": "方向一致の新規",
+        "entry_fast_pt_per_min": 19.5000000000007,
+        "entry_slow_pt_per_min": 13.818181818180411,
+        "entry_acceleration": 20.5,
+        "signed_move_before_entry": {
+          "30": -10.0,
+          "60": 25.0,
+          "120": 105.0,
+          "300": 105.0
+        },
+        "mfe_pt": 90.0,
+        "mae_pt": -100.0,
+        "mfe_time": "2026-10-22T18:14:40+09:00",
+        "mae_time": "2026-10-22T18:40:26+09:00",
+        "entry_fill_slippage_pt": 0.0,
+        "raw_seq": {
+          "entry_decision": 23336,
+          "entry_fill": 23337,
+          "mfe": 24407,
+          "mae": 31404,
+          "exit_decision": 31404,
+          "exit_fill": 31405
+        },
+        "future_60s": {
+          "best_pt": -10.0,
+          "worst_pt": -40.0
+        },
+        "future_300s": {
+          "best_pt": 90.0,
+          "worst_pt": -40.0
+        }
+      },
+      {
+        "parent": 4,
+        "ticket": 2,
+        "side": "買い",
+        "qty": 5,
+        "entry": "2026-10-22T18:14:06+09:00",
+        "entry_price": 63150.0,
+        "exit": "2026-10-22T18:20:20+09:00",
+        "exit_price": 63050.0,
+        "holding_seconds": 374.0,
+        "net": -50000.0,
+        "exit_reason": "初期100pt損切り",
+        "entry_reason": "順行後の追加",
+        "entry_fast_pt_per_min": 31.0000000000007,
+        "entry_slow_pt_per_min": 17.454545454545535,
+        "entry_acceleration": 1.5,
+        "signed_move_before_entry": {
+          "30": 40.0,
+          "60": 70.0,
+          "120": 70.0,
+          "300": 180.0
+        },
+        "mfe_pt": 30.0,
+        "mae_pt": -100.0,
+        "mfe_time": "2026-10-22T18:14:40+09:00",
+        "mae_time": "2026-10-22T18:20:20+09:00",
+        "entry_fill_slippage_pt": 0.0,
+        "raw_seq": {
+          "entry_decision": 24178,
+          "entry_fill": 24179,
+          "mfe": 24407,
+          "mae": 26246,
+          "exit_decision": 26246,
+          "exit_fill": 26247
+        },
+        "future_60s": {
+          "best_pt": 30.0,
+          "worst_pt": -10.0
+        },
+        "future_300s": {
+          "best_pt": 30.0,
+          "worst_pt": -50.0
+        }
+      },
+      {
+        "parent": 5,
+        "ticket": 1,
+        "side": "売り",
+        "qty": 5,
+        "entry": "2026-10-22T18:59:18+09:00",
+        "entry_price": 63060.0,
+        "exit": "2026-10-22T19:07:01+09:00",
+        "exit_price": 63160.0,
+        "holding_seconds": 463.0,
+        "net": -50000.0,
+        "exit_reason": "初期100pt損切り",
+        "entry_reason": "方向一致の新規",
+        "entry_fast_pt_per_min": -4.9999999999993,
+        "entry_slow_pt_per_min": -2.0303030303024254,
+        "entry_acceleration": 3.0,
+        "signed_move_before_entry": {
+          "30": -30.0,
+          "60": -30.0,
+          "120": -40.0,
+          "300": -10.0
+        },
+        "mfe_pt": 40.0,
+        "mae_pt": -100.0,
+        "mfe_time": "2026-10-22T19:01:30+09:00",
+        "mae_time": "2026-10-22T19:07:01+09:00",
+        "entry_fill_slippage_pt": -10.0,
+        "raw_seq": {
+          "entry_decision": 35944,
+          "entry_fill": 35945,
+          "mfe": 36859,
+          "mae": 38252,
+          "exit_decision": 38252,
+          "exit_fill": 38253
+        },
+        "future_60s": {
+          "best_pt": 20.0,
+          "worst_pt": -30.0
+        },
+        "future_300s": {
+          "best_pt": 40.0,
+          "worst_pt": -30.0
+        }
+      }
+    ],
+    "raw_evidence_file": "raw_2026-10-22_Night.json"
+  }
+]
