@@ -1,5 +1,5 @@
 {
-  "説明": "元ファイルはローカルに保持し、Git送信だけ対象外とする。",
+  "説明": "既存の圧縮保存は保持し、存在する原本の追加・変更を保存する。",
   "items": [
     {
       "path": "work/aggressive140_20261024/__pycache__",
@@ -8,7 +8,67 @@
       "bytes": 0
     },
     {
+      "path": "work/allocation_157/audit/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/allocation_157/round2/audit/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/allocation_157/round2/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/allocation_157/round3/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/allocation_157/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/audit159/round2/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/audit159/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
       "path": "work/conditional142_20261024/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/d07_154/adversary/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/d07_154/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/d07_port/__pycache__",
       "reason": "再生成できるコンパイル済みキャッシュ",
       "files": 0,
       "bytes": 0
@@ -416,6 +476,102 @@
       "bytes": 0
     },
     {
+      "path": "work/entry161/audit/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/entry161/diagnosis/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/entry161/features/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/entry161/interpret/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/entry161/round2/audit/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/entry161/round2/search/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/entry161/round2/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/entry161/search/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/entry161/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/hedge151/audit/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/hedge151/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/hedge162/audit/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/hedge162/diagnosis/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/hedge162/engine/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/hedge162/measure/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/hedge162/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
       "path": "work/knowledge_parts_00102/visual/profile",
       "reason": "ブラウザのCookie・履歴・実行用プロファイル",
       "files": 0,
@@ -430,6 +586,24 @@
     {
       "path": "work/knowledge_parts_00102/visual/profile_1791889633620196000",
       "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/ma153/data/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/ma153/round2/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/ma153/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
       "files": 0,
       "bytes": 0
     },
@@ -459,6 +633,54 @@
     },
     {
       "path": "work/nikkei143_20261024/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/preus148/ui-edge-profile",
+      "reason": "ブラウザのCookie・履歴・実行用プロファイル",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/preus148/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/preus149/audit/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/preus149/data/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/preus149/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/preus150/audit/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/preus150/data/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/preus150/__pycache__",
       "reason": "再生成できるコンパイル済みキャッシュ",
       "files": 0,
       "bytes": 0
@@ -573,6 +795,156 @@
     },
     {
       "path": "work/regime131_20261020/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/research145_audit/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/research145_engine/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/research145_report/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/research145_residual/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/research145_roles/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/research159/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/research164/audit/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/research164/day_design/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/research164/night_design/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/research164/r2/audit/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/research164/r2/day_design/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/research164/r2/night_design/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/research164/r2/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/research164/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/research165/audit/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/research165/diagnosis/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/research165/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/research166/round2/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/research166/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/s01_155/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/s01_156/round2/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/s01_156/round3/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/s01_156/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/score159/round2/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/score159/__pycache__",
       "reason": "再生成できるコンパイル済みキャッシュ",
       "files": 0,
       "bytes": 0
@@ -1011,6 +1383,24 @@
     },
     {
       "path": "work/tranche139_20261022/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/transfer163/audit/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/transfer163/report/__pycache__",
+      "reason": "再生成できるコンパイル済みキャッシュ",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "work/transfer163/__pycache__",
       "reason": "再生成できるコンパイル済みキャッシュ",
       "files": 0,
       "bytes": 0
@@ -5054,8 +5444,13 @@
     {
       "path": "コンパイル済みキャッシュ・実行ファイル・環境設定",
       "reason": "ローカルの実行用ファイル",
-      "files": 3819,
-      "bytes": 795384204
+      "files": 3874,
+      "bytes": 1404601458
+    },
+    {
+      "path": "work/preus148/round2/inputs",
+      "reason": "原データへの接合点。参照先の原本は変更せず別管理を維持する。",
+      "files": 26
     }
   ]
 }
