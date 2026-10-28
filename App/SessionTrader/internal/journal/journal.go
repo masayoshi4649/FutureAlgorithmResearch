@@ -28,6 +28,7 @@ type Trade struct {
 	Symbol        string                     `json:"symbol"`
 	Product       string                     `json:"product"`
 	Owner         string                     `json:"owner"`
+	MethodID      string                     `json:"method_id,omitempty"`
 	Evidence      json.RawMessage            `json:"evidence,omitempty"`
 	TradeType     string                     `json:"trade_type"`
 	Side          string                     `json:"side"`
@@ -56,18 +57,15 @@ type BookRecord struct {
 	Source     string
 }
 
-// Store は単一DBと、そのDB専用のログディレクトリを管理します。
+// Store は復元状態・約定・原板・監査イベントを単一SQLiteで管理します。
 type Store struct {
-	mu                sync.Mutex
-	db                *sql.DB
-	path, logDir      string
-	traceSequence     int64
-	traceNeedsRebuild bool
-	tradesNeedRebuild bool
-	closed            bool
+	mu     sync.Mutex
+	db     *sql.DB
+	closed bool
 }
 
-// ProjectionError は、SQLiteへの確定後に派生ログの書出しだけが失敗した状態です。
+// ProjectionError は旧呼出側との型互換のため残す、SQLite確定後の派生出力エラーです。
+// 通常の保存処理はCSV・JSONLを出力しないため、この型を新たに返しません。
 type ProjectionError struct{ Err error }
 
 // Error は、正本を巻き戻してはいけない保存状態を説明します。
@@ -96,9 +94,20 @@ CREATE TABLE IF NOT EXISTS trades (
  session TEXT NOT NULL, dryrun INTEGER NOT NULL CHECK(dryrun IN(0,1)),
  body BLOB NOT NULL CHECK(json_valid(body))
 );
+CREATE INDEX IF NOT EXISTS trades_session_dryrun_seq ON trades(session,dryrun,seq);
 CREATE TABLE IF NOT EXISTS sessions (
  session TEXT NOT NULL, dryrun INTEGER NOT NULL CHECK(dryrun IN(0,1)),
  PRIMARY KEY(session,dryrun)
+);
+CREATE TABLE IF NOT EXISTS session_products (
+ session TEXT NOT NULL, dryrun INTEGER NOT NULL CHECK(dryrun IN(0,1)), product TEXT NOT NULL,
+ PRIMARY KEY(session,dryrun)
+);
+CREATE TABLE IF NOT EXISTS report_sessions (
+ session TEXT NOT NULL, dryrun INTEGER NOT NULL CHECK(dryrun IN(0,1)),
+ product TEXT NOT NULL, end_at TEXT NOT NULL, emitted INTEGER NOT NULL DEFAULT 0,
+ last_trade_seq INTEGER NOT NULL DEFAULT 0,
+ PRIMARY KEY(session,dryrun,product)
 );
 CREATE TABLE IF NOT EXISTS books (
  id INTEGER PRIMARY KEY AUTOINCREMENT, session TEXT NOT NULL,
@@ -115,13 +124,13 @@ CREATE INDEX IF NOT EXISTS events_session ON events(session,seq);
 PRAGMA user_version=1;
 `
 
-// Open は、純GoのSQLiteを開き、正本からCSV・JSONLを復元します。
+// Open は純GoのSQLiteだけを開き、旧CSV・JSONLの生成や再構成を行いません。
 //
-// 引数: path string はDBファイル、logDir string はこのDB専用の派生ログ保存先です。
-// 返り値: *Store は保存器、error は設定・DB・ログの復元失敗です。
+// 引数: path(string)は永続DB、logDir(string)は呼出互換の旧引数で、保存先として使用しません。
+// 返り値: *Storeとerror。旧ログが存在しても変更・削除せず、空のlogDirも許容します。
 func Open(path, logDir string) (*Store, error) {
-	if path == "" || logDir == "" || path == ":memory:" {
-		return nil, fmt.Errorf("永続DBとログのパスを指定してください")
+	if path == "" || path == ":memory:" {
+		return nil, fmt.Errorf("永続DBのパスを指定してください")
 	}
 	if err := os.MkdirAll(filepath.Dir(path), 0700); err != nil {
 		return nil, err
@@ -132,7 +141,7 @@ func Open(path, logDir string) (*Store, error) {
 	}
 	db.SetMaxOpenConns(1)
 	db.SetMaxIdleConns(1)
-	s := &Store{db: db, path: path, logDir: logDir, traceNeedsRebuild: true}
+	s := &Store{db: db}
 	fail := func(err error) (*Store, error) {
 		_ = db.Close()
 		return nil, err
@@ -164,12 +173,6 @@ func Open(path, logDir string) (*Store, error) {
 	if err = tx.Commit(); err != nil {
 		return fail(err)
 	}
-	if err = s.projectTrades(); err != nil {
-		return fail(err)
-	}
-	if err = s.projectTrace(); err != nil {
-		return fail(err)
-	}
 	return s, nil
 }
 
@@ -196,8 +199,27 @@ func (s *Store) Load(dst any) ([]Trade, error) {
 // Save は、状態・新約定・台帳変化履歴を一つのトランザクションで確定します。
 //
 // 引数: state any は復元用状態、trades []Trade は従来の確定順を保つ全約定です。
-// 返り値: error は保存失敗です。ProjectionErrorだけはDB確定済みを意味します。
+// 返り値: errorはSQLite保存の失敗です。通常ログの出力処理は呼びません。
 func (s *Store) Save(state any, trades []Trade) error {
+	return s.save(state, trades, nil)
+}
+
+// ArchiveAndSave は旧復元状態を監査保存し、新運転状態と約定履歴を原子的に確定します。
+//
+// 引数: state(any)は新状態、trades([]Trade)は従来の確定順を保つ全約定、metadata(any)は切替理由です。
+// 返り値: errorは保存失敗です。旧snapshotは一回だけSQLiteのeventsへ全量保存します。
+func (s *Store) ArchiveAndSave(state any, trades []Trade, metadata any) error {
+	return s.save(state, trades, &snapshotArchive{Metadata: metadata})
+}
+
+// snapshotArchive は通常保存と明示的な運転状態切替を区別します。
+type snapshotArchive struct{ Metadata any }
+
+// save は通常保存と監査付き状態切替に共通のトランザクションを実行します。
+//
+// 引数: state(any)、trades([]Trade)、archive(*snapshotArchive)はnilなら通常保存です。
+// 返り値: errorは検証・DB保存の失敗です。全約定の不変性を両経路で確認します。
+func (s *Store) save(state any, trades []Trade, archive *snapshotArchive) error {
 	s.mu.Lock()
 	defer s.mu.Unlock()
 	raw, err := json.Marshal(state)
@@ -243,12 +265,23 @@ func (s *Store) Save(state any, trades []Trade) error {
 		return err
 	}
 	now := time.Now()
+	if archive != nil {
+		prior := json.RawMessage(previous)
+		if len(prior) == 0 {
+			prior = json.RawMessage("null")
+		}
+		payload := map[string]any{"previous_revision": revision, "previous_sha256": digest(previous), "previous_state": prior, "next_state_sha256": digest(raw), "metadata": archive.Metadata}
+		if err = insertEvent(tx, "起動時状態切替", "", "", "", now, payload); err != nil {
+			return err
+		}
+	}
 	if !bytes.Equal(previous, raw) {
 		revision++
 		if _, err = tx.Exec("INSERT INTO snapshot(id,revision,state,updated_at) VALUES(1,?,?,?) ON CONFLICT(id) DO UPDATE SET revision=excluded.revision,state=excluded.state,updated_at=excluded.updated_at", revision, raw, now.Format(time.RFC3339Nano)); err != nil {
 			return err
 		}
-		payload := map[string]any{"revision": revision, "previous_sha256": digest(previous), "state_sha256": digest(raw), "state": json.RawMessage(raw)}
+		// 復元用の全状態はsnapshotだけに保ち、更新のたびにeventsへ複製しません。
+		payload := map[string]any{"revision": revision, "previous_sha256": digest(previous), "state_sha256": digest(raw), "state_bytes": len(raw), "new_trade_count": len(trades) - len(old), "state_location": "snapshot", "detail_policy": "復元状態の全量はsnapshot、約定はtradesを参照"}
 		if err = insertEvent(tx, "台帳更新", "", "", "", now, payload); err != nil {
 			return err
 		}
@@ -268,22 +301,22 @@ func (s *Store) Save(state any, trades []Trade) error {
 	if err = tx.Commit(); err != nil {
 		return err
 	}
-	if len(old) != len(trades) || s.tradesNeedRebuild {
-		if err = s.projectTrades(); err != nil {
-			return &ProjectionError{Err: err}
-		}
-	}
-	if err = s.projectTrace(); err != nil {
-		return &ProjectionError{Err: err}
-	}
 	return nil
 }
 
-// EnsureSession は、無約定のセッションにもCSVと約定JSONLを用意します。
+// EnsureSession は無約定のセッションもSQLiteの場一覧へ登録します。
 //
 // 引数: session string はAPI由来セッション名、dryRun bool は仮想運転です。
-// 返り値: error はDBまたは派生ログの保存失敗です。
+// 返り値: errorはDB保存の失敗です。ファイル出力や終了レポートの登録は行いません。
 func (s *Store) EnsureSession(session string, dryRun bool) error {
+	return s.EnsureProductSession(session, dryRun, "")
+}
+
+// EnsureProductSession は無取引の場も商品名付きで集計へ登録します。
+//
+// 引数: session(string)は場ID、dryRun(bool)は仮想指定、product(string)は商品名です。旧呼出しの空欄を許容します。
+// 返り値: errorは保存失敗です。同一DB・同一場の商品変更は拒否し、確定約定は変更しません。
+func (s *Store) EnsureProductSession(session string, dryRun bool, product string) error {
 	s.mu.Lock()
 	defer s.mu.Unlock()
 	if !sessionPattern.MatchString(session) {
@@ -294,6 +327,19 @@ func (s *Store) EnsureSession(session string, dryRun bool) error {
 		return err
 	}
 	defer tx.Rollback()
+	if product != "" {
+		var existing string
+		err = tx.QueryRow("SELECT product FROM session_products WHERE session=? AND dryrun=?", session, dryRun).Scan(&existing)
+		if err != nil && err != sql.ErrNoRows {
+			return err
+		}
+		if existing != "" && existing != product {
+			return fmt.Errorf("同一セッションの商品を変更できません: %s / %s → %s", session, existing, product)
+		}
+		if _, err = tx.Exec("INSERT INTO session_products(session,dryrun,product) VALUES(?,?,?) ON CONFLICT(session,dryrun) DO UPDATE SET product=excluded.product", session, dryRun, product); err != nil {
+			return err
+		}
+	}
 	result, err := tx.Exec("INSERT OR IGNORE INTO sessions(session,dryrun) VALUES(?,?)", session, dryRun)
 	if err != nil {
 		return err
@@ -310,19 +356,13 @@ func (s *Store) EnsureSession(session string, dryRun bool) error {
 	if err = tx.Commit(); err != nil {
 		return err
 	}
-	if err = s.projectTrades(); err != nil {
-		return &ProjectionError{Err: err}
-	}
-	if err = s.projectTrace(); err != nil {
-		return &ProjectionError{Err: err}
-	}
 	return nil
 }
 
 // RecordBook は、一受信の原文を重複排除せず保存します。
 //
 // 引数: session/generation/code string、received time.Time、raw json.RawMessage は受信識別情報と原文です。
-// 返り値: int64 はDB入力ID、error は保存失敗です。派生失敗時も確定IDを返します。
+// 返り値: int64はDB入力ID、errorはSQLite保存の失敗です。
 func (s *Store) RecordBook(session, generation, code string, received time.Time, raw json.RawMessage) (int64, error) {
 	ids, err := s.RecordBooks([]BookRecord{{Session: session, Generation: generation, Code: code, Received: received, Raw: raw}})
 	if len(ids) == 0 {
@@ -372,13 +412,10 @@ func (s *Store) RecordBooks(records []BookRecord) ([]int64, error) {
 	if err = tx.Commit(); err != nil {
 		return nil, err
 	}
-	if err = s.projectTrace(); err != nil {
-		return ids, &ProjectionError{Err: err}
-	}
 	return ids, nil
 }
 
-// Event は、判断・照合・異常などの汎用履歴を正本とトレースJSONLへ保存します。
+// Event は判断・照合・異常などの汎用履歴をSQLiteのeventsへ保存します。
 //
 // 引数: kind/session/code/correlation string、at time.Time、payload any は分類・相関ID・発生時刻・JSON化可能な内容です。
 // 返り値: error は保存失敗です。
@@ -398,9 +435,6 @@ func (s *Store) Event(kind, session, code, correlation string, at time.Time, pay
 	}
 	if err = tx.Commit(); err != nil {
 		return err
-	}
-	if err = s.projectTrace(); err != nil {
-		return &ProjectionError{Err: err}
 	}
 	return nil
 }

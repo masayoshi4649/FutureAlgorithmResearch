@@ -14,7 +14,7 @@ func (p *Portfolio) day(o Observation, allow bool, out *[]Signal) error {
 	l := &p.Core
 	d := p.Config.Parameters.Day
 	direction := o.E01.Direction
-	if direction != o.GateDirection {
+	if !p.legacyBool("day.direction_agrees", direction == o.GateDirection, map[string]any{"direction": float64(direction), "gate": float64(o.GateDirection)}) {
 		direction = 0
 	}
 	if finite(o.Last) && o.Last > 0 {
@@ -42,8 +42,8 @@ func (p *Portfolio) day(o Observation, allow bool, out *[]Signal) error {
 				m := o.DayMarket
 				side := float64(event.Direction)
 				quote := liquidation(o, -event.Direction)
-				quality := quoteValid(o) && event.InitialATR > 0 && o.Ask-o.Bid <= d.QuoteSpreadATR*event.InitialATR && side*(quote-o.Last) <= d.QuoteDistanceATR*event.InitialATR
-				support := m.Known && m.Own30Known && m.Peer30Known && side*m.Own30 >= d.WeakSupport && side*m.Peer30 >= d.WeakSupport
+				quality := quoteValid(o) && event.InitialATR > 0 && p.legacyBool("day.entry_quote", o.Ask-o.Bid <= d.QuoteSpreadATR*event.InitialATR && side*(quote-o.Last) <= d.QuoteDistanceATR*event.InitialATR, map[string]any{"spread": o.Ask - o.Bid, "spread_atr": d.QuoteSpreadATR, "atr": event.InitialATR, "signed_distance": side * (quote - o.Last), "distance_atr": d.QuoteDistanceATR})
+				support := m.Known && m.Own30Known && m.Peer30Known && p.legacyBool("day.entry_support", side*m.Own30 >= d.WeakSupport && side*m.Peer30 >= d.WeakSupport, map[string]any{"own30": side * m.Own30, "peer30": side * m.Peer30, "threshold": d.WeakSupport})
 				if allow && quality && support && l.Position.Quantity == 0 && l.Pending == "" {
 					if s := p.emit(l, o, "new", event.Direction, p.Config.CoreQuantity, event.ReasonCode, event.InitialATR, 0, event.Campaign); s != nil {
 						l.PaperCampaign = event.Campaign
@@ -86,23 +86,24 @@ func (p *Portfolio) day(o Observation, allow bool, out *[]Signal) error {
 		pos.AnchorInitialized = true
 	}
 	if o.ATR > 0 && finite(o.ATR) {
-		pos.RiskFraction = math.Min(pos.RiskFraction, math.Max(d.RiskFloor, math.Min(1, o.ATR/pos.Risk)))
+		fraction := p.legacyNumber("day.risk_fraction", math.Max(d.RiskFloor, math.Min(1, o.ATR/pos.Risk)), map[string]any{"minimum": d.RiskFloor, "ratio": o.ATR / pos.Risk})
+		pos.RiskFraction = math.Min(pos.RiskFraction, math.Max(0, math.Min(1, fraction)))
 	}
 	equity := pos.Realized/p.Config.PointValue + float64(pos.Quantity*pos.Side)*(liquidation(o, pos.Side)-pos.Average)
-	if equity <= -float64(pos.InitialQuantity)*pos.Risk*pos.RiskFraction {
+	if p.legacyBool("day.loss", equity <= -float64(pos.InitialQuantity)*pos.Risk*pos.RiskFraction, map[string]any{"equity": equity, "initial_quantity": float64(pos.InitialQuantity), "risk": pos.Risk, "fraction": pos.RiskFraction}) {
 		requestClose(l, 0, 32)
 	}
 	adverse := false
 	if pos.AnchorKnown && m.Known && o.Index > pos.EntryIndex && m.PeerTime > pos.AnchorPeerTime {
 		own := float64(pos.Side) * (m.Own - pos.AnchorOwn) / pos.Risk
 		peer := float64(pos.Side) * (m.Peer - pos.AnchorPeer) / pos.AnchorPeerATR
-		adverse = own <= -d.WithdrawalATR && peer <= -d.WithdrawalATR
+		adverse = p.legacyBool("day.adverse", own <= -d.WithdrawalATR && peer <= -d.WithdrawalATR, map[string]any{"own": own, "peer": peer, "threshold": d.WithdrawalATR})
 	}
 	if adverse {
 		if pos.FailureSince == 0 {
 			pos.FailureSince = o.Time
 		}
-		if o.Time-pos.FailureSince >= d.PersistenceSeconds {
+		if p.legacyBool("day.adverse_confirm", o.Time-pos.FailureSince >= d.PersistenceSeconds, map[string]any{"elapsed": o.Time - pos.FailureSince, "threshold": d.PersistenceSeconds}) {
 			requestClose(l, 0, 75)
 		}
 	} else {
@@ -137,8 +138,8 @@ func (p *Portfolio) night(o Observation, allow bool, out *[]Signal) {
 		} else if quiet {
 			reason = 94
 		} else {
-			reason = trail(&l.Position, o, n.TrailStartR, n.TrailWidthR, n.StopR)
-			if reason == 0 && good && m.Known && h.Known && float64(l.Position.Side)*(price-l.Position.Boundary) < -n.BoundaryBreakR*l.Position.Risk && float64(l.Position.Side)*h.Values[11] < 0 {
+			reason = p.legacyTrail(&l.Position, o, n.TrailStartR, n.TrailWidthR, n.StopR)
+			if reason == 0 && good && m.Known && h.Known && p.legacyBool("night.boundary_exit", float64(l.Position.Side)*(price-l.Position.Boundary) < -n.BoundaryBreakR*l.Position.Risk && float64(l.Position.Side)*h.Values[11] < 0, map[string]any{"distance": float64(l.Position.Side) * (price - l.Position.Boundary), "break_r": n.BoundaryBreakR, "risk": l.Position.Risk, "direction": float64(l.Position.Side) * h.Values[11]}) {
 				reason = 72
 			}
 		}
@@ -176,30 +177,39 @@ func (p *Portfolio) night(o Observation, allow bool, out *[]Signal) {
 	if !n.Retest {
 		known = known && m.Own120Known && m.Peer120Known
 	}
-	if !known || o.Time < p.Session.USOpen+n.PostOpenPrepareSeconds {
+	coreStart := p.Session.USOpen + n.PostOpenPrepareSeconds
+	if p.Session.NightCoreStart > 0 {
+		coreStart = p.Session.NightCoreStart
+	}
+	if !known || o.Time < coreStart {
 		return
 	}
 	w := math.Max(o.ATR, n.MinimumTicks*p.Config.LargeTick)
-	quality := o.Ask-o.Bid <= n.QuoteSpreadR*w && math.Max(o.Ask-price, price-o.Bid) <= n.QuoteDistanceR*w
+	quality := p.legacyBool("night.entry_quote", o.Ask-o.Bid <= n.QuoteSpreadR*w && math.Max(o.Ask-price, price-o.Bid) <= n.QuoteDistanceR*w, map[string]any{"spread": o.Ask - o.Bid, "spread_r": n.QuoteSpreadR, "risk": w, "distance": math.Max(o.Ask-price, price-o.Bid), "distance_r": n.QuoteDistanceR})
 	if a.Side != 0 && o.Time-a.At > n.ArmLifetimeSeconds {
 		*a = armState{}
 	}
 	if a.Side == 0 {
-		if !quality || h.Values[5] < n.Efficiency {
+		if !quality || !p.legacyBool("night.efficiency", h.Values[5] >= n.Efficiency, map[string]any{"efficiency": h.Values[5], "threshold": n.Efficiency}) {
 			return
 		}
 		side := 0
 		line := 0.0
 		if price > h.Values[3] && h.Values[10] > 0 && h.Values[11] > 0 {
 			side = 1
-			line = h.Values[3]
 		} else if price < h.Values[4] && h.Values[10] < 0 && h.Values[11] < 0 {
 			side = -1
-			line = h.Values[4]
+		}
+		direction := p.legacyNumber("night.entry_direction", float64(side), map[string]any{"price": price, "high": h.Values[3], "low": h.Values[4], "own": h.Values[10], "peer": h.Values[11]})
+		side = 0
+		if direction == 1 {
+			side, line = 1, h.Values[3]
+		} else if direction == -1 {
+			side, line = -1, h.Values[4]
 		}
 		if side != 0 {
 			*a = armState{Side: side, Level: line, Risk: w, At: o.Time, ReturnExtreme: price, ProgressIndex: -1, ReturnIndex: -1}
-			if n.Retest && float64(side)*(price-line) >= n.RetestProgressR*w {
+			if n.Retest && p.legacyBool("night.retest_progress", float64(side)*(price-line) >= n.RetestProgressR*w, map[string]any{"advance": float64(side) * (price - line), "progress_r": n.RetestProgressR, "risk": w}) {
 				a.Stage = 1
 				a.ProgressIndex = o.Index
 			}
@@ -208,14 +218,14 @@ func (p *Portfolio) night(o Observation, allow bool, out *[]Signal) {
 	}
 	d := float64(a.Side)
 	advance := d * (price - a.Level)
-	support := d*m.Own30 > 0 && d*m.Peer30 > 0
+	support := p.legacyBool("night.support30", d*m.Own30 > 0 && d*m.Peer30 > 0, map[string]any{"own": d * m.Own30, "peer": d * m.Peer30})
 	trigger := false
 	if !n.Retest {
 		if advance < -n.BoundaryBreakR*a.Risk {
 			*a = armState{}
 			return
 		}
-		trigger = o.Time-a.At >= n.ConfirmSeconds && support && advance >= n.ProgressR*a.Risk
+		trigger = support && p.legacyBool("night.progress", o.Time-a.At >= n.ConfirmSeconds && advance >= n.ProgressR*a.Risk, map[string]any{"elapsed": o.Time - a.At, "confirm_seconds": n.ConfirmSeconds, "advance": advance, "progress_r": n.ProgressR, "risk": a.Risk})
 	} else {
 		if advance <= -n.BoundaryBreakR*a.Risk {
 			*a = armState{}
@@ -223,12 +233,12 @@ func (p *Portfolio) night(o Observation, allow bool, out *[]Signal) {
 		}
 		switch a.Stage {
 		case 0:
-			if advance >= n.RetestProgressR*a.Risk {
+			if p.legacyBool("night.retest_progress", advance >= n.RetestProgressR*a.Risk, map[string]any{"advance": advance, "progress_r": n.RetestProgressR, "risk": a.Risk}) {
 				a.Stage = 1
 				a.ProgressIndex = o.Index
 			}
 		case 1:
-			if o.Index > a.ProgressIndex && advance <= n.RetestReturnR*a.Risk {
+			if o.Index > a.ProgressIndex && p.legacyBool("night.retest_return", advance <= n.RetestReturnR*a.Risk, map[string]any{"advance": advance, "return_r": n.RetestReturnR, "risk": a.Risk}) {
 				a.Stage = 2
 				a.ReturnIndex = o.Index
 				a.ReturnExtreme = price
@@ -237,17 +247,17 @@ func (p *Portfolio) night(o Observation, allow bool, out *[]Signal) {
 			if d*(price-a.ReturnExtreme) < 0 {
 				a.ReturnExtreme = price
 			}
-			trigger = o.Index > a.ReturnIndex && o.Time-a.At >= n.ConfirmSeconds && support && d*(price-a.ReturnExtreme) >= n.BounceR*a.Risk
+			trigger = o.Index > a.ReturnIndex && support && p.legacyBool("night.retest_bounce", o.Time-a.At >= n.ConfirmSeconds && d*(price-a.ReturnExtreme) >= n.BounceR*a.Risk, map[string]any{"elapsed": o.Time - a.At, "confirm_seconds": n.ConfirmSeconds, "rebound": d * (price - a.ReturnExtreme), "bounce_r": n.BounceR, "risk": a.Risk})
 		}
 	}
 	if !trigger {
 		return
 	}
 	if !n.Retest {
-		trigger = d*m.Own120 > n.LongSupportR && d*m.Peer120 > n.LongSupportR
+		trigger = p.legacyBool("night.support120", d*m.Own120 > n.LongSupportR && d*m.Peer120 > n.LongSupportR, map[string]any{"own": d * m.Own120, "peer": d * m.Peer120, "threshold": n.LongSupportR})
 	}
-	trigger = trigger && d*h.Values[10] > 0 && d*h.Values[11] > 0
-	if n.Retest && m.Own120Known && m.Peer120Known && d*m.Own120 < -n.LongOppositionR && d*m.Peer120 < -n.LongOppositionR {
+	trigger = trigger && p.legacyBool("night.direction_still", d*h.Values[10] > 0 && d*h.Values[11] > 0, map[string]any{"own": d * h.Values[10], "peer": d * h.Values[11]})
+	if n.Retest && m.Own120Known && m.Peer120Known && p.legacyBool("night.opposition120", d*m.Own120 < -n.LongOppositionR && d*m.Peer120 < -n.LongOppositionR, map[string]any{"own": d * m.Own120, "peer": d * m.Peer120, "threshold": n.LongOppositionR}) {
 		if trigger && quality {
 			*a = armState{}
 		}
@@ -291,7 +301,7 @@ func (p *Portfolio) extra(o Observation, allow bool, out *[]Signal) {
 	l := &p.Extra
 	x := p.Config.Parameters.Extra
 	if l.Position.Quantity > 0 {
-		if reason := trail(&l.Position, o, x.TrailStartR, x.TrailWidthR, x.StopR); reason != 0 {
+		if reason := p.legacyTrail(&l.Position, o, x.TrailStartR, x.TrailWidthR, x.StopR); reason != 0 {
 			requestClose(l, 0, reason)
 		}
 		return
@@ -305,8 +315,9 @@ func (p *Portfolio) extra(o Observation, allow bool, out *[]Signal) {
 	}
 	h := o.MidHistory
 	r := math.Max(o.ATR, math.Max(x.BandFraction*(h.Values[3]-h.Values[4]), x.MinimumTicks*p.Config.LargeTick))
-	side := extraDirection(h, (o.Bid+o.Ask)*.5, x.Style)
-	if side == 0 || o.Ask-o.Bid > x.QuoteSpreadR*r {
+	r = math.Max(p.Config.LargeTick, p.legacyNumber("extra.risk", r, map[string]any{"atr": o.ATR, "band_fraction": x.BandFraction, "band_width": h.Values[3] - h.Values[4], "minimum_ticks": x.MinimumTicks, "tick": p.Config.LargeTick}))
+	side := p.legacyExtraDirection(h, (o.Bid+o.Ask)*.5, x.Style)
+	if side == 0 || !p.legacyBool("extra.quote", o.Ask-o.Bid <= x.QuoteSpreadR*r, map[string]any{"spread": o.Ask - o.Bid, "spread_r": x.QuoteSpreadR, "risk": r}) {
 		return
 	}
 	q := p.Config.ExtraMaxQuantity

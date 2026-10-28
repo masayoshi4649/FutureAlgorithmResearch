@@ -2,7 +2,6 @@
 package runner
 
 import (
-	"bytes"
 	"context"
 	"crypto/sha256"
 	"encoding/json"
@@ -42,6 +41,11 @@ type savedRuntime struct {
 	Done                 map[string]bool
 	IndexOffset          int64
 	LastRawHash          string
+	ActiveSlot           *schedule.Slot  `json:"active_slot,omitempty"`
+	SlotSwitch           *slotTransition `json:"slot_switch,omitempty"`
+	SlotSequence         uint64          `json:"slot_sequence,omitempty"`
+	SlotActivatedAt      time.Time       `json:"slot_activated_at,omitempty"`
+	SlotEvaluatedAt      time.Time       `json:"slot_evaluated_at,omitempty"`
 }
 
 type marketRuntime struct {
@@ -53,6 +57,15 @@ type marketRuntime struct {
 	NextDispatch     time.Time
 	OwnershipSince   time.Time
 	OwnershipProblem string
+	RealizedYen      float64
+	FeesYen          float64
+	SessionRealized  map[string]float64
+	SessionFees      map[string]float64
+	SessionTrades    map[string][]TradeSnapshot
+	SnapshotFills    map[string]bool
+	RecentTrades     []TradeSnapshot
+	MethodSlots      []schedule.Slot
+	MethodSlotsPlan  string
 }
 
 type quote struct {
@@ -85,9 +98,15 @@ type app struct {
 	prepareBuffer                    []bufferedBoard
 	lastMessage                      map[string]time.Time
 	nextCheckpoint, nextStatus       time.Time
+	nextSessionReport                time.Time
+	sessionReportError               string
 	stopping                         bool
 	shutdownEnd                      time.Time
 	started                          time.Time
+	control                          *Control
+	publish                          func(Snapshot)
+	nextPublish                      time.Time
+	submissionClock                  func(time.Time) time.Time
 }
 
 type bufferedBoard struct {
@@ -129,6 +148,14 @@ func mode(dry bool) string {
 // 引数: parent(context.Context)は停止要求、cfg(config.Config)は検証済み設定。
 // 返り値: errorは復旧不整合・保存失敗・停止後の未返済です。
 func Run(parent context.Context, cfg config.Config) error {
+	return runControlled(parent, cfg, NewControl(true), nil)
+}
+
+// runControlled は通常起動とWeb起動で同じ所有管理・返済ループを実行します。
+//
+// 引数: parent(context.Context)、cfg(config.Config)、control(*Control)、publish(func(Snapshot))。
+// 返り値: error は起動・運転・停止処理の失敗です。
+func runControlled(parent context.Context, cfg config.Config, control *Control, publish func(Snapshot)) error {
 	if err := cfg.Validate(); err != nil {
 		return err
 	}
@@ -138,7 +165,7 @@ func Run(parent context.Context, cfg config.Config) error {
 	_, selected := cfg.Selected()
 	base := filepath.Join(cfg.Path(cfg.Runtime.DataDirectory), mode(cfg.Trading.DryRun))
 	data := filepath.Join(base, cfg.InstanceID())
-	logs := filepath.Join(cfg.Path(cfg.Runtime.LogDirectory), mode(cfg.Trading.DryRun), cfg.InstanceID())
+	logs := cfg.Path(cfg.Runtime.LogDirectory)
 	legacyLock, err := acquireSharedLock(base)
 	if err != nil {
 		return fmt.Errorf("旧版運転または移行処理との同時起動はできません: %w", err)
@@ -157,7 +184,7 @@ func Run(parent context.Context, cfg config.Config) error {
 		return err
 	}
 	defer lock.Close()
-	logLock, err := acquireLock(logs)
+	logLock, err := acquireReportOwnerLock(cfg)
 	if err != nil {
 		return err
 	}
@@ -188,12 +215,12 @@ func Run(parent context.Context, cfg config.Config) error {
 	if err != nil {
 		return err
 	}
-	store, err := journal.Open(filepath.Join(data, "market.sqlite"), filepath.Join(logs, "market"))
+	store, err := journal.Open(filepath.Join(data, "market.sqlite"), logs)
 	if err != nil {
 		return err
 	}
 	defer store.Close()
-	a := &app{cfg: cfg, client: client, history: history, store: store,
+	a := &app{cfg: cfg, client: client, history: history, store: store, control: control, publish: publish,
 		markets: map[string]*marketRuntime{}, registrations: map[string]controller.Future{},
 		symbols: map[string]string{}, quotes: map[string]quote{}, lastSource: map[string]float64{}, lastHandled: map[string]time.Time{}, lastMessage: map[string]time.Time{}, started: time.Now()}
 	defer func() {
@@ -206,59 +233,42 @@ func Run(parent context.Context, cfg config.Config) error {
 		if !mc.Enabled {
 			continue
 		}
-		m, err := execution.Open(filepath.Join(logs, mc.Product), filepath.Join(data, mc.Product+".sqlite"),
-			cfg.Trading.DryRun, mc.Product, cfg.Products[mc.Product].PointValue, mc.MaxPerSide)
+		namespace, err := newNamespace()
 		if err != nil {
 			return err
 		}
-		r := &marketRuntime{Reference: ref, Manager: m, Saved: savedRuntime{Version: 1, Algorithm: algorithmVersion, Signature: cfg.Signature(), Done: map[string]bool{}}}
-		a.markets[ref] = r
-		if raw := m.State(); len(raw) > 0 && string(raw) != "null" {
-			if err = json.Unmarshal(raw, &r.Saved); err != nil {
-				return fmt.Errorf("%s 復元: %w", ref, err)
-			}
-			if r.Saved.Version != 1 || r.Saved.Algorithm != algorithmVersion || r.Saved.Signature != cfg.Signature() {
-				if err := resetChangedStrategy(r, cfg, raw); err != nil {
-					return err
-				}
-			}
-			if r.Saved.Methods != nil && *r.Saved.Methods != resolvedMethods(cfg) {
-				return fmt.Errorf("%s 保存した昼夜の手法と設定指紋が一致しません", ref)
-			}
-			if rawPortfolio := bytes.TrimSpace(r.Saved.Portfolio); len(rawPortfolio) > 0 && !bytes.Equal(rawPortfolio, []byte("null")) {
-				r.Portfolio, err = strategy.Restore(r.Saved.Portfolio)
-				if err != nil {
-					return err
-				}
-			}
-			if r.Saved.Done == nil {
-				r.Saved.Done = map[string]bool{}
-			}
-		}
-		if err = a.applyFills(r); err != nil {
+		methods := resolvedMethods(cfg)
+		r := &marketRuntime{Reference: ref, Saved: savedRuntime{Version: 1, Algorithm: algorithmVersion, Signature: cfg.Signature(), Namespace: namespace, Methods: &methods, Done: map[string]bool{}}}
+		raw, err := json.Marshal(r.Saved)
+		if err != nil {
 			return err
 		}
-		if r.Saved.Namespace == "" {
-			r.Saved.Namespace, err = newNamespace()
-			if err != nil {
-				return err
-			}
+		restartContext, finishRestart := context.WithTimeout(parent, duration(cfg.Runtime.ShutdownSeconds))
+		m, err := execution.OpenNewRun(restartContext, client, logs, filepath.Join(data, mc.Product+".sqlite"),
+			cfg.Trading.DryRun, mc.Product, cfg.Products[mc.Product].PointValue, mc.MaxPerSide, namespace, raw)
+		finishRestart()
+		if err != nil {
+			return err
 		}
-		if r.Portfolio != nil {
-			if r.Portfolio.Config.Namespace != "" && r.Portfolio.Config.Namespace != r.Saved.Namespace {
-				return fmt.Errorf("%s 保存注文IDの名前空間が一致しません", ref)
-			}
-			r.Portfolio.Config.Namespace = r.Saved.Namespace
+		r.Manager = m
+		a.markets[ref] = r
+		// 旧版の移行元ロックだけを引き継ぐ。建玉・候補・発注待ちは毎起動新規です。
+		if err = json.Unmarshal(m.State(), &r.Saved); err != nil {
+			return err
 		}
+		restoreSnapshotHistory(r)
 		r.Dirty = true
 		if err = a.checkpoint(r); err != nil {
 			return err
 		}
 	}
-	if err = a.store.Event("起動", "", "", "", time.Now(), map[string]any{"algorithm": algorithmVersion, "signature": cfg.Signature(), "dryrun": cfg.Trading.DryRun, "instance_id": cfg.InstanceID(), "product": selected.Product}); err != nil {
+	if err = a.store.Event("起動", "", "", "", time.Now(), map[string]any{"algorithm": algorithmVersion, "signature": cfg.Signature(), "dryrun": cfg.Trading.DryRun, "instance_id": cfg.InstanceID(), "product": selected.Product, "rules_hash": cfg.RuleHash(), "rule_documents": cfg.RuleDocuments()}); err != nil {
 		return err
 	}
-	fmt.Printf("%s [%s / %s / %s] 起動。履歴と新鮮な板を準備します。\n", time.Now().Format(time.RFC3339), mode(cfg.Trading.DryRun), cfg.InstanceID(), selected.Product)
+	fmt.Printf("%s [%s / %s / %s] 新規起動。過去の建玉は引き継がず、履歴は指標の準備だけに使います。\n", time.Now().Format(time.RFC3339), mode(cfg.Trading.DryRun), cfg.InstanceID(), selected.Product)
+	if !cfg.Trading.DryRun {
+		fmt.Println("[所有管理] 以前の実建玉は手動管理・今回の枚数上限の対象外です。今回新規に建てた玉だけを管理します。")
+	}
 	// ----------------------------------------
 	// 停止要求後も照合・返済用の通信を継続する独立コンテキストです。
 	runCtx, cancel := context.WithCancel(context.Background())
@@ -280,6 +290,8 @@ func Run(parent context.Context, cfg config.Config) error {
 	ticker := time.NewTicker(250 * time.Millisecond)
 	defer ticker.Stop()
 	stop := parent.Done()
+	a.publishSnapshot(time.Now(), true)
+	defer func() { a.publishSnapshot(time.Now(), true) }()
 	for {
 		select {
 		case <-stop:
@@ -300,8 +312,9 @@ func Run(parent context.Context, cfg config.Config) error {
 			if err = a.handle(runCtx, event); err != nil {
 				return err
 			}
-		case now := <-ticker.C:
-			if err = a.tick(runCtx, now); err != nil {
+		case <-ticker.C:
+			// 処理待ちで古くなったtimer通知を壁時計の逆行と誤認しないよう、処理開始時計を使います。
+			if err = a.tick(runCtx, time.Now()); err != nil {
 				return err
 			}
 		case result := <-preparedCh:
@@ -313,7 +326,7 @@ func Run(parent context.Context, cfg config.Config) error {
 						return err
 					}
 				}
-			} else if !a.stopping {
+			} else if !a.stopping && !a.detaching() {
 				snap := a.bundle.One["TOPIX"].Snapshot
 				if result.Prepared.Plan.ID == snap.SessionID && result.Prepared.Generation == snap.Generation {
 					if err = a.activate(result.Prepared); err != nil {
@@ -330,7 +343,10 @@ func Run(parent context.Context, cfg config.Config) error {
 				a.prepareBuffer = nil
 			}
 		}
-		if !a.stopping && !a.preparing && a.needsPrepare() && time.Now().After(a.bootstrapAfter) {
+		if a.detaching() && a.detachStopReady() {
+			return a.finishDetach()
+		}
+		if !a.stopping && !a.detaching() && !a.preparing && a.needsPrepare() && time.Now().After(a.bootstrapAfter) {
 			a.bootstrapAfter = time.Now().Add(10 * time.Second)
 			prepCtx, cancelPrep := context.WithCancel(runCtx)
 			cancelPrepare = cancelPrep
@@ -354,6 +370,7 @@ func Run(parent context.Context, cfg config.Config) error {
 				return a.finish("未返済あり", errors.New("停止期限になりました。未返済または結果不明の注文をSQLiteに保持しました。口座・ログを確認してください"))
 			}
 		}
+		a.publishSnapshot(time.Now(), false)
 	}
 }
 
@@ -406,7 +423,7 @@ func (a *app) handle(ctx context.Context, e feedEvent) error {
 			if err := a.applyFills(m); err != nil {
 				return err
 			}
-			if a.accountFresh(e.At) {
+			if a.accountFresh(e.At) && !a.detaching() {
 				if err := m.Manager.VerifyOwned(e.View); err != nil {
 					m.OwnershipProblem = err.Error()
 					if m.OwnershipSince.IsZero() {
@@ -467,7 +484,7 @@ func (a *app) needsPrepare() bool {
 		return false
 	}
 	for _, m := range a.markets {
-		if m.Portfolio != nil && m.Saved.Plan.ID != snap.Snapshot.SessionID && (len(m.Manager.Positions()) > 0 || m.Manager.HasPending()) {
+		if m.Saved.Plan.ID != snap.Snapshot.SessionID && (len(m.Manager.Positions()) > 0 || m.Manager.HasPending() || len(m.Manager.OutstandingFills()) > 0) {
 			return false
 		}
 	}
@@ -478,42 +495,54 @@ func (a *app) needsPrepare() bool {
 //
 // 引数: p(*prepared)。返り値: errorは復元・照合失敗です。
 func (a *app) activate(p *prepared) error {
+	sessionChanged := a.plan.ID != p.Plan.ID
 	for ref, m := range a.markets {
 		mc := a.cfg.Markets[ref]
 		contract := a.registrations[mc.Product]
 		if m.Portfolio == nil || m.Saved.Plan.ID != p.Plan.ID {
-			if len(m.Manager.Positions()) > 0 || m.Manager.HasPending() {
-				return errors.New("前場の所有建玉・未確定注文を残したまま場を切り替えられません")
+			if len(m.Manager.Positions()) > 0 || m.Manager.HasPending() || len(m.Manager.OutstandingFills()) > 0 {
+				return errors.New("前場の所有建玉・未確定注文・未反映約定を残したまま場を切り替えられません")
 			}
-			params, err := methodParameters(a.cfg, ref, p.Plan.Kind)
+			// 先に永続記録を用意し、書出し失敗時に旧場の戦略状態を初期化しません。
+			if err := m.Manager.EnsureSession(p.Plan.ID); err != nil {
+				return err
+			}
+			if err := m.Manager.RegisterSessionReport(p.Plan.ID, p.Plan.End); err != nil {
+				return err
+			}
+			var slot *schedule.Slot
+			if len(a.cfg.Windows) > 0 {
+				selected, err := schedule.ResolveSlot(p.Plan, a.cfg, ref, time.Now())
+				if err != nil {
+					return err
+				}
+				slot = &selected
+			}
+			nextPortfolio, err := a.newSlotPortfolio(m, p.Plan, slot, m.Saved.Namespace)
 			if err != nil {
 				return err
 			}
-			extra := p.Plan.TopixExtra
-			if ref == "NK225" {
-				extra = p.Plan.NKExtra
-			}
-			m.Portfolio, err = strategy.New(strategy.Config{Namespace: m.Saved.Namespace, Reference: ref, Product: mc.Product, CoreQuantity: mc.CoreQuantity, ExtraMaxQuantity: mc.ExtraQuantity,
-				Cap: mc.MaxPerSide, LargeTick: a.cfg.Products[ref].Tick, PointValue: a.cfg.Products[mc.Product].PointValue, Parameters: params},
-				strategy.Session{ID: p.Plan.ID, Kind: p.Plan.Kind, Start: seconds(p.Plan.Start), End: seconds(p.Plan.End), ForceClose: seconds(p.Plan.ForceClose), USOpen: seconds(p.Plan.USOpen), ExtraAt: seconds(extra)})
-			if err != nil {
-				return err
-			}
-			m.Saved.Plan = p.Plan
-			// 研究手法の候補生成は過去から進め、過去の新規は実注文・仮想実玉にしません。
-			if m.Portfolio.Research != nil {
-				for _, o := range p.Rows {
-					if o.Reference == ref {
-						if err := m.Portfolio.Advance(o); err != nil {
-							return err
-						}
-					}
+			if m.Saved.Plan.ID != "" && m.Saved.Plan.ID != p.Plan.ID {
+				if err = m.Manager.Event("セッション切替", m.Saved.Plan.ID, ref, "", time.Now(), map[string]any{
+					"previous_session": m.Saved.Plan.ID, "next_session": p.Plan.ID, "discarded_unsent_queue_count": len(m.Saved.Queue),
+					"owned_positions": 0, "pending_orders": 0, "outstanding_fills": 0}); err != nil {
+					return err
 				}
 			}
+			m.Portfolio = nextPortfolio
+			m.Saved.ActiveSlot, m.Saved.SlotSwitch = slot, nil
+			m.Saved.SlotSequence = 0
+			m.Saved.SlotActivatedAt = time.Now()
+			m.Saved.SlotEvaluatedAt = m.Saved.SlotActivatedAt.Round(0)
+			m.MethodSlots, m.MethodSlotsPlan = nil, ""
+			m.Saved.Plan = p.Plan
+			// 指標は履歴で準備済み。過去の仮想売買は再生せず、次の新鮮な受信から候補を作る。
 			m.Saved.Contract = contract
 			m.Saved.Queue = nil
+			m.Saved.Done = map[string]bool{}
 			m.Saved.IndexOffset = 0
 			m.Saved.LastRawHash = ""
+			selectSnapshotSession(m)
 		} else {
 			if m.Saved.Contract.Symbol != contract.Symbol {
 				return fmt.Errorf("%s 保存限月と登録限月が異なります。自動で別限月へ注文しません", ref)
@@ -532,6 +561,13 @@ func (a *app) activate(p *prepared) error {
 				if o.Reference != ref || o.Index <= anchor {
 					continue
 				}
+				if len(a.cfg.Windows) > 0 && !m.Saved.SlotActivatedAt.IsZero() {
+					activated := seconds(m.Saved.SlotActivatedAt)
+					if o.Time < activated || o.Received < activated {
+						// 共通指標の履歴は保持しますが、新枠より前の売買影を作り直しません。
+						continue
+					}
+				}
 				sourceIndex := o.Index
 				o = shiftObservation(o, m.Saved.IndexOffset)
 				if err := m.Portfolio.Advance(o); err != nil {
@@ -541,9 +577,12 @@ func (a *app) activate(p *prepared) error {
 					m.Saved.LastRawHash = hashes[sourceIndex]
 				}
 			}
-		}
-		if err := m.Manager.EnsureSession(p.Plan.ID); err != nil {
-			return err
+			if err := m.Manager.EnsureSession(p.Plan.ID); err != nil {
+				return err
+			}
+			if err := m.Manager.RegisterSessionReport(p.Plan.ID, p.Plan.End); err != nil {
+				return err
+			}
 		}
 		m.Dirty = true
 		if err := a.checkpoint(m); err != nil {
@@ -561,10 +600,26 @@ func (a *app) activate(p *prepared) error {
 	}
 	a.observed = map[string]strategy.Observation{}
 	a.lastIgnored = map[string]string{}
-	fmt.Printf("%s [履歴同期完了] %s / %s / 適用手法=%s（昼=%s・夜=%s）。指標が揃うまで準備し、新鮮な受信から判断します。\n", time.Now().Format(time.RFC3339), p.Plan.ID, mode(a.cfg.Trading.DryRun), a.cfg.MethodID(p.Plan.Kind), a.cfg.MethodID("Day"), a.cfg.MethodID("Night"))
+	if sessionChanged {
+		a.lastHandled = map[string]time.Time{}
+		a.inputCounts = map[string]uint64{}
+		a.decisionCounts = map[string]uint64{}
+	}
+	methodName := a.cfg.MethodName(p.Plan.Kind)
+	var currentSlot *schedule.Slot
+	for _, m := range a.markets {
+		if m.Saved.ActiveSlot != nil {
+			currentSlot = m.Saved.ActiveSlot
+			methodName = "静観"
+			if currentSlot.Enabled {
+				methodName = config.NameOfMethod(m.Reference, currentSlot.Method)
+			}
+		}
+	}
+	fmt.Printf("%s [履歴同期完了] %s / %s / 適用手法=%s（昼=%s・夜=%s）。指標が揃うまで準備し、新鮮な受信から判断します。\n", time.Now().Format(time.RFC3339), p.Plan.ID, mode(a.cfg.Trading.DryRun), methodName, a.cfg.MethodName("Day"), a.cfg.MethodName("Night"))
 	a.nextStatus = time.Time{}
 	return a.store.Event("準備完了", p.Plan.ID, "", "", time.Now(), map[string]any{"plan": p.Plan, "generation": p.Generation, "cutoff": p.Cutoff, "algorithm": algorithmVersion,
-		"method": a.cfg.MethodID(p.Plan.Kind), "methods": map[string]string{"day": a.cfg.MethodID("Day"), "night": a.cfg.MethodID("Night")}})
+		"method": methodName, "active_slot": currentSlot, "methods": map[string]string{"day": a.cfg.MethodName("Day"), "night": a.cfg.MethodName("Night")}})
 }
 
 // addCandles はライブで実際に受信した時刻を持つ確定足だけを追加します。
@@ -633,6 +688,9 @@ func (a *app) onBoard(ctx context.Context, e feedEvent) error {
 //
 // 引数: ctx(context.Context)、e(feedEvent)、id(int64)は原文ID。返り値: error。
 func (a *app) processReference(ctx context.Context, e feedEvent, id int64) error {
+	if a.detaching() {
+		return nil
+	}
 	code, ok := a.symbols[e.Board.Symbol]
 	if !ok {
 		return nil
@@ -681,10 +739,24 @@ func (a *app) processReference(ctx context.Context, e feedEvent, id int64) error
 	if o.Index <= m.Portfolio.LastIndex {
 		return nil
 	}
+	ready, err := a.updateMethodSlot(ctx, m, time.Now())
+	if err != nil {
+		return err
+	}
+	if !ready || len(a.cfg.Windows) > 0 && e.At.Before(m.Saved.SlotActivatedAt) {
+		a.lastHandled[code] = e.At
+		if a.observed == nil {
+			a.observed = map[string]strategy.Observation{}
+		}
+		a.observed[code] = o
+		return nil
+	}
 	// 準備中にたまった受信では入口を作らず、返済条件だけ現在まで進めます。
 	fresh := !e.At.Before(a.activeAt) && time.Since(e.At) <= duration(a.cfg.Runtime.QuoteMaxAgeSeconds)
 	allowed := fresh && a.canEnter(m, time.Now())
-	signals, err := m.Portfolio.Observe(o, allowed)
+	// S01の利益床は、復旧中の古い観測だけでは新しい返済判断を作りません。
+	// 通常の損切り・場末返済と、既に新鮮な観測で成立した依頼は引き続き維持します。
+	signals, err := m.Portfolio.ObserveWithFreshness(o, allowed, fresh)
 	if err != nil {
 		return err
 	}
@@ -701,6 +773,9 @@ func (a *app) processReference(ctx context.Context, e feedEvent, id int64) error
 	m.Saved.LastRawHash = rawHash(e.Board.Raw)
 	m.Dirty = true
 	if err = a.enqueue(m, signals, id, e.At); err != nil {
+		return err
+	}
+	if err = a.cancelSelectedEntries(ctx, m, m.Portfolio.SelectedCancellationIDs(), time.Now()); err != nil {
 		return err
 	}
 	if fresh {
@@ -787,8 +862,16 @@ func (a *app) canEnter(m *marketRuntime, now time.Time) bool {
 // 返り値: errorは保存失敗です。
 func (a *app) enqueue(m *marketRuntime, signals []strategy.Signal, inputID int64, received time.Time) error {
 	for _, s := range signals {
-		evidence, err := json.Marshal(map[string]any{"algorithm": algorithmVersion, "signature": a.cfg.Signature(),
-			"instance_id": a.cfg.InstanceID(), "order_namespace": m.Saved.Namespace,
+		activeHash, activeProfile := "", ""
+		strategyNamespace := m.Saved.Namespace
+		if m.Portfolio != nil && m.Portfolio.Rules != nil {
+			activeHash, activeProfile = m.Portfolio.Rules.Set.Hash(), m.Portfolio.Rules.Set.Name()
+			strategyNamespace = m.Portfolio.Config.Namespace
+		}
+		evidence, err := json.Marshal(map[string]any{"algorithm": algorithmVersion, "signature": a.cfg.Signature(), "rules_hash": a.cfg.RuleHash(), "active_rules_hash": activeHash, "rules_profile": activeProfile,
+			"method_id":   a.decisionMethod(m),
+			"instance_id": a.cfg.InstanceID(), "order_namespace": m.Saved.Namespace, "strategy_namespace": strategyNamespace,
+			"active_slot": m.Saved.ActiveSlot, "slot_activated_at": m.Saved.SlotActivatedAt,
 			"input_id": inputID, "generation": a.generation, "received": received, "decision": s})
 		if err != nil {
 			return err
@@ -821,6 +904,7 @@ func (a *app) applyFills(m *marketRuntime) error {
 		if err := m.Portfolio.OnFill(strategy.Fill{SignalID: f.IntentID, ExecutionID: f.ID, Quantity: f.Quantity, Price: f.Price, Time: seconds(f.At), Fee: f.Fee, HoldID: f.HoldID, Closed: closed}); err != nil {
 			return err
 		}
+		recordSnapshotFill(m, f)
 		m.Dirty = true
 		fmt.Printf("%s [%s] %s %s %s %s %d枚 @%.4f 損益%+.0f円 %s\n", f.At.Format(time.RFC3339), mode(a.cfg.Trading.DryRun), f.Product, f.Owner, f.TradeType, f.Side, f.Quantity, f.Price, f.PnL, f.Reason)
 	}
@@ -900,6 +984,14 @@ func (a *app) checkpoint(m *marketRuntime) error {
 //
 // 引数: ctx(context.Context)、m(*marketRuntime)、now(time.Time)。返り値: errorは保存・内部矛盾です。
 func (a *app) dispatch(ctx context.Context, m *marketRuntime, now time.Time) error {
+	if a.detaching() {
+		return a.discardDetachedQueue(m)
+	}
+	if m.Portfolio != nil {
+		if err := m.Portfolio.StrategyError(); err != nil {
+			return fmt.Errorf("ルール評価異常のため送信停止: %w", err)
+		}
+	}
 	if m.Portfolio == nil || len(m.Saved.Queue) == 0 {
 		return nil
 	}
@@ -923,7 +1015,7 @@ func (a *app) dispatch(ctx context.Context, m *marketRuntime, now time.Time) err
 	item := m.Saved.Queue[0]
 	s := item.Signal
 	quiet := a.quiet(m, now)
-	if s.Action == "new" && (a.stopping || !now.Before(m.Saved.Plan.ForceClose) || quiet && quietOwner(m, s.Owner) ||
+	if s.Action == "new" && (a.stopping || !a.entriesEnabled() || a.slotBlockReason(m, now) != "" || !now.Before(m.Saved.Plan.ForceClose) || quiet && quietOwner(m, s.Owner) ||
 		now.Sub(item.Created) > duration(a.cfg.Runtime.EntryOrderTimeoutSeconds)) {
 		if err := m.Portfolio.OnOrderRejected(s.ID); err != nil {
 			return err
@@ -977,13 +1069,50 @@ func (a *app) dispatch(ctx context.Context, m *marketRuntime, now time.Time) err
 	if err != nil {
 		return err
 	}
-	intent := execution.Intent{ID: s.ID, Owner: s.Owner, Product: product, Evidence: evidence,
+	intent := execution.Intent{ID: s.ID, Owner: s.Owner, Product: product, MethodID: queuedMethod(item.Evidence), Evidence: evidence,
 		Session: m.Saved.Plan.ID, ContractSymbol: m.Saved.Contract.Symbol, Side: side, TradeType: s.Action, Reason: s.Reason,
 		Quantity: s.Quantity, Price: price, At: now, ExpiresAt: expiry}
 	for _, target := range s.Targets {
 		intent.ClosePositions = append(intent.ClosePositions, controller.ClosePosition{HoldID: target.ID, Quantity: target.Quantity})
 	}
+	// 管理終了の確定と新規・返済の全送信開始を直列化します。
+	release := func() {}
+	if a.control != nil {
+		var allowed bool
+		release, allowed = a.control.tradePermit(s.Action)
+		if !allowed {
+			return nil
+		}
+	}
+	if s.Action == "new" {
+		checkedAt := a.submissionTime(now)
+		if a.stopping || !a.entriesEnabled() || a.slotBlockReason(m, checkedAt) != "" ||
+			!checkedAt.Before(m.Saved.Plan.ForceClose) ||
+			checkedAt.Sub(item.Created) > duration(a.cfg.Runtime.EntryOrderTimeoutSeconds) ||
+			a.quiet(m, checkedAt) && quietOwner(m, s.Owner) {
+			release()
+			if err := m.Portfolio.OnOrderRejected(s.ID); err != nil {
+				return err
+			}
+			m.Saved.Queue = m.Saved.Queue[1:]
+			m.Dirty = true
+			if err := m.Manager.Event("送信直前の新規期限切れ", m.Saved.Plan.ID, m.Reference, s.ID, checkedAt, item); err != nil {
+				return err
+			}
+			return a.checkpoint(m)
+		}
+		if !a.canEnter(m, checkedAt) {
+			release()
+			return nil
+		}
+		intent.At = checkedAt
+		intent.ExpiresAt = checkedAt.Add(duration(a.cfg.Runtime.EntryOrderTimeoutSeconds))
+		if intent.ExpiresAt.After(a.view.Session.SendUntil) {
+			intent.ExpiresAt = a.view.Session.SendUntil
+		}
+	}
 	_, sendErr := m.Manager.Submit(ctx, a.client, intent, a.view)
+	release()
 	known := false
 	for _, o := range m.Manager.Orders() {
 		if o.IntentID == s.ID {
@@ -1018,6 +1147,17 @@ func (a *app) dispatch(ctx context.Context, m *marketRuntime, now time.Time) err
 	return nil
 }
 
+// submissionTime は送信許可の取得後に現在時計を読み、保存・ロック待ちによる期限超過を検査します。
+//
+// 引数: observed(time.Time)はdispatch開始時計です。返り値: time.Timeは送信直前時計です。
+// 試験用時計がなければ必ず実時計を再取得します。外部API通信中の遅延はこの検査の対象外です。
+func (a *app) submissionTime(observed time.Time) time.Time {
+	if a.submissionClock != nil {
+		return a.submissionClock(observed)
+	}
+	return time.Now()
+}
+
 // quiet は夜間主担当だけの米国開始前後の静観時間を返します。
 //
 // 引数: m(*marketRuntime)、now(time.Time)。返り値: bool。
@@ -1033,16 +1173,37 @@ func (a *app) quiet(m *marketRuntime, now time.Time) bool {
 //
 // 引数: ctx(context.Context)、now(time.Time)。返り値: errorは保存・状態矛盾です。
 func (a *app) tick(ctx context.Context, now time.Time) error {
+	defer a.finalizeSessionReports(now)
+	if a.detaching() {
+		return a.tickDetach(ctx, now)
+	}
+	pauseSequence := uint64(0)
+	if a.control != nil {
+		pauseSequence = a.control.pauseSequence.Load()
+	}
 	for _, m := range a.markets {
 		if m.Portfolio == nil {
 			continue
 		}
+		if err := m.Portfolio.Rules.Err(); err != nil {
+			return fmt.Errorf("ルール評価異常のため運転停止: %w", err)
+		}
+		if !a.stopping && now.Before(m.Saved.Plan.ForceClose) {
+			ready, err := a.updateMethodSlot(ctx, m, now)
+			if err != nil {
+				return err
+			}
+			if !ready {
+				continue
+			}
+		}
 		terminal := a.stopping || !now.Before(m.Saved.Plan.ForceClose)
+		entriesOff := !a.entriesEnabled() || a.slotClockReversed(m, now)
 		quiet := a.quiet(m, now)
-		if terminal || quiet {
+		if terminal || entriesOff || quiet {
 			kept := m.Saved.Queue[:0]
 			for _, item := range m.Saved.Queue {
-				if item.Signal.Action == "new" && (terminal || quietOwner(m, item.Signal.Owner)) {
+				if item.Signal.Action == "new" && (terminal || entriesOff || quietOwner(m, item.Signal.Owner)) {
 					// 送信済みか不明な依頼をローカル取消してはいけません。
 					sent := false
 					for _, o := range m.Manager.Orders() {
@@ -1063,7 +1224,7 @@ func (a *app) tick(ctx context.Context, now time.Time) error {
 			}
 			m.Saved.Queue = kept
 		}
-		cancel := terminal
+		cancel := terminal || entriesOff
 		if quiet {
 			for _, o := range m.Manager.Orders() {
 				if !o.Done && quietOwner(m, o.Owner) && o.TradeType == "new" {
@@ -1084,7 +1245,7 @@ func (a *app) tick(ctx context.Context, now time.Time) error {
 		} else if a.staleBeyondGrace(now) {
 			signals = m.Portfolio.Flatten(seconds(now), "データ受信中断が猶予時間を超過")
 		} else if quiet {
-			if m.Portfolio.Research != nil {
+			if m.Portfolio.Research != nil || m.Portfolio.P05 != nil {
 				signals = m.Portfolio.Flatten(seconds(now), "米国現物開始の静観")
 			} else {
 				signals = m.Portfolio.FlattenOwner("core", seconds(now), "米国現物開始の静観")
@@ -1097,6 +1258,7 @@ func (a *app) tick(ctx context.Context, now time.Time) error {
 			return err
 		}
 	}
+	a.acknowledgePause(pauseSequence)
 	if !now.Before(a.nextCheckpoint) {
 		for _, m := range a.markets {
 			if m.Dirty {

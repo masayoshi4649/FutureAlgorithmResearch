@@ -99,9 +99,36 @@ func TestResearchCheckShowsRealAllocation(t *testing.T) {
 	if err := Run(context.Background(), configuration(t, body), nil, &out, &out, ops); err != nil {
 		t.Fatal(err)
 	}
-	if calls != 0 || !strings.Contains(out.String(), "Day TG04 / 基本最大6枚・追加最大3枚・別入口最大2枚") ||
-		!strings.Contains(out.String(), "Night PG04 / 基本最大6枚・追加最大0枚・別入口最大5枚") {
+	if calls != 0 || !strings.Contains(out.String(), "Day NK225_TG04 / 基本最大6枚・追加最大3枚・別入口最大2枚") ||
+		!strings.Contains(out.String(), "Night NK225_PG04 / 基本最大6枚・追加最大0枚・別入口最大5枚") {
 		t.Fatalf("設定検査の接続回数%d、表示%s", calls, out.String())
+	}
+}
+
+// TestDiagnosticsNeverRunsTrading は実注文設定でも診断が売買・接続入口を呼ばないことを検査します。
+//
+// 引数: t(*testing.T)。返り値: なし。
+func TestDiagnosticsNeverRunsTrading(t *testing.T) {
+	body := strings.Replace(testConfiguration, "dryrun=true", "dryrun=false", 1) + "\n[startup]\naction='diagnostics'\ndiagnostic_session='2026-10-26_Day'\n"
+	calls, diagnostics := 0, 0
+	var out bytes.Buffer
+	ops := Operations{
+		Run:     func(context.Context, config.Config) error { calls++; return nil },
+		Probe:   func(context.Context, config.Config) error { calls++; return nil },
+		Migrate: func(config.Config, string) error { calls++; return nil },
+		Diagnostics: func(_ context.Context, cfg config.Config) ([]string, error) {
+			diagnostics++
+			if cfg.Startup.DiagnosticSession != "2026-10-26_Day" || cfg.Trading.DryRun {
+				t.Fatal("診断対象場または実/仮想保存先を変えました")
+			}
+			return []string{"log/diagnostics/試験.zip"}, nil
+		},
+	}
+	if err := Run(context.Background(), configuration(t, body), nil, &out, &out, ops); err != nil {
+		t.Fatal(err)
+	}
+	if calls != 0 || diagnostics != 1 || !strings.Contains(out.String(), "試験.zip") {
+		t.Fatal(calls, diagnostics, out.String())
 	}
 }
 
@@ -177,7 +204,7 @@ func TestSingleProductDisplay(t *testing.T) {
 	if strings.Count(result, "片方向上限") != 1 || !strings.Contains(result, "実行ID=topix-mini") || !strings.Contains(result, "TOPIX / TOPIXmini") || strings.Contains(result, "NK225 /") {
 		t.Fatalf("単一商品の表示が不正です: %s", result)
 	}
-	if !strings.Contains(result, "手法: 昼=T06 / 夜=T04") {
+	if !strings.Contains(result, "手法: 昼=TOPIX_T06 / 夜=TOPIX_T04") {
 		t.Fatalf("実効手法IDを表示しません: %s", result)
 	}
 	other := "\n[markets.NK225]\nenabled=true\nproduct='NK225'\nmax_per_side=20\n"

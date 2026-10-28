@@ -15,29 +15,39 @@ import (
 	"strings"
 	"time"
 
+	"futurealgorithm/sessiontrader/internal/rules"
 	"github.com/BurntSushi/toml"
 )
 
 // Config は実行設定です。Rootは設定フォルダの親で、相対保存先の基準です。
 type Config struct {
-	Startup    Startup            `toml:"startup"`
-	Controller Controller         `toml:"controller"`
-	Trading    Trading            `toml:"trading"`
-	Runtime    Runtime            `toml:"runtime"`
-	Schedule   Schedule           `toml:"schedule"`
-	Methods    Methods            `toml:"methods"`
-	Market     *SingleMarket      `toml:"market"`
-	Markets    map[string]Market  `toml:"markets"`
-	Products   map[string]Product `toml:"products"`
-	Algorithm  map[string]float64 `toml:"algorithm"`
-	Root       string             `toml:"-" json:"-"`
+	SettingsVersion int                   `toml:"settings_version" json:"-"`
+	Startup         Startup               `toml:"startup"`
+	Controller      Controller            `toml:"controller"`
+	Trading         Trading               `toml:"trading"`
+	Runtime         Runtime               `toml:"runtime"`
+	Schedule        Schedule              `toml:"schedule"`
+	Methods         Methods               `toml:"methods"`
+	Windows         []MethodWindow        `toml:"windows" json:"windows,omitempty"`
+	Market          *SingleMarket         `toml:"market"`
+	Markets         map[string]Market     `toml:"markets"`
+	Products        map[string]Product    `toml:"products"`
+	Algorithm       map[string]float64    `toml:"algorithm"`
+	Web             *Web                  `toml:"web"`
+	Instruments     []Instrument          `toml:"instruments"`
+	RuleEngine      RuleEngine            `toml:"rule_engine"`
+	RuleSet         *rules.Set            `toml:"-" json:"-"`
+	RuleSets        map[string]*rules.Set `toml:"-" json:"-"`
+	Root            string                `toml:"-" json:"-"`
+	WebRevision     string                `toml:"-" json:"-"`
 }
 
 // Startup は引数を使わず選択する起動動作です。戦略の復元指紋には含めません。
 type Startup struct {
-	Action          string  `toml:"action"`
-	DurationSeconds float64 `toml:"duration_seconds"`
-	LegacyConf      string  `toml:"legacy_conf"`
+	Action            string  `toml:"action"`
+	DurationSeconds   float64 `toml:"duration_seconds"`
+	LegacyConf        string  `toml:"legacy_conf"`
+	DiagnosticSession string  `toml:"diagnostic_session"`
 }
 
 type Controller struct {
@@ -140,10 +150,15 @@ func Load(directory string) (Config, error) {
 		return c, fmt.Errorf("設定フォルダに*.tomlがありません: %s", abs)
 	}
 	var text strings.Builder
+	sources := make(map[string][]byte, len(files))
 	for _, name := range files {
 		data, e := os.ReadFile(name)
 		if e != nil {
 			return c, e
+		}
+		sources[filepath.Base(name)] = data
+		if filepath.Base(name) == webOverlayName {
+			continue
 		}
 		text.WriteString(strings.TrimPrefix(string(data), "\ufeff"))
 		text.WriteByte('\n')
@@ -159,6 +174,39 @@ func Load(directory string) (Config, error) {
 		return c, err
 	}
 	c.Root = filepath.Dir(abs)
+	if overlay, ok := sources[webOverlayName]; ok {
+		if c.Web == nil {
+			return c, fmt.Errorf("%sは[web]を持つ設定だけで使用できます", webOverlayName)
+		}
+		var settings WebSettings
+		meta, err := toml.Decode(string(overlay), &settings)
+		if err != nil || len(meta.Undecoded()) != 0 {
+			return c, fmt.Errorf("%sの設定が不正です: %v / %v", webOverlayName, err, meta.Undecoded())
+		}
+		for _, item := range settings.Instruments {
+			if item.Mode != "off" && item.Mode != "dryrun" && item.Mode != "live" {
+				return c, fmt.Errorf("%sの商品別modeはoff/dryrun/liveを明示してください", webOverlayName)
+			}
+		}
+		c = applyWebFields(c, settings)
+		// 旧保存ファイルが新しい配布本文を上書きする場合も、その保存版を基準に移行します。
+		c.SettingsVersion = settings.SettingsVersion
+	}
+	c.WebRevision = revisionOf(sources)
+	if err := c.loadRules(); err != nil {
+		return c, err
+	}
+	// 改変式を先に照合し、標準式の旧昼夜設定だけを標準時間帯へ移行します。
+	c.migrateLegacyD07Windows(true)
+	if c.RuleEngine.File == "" && c.RuleEngine.Directory == "" {
+		if err := c.bindDefaultRules(); err != nil {
+			return c, err
+		}
+	}
+	c.migrateStandardDayS01()
+	if err := c.migrateSelectedMethods(); err != nil {
+		return c, err
+	}
 	return c, c.Validate()
 }
 
@@ -167,13 +215,45 @@ func Load(directory string) (Config, error) {
 // 引数: なし。受け手Configを検査します。
 // 返り値: error。不正なら起動前に停止します。
 func (c *Config) Validate() error {
+	if c.SettingsVersion < 0 || c.SettingsVersion > currentSettingsVersion {
+		return fmt.Errorf("settings_versionがこのアプリの対応範囲外です: %d", c.SettingsVersion)
+	}
+	if c.RuleEngine.File != "" && c.RuleEngine.Directory != "" {
+		return fmt.Errorf("rule_engineはdirectoryか旧fileの一方だけを指定してください")
+	}
+	if c.RuleEngine.File == "" && c.RuleEngine.Directory == "" {
+		if err := c.bindDefaultRules(); err != nil {
+			return err
+		}
+	}
+	if c.RuleEngine.File != "" && c.RuleSet == nil {
+		return fmt.Errorf("外部ルールが未読込です。confから読み直してください")
+	}
+	if c.RuleEngine.Directory != "" && c.RuleSets == nil {
+		return fmt.Errorf("外部ルールフォルダが未読込です")
+	}
+	if c.Web != nil {
+		_, err := c.WorkerConfigs()
+		return err
+	}
+	if len(c.Instruments) > 0 {
+		return fmt.Errorf("instrumentsを使用する場合は[web]で待受先を指定してください")
+	}
 	if err := c.Schedule.NormalizeJST(); err != nil {
 		return err
 	}
 	switch c.Startup.Action {
-	case "run", "check", "probe", "migrate_legacy":
+	case "run", "check", "probe", "migrate_legacy", "diagnostics":
 	default:
-		return fmt.Errorf("startup.actionはrun/check/probe/migrate_legacyから一つ指定してください")
+		return fmt.Errorf("startup.actionはrun/check/probe/migrate_legacy/diagnosticsから一つ指定してください")
+	}
+	if c.Startup.DiagnosticSession != "" {
+		if c.Startup.Action != "diagnostics" || !regexp.MustCompile(`^\d{4}-\d{2}-\d{2}_(Day|Night)$`).MatchString(c.Startup.DiagnosticSession) {
+			return fmt.Errorf("startup.diagnostic_sessionはaction=diagnosticsでYYYY-MM-DD_DayまたはNightを指定してください")
+		}
+		if _, err := time.Parse("2006-01-02", c.Startup.DiagnosticSession[:10]); err != nil {
+			return fmt.Errorf("startup.diagnostic_sessionの日付が不正です")
+		}
 	}
 	if math.IsNaN(c.Startup.DurationSeconds) || math.IsInf(c.Startup.DurationSeconds, 0) ||
 		c.Startup.DurationSeconds < 0 || c.Startup.DurationSeconds > 9223372036 {
@@ -278,12 +358,16 @@ func (c *Config) Validate() error {
 		return fmt.Errorf("このアプリは1プロセス1銘柄です。旧[markets]でenabled=trueが複数あります。銘柄別の設定フォルダで別々に起動してください")
 	}
 	c.Markets = selected
+	reference, _ := c.Selected()
 	for _, method := range []string{c.Methods.Day, c.Methods.Night} {
-		if method != strings.TrimSpace(method) {
-			return fmt.Errorf("methods.day/nightの先頭・末尾に空白を付けないでください")
+		if _, err := methodShortID(reference, method); err != nil {
+			return fmt.Errorf("methods.day/night: %w", err)
 		}
 	}
 	c.Methods = Methods{Day: c.MethodID("Day"), Night: c.MethodID("Night")}
+	if err := c.ValidateMethodWindows(); err != nil {
+		return err
+	}
 	if c.Trading.InstanceID == "" {
 		_, market := c.Selected()
 		c.Trading.InstanceID = market.Product
@@ -390,7 +474,19 @@ func (c Config) Signature() string {
 	raw, _ := json.Marshal(value)
 	digest := sha256.Sum256(raw)
 	legacy := hex.EncodeToString(digest[:])
+	if c.RuleSets != nil {
+		digest = sha256.Sum256([]byte(legacy + "/expr-profiles-v1/" + c.RuleHash()))
+		legacy = hex.EncodeToString(digest[:])
+	} else if c.RuleSet != nil {
+		digest = sha256.Sum256([]byte(legacy + "/expr-v1/" + c.RuleSet.Hash()))
+		legacy = hex.EncodeToString(digest[:])
+	}
 	reference, _ := c.Selected()
+	if len(c.Windows) > 0 {
+		raw, _ = json.Marshal(c.Windows)
+		digest = sha256.Sum256(append([]byte(legacy+"/windows-v1/"), raw...))
+		legacy = hex.EncodeToString(digest[:])
+	}
 	methods := Methods{Day: c.MethodID("Day"), Night: c.MethodID("Night")}
 	if methods == defaultMethods(reference) {
 		return legacy

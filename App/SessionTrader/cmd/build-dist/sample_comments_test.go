@@ -8,52 +8,41 @@ import (
 
 	"futurealgorithm/sessiontrader/internal/cli"
 	"futurealgorithm/sessiontrader/internal/config"
+	"futurealgorithm/sessiontrader/internal/rules"
 	"github.com/BurntSushi/toml"
 )
 
-// TestProductSamplesKeepExplanations は各商品・各OSに最小設定とすべての説明が届くことを確認します。
+// TestWebSamplesKeepExplanations はWeb版の全設定と式の説明が両OSへ届くことを確認します。
 //
-// 引数: t(*testing.T) は試験です。返り値: なし。
-// 配布物のビルドは模擬し、設定の説明と有効・無効の意味だけを検査します。
-func TestProductSamplesKeepExplanations(t *testing.T) {
+// 引数: t(*testing.T)。返り値: なし。実設定ではなく配布用サンプルだけを読みます。
+func TestWebSamplesKeepExplanations(t *testing.T) {
 	root := fixture(t)
+	source, err := os.ReadFile(filepath.Join(root, "web-conf", "settings.toml.sample"))
+	if err != nil {
+		t.Fatal(err)
+	}
 	if err := buildDistribution(root, fakeBuild); err != nil {
 		t.Fatal(err)
 	}
 	for _, platform := range []string{"windows-amd64", "linux-amd64"} {
-		for _, product := range []string{"TOPIX", "TOPIXmini", "NK225", "NK225mini", "NK225micro"} {
-			directory := filepath.Join(root, "dist", platform, product, "conf")
-			data, err := os.ReadFile(filepath.Join(directory, "settings.toml.sample"))
+		directory := filepath.Join(root, "dist", platform, "Web", "conf")
+		data, err := os.ReadFile(filepath.Join(directory, "settings.toml.sample"))
+		if err != nil {
+			t.Fatal(err)
+		}
+		if string(data) != string(source) {
+			t.Fatal("設定例の説明や値を変更しました", platform)
+		}
+		if err := validateWebSampleComments(data); err != nil {
+			t.Fatal(err)
+		}
+		for _, profile := range rules.ProfileNames() {
+			ruleData, err := os.ReadFile(filepath.Join(directory, "rules", rules.FileName(profile)))
 			if err != nil {
 				t.Fatal(err)
 			}
-			for _, line := range strings.Split(sampleConfiguration, "\n") {
-				if strings.HasPrefix(strings.TrimSpace(line), "#") && !strings.Contains(string(data), line) {
-					t.Errorf("%s/%sで説明が失われました: %s", platform, product, line)
-				}
-			}
-			var decoded map[string]any
-			if _, err := toml.Decode(string(data), &decoded); err != nil {
-				t.Fatal(err)
-			}
-			count := 0
-			for _, value := range decoded {
-				table, ok := value.(map[string]any)
-				if !ok {
-					t.Fatal("最小設定のテーブル構成が変わりました")
-				}
-				count += len(table)
-			}
-			if len(decoded) != 6 || count != 13 {
-				t.Fatalf("最小設定へ不要な既定値が出力されました: %dテーブル/%d項目", len(decoded), count)
-			}
-			day, night := "T06", "T04"
-			if strings.HasPrefix(product, "NK225") {
-				day, night = "TG04", "TG04"
-			}
-			cfg, err := config.Load(directory)
-			if err != nil || cfg.MethodID("Day") != day || cfg.MethodID("Night") != night {
-				t.Fatalf("商品別の昼夜手法が違います: %+v %v", cfg.Methods, err)
+			if err := validateWebSampleComments(ruleData); err != nil {
+				t.Fatal(profile, err)
 			}
 		}
 	}
@@ -67,17 +56,17 @@ func TestCommentRefreshPreservesUserValues(t *testing.T) {
 	if err := buildDistribution(root, fakeBuild); err != nil {
 		t.Fatal(err)
 	}
-	directory := filepath.Join(root, "dist", "windows-amd64", "TOPIXmini", "conf")
+	directory := filepath.Join(root, "dist", "windows-amd64", "Web", "conf")
 	path := filepath.Join(directory, "settings.toml")
 	data, err := os.ReadFile(path)
 	if err != nil {
 		t.Fatal(err)
 	}
-	custom := strings.Replace(string(data), "dryrun = true", "dryrun = false", 1)
+	custom := strings.Replace(string(data), `mode = "off"`, `mode = "live"`, 1)
 	custom = strings.Replace(custom, "max_per_side = 10", "max_per_side = 6", 1)
 	write(t, path, custom)
-	updated := strings.Replace(sampleConfiguration, "# 片方向上限の説明。", "# 片方向上限の説明を更新。返済後は再新規できます。", 1)
-	write(t, filepath.Join(root, "conf", "setting.toml.sample"), updated)
+	updated := strings.Replace(string(data), "# Web画面のポート番号", "# 更新したWeb画面のポート番号", 1)
+	write(t, filepath.Join(root, "web-conf", "settings.toml.sample"), updated)
 	if err = buildDistribution(root, fakeBuild); err != nil {
 		t.Fatal(err)
 	}
@@ -86,12 +75,11 @@ func TestCommentRefreshPreservesUserValues(t *testing.T) {
 		t.Fatal("既存の実設定を変更しました", err)
 	}
 	cfg, err := config.Load(directory)
-	_, selected := cfg.Selected()
-	if err != nil || cfg.Trading.DryRun || selected.MaxPerSide != 6 {
+	if err != nil || len(cfg.Instruments) != 5 || config.ModeOf(cfg.Instruments[0], true) != "live" || cfg.Instruments[1].MaxPerSide != 6 {
 		t.Fatalf("利用者が設定した有効値を保持していません: %+v %v", cfg, err)
 	}
 	sample, err := os.ReadFile(filepath.Join(directory, "settings.toml.sample"))
-	if err != nil || !strings.Contains(string(sample), "# 片方向上限の説明を更新。返済後は再新規できます。") {
+	if err != nil || !strings.Contains(string(sample), "# 更新したWeb画面のポート番号") {
 		t.Fatal("新しい説明をsampleへ配布していません", err)
 	}
 }
@@ -101,14 +89,24 @@ func TestCommentRefreshPreservesUserValues(t *testing.T) {
 // 引数: t(*testing.T) は試験です。返り値: なし。
 func TestUndocumentedKeyStopsBeforeBuild(t *testing.T) {
 	root := fixture(t)
-	without := strings.Replace(sampleConfiguration, "# 仮想実行の説明。実設定は上書きしません。\n", "", 1)
-	write(t, filepath.Join(root, "conf", "setting.toml.sample"), without)
+	path := filepath.Join(root, "web-conf", "settings.toml.sample")
+	source, readErr := os.ReadFile(path)
+	if readErr != nil {
+		t.Fatal(readErr)
+	}
+	lines := []string{}
+	for _, line := range strings.Split(string(source), "\n") {
+		if !strings.HasPrefix(strings.TrimSpace(line), "# 商品別モード") {
+			lines = append(lines, line)
+		}
+	}
+	write(t, path, strings.Join(lines, "\n"))
 	calls := 0
 	err := buildDistribution(root, func(string, string, string) error {
 		calls++
 		return nil
 	})
-	if err == nil || !strings.Contains(err.Error(), "trading.dryrun") || calls != 0 {
+	if err == nil || !strings.Contains(err.Error(), "instruments.mode") || calls != 0 {
 		t.Fatalf("説明欠落をビルド前に検出できません: %d %v", calls, err)
 	}
 }
@@ -175,10 +173,17 @@ func TestFixedResearchMethodsRejectOverridesBeforeBuild(t *testing.T) {
 			retainedPath := filepath.Join(root, "dist", "windows-amd64", "NK225mini", "conf", "settings.toml")
 			retained := "# 利用者の既存実設定。\n[trading]\ndryrun = false\n"
 			write(t, retainedPath, retained)
-			calls := 0
-			err = buildDistribution(root, func(string, string, string) error { calls++; return nil })
-			if err == nil || calls != 0 || (!strings.Contains(err.Error(), "TG04") && !strings.Contains(err.Error(), "PG04")) {
-				t.Fatalf("固定手法への上書き混入をビルド前に拒否できません: calls=%d err=%v", calls, err)
+			stage := t.TempDir()
+			if err := copyConfiguration(filepath.Join(root, "conf"), filepath.Join(stage, "conf")); err != nil {
+				t.Fatal(err)
+			}
+			cfg, err := config.Load(filepath.Join(stage, "conf"))
+			if err != nil {
+				t.Fatal(err)
+			}
+			_, err = prepareSingleConfigurations(stage, cfg)
+			if err == nil || (!strings.Contains(err.Error(), "TG04") && !strings.Contains(err.Error(), "PG04") && !strings.Contains(err.Error(), "D07") && !strings.Contains(err.Error(), "S01")) {
+				t.Fatalf("旧単品設定への固定手法と上書き混入を拒否できません: err=%v", err)
 			}
 			data, readErr := os.ReadFile(retainedPath)
 			if readErr != nil || string(data) != retained {
@@ -194,14 +199,7 @@ func TestFixedResearchMethodsRejectOverridesBeforeBuild(t *testing.T) {
 // 利用者の*.tomlは読まず、版管理対象の*.toml.sampleだけを一時領域へコピーします。
 func TestRepositorySamplesCoverGeneratedKeys(t *testing.T) {
 	stage := t.TempDir()
-	if err := copyConfiguration(filepath.Join("..", "..", "conf"), filepath.Join(stage, "conf")); err != nil {
-		t.Fatal(err)
-	}
-	cfg, err := config.Load(filepath.Join(stage, "conf"))
-	if err != nil {
-		t.Fatal(err)
-	}
-	if _, err = prepareSingleConfigurations(stage, cfg); err != nil {
+	if err := prepareWebConfiguration(filepath.Join("..", ".."), stage); err != nil {
 		t.Fatal(err)
 	}
 }
@@ -235,7 +233,16 @@ func TestScalarReplacementKeepsLiteralAndInlineComment(t *testing.T) {
 // 引数: t(*testing.T) は試験です。返り値: なし。
 func TestUnknownMethodStopsBeforeBuild(t *testing.T) {
 	root := fixture(t)
-	write(t, filepath.Join(root, "conf", "setting.toml.sample"), strings.Replace(sampleConfiguration, `day = "T06"`, `day = "T99"`, 1))
+	path := filepath.Join(root, "web-conf", "settings.toml.sample")
+	source, readErr := os.ReadFile(path)
+	if readErr != nil {
+		t.Fatal(readErr)
+	}
+	changed := strings.Replace(string(source), `method = "NK225_D164_15"`, `method = "NK225_T99"`, 1)
+	if changed == string(source) {
+		t.Fatal("未知の手法を仕込む対象が設定例にありません")
+	}
+	write(t, path, changed)
 	calls := 0
 	err := buildDistribution(root, func(string, string, string) error {
 		calls++

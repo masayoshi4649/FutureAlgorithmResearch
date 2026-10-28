@@ -113,7 +113,7 @@ func TestResearch143NativeIntegration(t *testing.T) {
 						session.ExtraAt = session.USOpen + 1800
 					}
 				}
-				p, err := New(Config{Reference: "NK225", Product: "NK225mini", CoreQuantity: 5, ExtraMaxQuantity: 5, Cap: 10, LargeTick: input.Tick, PointValue: 100, Parameters: parameters}, session)
+				p, err := New(Config{Reference: "NK225", Product: "NK225mini", CoreQuantity: 5, ExtraMaxQuantity: 5, Cap: 10, LargeTick: input.Tick, PointValue: 100, Parameters: parameters, RuleExpressions: allRulesExternalExpressions(t, "NK225", kind, method)}, session)
 				if err != nil {
 					t.Fatal(err)
 				}

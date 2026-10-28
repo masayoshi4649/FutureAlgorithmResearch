@@ -119,14 +119,14 @@ func TestRunRejectsActiveLegacyBeforeStateMutation(t *testing.T) {
 	}
 	_ = old.Close()
 	// ----------------------------------------
-	// 設定差異による途中終了でも、先に取得した移行元ロックを解放します。
+	// 設定が違っても新規起動するが、終了時には移行元ロックを解放します。
 	f.Config.Algorithm = map[string]float64{"day.risk_floor": .8}
-	if err = Run(ctx, f.Config); err == nil || !strings.Contains(err.Error(), "保存状態と戦略・設定が異なります") {
-		t.Fatal("設定不一致で停止しませんでした", err)
+	if err = Run(ctx, f.Config); err != nil {
+		t.Fatal("新規起動なのに旧設定との不一致で停止しました", err)
 	}
 	released, err := acquireLock(filepath.Dir(f.Source))
 	if err != nil {
-		t.Fatal("起動失敗時に移行元ロックが残りました", err)
+		t.Fatal("終了時に移行元ロックが残りました", err)
 	}
 	_ = released.Close()
 }

@@ -6,6 +6,8 @@ import (
 	"errors"
 	"fmt"
 	"math"
+
+	"futurealgorithm/sessiontrader/internal/rules"
 )
 
 // Config は外部から指定した商品の呼値・倍率と、E01 の運転変数です。
@@ -151,21 +153,22 @@ type shadowAction struct {
 
 // Engine は JSON 保存可能な E01 状態です。通常影と早期出口影を独立に進めます。
 type Engine struct {
-	Config            Config   `json:"config"`
-	Session           Session  `json:"session"`
-	Version           int      `json:"version"`
-	Row               int64    `json:"row"`
-	LastTime          *float64 `json:"last_time"`
-	LastPrice         float64  `json:"last_price"`
-	RealizedYen       float64  `json:"realized_yen"`
-	Normal            shadow   `json:"normal"`
-	Exit              shadow   `json:"exit"`
-	Actual            actual   `json:"actual"`
-	Halted            bool     `json:"halted"`
-	LastEventBefore   *actual  `json:"last_event_before,omitempty"`
-	LastEventSelected []int    `json:"last_event_selected,omitempty"`
-	LastEventRetire   bool     `json:"last_event_retire"`
-	LastEventRealized float64  `json:"last_event_realized"`
+	Rules             *rules.Runtime `json:"-"`
+	Config            Config         `json:"config"`
+	Session           Session        `json:"session"`
+	Version           int            `json:"version"`
+	Row               int64          `json:"row"`
+	LastTime          *float64       `json:"last_time"`
+	LastPrice         float64        `json:"last_price"`
+	RealizedYen       float64        `json:"realized_yen"`
+	Normal            shadow         `json:"normal"`
+	Exit              shadow         `json:"exit"`
+	Actual            actual         `json:"actual"`
+	Halted            bool           `json:"halted"`
+	LastEventBefore   *actual        `json:"last_event_before,omitempty"`
+	LastEventSelected []int          `json:"last_event_selected,omitempty"`
+	LastEventRetire   bool           `json:"last_event_retire"`
+	LastEventRealized float64        `json:"last_event_realized"`
 	observedRecovery  bool
 }
 
@@ -428,14 +431,12 @@ func (e *Engine) shadowTick(sh *shadow, t, p, atr float64, direction int, allowP
 		if tight {
 			riskFactor = e.Config.TightRiskATR
 		}
+		riskFactor = e.ruleNumber("shadow.risk_factor", riskFactor, map[string]any{"tight": tight, "tight_risk": e.Config.TightRiskATR, "normal_risk": e.Config.NormalRiskATR})
 		floor := -float64(q0) * a * riskFactor
 		stop := rounded(anchor+(floor-sh.Realized)/float64(d*sh.Quantity), tick, -d)
 		favorable := float64(d) * (sh.Extreme - anchor)
-		if favorable >= e.Config.TrailArmATR*a {
-			width := e.Config.NormalTrailATR
-			if tight && favorable >= e.Config.TightArmATR*a {
-				width = e.Config.TightTrailATR
-			}
+		if e.ruleBool("shadow.trail_active", favorable >= e.Config.TrailArmATR*a, map[string]any{"gain": favorable, "arm_atr": e.Config.TrailArmATR, "atr": a}) {
+			width := e.RuleTrailWidth(tight, favorable, a)
 			candidate := rounded(sh.Extreme-float64(d)*width*a, tick, -d)
 			if sh.TrailFloor == nil || float64(d)*(candidate-*sh.TrailFloor) > 0 {
 				sh.TrailFloor = pointer(candidate)
@@ -446,7 +447,7 @@ func (e *Engine) shadowTick(sh *shadow, t, p, atr float64, direction int, allowP
 		}
 		var split *float64
 		if !sh.SplitDone && sh.Quantity >= 2 {
-			split = pointer(rounded(anchor+float64(d)*e.Config.SplitATR*a, tick, d))
+			split = pointer(rounded(anchor+float64(d)*e.RuleSplitDistance(a), tick, d))
 		}
 		levels := []level{{Reason: 1, Price: pointer(stop)}, {Reason: 2, Price: sh.TrailFloor}, {Reason: 7, Price: split}}
 		pendingAction := 0
@@ -454,7 +455,7 @@ func (e *Engine) shadowTick(sh *shadow, t, p, atr float64, direction int, allowP
 			pendingAction = 9
 		} else if sh.Realized+float64(sh.Quantity*d)*(p-anchor) <= floor-1e-8 {
 			pendingAction = 1
-		} else if t-sh.EntryTime >= e.Config.MaxHoldSeconds {
+		} else if e.ruleBool("shadow.hold_expired", t-sh.EntryTime >= e.Config.MaxHoldSeconds, map[string]any{"elapsed": t - sh.EntryTime, "threshold": e.Config.MaxHoldSeconds}) {
 			pendingAction = 8
 		}
 		for i := range levels {
@@ -478,16 +479,16 @@ func (e *Engine) shadowTick(sh *shadow, t, p, atr float64, direction int, allowP
 			} else {
 				pend.Extreme = math.Max(pend.Extreme, p)
 			}
-			price := rounded(pend.Extreme+float64(d)*e.Config.EntryATR*pend.ATR, tick, d)
+			price := rounded(pend.Extreme+float64(d)*e.ruleEntryDistance(pend.ATR), tick, d)
 			if price != pend.Level {
 				pend.Level = price
 				pend.Row = row
 			}
 		}
-		cooldown := sh.LastExit == nil || t >= *sh.LastExit+e.Config.CooldownSeconds
-		if allowPrepare && sh.Pending == nil && direction != 0 && cooldown && t >= e.Session.Start+e.Config.WarmupSeconds && t < e.Session.ForceClose-e.Config.EntryCutoffSeconds && finite(atr) && atr > 0 {
+		cooldown := sh.LastExit == nil || e.ruleBool("shadow.cooldown", t >= *sh.LastExit+e.Config.CooldownSeconds, map[string]any{"elapsed": t - *sh.LastExit, "threshold": e.Config.CooldownSeconds})
+		if allowPrepare && sh.Pending == nil && direction != 0 && cooldown && e.ruleBool("shadow.warmup", t >= e.Session.Start+e.Config.WarmupSeconds, map[string]any{"elapsed": t - e.Session.Start, "threshold": e.Config.WarmupSeconds}) && t < e.Session.ForceClose-e.Config.EntryCutoffSeconds && finite(atr) && atr > 0 {
 			a := math.Max(atr, tick*2)
-			sh.Pending = &pendingEntry{Direction: direction, ATR: a, Level: rounded(p+float64(direction)*e.Config.EntryATR*a, tick, direction), Extreme: p, Until: t + e.Config.PendingSeconds, Row: row, PrepareRow: row, PrepareID: sh.PrepareCount}
+			sh.Pending = &pendingEntry{Direction: direction, ATR: a, Level: rounded(p+float64(direction)*e.ruleEntryDistance(a), tick, direction), Extreme: p, Until: t + e.Config.PendingSeconds, Row: row, PrepareRow: row, PrepareID: sh.PrepareCount}
 			sh.PrepareCount++
 			prepared = true
 		}
@@ -556,7 +557,15 @@ func (e *Engine) closeSlots(selected []int, price float64, reason int, source in
 //
 // 引数: in(Tick) は現在までの観測。ATR=0 は暖機未完了です。
 // 返り値: []Event は新規・返済、error は逆行時計・連番・終場越え等の異常です。
-func (e *Engine) OnTick(in Tick) ([]Event, error) {
+func (e *Engine) OnTick(in Tick) (result []Event, err error) {
+	if err := e.Rules.Err(); err != nil {
+		return nil, err
+	}
+	defer func() {
+		if failure := e.Rules.Err(); failure != nil {
+			result, err = nil, failure
+		}
+	}()
 	t, p := in.Time, in.Price
 	e.observedRecovery = in.ObservedRecovery
 	if !finite(t) || !finite(p) || p <= 0 || in.Direction < -1 || in.Direction > 1 || in.Adverse < -1 || in.Adverse > 1 {

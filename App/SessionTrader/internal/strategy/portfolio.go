@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"futurealgorithm/sessiontrader/internal/e01"
+	"futurealgorithm/sessiontrader/internal/rules"
 )
 
 type orderState struct {
@@ -15,6 +16,7 @@ type orderState struct {
 	Filled        int
 	Done          bool
 	CloseConsumed map[string]int `json:",omitempty"`
+	P05LotID      string         `json:",omitempty"`
 }
 type armState struct {
 	Side, Stage                    int
@@ -39,7 +41,12 @@ type legState struct {
 
 // Portfolio は主担当・追加担当の実建玉と注文予約を独立管理します。
 type Portfolio struct {
+	Selected                    *SelectedPortfolio `json:",omitempty"`
+	S01                         *S01Portfolio      `json:",omitempty"`
+	s01Fresh                    bool
+	Rules                       *rules.Runtime     `json:"-"`
 	Research                    *ResearchPortfolio `json:",omitempty"`
+	P05                         *P05Portfolio      `json:",omitempty"`
 	Version                     int
 	Config                      Config
 	Session                     Session
@@ -69,9 +76,38 @@ func New(cfg Config, session Session) (*Portfolio, error) {
 	p := &Portfolio{Version: 1, Config: cfg, Session: session, Orders: map[string]*orderState{}, Executions: map[string]Fill{}, LastIndex: -1, PaperInputOrigin: -1, PaperRows: map[int64]int64{}}
 	p.Core = legState{Position: Position{Owner: "core"}, CloseTarget: -1, PaperCampaign: -1}
 	p.Extra = legState{Position: Position{Owner: "extra"}, CloseTarget: -1, PaperCampaign: -1}
+	if selectedMethod(cfg.Parameters.Method) {
+		if err := p.bindRules(); err != nil {
+			return nil, err
+		}
+		var err error
+		p.Selected, err = p.newSelected()
+		return p, err
+	}
+	if cfg.Parameters.Method == "P05" {
+		if err := p.bindRules(); err != nil {
+			return nil, err
+		}
+		var err error
+		p.P05, err = p.newP05()
+		return p, err
+	}
 	if cfg.Parameters.Method != "" {
 		var err error
-		p.Research, err = newResearchPortfolio(cfg, session)
+		base := cfg
+		if cfg.Parameters.Method == "S01" {
+			if cfg.Reference != "NK225" || session.Kind != "Day" {
+				return nil, errors.New("S01は日経の日中専用です")
+			}
+			base = s01BaseConfig(cfg)
+		}
+		p.Research, err = newResearchPortfolio(base, session)
+		if err == nil {
+			err = p.bindRules()
+		}
+		if err == nil && cfg.Parameters.Method == "S01" {
+			p.S01, err = p.newS01()
+		}
 		return p, err
 	}
 	if session.Kind == "Day" {
@@ -95,6 +131,9 @@ func New(cfg Config, session Session) (*Portfolio, error) {
 		if err != nil {
 			return nil, err
 		}
+	}
+	if err := p.bindRules(); err != nil {
+		return nil, err
 	}
 	return p, nil
 }
@@ -189,20 +228,54 @@ func (p *Portfolio) flushClose(l *legState, o Observation) *Signal {
 // 引数: o(Observation)、allowEntry(bool) は新規を外部で許可するか。
 // 返り値: []Signal は発注依頼、error は時計や参照市場の不正です。
 func (p *Portfolio) Observe(o Observation, allowEntry bool) ([]Signal, error) {
-	return p.observe(o, allowEntry, true)
+	return p.observe(o, allowEntry, true, true)
+}
+
+// ObserveWithFreshness は実受信の鮮度を追加の利益保護判断へ渡します。
+//
+// 引数: o(Observation)、allowEntry/fresh(bool)。返り値: []Signalとerrorです。
+// S01の未送信利益返済だけは新鮮な行で確定します。元の損切り・場末返済は停止しません。
+func (p *Portfolio) ObserveWithFreshness(o Observation, allowEntry, fresh bool) ([]Signal, error) {
+	return p.observe(o, allowEntry, true, fresh)
 }
 
 // observe は判断更新と外部発注依頼の生成を分離します。
 //
 // 引数: o(Observation)、allowEntry(bool)、emitOrders(bool) は現在の発注依頼を生成するか。
 // 返り値: []Signal は現在の依頼、error は観測の不整合です。
-func (p *Portfolio) observe(o Observation, allowEntry, emitOrders bool) ([]Signal, error) {
+func (p *Portfolio) observe(o Observation, allowEntry, emitOrders, fresh bool) (signals []Signal, err error) {
+	if p.S01 != nil && p.S01.Failure != "" {
+		return nil, errors.New(p.S01.Failure)
+	}
+	if err := p.Rules.Err(); err != nil {
+		return nil, err
+	}
+	defer func() {
+		if p.S01 != nil && p.S01.Failure != "" {
+			signals, err = nil, errors.New(p.S01.Failure)
+		}
+		if failure := p.Rules.Err(); failure != nil {
+			signals, err = nil, failure
+		}
+	}()
 	if o.Reference != p.Config.Reference || !finite(o.Time) || o.Time < p.LastTime || o.Index <= p.LastIndex {
 		return nil, errors.New("観測の市場・時計・連番が不正です")
 	}
 	p.LastTime = o.Time
 	p.LastIndex = o.Index
+	p.s01Fresh = fresh && emitOrders
+	if p.Selected != nil {
+		return p.observeSelected(o, allowEntry, emitOrders, fresh)
+	}
+	if p.P05 != nil {
+		return p.observeP05(o, allowEntry, emitOrders)
+	}
 	if p.Research != nil {
+		if p.S01 != nil {
+			if err := p.stepS01Shadow(o); err != nil {
+				return nil, err
+			}
+		}
 		return p.observeResearch(o, allowEntry, emitOrders)
 	}
 	out := []Signal{}
@@ -232,7 +305,12 @@ func (p *Portfolio) observe(o Observation, allowEntry, emitOrders bool) ([]Signa
 // OnFill は確認済み約定のみを実玉へ反映します。
 //
 // 引数: f(Fill)。返り値: error は二重 ID の内容矛盾又は数量不整合です。
-func (p *Portfolio) OnFill(f Fill) error {
+func (p *Portfolio) OnFill(f Fill) (err error) {
+	defer func() {
+		if failure := p.Rules.Err(); failure != nil {
+			err = failure
+		}
+	}()
 	if f.ExecutionID == "" || f.SignalID == "" || f.Quantity <= 0 || f.Price <= 0 || !finite(f.Price) || !finite(f.Fee) || f.Fee < 0 || !finite(f.Time) {
 		return errors.New("約定情報が不正です")
 	}
@@ -250,6 +328,12 @@ func (p *Portfolio) OnFill(f Fill) error {
 		return errors.New("約定枚数が注文枚数を超えました")
 	}
 	s := order.Signal
+	if p.Selected != nil {
+		return p.fillSelected(f, order)
+	}
+	if p.P05 != nil {
+		return p.fillP05(f, order)
+	}
 	if p.Research != nil {
 		return p.fillResearch(f, order)
 	}
@@ -304,6 +388,15 @@ func (p *Portfolio) OnOrderDone(signalID string) error {
 		return errors.New("終了した注文 ID が不明です")
 	}
 	o.Done = true
+	if p.Selected != nil {
+		return p.doneSelected(o)
+	}
+	if p.S01 != nil {
+		p.finishS01Initial(o)
+	}
+	if p.P05 != nil {
+		return nil
+	}
 	if p.Research != nil {
 		if o.Signal.Action == "new" && o.Filled == 0 {
 			s := p.sleeve(o.Signal.Owner)
@@ -342,7 +435,7 @@ func (p *Portfolio) OnOrderRejected(signalID string) error { return p.OnOrderDon
 // 引数: o(Observation) は未処理だった過去行です。
 // 返り値: error は観測の不整合です。返済要求は残し、過去発注依頼は外部へ出しません。
 func (p *Portfolio) Advance(o Observation) error {
-	_, err := p.observe(o, false, false)
+	_, err := p.observe(o, false, false, false)
 	return err
 }
 
@@ -351,6 +444,12 @@ func (p *Portfolio) Advance(o Observation) error {
 // 引数: at(float64) は現在時計、reason(string) は運用上の理由。
 // 返り値: []Signal は返済依頼です。既に注文中なら終了通知後に再判断します。
 func (p *Portfolio) Flatten(at float64, reason string) []Signal {
+	if p.Selected != nil {
+		return p.flattenSelected("", at, reason)
+	}
+	if p.P05 != nil {
+		return p.flattenP05("", at, reason)
+	}
 	if p.Research != nil {
 		return p.flattenResearch("", at, reason)
 	}
@@ -372,6 +471,12 @@ func (p *Portfolio) Flatten(at float64, reason string) []Signal {
 // 引数: owner(string) は core/extra、at(float64)、reason(string)。
 // 返り値: []Signal は現在発注できる返済依頼です。
 func (p *Portfolio) FlattenOwner(owner string, at float64, reason string) []Signal {
+	if p.Selected != nil {
+		return p.flattenSelected(owner, at, reason)
+	}
+	if p.P05 != nil {
+		return p.flattenP05(owner, at, reason)
+	}
 	if p.Research != nil {
 		return p.flattenResearch(owner, at, reason)
 	}
@@ -393,6 +498,12 @@ func (p *Portfolio) FlattenOwner(owner string, at float64, reason string) []Sign
 //
 // 引数: なし。返り値: Status は表示・照合用状態です。
 func (p *Portfolio) Status() Status {
+	if p.Selected != nil {
+		return p.statusSelected()
+	}
+	if p.P05 != nil {
+		return p.statusP05()
+	}
 	if p.Research != nil {
 		return p.researchStatus()
 	}
@@ -427,12 +538,53 @@ func Restore(data []byte) (*Portfolio, error) {
 	if err := p.Config.Validate(); err != nil {
 		return nil, err
 	}
+	if selectedMethod(p.Config.Parameters.Method) {
+		if p.Selected == nil || p.P05 != nil || p.Research != nil || p.S01 != nil {
+			return nil, errors.New("選定手法の保存本体が不一致です")
+		}
+		if err := p.bindRules(); err != nil {
+			return nil, err
+		}
+		if err := p.restoreSelected(); err != nil {
+			return nil, err
+		}
+		return &p, nil
+	}
+	if p.Selected != nil {
+		return nil, errors.New("対象外手法に選定手法状態があります")
+	}
+	if p.Config.Parameters.Method == "P05" {
+		if p.P05 == nil || p.Research != nil {
+			return nil, errors.New("P05の保存本体が一致しません")
+		}
+		if err := p.bindRules(); err != nil {
+			return nil, err
+		}
+		if err := p.restoreP05(); err != nil {
+			return nil, err
+		}
+		return &p, nil
+	}
+	if p.P05 != nil {
+		return nil, errors.New("対象外手法にP05状態があります")
+	}
+	if (p.Config.Parameters.Method == "S01") != (p.S01 != nil) {
+		return nil, errors.New("S01の手法と保存状態が一致しません")
+	}
 	if (p.Config.Parameters.Method != "") != (p.Research != nil) {
 		return nil, errors.New("研究手法IDと保存された戦略本体が一致しません")
 	}
 	if p.Research != nil {
 		if err := p.restoreResearch(); err != nil {
 			return nil, err
+		}
+		if err := p.bindRules(); err != nil {
+			return nil, err
+		}
+		if p.S01 != nil {
+			if err := p.restoreS01(); err != nil {
+				return nil, err
+			}
 		}
 		return &p, nil
 	}
@@ -448,6 +600,9 @@ func Restore(data []byte) (*Portfolio, error) {
 		if err != nil {
 			return nil, err
 		}
+	}
+	if err := p.bindRules(); err != nil {
+		return nil, err
 	}
 	return &p, nil
 }

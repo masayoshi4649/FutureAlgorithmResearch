@@ -59,7 +59,7 @@ func storedRuntime(t *testing.T, cfg config.Config) savedRuntime {
 	return saved
 }
 
-// TestRunPersistsNamespaceBeforeFirstSession は場の準備前でも運転IDを確定し、再起動しても変更しないことを検査します。
+// TestRunPersistsNamespaceBeforeFirstSession は場の準備前に運転IDを確定し、毎起動で新しいIDにすることを検査します。
 //
 // 引数: t(*testing.T) は検査環境です。返り値: なし。
 func TestRunPersistsNamespaceBeforeFirstSession(t *testing.T) {
@@ -94,8 +94,11 @@ func TestRunPersistsNamespaceBeforeFirstSession(t *testing.T) {
 			if err := Run(ctx, cfg); err != nil {
 				t.Fatal("再起動に失敗しました", err)
 			}
-			if next := storedRuntime(t, cfg); next.Namespace != first.Namespace {
-				t.Fatal("再起動で運転IDが変わりました", first.Namespace, next.Namespace)
+			if next := storedRuntime(t, cfg); next.Namespace == first.Namespace || len(next.Namespace) != 32 {
+				t.Fatal("再起動で新しい運転IDを発行しませんでした", first.Namespace, next.Namespace)
+			}
+			if _, err := os.Stat(cfg.Path(cfg.Runtime.LogDirectory)); !os.IsNotExist(err) {
+				t.Fatal("場の準備前に旧ログ階層又はtraceを生成しました", err)
 			}
 		})
 	}

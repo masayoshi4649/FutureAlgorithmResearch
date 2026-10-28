@@ -101,7 +101,11 @@ func prepareHistory(ctx context.Context, cfg config.Config, bundle candleBundle,
 	}
 	result := &prepared{Features: features, Plan: plan, Generation: base.Generation, Cutoff: cutoff,
 		Last: make(map[string]strategy.Observation), SourceHashes: make(map[string][]string)}
-	if parameters.Method != "" {
+	researchRequired, err := researchFeaturesRequired(cfg, reference, plan.Kind)
+	if err != nil {
+		return nil, err
+	}
+	if researchRequired {
 		features.EnableResearch()
 	}
 	if err = store.Event("履歴準備開始", plan.ID, "", base.Generation, received, map[string]any{

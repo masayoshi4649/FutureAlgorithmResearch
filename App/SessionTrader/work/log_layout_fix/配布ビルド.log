@@ -1,0 +1,3 @@
+windows / amd64 をビルドします。
+linux / amd64 をビルドします。
+dist/windows-amd64 と dist/linux-amd64 を更新しました。既存の実設定・データ・ログは保持しています。

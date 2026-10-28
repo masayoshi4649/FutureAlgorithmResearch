@@ -1,0 +1,38 @@
+{
+  "passed": true,
+  "checks": [
+    "全商品OFF・損益タブ以外は未取得",
+    "日付降順・損失正額・収支符号・無取引0円",
+    "商品と実仮想の複合フィルタ・該当なし",
+    "モバイルは表内だけ横スクロール",
+    "読取500は前回表示と成功時刻を維持・失敗を明示",
+    "CSV削除後は古い表を消し正常な空状態",
+    "5秒定期取得でCSV追加を反映",
+    "別タブでは損益定期取得を停止",
+    "保存失敗はCSV欠損と別に全ページ表示",
+    "変更API要求0・ブラウザ例外0"
+  ],
+  "source": "全商品OFFの人工APIと架空CSV。実サービス接続0、売買操作0。Go RESTは別のsession_pl_test.goで検査。",
+  "sources": [
+    {
+      "path": "S:\\GitHub\\masayoshi4649\\FutureAlgorithmResearch\\App\\SessionTrader\\internal\\webui\\assets\\index.html",
+      "sha256": "a76bff9cc9a548195fb0e39caf5f0b8c54e957f94b8a4fe732f918a19858b50a"
+    },
+    {
+      "path": "S:\\GitHub\\masayoshi4649\\FutureAlgorithmResearch\\App\\SessionTrader\\internal\\webui\\assets\\app.js",
+      "sha256": "73df8b6a815990d21b53696d597a30b08b0bbf4a3ad1309767feb563b8c17b24"
+    },
+    {
+      "path": "S:\\GitHub\\masayoshi4649\\FutureAlgorithmResearch\\App\\SessionTrader\\internal\\webui\\assets\\style.css",
+      "sha256": "f33d4e0e33beed8ebe5b2d9565228c764d21d6caeafd07930ebb3418ced94074"
+    }
+  ],
+  "screenshots": [
+    "セッション損益_デスクトップ.png",
+    "セッション損益_モバイル.png",
+    "セッション損益_記録なし.png",
+    "セッション損益_読取失敗.png"
+  ],
+  "errors": [],
+  "writes": []
+}

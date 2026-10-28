@@ -39,6 +39,7 @@ type ResearchSleeve struct {
 	Budget, Best                                         float64
 	ForceReason                                          int
 	GoalSequence                                         int
+	PartialProtection                                    *ResearchPartial145
 }
 
 // ResearchPortfolio は00143の固定配分と実建玉管理です。
@@ -48,9 +49,29 @@ type ResearchPortfolio struct {
 	Sleeves []*ResearchSleeve
 }
 
+// researchRuleBool はTG04/PG04の式だけを評価し、D07の専用条件と分離します。
+//
+// 引数: name(string)、legacy(bool)、env(map[string]any)。返り値: boolは条件成立です。
+func (p *Portfolio) researchRuleBool(name string, legacy bool, env map[string]any) bool {
+	if p.Rules != nil && p.Research != nil && (p.Research.Method == "TG04" || p.Research.Method == "PG04") {
+		return p.Rules.Bool("research."+name, env)
+	}
+	return legacy
+}
+
+// researchRuleNumber はTG04/PG04の数値式を評価し、従来の独立人工状態では既存値を返します。
+//
+// 引数: name(string)、legacy(float64)、env(map[string]any)。返り値: float64は判定値です。
+func (p *Portfolio) researchRuleNumber(name string, legacy float64, env map[string]any) float64 {
+	if p.Rules != nil && p.Research != nil && (p.Research.Method == "TG04" || p.Research.Method == "PG04") {
+		return p.Rules.Number("research."+name, env)
+	}
+	return legacy
+}
+
 // ResearchAllocation は固定比率を最大剰余法で整数化します。
 //
-// 引数: method(string) はTG04/PG04、cap(int)は同時枚数上限です。
+// 引数: method(string) はTG04/PG04/D07、cap(int)は同時枚数上限です。
 // 返り値: map[string]int は枠別上限です。同率は基本・追加・別入口の順に配分します。
 func ResearchAllocation(method string, cap int) map[string]int {
 	weights := []int{5, 3, 2}
@@ -90,12 +111,12 @@ func researchFee(product string) float64 {
 	return 0
 }
 
-// newResearchPortfolio はTG04/PG04の独立仮想源を作ります。
+// newResearchPortfolio はTG04/PG04/D07の独立仮想源を作ります。
 //
 // 引数: cfg(Config)、session(Session)。返り値: *ResearchPortfolioと設定不正のerrorです。
 func newResearchPortfolio(cfg Config, session Session) (*ResearchPortfolio, error) {
-	if cfg.Reference != "NK225" || (cfg.Parameters.Method != "TG04" && cfg.Parameters.Method != "PG04") || researchFee(cfg.Product) == 0 {
-		return nil, errors.New("TG04/PG04は日経先物・mini・micro専用です")
+	if cfg.Reference != "NK225" || (cfg.Parameters.Method != "TG04" && cfg.Parameters.Method != "PG04" && cfg.Parameters.Method != "D07") || researchFee(cfg.Product) == 0 {
+		return nil, errors.New("TG04/PG04/D07は日経先物・mini・micro専用です")
 	}
 	r := &ResearchPortfolio{Version: 1, Method: cfg.Parameters.Method}
 	allocation := ResearchAllocation(r.Method, cfg.Cap)
@@ -157,13 +178,34 @@ func (p *Portfolio) pendingResearch(owner string) (bool, int) {
 //
 // 引数: o(Observation)、side(int)、r(float64)。返り値: boolは採用可能です。
 func (p *Portfolio) researchGate(o Observation, side int, r float64) bool {
+	if p.Research.Method == "D07" {
+		return p.researchGate145(o, side, r)
+	}
 	f := o.Research
 	own := f.Known[13] && f.Known[9] && f.Values[9] > 0
-	if p.Session.Kind == "Day" {
-		return !own || float64(side)*f.Values[13]*f.Values[9]/r >= -.25
+	ownMove := 0.
+	if own {
+		ownMove = float64(side) * f.Values[13]
 	}
-	peer := f.Known[21] && f.Known[22] && o.Time-f.Values[22] >= 0 && o.Time-f.Values[22] <= 15
-	return !(own && peer && float64(side)*f.Values[13] < 0 && float64(side)*f.Values[21] < 0)
+	if p.Session.Kind == "Day" {
+		moveR := 0.
+		if own {
+			moveR = ownMove * f.Values[9] / r
+			if !finite(moveR) {
+				return false
+			}
+		}
+		return p.researchRuleBool("core.day_gate", !own || moveR >= -.25, map[string]any{"own_known": own, "signed_move_r": moveR})
+	}
+	peer, peerMove := false, 0.
+	if f.Known[21] && f.Known[22] {
+		age := o.Time - f.Values[22]
+		peer = age >= 0 && p.researchRuleBool("core.peer_fresh", age <= 15, map[string]any{"age": age})
+		if peer {
+			peerMove = float64(side) * f.Values[21]
+		}
+	}
+	return p.researchRuleBool("core.night_gate", !(own && peer && ownMove < 0 && peerMove < 0), map[string]any{"own_known": own, "peer_known": peer, "own_move": ownMove, "peer_move": peerMove})
 }
 
 // emitResearch は建玉IDを特定した依頼を予約し、実約定は増やしません。
@@ -176,7 +218,12 @@ func (p *Portfolio) emitResearch(s *ResearchSleeve, o Observation, e ResearchEve
 	if p.Config.Namespace != "" {
 		id = p.Config.Namespace + "-" + id
 	}
-	evidence, _ := json.Marshal(map[string]any{"method": p.Research.Method, "owner": s.Name, "observation": o, "campaign": s.Campaign, "fixed_r": s.FixedR, "fixed_ma20": s.FixedMA, "ma_known": s.MAKnown, "realized_net": s.Cash, "residual_stage": s.Stage, "profit_budget": s.Budget, "retained_hold_id": s.Retained})
+	details := map[string]any{"method": p.Research.Method, "owner": s.Name, "observation": o, "campaign": s.Campaign, "fixed_r": s.FixedR, "fixed_ma20": s.FixedMA, "ma_known": s.MAKnown, "realized_net": s.Cash, "strategy_cash": p.researchCash(s), "residual_stage": s.Stage, "profit_budget": s.Budget, "retained_hold_id": s.Retained, "partial_protection": s.PartialProtection}
+	if p.S01 != nil {
+		details["method"] = "S01"
+		details["s01"] = p.s01Diagnostics()
+	}
+	evidence, _ := json.Marshal(details)
 	sig := Signal{ID: id, Owner: s.Name, Action: e.Action, Side: e.Side, Quantity: e.Quantity, Time: o.Time, SourceIndex: o.Index, Reason: researchReason(p.Session.Kind, e.Action, e.Reason), ReasonCode: e.Reason, Risk: e.Risk, Boundary: e.Boundary, Campaign: s.Campaign, Ticket: e.Ticket, Targets: targets, Evidence: evidence}
 	p.Orders[id] = &orderState{Signal: sig}
 	return sig
@@ -186,8 +233,14 @@ func (p *Portfolio) emitResearch(s *ResearchSleeve, o Observation, e ResearchEve
 //
 // 引数: kind/action(string)、reason(int)。返り値: stringは短い日本語の理由です。
 func researchReason(kind, action string, reason int) string {
+	if name := s01Reason(reason); name != "" {
+		return name
+	}
 	names := map[int]string{1431: "帯外突破の失敗後に回復", 1433: "帯端から反発", 1434: "利益保護後の追加", 1435: "帯中心で部分利確", 1436: "固定支持または初回極値の破綻", 1437: "帯幅で利益追尾", 14312: "入口固定平均と20分・120秒方向の破綻", 14380: "残り1枚の広い利益追尾", 14381: "実現利益の損失予算に到達", 14382: "残玉の実現利益不足"}
 	if name, ok := names[reason]; ok {
+		return name
+	}
+	if name, ok := researchReason145(reason); ok {
 		return name
 	}
 	return reasonText(kind, action, reason)
@@ -275,7 +328,13 @@ func (p *Portfolio) retainResearch(s *ResearchSleeve, o Observation, events []Re
 		if e.Campaign != s.Campaign {
 			continue
 		}
-		if e.Action == "new" || (e.Reason != 2 && e.Reason != 70 && e.Reason != 1437) {
+		eligible := e.Reason == 2 || e.Reason == 70 || e.Reason == 1437
+		if p.Research.Method == "D07" {
+			eligible = p.Rules.Bool("residual.eligible_reason", map[string]any{"reason": float64(e.Reason)})
+		} else {
+			eligible = p.researchRuleBool("residual.eligible_reason", eligible, map[string]any{"reason": float64(e.Reason)})
+		}
+		if e.Action == "new" || !eligible {
 			return false
 		}
 		n += e.Quantity
@@ -284,17 +343,24 @@ func (p *Portfolio) retainResearch(s *ResearchSleeve, o Observation, events []Re
 		return false
 	}
 	mark := liquidation(o, s.Side)
-	fee := researchFee(p.Config.Product)
+	fee := p.researchPolicyFee()
 	candidate := -1
 	for i, l := range s.Lots {
-		if l.Quantity > 0 && float64(s.Side)*(mark-l.Price)*p.Config.PointValue > math.Floor(fee) && (candidate < 0 || l.At < s.Lots[candidate].At) {
+		gain := float64(s.Side) * (mark - l.Price) * p.Config.PointValue
+		profitable := gain > math.Floor(fee)
+		if p.Research.Method == "D07" {
+			profitable = p.Rules.Bool("residual.profitable_lot", map[string]any{"gain_yen": gain})
+		} else {
+			profitable = p.researchRuleBool("residual.profitable_lot", profitable, map[string]any{"gain_yen": gain, "close_fee": math.Floor(fee)})
+		}
+		if l.Quantity > 0 && profitable && (candidate < 0 || l.At < s.Lots[candidate].At) {
 			candidate = i
 		}
 	}
 	if candidate < 0 {
 		return false
 	}
-	estimate := s.Cash
+	estimate := p.researchCash(s)
 	// 元UIDごとの返済注文を維持し、その注文ごとに端数を切り捨てます。
 	for _, e := range events {
 		if e.Campaign != s.Campaign {
@@ -314,7 +380,13 @@ func (p *Portfolio) retainResearch(s *ResearchSleeve, o Observation, events []Re
 		}
 		estimate -= math.Floor(float64(q) * fee)
 	}
-	if estimate <= 0 {
+	profitable := estimate > 0
+	if p.Research.Method == "D07" {
+		profitable = p.Rules.Bool("residual.profitable_budget", map[string]any{"cash_yen": estimate})
+	} else {
+		profitable = p.researchRuleBool("residual.profitable_budget", profitable, map[string]any{"cash_yen": estimate})
+	}
+	if !profitable {
 		return false
 	}
 	s.Stage = 1
@@ -341,7 +413,15 @@ func (p *Portfolio) retainResearch(s *ResearchSleeve, o Observation, events []Re
 //
 // 引数: at(float64)。返り値: boolは静観時間内です。
 func (p *Portfolio) researchQuiet(at float64) bool {
-	return p.Session.USOpen > 0 && at >= p.Session.USOpen-900 && at < p.Session.USOpen+900
+	before, after := 900., 900.
+	if p.Research.Method == "D07" {
+		before = p.Rules.Number("residual.quiet_before_seconds", map[string]any{})
+		after = p.Rules.Number("residual.quiet_after_seconds", map[string]any{})
+	} else {
+		before = p.researchRuleNumber("residual.quiet_before", before, map[string]any{})
+		after = p.researchRuleNumber("residual.quiet_after", after, map[string]any{})
+	}
+	return p.Session.USOpen > 0 && at >= p.Session.USOpen-before && at < p.Session.USOpen+after
 }
 
 // researchManage は固定入口の反証と確定利益予算を、現在観測だけで管理します。
@@ -367,14 +447,22 @@ func (p *Portfolio) researchManage(s *ResearchSleeve, o Observation) {
 	}
 	if s.Stage == 1 && !pending && s.held() == 1 && quoteValid(o) {
 		// 他玉が実約定し、注文終了した後だけ予算を確定します。
-		s.Budget = math.Max(0, s.Cash)
+		s.Budget = math.Max(0, p.researchCash(s))
+		profitable := p.researchCash(s) > 0
+		if p.Research.Method == "D07" {
+			s.Budget = p.Rules.Number("residual.budget", map[string]any{"cash_yen": p.researchCash(s)})
+			profitable = p.Rules.Bool("residual.profitable_budget", map[string]any{"cash_yen": p.researchCash(s)})
+		} else {
+			s.Budget = p.researchRuleNumber("residual.budget", s.Budget, map[string]any{"cash_yen": p.researchCash(s)})
+			profitable = p.researchRuleBool("residual.profitable_budget", profitable, map[string]any{"cash_yen": p.researchCash(s)})
+		}
 		s.Stage = 2
 		for _, l := range s.Lots {
 			if l.ID == s.Retained {
 				s.Best = float64(s.Side) * (liquidation(o, s.Side) - l.Price)
 			}
 		}
-		if s.Cash <= 0 {
+		if !profitable {
 			closeAllResearch(s, 14382)
 		}
 	}
@@ -385,10 +473,20 @@ func (p *Portfolio) researchManage(s *ResearchSleeve, o Observation) {
 			}
 			gain := float64(s.Side) * (liquidation(o, s.Side) - l.Price)
 			s.Best = math.Max(s.Best, gain)
-			floor := (math.Floor(researchFee(p.Config.Product)) - s.Budget) / p.Config.PointValue
-			trail := s.Best - 3*s.FixedR
-			if gain <= math.Max(floor, trail) {
+			floor := (math.Floor(p.researchPolicyFee()) - s.Budget) / p.Config.PointValue
+			width, capped := p.researchResidualWidth(s)
+			trail := s.Best - width
+			exit := gain <= math.Max(floor, trail)
+			if p.Research.Method == "D07" {
+				exit = p.Rules.Bool("residual.exit", map[string]any{"gain": gain, "budget_floor": floor, "trail_floor": trail})
+			} else {
+				exit = p.researchRuleBool("residual.exit", exit, map[string]any{"gain": gain, "budget_floor": floor, "trail_floor": trail})
+			}
+			if exit {
 				reason := 14380
+				if capped {
+					reason = 14504
+				}
 				if floor >= trail {
 					reason = 14381
 				}
@@ -401,6 +499,11 @@ func (p *Portfolio) researchManage(s *ResearchSleeve, o Observation) {
 	}
 	f := o.Research
 	adverse := quoteValid(o) && s.MAKnown && f.Known[10] && f.Known[13] && f.Known[9] && f.Values[9] > 0 && f.Known[28] && float64(s.Side)*f.Values[13] < 0 && float64(s.Side)*f.Values[28] < 0 && float64(s.Side)*(f.Values[10]-s.FixedMA) <= -.1*s.FixedR
+	if p.Research.Method == "D07" {
+		adverse = quoteValid(o) && s.MAKnown && f.Known[10] && f.Known[13] && f.Known[9] && f.Values[9] > 0 && f.Known[28] && p.Rules.Bool("core.day_adverse", map[string]any{"signed_120": float64(s.Side) * f.Values[13], "signed_20m": float64(s.Side) * f.Values[28], "signed_ma_gap": float64(s.Side) * (f.Values[10] - s.FixedMA), "fixed_r": s.FixedR})
+	} else if quoteValid(o) && s.MAKnown && f.Known[10] && f.Known[13] && f.Known[9] && f.Values[9] > 0 && f.Known[28] {
+		adverse = p.researchRuleBool("core.day_adverse", adverse, map[string]any{"own120": float64(s.Side) * f.Values[13], "own20": float64(s.Side) * f.Values[28], "ma_distance": float64(s.Side) * (f.Values[10] - s.FixedMA), "risk": s.FixedR})
+	}
 	if !quoteValid(o) || (s.LastValid > 0 && o.Time-s.LastValid > 15) {
 		s.FailureSince = -1
 	}
@@ -408,7 +511,13 @@ func (p *Portfolio) researchManage(s *ResearchSleeve, o Observation) {
 		if s.FailureSince < 0 {
 			s.FailureSince = o.Time
 		}
-		if o.Time-s.FailureSince >= 15 {
+		duration := 15.
+		if p.Research.Method == "D07" {
+			duration = p.Rules.Number("core.adverse_hold_seconds", map[string]any{})
+		} else {
+			duration = p.researchRuleNumber("core.adverse_duration", duration, map[string]any{})
+		}
+		if o.Time-s.FailureSince >= duration {
 			closeAllResearch(s, 14312)
 		}
 	} else {
@@ -431,7 +540,15 @@ func (p *Portfolio) nativeResearch(s *ResearchSleeve, o Observation, events []Re
 		if e.Action == "new" && !known {
 			pending, _ := p.pendingResearch(s.Name)
 			r := math.Max(8*p.Config.LargeTick, o.ATR)
+			if p.Research.Method == "D07" {
+				r = p.researchFixedR145(o)
+			} else if finite(o.ATR) {
+				r = p.researchRuleNumber("core.fixed_r", r, map[string]any{"tick": p.Config.LargeTick, "atr": o.ATR})
+			}
 			accepted = allow && emit && !pending && s.held() == 0 && o.Time < p.Session.ForceClose
+			if accepted && p.S01 != nil {
+				accepted = p.s01EntryAllowed(s, o, e.Campaign)
+			}
 			if accepted && s.Name == "core" {
 				accepted = p.researchGate(o, e.Side, r)
 			}
@@ -458,6 +575,10 @@ func (p *Portfolio) nativeResearch(s *ResearchSleeve, o Observation, events []Re
 				s.Budget = 0
 				s.Best = 0
 				s.ForceReason = 0
+				s.PartialProtection = nil
+				if p.S01 != nil && s.Name == "episode" {
+					p.S01.Guard = &S01Guard{Campaign: e.Campaign, Risk: r}
+				}
 			}
 		}
 		if !accepted || e.Campaign != s.Campaign {
@@ -516,8 +637,21 @@ func (p *Portfolio) observeResearch(o Observation, allow, emit bool) ([]Signal, 
 		if err != nil {
 			return nil, err
 		}
-		out = append(out, p.nativeResearch(s, o, events, allow, emit)...)
+		sourceClose := false
+		for _, event := range events {
+			sourceClose = sourceClose || event.Action == "close"
+		}
+		if !sourceClose {
+			p.manageS01Guard(s, o, emit && p.s01Fresh)
+		}
+		newAllowed := allow
+		if p.S01 != nil && s.Name == "episode" {
+			newAllowed = allow && s01EntryNotClosing(s, sourceClose)
+		}
+		out = append(out, p.nativeResearch(s, o, events, newAllowed, emit)...)
 		p.researchManage(s, o)
+		p.managePartialProtection145(s, o)
+		p.manageS01Guard(s, o, emit && p.s01Fresh)
 		if emit {
 			out = append(out, p.flushResearchGoals(s, o)...)
 		}
@@ -534,20 +668,32 @@ func (p *Portfolio) fillResearch(f Fill, order *orderState) error {
 	if s == nil || s.Campaign != e.Campaign {
 		return errors.New("約定の担当又は親が現存状態と異なります")
 	}
+	closedGain := 0.
 	if e.Action == "new" {
 		id := f.HoldID
 		if id == "" {
 			id = f.ExecutionID
 		}
-		for _, l := range s.Lots {
+		existing := -1
+		for i, l := range s.Lots {
 			if l.ID == id {
-				return errors.New("建玉IDを重複して追加できません")
+				if p.S01 == nil || l.EntryID != e.ID || l.Ticket != e.Ticket {
+					return errors.New("建玉IDを重複して追加できません")
+				}
+				existing = i
 			}
 		}
 		if s.held()+f.Quantity > s.Capacity {
 			return errors.New("実約定が担当枚数上限を超えました")
 		}
-		s.Lots = append(s.Lots, ResearchLot{ID: id, EntryID: e.ID, Ticket: e.Ticket, Quantity: f.Quantity, Price: f.Price, At: f.Time})
+		if existing < 0 {
+			s.Lots = append(s.Lots, ResearchLot{ID: id, EntryID: e.ID, Ticket: e.Ticket, Quantity: f.Quantity, Price: f.Price, At: f.Time})
+		} else {
+			l := &s.Lots[existing]
+			l.Price = (l.Price*float64(l.Quantity) + f.Price*float64(f.Quantity)) / float64(l.Quantity+f.Quantity)
+			l.Quantity += f.Quantity
+		}
+		p.recordS01Initial(s, f, e)
 		s.Opened[e.Ticket] += f.Quantity
 		if s.Blocked {
 			s.setGoal(id, 0, s.ForceReason)
@@ -622,7 +768,9 @@ func (p *Portfolio) fillResearch(f Fill, order *orderState) error {
 			for i := range s.Lots {
 				l := &s.Lots[i]
 				if l.ID == target.ID {
-					s.Cash += float64(s.Side) * (f.Price - l.Price) * float64(target.Quantity) * p.Config.PointValue
+					gain := float64(s.Side) * (f.Price - l.Price) * float64(target.Quantity) * p.Config.PointValue
+					s.Cash += gain
+					closedGain += gain
 					l.Quantity -= target.Quantity
 				}
 			}
@@ -630,6 +778,7 @@ func (p *Portfolio) fillResearch(f Fill, order *orderState) error {
 	}
 	s.Cash -= f.Fee
 	s.Fees += f.Fee
+	p.armPartialProtection145(s, f, e, closedGain)
 	order.Filled += f.Quantity
 	p.Executions[f.ExecutionID] = f
 	if e.Action == "new" {
@@ -693,7 +842,11 @@ func (p *Portfolio) researchStatus() Status {
 // 引数: なし。返り値: errorは破損又は設定不一致です。
 func (p *Portfolio) restoreResearch() error {
 	r := p.Research
-	if r.Version != 1 || r.Method != p.Config.Parameters.Method {
+	method := p.Config.Parameters.Method
+	if method == "S01" {
+		method = "D07"
+	}
+	if r.Version != 1 || r.Method != method {
 		return errors.New("研究戦略の保存版又は手法が不正です")
 	}
 	want := ResearchAllocation(r.Method, p.Config.Cap)
@@ -704,6 +857,11 @@ func (p *Portfolio) restoreResearch() error {
 			return errors.New("研究戦略の配分又は保存状態が不正です")
 		}
 		seen[s.Name] = true
+		if v := s.PartialProtection; v != nil {
+			if r.Method != "D07" || s.Name != "core" || p.Session.Kind != "Day" || !finite(v.Anchor) || v.Anchor <= 0 || !finite(v.Best) || v.Best < 0 || !finite(v.StartedAt) {
+				return errors.New("部分利確後の利益保護状態が不正です")
+			}
+		}
 		if err := s.Source.Restore(); err != nil {
 			return err
 		}

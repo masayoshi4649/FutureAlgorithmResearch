@@ -1,9 +1,15 @@
 package strategy
 
-import "math"
+import (
+	"math"
+
+	"futurealgorithm/sessiontrader/internal/rules"
+)
 
 // ResearchEpisode は公開20分帯の突破失敗を追う日中担当の保存状態です。
 type ResearchEpisode struct {
+	Rules                                                                 *rules.Runtime `json:"-" toml:"-"`
+	ResearchRules                                                         bool
 	Book                                                                  ResearchBook
 	Initial, Maximum                                                      int
 	Locked                                                                [2]bool
@@ -19,12 +25,36 @@ type ResearchEpisode struct {
 	CampaignLow, CampaignHigh                                             float64
 }
 
+// episodeBool はTG04/PG04の日中別入口だけ外部条件を評価します。
+//
+// 引数: name(string)、legacy(bool)、env(map[string]any)。返り値: boolは条件成立です。
+func (s *ResearchEpisode) episodeBool(name string, legacy bool, env map[string]any) bool {
+	if s.ResearchRules {
+		return s.Rules.Bool("research.episode."+name, env)
+	}
+	return legacy
+}
+
+// episodeNumber はTG04/PG04の日中別入口の数値式を評価します。
+//
+// 引数: name(string)、legacy(float64)、env(map[string]any)。返り値: float64は判定値です。
+func (s *ResearchEpisode) episodeNumber(name string, legacy float64, env map[string]any) float64 {
+	if s.ResearchRules {
+		return s.Rules.Number("research.episode."+name, env)
+	}
+	return legacy
+}
+
 // step は固定した帯の外側への失敗と内側回復を確認して注文を判断します。
 //
 // 引数: o(Observation)、session(Session)、tick(float64)、gap(bool)。
 // 返り値: []ResearchEvent は現在原行の通知です。最終値や将来足は参照しません。
 func (s *ResearchEpisode) step(o Observation, session Session, tick float64, gap bool) []ResearchEvent {
 	b := &s.Book
+	roundTrip := .77
+	if b.FeeFree {
+		roundTrip = 0
+	}
 	valid := quoteValid(o)
 	h := o.Research.Band20.Values
 	known := valid && o.Research.Band20.Known && h[0] > h[1]
@@ -39,7 +69,7 @@ func (s *ResearchEpisode) step(o Observation, session Session, tick float64, gap
 	fill := b.filled(o)
 	if fill == 1 {
 		b.Floor = float64(b.Side) * (s.PendingStop - b.Base)
-		b.Risk = math.Max(8*tick, -b.Floor)
+		b.Risk = s.episodeNumber("fixed_r", math.Max(8*tick, -b.Floor), map[string]any{"tick": tick, "distance": -b.Floor})
 		s.InitialBudget = float64(b.total()) * math.Max(tick, -b.Floor)
 		s.BandWidth, s.Edge, s.Center, s.EpisodeExtreme = s.PendingWidth, s.PendingEdge, s.PendingCenter, s.PendingExtreme
 		s.PartialDone = false
@@ -50,7 +80,7 @@ func (s *ResearchEpisode) step(o Observation, session Session, tick float64, gap
 		s.LastAdd = o.Time
 	} else if fill == 4 {
 		s.PartialDone = true
-		b.Floor = math.Max(b.Floor, .77+tick)
+		b.Floor = math.Max(b.Floor, s.episodeNumber("partial_floor", roundTrip+tick, map[string]any{"round_trip": roundTrip, "tick": tick}))
 	} else if fill == 2 {
 		k := 0
 		if b.Side < 0 {
@@ -93,17 +123,18 @@ func (s *ResearchEpisode) step(o Observation, session Session, tick float64, gap
 			mark := liquidation(o, b.Side)
 			gain := d * (mark - b.Base)
 			b.Best = math.Max(b.Best, gain)
-			if b.Best >= b.Risk {
-				b.Floor = math.Max(b.Floor, b.Best-math.Max(8*tick, .5*s.BandWidth))
+			if s.episodeBool("trail_active", b.Best >= b.Risk, map[string]any{"best": b.Best, "risk": b.Risk}) {
+				width := s.episodeNumber("trail_width", math.Max(8*tick, .5*s.BandWidth), map[string]any{"tick": tick, "band_width": s.BandWidth})
+				b.Floor = math.Max(b.Floor, b.Best-width)
 			}
-			if gain <= b.Floor {
+			if s.episodeBool("exit", gain <= b.Floor, map[string]any{"gain": gain, "floor": b.Floor}) {
 				reason := 1436
 				if b.Floor > 0 {
 					reason = 1437
 				}
 				return b.queueClose(o, 2, total, reason, true)
 			}
-			if !s.PartialDone && total >= 2 && d*(mark-s.Center) >= 0 && gain > .77+tick {
+			if !s.PartialDone && total >= 2 && s.episodeBool("partial", d*(mark-s.Center) >= 0 && gain > roundTrip+tick, map[string]any{"center_distance": d * (mark - s.Center), "gain": gain, "round_trip": roundTrip, "tick": tick}) {
 				return b.queueClose(o, 4, total/2, 1435, true)
 			}
 		}
@@ -111,14 +142,14 @@ func (s *ResearchEpisode) step(o Observation, session Session, tick float64, gap
 	if total > 0 && valid && len(b.Pending) == 0 && total < s.Maximum && b.UID < 5 && o.Time < session.ForceClose-300 {
 		d := float64(b.Side)
 		gain := d * (liquidation(o, b.Side) - b.Base)
-		if b.Floor >= .77 && o.Time-s.LastAdd >= 60 && gain >= s.LastAddGain+.5*b.Risk {
+		if s.episodeBool("add_trigger", b.Floor >= roundTrip && o.Time-s.LastAdd >= 60 && gain >= s.LastAddGain+.5*b.Risk, map[string]any{"floor": b.Floor, "round_trip": roundTrip, "elapsed": o.Time - s.LastAdd, "gain": gain, "last_gain": s.LastAddGain, "risk": b.Risk}) {
 			price := liquidation(o, -b.Side)
 			stop := b.Base + d*b.Floor
 			exposed := 0.
 			for u, q := range b.Held {
 				exposed += float64(q) * math.Max(0, d*(b.Entries[u]-stop))
 			}
-			if exposed+math.Max(tick, d*(price-stop)) <= s.InitialBudget && o.Ask-o.Bid <= .1*s.BandWidth {
+			if s.episodeBool("add_ready", exposed+math.Max(tick, d*(price-stop)) <= s.InitialBudget && o.Ask-o.Bid <= .1*s.BandWidth, map[string]any{"exposure": exposed + math.Max(tick, d*(price-stop)), "budget": s.InitialBudget, "spread": o.Ask - o.Bid, "band_width": s.BandWidth}) {
 				s.LastAddGain = gain
 				return b.queueNew(o, 3, b.Side, 1, 1434, b.Risk, stop)
 			}
@@ -139,13 +170,13 @@ func (s *ResearchEpisode) step(o Observation, session Session, tick float64, gap
 				}
 				fresh := h[8] > s.LockPublic[k] && d*(s.LockEdge[k]-boundary) >= 2*tick
 				extreme := d*(s.LockExtreme[k]-mid) >= 2*tick
-				if fresh || extreme {
+				if s.episodeBool("unlock", fresh || extreme, map[string]any{"new_public": h[8] > s.LockPublic[k], "edge_change": d * (s.LockEdge[k] - boundary), "extreme_change": d * (s.LockExtreme[k] - mid), "tick": tick}) {
 					s.Locked[k] = false
 				}
 			}
 		}
-		qualified := width >= 16*tick && o.Ask-o.Bid <= .1*width
-		if s.Arm != 0 && (o.Time-s.ArmTime > 1200 || !qualified) {
+		qualified := s.episodeBool("qualified", width >= 16*tick && o.Ask-o.Bid <= .1*width, map[string]any{"band_width": width, "tick": tick, "spread": o.Ask - o.Bid})
+		if s.Arm != 0 && s.episodeBool("expired", o.Time-s.ArmTime > 1200 || !qualified, map[string]any{"elapsed": o.Time - s.ArmTime, "qualified": qualified}) {
 			s.Arm = 0
 			s.SinceKnown = false
 		}
@@ -158,6 +189,15 @@ func (s *ResearchEpisode) step(o Observation, session Session, tick float64, gap
 			} else if mid >= high+2*tick {
 				candidate = -1
 				boundary = high
+			}
+			if s.ResearchRules {
+				direction := s.episodeNumber("side", float64(candidate), map[string]any{"mid": mid, "low": low, "high": high, "tick": tick})
+				candidate = 0
+				if direction == 1 {
+					candidate, boundary = 1, low
+				} else if direction == -1 {
+					candidate, boundary = -1, high
+				}
 			}
 			k := 0
 			if candidate < 0 {
@@ -177,23 +217,25 @@ func (s *ResearchEpisode) step(o Observation, session Session, tick float64, gap
 			d := float64(s.Arm)
 			signed := d * (mid - s.ArmEdge)
 			s.ArmExtreme = adverseExtreme(s.ArmExtreme, mid, s.Arm)
-			stop := s.ArmExtreme - d*math.Max(2*tick, .1*s.ArmWidth)
-			if signed >= 2*tick {
+			offset := s.episodeNumber("stop_offset", math.Max(2*tick, .1*s.ArmWidth), map[string]any{"tick": tick, "band_width": s.ArmWidth})
+			stop := s.ArmExtreme - d*offset
+			if s.episodeBool("recovered", signed >= 2*tick, map[string]any{"distance": signed, "tick": tick}) {
 				price := liquidation(o, -s.Arm)
 				distance := d * (price - stop)
 				reward := d * (s.ArmCenter - price)
-				acceptable := distance > 0 && distance <= .75*s.ArmWidth && reward >= math.Max(4*tick, 2*(o.Ask-o.Bid))
+				acceptable := s.episodeBool("acceptable", distance > 0 && distance <= .75*s.ArmWidth && reward >= math.Max(4*tick, 2*(o.Ask-o.Bid)), map[string]any{"distance": distance, "band_width": s.ArmWidth, "reward": reward, "tick": tick, "spread": o.Ask - o.Bid})
 				if acceptable {
 					if !s.SinceKnown {
 						s.SinceKnown = true
 						s.Since = o.Time
 					}
-					if o.Time-s.Since >= 15 {
+					if s.episodeBool("confirmed", o.Time-s.Since >= 15, map[string]any{"elapsed": o.Time - s.Since}) {
 						s.PendingStop, s.PendingWidth, s.PendingEdge, s.PendingCenter, s.PendingExtreme = stop, s.ArmWidth, s.ArmEdge, s.ArmCenter, s.ArmExtreme
 						side := s.Arm
 						s.Arm = 0
 						s.SinceKnown = false
-						return b.queueNew(o, 1, side, s.Initial, 1431, math.Max(8*tick, distance), stop)
+						risk := s.episodeNumber("fixed_r", math.Max(8*tick, distance), map[string]any{"tick": tick, "distance": distance})
+						return b.queueNew(o, 1, side, s.Initial, 1431, risk, stop)
 					}
 				} else {
 					s.SinceKnown = false

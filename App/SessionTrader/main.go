@@ -8,8 +8,10 @@ import (
 	"syscall"
 
 	"futurealgorithm/sessiontrader/internal/cli"
+	"futurealgorithm/sessiontrader/internal/diagnostics"
 	"futurealgorithm/sessiontrader/internal/exitreport"
 	"futurealgorithm/sessiontrader/internal/runner"
+	"futurealgorithm/sessiontrader/internal/webui"
 )
 
 // main は OS 共通の起動入口です。
@@ -21,7 +23,7 @@ func main() {
 	defer stop()
 	executable, err := os.Executable()
 	if err == nil {
-		err = cli.Run(ctx, executable, os.Args[1:], os.Stdout, os.Stderr, cli.Operations{Run: runner.Run, Probe: runner.Probe, Migrate: runner.MigrateLegacy})
+		err = cli.Run(ctx, executable, os.Args[1:], os.Stdout, os.Stderr, cli.Operations{Run: runner.Run, Web: webui.Run, Probe: runner.Probe, Migrate: runner.MigrateLegacy, Diagnostics: diagnostics.Export})
 	}
 
 	// ----------------------------------------

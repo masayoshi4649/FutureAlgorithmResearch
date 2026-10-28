@@ -4,12 +4,14 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"futurealgorithm/sessiontrader/internal/rules"
 	"math"
 )
 
 // ResearchSource は実注文から独立した研究担当の仮想状態です。
 // 全状態を公開フィールドで保存し、再起動で準備・発注予約を復元します。
 type ResearchSource struct {
+	Rules                *rules.Runtime `json:"-"`
 	Name                 string
 	Capacity             int
 	Config               Config
@@ -21,6 +23,7 @@ type ResearchSource struct {
 	CoreEverEntered      bool
 	CoreRemaining        map[int]int
 	CoreOutputHeld       map[int]int
+	Active145            *ResearchActive145
 	Active               *ResearchActive
 	Episode              *ResearchEpisode
 	PendingLegacy        []Signal
@@ -32,6 +35,7 @@ type ResearchSource struct {
 
 // ResearchBook は注文別の仮想建玉と未約定通知を保持します。
 type ResearchBook struct {
+	FeeFree                                  bool
 	Held                                     [6]int
 	Entries                                  [6]float64
 	Side, Parent, UID                        int
@@ -53,6 +57,8 @@ func newResearchSource(cfg Config, session Session, name string, capacity int) (
 	switch name {
 	case "core":
 		c := cfg
+		// 主担当の基礎候補は標準の旧手法を使い、親の別profileの式は流用しません。
+		c.RuleExpressions = nil
 		c.Parameters = DefaultParameters("NK225", session.Kind)
 		c.CoreQuantity, c.ExtraMaxQuantity, c.Cap = 2*capacity, 2*capacity, 2*capacity
 		c.PointValue = 100
@@ -70,6 +76,10 @@ func newResearchSource(cfg Config, session Session, name string, capacity int) (
 		s.CoreRemaining = map[int]int{}
 		s.CoreOutputHeld = map[int]int{}
 	case "addon":
+		if cfg.Parameters.Method == "D07" {
+			s.Active145 = newResearchActive145(session, capacity)
+			break
+		}
 		s.Active = &ResearchActive{Book: ResearchBook{Parent: -1}, Initial: min(2, capacity), Maximum: capacity, Guard: true, Management: session.Kind == "Night", NextReady: session.Start}
 	case "episode":
 		if session.Kind == "Day" {
@@ -83,6 +93,17 @@ func newResearchSource(cfg Config, session Session, name string, capacity int) (
 		}
 	default:
 		return nil, errors.New("未知の研究担当: " + name)
+	}
+	if cfg.Parameters.Method == "D07" {
+		if s.Active != nil {
+			s.Active.Book.FeeFree = true
+		}
+		if s.Episode != nil {
+			s.Episode.Book.FeeFree = true
+		}
+	}
+	if err := s.bindRules(); err != nil {
+		return nil, err
 	}
 	return s, nil
 }
@@ -111,19 +132,30 @@ func (s *ResearchSource) Restore() error {
 			return err
 		}
 		s.Supplement, err = Restore(raw)
-		return err
+		if err != nil {
+			return err
+		}
+		return s.bindRules()
 	}
-	if s.Active == nil && s.Episode == nil {
+	if s.Active == nil && s.Active145 == nil && s.Episode == nil {
 		return errors.New("研究担当の保存状態がありません")
 	}
-	return nil
+	return s.bindRules()
 }
 
 // Step は前行までの予約を次正常気配で約定させ、現在行の新規通知を返します。
 //
 // 引数: o(Observation) は原行順に到着した因果的観測です。
 // 返り値: []ResearchEvent は現在行で判断した通知、error は時系列不整合です。
-func (s *ResearchSource) Step(o Observation) ([]ResearchEvent, error) {
+func (s *ResearchSource) Step(o Observation) (events []ResearchEvent, err error) {
+	if err := s.ruleError(); err != nil {
+		return nil, err
+	}
+	defer func() {
+		if failure := s.ruleError(); failure != nil {
+			events, err = nil, failure
+		}
+	}()
 	if o.Index <= s.LastIndex || (s.LastIndex >= 0 && o.Time < s.LastTime) || !finite(o.Time) {
 		return nil, errors.New("研究源の時計又は原行順が不正です")
 	}
@@ -132,10 +164,34 @@ func (s *ResearchSource) Step(o Observation) ([]ResearchEvent, error) {
 	if s.Legacy != nil {
 		return s.stepLegacy(o)
 	}
+	if s.Active145 != nil {
+		return s.Active145.step(o, s.Session, s.Config.LargeTick, gap), nil
+	}
 	if s.Active != nil {
 		return s.Active.step(o, s.Session, s.Config.LargeTick, gap), nil
 	}
 	return s.Episode.step(o, s.Session, s.Config.LargeTick, gap), nil
+}
+
+// ruleError は親と独立した仮想主担当・補完担当の評価異常も確認します。
+//
+// 引数: なし。返り値: errorは保持中の最初の異常、全担当が正常ならnilです。
+// 直接呼ぶnight・extraでも異常後の通知を外へ出さず、次の観測でも停止を維持します。
+func (s *ResearchSource) ruleError() error {
+	if err := s.Rules.Err(); err != nil {
+		return err
+	}
+	if s.Legacy != nil {
+		if err := s.Legacy.Rules.Err(); err != nil {
+			return fmt.Errorf("仮想主担当のルール評価異常: %w", err)
+		}
+	}
+	if s.Supplement != nil {
+		if err := s.Supplement.Rules.Err(); err != nil {
+			return fmt.Errorf("仮想補完担当のルール評価異常: %w", err)
+		}
+	}
+	return nil
 }
 
 // total は担当の仮想保有枚数を合計します。
@@ -160,6 +216,9 @@ func (b *ResearchBook) filled(o Observation) int {
 	for _, e := range b.Pending {
 		px := liquidation(o, -e.Side)
 		fee := math.Floor(float64(e.Quantity) * 38.5)
+		if b.FeeFree {
+			fee = 0
+		}
 		if e.Action == "new" {
 			if kind == 1 {
 				b.Parent = e.Campaign
@@ -252,7 +311,11 @@ func (s *ResearchSource) stepLegacy(o Observation) ([]ResearchEvent, error) {
 			if v.Owner == "extra" {
 				account = s.Supplement
 			}
-			if err := account.OnFill(Fill{SignalID: v.ID, ExecutionID: v.ID + "-仮想", Quantity: v.Quantity, Price: liquidation(o, -v.Side), Time: o.Time, Fee: math.Floor(float64(v.Quantity) * 38.5)}); err != nil {
+			fee := math.Floor(float64(v.Quantity) * 38.5)
+			if s.Config.Parameters.Method == "D07" {
+				fee = 0
+			}
+			if err := account.OnFill(Fill{SignalID: v.ID, ExecutionID: v.ID + "-仮想", Quantity: v.Quantity, Price: liquidation(o, -v.Side), Time: o.Time, Fee: fee}); err != nil {
 				return nil, err
 			}
 			if err := account.OnOrderDone(v.ID); err != nil {

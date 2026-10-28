@@ -31,15 +31,18 @@ type rawRow struct {
 
 // Features は確定足系と厳密な原行窓を別々に保持します。
 type Features struct {
-	Version         int                       `json:"version"`
-	Session         Session                   `json:"session"`
-	E01             *e01.Features             `json:"e01"`
-	Rows            map[string][]rawRow       `json:"rows"`
-	Counts          map[string]int64          `json:"counts"`
-	OpeningLast     map[string]float64        `json:"opening_last"`
-	OpeningMid      map[string]float64        `json:"opening_mid"`
-	ResearchEnabled bool                      `json:"research_enabled"`
-	ResearchState   map[string]*researchState `json:"research_state,omitempty"`
+	SelectedDay       SelectedDay164Features
+	SelectedNight     selectedNightBookFeatures
+	SelectedRepricing selectedNightRepricing
+	Version           int                       `json:"version"`
+	Session           Session                   `json:"session"`
+	E01               *e01.Features             `json:"e01"`
+	Rows              map[string][]rawRow       `json:"rows"`
+	Counts            map[string]int64          `json:"counts"`
+	OpeningLast       map[string]float64        `json:"opening_last"`
+	OpeningMid        map[string]float64        `json:"opening_mid"`
+	ResearchEnabled   bool                      `json:"research_enabled"`
+	ResearchState     map[string]*researchState `json:"research_state,omitempty"`
 }
 
 // NewFeatures は二市場の因果的な特徴量器を作ります。
@@ -120,6 +123,15 @@ func (f *Features) OnBoard(b Board) (Observation, error) {
 	o.MidHistory = f.history(b.Reference, b.Time, true)
 	if f.ResearchEnabled {
 		o.Research = f.researchFeatures(b.Reference)
+		f.SelectedDay.OnBoard(b)
+		if b.Reference == "NK225" {
+			o.Selected.DayBuy = f.SelectedDay.Support(b.Time, 1)
+			o.Selected.DaySell = f.SelectedDay.Support(b.Time, -1)
+			o.Selected.DayShort = f.SelectedDay.Short(b.Time)
+			feature := f.SelectedNight.addSelectedNight(b, o.Index, o.Index)
+			o.Selected.Night = f.SelectedRepricing.stepSelectedNight(feature, b)
+			o.Selected.NightAvailable, o.Selected.NightIndex, o.Selected.NightTime = true, o.Index, o.Time
+		}
 	}
 	return o, nil
 }

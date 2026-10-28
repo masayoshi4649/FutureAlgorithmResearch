@@ -28,7 +28,7 @@ func referenceBoard(reference string, clock, received float64, b controller.Boar
 //
 // 引数: m(*marketRuntime)、owner(string)。返り値: boolは静観対象です。
 func quietOwner(m *marketRuntime, owner string) bool {
-	return owner == "core" || (m.Portfolio != nil && m.Portfolio.Research != nil)
+	return owner == "core" || (m.Portfolio != nil && (m.Portfolio.Research != nil || m.Portfolio.P05 != nil))
 }
 
 // resolvedMethods は省略時の標準値を補った昼夜の手法IDを返します。

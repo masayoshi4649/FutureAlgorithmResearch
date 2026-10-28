@@ -79,7 +79,8 @@ func integrationApp(t *testing.T, reference string, dry bool) (*app, *marketRunt
 	m := &marketRuntime{Reference: reference, Manager: manager, Portfolio: portfolio,
 		Saved: savedRuntime{Version: 1, Algorithm: algorithmVersion, Signature: cfg.Signature(), Plan: plan, Contract: contract, Done: map[string]bool{}}}
 	a := &app{cfg: cfg, client: client, store: store, markets: map[string]*marketRuntime{reference: m}, quotes: map[string]quote{},
-		lastMessage: map[string]time.Time{}, lastSource: map[string]float64{}, features: features, plan: plan, generation: "test-generation",
+		submissionClock: func(observed time.Time) time.Time { return observed },
+		lastMessage:     map[string]time.Time{}, lastSource: map[string]float64{}, features: features, plan: plan, generation: "test-generation",
 		viewAt: now, activeAt: now.Add(-time.Minute), cutoff: now.Add(-time.Minute),
 		view: controller.OrdersView{InstanceID: "test-instance", Connected: true, BrokerUpdatedAt: &now, PositionsUpdatedAt: &now,
 			Session: &controller.Session{Name: "night", Exchange: 34, StartsAt: plan.Start, SendFrom: plan.Start, SendUntil: plan.End, EndsAt: plan.End}},

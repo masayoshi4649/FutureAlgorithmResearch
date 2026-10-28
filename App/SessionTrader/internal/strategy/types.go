@@ -20,6 +20,8 @@ type Session struct {
 	End        float64 `json:"end"`
 	USOpen     float64 `json:"us_open"`
 	ExtraAt    float64 `json:"extra_at"`
+	// NightCoreStart はP05の独立仮想主担当だけの最早準備時刻です。0なら既存の米国開始後準備を用います。
+	NightCoreStart float64 `json:"night_core_start,omitempty"`
 }
 
 // Parameters は研究既定値を変更できる設定です。商品規格は含みません。
@@ -91,6 +93,7 @@ type ExtraParameters struct {
 
 // Config は実商品とラージ参照市場を分けた設定です。
 type Config struct {
+	RuleExpressions map[string]string `json:"rule_expressions,omitempty" toml:"-"`
 	// Namespace は保存先ごとの永続運転 ID です。空文字は既存状態との互換用です。
 	Namespace        string     `json:"namespace,omitempty" toml:"namespace"`
 	Reference        string     `json:"reference" toml:"reference"`
@@ -229,6 +232,7 @@ type Observation struct {
 	DayMarket, LastMarket, MidMarket Market
 	LastHistory, MidHistory          History
 	Research                         ResearchFeatures
+	Selected                         SelectedObservation
 }
 
 // ResearchBand は公開済みの価格帯です。未知値をゼロの観測と混同しません。

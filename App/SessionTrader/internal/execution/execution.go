@@ -31,6 +31,7 @@ type CancelAPI interface {
 type Intent struct {
 	Owner          string                     `json:"owner"`
 	Product        string                     `json:"product"`
+	MethodID       string                     `json:"method_id,omitempty"`
 	Evidence       json.RawMessage            `json:"evidence,omitempty"`
 	ID             string                     `json:"id"`
 	Session        string                     `json:"session"`
@@ -64,6 +65,7 @@ type Holding struct {
 type Fill struct {
 	Owner       string
 	Product     string
+	Session     string
 	Evidence    json.RawMessage
 	ID          string
 	IntentID    string
@@ -221,7 +223,7 @@ func (m *Manager) OutstandingFills() []Fill {
 		if holdID == "" && t.TradeType == "new" {
 			holdID = t.ExecutionID
 		}
-		out = append(out, Fill{Owner: t.Owner, Product: t.Product, Evidence: append(json.RawMessage(nil), t.Evidence...), ID: t.ID, IntentID: t.ClientOrderID, TradeType: t.TradeType, Side: t.Side, Quantity: t.Quantity, Price: t.Price, PnL: t.PnL, Fee: t.Fee, HoldID: holdID, Closed: append([]controller.ClosePosition(nil), t.Closed...), ClosedBasis: t.ClosedBasis, At: t.At, Reason: t.Reason})
+		out = append(out, Fill{Owner: t.Owner, Product: t.Product, Session: t.Session, Evidence: append(json.RawMessage(nil), t.Evidence...), ID: t.ID, IntentID: t.ClientOrderID, TradeType: t.TradeType, Side: t.Side, Quantity: t.Quantity, Price: t.Price, PnL: t.PnL, Fee: t.Fee, HoldID: holdID, Closed: append([]controller.ClosePosition(nil), t.Closed...), ClosedBasis: t.ClosedBasis, At: t.At, Reason: t.Reason})
 	}
 	return out
 }
@@ -282,12 +284,12 @@ func (m *Manager) Records() []journal.Trade {
 	return result
 }
 
-// EnsureSession は、セッション別約定CSVを見出し付きで準備します。
+// EnsureSession は、商品とモードを含む運転セッションをSQLiteへ登録します。
 //
 // 引数: session string はAPI由来のセッション名です。
-// 返り値: error は保存失敗です。
+// 返り値: error は保存失敗です。この時点ではCSVを作りません。
 func (m *Manager) EnsureSession(session string) error {
-	return m.store.EnsureSession(session, m.state.DryRun)
+	return m.store.EnsureProductSession(session, m.state.DryRun, m.state.Symbol)
 }
 
 // CancelPending は、期限到達または停止時の未完了注文へ取消を一度要求します。
@@ -399,47 +401,16 @@ func (m *Manager) Submit(ctx context.Context, api API, intent Intent, view contr
 		if len(intent.ClosePositions) != 0 {
 			return nil, fmt.Errorf("新規注文に返済建玉を指定できません")
 		}
-		if !m.state.DryRun {
-			for _, order := range view.BrokerOrders {
-				if order.Symbol != intent.ContractSymbol || order.Finished || order.State == 5 {
-					continue
-				}
-				known := false
-				for _, owned := range m.state.Orders {
-					if owned.BrokerOrderID != "" && owned.BrokerOrderID == order.ID {
-						known = true
-						break
-					}
-				}
-				if !known {
-					return nil, fmt.Errorf("選択銘柄に外部または所有不明の未完了注文があります。新規を行いません")
-				}
-			}
-			for _, reservation := range view.Reservations {
-				if reservation.Symbol == intent.ContractSymbol && !reservation.Finished {
-					return nil, fmt.Errorf("選択銘柄に別の条件付き予約があります。新規を行いません")
-				}
-			}
-		}
 		qty := 0
-		if m.state.DryRun {
-			for _, h := range m.state.Holdings {
-				if h.Side == intent.Side {
-					qty += h.Quantity
-				}
-			}
-		} else {
-			for _, h := range view.Positions {
-				if h.Symbol == intent.ContractSymbol && h.Side == intent.Side {
-					if h.Quantity < 0 || math.Trunc(h.Quantity) != h.Quantity {
-						return nil, fmt.Errorf("口座建玉数量が不正です")
-					}
-					qty += int(h.Quantity)
-				}
+		// 上限は当起動で取得した所有玉だけ。旧建玉・手動注文・別アプリを取り込まない。
+		// 未確定の自分の注文は上のHasPendingで新規を止めるため、予約を二重に作らない。
+		for _, h := range m.state.Holdings {
+			if h.Side == intent.Side {
+				qty += h.Quantity
 			}
 		}
 		if qty+intent.Quantity > m.state.MaxPosition {
-			return nil, fmt.Errorf("他媒体の建玉を含む片方向保有上限%d枚を超えます", m.state.MaxPosition)
+			return nil, fmt.Errorf("当起動の所有建玉の片方向上限%d枚を超えます", m.state.MaxPosition)
 		}
 	}
 	p := &pending{Intent: intent, InstanceID: view.InstanceID, Status: "prepared", Seen: map[string]int{}, CloseConsumed: map[string]int{}}
@@ -785,6 +756,9 @@ func (m *Manager) applyFill(p *pending, executionID string, qty int, price float
 	}
 	prior := 0
 	for _, trade := range m.trades {
+		if trade.ExecutionID == executionID && trade.ClientOrderID != p.Intent.ID {
+			return fmt.Errorf("過去の別注文で記録済みの約定IDを再使用できません")
+		}
 		if trade.ClientOrderID == p.Intent.ID {
 			if trade.ExecutionID == executionID {
 				return fmt.Errorf("同じ注文の約定IDが重複しています")
@@ -834,7 +808,7 @@ func (m *Manager) applyFill(p *pending, executionID string, qty int, price float
 			p.CloseConsumed[target.HoldID] += target.Quantity
 		}
 	}
-	m.trades = append(m.trades, journal.Trade{Owner: p.Intent.Owner, Product: p.Intent.Product, Evidence: append(json.RawMessage(nil), p.Intent.Evidence...), ID: p.Intent.ID + ":" + executionID, At: at, Session: p.Intent.Session, Symbol: m.state.Symbol, TradeType: p.Intent.TradeType, Side: p.Intent.Side, Quantity: qty, Price: price, PnL: pnl, Fee: feeAfter - feeBefore, HoldID: holdID, Closed: closed, ClosedBasis: closedBasis, Reason: p.Intent.Reason, ClientOrderID: p.Intent.ID, ReservationID: p.ReservationID, BrokerOrderID: p.BrokerOrderID, ExecutionID: executionID, DryRun: m.state.DryRun})
+	m.trades = append(m.trades, journal.Trade{Owner: p.Intent.Owner, Product: p.Intent.Product, MethodID: p.Intent.MethodID, Evidence: append(json.RawMessage(nil), p.Intent.Evidence...), ID: p.Intent.ID + ":" + executionID, At: at, Session: p.Intent.Session, Symbol: m.state.Symbol, TradeType: p.Intent.TradeType, Side: p.Intent.Side, Quantity: qty, Price: price, PnL: pnl, Fee: feeAfter - feeBefore, HoldID: holdID, Closed: closed, ClosedBasis: closedBasis, Reason: p.Intent.Reason, ClientOrderID: p.Intent.ID, ReservationID: p.ReservationID, BrokerOrderID: p.BrokerOrderID, ExecutionID: executionID, DryRun: m.state.DryRun})
 	return nil
 }
 

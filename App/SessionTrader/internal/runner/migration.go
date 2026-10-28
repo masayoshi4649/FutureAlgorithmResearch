@@ -46,7 +46,6 @@ func MigrateLegacy(cfg config.Config, legacyDirectory string) error {
 	}
 	targetBase := filepath.Join(cfg.Path(cfg.Runtime.DataDirectory), mode(cfg.Trading.DryRun))
 	targetDirectory := filepath.Join(targetBase, cfg.InstanceID())
-	logs := filepath.Join(cfg.Path(cfg.Runtime.LogDirectory), mode(cfg.Trading.DryRun), cfg.InstanceID())
 	source := filepath.Join(sourceBase, market.Product+".sqlite")
 	target := filepath.Join(targetDirectory, market.Product+".sqlite")
 	if _, err := os.Stat(source); err != nil {
@@ -75,7 +74,7 @@ func MigrateLegacy(cfg config.Config, legacyDirectory string) error {
 		return err
 	}
 	defer targetLock.Close()
-	logLock, err := acquireLock(logs)
+	logLock, err := acquireReportOwnerLock(cfg)
 	if err != nil {
 		return err
 	}

@@ -1,0 +1,35 @@
+{
+  "images": [
+    {
+      "path": "App\\SessionTrader\\work\\session_pl_ui\\セッション損益_デスクトップ.png",
+      "passed": true,
+      "sha256": "c226632f7ce106d0cf754c158e5b27e3c0251784e357edd83dc4d8156c2187ef"
+    },
+    {
+      "path": "App\\SessionTrader\\work\\session_pl_ui\\セッション損益_モバイル.png",
+      "passed": true,
+      "sha256": "498558186c88185fc558ced3f9ee54de30757e2f35505fce38fabd77ae9d2ff8"
+    },
+    {
+      "path": "App\\SessionTrader\\work\\session_pl_ui\\セッション損益_読取失敗.png",
+      "passed": true,
+      "sha256": "c07b17f9b41a9c3625a38f9ab00a146c82c987120591369dedddcb0dcb1fb9c8"
+    },
+    {
+      "path": "App\\SessionTrader\\work\\session_pl_ui\\セッション損益_記録なし.png",
+      "passed": true,
+      "sha256": "2885fcf245d94858c5d525e13e2f716f3877c6d48563c8426d206b69fbf435e2"
+    }
+  ],
+  "method": "view_imageで全4画像を直接確認",
+  "trading_actions": 0,
+  "real_service_connections": 0,
+  "checks": [
+    "ダークテーマで文字と正負色が判読可能",
+    "商品・モード・金額・枚数の列が対応",
+    "390pxではページ全体の横崩れなし・表だけ横スクロール",
+    "取得失敗は前回表と時刻を保持して失敗表示",
+    "CSV欠損は0件の空状態を表示"
+  ],
+  "passed": true
+}

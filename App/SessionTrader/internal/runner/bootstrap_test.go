@@ -174,9 +174,11 @@ func TestBootstrapClockOrderAndPreservation(t *testing.T) {
 	if result.SourceHashes["TOPIX"][0] == result.SourceHashes["TOPIX"][1] {
 		t.Fatal("同時計の異なる原文を同一として扱いました")
 	}
-	trace, err := os.ReadFile(filepath.Join(logs, "trace.jsonl"))
-	if err != nil || !strings.Contains(string(trace), `"historical_orders":0`) {
-		t.Fatal("過去発注なしの記録がありません", err)
+	if !strings.Contains(string(payload), `"historical_orders":0`) {
+		t.Fatal("SQLiteに過去発注なしの記録がありません")
+	}
+	if _, err = os.Stat(filepath.Join(logs, "trace.jsonl")); !os.IsNotExist(err) {
+		t.Fatal("廃止したtrace.jsonlを生成しました", err)
 	}
 }
 

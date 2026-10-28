@@ -2,6 +2,7 @@ package runner
 
 import (
 	"context"
+	"database/sql"
 	"encoding/json"
 	"os"
 	"path/filepath"
@@ -136,9 +137,17 @@ func TestStatusReportsWithoutTradesOrStateMutation(t *testing.T) {
 		!strings.Contains(string(printed), "受信100・判断90行") || !strings.Contains(string(printed), "仮想保有 買0・売0枚") {
 		t.Fatal("無約定の状態が標準出力にありません", string(printed), err)
 	}
-	trace, err := os.ReadFile(filepath.Join(a.cfg.Root, "log", "market", "trace.jsonl"))
-	if err != nil || !strings.Contains(string(trace), `"kind":"稼働"`) || !strings.Contains(string(trace), `"decision_count":90`) {
-		t.Fatal("稼働状態がJSONLにありません", string(trace), err)
+	db, err := sql.Open("sqlite", filepath.Join(a.cfg.Root, "market.sqlite"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer db.Close()
+	var payload string
+	if err = db.QueryRow("SELECT payload FROM events WHERE kind='稼働' ORDER BY seq DESC LIMIT 1").Scan(&payload); err != nil || !strings.Contains(payload, `"decision_count":90`) {
+		t.Fatal("稼働状態がSQLiteにありません", payload, err)
+	}
+	if _, err = os.Stat(filepath.Join(a.cfg.Root, "log", "market", "trace.jsonl")); !os.IsNotExist(err) {
+		t.Fatal("廃止したtrace.jsonlを生成しました", err)
 	}
 	afterPortfolio, _ := m.Portfolio.Dump()
 	afterFeatures, _ := a.features.Dump()
@@ -206,5 +215,42 @@ func TestStatusLabelsLiveAndIgnoresStrategyShadow(t *testing.T) {
 		!strings.Contains(statusLine(at, s), "[稼働/live] NK225micro（参照NK225）:") ||
 		!strings.Contains(statusLine(at, s), "実約定保有 買0・売0枚") || calls.Load() != 0 {
 		t.Fatal("実運転と仮想運転の表示が混同されています", s)
+	}
+}
+
+// TestStatusMarksOwnedHoldingsWithProductQuote は発注商品の返済側気配で含み損益を計算します。
+//
+// 引数: t(*testing.T)は試験です。
+// 返り値: なし。参照ラージとの混同、原本の根拠削除、古い価格による評価を検出します。
+func TestStatusMarksOwnedHoldingsWithProductQuote(t *testing.T) {
+	a, m, calls, now := integrationApp(t, "TOPIX", true)
+	for i, side := range []string{"buy", "sell"} {
+		intent := execution.Intent{ID: "評価" + side, Owner: "core", Product: "TOPIXmini",
+			Session: a.plan.ID, ContractSymbol: m.Saved.Contract.Symbol, Side: side, TradeType: "new",
+			Quantity: i + 1, Price: 100, At: now, ExpiresAt: now.Add(time.Minute), Reason: "評価試験",
+			Evidence: json.RawMessage(`{"根拠":"原本に保持"}`)}
+		if _, err := m.Manager.Submit(context.Background(), a.client, intent, a.view); err != nil {
+			t.Fatal(err)
+		}
+		if err := m.Manager.Checkpoint(json.RawMessage(`{}`)); err != nil {
+			t.Fatal(err)
+		}
+	}
+	before := string(m.Manager.State())
+	s := a.statusFor(m, now)
+	// ラージは99.75/100.25、実商品は109.75/110.25。買1・売2の合計は-10,750円です。
+	if s.UnrealizedYen == nil || *s.UnrealizedYen != -10750 || s.UnrealizedByOwner["core"] != -10750 {
+		t.Fatalf("発注商品の返済側気配を使っていません: %+v", s)
+	}
+	for _, h := range s.Positions {
+		if len(h.Evidence) != 0 {
+			t.Fatal("定期表示に新規根拠全量が複製されました")
+		}
+	}
+	if string(m.Manager.State()) != before || len(m.Manager.Positions()[0].Evidence) == 0 || calls.Load() != 0 {
+		t.Fatal("診断が原本または注文を変更しました")
+	}
+	if stale := a.statusFor(m, now.Add(time.Hour)); stale.UnrealizedYen != nil || stale.UnrealizedByOwner != nil {
+		t.Fatal("古い価格の評価を現在損益として表示しました")
 	}
 }

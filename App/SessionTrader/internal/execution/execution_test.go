@@ -128,8 +128,8 @@ func TestDryRunRoundTripRestart(t *testing.T) {
 	if err != nil || len(fills) != 0 || len(restored.Records()) != 2 {
 		t.Fatal("同じ意図が重複約定しました")
 	}
-	if _, err = os.Stat(filepath.Join(filepath.Dir(path), "log", "2026-10-02_Day_dryrun.csv")); err != nil {
-		t.Fatal(err)
+	if _, err = os.Stat(filepath.Join(filepath.Dir(path), "log")); !os.IsNotExist(err) {
+		t.Fatal("約定記録又は再起動が旧ログ出力先を作成しました", err)
 	}
 }
 
@@ -285,7 +285,7 @@ func TestUnknownNeverResends(t *testing.T) {
 	}
 }
 
-// TestAccountCapAndStale は外部保有を含む上限と古い口座情報の拒否を確認します。
+// TestAccountCapAndStale は当起動の所有玉だけの上限と古い口座情報の拒否を確認します。
 //
 // 引数: t *testing.T は試験です。
 // 返り値: なし。
@@ -294,9 +294,11 @@ func TestAccountCapAndStale(t *testing.T) {
 	api := &fakeAPI{}
 	view := testView()
 	view.Positions = []controller.Position{{Symbol: "167120019", Side: "buy", Quantity: 8}}
+	m.state.Holdings["owned"] = &Holding{HoldID: "owned", Owner: "core", Side: "buy", Quantity: 8}
 	if _, err := m.Submit(context.Background(), api, testIntent("cap", "buy", "new", 3, 4000), view); err == nil {
-		t.Fatal("外部保有込み上限を超えました")
+		t.Fatal("当起動の所有枚数上限を超えました")
 	}
+	m.state.Holdings = map[string]*Holding{}
 	view.Positions = nil
 	view.PositionsStale = true
 	if _, err := m.Submit(context.Background(), api, testIntent("stale", "buy", "new", 3, 4000), view); err == nil {
@@ -307,32 +309,21 @@ func TestAccountCapAndStale(t *testing.T) {
 	}
 }
 
-// TestExternalPendingBlocksEntry は他媒体の未完了注文・予約で保有上限が変わる新規を止めます。
+// TestExternalPendingDoesNotBlockEntry は他媒体の未完了注文・予約を所有玉や取消対象へ混ぜないことを確認します。
 //
 // 引数: t *testing.T は試験です。
 // 返り値: なし。
-func TestExternalPendingBlocksEntry(t *testing.T) {
+func TestExternalPendingDoesNotBlockEntry(t *testing.T) {
 	m, _ := setup(t, false, "TOPIXmini")
 	api := &fakeAPI{result: controller.OrderResponse{OrderID: "new"}}
 	view := testView()
 	view.BrokerOrders = []controller.BrokerOrder{{ID: "external", Symbol: "167120019", State: 4, Side: "2", OrderQty: 10}}
-	if _, err := m.Submit(context.Background(), api, testIntent("blocked", "buy", "new", 3, 4000), view); err == nil {
-		t.Fatal("外部未完了注文があるまま新規を受けました")
-	}
-	view.BrokerOrders[0].State = 5
 	view.Reservations = []controller.Reservation{{ID: "reservation", Symbol: "167120019", State: "watching"}}
-	if _, err := m.Submit(context.Background(), api, testIntent("blocked2", "buy", "new", 3, 4000), view); err == nil {
-		t.Fatal("外部予約があるまま新規を受けました")
-	}
-	if api.calls != 0 {
-		t.Fatal("遮断すべき新規を送信しました")
-	}
-	view.Reservations[0].Finished = true
 	if _, err := m.Submit(context.Background(), api, testIntent("allowed", "buy", "new", 3, 4000), view); err != nil {
 		t.Fatal(err)
 	}
-	if api.calls != 1 {
-		t.Fatal("外部注文終了後も新規を遮断しました")
+	if api.calls != 1 || api.cancels != 0 || len(m.Positions()) != 0 {
+		t.Fatal("外部注文を理由に新規を遮断したか、外部玉・取消を取り込みました")
 	}
 }
 
@@ -429,11 +420,11 @@ func TestPartialCloseUsesActualHoldReduction(t *testing.T) {
 	}
 }
 
-// TestCSVFailureKeepsCommittedFill はCSV更新失敗後も確定済み正本とメモリを巻き戻さないことを確認します。
+// TestLegacyCSVDoesNotAffectCommittedFill は旧CSV保存先の異常が約定保存を妨げないことを確認します。
 //
 // 引数: t *testing.T は試験です。
 // 返り値: なし。
-func TestCSVFailureKeepsCommittedFill(t *testing.T) {
+func TestLegacyCSVDoesNotAffectCommittedFill(t *testing.T) {
 	m, path := setup(t, false, "TOPIXmini")
 	api := &fakeAPI{result: controller.OrderResponse{OrderID: "known"}}
 	view := testView()
@@ -446,8 +437,8 @@ func TestCSVFailureKeepsCommittedFill(t *testing.T) {
 	}
 	view.BrokerOrders = []controller.BrokerOrder{{ID: "known", Symbol: "167120019", Side: "2", State: 5, CumQty: 1, Details: []controller.BrokerDetail{{RecType: 8, ExecutionID: "hold", Qty: 1, Price: 4002}}}}
 	view.Positions = []controller.Position{{ExecutionID: "hold", Symbol: "167120019", Side: "buy", Quantity: 1}}
-	if _, err := m.Reconcile(view); err == nil {
-		t.Fatal("CSV更新失敗を再現できません")
+	if _, err := m.Reconcile(view); err != nil {
+		t.Fatal("廃止した旧CSV出力先にアクセスしています", err)
 	}
 	if len(m.Records()) != 1 || len(m.OutstandingFills()) != 1 || m.HasPending() {
 		t.Fatal("正本確定済みの約定を巻き戻しました")

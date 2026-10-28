@@ -2,10 +2,7 @@ package journal
 
 import (
 	"bytes"
-	"encoding/csv"
 	"encoding/json"
-	"os"
-	"path/filepath"
 	"reflect"
 	"testing"
 
@@ -15,7 +12,7 @@ import (
 // TestFeeLotsAndLegacyJournal は旧形式を改変せず、新しい手数料・返済内訳を復元します。
 //
 // 引数: t(*testing.T)は試験です。
-// 返り値: なし。SQLite正本とCSV/JSONLの追加列を照合します。
+// 返り値: なし。SQLite正本の費用・所有内訳を照合し、旧ファイルは生成しません。
 func TestFeeLotsAndLegacyJournal(t *testing.T) {
 	s, path, logs := testStore(t)
 	old := testTrade("old")
@@ -62,16 +59,8 @@ func TestFeeLotsAndLegacyJournal(t *testing.T) {
 	if err = restored.Save(state, trades); err != nil {
 		t.Fatal("復元後の同一保存を拒否しました", err)
 	}
-	raw, err := os.ReadFile(filepath.Join(logs, "2026-10-21_Day_dryrun.csv"))
-	if err != nil {
-		t.Fatal(err)
+	if !reflect.DeepEqual(trades[1].Closed, current.Closed) || trades[1].ClosedBasis != current.ClosedBasis || trades[1].Fee != 83 {
+		t.Fatal("返済玉・費用のDB復元不一致")
 	}
-	rows, err := csv.NewReader(bytes.NewReader(raw)).ReadAll()
-	if err != nil || len(rows) != 3 || len(rows[0]) != 22 || rows[0][18] != "標準手数料円" || rows[2][18] != "83" || rows[2][21] != current.ClosedBasis {
-		t.Fatal("CSV追加列が不一致", rows, err)
-	}
-	var targets []controller.ClosePosition
-	if err = json.Unmarshal([]byte(rows[2][20]), &targets); err != nil || !reflect.DeepEqual(targets, current.Closed) {
-		t.Fatal("CSVの返済玉内訳が不一致", targets, err)
-	}
+	assertLegacyLogAbsent(t, logs)
 }

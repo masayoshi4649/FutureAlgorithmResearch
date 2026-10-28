@@ -5,6 +5,7 @@ import (
 	"math"
 	"time"
 
+	"futurealgorithm/sessiontrader/internal/config"
 	"futurealgorithm/sessiontrader/internal/execution"
 )
 
@@ -29,6 +30,9 @@ type marketStatus struct {
 	PendingError                                string              `json:"pending_error"`
 	Queued                                      int                 `json:"queued"`
 	Ignored                                     string              `json:"ignored"`
+	ExitDiagnostics                             []map[string]any    `json:"exit_diagnostics,omitempty"`
+	UnrealizedYen                               *float64            `json:"unrealized_yen,omitempty"`
+	UnrealizedByOwner                           map[string]float64  `json:"unrealized_by_owner,omitempty"`
 }
 
 // ignoreReference は採用しなかった板の直近理由を表示用に残します。
@@ -85,11 +89,23 @@ func (a *app) entryBlockReason(m *marketRuntime, now time.Time) string {
 	if a.stopping {
 		return "終了処理中"
 	}
+	if !a.entriesEnabled() {
+		if a.control != nil && a.control.Enabled() {
+			return "新規再開待ち・停止時の新規注文を取消照合中"
+		}
+		return "Web画面で新規OFF・返済監視は継続"
+	}
 	if a.features == nil {
 		return "履歴準備中"
 	}
+	if reason := a.sessionTransitionReason(m); reason != "" {
+		return reason
+	}
 	if m.Saved.Plan.ID != a.plan.ID {
 		return "セッション切替待ち"
+	}
+	if reason := a.slotBlockReason(m, now); reason != "" {
+		return reason
 	}
 	if !now.Before(m.Saved.Plan.ForceClose) {
 		return "新規終了・場内返済"
@@ -177,8 +193,33 @@ func (a *app) statusFor(m *marketRuntime, now time.Time) marketStatus {
 	if s.DryRun {
 		s.PositionSource = "仮想約定台帳"
 	}
+	// 定期診断は建玉IDを残し、新規時の大きな根拠JSONは約定ログ側で一度だけ参照します。
+	for i := range s.Positions {
+		s.Positions[i].Evidence = nil
+	}
+	if observed && m.Portfolio != nil {
+		s.ExitDiagnostics = m.Portfolio.ExitDiagnostics(o)
+	}
+	if own, ok := a.validQuote(product, now); ok {
+		total := 0.
+		s.UnrealizedByOwner = map[string]float64{}
+		for _, h := range s.Positions {
+			gain := own.Board.Buy1.Price - h.Price
+			if h.Side == "sell" {
+				gain = h.Price - own.Board.Sell1.Price
+			}
+			amount := gain * float64(h.Quantity) * a.cfg.Products[product].PointValue
+			total += amount
+			s.UnrealizedByOwner[h.Owner] += amount
+		}
+		s.UnrealizedYen = &total
+	}
 	if a.features == nil || m.Portfolio == nil {
 		s.State = "履歴準備中"
+		return s
+	}
+	if reason := a.sessionTransitionReason(m); reason != "" {
+		s.State = reason
 		return s
 	}
 	if now.Before(m.Saved.Plan.Start) {
@@ -209,8 +250,20 @@ func (a *app) statusFor(m *marketRuntime, now time.Time) marketStatus {
 		return s
 	}
 	p := m.Portfolio
+	if p.Selected != nil {
+		s.State = p.SelectedState()
+		return s
+	}
+	if p.P05 != nil {
+		if seconds(now) >= p.Session.USOpen-900 {
+			s.State = "P05：米国開始前の終了・所有玉の返済を確認中"
+		} else {
+			s.State = "P05：両方向の新規と利益玉ごとの追尾を監視中"
+		}
+		return s
+	}
 	if p.Research != nil {
-		s.State = p.Research.Method + "：独立担当ごとの新規・継続・利益予算を監視中"
+		s.State = config.NameOfMethod(ref, p.Research.Method) + "：独立担当ごとの新規・継続・利益予算を監視中"
 		return s
 	}
 	if m.Saved.Plan.Kind == "Day" {
@@ -267,6 +320,25 @@ func (a *app) statusFor(m *marketRuntime, now time.Time) marketStatus {
 	}
 	s.State = "夜間の二市場・境界条件待ち"
 	return s
+}
+
+// sessionTransitionReason は旧場の所有物を残したまま初期化しない理由を明示します。
+//
+// 引数: m(*marketRuntime)は表示対象です。返り値: stringは切替待ち理由、同一場なら空文字です。
+func (a *app) sessionTransitionReason(m *marketRuntime) string {
+	if m.Saved.Plan.ID == "" || a.view.Session == nil || a.view.Session.StartsAt.Equal(m.Saved.Plan.Start) {
+		return ""
+	}
+	if m.Manager.HasPending() {
+		return "セッション切替待ち・前場の未確定注文を照合中（旧状態を保持）"
+	}
+	if len(m.Manager.OutstandingFills()) > 0 {
+		return "セッション切替待ち・前場の確定約定を反映中（旧状態を保持）"
+	}
+	if len(m.Manager.Positions()) > 0 {
+		return "セッション切替待ち・前場の所有建玉が残存（旧状態を保持）"
+	}
+	return "セッション切替待ち・当場の履歴を準備中"
 }
 
 // clockText は未受信をゼロ時刻として表示しないための表記です。

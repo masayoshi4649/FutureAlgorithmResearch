@@ -29,16 +29,78 @@ func (c Config) MethodID(kind string) string {
 	switch kind {
 	case "Day":
 		if c.Methods.Day != "" {
-			return c.Methods.Day
+			id, err := methodShortID(reference, c.Methods.Day)
+			if err != nil {
+				return c.Methods.Day
+			}
+			return id
 		}
 		return defaults.Day
 	case "Night":
 		if c.Methods.Night != "" {
-			return c.Methods.Night
+			id, err := methodShortID(reference, c.Methods.Night)
+			if err != nil {
+				return c.Methods.Night
+			}
+			return id
 		}
 		return defaults.Night
 	}
 	return ""
+}
+
+// methodShortID は銘柄付き表記を内部IDへ変換し、別銘柄への誤適用を拒否します。
+//
+// 引数: reference(string)は判断用銘柄、method(string)は入力表記。
+// 返り値: stringは旧互換の短ID、errorは銘柄不一致・表記不正です。手法の実在は戦略選択時に検査します。
+func methodShortID(reference, method string) (string, error) {
+	if method != strings.TrimSpace(method) {
+		return "", fmt.Errorf("手法IDの先頭・末尾に空白を付けないでください")
+	}
+	// 年次調査番号を含む短IDも公開IDと同じ意味で受け取ります。
+	if method == "D164_15" || method == "P164_06" || method == "U165_03" {
+		return method, nil
+	}
+	prefix, id, hasPrefix := strings.Cut(method, "_")
+	if !hasPrefix {
+		return method, nil
+	}
+	if prefix != reference || (prefix != "NK225" && prefix != "TOPIX") {
+		return "", fmt.Errorf("手法ID %q の銘柄は判断用銘柄 %s と一致しません", method, reference)
+	}
+	if id == "" || (strings.Contains(id, "_") && id != "D164_15" && id != "P164_06" && id != "U165_03") {
+		return "", fmt.Errorf("手法IDは %s_手法ID の形式で指定してください: %s", reference, method)
+	}
+	return id, nil
+}
+
+// NameOfMethod は人向け表示用に判断銘柄と手法IDを結合します。
+//
+// 引数: reference(string)は判断用銘柄又は発注商品、method(string)は短ID又は銘柄付きID。
+// 返り値: stringはNK225_D07等の表記。不正な入力は隠さず元の表記を返します。
+func NameOfMethod(reference, method string) string {
+	if value := Reference(reference); value != "" {
+		reference = value
+	}
+	if method == "" || (reference != "NK225" && reference != "TOPIX") {
+		return method
+	}
+	id, err := methodShortID(reference, method)
+	if err != nil {
+		return method
+	}
+	return reference + "_" + id
+}
+
+// MethodName は指定した昼夜手法を銘柄付きの名前で返します。
+//
+// 引数: kind(string)はDay又はNight。返り値: stringは表示・ログ用の名前です。
+func (c Config) MethodName(kind string) string {
+	reference, _ := c.Selected()
+	if reference == "" && c.Market != nil {
+		reference = Reference(c.Market.Product)
+	}
+	return NameOfMethod(reference, c.MethodID(kind))
 }
 
 // defaultMethods は既存の運転条件に対応する標準IDを返します。
@@ -74,6 +136,22 @@ func standardProducts() map[string]Product {
 // 引数: meta toml.MetaData は入力に実在したキーの情報です。受け手 Config を更新します。
 // 返り値: error は明示した手法IDの空欄、旧時刻との二重指定または時刻書式の不正です。
 func (c *Config) normalizeInput(meta toml.MetaData) error {
+	if c.Web != nil {
+		for _, name := range []string{"market", "markets", "methods", "windows", "algorithm"} {
+			if meta.IsDefined(name) {
+				return fmt.Errorf("Web版では[%s]を指定せず、instruments内で商品と手法を設定してください", name)
+			}
+		}
+		if meta.IsDefined("trading", "instance_id") {
+			return fmt.Errorf("Web版の実行IDは商品名から自動生成するためtrading.instance_idは不要です")
+		}
+		if !meta.IsDefined("web", "host") {
+			c.Web.Host = "0.0.0.0"
+		}
+		if !meta.IsDefined("web", "port") {
+			c.Web.Port = 8090
+		}
+	}
 	for _, field := range []struct{ name, value string }{{"day", c.Methods.Day}, {"night", c.Methods.Night}} {
 		if meta.IsDefined("methods", field.name) && strings.TrimSpace(field.value) == "" {
 			return fmt.Errorf("methods.%sを明示する場合は空欄にせず手法IDを指定してください", field.name)

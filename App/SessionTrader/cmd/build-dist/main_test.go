@@ -6,8 +6,6 @@ import (
 	"path/filepath"
 	"strings"
 	"testing"
-
-	"futurealgorithm/sessiontrader/internal/config"
 )
 
 const sampleConfiguration = `
@@ -56,57 +54,38 @@ func fixture(t *testing.T) string {
 	write(t, filepath.Join(root, "go.mod"), "module futurealgorithm/sessiontrader\n")
 	write(t, filepath.Join(root, "conf", "setting.toml.sample"), sampleConfiguration)
 	write(t, filepath.Join(root, "conf", "setting.toml"), "実設定は配布元にしない")
+	webExample, err := os.ReadFile(filepath.Join("..", "..", "web-conf", "settings.toml.sample"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	write(t, filepath.Join(root, "web-conf", "settings.toml.sample"), string(webExample))
 	write(t, filepath.Join(root, "docs", "仕様.md"), "# 仕様\n")
 	return root
 }
 
-// TestSingleProductConfigurations は全五商品の配布分離と再配布時の設定保持を確認します。
+// TestWebBundleContainsProducts は単一Web配布に全商品と外部ルールが揃うことを確認します。
 //
 // 引数: t *testing.T。返り値: なし。
-func TestSingleProductConfigurations(t *testing.T) {
+func TestWebBundleContainsProducts(t *testing.T) {
 	root := fixture(t)
 	if err := buildDistribution(root, fakeBuild); err != nil {
 		t.Fatal(err)
 	}
 	for _, target := range []string{"windows-amd64", "linux-amd64"} {
-		for _, example := range []struct {
-			folder, product, id, day, night string
-			cap                             int
-			tick, pointValue                float64
-		}{
-			{"TOPIX", "TOPIX", "topix", "T06", "T04", 2, .5, 10000},
-			{"TOPIXmini", "TOPIXmini", "topix-mini", "T06", "T04", 10, .25, 1000},
-			{"NK225", "NK225", "nk225", "TG04", "TG04", 2, 10, 1000},
-			{"NK225mini", "NK225mini", "nk225mini", "TG04", "TG04", 10, 5, 100},
-			{"NK225micro", "NK225micro", "nk-micro", "TG04", "TG04", 20, 5, 10},
-		} {
-			path := filepath.Join(root, "dist", target, example.folder)
-			cfg, err := config.Load(filepath.Join(path, "conf"))
-			if err != nil {
-				t.Fatal(err)
-			}
-			_, market := cfg.Selected()
-			if len(cfg.Markets) != 1 || market.Product != example.product || market.MaxPerSide != example.cap || cfg.InstanceID() != example.id || !cfg.Trading.DryRun {
-				t.Fatalf("単一商品の設定例が不正です: %+v", cfg)
-			}
-			if cfg.MethodID("Day") != example.day || cfg.MethodID("Night") != example.night ||
-				cfg.Products[example.product].Tick != example.tick || cfg.Products[example.product].PointValue != example.pointValue {
-				t.Fatalf("商品の手法または呼値・円換算規格が不正です: %s %+v", example.product, cfg)
-			}
-			if cfg.Root != path || cfg.Path("data") != filepath.Join(path, "data") {
-				t.Fatal("商品フォルダの外に保存先が設定されました")
-			}
+		{
+			path := filepath.Join(root, "dist", target, "Web")
 			binary, platform := "sessiontrader.exe", "windows"
 			if target == "linux-amd64" {
 				binary, platform = "sessiontrader", "linux"
 			}
-			for relative, expected := range map[string]string{binary: "模擬実行ファイル:" + platform, "docs/仕様.md": "# 仕様\n", "README.md": string(distributionReadme)} {
+			for relative, expected := range map[string]string{binary: "模擬実行ファイル:" + platform, "docs/仕様.md": "# 仕様\n", "README.md": string(distributionWebReadme)} {
 				content, err := os.ReadFile(filepath.Join(path, relative))
 				if err != nil || string(content) != expected {
 					t.Fatalf("フォルダ単独で必要な配布物が揃いません: %s %v", relative, err)
 				}
 			}
 			write(t, filepath.Join(path, "conf", "settings.toml"), "利用者設定を保持")
+			write(t, filepath.Join(path, "conf", "rules", "NK225_D07.toml"), "利用者の判断式を保持")
 			write(t, filepath.Join(path, "data", "state.sqlite"), "独立した正本")
 			write(t, filepath.Join(path, "log", "history.csv"), "独立した約定")
 		}
@@ -115,8 +94,8 @@ func TestSingleProductConfigurations(t *testing.T) {
 		t.Fatal(err)
 	}
 	for _, target := range []string{"windows-amd64", "linux-amd64"} {
-		for _, folder := range []string{"TOPIX", "TOPIXmini", "NK225", "NK225mini", "NK225micro"} {
-			for relative, expected := range map[string]string{"conf/settings.toml": "利用者設定を保持", "data/state.sqlite": "独立した正本", "log/history.csv": "独立した約定"} {
+		for _, folder := range []string{"Web"} {
+			for relative, expected := range map[string]string{"conf/settings.toml": "利用者設定を保持", "conf/rules/NK225_D07.toml": "利用者の判断式を保持", "data/state.sqlite": "独立した正本", "log/history.csv": "独立した約定"} {
 				data, err := os.ReadFile(filepath.Join(root, "dist", target, folder, relative))
 				if err != nil || string(data) != expected {
 					t.Fatal("再配布で設定・データ・ログを書き換えました", relative)
@@ -214,7 +193,7 @@ func TestFirstConfigAndFailedBuild(t *testing.T) {
 		if target == "linux-amd64" {
 			binary = "sessiontrader"
 		}
-		for _, product := range []string{"TOPIX", "TOPIXmini", "NK225", "NK225mini", "NK225micro"} {
+		for _, product := range []string{"Web"} {
 			bundle := filepath.Join(root, "dist", target, product)
 			for relative, value := range map[string]string{binary: "旧実行ファイル", "conf/settings.toml.sample": "旧サンプル", "docs/仕様.md": "旧説明書", "data/state.sqlite": "旧状態"} {
 				path := filepath.Join(bundle, relative)
@@ -242,7 +221,7 @@ func TestFirstConfigAndFailedBuild(t *testing.T) {
 	if err := buildDistribution(root, fakeBuild); err != nil {
 		t.Fatal(err)
 	}
-	directory := filepath.Join(root, "dist", "linux-amd64", "NK225mini", "conf")
+	directory := filepath.Join(root, "dist", "linux-amd64", "Web", "conf")
 	data, err := os.ReadFile(filepath.Join(directory, "settings.toml"))
 	sample, sampleErr := os.ReadFile(filepath.Join(directory, "settings.toml.sample"))
 	if err != nil || sampleErr != nil || string(data) != string(sample) {
@@ -250,10 +229,10 @@ func TestFirstConfigAndFailedBuild(t *testing.T) {
 	}
 }
 
-// TestFreshRootHasOnlyProductBundles はOS直下へ共通実行ファイル・設定を再生成しないことを確認します。
+// TestFreshRootHasOnlyWebBundle はOS直下へ旧単品・共通実行ファイルを再生成しないことを確認します。
 //
 // 引数: t(*testing.T) は試験です。返り値: なし。
-func TestFreshRootHasOnlyProductBundles(t *testing.T) {
+func TestFreshRootHasOnlyWebBundle(t *testing.T) {
 	root := fixture(t)
 	if err := buildDistribution(root, fakeBuild); err != nil {
 		t.Fatal(err)
@@ -264,9 +243,9 @@ func TestFreshRootHasOnlyProductBundles(t *testing.T) {
 		if err != nil {
 			t.Fatal(err)
 		}
-		expected := map[string]bool{"README.md": false, "TOPIX": true, "TOPIXmini": true, "NK225": true, "NK225mini": true, "NK225micro": true}
+		expected := map[string]bool{"README.md": false, "Web": true}
 		if len(entries) != len(expected) {
-			t.Fatalf("OS直下がREADMEと五商品だけになっていません: %s %v", target, entries)
+			t.Fatalf("OS直下がREADME・Web版だけの構成になっていません: %s %v", target, entries)
 		}
 		for _, entry := range entries {
 			directory, exists := expected[entry.Name()]
@@ -287,9 +266,14 @@ func TestFreshRootHasOnlyProductBundles(t *testing.T) {
 // 返り値: なし。
 func TestUnsafeSampleRejected(t *testing.T) {
 	root := fixture(t)
-	write(t, filepath.Join(root, "conf", "setting.toml.sample"), strings.Replace(sampleConfiguration, "dryrun = true", "dryrun = false", 1))
+	path := filepath.Join(root, "web-conf", "settings.toml.sample")
+	data, err := os.ReadFile(path)
+	if err != nil {
+		t.Fatal(err)
+	}
+	write(t, path, strings.Replace(string(data), `mode = "off"`, `mode = "live"`, 1))
 	calls := 0
-	err := buildDistribution(root, func(string, string, string) error {
+	err = buildDistribution(root, func(string, string, string) error {
 		calls++
 		return nil
 	})

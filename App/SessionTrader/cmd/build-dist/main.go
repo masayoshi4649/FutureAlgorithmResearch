@@ -20,6 +20,9 @@ var distributionReadme []byte
 //go:embed README.root.md
 var distributionRootReadme []byte
 
+//go:embed README.web.md
+var distributionWebReadme []byte
+
 // main はプロジェクトルートから配布物を作成します。
 //
 // 引数: なし。実行ディレクトリと Go のビルド環境を使用します。
@@ -67,23 +70,10 @@ func buildDistribution(root string, build func(string, string, string) error) er
 		return fmt.Errorf("一時領域が配布先の外にあります")
 	}
 	defer os.RemoveAll(stage)
-	if err = copyConfiguration(filepath.Join(root, "conf"), filepath.Join(stage, "conf")); err != nil {
+	if err = prepareWebConfiguration(root, stage); err != nil {
 		return err
 	}
-	settings, err := config.Load(filepath.Join(stage, "conf"))
-	if err != nil {
-		return fmt.Errorf("設定サンプルが不正です: %w", err)
-	}
-	if !settings.Trading.DryRun {
-		return fmt.Errorf("配布用サンプルは dryrun = true が必要です")
-	}
-	if err := cli.ValidateAlgorithms(settings); err != nil {
-		return fmt.Errorf("設定サンプルの手法が不正です: %w", err)
-	}
-	examples, err := prepareSingleConfigurations(stage, settings)
-	if err != nil {
-		return err
-	}
+	examples := []string{"Web"}
 
 	targets := []struct{ os, folder, executable string }{
 		{"windows", "windows-amd64", "sessiontrader.exe"},
@@ -120,10 +110,17 @@ func buildDistribution(root string, build func(string, string, string) error) er
 			if err = copyConfiguration(filepath.Join(stage, example, "conf"), filepath.Join(bundle, "conf")); err != nil {
 				return err
 			}
+			if err = copyRuleFiles(filepath.Join(stage, example, "conf", "rules"), filepath.Join(bundle, "conf", "rules")); err != nil {
+				return err
+			}
 			if err = copyDocumentation(filepath.Join(stage, target.folder, "docs"), filepath.Join(bundle, "docs")); err != nil {
 				return err
 			}
-			if err = atomicFile(filepath.Join(bundle, "README.md"), distributionReadme, 0644); err != nil {
+			readme := distributionReadme
+			if example == "Web" {
+				readme = distributionWebReadme
+			}
+			if err = atomicFile(filepath.Join(bundle, "README.md"), readme, 0644); err != nil {
 				return err
 			}
 			executable, readErr := os.ReadFile(filepath.Join(stage, target.folder, target.executable))
@@ -157,9 +154,9 @@ func prepareSingleConfigurations(stage string, settings config.Config) ([]string
 	}{
 		{"TOPIX", "TOPIX", "topix", "T06", "T04", 2},
 		{"TOPIXmini", "TOPIXmini", "topix-mini", "T06", "T04", 10},
-		{"NK225", "NK225", "nk225", "TG04", "TG04", 2},
-		{"NK225mini", "NK225mini", "nk225mini", "TG04", "TG04", 10},
-		{"NK225micro", "NK225micro", "nk-micro", "TG04", "TG04", 20},
+		{"NK225", "NK225", "nk225", "S01", "D07", 2},
+		{"NK225mini", "NK225mini", "nk225mini", "S01", "D07", 10},
+		{"NK225micro", "NK225micro", "nk-micro", "S01", "D07", 20},
 	} {
 		if _, exists := settings.Products[example.product]; !exists {
 			return nil, fmt.Errorf("配布用設定に商品の規格がありません: %s", example.product)

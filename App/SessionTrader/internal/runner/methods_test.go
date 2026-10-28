@@ -107,3 +107,42 @@ func TestNightBootstrapUsesSelectedMethod(t *testing.T) {
 		})
 	}
 }
+
+// TestSlotSharedFeatureValidation は各手法の共通指標一致と、将来の係数差の拒否を検査します。
+//
+// 引数: t(*testing.T)。返り値: なし。
+func TestSlotSharedFeatureValidation(t *testing.T) {
+	baseline := strategy.DefaultParameters("NK225", "Night")
+	for _, method := range []string{"U06", "D07", "TG04", "PG04"} {
+		candidate, err := strategy.ParametersForMethod("NK225", "Night", method)
+		if err != nil || validateSharedFeatureParameters(baseline, candidate) != nil {
+			t.Fatal("現行手法の共通指標が異なります", method, err)
+		}
+	}
+	changed := baseline
+	changed.Features.ATRPeriod++
+	if err := validateSharedFeatureParameters(baseline, changed); err == nil {
+		t.Fatal("異なる指標期間の共有を許可しました")
+	}
+}
+
+// TestSlotBootstrapEnablesLaterResearchFeatures は旧手法の準備時にも後続D07の研究特徴を有効にします。
+//
+// 引数: t(*testing.T)。返り値: なし。
+func TestSlotBootstrapEnablesLaterResearchFeatures(t *testing.T) {
+	cfg, bundle, histories, _, cutoff := bootstrapFixture(t)
+	cfg.Markets = map[string]config.Market{"NK225": {Enabled: true, Product: "NK225", MaxPerSide: 10, CoreQuantity: 5, ExtraQuantity: 5}}
+	cfg.Algorithm = nil
+	cfg.Windows = []config.MethodWindow{
+		{ID: "morning", Session: "Day", Start: "SESSION_START", End: "10:00", Method: "NK225_T06"},
+		{ID: "later", Session: "Day", Start: "10:00", End: "SESSION_END", Method: "NK225_D07"},
+	}
+	if err := validateMethodSelection(cfg); err != nil {
+		t.Fatal(err)
+	}
+	store, _, _ := bootstrapStore(t)
+	prepared, err := prepareHistory(context.Background(), cfg, bundle, histories, store, cutoff, cutoff)
+	if err != nil || !prepared.Features.ResearchEnabled {
+		t.Fatal("後続枠の研究特徴を履歴から準備しませんでした", err)
+	}
+}

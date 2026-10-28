@@ -22,7 +22,7 @@ func TestExplicitPortfolioKeepsLegacyDefaults(t *testing.T) {
 					t.Fatal("省略時の手法を新手法へ変更しました", legacy.Methods)
 				}
 				seen := map[string]bool{legacy.Signature(): true}
-				for _, method := range []string{"TG04", "PG04"} {
+				for _, method := range []string{"TG04", "PG04", "D07"} {
 					cfg, err := Load(writeConfiguration(t, body+fmt.Sprintf("\n[methods]\nday=%q\nnight=%q\n", method, method)))
 					if err != nil {
 						t.Fatal(err)
