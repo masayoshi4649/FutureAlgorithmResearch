@@ -1,0 +1,11 @@
+{
+  "input_rows": 52964,
+  "cases": 6,
+  "all_signals_zero": true,
+  "all_source_events_zero": true,
+  "all_positions_zero": true,
+  "rule_sha256": "2c19965f5fdb33ce4992c8f5f36abf54fcebbc0c54394d09823955a2418deafa",
+  "harness_sha256": "0796a675a47cad0cf0405bf1145fe5d1e7c83be22fdfcd80218c4222161d4cbc",
+  "result_sha256": "d2d852b9f13f2f3f259d6659119911c44a384905900b4beb469baa6804ea8813",
+  "no_live_write": true
+}

@@ -1,0 +1,96 @@
+{
+  "cutoff": "2026-10-26T18:37:11+09:00",
+  "purpose": "現セッションD07入口無取引の再現。戦略変更・最適化なし。注文通信なし。",
+  "files": [
+    {
+      "name": "NK225_book.jsonl",
+      "url": "http://10.10.100.1:8080/api/v1/history/NK225/book?to=2026-10-26T18%3A37%3A11%2B09%3A00",
+      "bytes": 44492293,
+      "sha256": "ff7094d1aa9a0e124d363e72eb35303e823dfabdc907e8a86881bedd5dcf15fd",
+      "headers": {
+        "Cache-Control": "no-store",
+        "Content-Type": "application/x-ndjson; charset=utf-8",
+        "Trailer": "X-History-Complete",
+        "X-History-As-Of": "2026-10-26T18:37:09.9924726+09:00",
+        "X-History-Code": "NK225",
+        "X-History-Generation": "28f4ea3905f7ade7cefe1dac221303b0",
+        "X-History-Sequence": "27703",
+        "X-History-Session-Id": "2026-10-26_Night",
+        "Date": "Mon, 26 Oct 2026 09:37:10 GMT",
+        "Connection": "close",
+        "Transfer-Encoding": "chunked"
+      }
+    },
+    {
+      "name": "TOPIX_book.jsonl",
+      "url": "http://10.10.100.1:8080/api/v1/history/TOPIX/book?to=2026-10-26T18%3A37%3A11%2B09%3A00",
+      "bytes": 41916391,
+      "sha256": "3010d233deac448666daf6013ce937626751a9418a266cf98540168f1be7e319",
+      "headers": {
+        "Cache-Control": "no-store",
+        "Content-Type": "application/x-ndjson; charset=utf-8",
+        "Trailer": "X-History-Complete",
+        "X-History-As-Of": "2026-10-26T18:37:10.0213624+09:00",
+        "X-History-Code": "TOPIX",
+        "X-History-Generation": "28f4ea3905f7ade7cefe1dac221303b0",
+        "X-History-Sequence": "26745",
+        "X-History-Session-Id": "2026-10-26_Night",
+        "Date": "Mon, 26 Oct 2026 09:37:10 GMT",
+        "Connection": "close",
+        "Transfer-Encoding": "chunked"
+      }
+    },
+    {
+      "name": "NK225_candles_1min.json",
+      "url": "http://10.10.100.1:8080/api/v1/history/NK225/candles/1min?to=2026-10-26T18%3A37%3A11%2B09%3A00",
+      "bytes": 13632,
+      "sha256": "37e43007bc2fd96f4dfec2e1661b6806aab6809444fe55e3140e64f8ecb6bd84",
+      "headers": {
+        "Cache-Control": "no-store",
+        "Content-Type": "application/json; charset=utf-8",
+        "Date": "Mon, 26 Oct 2026 09:37:10 GMT",
+        "Connection": "close",
+        "Transfer-Encoding": "chunked"
+      }
+    },
+    {
+      "name": "NK225_candles_5min.json",
+      "url": "http://10.10.100.1:8080/api/v1/history/NK225/candles/5min?to=2026-10-26T18%3A37%3A11%2B09%3A00",
+      "bytes": 3121,
+      "sha256": "908dafcc2d1010941a94231b2daa651c8542f533824157b484f9af243dfa5285",
+      "headers": {
+        "Cache-Control": "no-store",
+        "Content-Type": "application/json; charset=utf-8",
+        "Date": "Mon, 26 Oct 2026 09:37:10 GMT",
+        "Connection": "close",
+        "Transfer-Encoding": "chunked"
+      }
+    },
+    {
+      "name": "TOPIX_candles_1min.json",
+      "url": "http://10.10.100.1:8080/api/v1/history/TOPIX/candles/1min?to=2026-10-26T18%3A37%3A11%2B09%3A00",
+      "bytes": 13515,
+      "sha256": "9e22814fd7bf35ad9dae8c750b40406d8216ef33c0013eb3657bc5721b89b0e5",
+      "headers": {
+        "Cache-Control": "no-store",
+        "Content-Type": "application/json; charset=utf-8",
+        "Date": "Mon, 26 Oct 2026 09:37:10 GMT",
+        "Connection": "close",
+        "Transfer-Encoding": "chunked"
+      }
+    },
+    {
+      "name": "TOPIX_candles_5min.json",
+      "url": "http://10.10.100.1:8080/api/v1/history/TOPIX/candles/5min?to=2026-10-26T18%3A37%3A11%2B09%3A00",
+      "bytes": 3131,
+      "sha256": "e4e94f53418441830be4666915b20f45a5c853e126a555f0890eb6925ab4857b",
+      "headers": {
+        "Cache-Control": "no-store",
+        "Content-Type": "application/json; charset=utf-8",
+        "Date": "Mon, 26 Oct 2026 09:37:10 GMT",
+        "Connection": "close",
+        "Transfer-Encoding": "chunked"
+      }
+    }
+  ]
+}
