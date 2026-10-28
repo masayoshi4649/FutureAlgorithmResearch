@@ -1,0 +1,33 @@
+# E01の既定係数。変更すると既存の検証結果とは別の設定になります。
+[E01]
+EntryATR = 0.25
+StopATR = 0.75
+PartialATR = 2.0
+TrailStartATR = 1.5
+TrailWideATR = 3.0
+TrailTightStartATR = 3.0
+TrailTightATR = 0.75
+MaxHoldMinutes = 360
+CooldownMinutes = 5
+SessionWarmupSeconds = 1200
+EntryCutoffSeconds = 300
+EntryPendingSeconds = 300
+ShadowRiskATR = 1.0
+ActualRiskATR = 1.0
+
+# 指標の期間・公開待機。待機短縮は従来のE01とは異なる条件になります。
+[FEATURE]
+atr_period = 12
+atr_min_bars = 3
+ema_fast = 15
+ema_slow = 60
+slope_bars = 3
+gap_atr = 0.15
+slope_atr = 0.02
+candle_delay_seconds = 60
+peer_delay_seconds = 60
+warmup_seconds = 1200
+support_atr = 0.05
+support_expiry_seconds = 120
+adverse_long_atr = 0.25
+adverse_short_atr = 0.10

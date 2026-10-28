@@ -1,0 +1,11 @@
+[TRADE]
+# NK225 / NK225mini / NK225micro / TOPIX / TOPIXmini のいずれか1つ。
+Symbol = "TOPIXmini"
+# 累計売買枚数ではなく、片方向の同時保有上限です。
+MaxPositionPerSide = 10
+# 0なら上限の半分（切捨て、最低1枚）。E01は追加建てしません。
+InitialQuantity = 0
+# falseに変更すると実注文APIを使用します。
+DryRun = true
+# observed: 選択商品の観測価格。specified: 条件価格での理想仮想約定。
+FillMode = "observed"
