@@ -1,0 +1,84 @@
+<!doctype html>
+<!--
+[コンポーネント概要]
+#catalog-form はサーバー上のリソース一覧を開きます。#catalog-upload とページ内への
+ファイルドロップはリンク列挙JSONだけを送信し、価格・損益原資料を直接読み込みません。
+#resource-controls は一覧内の銘柄・日付_セッション・手法ID・資源選択を連動します。
+#price-controls は価格だけの銘柄・場選択、#interval はraw/1/5/15分足の表示単位です。
+#range-form と .preset は5段すべての表示時刻を共有します。入力時刻はJSTです。
+#charts のCanvasは価格、売保有、買保有、確定損益、含み損益を描画します。
+ポインター、ズーム、パンを同期し、nullや観測範囲外を0として補完しません。
+#status は読込・空データの状態、#error は失敗、#quality は時計と縮約の情報です。
+#event-rows はサーバーが返した取引を時刻・連番付きで表示し、会計を再計算しません。
+.is-loading は取得中、.is-dragging はパン中、.drop-active はファイル受付状態です。
+-->
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>セッションビューアー</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23101b28'/%3E%3Cpath d='M5 22L11 14L17 18L27 7' fill='none' stroke='%2378c8f0' stroke-width='3'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/style.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+<header class="topbar">
+  <div class="brand"><span class="brand-mark" aria-hidden="true">◷</span><h1>セッションビューアー</h1><span class="badge">JST</span></div>
+  <div id="status" class="status" role="status" aria-live="polite">接続中…</div>
+</header>
+<main>
+  <section class="source-panel" aria-label="表示資料">
+    <form id="catalog-form" class="catalog-row">
+      <label class="field path-field">サーバー上の一覧ファイル<input id="catalog-path" type="text" placeholder="例：資料.resources.json" autocomplete="off" spellcheck="false"></label>
+      <button type="submit" class="primary">開く</button>
+      <label class="upload-button" for="catalog-upload">JSONを選択<input id="catalog-upload" type="file" accept=".json,application/json"></label>
+      <span class="drop-hint">またはドロップ</span>
+    </form>
+    <div class="source-row">
+      <div class="segmented" role="group" aria-label="資料の種類"><button id="mode-resource" type="button" aria-pressed="true">リソース</button><button id="mode-price" type="button" aria-pressed="false">価格だけ</button></div>
+      <div id="resource-controls" class="resource-controls grow">
+        <label class="field resource-symbol-field">銘柄<select id="resource-symbol" disabled><option value="">—</option></select></label>
+        <label class="field resource-session-field">日付_セッション<select id="resource-session" disabled><option value="">—</option></select></label>
+        <label class="field resource-method-field">手法ID<select id="resource-method" disabled><option value="">—</option></select></label>
+        <label class="field resource-detail-field">リソース<select id="resource-select" disabled><option value="">一覧を開いてください</option></select></label>
+      </div>
+      <form id="price-controls" class="price-controls" hidden>
+        <label class="field symbol-field">銘柄<input id="symbol-input" list="symbols" value="NK225" autocomplete="off"><datalist id="symbols"><option value="NK225"><option value="TOPIX"></datalist></label>
+        <label class="field grow">セッション<select id="session-select"><option value="">銘柄を選択</option></select></label><button type="submit">表示</button>
+      </form>
+    </div>
+  </section>
+  <div id="error" class="error" role="alert" hidden></div>
+  <section class="view-panel" aria-label="表示範囲">
+    <div class="view-row">
+      <h2 id="resource-title">資料を選択</h2>
+      <label class="inline-field">表示単位<select id="interval"><option value="raw">raw</option><option value="1">1分足</option><option value="5">5分足</option><option value="15">15分足</option></select></label>
+      <label class="inline-field">価格<select id="price-field"><option value="last">Last</option><option value="mid">Mid</option><option value="bid">Bid</option><option value="ask">Ask</option></select></label>
+      <label class="check"><input id="shared-scale" type="checkbox">PL共通目盛</label>
+      <div class="presets" role="group" aria-label="表示する時間幅"><button type="button" class="preset" data-span="all">全場</button><button type="button" class="preset" data-span="300000">5分</button><button type="button" class="preset" data-span="900000">15分</button><button type="button" class="preset" data-span="3600000">1時間</button></div>
+    </div>
+    <form id="range-form" class="range-row">
+      <label class="inline-field">開始<input id="range-from" type="datetime-local" step="0.001" aria-label="表示開始日時（JST）"></label><span aria-hidden="true">—</span><label class="inline-field">終了<input id="range-to" type="datetime-local" step="0.001" aria-label="表示終了日時（JST）"></label><button type="submit">範囲を適用</button>
+      <span class="gesture-hint">ホイール：拡大縮小 ／ ドラッグ：移動</span>
+    </form>
+    <div class="slider-row"><span id="session-start">—</span><input id="position-slider" type="range" min="0" max="1000" value="0" disabled aria-label="セッション内の表示位置"><span id="session-end">—</span></div>
+  </section>
+  <div class="cursor-bar"><strong id="cursor-time">—</strong><span id="cursor-detail">時刻に合わせて5段を確認</span></div>
+  <section id="charts" aria-label="時系列グラフ" aria-busy="false">
+    <article class="chart-card price-card" data-series="price"><div class="chart-label"><h3>価格 <span id="price-kind-label">Last</span></h3><output id="value-price">—</output></div><canvas id="chart-price" tabindex="0" role="img" aria-label="価格。左右キーで移動、プラスとマイナスで拡大縮小、Homeで全場"></canvas></article>
+    <article class="chart-card" data-series="short"><div class="chart-label"><h3><i class="dot short-dot"></i>売保有 <small>枚</small></h3><output id="value-short">—</output></div><canvas id="chart-short" tabindex="0" role="img" aria-label="売保有枚数。時間軸は他のグラフと共通"></canvas></article>
+    <article class="chart-card" data-series="long"><div class="chart-label"><h3><i class="dot long-dot"></i>買保有 <small>枚</small></h3><output id="value-long">—</output></div><canvas id="chart-long" tabindex="0" role="img" aria-label="買保有枚数。時間軸は他のグラフと共通"></canvas></article>
+    <article class="chart-card" data-series="realized"><div class="chart-label"><h3>累積確定PL <small>円</small></h3><output id="value-realized">—</output></div><canvas id="chart-realized" tabindex="0" role="img" aria-label="累積確定損益。中央0、上下対称"></canvas></article>
+    <article class="chart-card" data-series="unrealized"><div class="chart-label"><h3>含みPL <small>円</small></h3><output id="value-unrealized">—</output></div><canvas id="chart-unrealized" tabindex="0" role="img" aria-label="含み損益。中央0、上下対称"></canvas></article>
+  </section>
+  <div id="quality" class="quality" aria-live="polite"></div>
+  <details class="files-panel"><summary>参照ファイル</summary><dl id="files"></dl></details>
+  <section class="events-panel" aria-label="取引一覧">
+    <div class="events-heading"><h2>取引一覧 <span id="event-count" class="muted"></span></h2><label class="check"><input id="events-near" type="checkbox">カーソルの前後30秒</label><button id="events-prev" type="button">前へ</button><span id="events-page">—</span><button id="events-next" type="button">次へ</button></div>
+    <div class="table-scroll"><table><thead><tr><th>時刻（JST）</th><th>連番</th><th>売買</th><th>価格</th><th>枚数</th><th>確定増減（円）</th><th>所有ID</th><th>手法ID</th></tr></thead><tbody id="event-rows"><tr><td colspan="8" class="empty-cell">資料を選択してください</td></tr></tbody></table></div>
+  </section>
+</main>
+<div id="drop-overlay" aria-hidden="true">リンク一覧JSONをドロップ</div>
+</body>
+</html>
