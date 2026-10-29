@@ -1,6 +1,6 @@
 # S01の日中運用への移植
 
-最初はこのファイル、検査の詳細は[検証記録](検証記録.md)、売買条件は[アプリのS01仕様](../../App/SessionTrader/docs/S01.md)を参照してください。
+最初はこのファイル、検査の詳細は[検証記録](検証記録.md)、売買条件は[アプリのS01仕様](../../../SessionTradeExecuter/docs/S01.md)を参照してください。
 
 日経ラージ・mini・microの**日中を `NK225_S01` に変更**しました。夜間は米国開始前P05、前後15分の静観、開始15分後からD07を維持します。
 
@@ -8,8 +8,8 @@ S01は、別入口担当の親取引に利益が乗ったら最高利益の半�
 
 配布先：
 
-- [Windows版](../../App/SessionTrader/dist/windows-amd64/Web/README.md)
-- [Linux版](../../App/SessionTrader/dist/linux-amd64/Web/README.md)
+- [Windows版](../../../SessionTradeExecuter/README.md)
+- [Linux版](../../../SessionTradeExecuter/README.md)
 
 実行ファイルと新しい `conf/rules/NK225_S01.toml` を含めて差し替えます。既存のQty・モード・接続先は保持し、旧標準の時間枠だけ日中S01へ移行します。独自設定の場合はOFF・注文照合完了後、商品の⚙で日中に `NK225_S01` を選択してください。実際に稼働しているPCへの差し替えは行っていません。
 

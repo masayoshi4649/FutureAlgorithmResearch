@@ -1,10 +1,10 @@
 # 00169 セッションと売買経路の可視化
 
-[SessionViewer](../../App/SessionViewer/README.md)を起動し、[比較.resources.json](比較.resources.json)を画面から開いてください。価格・売保有・買保有・累積確定損益・含み損益を、同じ時刻と表示範囲で確認できます。
+[SessionTradeViewer](../../../SessionTradeViewer/README.md)を起動し、[比較.resources.json](比較.resources.json)を画面から開いてください。価格・売保有・買保有・累積確定損益・含み損益を、同じ時刻と表示範囲で確認できます。
 
 銘柄・日付_セッション・手法IDを個別選択できます。価格はraw／1分／5分／15分を切り替え、分足時の保有・損益はその区間の最後値です。足ごとのファイルは追加保存しません。
 
-SessionTraderの`log/sessionviewer.resources.json`にも対応します。AIはViewerの[画像API](../../App/SessionViewer/docs/画像API.md)から、同じ範囲のPNG／SVGと数値・約定・原資料パスを取得できます。画像はサーバーに常設しません。
+SessionTraderの`log/sessionviewer.resources.json`にも対応します。AIはViewerの[画像API](../../../SessionTradeViewer/docs/画像API.md)から、同じ範囲のPNG／SVGと数値・約定・原資料パスを取得できます。画像はサーバーに常設しません。
 
 初期設定では一覧を自動で開きます。直接指定するURLは、`http://localhost:8091/?catalog=アルゴリズム調査/00169_セッションと売買経路の可視化/比較.resources.json&resource=day-baseline`です。
 
@@ -27,4 +27,4 @@ SessionTraderの`log/sessionviewer.resources.json`にも対応します。AIはV
 
 JSONLに指定した約定価格と建玉IDから保有・確定損益を復元し、含みは既存のラージ気配で評価します。表示点の極値を残して縮約し、ズームすると細部を取得します。損益軸はそれぞれ中央0・±対称です。
 
-項目とパスの基準は[データ仕様](../../App/SessionViewer/docs/データ仕様.md)を参照してください。研究のセッション一覧xlsxは従来どおり、経路を説明する時はこのリンク列挙ファイルを併記します。
+項目とパスの基準は[データ仕様](../../../SessionTradeViewer/docs/データ仕様.md)を参照してください。研究のセッション一覧xlsxは従来どおり、経路を説明する時はこのリンク列挙ファイルを併記します。

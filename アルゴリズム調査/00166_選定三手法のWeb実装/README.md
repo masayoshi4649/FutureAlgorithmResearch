@@ -12,9 +12,9 @@
 
 ## 配布物
 
-- [Windows Web版](../../App/SessionTrader/dist/windows-amd64/Web/)
-- [Linux Web版](../../App/SessionTrader/dist/linux-amd64/Web/)
-- [手法と設定の説明](../../App/SessionTrader/docs/新標準手法.md)
+- [Windows Web版](../../../SessionTradeExecuter/README.md)
+- [Linux Web版](../../../SessionTradeExecuter/README.md)
+- [手法と設定の説明](../../../SessionTradeExecuter/docs/新標準手法.md)
 
 実行ファイルと `conf/rules` の新しい3ファイルを配置します。旧標準の時間割だけを自動移行し、既存の枚数・OFF／DryRun／ON・接続先は保持します。独自の時間割は画面から選択します。既存の実設定・データ・ログは上書きしません。
 

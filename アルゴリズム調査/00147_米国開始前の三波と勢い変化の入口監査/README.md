@@ -53,4 +53,4 @@
 - 過去の知見台帳の「同時加速」は30秒値幅の同方向支持を指す例があります。今回の傾きの時間変化そのものを試した証拠とはしません。
 - 計算：[価格の傾き監査.md](価格の傾き監査.md)、[先読み検査](傾きの検査.json)。原計算と全時刻値は`work/current_idle_20261026/三波確認/傾き監査/`。
 - 原板・足：[入力目録](入力目録.json)。担当別準備：[三波の入口集計](三波の入口集計.json)。
-- 本番コード：[特徴量](../../App/SessionTrader/internal/strategy/features143.go)、[入口条件](../../App/SessionTrader/internal/strategy/active143.go)、[D07ルール](../../App/SessionTrader/conf/rules/NK225_D07.toml)。
+- 本番コード：[特徴量](../../../SessionTradeExecuter/internal/strategy/features143.go)、[入口条件](../../../SessionTradeExecuter/internal/strategy/active143.go)、[D07ルール](../../../SessionTradeExecuter/conf/rules/NK225_D07.toml)。

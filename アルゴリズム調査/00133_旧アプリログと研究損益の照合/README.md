@@ -43,13 +43,13 @@
 
 提供された全18約定のCSV・JSONLは、時刻・商品・数量・価格・損益・理由・判断根拠が一致し、設定署名も共通でした。返済理由の誤表示4明細は、TOPIX11:03／11:19／12:21と日経10:30の理由番号1です。[提供ログの独立監査](../../work/logcompare132_20261021/provided_20261021/提供約定ログの範囲と新規欠落の監査.json)に記録しています。
 
-**trace削除後の代替確認：** [journalの保存処理](../../App/SessionTrader/internal/journal/journal.go)では`events`テーブルをSQLiteへ確定し、[ログ生成処理](../../App/SessionTrader/internal/journal/projection.go)がその内容をtrace.jsonlへ書き出します。原板もmarket.sqliteの`books`に保存されます。ただし、ユーザーから当日の`market.sqlite`・`NK225micro.sqlite`も「ない」と回答があり、この経路での当時状態の確認はできません。
+**trace削除後の代替確認：** [journalの保存処理](../../../SessionTradeExecuter/internal/journal/journal.go)では`events`テーブルをSQLiteへ確定し、[ログ生成処理](../../../SessionTradeExecuter/internal/journal/projection.go)がその内容をtrace.jsonlへ書き出します。原板もmarket.sqliteの`books`に保存されます。ただし、ユーザーから当日の`market.sqlite`・`NK225micro.sqlite`も「ない」と回答があり、この経路での当時状態の確認はできません。
 
 ## 根拠と未確認範囲
 
 - [保存注文からの算術検算](../../work/logcompare132_20261021/ログ注文の算術検算.json)
 - [研究の保存会計と注文配列参照](../../work/update132_20261021/results/追加セッションの会計.json)
-- [アプリの履歴準備](../../App/SessionTrader/internal/runner/bootstrap.go)、[判断と商品気配による発注](../../App/SessionTrader/internal/runner/runner.go)、[日中の紙上通知と実発注条件](../../App/SessionTrader/internal/strategy/cores.go)、[理由文](../../App/SessionTrader/internal/strategy/portfolio.go)
+- [アプリの履歴準備](../../../SessionTradeExecuter/internal/runner/bootstrap.go)、[判断と商品気配による発注](../../../SessionTradeExecuter/internal/runner/runner.go)、[日中の紙上通知と実発注条件](../../../SessionTradeExecuter/internal/strategy/cores.go)、[理由文](../../../SessionTradeExecuter/internal/strategy/portfolio.go)
 - controllerのローカル仕様：`../kabus-controller/docs/future-history.md`、`future_order_session.go`。当日APIへの再接続は行っていません。
 
 今回は既存注文と提示ログの比較だけです。金融再生・新たな戦略選択・アプリ修正・実注文は行っていません。traceと当日SQLiteが残っていないため、午後2件の不一致は原因未確定として記録します。残存する研究用原板を再生しても、その時点にアプリが実受信した板・口座鮮度・見送り状態まで復元できるとは限らず、再生結果を当時の原因の確定に置き換えません。損益計算の整合、場切替の仕様一致、理由文の表示不具合は確認済みですが、売買判断全体の正常性は確認できていません。

@@ -1,12 +1,12 @@
 # P05の運用化とセッション損益リセット
 
-最初はこのREADME、詳しい確認範囲は[検証記録](検証記録.md)、操作条件は[アプリのP05仕様](../../App/SessionTrader/docs/P05.md)の順に参照してください。
+最初はこのREADME、詳しい確認範囲は[検証記録](検証記録.md)、操作条件は[アプリのP05仕様](../../../SessionTradeExecuter/docs/P05.md)の順に参照してください。
 
 - 日経3商品：日中D07／夜間開始〜米国開始15分前P05／前後15分は返済・静観／開始15分後からD07。
 - 画面の確定損益・手数料・直近約定を当セッション分へ統一。昼夜切替で前場の損益を引き継がない。
 - 商品・モード別に`session_summary.csv`／`session_summary_dryrun.csv`を追加。1場1行、無取引は0円。同場の再起動は同じ行に合算。
 
-配布先は[Windows Web版](../../App/SessionTrader/dist/windows-amd64/Web/README.md)と[Linux Web版](../../App/SessionTrader/dist/linux-amd64/Web/README.md)。実行ファイルと新しい`conf/rules/NK225_P05.toml`を更新対象とします。実機の稼働切替・実注文は行っていません。
+配布先は[Windows Web版](../../../SessionTradeExecuter/README.md)と[Linux Web版](../../../SessionTradeExecuter/README.md)。実行ファイルと新しい`conf/rules/NK225_P05.toml`を更新対象とします。実機の稼働切替・実注文は行っていません。
 
 通常の旧D07設定は読込時に新しい時間帯へ移行します。旧画面で保存した日中全体・夜間全体D07の2枠標準形も移行対象です。独自の分割時間帯、独自係数、他の夜間手法は保持します。Qty・商品モード・既存ルール・台帳・ログも保持します。
 

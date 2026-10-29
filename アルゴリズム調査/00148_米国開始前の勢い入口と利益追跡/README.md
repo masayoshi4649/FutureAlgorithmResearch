@@ -29,8 +29,8 @@
 
 境界では当運転の未約定を取消・照合し、所有玉を返済してから次手法を新規状態で始める。手動玉・前起動の玉は対象外。空白時間は静観。旧設定のままなら従来の動作を維持する。
 
-- [Windows配布版](../../App/SessionTrader/dist/windows-amd64/Web/README.md)
-- [Linux配布版](../../App/SessionTrader/dist/linux-amd64/Web/README.md)
-- [設定と切替の仕様](../../App/SessionTrader/docs/時間帯切替.md)
+- [Windows配布版](../../../SessionTradeExecuter/README.md)
+- [Linux配布版](../../../SessionTradeExecuter/README.md)
+- [設定と切替の仕様](../../../SessionTradeExecuter/docs/時間帯切替.md)
 
 **研究の全夜比較は、前半から独立して仮想継続したD07の後半通知を使用。アプリの時間枠切替は新規状態なので、同じ成績とは扱わない。** 今回の不採用候補はアプリのルール候補へ追加していない。既知資料の開発比較であり、将来の収益保証でも完全未見検証でもない。

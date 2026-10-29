@@ -45,4 +45,4 @@
 
 詳細：[19回の候補と不成立の具体例](候補不成立の具体例.md)。
 
-根拠：[入力目録](入力目録.json)・[結果照合](結果照合.json)。再生コード：[current_d07_night_replay_test.go](../../App/SessionTrader/internal/strategy/current_d07_night_replay_test.go)。詳細原板と全推移は`work/current_idle_20261026/`。
+根拠：[入力目録](入力目録.json)・[結果照合](結果照合.json)。再生コード：[current_d07_night_replay_test.go](../../../SessionTradeExecuter/internal/strategy/current_d07_night_replay_test.go)。詳細原板と全推移は`work/current_idle_20261026/`。

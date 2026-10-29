@@ -22,8 +22,8 @@ APIの直近20約定から、同担当・新規直後の返済・枚数・価格
 
 ## 原因
 
-1. **1枚の別入口担当は追尾開始が遠い。** 夜間episodeの初期リスク幅Rは最低80円、追尾は元の仮想建値から1.25R以上、つまり最低100円順行してから。追尾幅は0.75R。＋50円では開始条件を満たしません。短期の二市場悪化による途中退出もこの担当では無効です。[担当設定](../../App/SessionTrader/internal/strategy/source143.go:84)、[幅の計算](../../App/SessionTrader/internal/strategy/features143.go:232)、[退出条件](../../App/SessionTrader/internal/strategy/active143.go:132)。
-2. **米国前の保護は米国後にはない。** P164_06の少量初回・部分利確後の保護はU165_03では適用されません。U165_03固有の改修は初回待機・解除・取消です。[手法別の分岐](../../App/SessionTrader/internal/strategy/selected_night_policy.go:233)。
+1. **1枚の別入口担当は追尾開始が遠い。** 夜間episodeの初期リスク幅Rは最低80円、追尾は元の仮想建値から1.25R以上、つまり最低100円順行してから。追尾幅は0.75R。＋50円では開始条件を満たしません。短期の二市場悪化による途中退出もこの担当では無効です。[担当設定](../../../SessionTradeExecuter/internal/strategy/source143.go:84)、[幅の計算](../../../SessionTradeExecuter/internal/strategy/features143.go:232)、[退出条件](../../../SessionTradeExecuter/internal/strategy/active143.go:132)。
+2. **米国前の保護は米国後にはない。** P164_06の少量初回・部分利確後の保護はU165_03では適用されません。U165_03固有の改修は初回待機・解除・取消です。[手法別の分岐](../../../SessionTradeExecuter/internal/strategy/selected_night_policy.go:233)。
 3. **出口は元D07の仮想建玉から通知される。** U165_03では実玉自身の最高順行を記録しても、独自の早期返済には使いません。入口延期や実約定価格との差があるため、元の仮想建玉の利益保護と実玉の利益保護も同一ではありません。ラージだけで判断する指定と、実建値を無視することは別です。
 
 今回を単なる表示不具合や枚数丸めの問題とは判断しません。売買の設計に未解決の穴があります。ただし稼働先の実行ファイルの指紋は未取得で、APIの手法IDと手元実装を照合した結果です。

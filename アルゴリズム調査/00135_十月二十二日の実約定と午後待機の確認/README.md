@@ -37,8 +37,8 @@
 
 - [00134の研究損益](../00134_十月二十二日デイのTOPIX損益/README.md)
 - [診断スクリプト](../../work/livecompare135_20261022/compare135.py)：既存の価格経路から通常影返済幅の非到達を計測。入口・出口の売買器は実行しない。
-- [Go版の通常影と出口影](../../App/SessionTrader/internal/e01/engine.go)：通常影の幅、終了、5分待機、新準備を出口側へ渡す条件。
-- [未参加補完の判定](../../App/SessionTrader/internal/strategy/cores.go)：一度参加した場では補完しない。
+- [Go版の通常影と出口影](../../../SessionTradeExecuter/internal/e01/engine.go)：通常影の幅、終了、5分待機、新準備を出口側へ渡す条件。
+- [未参加補完の判定](../../../SessionTradeExecuter/internal/strategy/cores.go)：一度参加した場では補完しない。
 - [研究版の通常影設定](../../work/stability126_20261019/engine/legacy_root/work/wave_v67/replay.py)：通常影の追尾幅短縮なし、初期ATR固定。実効設定を読み取り、中立・方向逆転・連敗・場損失・米国帯変更による別終了条件が無効であることも確認。
 
 同じ波での連続売買を抑える代わりに、利確後の続落にも参加しにくい設計です。この待機を解除した際の収支改善は今回未検証であり、当日の取り逃しだけを根拠に設定を変更していません。
