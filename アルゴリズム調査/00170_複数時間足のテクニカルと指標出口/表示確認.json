@@ -1,0 +1,122 @@
+[
+  {
+    "resource": "NK225/2026-10-16_Day/F09A_I",
+    "from": 1792130101000,
+    "to": 1792131600000,
+    "data_sha256": "4e20c510cb807b52485d4f189e7fb6f86407ac9afde02e766dacf7f4e9336fec",
+    "png_sha256": "ca7d479b690589e3c9f11bd0dc800115fa1dbbb706546276a9c6a7a26deed8bc",
+    "summary": {
+      "long_qty": 0,
+      "short_qty": 0,
+      "realized_pnl_yen": -200000,
+      "unrealized_pnl_yen": 0
+    },
+    "entry": {
+      "id": "NK225_T170_F09A_I/NK225/2026-10-16_Day/1/f1",
+      "timestamp": "2026-10-16T15:00:01+09:00",
+      "type": "LongN",
+      "position_id": "NK225_T170_F09A_I/NK225/2026-10-16_Day/1",
+      "price": 65730,
+      "qty": 10,
+      "method_id": "NK225_T170_F09A_I",
+      "source_line": 140538,
+      "decision_line": 140537,
+      "decision_ns": 1792130401000000000,
+      "reason": "H09買い支持"
+    },
+    "close": {
+      "id": "NK225_T170_F09A_I/NK225/2026-10-16_Day/1/f2",
+      "timestamp": "2026-10-16T15:15:00+09:00",
+      "type": "LongR",
+      "position_id": "NK225_T170_F09A_I/NK225/2026-10-16_Day/1",
+      "price": 65530,
+      "qty": 10,
+      "method_id": "NK225_T170_F09A_I",
+      "source_line": 145863,
+      "decision_line": 145862,
+      "decision_ns": 1792131300000000000,
+      "reason": "固定比率の保険損切り"
+    },
+    "visual_file": "NK225_2026-10-16_Day_F09A_I.png"
+  },
+  {
+    "resource": "NK225/2026-09-29_Night/F10B_I",
+    "from": 1790676604000,
+    "to": 1790678400000,
+    "data_sha256": "31128d14a32b8422bb54323c7265d859e0eea7af5b186c58027c1d66fbc590db",
+    "png_sha256": "a341caaf398ec8ea644b8b0827cf8d8de585a0f63c5c3d7c7af098c15c708324",
+    "summary": {
+      "long_qty": 0,
+      "short_qty": 0,
+      "realized_pnl_yen": -90000,
+      "unrealized_pnl_yen": 0
+    },
+    "entry": {
+      "id": "NK225_T170_F10B_I/NK225/2026-09-29_Night/1/f1",
+      "timestamp": "2026-09-29T19:15:04+09:00",
+      "type": "LongN",
+      "position_id": "NK225_T170_F10B_I/NK225/2026-09-29_Night/1",
+      "price": 65810,
+      "qty": 10,
+      "method_id": "NK225_T170_F10B_I",
+      "source_line": 26875,
+      "decision_line": 26874,
+      "decision_ns": 1790676904000000000,
+      "reason": "H10買い支持"
+    },
+    "close": {
+      "id": "NK225_T170_F10B_I/NK225/2026-09-29_Night/1/f2",
+      "timestamp": "2026-09-29T19:35:00+09:00",
+      "type": "LongR",
+      "position_id": "NK225_T170_F10B_I/NK225/2026-09-29_Night/1",
+      "price": 65720,
+      "qty": 10,
+      "method_id": "NK225_T170_F10B_I",
+      "source_line": 30004,
+      "decision_line": 30003,
+      "decision_ns": 1790678100000000000,
+      "reason": "指標支持失効"
+    },
+    "visual_file": "NK225_2026-09-29_Night_F10B_I.png"
+  },
+  {
+    "resource": "TOPIX/2026-10-14_Night/F03B_F",
+    "from": 1792006565000,
+    "to": 1792007464000,
+    "data_sha256": "8c0f79a2cfe1ff7df8a803150e16261b63d4695ea673dd5b27020a54c5c8a7a2",
+    "png_sha256": "0c2128d3c3f2b2ed997a0d4eef76692fb0b70f9c0be5a3a414167f0e53c9b0d8",
+    "summary": {
+      "long_qty": 0,
+      "short_qty": 0,
+      "realized_pnl_yen": -20000,
+      "unrealized_pnl_yen": 0
+    },
+    "entry": {
+      "id": "TOPIX_T170_F03B_F/TOPIX/2026-10-14_Night/2/f3",
+      "timestamp": "2026-10-15T04:41:05+09:00",
+      "type": "LongN",
+      "position_id": "TOPIX_T170_F03B_F/TOPIX/2026-10-14_Night/2",
+      "price": 4073.5,
+      "qty": 10,
+      "method_id": "TOPIX_T170_F03B_F",
+      "source_line": 161088,
+      "decision_line": 161087,
+      "decision_ns": 1792006865000000000,
+      "reason": "H03買い支持"
+    },
+    "close": {
+      "id": "TOPIX_T170_F03B_F/TOPIX/2026-10-14_Night/2/f4",
+      "timestamp": "2026-10-15T04:46:04+09:00",
+      "type": "LongR",
+      "position_id": "TOPIX_T170_F03B_F/TOPIX/2026-10-14_Night/2",
+      "price": 4072,
+      "qty": 10,
+      "method_id": "TOPIX_T170_F03B_F",
+      "source_line": 162117,
+      "decision_line": 162116,
+      "decision_ns": 1792007164000000000,
+      "reason": "指標支持失効"
+    },
+    "visual_file": "TOPIX_2026-10-14_Night_F03B_F.png"
+  }
+]

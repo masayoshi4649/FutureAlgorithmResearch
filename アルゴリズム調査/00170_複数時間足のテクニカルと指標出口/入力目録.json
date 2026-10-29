@@ -1,0 +1,805 @@
+{
+  "schema_version": 1,
+  "data_root": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future",
+  "scope": "保存済み原板のみ。原本は読み取り専用。SHA256全原行指紋は同時再生監査に記録。",
+  "files": [
+    {
+      "symbol": "NK225",
+      "session": "2026-09-21_Day",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\NK225\\2026-09-21_Day\\book.jsonl",
+      "bytes": 90966689,
+      "mtime_ns": 1789973100595690900
+    },
+    {
+      "symbol": "NK225",
+      "session": "2026-09-21_Night",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\NK225\\2026-09-21_Night\\book.jsonl",
+      "bytes": 131288916,
+      "mtime_ns": 1790024400507069700
+    },
+    {
+      "symbol": "NK225",
+      "session": "2026-09-22_Day",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\NK225\\2026-09-22_Day\\book.jsonl",
+      "bytes": 108807476,
+      "mtime_ns": 1790059500107485600
+    },
+    {
+      "symbol": "NK225",
+      "session": "2026-09-22_Night",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\NK225\\2026-09-22_Night\\book.jsonl",
+      "bytes": 194540234,
+      "mtime_ns": 1790110801012653000
+    },
+    {
+      "symbol": "NK225",
+      "session": "2026-09-23_Day",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\NK225\\2026-09-23_Day\\book.jsonl",
+      "bytes": 87708020,
+      "mtime_ns": 1790145900539225600
+    },
+    {
+      "symbol": "NK225",
+      "session": "2026-09-23_Night",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\NK225\\2026-09-23_Night\\book.jsonl",
+      "bytes": 194252186,
+      "mtime_ns": 1790197200472072800
+    },
+    {
+      "symbol": "NK225",
+      "session": "2026-09-24_Day",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\NK225\\2026-09-24_Day\\book.jsonl",
+      "bytes": 201084097,
+      "mtime_ns": 1790232300371040300
+    },
+    {
+      "symbol": "NK225",
+      "session": "2026-09-24_Night",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\NK225\\2026-09-24_Night\\book.jsonl",
+      "bytes": 285275440,
+      "mtime_ns": 1790283600568666400
+    },
+    {
+      "symbol": "NK225",
+      "session": "2026-09-25_Day",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\NK225\\2026-09-25_Day\\book.jsonl",
+      "bytes": 173615118,
+      "mtime_ns": 1790318700284461600
+    },
+    {
+      "symbol": "NK225",
+      "session": "2026-09-25_Night",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\NK225\\2026-09-25_Night\\book.jsonl",
+      "bytes": 235425790,
+      "mtime_ns": 1790370001012680000
+    },
+    {
+      "symbol": "NK225",
+      "session": "2026-09-28_Day",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\NK225\\2026-09-28_Day\\book.jsonl",
+      "bytes": 219745930,
+      "mtime_ns": 1790577900205818700
+    },
+    {
+      "symbol": "NK225",
+      "session": "2026-09-28_Night",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\NK225\\2026-09-28_Night\\book.jsonl",
+      "bytes": 277282487,
+      "mtime_ns": 1790629200890787000
+    },
+    {
+      "symbol": "NK225",
+      "session": "2026-09-29_Day",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\NK225\\2026-09-29_Day\\book.jsonl",
+      "bytes": 234031468,
+      "mtime_ns": 1790664300241297000
+    },
+    {
+      "symbol": "NK225",
+      "session": "2026-09-29_Night",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\NK225\\2026-09-29_Night\\book.jsonl",
+      "bytes": 262443240,
+      "mtime_ns": 1790715600583077100
+    },
+    {
+      "symbol": "NK225",
+      "session": "2026-09-30_Day",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\NK225\\2026-09-30_Day\\book.jsonl",
+      "bytes": 213956783,
+      "mtime_ns": 1790750700240096900
+    },
+    {
+      "symbol": "NK225",
+      "session": "2026-09-30_Night",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\NK225\\2026-09-30_Night\\book.jsonl",
+      "bytes": 278122866,
+      "mtime_ns": 1790802001058638200
+    },
+    {
+      "symbol": "NK225",
+      "session": "2026-10-01_Day",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\NK225\\2026-10-01_Day\\book.jsonl",
+      "bytes": 224781471,
+      "mtime_ns": 1790837100220396300
+    },
+    {
+      "symbol": "NK225",
+      "session": "2026-10-01_Night",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\NK225\\2026-10-01_Night\\book.jsonl",
+      "bytes": 338321365,
+      "mtime_ns": 1790888400539452800
+    },
+    {
+      "symbol": "NK225",
+      "session": "2026-10-02_Day",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\NK225\\2026-10-02_Day\\book.jsonl",
+      "bytes": 218496804,
+      "mtime_ns": 1790923500326677000
+    },
+    {
+      "symbol": "NK225",
+      "session": "2026-10-02_Night",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\NK225\\2026-10-02_Night\\book.jsonl",
+      "bytes": 284787426,
+      "mtime_ns": 1790974801057996600
+    },
+    {
+      "symbol": "NK225",
+      "session": "2026-10-05_Day",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\NK225\\2026-10-05_Day\\book.jsonl",
+      "bytes": 199123288,
+      "mtime_ns": 1791182700362604200
+    },
+    {
+      "symbol": "NK225",
+      "session": "2026-10-05_Night",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\NK225\\2026-10-05_Night\\book.jsonl",
+      "bytes": 217296942,
+      "mtime_ns": 1791234000942931200
+    },
+    {
+      "symbol": "NK225",
+      "session": "2026-10-06_Day",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\NK225\\2026-10-06_Day\\book.jsonl",
+      "bytes": 192810906,
+      "mtime_ns": 1791269100175083900
+    },
+    {
+      "symbol": "NK225",
+      "session": "2026-10-06_Night",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\NK225\\2026-10-06_Night\\book.jsonl",
+      "bytes": 184012307,
+      "mtime_ns": 1791320400374383900
+    },
+    {
+      "symbol": "NK225",
+      "session": "2026-10-07_Day",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\NK225\\2026-10-07_Day\\book.jsonl",
+      "bytes": 190573575,
+      "mtime_ns": 1791355500240796300
+    },
+    {
+      "symbol": "NK225",
+      "session": "2026-10-07_Night",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\NK225\\2026-10-07_Night\\book.jsonl",
+      "bytes": 234676956,
+      "mtime_ns": 1791406800323189700
+    },
+    {
+      "symbol": "NK225",
+      "session": "2026-10-08_Day",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\NK225\\2026-10-08_Day\\book.jsonl",
+      "bytes": 223730458,
+      "mtime_ns": 1791441900329998800
+    },
+    {
+      "symbol": "NK225",
+      "session": "2026-10-08_Night",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\NK225\\2026-10-08_Night\\book.jsonl",
+      "bytes": 300133580,
+      "mtime_ns": 1791493201047123400
+    },
+    {
+      "symbol": "NK225",
+      "session": "2026-10-09_Day",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\NK225\\2026-10-09_Day\\book.jsonl",
+      "bytes": 199231552,
+      "mtime_ns": 1791528300185433000
+    },
+    {
+      "symbol": "NK225",
+      "session": "2026-10-09_Night",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\NK225\\2026-10-09_Night\\book.jsonl",
+      "bytes": 194997416,
+      "mtime_ns": 1791579601004020700
+    },
+    {
+      "symbol": "NK225",
+      "session": "2026-10-12_Day",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\NK225\\2026-10-12_Day\\book.jsonl",
+      "bytes": 133189803,
+      "mtime_ns": 1791787500292360800
+    },
+    {
+      "symbol": "NK225",
+      "session": "2026-10-12_Night",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\NK225\\2026-10-12_Night\\book.jsonl",
+      "bytes": 182147156,
+      "mtime_ns": 1791838800424553900
+    },
+    {
+      "symbol": "NK225",
+      "session": "2026-10-13_Day",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\NK225\\2026-10-13_Day\\book.jsonl",
+      "bytes": 254242782,
+      "mtime_ns": 1791873900212650900
+    },
+    {
+      "symbol": "NK225",
+      "session": "2026-10-13_Night",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\NK225\\2026-10-13_Night\\book.jsonl",
+      "bytes": 215817608,
+      "mtime_ns": 1791925200939866400
+    },
+    {
+      "symbol": "NK225",
+      "session": "2026-10-14_Day",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\NK225\\2026-10-14_Day\\book.jsonl",
+      "bytes": 222864778,
+      "mtime_ns": 1791960300539967000
+    },
+    {
+      "symbol": "NK225",
+      "session": "2026-10-14_Night",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\NK225\\2026-10-14_Night\\book.jsonl",
+      "bytes": 302935493,
+      "mtime_ns": 1792011600461424300
+    },
+    {
+      "symbol": "NK225",
+      "session": "2026-10-15_Day",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\NK225\\2026-10-15_Day\\book.jsonl",
+      "bytes": 292738919,
+      "mtime_ns": 1792046700395068400
+    },
+    {
+      "symbol": "NK225",
+      "session": "2026-10-15_Night",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\NK225\\2026-10-15_Night\\book.jsonl",
+      "bytes": 336165240,
+      "mtime_ns": 1792098000959475500
+    },
+    {
+      "symbol": "NK225",
+      "session": "2026-10-16_Day",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\NK225\\2026-10-16_Day\\book.jsonl",
+      "bytes": 250115319,
+      "mtime_ns": 1792133100182766800
+    },
+    {
+      "symbol": "NK225",
+      "session": "2026-10-16_Night",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\NK225\\2026-10-16_Night\\book.jsonl",
+      "bytes": 340569957,
+      "mtime_ns": 1792184400437937900
+    },
+    {
+      "symbol": "NK225",
+      "session": "2026-10-19_Day",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\NK225\\2026-10-19_Day\\book.jsonl",
+      "bytes": 254592995,
+      "mtime_ns": 1792392300308728900
+    },
+    {
+      "symbol": "NK225",
+      "session": "2026-10-19_Night",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\NK225\\2026-10-19_Night\\book.jsonl",
+      "bytes": 305026855,
+      "mtime_ns": 1792443600854997000
+    },
+    {
+      "symbol": "NK225",
+      "session": "2026-10-20_Day",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\NK225\\2026-10-20_Day\\book.jsonl",
+      "bytes": 271418714,
+      "mtime_ns": 1792478700307573400
+    },
+    {
+      "symbol": "NK225",
+      "session": "2026-10-20_Night",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\NK225\\2026-10-20_Night\\book.jsonl",
+      "bytes": 331494027,
+      "mtime_ns": 1792530000329946300
+    },
+    {
+      "symbol": "NK225",
+      "session": "2026-10-21_Day",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\NK225\\2026-10-21_Day\\book.jsonl",
+      "bytes": 252454106,
+      "mtime_ns": 1792565100277152800
+    },
+    {
+      "symbol": "NK225",
+      "session": "2026-10-21_Night",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\NK225\\2026-10-21_Night\\book.jsonl",
+      "bytes": 292063680,
+      "mtime_ns": 1792616400731874200
+    },
+    {
+      "symbol": "NK225",
+      "session": "2026-10-22_Day",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\NK225\\2026-10-22_Day\\book.jsonl",
+      "bytes": 273887863,
+      "mtime_ns": 1792651500247025500
+    },
+    {
+      "symbol": "NK225",
+      "session": "2026-10-22_Night",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\NK225\\2026-10-22_Night\\book.jsonl",
+      "bytes": 367633115,
+      "mtime_ns": 1792702800516094400
+    },
+    {
+      "symbol": "NK225",
+      "session": "2026-10-23_Day",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\NK225\\2026-10-23_Day\\book.jsonl",
+      "bytes": 311612813,
+      "mtime_ns": 1792737900468752700
+    },
+    {
+      "symbol": "NK225",
+      "session": "2026-10-23_Night",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\NK225\\2026-10-23_Night\\book.jsonl",
+      "bytes": 347599215,
+      "mtime_ns": 1792789200448028200
+    },
+    {
+      "symbol": "NK225",
+      "session": "2026-10-26_Day",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\NK225\\2026-10-26_Day\\book.jsonl",
+      "bytes": 269976151,
+      "mtime_ns": 1792997100289418900
+    },
+    {
+      "symbol": "NK225",
+      "session": "2026-10-26_Night",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\NK225\\2026-10-26_Night\\book.jsonl",
+      "bytes": 316773712,
+      "mtime_ns": 1793048400298850300
+    },
+    {
+      "symbol": "NK225",
+      "session": "2026-10-27_Day",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\NK225\\2026-10-27_Day\\book.jsonl",
+      "bytes": 263747326,
+      "mtime_ns": 1793083500296472000
+    },
+    {
+      "symbol": "NK225",
+      "session": "2026-10-27_Night",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\NK225\\2026-10-27_Night\\book.jsonl",
+      "bytes": 269976273,
+      "mtime_ns": 1793134800764693100
+    },
+    {
+      "symbol": "NK225",
+      "session": "2026-10-28_Day",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\NK225\\2026-10-28_Day\\book.jsonl",
+      "bytes": 245659941,
+      "mtime_ns": 1793169900195021300
+    },
+    {
+      "symbol": "NK225",
+      "session": "2026-10-28_Night",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\NK225\\2026-10-28_Night\\book.jsonl",
+      "bytes": 324383831,
+      "mtime_ns": 1793221201091315800
+    },
+    {
+      "symbol": "NK225",
+      "session": "2026-10-29_Day",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\NK225\\2026-10-29_Day\\book.jsonl",
+      "bytes": 297759837,
+      "mtime_ns": 1793256300297686800
+    },
+    {
+      "symbol": "TOPIX",
+      "session": "2026-09-21_Day",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\TOPIX\\2026-09-21_Day\\book.jsonl",
+      "bytes": 76603331,
+      "mtime_ns": 1789973100722831100
+    },
+    {
+      "symbol": "TOPIX",
+      "session": "2026-09-21_Night",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\TOPIX\\2026-09-21_Night\\book.jsonl",
+      "bytes": 131507361,
+      "mtime_ns": 1790024400702164300
+    },
+    {
+      "symbol": "TOPIX",
+      "session": "2026-09-22_Day",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\TOPIX\\2026-09-22_Day\\book.jsonl",
+      "bytes": 88296126,
+      "mtime_ns": 1790059500215800900
+    },
+    {
+      "symbol": "TOPIX",
+      "session": "2026-09-22_Night",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\TOPIX\\2026-09-22_Night\\book.jsonl",
+      "bytes": 190128724,
+      "mtime_ns": 1790110801264671300
+    },
+    {
+      "symbol": "TOPIX",
+      "session": "2026-09-23_Day",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\TOPIX\\2026-09-23_Day\\book.jsonl",
+      "bytes": 78456489,
+      "mtime_ns": 1790145900630926600
+    },
+    {
+      "symbol": "TOPIX",
+      "session": "2026-09-23_Night",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\TOPIX\\2026-09-23_Night\\book.jsonl",
+      "bytes": 190845809,
+      "mtime_ns": 1790197200699082300
+    },
+    {
+      "symbol": "TOPIX",
+      "session": "2026-09-24_Day",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\TOPIX\\2026-09-24_Day\\book.jsonl",
+      "bytes": 179887295,
+      "mtime_ns": 1790232300645170700
+    },
+    {
+      "symbol": "TOPIX",
+      "session": "2026-09-24_Night",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\TOPIX\\2026-09-24_Night\\book.jsonl",
+      "bytes": 264868729,
+      "mtime_ns": 1790283600933792300
+    },
+    {
+      "symbol": "TOPIX",
+      "session": "2026-09-25_Day",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\TOPIX\\2026-09-25_Day\\book.jsonl",
+      "bytes": 169389124,
+      "mtime_ns": 1790318700572045100
+    },
+    {
+      "symbol": "TOPIX",
+      "session": "2026-09-25_Night",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\TOPIX\\2026-09-25_Night\\book.jsonl",
+      "bytes": 217973609,
+      "mtime_ns": 1790370001279955800
+    },
+    {
+      "symbol": "TOPIX",
+      "session": "2026-09-28_Day",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\TOPIX\\2026-09-28_Day\\book.jsonl",
+      "bytes": 202646173,
+      "mtime_ns": 1790577900435169000
+    },
+    {
+      "symbol": "TOPIX",
+      "session": "2026-09-28_Night",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\TOPIX\\2026-09-28_Night\\book.jsonl",
+      "bytes": 259093200,
+      "mtime_ns": 1790629201197005900
+    },
+    {
+      "symbol": "TOPIX",
+      "session": "2026-09-29_Day",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\TOPIX\\2026-09-29_Day\\book.jsonl",
+      "bytes": 210640815,
+      "mtime_ns": 1790664300581794200
+    },
+    {
+      "symbol": "TOPIX",
+      "session": "2026-09-29_Night",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\TOPIX\\2026-09-29_Night\\book.jsonl",
+      "bytes": 239507482,
+      "mtime_ns": 1790715600947347900
+    },
+    {
+      "symbol": "TOPIX",
+      "session": "2026-09-30_Day",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\TOPIX\\2026-09-30_Day\\book.jsonl",
+      "bytes": 194807827,
+      "mtime_ns": 1790750700495705500
+    },
+    {
+      "symbol": "TOPIX",
+      "session": "2026-09-30_Night",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\TOPIX\\2026-09-30_Night\\book.jsonl",
+      "bytes": 284003699,
+      "mtime_ns": 1790802001476540400
+    },
+    {
+      "symbol": "TOPIX",
+      "session": "2026-10-01_Day",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\TOPIX\\2026-10-01_Day\\book.jsonl",
+      "bytes": 201473170,
+      "mtime_ns": 1790837100489771400
+    },
+    {
+      "symbol": "TOPIX",
+      "session": "2026-10-01_Night",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\TOPIX\\2026-10-01_Night\\book.jsonl",
+      "bytes": 339998411,
+      "mtime_ns": 1790888400849187600
+    },
+    {
+      "symbol": "TOPIX",
+      "session": "2026-10-02_Day",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\TOPIX\\2026-10-02_Day\\book.jsonl",
+      "bytes": 200783899,
+      "mtime_ns": 1790923500553427000
+    },
+    {
+      "symbol": "TOPIX",
+      "session": "2026-10-02_Night",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\TOPIX\\2026-10-02_Night\\book.jsonl",
+      "bytes": 292405192,
+      "mtime_ns": 1790974801367242600
+    },
+    {
+      "symbol": "TOPIX",
+      "session": "2026-10-05_Day",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\TOPIX\\2026-10-05_Day\\book.jsonl",
+      "bytes": 176082562,
+      "mtime_ns": 1791182700585015800
+    },
+    {
+      "symbol": "TOPIX",
+      "session": "2026-10-05_Night",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\TOPIX\\2026-10-05_Night\\book.jsonl",
+      "bytes": 237844322,
+      "mtime_ns": 1791234001196269300
+    },
+    {
+      "symbol": "TOPIX",
+      "session": "2026-10-06_Day",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\TOPIX\\2026-10-06_Day\\book.jsonl",
+      "bytes": 176077283,
+      "mtime_ns": 1791269100365699200
+    },
+    {
+      "symbol": "TOPIX",
+      "session": "2026-10-06_Night",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\TOPIX\\2026-10-06_Night\\book.jsonl",
+      "bytes": 208241132,
+      "mtime_ns": 1791320400652034900
+    },
+    {
+      "symbol": "TOPIX",
+      "session": "2026-10-07_Day",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\TOPIX\\2026-10-07_Day\\book.jsonl",
+      "bytes": 164880143,
+      "mtime_ns": 1791355500456914500
+    },
+    {
+      "symbol": "TOPIX",
+      "session": "2026-10-07_Night",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\TOPIX\\2026-10-07_Night\\book.jsonl",
+      "bytes": 218453443,
+      "mtime_ns": 1791406801709293100
+    },
+    {
+      "symbol": "TOPIX",
+      "session": "2026-10-08_Day",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\TOPIX\\2026-10-08_Day\\book.jsonl",
+      "bytes": 199756133,
+      "mtime_ns": 1791441903419170200
+    },
+    {
+      "symbol": "TOPIX",
+      "session": "2026-10-08_Night",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\TOPIX\\2026-10-08_Night\\book.jsonl",
+      "bytes": 287662515,
+      "mtime_ns": 1791493201723776300
+    },
+    {
+      "symbol": "TOPIX",
+      "session": "2026-10-09_Day",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\TOPIX\\2026-10-09_Day\\book.jsonl",
+      "bytes": 173642325,
+      "mtime_ns": 1791528300469029100
+    },
+    {
+      "symbol": "TOPIX",
+      "session": "2026-10-09_Night",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\TOPIX\\2026-10-09_Night\\book.jsonl",
+      "bytes": 193668131,
+      "mtime_ns": 1791579602303883500
+    },
+    {
+      "symbol": "TOPIX",
+      "session": "2026-10-12_Day",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\TOPIX\\2026-10-12_Day\\book.jsonl",
+      "bytes": 116152795,
+      "mtime_ns": 1791787501418802400
+    },
+    {
+      "symbol": "TOPIX",
+      "session": "2026-10-12_Night",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\TOPIX\\2026-10-12_Night\\book.jsonl",
+      "bytes": 179328269,
+      "mtime_ns": 1791838801305750000
+    },
+    {
+      "symbol": "TOPIX",
+      "session": "2026-10-13_Day",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\TOPIX\\2026-10-13_Day\\book.jsonl",
+      "bytes": 221878817,
+      "mtime_ns": 1791873902175203000
+    },
+    {
+      "symbol": "TOPIX",
+      "session": "2026-10-13_Night",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\TOPIX\\2026-10-13_Night\\book.jsonl",
+      "bytes": 211422787,
+      "mtime_ns": 1791925202119962500
+    },
+    {
+      "symbol": "TOPIX",
+      "session": "2026-10-14_Day",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\TOPIX\\2026-10-14_Day\\book.jsonl",
+      "bytes": 186243123,
+      "mtime_ns": 1791960302324287600
+    },
+    {
+      "symbol": "TOPIX",
+      "session": "2026-10-14_Night",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\TOPIX\\2026-10-14_Night\\book.jsonl",
+      "bytes": 267329186,
+      "mtime_ns": 1792011601975890800
+    },
+    {
+      "symbol": "TOPIX",
+      "session": "2026-10-15_Day",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\TOPIX\\2026-10-15_Day\\book.jsonl",
+      "bytes": 259585370,
+      "mtime_ns": 1792046702143353600
+    },
+    {
+      "symbol": "TOPIX",
+      "session": "2026-10-15_Night",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\TOPIX\\2026-10-15_Night\\book.jsonl",
+      "bytes": 322502651,
+      "mtime_ns": 1792098003173186200
+    },
+    {
+      "symbol": "TOPIX",
+      "session": "2026-10-16_Day",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\TOPIX\\2026-10-16_Day\\book.jsonl",
+      "bytes": 221271619,
+      "mtime_ns": 1792133102804344900
+    },
+    {
+      "symbol": "TOPIX",
+      "session": "2026-10-16_Night",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\TOPIX\\2026-10-16_Night\\book.jsonl",
+      "bytes": 326190073,
+      "mtime_ns": 1792184402160674700
+    },
+    {
+      "symbol": "TOPIX",
+      "session": "2026-10-19_Day",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\TOPIX\\2026-10-19_Day\\book.jsonl",
+      "bytes": 213225464,
+      "mtime_ns": 1792392302269743200
+    },
+    {
+      "symbol": "TOPIX",
+      "session": "2026-10-19_Night",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\TOPIX\\2026-10-19_Night\\book.jsonl",
+      "bytes": 281597586,
+      "mtime_ns": 1792443602287425200
+    },
+    {
+      "symbol": "TOPIX",
+      "session": "2026-10-20_Day",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\TOPIX\\2026-10-20_Day\\book.jsonl",
+      "bytes": 232223383,
+      "mtime_ns": 1792478703008954900
+    },
+    {
+      "symbol": "TOPIX",
+      "session": "2026-10-20_Night",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\TOPIX\\2026-10-20_Night\\book.jsonl",
+      "bytes": 307833341,
+      "mtime_ns": 1792530001945420600
+    },
+    {
+      "symbol": "TOPIX",
+      "session": "2026-10-21_Day",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\TOPIX\\2026-10-21_Day\\book.jsonl",
+      "bytes": 215071112,
+      "mtime_ns": 1792565102725334300
+    },
+    {
+      "symbol": "TOPIX",
+      "session": "2026-10-21_Night",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\TOPIX\\2026-10-21_Night\\book.jsonl",
+      "bytes": 269658482,
+      "mtime_ns": 1792616401968463400
+    },
+    {
+      "symbol": "TOPIX",
+      "session": "2026-10-22_Day",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\TOPIX\\2026-10-22_Day\\book.jsonl",
+      "bytes": 242428896,
+      "mtime_ns": 1792651502053725400
+    },
+    {
+      "symbol": "TOPIX",
+      "session": "2026-10-22_Night",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\TOPIX\\2026-10-22_Night\\book.jsonl",
+      "bytes": 334092713,
+      "mtime_ns": 1792702801771390300
+    },
+    {
+      "symbol": "TOPIX",
+      "session": "2026-10-23_Day",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\TOPIX\\2026-10-23_Day\\book.jsonl",
+      "bytes": 280517658,
+      "mtime_ns": 1792737902761974000
+    },
+    {
+      "symbol": "TOPIX",
+      "session": "2026-10-23_Night",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\TOPIX\\2026-10-23_Night\\book.jsonl",
+      "bytes": 319738500,
+      "mtime_ns": 1792789202117269000
+    },
+    {
+      "symbol": "TOPIX",
+      "session": "2026-10-26_Day",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\TOPIX\\2026-10-26_Day\\book.jsonl",
+      "bytes": 238406801,
+      "mtime_ns": 1792997102721504300
+    },
+    {
+      "symbol": "TOPIX",
+      "session": "2026-10-26_Night",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\TOPIX\\2026-10-26_Night\\book.jsonl",
+      "bytes": 285694915,
+      "mtime_ns": 1793048401316415000
+    },
+    {
+      "symbol": "TOPIX",
+      "session": "2026-10-27_Day",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\TOPIX\\2026-10-27_Day\\book.jsonl",
+      "bytes": 234565459,
+      "mtime_ns": 1793083502453698900
+    },
+    {
+      "symbol": "TOPIX",
+      "session": "2026-10-27_Night",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\TOPIX\\2026-10-27_Night\\book.jsonl",
+      "bytes": 258132860,
+      "mtime_ns": 1793134801659666900
+    },
+    {
+      "symbol": "TOPIX",
+      "session": "2026-10-28_Day",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\TOPIX\\2026-10-28_Day\\book.jsonl",
+      "bytes": 215688197,
+      "mtime_ns": 1793169902139875300
+    },
+    {
+      "symbol": "TOPIX",
+      "session": "2026-10-28_Night",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\TOPIX\\2026-10-28_Night\\book.jsonl",
+      "bytes": 296113964,
+      "mtime_ns": 1793221202221557800
+    },
+    {
+      "symbol": "TOPIX",
+      "session": "2026-10-29_Day",
+      "path": "S:\\GitHub\\masayoshi4649\\JP_OSE_Data\\future\\TOPIX\\2026-10-29_Day\\book.jsonl",
+      "bytes": 261472364,
+      "mtime_ns": 1793256302422613400
+    }
+  ]
+}

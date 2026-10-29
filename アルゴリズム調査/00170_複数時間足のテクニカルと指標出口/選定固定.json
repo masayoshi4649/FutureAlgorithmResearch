@@ -1,0 +1,991 @@
+{
+  "fixed_at": "2026-10-29T19:10:23.044408+09:00",
+  "source_sha256": "62c7ebfb432257a0299aafcc7ae2ae5420a4f3edaa0a077af00a9fc3b4902633",
+  "selection_sha256": "98bbc05823e96989445086eefd6c5cfd3ae3a166811d9797c9cf75921d145648",
+  "selection": {
+    "schema_version": 1,
+    "source": "summary.json",
+    "policy": "前60%の完全場だけで候補を固定。後40%の収支は選択へ不使用。全既知保存データであり完全未見とは称さない。",
+    "ranking": "検討総赤字・最大黒字依存・無取引・買売片側未確認の4不備数→赤字場率→中央値→最大赤字/平均黒字→PF→収支",
+    "splits": [
+      {
+        "symbol": "NK225",
+        "session": "2026-09-21_Day",
+        "phase": "検討",
+        "direction": "上昇",
+        "complete": true
+      },
+      {
+        "symbol": "NK225",
+        "session": "2026-09-21_Night",
+        "phase": "検討",
+        "direction": "上昇",
+        "complete": true
+      },
+      {
+        "symbol": "NK225",
+        "session": "2026-09-22_Day",
+        "phase": "検討",
+        "direction": "下落",
+        "complete": true
+      },
+      {
+        "symbol": "NK225",
+        "session": "2026-09-22_Night",
+        "phase": "検討",
+        "direction": "上昇",
+        "complete": true
+      },
+      {
+        "symbol": "NK225",
+        "session": "2026-09-23_Day",
+        "phase": "検討",
+        "direction": "下落",
+        "complete": true
+      },
+      {
+        "symbol": "NK225",
+        "session": "2026-09-23_Night",
+        "phase": "検討",
+        "direction": "下落",
+        "complete": true
+      },
+      {
+        "symbol": "NK225",
+        "session": "2026-09-24_Day",
+        "phase": "検討",
+        "direction": "下落",
+        "complete": true
+      },
+      {
+        "symbol": "NK225",
+        "session": "2026-09-24_Night",
+        "phase": "検討",
+        "direction": "下落",
+        "complete": true
+      },
+      {
+        "symbol": "NK225",
+        "session": "2026-09-25_Day",
+        "phase": "検討",
+        "direction": "上昇",
+        "complete": true
+      },
+      {
+        "symbol": "NK225",
+        "session": "2026-09-25_Night",
+        "phase": "検討",
+        "direction": "上昇",
+        "complete": true
+      },
+      {
+        "symbol": "NK225",
+        "session": "2026-09-28_Day",
+        "phase": "検討",
+        "direction": "下落",
+        "complete": true
+      },
+      {
+        "symbol": "NK225",
+        "session": "2026-09-28_Night",
+        "phase": "検討",
+        "direction": "下落",
+        "complete": true
+      },
+      {
+        "symbol": "NK225",
+        "session": "2026-09-29_Day",
+        "phase": "検討",
+        "direction": "下落",
+        "complete": true
+      },
+      {
+        "symbol": "NK225",
+        "session": "2026-09-29_Night",
+        "phase": "検討",
+        "direction": "上昇",
+        "complete": true
+      },
+      {
+        "symbol": "NK225",
+        "session": "2026-09-30_Day",
+        "phase": "検討",
+        "direction": "上昇",
+        "complete": true
+      },
+      {
+        "symbol": "NK225",
+        "session": "2026-09-30_Night",
+        "phase": "検討",
+        "direction": "下落",
+        "complete": true
+      },
+      {
+        "symbol": "NK225",
+        "session": "2026-10-01_Day",
+        "phase": "検討",
+        "direction": "上昇",
+        "complete": true
+      },
+      {
+        "symbol": "NK225",
+        "session": "2026-10-01_Night",
+        "phase": "検討",
+        "direction": "上昇",
+        "complete": true
+      },
+      {
+        "symbol": "NK225",
+        "session": "2026-10-02_Day",
+        "phase": "検討",
+        "direction": "上昇",
+        "complete": true
+      },
+      {
+        "symbol": "NK225",
+        "session": "2026-10-02_Night",
+        "phase": "検討",
+        "direction": "上昇",
+        "complete": true
+      },
+      {
+        "symbol": "NK225",
+        "session": "2026-10-05_Day",
+        "phase": "検討",
+        "direction": "上昇",
+        "complete": true
+      },
+      {
+        "symbol": "NK225",
+        "session": "2026-10-05_Night",
+        "phase": "検討",
+        "direction": "下落",
+        "complete": true
+      },
+      {
+        "symbol": "NK225",
+        "session": "2026-10-06_Day",
+        "phase": "検討",
+        "direction": "上昇",
+        "complete": true
+      },
+      {
+        "symbol": "NK225",
+        "session": "2026-10-06_Night",
+        "phase": "検討",
+        "direction": "下落",
+        "complete": true
+      },
+      {
+        "symbol": "NK225",
+        "session": "2026-10-07_Day",
+        "phase": "検討",
+        "direction": "下落",
+        "complete": true
+      },
+      {
+        "symbol": "NK225",
+        "session": "2026-10-07_Night",
+        "phase": "検討",
+        "direction": "下落",
+        "complete": true
+      },
+      {
+        "symbol": "NK225",
+        "session": "2026-10-08_Day",
+        "phase": "検討",
+        "direction": "下落",
+        "complete": true
+      },
+      {
+        "symbol": "NK225",
+        "session": "2026-10-08_Night",
+        "phase": "検討",
+        "direction": "下落",
+        "complete": true
+      },
+      {
+        "symbol": "NK225",
+        "session": "2026-10-09_Day",
+        "phase": "検討",
+        "direction": "上昇",
+        "complete": true
+      },
+      {
+        "symbol": "NK225",
+        "session": "2026-10-09_Night",
+        "phase": "検討",
+        "direction": "下落",
+        "complete": true
+      },
+      {
+        "symbol": "NK225",
+        "session": "2026-10-12_Day",
+        "phase": "検討",
+        "direction": "下落",
+        "complete": true
+      },
+      {
+        "symbol": "NK225",
+        "session": "2026-10-12_Night",
+        "phase": "検討",
+        "direction": "下落",
+        "complete": true
+      },
+      {
+        "symbol": "NK225",
+        "session": "2026-10-13_Day",
+        "phase": "検討",
+        "direction": "下落",
+        "complete": true
+      },
+      {
+        "symbol": "NK225",
+        "session": "2026-10-13_Night",
+        "phase": "検討",
+        "direction": "上昇",
+        "complete": true
+      },
+      {
+        "symbol": "NK225",
+        "session": "2026-10-14_Day",
+        "phase": "確認",
+        "direction": "上昇",
+        "complete": true
+      },
+      {
+        "symbol": "NK225",
+        "session": "2026-10-14_Night",
+        "phase": "確認",
+        "direction": "下落",
+        "complete": true
+      },
+      {
+        "symbol": "NK225",
+        "session": "2026-10-15_Day",
+        "phase": "確認",
+        "direction": "下落",
+        "complete": true
+      },
+      {
+        "symbol": "NK225",
+        "session": "2026-10-15_Night",
+        "phase": "確認",
+        "direction": "上昇",
+        "complete": true
+      },
+      {
+        "symbol": "NK225",
+        "session": "2026-10-16_Day",
+        "phase": "確認",
+        "direction": "上昇",
+        "complete": true
+      },
+      {
+        "symbol": "NK225",
+        "session": "2026-10-16_Night",
+        "phase": "確認",
+        "direction": "下落",
+        "complete": true
+      },
+      {
+        "symbol": "NK225",
+        "session": "2026-10-19_Day",
+        "phase": "確認",
+        "direction": "上昇",
+        "complete": true
+      },
+      {
+        "symbol": "NK225",
+        "session": "2026-10-19_Night",
+        "phase": "確認",
+        "direction": "上昇",
+        "complete": true
+      },
+      {
+        "symbol": "NK225",
+        "session": "2026-10-20_Day",
+        "phase": "確認",
+        "direction": "下落",
+        "complete": true
+      },
+      {
+        "symbol": "NK225",
+        "session": "2026-10-20_Night",
+        "phase": "確認",
+        "direction": "上昇",
+        "complete": true
+      },
+      {
+        "symbol": "NK225",
+        "session": "2026-10-21_Day",
+        "phase": "確認",
+        "direction": "下落",
+        "complete": true
+      },
+      {
+        "symbol": "NK225",
+        "session": "2026-10-21_Night",
+        "phase": "確認",
+        "direction": "上昇",
+        "complete": true
+      },
+      {
+        "symbol": "NK225",
+        "session": "2026-10-22_Day",
+        "phase": "確認",
+        "direction": "下落",
+        "complete": true
+      },
+      {
+        "symbol": "NK225",
+        "session": "2026-10-22_Night",
+        "phase": "確認",
+        "direction": "下落",
+        "complete": true
+      },
+      {
+        "symbol": "NK225",
+        "session": "2026-10-23_Day",
+        "phase": "確認",
+        "direction": "上昇",
+        "complete": true
+      },
+      {
+        "symbol": "NK225",
+        "session": "2026-10-23_Night",
+        "phase": "確認",
+        "direction": "上昇",
+        "complete": true
+      },
+      {
+        "symbol": "NK225",
+        "session": "2026-10-26_Day",
+        "phase": "確認",
+        "direction": "下落",
+        "complete": true
+      },
+      {
+        "symbol": "NK225",
+        "session": "2026-10-26_Night",
+        "phase": "確認",
+        "direction": "上昇",
+        "complete": true
+      },
+      {
+        "symbol": "NK225",
+        "session": "2026-10-27_Day",
+        "phase": "確認",
+        "direction": "上昇",
+        "complete": true
+      },
+      {
+        "symbol": "NK225",
+        "session": "2026-10-27_Night",
+        "phase": "確認",
+        "direction": "上昇",
+        "complete": true
+      },
+      {
+        "symbol": "NK225",
+        "session": "2026-10-28_Day",
+        "phase": "確認",
+        "direction": "下落",
+        "complete": true
+      },
+      {
+        "symbol": "NK225",
+        "session": "2026-10-28_Night",
+        "phase": "確認",
+        "direction": "下落",
+        "complete": true
+      },
+      {
+        "symbol": "NK225",
+        "session": "2026-10-29_Day",
+        "phase": "確認",
+        "direction": "上昇",
+        "complete": true
+      },
+      {
+        "symbol": "TOPIX",
+        "session": "2026-09-21_Day",
+        "phase": "検討",
+        "direction": "上昇",
+        "complete": true
+      },
+      {
+        "symbol": "TOPIX",
+        "session": "2026-09-21_Night",
+        "phase": "検討",
+        "direction": "上昇",
+        "complete": true
+      },
+      {
+        "symbol": "TOPIX",
+        "session": "2026-09-22_Day",
+        "phase": "検討",
+        "direction": "上昇",
+        "complete": true
+      },
+      {
+        "symbol": "TOPIX",
+        "session": "2026-09-22_Night",
+        "phase": "検討",
+        "direction": "上昇",
+        "complete": true
+      },
+      {
+        "symbol": "TOPIX",
+        "session": "2026-09-23_Day",
+        "phase": "検討",
+        "direction": "下落",
+        "complete": true
+      },
+      {
+        "symbol": "TOPIX",
+        "session": "2026-09-23_Night",
+        "phase": "検討",
+        "direction": "下落",
+        "complete": true
+      },
+      {
+        "symbol": "TOPIX",
+        "session": "2026-09-24_Day",
+        "phase": "検討",
+        "direction": "下落",
+        "complete": true
+      },
+      {
+        "symbol": "TOPIX",
+        "session": "2026-09-24_Night",
+        "phase": "検討",
+        "direction": "上昇",
+        "complete": true
+      },
+      {
+        "symbol": "TOPIX",
+        "session": "2026-09-25_Day",
+        "phase": "検討",
+        "direction": "上昇",
+        "complete": true
+      },
+      {
+        "symbol": "TOPIX",
+        "session": "2026-09-25_Night",
+        "phase": "検討",
+        "direction": "上昇",
+        "complete": true
+      },
+      {
+        "symbol": "TOPIX",
+        "session": "2026-09-28_Day",
+        "phase": "検討",
+        "direction": "下落",
+        "complete": true
+      },
+      {
+        "symbol": "TOPIX",
+        "session": "2026-09-28_Night",
+        "phase": "検討",
+        "direction": "下落",
+        "complete": true
+      },
+      {
+        "symbol": "TOPIX",
+        "session": "2026-09-29_Day",
+        "phase": "検討",
+        "direction": "下落",
+        "complete": true
+      },
+      {
+        "symbol": "TOPIX",
+        "session": "2026-09-29_Night",
+        "phase": "検討",
+        "direction": "下落",
+        "complete": true
+      },
+      {
+        "symbol": "TOPIX",
+        "session": "2026-09-30_Day",
+        "phase": "検討",
+        "direction": "上昇",
+        "complete": true
+      },
+      {
+        "symbol": "TOPIX",
+        "session": "2026-09-30_Night",
+        "phase": "検討",
+        "direction": "下落",
+        "complete": true
+      },
+      {
+        "symbol": "TOPIX",
+        "session": "2026-10-01_Day",
+        "phase": "検討",
+        "direction": "上昇",
+        "complete": true
+      },
+      {
+        "symbol": "TOPIX",
+        "session": "2026-10-01_Night",
+        "phase": "検討",
+        "direction": "下落",
+        "complete": true
+      },
+      {
+        "symbol": "TOPIX",
+        "session": "2026-10-02_Day",
+        "phase": "検討",
+        "direction": "上昇",
+        "complete": true
+      },
+      {
+        "symbol": "TOPIX",
+        "session": "2026-10-02_Night",
+        "phase": "検討",
+        "direction": "上昇",
+        "complete": true
+      },
+      {
+        "symbol": "TOPIX",
+        "session": "2026-10-05_Day",
+        "phase": "検討",
+        "direction": "上昇",
+        "complete": true
+      },
+      {
+        "symbol": "TOPIX",
+        "session": "2026-10-05_Night",
+        "phase": "検討",
+        "direction": "上昇",
+        "complete": true
+      },
+      {
+        "symbol": "TOPIX",
+        "session": "2026-10-06_Day",
+        "phase": "検討",
+        "direction": "上昇",
+        "complete": true
+      },
+      {
+        "symbol": "TOPIX",
+        "session": "2026-10-06_Night",
+        "phase": "検討",
+        "direction": "下落",
+        "complete": true
+      },
+      {
+        "symbol": "TOPIX",
+        "session": "2026-10-07_Day",
+        "phase": "検討",
+        "direction": "下落",
+        "complete": true
+      },
+      {
+        "symbol": "TOPIX",
+        "session": "2026-10-07_Night",
+        "phase": "検討",
+        "direction": "下落",
+        "complete": true
+      },
+      {
+        "symbol": "TOPIX",
+        "session": "2026-10-08_Day",
+        "phase": "検討",
+        "direction": "下落",
+        "complete": true
+      },
+      {
+        "symbol": "TOPIX",
+        "session": "2026-10-08_Night",
+        "phase": "検討",
+        "direction": "上昇",
+        "complete": true
+      },
+      {
+        "symbol": "TOPIX",
+        "session": "2026-10-09_Day",
+        "phase": "検討",
+        "direction": "上昇",
+        "complete": true
+      },
+      {
+        "symbol": "TOPIX",
+        "session": "2026-10-09_Night",
+        "phase": "検討",
+        "direction": "上昇",
+        "complete": true
+      },
+      {
+        "symbol": "TOPIX",
+        "session": "2026-10-12_Day",
+        "phase": "検討",
+        "direction": "上昇",
+        "complete": true
+      },
+      {
+        "symbol": "TOPIX",
+        "session": "2026-10-12_Night",
+        "phase": "検討",
+        "direction": "下落",
+        "complete": true
+      },
+      {
+        "symbol": "TOPIX",
+        "session": "2026-10-13_Day",
+        "phase": "検討",
+        "direction": "下落",
+        "complete": true
+      },
+      {
+        "symbol": "TOPIX",
+        "session": "2026-10-13_Night",
+        "phase": "検討",
+        "direction": "上昇",
+        "complete": true
+      },
+      {
+        "symbol": "TOPIX",
+        "session": "2026-10-14_Day",
+        "phase": "確認",
+        "direction": "下落",
+        "complete": true
+      },
+      {
+        "symbol": "TOPIX",
+        "session": "2026-10-14_Night",
+        "phase": "確認",
+        "direction": "下落",
+        "complete": true
+      },
+      {
+        "symbol": "TOPIX",
+        "session": "2026-10-15_Day",
+        "phase": "確認",
+        "direction": "下落",
+        "complete": true
+      },
+      {
+        "symbol": "TOPIX",
+        "session": "2026-10-15_Night",
+        "phase": "確認",
+        "direction": "上昇",
+        "complete": true
+      },
+      {
+        "symbol": "TOPIX",
+        "session": "2026-10-16_Day",
+        "phase": "確認",
+        "direction": "上昇",
+        "complete": true
+      },
+      {
+        "symbol": "TOPIX",
+        "session": "2026-10-16_Night",
+        "phase": "確認",
+        "direction": "下落",
+        "complete": true
+      },
+      {
+        "symbol": "TOPIX",
+        "session": "2026-10-19_Day",
+        "phase": "確認",
+        "direction": "上昇",
+        "complete": true
+      },
+      {
+        "symbol": "TOPIX",
+        "session": "2026-10-19_Night",
+        "phase": "確認",
+        "direction": "下落",
+        "complete": true
+      },
+      {
+        "symbol": "TOPIX",
+        "session": "2026-10-20_Day",
+        "phase": "確認",
+        "direction": "下落",
+        "complete": true
+      },
+      {
+        "symbol": "TOPIX",
+        "session": "2026-10-20_Night",
+        "phase": "確認",
+        "direction": "上昇",
+        "complete": true
+      },
+      {
+        "symbol": "TOPIX",
+        "session": "2026-10-21_Day",
+        "phase": "確認",
+        "direction": "下落",
+        "complete": true
+      },
+      {
+        "symbol": "TOPIX",
+        "session": "2026-10-21_Night",
+        "phase": "確認",
+        "direction": "上昇",
+        "complete": true
+      },
+      {
+        "symbol": "TOPIX",
+        "session": "2026-10-22_Day",
+        "phase": "確認",
+        "direction": "下落",
+        "complete": true
+      },
+      {
+        "symbol": "TOPIX",
+        "session": "2026-10-22_Night",
+        "phase": "確認",
+        "direction": "下落",
+        "complete": true
+      },
+      {
+        "symbol": "TOPIX",
+        "session": "2026-10-23_Day",
+        "phase": "確認",
+        "direction": "下落",
+        "complete": true
+      },
+      {
+        "symbol": "TOPIX",
+        "session": "2026-10-23_Night",
+        "phase": "確認",
+        "direction": "上昇",
+        "complete": true
+      },
+      {
+        "symbol": "TOPIX",
+        "session": "2026-10-26_Day",
+        "phase": "確認",
+        "direction": "上昇",
+        "complete": true
+      },
+      {
+        "symbol": "TOPIX",
+        "session": "2026-10-26_Night",
+        "phase": "確認",
+        "direction": "上昇",
+        "complete": true
+      },
+      {
+        "symbol": "TOPIX",
+        "session": "2026-10-27_Day",
+        "phase": "確認",
+        "direction": "下落",
+        "complete": true
+      },
+      {
+        "symbol": "TOPIX",
+        "session": "2026-10-27_Night",
+        "phase": "確認",
+        "direction": "上昇",
+        "complete": true
+      },
+      {
+        "symbol": "TOPIX",
+        "session": "2026-10-28_Day",
+        "phase": "確認",
+        "direction": "下落",
+        "complete": true
+      },
+      {
+        "symbol": "TOPIX",
+        "session": "2026-10-28_Night",
+        "phase": "確認",
+        "direction": "上昇",
+        "complete": true
+      },
+      {
+        "symbol": "TOPIX",
+        "session": "2026-10-29_Day",
+        "phase": "確認",
+        "direction": "上昇",
+        "complete": true
+      }
+    ],
+    "selected": [
+      {
+        "symbol": "NK225",
+        "kind": "Day",
+        "method_id": "F09A_I",
+        "algorithm_id": "NK225_T170_F09A_I",
+        "control_id": "F09A_T",
+        "indicator_control_id": "F09A_I",
+        "train_metrics": {
+          "sessions": 17,
+          "profit": 100000,
+          "loss": 0,
+          "net": 100000,
+          "pf": null,
+          "profit_share": 1.0,
+          "positive": 3,
+          "negative": 0,
+          "flat": 14,
+          "no_trade": 14,
+          "median": 0,
+          "mean_win": 33333.333333333336,
+          "mean_loss": 0,
+          "max_loss": 0,
+          "max_dd": 50000,
+          "net_without_best": 50000,
+          "net_without_best3": 0,
+          "long_net": 50000,
+          "short_net": 50000,
+          "long_episodes": 3,
+          "short_episodes": 2,
+          "entry_count": 5,
+          "positive_then_negative": 3,
+          "fees_reference": 3850.0,
+          "reference_net_after_fees": 96150.0
+        },
+        "ranking_key": [
+          1,
+          0.0,
+          0,
+          0.0,
+          -100,
+          -100000
+        ],
+        "label": "検討区間上位。確認成績による選び直しなし"
+      },
+      {
+        "symbol": "NK225",
+        "kind": "Night",
+        "method_id": "F10B_I",
+        "algorithm_id": "NK225_T170_F10B_I",
+        "control_id": "F10B_T",
+        "indicator_control_id": "F10B_I",
+        "train_metrics": {
+          "sessions": 17,
+          "profit": 1280000,
+          "loss": 1180000,
+          "net": 100000,
+          "pf": 1.0847457627118644,
+          "profit_share": 0.5203252032520326,
+          "positive": 5,
+          "negative": 9,
+          "flat": 3,
+          "no_trade": 2,
+          "median": -10000,
+          "mean_win": 130000,
+          "mean_loss": 61111.11111111111,
+          "max_loss": 150000,
+          "max_dd": 290000,
+          "net_without_best": -110000,
+          "net_without_best3": -440000,
+          "long_net": 30000,
+          "short_net": 70000,
+          "long_episodes": 23,
+          "short_episodes": 9,
+          "entry_count": 32,
+          "positive_then_negative": 19,
+          "fees_reference": 24640.0,
+          "reference_net_after_fees": 75360.0
+        },
+        "ranking_key": [
+          2,
+          0.5294117647058824,
+          10000,
+          1.1538461538461537,
+          -1.0847457627118644,
+          -100000
+        ],
+        "label": "検討区間上位。確認成績による選び直しなし"
+      },
+      {
+        "symbol": "TOPIX",
+        "kind": "Day",
+        "method_id": "F09B_F",
+        "algorithm_id": "TOPIX_T170_F09B_F",
+        "control_id": "F09B_T",
+        "indicator_control_id": "F09B_I",
+        "train_metrics": {
+          "sessions": 17,
+          "profit": 10000,
+          "loss": 5000,
+          "net": 5000,
+          "pf": 2.0,
+          "profit_share": 0.6666666666666666,
+          "positive": 1,
+          "negative": 1,
+          "flat": 15,
+          "no_trade": 15,
+          "median": 0,
+          "mean_win": 10000,
+          "mean_loss": 5000,
+          "max_loss": 5000,
+          "max_dd": 25000,
+          "net_without_best": -5000,
+          "net_without_best3": -5000,
+          "long_net": 5000,
+          "short_net": 0,
+          "long_episodes": 2,
+          "short_episodes": 1,
+          "entry_count": 3,
+          "positive_then_negative": 0,
+          "fees_reference": 2508.0,
+          "reference_net_after_fees": 2492.0
+        },
+        "ranking_key": [
+          2,
+          0.058823529411764705,
+          0,
+          0.5,
+          -2.0,
+          -5000
+        ],
+        "label": "検討区間上位。確認成績による選び直しなし"
+      },
+      {
+        "symbol": "TOPIX",
+        "kind": "Night",
+        "method_id": "F03B_F",
+        "algorithm_id": "TOPIX_T170_F03B_F",
+        "control_id": "F03B_T",
+        "indicator_control_id": "F03B_I",
+        "train_metrics": {
+          "sessions": 17,
+          "profit": 90000,
+          "loss": 30000,
+          "net": 60000,
+          "pf": 3.0,
+          "profit_share": 0.75,
+          "positive": 3,
+          "negative": 2,
+          "flat": 12,
+          "no_trade": 10,
+          "median": 0,
+          "mean_win": 23333.333333333332,
+          "mean_loss": 5000,
+          "max_loss": 5000,
+          "max_dd": 50000,
+          "net_without_best": 25000,
+          "net_without_best3": -10000,
+          "long_net": 75000,
+          "short_net": -15000,
+          "long_episodes": 4,
+          "short_episodes": 6,
+          "entry_count": 10,
+          "positive_then_negative": 3,
+          "fees_reference": 8360.0,
+          "reference_net_after_fees": 51640.0
+        },
+        "ranking_key": [
+          2,
+          0.11764705882352941,
+          0,
+          0.2142857142857143,
+          -3.0,
+          -60000
+        ],
+        "label": "検討区間上位。確認成績による選び直しなし"
+      }
+    ]
+  },
+  "preselection_checks": "全72×114件、会計、ID、入力集合、終端確認場の残玉ゼロが一致",
+  "note": "後半確認成績による選び直しは禁止。選択はanalyze.py内の検討区間だけ。"
+}

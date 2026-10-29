@@ -1,0 +1,37 @@
+{
+  "structure_check": {
+    "仕様版": 2,
+    "提案完全": true,
+    "提案不完全理由": [],
+    "判定": "登録試行がありません。過去の未登録試行との重複は未確認です",
+    "比較": [],
+    "完全同一": [],
+    "不完全な過去試行": [],
+    "再利用できる完全同一": [],
+    "実績なしの完全同一": [],
+    "比較可能件数": 0,
+    "再利用可能": false,
+    "重複なしの証明": false,
+    "限界": "入力に登録された明示仕様とstatusの比較です。未記載ルール、未登録試行、結果の正しさは検証しません。",
+    "proposal_complete": true,
+    "matches": [],
+    "incomplete_history": [],
+    "reusable": false,
+    "提案指紋": {
+      "全体": "5dc087efa51cd1c33c8cff0994fd4ec5f963158420895d9f397239443bc9f52a",
+      "部品": {
+        "entry": "e6d5c50db9017c8b46adcd435b89e04e22561cd74668b51ed226c6e14b755a65",
+        "management": "e1469e1680845e40a474402cddb95fb362fe99852a6c6f94530d08d7f6ed5147",
+        "exit": "c1855a64abeef3156d58840bb43d3207292122692deba609bb42eaee3681737d",
+        "allocation": "7b59a872b683b8d7895724caa6eee5b2aac9c97062de495248863ccc8d2366cf",
+        "costs": "87089c1634bb39fccd6944bd6abd818be959eccdb7f5150ce46bdb97f8b3c81e",
+        "execution": "bada775b4262638e0be68dd244430be505b44bcc2e3ea6d0322e2fc84a0416fd",
+        "data": "3f49b164960a09e43f8fcaa914444ac27e95a3147f58ab5d901d798c27d6a3b1",
+        "implementation": "df3046df6847278af08cdff7effe7f50398775718602794705a2a0134eeaaa0f"
+      }
+    },
+    "note": "登録試行がありません。過去の未登録試行との重複は未確認です。入力に登録された明示仕様とstatusの比較です。未記載ルール、未登録試行、結果の正しさは検証しません。"
+  },
+  "historical_comparison_performed": false,
+  "note": "比較母集団は空。構造検査の結果を過去との重複なしと読み替えない。"
+}
