@@ -109,6 +109,14 @@ CREATE TABLE IF NOT EXISTS report_sessions (
  last_trade_seq INTEGER NOT NULL DEFAULT 0,
  PRIMARY KEY(session,dryrun,product)
 );
+CREATE TABLE IF NOT EXISTS viewer_sessions (
+ session TEXT NOT NULL, dryrun INTEGER NOT NULL CHECK(dryrun IN(0,1)),
+ product TEXT NOT NULL, end_at TEXT NOT NULL, point_value REAL NOT NULL,
+ emitted INTEGER NOT NULL DEFAULT 0, last_trade_seq INTEGER NOT NULL DEFAULT 0,
+ last_event_seq INTEGER NOT NULL DEFAULT 0, content_sha256 TEXT NOT NULL DEFAULT '',
+ resource_ids TEXT NOT NULL DEFAULT '[]' CHECK(json_valid(resource_ids)),
+ PRIMARY KEY(session,dryrun,product)
+);
 CREATE TABLE IF NOT EXISTS books (
  id INTEGER PRIMARY KEY AUTOINCREMENT, session TEXT NOT NULL,
  generation TEXT NOT NULL, code TEXT NOT NULL, received_at TEXT NOT NULL,
@@ -121,6 +129,8 @@ CREATE TABLE IF NOT EXISTS events (
  at TEXT NOT NULL, payload BLOB NOT NULL CHECK(json_valid(payload))
 );
 CREATE INDEX IF NOT EXISTS events_session ON events(session,seq);
+CREATE INDEX IF NOT EXISTS events_viewer_lifecycle ON events(seq)
+ WHERE kind IN ('保有玉の管理外移管','起動時状態切替');
 PRAGMA user_version=1;
 `
 

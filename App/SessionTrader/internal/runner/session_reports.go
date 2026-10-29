@@ -2,6 +2,7 @@ package runner
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
 	"time"
 
@@ -44,10 +45,10 @@ func queuedMethod(evidence json.RawMessage) string {
 	return value.Profile
 }
 
-// finalizeSessionReports は立会終了後のレポートを売買ループと独立して再試行します。
+// finalizeSessionReports は終了CSVと場中の小容量Viewer資料を売買ループと独立して再試行します。
 //
 // 引数: now(time.Time)は現在時計です。
-// 返り値: なし。CSV障害で保有玉の監視を止めず、失敗の変化を標準出力へ残します。
+// 返り値: なし。派生出力の障害で保有玉の監視を止めず、失敗の変化を標準出力へ残します。
 func (a *app) finalizeSessionReports(now time.Time) {
 	if now.Before(a.nextSessionReport) {
 		return
@@ -58,7 +59,10 @@ func (a *app) finalizeSessionReports(now time.Time) {
 		if m.Manager == nil {
 			continue
 		}
-		if err := m.Manager.FinalizeReports(a.cfg.Path(a.cfg.Runtime.LogDirectory), now); err != nil {
+		logRoot := a.cfg.Path(a.cfg.Runtime.LogDirectory)
+		csvErr := m.Manager.FinalizeReports(logRoot, now)
+		viewerErr := m.Manager.PublishViewer(logRoot, now)
+		if err := errors.Join(csvErr, viewerErr); err != nil {
 			message += fmt.Sprintf("%s: %v; ", m.Reference, err)
 		}
 	}

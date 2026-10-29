@@ -12,6 +12,7 @@ import (
 	"os"
 	"path/filepath"
 	"reflect"
+	"regexp"
 	"testing"
 	"time"
 
@@ -33,13 +34,14 @@ func (a *reportNoNetworkAPI) SendFuture(context.Context, controller.BrokerReques
 	return controller.OrderResponse{}, fmt.Errorf("回帰試験からの発注は禁止しています")
 }
 
-// reportOutputFiles は売買CSV以外の旧派生物や旧商品階層を検出します。
+// reportOutputFiles は正式CSV・小さいViewer入力以外の旧派生物や旧商品階層を検出します。
 //
 // 引数: t(*testing.T)、root(string)、required(...string)は必要な正式CSVです。
-// 返り値: なし。Web操作監査と共通CSV排他だけは売買出力の例外として許可します。
+// 返り値: なし。Web操作監査・共通排他・新しい閲覧用約定だけを追加許可します。
 func reportOutputFiles(t *testing.T, root string, required ...string) {
 	t.Helper()
-	allowed := map[string]bool{"web/操作.jsonl": true, ".sessionPL.lock": true}
+	allowed := map[string]bool{"web/操作.jsonl": true, ".sessionPL.lock": true, "sessionviewer.resources.json": true}
+	viewerFile := regexp.MustCompile(`^NK225mini/\d{4}-\d{2}-\d{2}_(Day|Night)(_dryrun)?\.trades\.jsonl$`)
 	missing := map[string]bool{}
 	for _, name := range required {
 		allowed[name], missing[name] = true, true
@@ -59,8 +61,8 @@ func reportOutputFiles(t *testing.T, root string, required ...string) {
 			}
 			return nil
 		}
-		if !allowed[rel] {
-			t.Errorf("指定CSV以外の売買ログを生成しました: %s", rel)
+		if !allowed[rel] && !viewerFile.MatchString(rel) {
+			t.Errorf("指定CSV・Viewer入力以外の売買ログを生成しました: %s", rel)
 		}
 		delete(missing, rel)
 		return nil

@@ -20,7 +20,7 @@ func (m *Manager) startSessionReportsLocked() {
 	})
 }
 
-// runSessionReports は終了場を五秒ごとに書き出し、Web終了時に監視を停止します。
+// runSessionReports は終了CSVとViewer資料を五秒ごとに確認し、Web終了時に監視を停止します。
 //
 // 引数: なし。
 // 返り値: なし。未確定注文はjournal側で延期し、保存失敗は画面とコンソールへ公開します。
@@ -38,7 +38,7 @@ func (m *Manager) runSessionReports() {
 	}
 }
 
-// finalizeStoredSessionReports はON・OFFと実/仮想の切替前に保存した全商品の場を確認します。
+// finalizeStoredSessionReports はON・OFFと実/仮想の全商品について確定記録を閲覧資料へ反映します。
 //
 // 引数: now(time.Time)は終了判定時計です。
 // 返り値: なし。削除された出力の復活はjournal側の出力済み印で防ぎます。
@@ -57,7 +57,9 @@ func (m *Manager) finalizeStoredSessionReports(now time.Time) {
 	m.mu.Unlock()
 	var result error
 	for _, path := range paths {
-		if err := journal.FinalizeStoredReports(path.database, path.logs, now); err != nil {
+		csvErr := journal.FinalizeStoredReports(path.database, path.logs, now)
+		viewerErr := journal.PublishStoredViewer(path.database, path.logs, now)
+		if err := errors.Join(csvErr, viewerErr); err != nil {
 			result = errors.Join(result, fmt.Errorf("%s/%s: %w", path.product, path.mode, err))
 		}
 	}

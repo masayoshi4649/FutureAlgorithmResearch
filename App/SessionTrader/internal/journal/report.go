@@ -23,12 +23,16 @@ type reportSession struct {
 
 // RegisterReportSession は運転した場だけを終了予定へ登録します。
 //
-// 引数: session(string)、dry(bool)、product(string)、end(time.Time)。返り値: error。再登録で出力済み印を消しません。
-func (s *Store) RegisterReportSession(session string, dry bool, product string, end time.Time) error {
+// 引数: session(string)、dry(bool)、product(string)、end(time.Time)、viewerPointValue(...float64)は任意の既知円倍率です。
+// 返り値: error。再登録で出力済み印を消さず、倍率指定時だけViewerの場を登録します。
+func (s *Store) RegisterReportSession(session string, dry bool, product string, end time.Time, viewerPointValue ...float64) error {
 	s.mu.Lock()
 	defer s.mu.Unlock()
 	if !sessionPattern.MatchString(session) || !validReportProduct(product) || end.IsZero() {
 		return fmt.Errorf("終了レポートの場・商品・終了時計が不正です")
+	}
+	if len(viewerPointValue) > 1 || len(viewerPointValue) == 1 && (!viewerFinitePositive(viewerPointValue[0]) || viewerReference(product) == "") {
+		return fmt.Errorf("Viewerの既知円倍率又は商品が不正です")
 	}
 	if _, err := s.db.Exec("INSERT OR IGNORE INTO report_sessions(session,dryrun,product,end_at) VALUES(?,?,?,?)", session, dry, product, end.UTC().Format(time.RFC3339Nano)); err != nil {
 		return err
@@ -40,6 +44,9 @@ func (s *Store) RegisterReportSession(session string, dry bool, product string, 
 	prior, err := time.Parse(time.RFC3339Nano, oldEnd)
 	if err != nil || !prior.Equal(end) {
 		return fmt.Errorf("登録済み終了時計を変更できません")
+	}
+	if len(viewerPointValue) == 1 {
+		return registerViewerSession(s.db, session, dry, product, end, viewerPointValue[0])
 	}
 	return nil
 }

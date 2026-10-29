@@ -14,7 +14,9 @@
 
 売買管理の確定損益は当セッション分です。終了時には6列の売買履歴を`log/{商品}/{セッション}.csv`（仮想は`_dryrun.csv`）へ、商品・モード別の集計を`log/sessionPL.csv`へ保存します。「セッション損益」タブは集計CSVだけを読み、削除した履歴は復元しません。この終了レポートは手数料前、売買管理カードは手数料後です。
 
-旧モード別フォルダの詳細CSV・約定JSONL・`session_summary*.csv`と、`trace.jsonl`の自動出力・起動時再生成は廃止しました。既存の旧ファイルは自動削除しません。SQLiteの記録と所有管理、Webの`操作.jsonl`は維持し、詳細が必要な場合だけ診断ZIPを書き出します。
+SessionViewer用に`log/sessionviewer.resources.json`と、商品・場・実／仮想ごとに1個の`*.trades.jsonl`を出力します。確認済み約定と管理外移管だけを保存し、手法別コピーや毎ティックの状態ログは作りません。Viewerで一覧を開けば、日付・手法・raw／分足を選んで確認できます。[Viewer連携](docs/Viewer連携.md)。
+
+旧モード別フォルダの詳細CSV・旧約定JSONL・`session_summary*.csv`と、`trace.jsonl`の自動出力・起動時再生成は廃止しました。既存の旧ファイルは自動削除しません。SQLiteの記録と所有管理、Webの`操作.jsonl`は維持し、詳細が必要な場合だけ診断ZIPを書き出します。
 
 - [Web版の設定と操作](docs/Web版.md)
 - [時間帯ごとの手法切替](docs/時間帯切替.md)
@@ -24,6 +26,7 @@
 - [D07の売買仕様](docs/D07.md)
 - [P05と米国前後の標準運転](docs/P05.md)
 - [当セッションの損益とCSV履歴](docs/セッション損益.md)
+- [小容量のViewer連携](docs/Viewer連携.md)
 - [検証結果](docs/検証結果.md)
 - [診断データの出力](docs/診断データの出力.md)
 

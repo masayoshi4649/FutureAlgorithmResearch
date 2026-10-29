@@ -80,7 +80,7 @@ log/web/操作.jsonl
 conf/web-ui.toml
 ```
 
-`操作.jsonl`には設定変更と商品別運転の小さい記録を残します。売買履歴の通常ファイル出力は、セッション終了確定後の商品別6列CSVと全商品7列の`sessionPL.csv`です。旧モード別の詳細CSV・約定JSONL・`session_summary*.csv`・`trace.jsonl`は追加も再作成もしません。既存の旧ファイルは自動削除せず、SQLiteの注文・約定・判断根拠は保持します。詳細の転送には明示操作で[診断ZIP](診断データの出力.md)を作ります。同一controller・商品・モードの二重起動ロックを維持します。報告CSVの保存エラーは全ページの警告へ表示します。
+`操作.jsonl`には設定変更と商品別運転の小さい記録を残します。終了確定後の商品別6列CSV・全商品7列の`sessionPL.csv`に加え、[Viewer連携](Viewer連携.md)の小さい約定JSONL・一覧を出力します。旧モード別の詳細CSV・旧約定JSONL・`session_summary*.csv`・`trace.jsonl`は追加も再作成もしません。既存の旧ファイルは自動削除せず、SQLiteの注文・約定・判断根拠は保持します。詳細の転送には明示操作で[診断ZIP](診断データの出力.md)を作ります。同一controller・商品・モードの二重起動ロックを維持します。レポート保存エラーは全ページの警告へ表示します。
 
 `go run ./cmd/build-dist`でWindows/LinuxをCGOなしで生成します。既存の実設定・画面保存設定・ルール・台帳・ログは通常の再配布で上書きしません。
 
