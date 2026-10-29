@@ -1,7 +1,0 @@
-# 配布バイナリと実行時ファイルはGitへ含めない。
-/dist/
-/work/
-/cache/
-/log/
-*.exe
-*.test
