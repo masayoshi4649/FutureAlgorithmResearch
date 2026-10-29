@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "resources": [
+    {
+      "id": "day-baseline",
+      "title": "日中・基準",
+      "symbol": "NK225",
+      "session": "2026-10-27_Day",
+      "product": "NK225micro",
+      "method_id": "NK225_D164_15",
+      "point_value": 10,
+      "pnl_format": "trades",
+      "pnl_basis": "gross",
+      "pnl_path": "アルゴリズム調査/00169_セッションと売買経路の可視化/data/2026-10-27_Day_NK225_D164_15.trades.jsonl"
+    },
+    {
+      "id": "day-protection",
+      "title": "日中・利益床調整",
+      "symbol": "NK225",
+      "session": "2026-10-27_Day",
+      "product": "NK225micro",
+      "method_id": "NK225_D168C_01",
+      "point_value": 10,
+      "pnl_format": "trades",
+      "pnl_basis": "gross",
+      "pnl_path": "アルゴリズム調査/00169_セッションと売買経路の可視化/data/2026-10-27_Day_NK225_D168C_01.trades.jsonl"
+    },
+    {
+      "id": "night-baseline",
+      "title": "米国後・基準",
+      "symbol": "NK225",
+      "session": "2026-10-27_Night",
+      "product": "NK225micro",
+      "method_id": "NK225_U165_03",
+      "point_value": 10,
+      "pnl_format": "trades",
+      "pnl_basis": "gross",
+      "pnl_path": "アルゴリズム調査/00169_セッションと売買経路の可視化/data/2026-10-27_Night_NK225_U165_03.trades.jsonl"
+    },
+    {
+      "id": "night-protection",
+      "title": "米国後・利益床調整",
+      "symbol": "NK225",
+      "session": "2026-10-27_Night",
+      "product": "NK225micro",
+      "method_id": "NK225_U168C_04",
+      "point_value": 10,
+      "pnl_format": "trades",
+      "pnl_basis": "gross",
+      "pnl_path": "アルゴリズム調査/00169_セッションと売買経路の可視化/data/2026-10-27_Night_NK225_U168C_04.trades.jsonl"
+    }
+  ]
+}
